@@ -10,11 +10,12 @@ export default function App() {
   );
 }
 
+const backgroundColorDefault = '#fff';
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
+    backgroundColor: backgroundColorDefault,
+    flex: 1,
     justifyContent: 'center',
   },
 });
