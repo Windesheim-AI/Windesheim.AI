@@ -1,6 +1,5 @@
 {
-  "name": "nativetest",
-  "main": "expo-router/entry",
+  "name": "winsight",
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
