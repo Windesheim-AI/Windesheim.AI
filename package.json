@@ -1,5 +1,5 @@
 {
-  "name": "winsight",
+  "name": "react-native-app-template",
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",

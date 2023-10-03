@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "WINsight",
-    "slug": "winsight",
+    "name": "react-native-app-template",
+    "slug": "react-native-app-template",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
