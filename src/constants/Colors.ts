@@ -1,7 +1,20 @@
+import { useColorScheme } from 'react-native';
+
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
 
-export default {
+type ColorSchemeType = {
+    text: string;
+    background: string;
+    tint: string;
+    tabIconDefault: string;
+    tabIconSelected: string;
+    bg_1: string;
+    bg_2: string;
+    bg_3: string;
+};
+
+const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
         text: '#000',
         background: '#fff',
@@ -23,3 +36,12 @@ export default {
         bg_3: '#4695d3',
     },
 };
+
+export class ColorScheme {
+    static useColorScheme() {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const scheme = useColorScheme();
+        if (scheme) return colorMap[scheme];
+        return colorMap.dark;
+    }
+}

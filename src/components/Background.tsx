@@ -1,21 +1,21 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import useTheme from '../utils/ThemeUtil';
+import { ColorScheme } from '../constants/Colors';
 
 export const Background = () => {
-    const theme = useTheme();
+    const colors = ColorScheme.useColorScheme();
 
     const styles = StyleSheet.create({
         bar: {
-            backgroundColor: theme.bar1Color,
+            backgroundColor: colors.bg_1,
             flex: 1,
             height: '100%',
             position: 'absolute',
             width: '100%',
         },
         bar2: {
-            backgroundColor: theme.bar2Color,
+            backgroundColor: colors.bg_2,
             height: '200%',
             left: '10%',
             position: 'absolute',
@@ -24,7 +24,7 @@ export const Background = () => {
             width: '72%',
         },
         bar3: {
-            backgroundColor: theme.bar3Color,
+            backgroundColor: colors.bg_3,
             height: '200%',
             left: '55%',
             position: 'absolute',
