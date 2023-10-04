@@ -2,14 +2,14 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-import useTheme from '../utils/ThemeUtil';
+import { ColorScheme } from '../constants/Colors';
 
 export const WTRScreen = () => {
-    const theme = useTheme();
+    const colors = ColorScheme.useColorScheme();
 
     const styles = StyleSheet.create({
         container: {
-            backgroundColor: theme.backgroundColor,
+            backgroundColor: colors.background,
             flex: 1,
         },
         site: {

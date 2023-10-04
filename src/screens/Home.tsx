@@ -2,19 +2,19 @@ import { NavigationProp } from '@react-navigation/native';
 import * as React from 'react';
 import { Button, View, Text, StyleSheet } from 'react-native';
 
-import useTheme from '../utils/ThemeUtil';
+import { ColorScheme } from '../constants/Colors';
 
 type HomeScreenProps = {
     navigation: NavigationProp<Record<string, object>>;
 };
 
 export const HomeScreen = ({ navigation }: HomeScreenProps) => {
-    const theme = useTheme();
+    const colors = ColorScheme.useColorScheme();
 
     const styles = StyleSheet.create({
         container: {
             alignItems: 'center',
-            backgroundColor: theme.backgroundColor,
+            backgroundColor: colors.background,
             flex: 1,
             justifyContent: 'center',
         },
