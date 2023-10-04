@@ -1,17 +1,15 @@
 import React from 'react';
-import { View, StyleSheet, useColorScheme } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-import Colors from '../constants/Colors';
+import useTheme from '../utils/ThemeUtil';
 
 export const WTRScreen = () => {
-    const colorScheme = useColorScheme();
+    const { useBackgroundColor } = useTheme();
+
     const styles = StyleSheet.create({
         container: {
-            backgroundColor:
-                colorScheme === 'dark'
-                    ? Colors.dark.background
-                    : Colors.light.background,
+            backgroundColor: useBackgroundColor(),
             flex: 1,
         },
         site: {

@@ -1,23 +1,25 @@
 import React from 'react';
-import { useColorScheme, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import Colors from '../constants/Colors';
+import useTheme from '../utils/ThemeUtil';
 
 export const Background = () => {
-    const colorScheme = useColorScheme();
+    const { useBar1Color, useBar2Color, useBar3Color } = useTheme();
+
+    const backgroundColorBG1 = useBar1Color();
+    const backgroundColorBG2 = useBar2Color();
+    const backgroundColorBG3 = useBar3Color();
 
     const styles = StyleSheet.create({
         bar: {
-            backgroundColor:
-                colorScheme === 'dark' ? Colors.dark.bg_1 : Colors.light.bg_1,
+            backgroundColor: backgroundColorBG1,
             flex: 1,
             height: '100%',
             position: 'absolute',
             width: '100%',
         },
         bar2: {
-            backgroundColor:
-                colorScheme === 'dark' ? Colors.dark.bg_2 : Colors.light.bg_2,
+            backgroundColor: backgroundColorBG2,
             height: '200%',
             left: '10%',
             position: 'absolute',
@@ -26,8 +28,7 @@ export const Background = () => {
             width: '72%',
         },
         bar3: {
-            backgroundColor:
-                colorScheme === 'dark' ? Colors.dark.bg_3 : Colors.light.bg_3,
+            backgroundColor: backgroundColorBG3,
             height: '200%',
             left: '55%',
             position: 'absolute',

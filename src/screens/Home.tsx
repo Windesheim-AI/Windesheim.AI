@@ -1,22 +1,20 @@
 import { NavigationProp } from '@react-navigation/native';
 import * as React from 'react';
-import { Button, View, Text, StyleSheet, useColorScheme } from 'react-native';
+import { Button, View, Text, StyleSheet } from 'react-native';
 
-import Colors from '../constants/Colors';
+import useTheme from '../utils/ThemeUtil';
 
 type HomeScreenProps = {
     navigation: NavigationProp<Record<string, object>>;
 };
 
 export const HomeScreen = ({ navigation }: HomeScreenProps) => {
-    const colorScheme = useColorScheme();
+    const { useBackgroundColor } = useTheme();
+    
     const styles = StyleSheet.create({
         container: {
             alignItems: 'center',
-            backgroundColor:
-                colorScheme === 'dark'
-                    ? Colors.dark.background
-                    : Colors.light.background,
+            backgroundColor: useBackgroundColor(),
             flex: 1,
             justifyContent: 'center',
         },
@@ -26,10 +24,8 @@ export const HomeScreen = ({ navigation }: HomeScreenProps) => {
         <View style={styles.container}>
             <Text>Home Screen</Text>
             <Button
-                title="Details"
-                onPress={() =>
-                    navigation.navigate('Details', { screen: 'DetailsScreen' })
-                }
+                title="WTR"
+                onPress={() => navigation.navigate('WTR', { screen: 'WTR' })}
             />
         </View>
     );

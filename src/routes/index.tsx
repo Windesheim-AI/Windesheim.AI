@@ -1,7 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { DetailsScreen } from '../screens/Details';
 import { HomeScreen } from '../screens/Home';
 import { WTRScreen } from '../screens/WTR';
 
@@ -17,7 +16,6 @@ export const Router = () => {
                 }}
             >
                 <Stack.Screen name="Home" component={HomeScreen} />
-                <Stack.Screen name="Details" component={DetailsScreen} />
                 <Stack.Screen name="WTR" component={WTRScreen} />
             </Stack.Navigator>
         </NavigationContainer>
