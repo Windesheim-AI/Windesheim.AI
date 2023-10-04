@@ -9,12 +9,12 @@ type HomeScreenProps = {
 };
 
 export const HomeScreen = ({ navigation }: HomeScreenProps) => {
-    const { useBackgroundColor } = useTheme();
-    
+    const theme = useTheme();
+
     const styles = StyleSheet.create({
         container: {
             alignItems: 'center',
-            backgroundColor: useBackgroundColor(),
+            backgroundColor: theme.backgroundColor,
             flex: 1,
             justifyContent: 'center',
         },

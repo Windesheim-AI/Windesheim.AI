@@ -7,9 +7,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test:eslint": "echo \"\\033[33mRunning eslint check\" && eslint . --max-warnings=0",
-    "test:eslint-fix": "echo \"\\033[33mRunning eslint check\" && eslint . --fix --max-warnings=0",
-    "test:tsc": "echo \"\\033[33mRunning typescript check\" && tsc"
+    "test:eslint": "echo \"Running eslint check\" && eslint . --max-warnings=0",
+    "test:eslint-fix": "echo \"Running eslint check\" && eslint . --fix --max-warnings=0",
+    "test:tsc": "echo \"Running typescript check\" && tsc"
   },
   "dependencies": {
     "@expo/webpack-config": "^19.0.0",

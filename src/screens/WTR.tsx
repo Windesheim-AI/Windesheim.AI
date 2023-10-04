@@ -5,11 +5,11 @@ import { WebView } from 'react-native-webview';
 import useTheme from '../utils/ThemeUtil';
 
 export const WTRScreen = () => {
-    const { useBackgroundColor } = useTheme();
+    const theme = useTheme();
 
     const styles = StyleSheet.create({
         container: {
-            backgroundColor: useBackgroundColor(),
+            backgroundColor: theme.backgroundColor,
             flex: 1,
         },
         site: {

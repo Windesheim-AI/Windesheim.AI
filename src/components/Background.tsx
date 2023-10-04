@@ -4,22 +4,18 @@ import { StyleSheet, View } from 'react-native';
 import useTheme from '../utils/ThemeUtil';
 
 export const Background = () => {
-    const { useBar1Color, useBar2Color, useBar3Color } = useTheme();
-
-    const backgroundColorBG1 = useBar1Color();
-    const backgroundColorBG2 = useBar2Color();
-    const backgroundColorBG3 = useBar3Color();
+    const theme = useTheme();
 
     const styles = StyleSheet.create({
         bar: {
-            backgroundColor: backgroundColorBG1,
+            backgroundColor: theme.bar1Color,
             flex: 1,
             height: '100%',
             position: 'absolute',
             width: '100%',
         },
         bar2: {
-            backgroundColor: backgroundColorBG2,
+            backgroundColor: theme.bar2Color,
             height: '200%',
             left: '10%',
             position: 'absolute',
@@ -28,7 +24,7 @@ export const Background = () => {
             width: '72%',
         },
         bar3: {
-            backgroundColor: backgroundColorBG3,
+            backgroundColor: theme.bar3Color,
             height: '200%',
             left: '55%',
             position: 'absolute',

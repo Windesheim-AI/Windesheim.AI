@@ -5,25 +5,26 @@ import Colors from '../constants/Colors';
 const useTheme = () => {
     const colorScheme = useColorScheme();
 
-    const useBackgroundColor = () => {
-        return colorScheme === 'dark'
+    const backgroundColor =
+        colorScheme === 'dark'
             ? Colors.dark.background
             : Colors.light.background;
-    };
 
-    const useBar1Color = () => {
-        return colorScheme === 'dark' ? Colors.dark.bg_1 : Colors.light.bg_1;
-    };
+    const bar1Color =
+        colorScheme === 'dark' ? Colors.dark.bg_1 : Colors.light.bg_1;
 
-    const useBar2Color = () => {
-        return colorScheme === 'dark' ? Colors.dark.bg_2 : Colors.light.bg_2;
-    };
+    const bar2Color =
+        colorScheme === 'dark' ? Colors.dark.bg_2 : Colors.light.bg_2;
 
-    const useBar3Color = () => {
-        return colorScheme === 'dark' ? Colors.dark.bg_3 : Colors.light.bg_3;
-    };
+    const bar3Color =
+        colorScheme === 'dark' ? Colors.dark.bg_3 : Colors.light.bg_3;
 
-    return { useBackgroundColor, useBar1Color, useBar2Color, useBar3Color };
+    return {
+        backgroundColor,
+        bar1Color,
+        bar2Color,
+        bar3Color,
+    };
 };
 
 export default useTheme;
