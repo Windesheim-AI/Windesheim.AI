@@ -2,14 +2,14 @@ import { NavigationProp } from '@react-navigation/native';
 import * as React from 'react';
 import { Button, View, Text, StyleSheet } from 'react-native';
 
-import { ColorScheme } from '../constants/Colors';
+import { useColorConfig } from '../constants/Colors';
 
 type HomeScreenProps = {
     navigation: NavigationProp<Record<string, object>>;
 };
 
 export const HomeScreen = ({ navigation }: HomeScreenProps) => {
-    const colors = ColorScheme.useColorScheme();
+    const colors = useColorConfig();
 
     const styles = StyleSheet.create({
         container: {

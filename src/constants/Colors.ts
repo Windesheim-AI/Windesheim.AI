@@ -1,4 +1,6 @@
-import { useColorScheme } from 'react-native';
+import { ColorSchemeName, useColorScheme } from 'react-native';
+
+import { hasKeyInMap } from '../lib/utility/data';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
@@ -37,11 +39,8 @@ const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     },
 };
 
-export class ColorScheme {
-    static useColorScheme() {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const scheme = useColorScheme();
-        if (scheme) return colorMap[scheme];
-        return colorMap.dark;
-    }
+export function useColorConfig() {
+    const scheme: ColorSchemeName = useColorScheme();
+    if (scheme && hasKeyInMap(colorMap, scheme)) return colorMap[scheme];
+    return colorMap.dark;
 }

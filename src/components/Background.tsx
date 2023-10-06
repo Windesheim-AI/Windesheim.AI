@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { ColorScheme } from '../constants/Colors';
+import { useColorConfig } from '../constants/Colors';
 
 export const Background = () => {
-    const colors = ColorScheme.useColorScheme();
+    const colors = useColorConfig();
 
     const styles = StyleSheet.create({
         bar: {
