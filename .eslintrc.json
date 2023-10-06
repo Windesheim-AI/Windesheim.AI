@@ -3,16 +3,45 @@
         "browser": true,
         "react-native/react-native": true
     },
-    "plugins": ["react", "react-native"],
     "extends": [
         "universe",
         "eslint:recommended",
-        "plugin:react-hooks/recommended"
+        "@react-native-community",
+        "plugin:react-hooks/recommended",
+        "plugin:react/recommended",
+        "plugin:etc/recommended",
+        "plugin:@typescript-eslint/recommended-type-checked",
+        "plugin:@typescript-eslint/stylistic-type-checked",
+        "plugin:@typescript-eslint/eslint-recommended"
     ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "tsconfigRootDir": ".",
+        "project": [
+            "./tsconfig.json"
+        ]
+    },
+    "plugins": [
+        "react",
+        "react-native",
+        "@typescript-eslint",
+        "etc"
+    ],
+    "settings": {
+        "react": {
+            "version": "18.x"
+        }
+    },
     "rules": {
         "indent": ["error", 4],
         "react-native/no-unused-styles": 2,
         "react-native/split-platform-components": 2,
+        "react-native/no-single-element-style-arrays": "error",
         "react-native/no-inline-styles": 2,
         "react-native/no-color-literals": 2,
         "react-native/no-raw-text": 2,
@@ -23,6 +52,112 @@
                 "ignoreClassNames": false,
                 "ignoreStyleProperties": false
             }
-        ]
+        ],
+        "react/button-has-type": "error",
+        "react/default-props-match-prop-types": "error",
+        "react/destructuring-assignment": [
+            "error",
+            "always",
+            { "destructureInSignature": "always" }
+        ],
+        "react/display-name": "warn",
+        "react/hook-use-state": [2],
+        "react/iframe-missing-sandbox": "error",
+        "react/jsx-boolean-value": [2],
+        "react/jsx-curly-brace-presence": "warn",
+        "react/jsx-key": [
+            "error",
+            {
+                "checkFragmentShorthand": true,
+                "checkKeyMustBeforeSpread": true,
+                "warnOnDuplicates": true
+            }
+        ],
+        "react/jsx-max-depth": ["error", { "max": 6 }],
+        "react/jsx-pascal-case": "error",
+        "react/jsx-no-leaked-render": ["error", { "validStrategies": ["ternary"] }],
+        "react/jsx-no-useless-fragment": [2],
+        "react/jsx-no-script-url": "error",
+        "react/jsx-uses-react": "off",
+        "react/jsx-sort-props": [2, {
+            "callbacksLast": true,
+            "shorthandFirst": false,
+            "shorthandLast": true,
+            "multiline": "last",
+            "ignoreCase": false
+        }],
+        "react/no-access-state-in-setstate": "error",
+        "react/no-adjacent-inline-elements": "error",
+        "react/no-array-index-key": "error",
+        "react/no-children-prop": "error",
+        "react/no-danger": "error",
+        "react/no-did-mount-set-state": "error",
+        "react/no-did-update-set-state": "error",
+        "react/no-invalid-html-attribute": "error",
+        "react/no-multi-comp": "error",
+        "react/no-namespace": "error",
+        "react/no-object-type-as-default-prop": "error",
+        "react/no-redundant-should-component-update": "error",
+        "react/no-set-state": "error",
+        "react/no-this-in-sfc": "error",
+        "react/no-typos": "warn",
+        "react/no-unstable-nested-components": ["error", { "allowAsProps": true }],
+        "react/no-unused-class-component-methods": "error",
+        "react/no-unused-prop-types": "error",
+        "react/no-unused-state": "error",
+        "react/no-will-update-set-state": "error",
+        "react/prefer-es6-class": [2, "always"],
+        "react/prefer-stateless-function": "error",
+        "react/react-in-jsx-scope": "off",
+        "react/self-closing-comp": "error",
+        "react/sort-default-props": [2, {
+            "ignoreCase": false
+        }],
+        "react/state-in-constructor": [2],
+        "react/static-property-placement": [2],
+        "react/style-prop-object": [2],
+        "react/void-dom-elements-no-children": "error",
+        "@typescript-eslint/naming-convention": [
+            "warn",
+            {
+                "selector": "default",
+                "format": ["camelCase"],
+                "leadingUnderscore": "allow"
+            },
+            {
+                "selector": "variable",
+                "format": ["PascalCase", "camelCase"],
+                "leadingUnderscore": "allow"
+            },
+            {
+                "selector": "parameter",
+                "format": ["camelCase"],
+                "leadingUnderscore": "allow"
+            },
+            {
+                "selector": "property",
+                "format": null,
+                "leadingUnderscore": "allow"
+            },
+            {
+                "selector": "typeLike",
+                "format": ["PascalCase"]
+            },
+            {
+                "selector": "function",
+                "format": ["camelCase", "PascalCase"]
+            },
+            {
+                "selector": "enumMember",
+                "format": ["PascalCase", "UPPER_CASE"]
+            }
+        ],
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/consistent-type-definitions": "off",
+        "complexity": ["error", { "max": 10 }],
+        "no-console": "warn",
+        "etc/no-t": "error",
+        "etc/no-commented-out-code": "warn",
+        "curly": "off"
     }
 }

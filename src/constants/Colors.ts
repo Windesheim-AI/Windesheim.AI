@@ -11,9 +11,9 @@ type ColorSchemeType = {
     tint: string;
     tabIconDefault: string;
     tabIconSelected: string;
-    bg_1: string;
-    bg_2: string;
-    bg_3: string;
+    bg1: string;
+    bg2: string;
+    bg3: string;
 };
 
 const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -23,9 +23,9 @@ const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         tint: tintColorLight,
         tabIconDefault: '#ccc',
         tabIconSelected: tintColorLight,
-        bg_1: '#fff377',
-        bg_2: '#ffd949',
-        bg_3: '#ffcb05',
+        bg1: '#fff377',
+        bg2: '#ffd949',
+        bg3: '#ffcb05',
     },
     dark: {
         text: '#fff',
@@ -33,9 +33,9 @@ const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         tint: tintColorDark,
         tabIconDefault: '#ccc',
         tabIconSelected: tintColorDark,
-        bg_1: '#86d2d9',
-        bg_2: '#22bdc6',
-        bg_3: '#4695d3',
+        bg1: '#86d2d9',
+        bg2: '#22bdc6',
+        bg3: '#4695d3',
     },
 };
 

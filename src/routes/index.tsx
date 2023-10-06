@@ -15,8 +15,8 @@ export const Router = () => {
                     headerShown: false,
                 }}
             >
-                <Stack.Screen name="Home" component={HomeScreen} />
-                <Stack.Screen name="WTR" component={WTRScreen} />
+                <Stack.Screen component={HomeScreen} name="Home" />
+                <Stack.Screen component={WTRScreen} name="WTR" />
             </Stack.Navigator>
         </NavigationContainer>
     );
