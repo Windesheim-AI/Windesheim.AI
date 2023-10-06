@@ -4,9 +4,9 @@ import { Button, View, Text, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../constants/Colors';
 
-type HomeScreenProps = {
+interface HomeScreenProps {
     navigation: NavigationProp<Record<string, object>>;
-};
+}
 
 export const HomeScreen = ({ navigation }: HomeScreenProps) => {
     const colors = useColorConfig();

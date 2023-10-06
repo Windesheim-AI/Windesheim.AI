@@ -3,9 +3,9 @@ import { View, StyleSheet } from 'react-native';
 
 import { Background } from '../components/Background';
 
-type LayoutProps = {
+interface LayoutProps {
     children: React.ReactNode;
-};
+}
 
 export const Layout = ({ children }: LayoutProps) => {
     const styles = StyleSheet.create({

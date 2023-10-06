@@ -43,9 +43,9 @@ export const Background = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.bar}></View>
-            <View style={styles.bar2}></View>
-            <View style={styles.bar3}></View>
+            <View style={styles.bar} />
+            <View style={styles.bar2} />
+            <View style={styles.bar3} />
         </View>
     );
 };
