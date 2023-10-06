@@ -156,7 +156,6 @@
         "@typescript-eslint/consistent-type-definitions": "off",
         "complexity": ["error", { "max": 10 }],
         "no-console": "warn",
-        "etc/no-t": "error",
         "etc/no-commented-out-code": "warn",
         "curly": "off"
     }
