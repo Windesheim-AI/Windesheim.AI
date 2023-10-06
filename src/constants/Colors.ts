@@ -5,7 +5,7 @@ import { hasKeyInMap } from '../lib/utility/data';
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
 
-interface ColorSchemeType {
+type ColorSchemeType = {
     text: string;
     background: string;
     tint: string;
@@ -14,7 +14,7 @@ interface ColorSchemeType {
     bg_1: string;
     bg_2: string;
     bg_3: string;
-}
+};
 
 const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
