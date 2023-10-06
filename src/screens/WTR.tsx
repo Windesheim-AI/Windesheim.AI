@@ -2,10 +2,10 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-import { ColorScheme } from '../constants/Colors';
+import { useColorConfig } from '../constants/Colors';
 
 export const WTRScreen = () => {
-    const colors = ColorScheme.useColorScheme();
+    const colors = useColorConfig();
 
     const styles = StyleSheet.create({
         container: {
