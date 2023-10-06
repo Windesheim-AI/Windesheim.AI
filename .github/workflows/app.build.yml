@@ -27,3 +27,4 @@ jobs:
       # Runs a clean installation of the node modules.
     - run: npm run test:eslint
     - run: npm run test:tsc
+    - run: npm run test:e2e
