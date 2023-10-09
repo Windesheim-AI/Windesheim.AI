@@ -33,9 +33,6 @@ jobs:
             - name: Run TypeScript check
               run: npm run test:tsc
 
-            - name: Run E2E tests
-              run: npm run test:e2e
-
     cypress-run:
         runs-on: self-hosted
         needs: install
@@ -53,4 +50,4 @@ jobs:
               uses: cypress-io/github-action@v6
               with:
                   start: npm start
-                  browser: chrome
+                  browser: electron
