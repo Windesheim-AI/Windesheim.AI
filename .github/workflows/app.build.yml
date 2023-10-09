@@ -9,7 +9,7 @@ on:
             - main
 
 jobs:
-    build:
+    install:
         runs-on: self-hosted
         strategy:
             matrix:
@@ -17,7 +17,7 @@ jobs:
 
         steps:
             - name: Checkout code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
 
             - name: Set up Node.js
               uses: actions/setup-node@v2
@@ -35,3 +35,22 @@ jobs:
 
             - name: Run E2E tests
               run: npm run test:e2e
+
+    cypress-run:
+        runs-on: self-hosted
+        needs: install
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Download the build folder
+              uses: actions/download-artifact@v3
+              with:
+                  name: build
+                  path: build
+
+            - name: Cypress run
+              uses: cypress-io/github-action@v6
+              with:
+                  start: npm start
+                  browser: chrome
