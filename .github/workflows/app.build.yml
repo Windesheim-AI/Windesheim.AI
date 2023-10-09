@@ -33,19 +33,6 @@ jobs:
             - name: Run TypeScript check
               run: npm run test:tsc
 
-    cypress-run:
-        runs-on: self-hosted
-        needs: install
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            - name: Download the build folder
-              uses: actions/download-artifact@v3
-              with:
-                  name: build
-                  path: build
-
             - name: Cypress run
               uses: cypress-io/github-action@v6
               with:
