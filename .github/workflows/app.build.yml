@@ -14,6 +14,7 @@ jobs:
         strategy:
             matrix:
                 node-version: [18.x, 20.x]
+                test-platform: [firefox, electron]
 
         steps:
             - name: Checkout code
@@ -37,4 +38,4 @@ jobs:
               uses: cypress-io/github-action@v6
               with:
                   start: npm run web
-                  browser: chrome,firefox,edge,electron
+                  browser: ${{ matrix.test-platform }}
