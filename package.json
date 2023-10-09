@@ -12,7 +12,9 @@
     "web": "expo start --web",
     "test:eslint": "echo \"Running eslint check\" && eslint . --max-warnings=0",
     "test:eslint-fix": "echo \"Running eslint check\" && eslint . --fix --max-warnings=0",
-    "test:tsc": "echo \"Running typescript check\" && tsc"
+    "test:tsc": "echo \"Running typescript check\" && tsc",
+    "cypress": "cypress open",
+    "test:e2e": "concurrently \"npm run web\" \"cypress run --browser electron\""
   },
   "dependencies": {
     "@expo/webpack-config": "^19.0.0",
@@ -32,6 +34,9 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.2.14",
+    "concurrently": "^8.2.1",
+    "cypress": "^13.3.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
     "eslint": "^8.50.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-universe": "^12.0.0",

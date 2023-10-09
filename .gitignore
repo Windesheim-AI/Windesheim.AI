@@ -37,3 +37,5 @@ yarn-error.*
 # IDE
 .vs/
 .idea/
+
+cypress/screenshots
