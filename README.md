@@ -1,2 +1,8 @@
-# Template
-This repository serves as a template for all other repositories that will be created and used by this organization.
+# WINsight
+This is the repository for the WINsight-app.
+
+## Installation
+The installation is quite simple, just run the commands below:
+```shell
+npm install
+```
