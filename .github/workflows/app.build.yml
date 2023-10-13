@@ -80,7 +80,7 @@ jobs:
             if: github.event_name == 'push' && github.ref == 'refs/heads/main'
             run: npx update-badge
 
-          # Commit any changed files (like README with updated badge)
+          # Commit any changed files (like the README with updated badge)
           # if running on main branch https://github.com/mikeal/publish-to-github-action
           - uses: mikeal/publish-to-github-action@master
             if: github.event_name == 'push' && github.ref == 'refs/heads/main'
