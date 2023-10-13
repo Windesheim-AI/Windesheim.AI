@@ -67,6 +67,7 @@ jobs:
             uses: actions/setup-node@v3
             with:
               node-version: ${{ matrix.node-version }}
+
           - name: Print GitHub variables
             run: npm run coverage:print-env
 
