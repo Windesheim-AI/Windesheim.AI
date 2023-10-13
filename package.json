@@ -14,7 +14,8 @@
     "test:eslint-fix": "echo \"Running eslint check\" && eslint . --fix --max-warnings=0",
     "test:tsc": "echo \"Running typescript check\" && tsc",
     "cypress": "cypress open",
-    "test:e2e": "concurrently \"npm run web\" \"cypress run --browser electron\""
+    "test:e2e": "concurrently \"npm run web\" \"cypress run --browser electron\"",
+    "test:coverage": "nyc report --reporter=text-summary\n"
   },
   "dependencies": {
     "@expo/webpack-config": "^19.0.0",
@@ -33,7 +34,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@cypress/code-coverage": "^3.12.3",
     "@types/react": "~18.2.14",
+    "babel-plugin-istanbul": "^6.1.1",
     "concurrently": "^8.2.1",
     "cypress": "^13.3.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
@@ -48,6 +51,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-native": "^4.1.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "nyc": "^15.1.0",
     "prettier": "^3.0.3",
     "typescript": "^5.1.3"
   },
