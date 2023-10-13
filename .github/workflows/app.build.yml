@@ -60,10 +60,9 @@ jobs:
           - name: Print GitHub variables
             run: npx print-env GITHUB
 
-          # in each pull request to master, compare current code coverage
+          # In each pull request to master, compare current code coverage
           # against the code coverage badge in README file
-          # Tip: if you really want to change code coverage
-          # you can edit that badge ...
+          # Tip: if you really want to change code coverage you can edit that badge ...
           - name: Set code coverage commit status 📫
             # https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
             if: github.event_name == 'pull_request' && github.base_ref == 'main'
