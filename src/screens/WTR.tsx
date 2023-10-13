@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
 import { WebView } from 'react-native-webview';
 
+import { CustomButton } from '../components/buttons/Button';
 import { useColorConfig } from '../constants/Colors';
 
 export const WTRScreen = () => {
@@ -18,19 +19,10 @@ export const WTRScreen = () => {
     });
 
     return Platform.OS === 'web' ? (
-        <iframe
-            className="windesheim-tech-radar-frame"
-            height="100%"
-            sandbox=""
-            src="https://windesheim.tech"
-            width="100%"
-        />
+        <CustomButton />
     ) : (
         <View style={styles.container}>
-            <WebView
-                source={{ uri: 'https://windesheim.tech' }}
-                style={styles.site}
-            />
+            <CustomButton onPress={undefined} />
         </View>
     );
 };

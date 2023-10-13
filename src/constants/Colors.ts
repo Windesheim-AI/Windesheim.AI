@@ -16,7 +16,7 @@ type ColorSchemeType = {
     bg3: string;
 };
 
-const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
+export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
         text: '#000',
         background: '#fff',
