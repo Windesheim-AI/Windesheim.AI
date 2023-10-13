@@ -1,29 +1,54 @@
 name: Build & test
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
 
 jobs:
-  build_test:
+    build:
+        runs-on: self-hosted
+        strategy:
+            matrix:
+                node-version: [18.x, 20.x]
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-    runs-on: self-hosted
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+            - name: Install dependencies
+              run: npm install
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-      # Runs a clean installation of the node modules.
-    - run: npm run test:eslint
-    - run: npm run test:tsc
+            - name: Run ESLint
+              run: npm run test:eslint
+
+            - name: Run TypeScript check
+              run: npm run test:tsc
+
+    test:
+        runs-on: self-hosted
+        needs: build
+        strategy:
+            matrix:
+                test-platform: [firefox, electron]
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18.x
+
+            - name: Cypress run
+              uses: cypress-io/github-action@v6
+              with:
+                  start: npm run web
+                  browser: ${{ matrix.test-platform }}
