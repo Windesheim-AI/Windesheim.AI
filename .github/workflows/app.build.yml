@@ -55,7 +55,7 @@ jobs:
 
     test_coverage:
       runs-on: self-hosted
-      needs: build
+      needs: test
       steps:
           - name: Print GitHub variables
             run: npx print-env GITHUB
