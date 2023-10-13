@@ -20,3 +20,7 @@ npm install
 # Emulator Plugin
 VSCode; https://marketplace.visualstudio.com/items?itemName=DiemasMichiels.emulate
 Read the instructions!
+
+
+[ci image]: https://github.com/Windesheim-AI-App/WINsight/workflows/ci/badge.svg?branch=master
+[ci url]: https://github.com/Windesheim-AI-App/WINsight/actions
