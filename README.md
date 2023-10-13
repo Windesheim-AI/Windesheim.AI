@@ -1,5 +1,8 @@
 # WINsight ![check-code-coverage](https://img.shields.io/badge/code--coverage-100%25-green) [![ci status][ci image]][ci url]
 
+[ci image]: https://github.com/Windesheim-AI-App/WINsight/workflows/ci/badge.svg?branch=main
+[ci url]: https://github.com/Windesheim-AI-App/WINsight/actions
+
 This is the repository for the WINsight-app.
 
 ## Prerequisites
@@ -20,7 +23,3 @@ npm install
 # Emulator Plugin
 VSCode; https://marketplace.visualstudio.com/items?itemName=DiemasMichiels.emulate
 Read the instructions!
-
-
-[ci image]: https://github.com/Windesheim-AI-App/WINsight/workflows/ci/badge.svg?branch=master
-[ci url]: https://github.com/Windesheim-AI-App/WINsight/actions
