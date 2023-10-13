@@ -68,7 +68,7 @@ jobs:
             if: github.event_name == 'pull_request' && github.base_ref == 'main'
             run: npx set-gh-status --check-against-readme
             env:
-              # show debug logs from "set-gh-status" script
+              # Show debug logs from "set-gh-status" script
               DEBUG: check-code-coverage
               # set the SHA of the _merged_ commit so the status check goes to PR
               GH_SHA: ${{ github.event.after }}
