@@ -52,3 +52,38 @@ jobs:
               with:
                   start: npm run web
                   browser: ${{ matrix.test-platform }}
+
+    test_coverage:
+      runs-on: self-hosted
+      needs: test
+      steps:
+          - name: Print GitHub variables
+            run: npx print-env GITHUB
+
+          # In each pull request to master, compare current code coverage
+          # against the code coverage badge in README file
+          # Tip: if you really want to change code coverage you can edit that badge ...
+          - name: Set code coverage commit status 📫
+            # https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
+            if: github.event_name == 'pull_request' && github.base_ref == 'main'
+            run: npx set-gh-status --check-against-readme
+            env:
+              # show debug logs from "set-gh-status" script
+              DEBUG: check-code-coverage
+              # set the SHA of the _merged_ commit so the status check goes to PR
+              GH_SHA: ${{ github.event.after }}
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          # if running on master branch, update the README code coverage badge
+          - name: Update code coverage badge 🥇
+            # https://help.github.com/en/actions/reference/events-that-trigger-workflows#push-event-push
+            if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+            run: npx update-badge
+
+          # commit any changed files (like README with updated badge)
+          # if running on master branch
+          # https://github.com/mikeal/publish-to-github-action
+          - uses: mikeal/publish-to-github-action@master
+            if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
