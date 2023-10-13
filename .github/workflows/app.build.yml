@@ -56,7 +56,17 @@ jobs:
     test_coverage:
       runs-on: self-hosted
       needs: test
+      strategy:
+        matrix:
+          node-version: [ 18.x ]
       steps:
+          - name: Checkout code
+            uses: actions/checkout@v4
+
+          - name: Set up Node.js
+            uses: actions/setup-node@v3
+            with:
+              node-version: ${{ matrix.node-version }}
           - name: Print GitHub variables
             run: npx print-env GITHUB
 
