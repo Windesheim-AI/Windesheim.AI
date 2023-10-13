@@ -1,4 +1,4 @@
-# WINsight ![check-code-coverage](https://img.shields.io/badge/code--coverage-82.14%25-green) [![ci status][ci image]][ci url]
+# WINsight ![check-code-coverage](https://img.shields.io/badge/code--coverage-100%25-green) [![ci status][ci image]][ci url]
 
 This is the repository for the WINsight-app.
 
