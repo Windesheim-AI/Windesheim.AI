@@ -34,9 +34,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@bahmutov/print-env": "^2.1.2",
     "@cypress/code-coverage": "^3.12.3",
     "@types/react": "~18.2.14",
     "babel-plugin-istanbul": "^6.1.1",
+    "check-code-coverage": "^1.10.5",
     "concurrently": "^8.2.1",
     "cypress": "^13.3.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
