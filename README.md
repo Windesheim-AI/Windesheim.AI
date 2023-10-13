@@ -1,7 +1,7 @@
-# WINsight ![check-code-coverage](https://img.shields.io/badge/code--coverage-100%25-green) [![ci status][ci image]][ci url]
+# WINsight 
 
-[ci image]: https://github.com/Windesheim-AI-App/WINsight/workflows/ci/badge.svg?branch=main
-[ci url]: https://github.com/Windesheim-AI-App/WINsight/actions
+[![Build Status](https://github.com/Windesheim-AI-App/WINsight/actions/workflows/app.build.yml/badge.svg)](https://github.com/Windesheim-AI-App/WINsight/actions/workflows/app.build.yml)
+![check-code-coverage](https://img.shields.io/badge/code--coverage-100%25-green)
 
 This is the repository for the WINsight-app.
 
