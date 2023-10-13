@@ -15,7 +15,10 @@
     "test:tsc": "echo \"Running typescript check\" && tsc",
     "cypress": "cypress open",
     "test:e2e": "concurrently \"npm run web\" \"cypress run --browser electron\"",
-    "test:coverage": "nyc report --reporter=text-summary\n"
+    "test:coverage": "nyc report --reporter=text-summary\n",
+    "coverage:print-env": "npx print-env GITHUB",
+    "coverage:set-gh-status": "npx set-gh-status --check-against-readme",
+    "coverage:update-badge": "npx update-badge"
   },
   "dependencies": {
     "@expo/webpack-config": "^19.0.0",

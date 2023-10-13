@@ -68,7 +68,7 @@ jobs:
             with:
               node-version: ${{ matrix.node-version }}
           - name: Print GitHub variables
-            run: npx print-env GITHUB
+            run: npm run coverage:print-env
 
           # In each pull request to main, compare current code coverage
           # against the code coverage badge in the README file
@@ -76,7 +76,7 @@ jobs:
           - name: Set code coverage commit status 📫
             # https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
             if: github.event_name == 'pull_request' && github.base_ref == 'main'
-            run: npx set-gh-status --check-against-readme
+            run: npm run coverage:set-gh-status
             env:
               # Show debug logs from "set-gh-status" script
               DEBUG: check-code-coverage
@@ -88,7 +88,7 @@ jobs:
           - name: Update code coverage badge 🥇
             # https://help.github.com/en/actions/reference/events-that-trigger-workflows#push-event-push
             if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-            run: npx update-badge
+            run: npm run coverage:update-badge
 
           # Commit any changed files (like the README with updated badge)
           # if running on main branch https://github.com/mikeal/publish-to-github-action
