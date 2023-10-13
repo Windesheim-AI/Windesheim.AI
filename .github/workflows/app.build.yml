@@ -60,7 +60,7 @@ jobs:
           - name: Print GitHub variables
             run: npx print-env GITHUB
 
-          # In each pull request to master, compare current code coverage
+          # In each pull request to main, compare current code coverage
           # against the code coverage badge in README file
           # Tip: if you really want to change code coverage you can edit that badge ...
           - name: Set code coverage commit status 📫
@@ -74,15 +74,14 @@ jobs:
               GH_SHA: ${{ github.event.after }}
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-          # if running on master branch, update the README code coverage badge
+          # If running on main branch, update the README code coverage badge
           - name: Update code coverage badge 🥇
             # https://help.github.com/en/actions/reference/events-that-trigger-workflows#push-event-push
             if: github.event_name == 'push' && github.ref == 'refs/heads/main'
             run: npx update-badge
 
-          # commit any changed files (like README with updated badge)
-          # if running on master branch
-          # https://github.com/mikeal/publish-to-github-action
+          # Commit any changed files (like README with updated badge)
+          # if running on main branch https://github.com/mikeal/publish-to-github-action
           - uses: mikeal/publish-to-github-action@master
             if: github.event_name == 'push' && github.ref == 'refs/heads/main'
             env:
