@@ -39,7 +39,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@bahmutov/print-env": "^2.1.2",
-    "@cypress/code-coverage": "^3.12.3",
+    "@cypress/code-coverage": "^3.12.4",
     "@types/react": "~18.2.14",
     "babel-plugin-istanbul": "^6.1.1",
     "check-code-coverage": "^1.10.5",
