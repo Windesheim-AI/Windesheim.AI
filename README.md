@@ -20,6 +20,12 @@ The installation is quite simple, just run the commands below:
 npm install
 ```
 
+## Deployment
+
+The deployment of the app is managed via: https://expo.dev/accounts/winsight/projects/winsight.
+
+[TODO]: Define & configure further deployment steps
+
 # Emulator Plugin
 VSCode; https://marketplace.visualstudio.com/items?itemName=DiemasMichiels.emulate
 Read the instructions!
