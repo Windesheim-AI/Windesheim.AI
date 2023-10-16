@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import { CustomButton } from '../components/buttons/Button';
+import { Button } from '../components/buttons/Button';
 import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
 
 export const HomeScreen = () => {
@@ -19,7 +19,7 @@ export const HomeScreen = () => {
     return (
         <View style={styles.container}>
             <Text>Home Screen</Text>
-            <CustomButton
+            <Button
                 buttonText="Windesheim Tech Radar"
                 colorGradientScheme={buttonColorSchemes.primary}
                 screenName="WTR"

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-import { CustomButton } from '../components/buttons/Button';
+import { Button } from '../components/buttons/Button';
 import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
 
 export const WTRScreen = () => {
@@ -27,7 +27,7 @@ export const WTRScreen = () => {
                 src="https://windesheim.tech"
                 width="100%"
             />
-            <CustomButton
+            <Button
                 buttonText="HOME"
                 colorGradientScheme={buttonColorSchemes.primary}
                 screenName="Home"
@@ -40,7 +40,7 @@ export const WTRScreen = () => {
                 source={{ uri: 'https://windesheim.tech' }}
                 style={styles.site}
             />
-            <CustomButton
+            <Button
                 buttonText="Go!"
                 colorGradientScheme={buttonColorSchemes.primary}
                 screenName="Home"

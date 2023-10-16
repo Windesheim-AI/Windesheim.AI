@@ -15,7 +15,7 @@ export type ButtonProps = {
     icon?: string;
 };
 
-export const CustomButton = ({
+export const Button = ({
     onPress,
     buttonText,
     colorGradientScheme,
