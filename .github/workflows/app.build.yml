@@ -74,8 +74,8 @@ jobs:
               run: npm run coverage:update-badge
 
             # Commit any changed files (like the README with updated badge)
-            # if running on main branch https://github.com/mikeal/publish-to-github-action
-            - uses: mikeal/publish-to-github-action@master
+            # if running on main branch https://github.com/koenvanmeijeren/publish-to-github-action
+            - uses: koenvanmeijeren/publish-to-github-action@master
               if: github.event_name == 'push' && github.ref == 'refs/heads/main'
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
