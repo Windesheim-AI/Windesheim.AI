@@ -11,7 +11,7 @@ export const Router = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator
-                initialRouteName="WTR"
+                initialRouteName="Home"
                 screenOptions={{
                     headerShown: false,
                 }}
