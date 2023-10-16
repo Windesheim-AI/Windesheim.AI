@@ -22,16 +22,9 @@
         "ecmaVersion": "latest",
         "sourceType": "module",
         "tsconfigRootDir": ".",
-        "project": [
-            "./tsconfig.json"
-        ]
+        "project": ["./tsconfig.json"]
     },
-    "plugins": [
-        "react",
-        "react-native",
-        "@typescript-eslint",
-        "etc"
-    ],
+    "plugins": ["react", "react-native", "@typescript-eslint", "etc"],
     "settings": {
         "react": {
             "version": "18.x"
@@ -75,17 +68,23 @@
         ],
         "react/jsx-max-depth": ["error", { "max": 6 }],
         "react/jsx-pascal-case": "error",
-        "react/jsx-no-leaked-render": ["error", { "validStrategies": ["ternary"] }],
+        "react/jsx-no-leaked-render": [
+            "error",
+            { "validStrategies": ["ternary"] }
+        ],
         "react/jsx-no-useless-fragment": [2],
         "react/jsx-no-script-url": "error",
         "react/jsx-uses-react": "off",
-        "react/jsx-sort-props": [2, {
-            "callbacksLast": true,
-            "shorthandFirst": false,
-            "shorthandLast": true,
-            "multiline": "last",
-            "ignoreCase": false
-        }],
+        "react/jsx-sort-props": [
+            2,
+            {
+                "callbacksLast": true,
+                "shorthandFirst": false,
+                "shorthandLast": true,
+                "multiline": "last",
+                "ignoreCase": false
+            }
+        ],
         "react/no-access-state-in-setstate": "error",
         "react/no-adjacent-inline-elements": "error",
         "react/no-array-index-key": "error",
@@ -101,7 +100,10 @@
         "react/no-set-state": "error",
         "react/no-this-in-sfc": "error",
         "react/no-typos": "warn",
-        "react/no-unstable-nested-components": ["error", { "allowAsProps": true }],
+        "react/no-unstable-nested-components": [
+            "error",
+            { "allowAsProps": true }
+        ],
         "react/no-unused-class-component-methods": "error",
         "react/no-unused-prop-types": "error",
         "react/no-unused-state": "error",
@@ -110,9 +112,12 @@
         "react/prefer-stateless-function": "error",
         "react/react-in-jsx-scope": "off",
         "react/self-closing-comp": "error",
-        "react/sort-default-props": [2, {
-            "ignoreCase": false
-        }],
+        "react/sort-default-props": [
+            2,
+            {
+                "ignoreCase": false
+            }
+        ],
         "react/state-in-constructor": [2],
         "react/static-property-placement": [2],
         "react/style-prop-object": [2],
@@ -157,6 +162,14 @@
         "complexity": ["error", { "max": 10 }],
         "no-console": "warn",
         "etc/no-commented-out-code": "warn",
-        "curly": "off"
+        "curly": "off",
+        "@typescript-eslint/no-restricted-imports": [
+            "error",
+            {
+                "name": "react-redux",
+                "importNames": ["useSelector", "useDispatch"],
+                "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
+            }
+        ]
     }
 }
