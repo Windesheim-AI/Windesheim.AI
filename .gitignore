@@ -16,6 +16,9 @@ web-build/
 *.key
 *.mobileprovision
 
+# Jest
+*.snap
+
 # Metro
 .metro-health-check*
 
