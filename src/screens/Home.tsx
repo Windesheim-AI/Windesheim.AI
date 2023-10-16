@@ -13,16 +13,27 @@ export const HomeScreen = ({ navigation }: HomeScreenProps) => {
 
     const styles = StyleSheet.create({
         container: {
-            alignItems: 'center',
             backgroundColor: colors.background,
             flex: 1,
-            justifyContent: 'center',
+            padding: 20,
+        },
+        header: {
+            fontSize: 24,
+            fontWeight: 'bold',
+            marginBottom: 10,
+        },
+        description: {
+            color: 'gray',
+            fontSize: 16,
         },
     });
 
     return (
         <View style={styles.container}>
-            <Text>Home Page</Text>
+            <Text style={styles.header}>Home</Text>
+            <Text style={styles.description}>
+                "Artificial intelligence is the key to innovating the future and transforming our lives"
+            </Text>
             <Button
                 title="WTR"
                 onPress={() => navigation.navigate('WTR', { screen: 'WTR' })}
