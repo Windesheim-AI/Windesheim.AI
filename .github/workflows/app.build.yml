@@ -58,7 +58,7 @@ jobs:
             # Tip: if you really want to change code coverage you can edit that badge ...
             - name: Set code coverage commit status 📫
               # https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
-              if: github.event_name == 'pull_request' && github.base_ref == 'main'
+              if: github.event_name == 'pull_request' && github.base_ref == 'main' && ${{ github.actor != 'dependabot[bot]' }}
               run: npm run coverage:set-gh-status
               env:
                 # Show debug logs from "set-gh-status" script
