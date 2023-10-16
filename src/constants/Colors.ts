@@ -38,6 +38,20 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg3: '#4695d3',
     },
 };
+export type ColorGradientScheme = [string, string, string];
+export type ColorGraidentType = 'green' | 'blue' | 'yellow' | 'red';
+
+export type ColorGradientSchemes = Record<
+    ColorGraidentType,
+    ColorGradientScheme
+>;
+
+export const colorSchemes: ColorGradientSchemes = {
+    yellow: ['#FFCB05', '#FFD949', '#FFF377'],
+    green: ['#45B97C', '#B1D249', '#D5E05B'],
+    blue: ['#4695D3', '#22BDC6', '#86D2D9'],
+    red: ['#EE3135', '#F16682', '#F287B7'],
+};
 
 export function useColorConfig() {
     const scheme: ColorSchemeName = useColorScheme();

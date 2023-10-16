@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
-import { WebView } from 'react-native-webview';
 
 import { CustomButton } from '../components/buttons/Button';
-import { useColorConfig } from '../constants/Colors';
+import { colorSchemes, useColorConfig } from '../constants/Colors';
 
 export const WTRScreen = () => {
     const colors = useColorConfig();
@@ -19,10 +18,15 @@ export const WTRScreen = () => {
     });
 
     return Platform.OS === 'web' ? (
-        <CustomButton />
+        <CustomButton buttonText="hi" colorGradientScheme={colorSchemes.blue} />
     ) : (
         <View style={styles.container}>
-            <CustomButton onPress={undefined} />
+            <CustomButton
+                buttonText="Go!"
+                colorGradientScheme={colorSchemes.blue}
+                screenName="Home"
+                icon="link"
+            />
         </View>
     );
 };

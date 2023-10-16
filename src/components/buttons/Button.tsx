@@ -1,55 +1,114 @@
-/* eslint-disable react/jsx-sort-props */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable react-native/sort-styles */
-/* eslint-disable react-native/no-color-literals */
-/* eslint-disable prettier/prettier */
-/* eslint-disable react/prop-types */
+import { useFonts, Inter_500Medium } from '@expo-google-fonts/inter';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, ImageBackground, View } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
+import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
 
-export const CustomButton = ({ onPress, buttonText = "Press Me" }) => {
+export type CustomButtonProps = {
+    onPress?: () => void;
+    screenName?: string;
+    buttonText?: string;
+    colorGradientScheme: ColorGradientScheme;
+    width?: number;
+    icon?: string;
+};
+
+export const CustomButton = ({
+    onPress,
+    buttonText,
+    colorGradientScheme,
+    screenName,
+    width,
+    icon,
+}: CustomButtonProps) => {
+    const [fontsLoaded, fontError] = useFonts({
+        Inter_500Medium,
+    });
+
+    const colors = useColorConfig();
+    const navigation = useNavigation();
+
+    if (!onPress) {
+        if (!screenName) {
+            throw new Error(
+                'CustomButton requires either onPress or screenName to be defined',
+            );
+        }
+        onPress = () => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //@ts-ignore
+            navigation.navigate(screenName);
+        };
+    }
+
+    if (!fontsLoaded && !fontError) {
+        return null;
+    }
+
+    const minWidth = 70;
+    const baseWidth = width ? width : minWidth;
+    const checkedWidth: number = baseWidth > minWidth ? baseWidth : minWidth;
+    const buttonWidth =
+        checkedWidth > minWidth ? checkedWidth * 3 : minWidth * 3;
+    const barHeight = 3 * checkedWidth;
+    const height = 60;
+
+    const styles = StyleSheet.create({
+        bg1: {
+            backgroundColor: colorGradientScheme[0],
+            height: barHeight,
+            top: -30,
+            transform: [{ rotate: '20deg' }],
+            width: checkedWidth,
+        },
+        bg2: {
+            backgroundColor: colorGradientScheme[1],
+            height: barHeight,
+            left: -30,
+            top: -30,
+            transform: [{ rotate: '20deg' }],
+            width: checkedWidth,
+        },
+        button: {
+            alignItems: 'center',
+            backgroundColor: colorGradientScheme[2],
+            borderRadius: 40,
+            flexDirection: 'row',
+            height,
+            margin: 10,
+            // from left to rigth items
+            // shadow
+            maxHeight: 90,
+            overflow: 'hidden',
+            width: buttonWidth,
+            // center
+        },
+        text: {
+            color: colors.text,
+            fontFamily: 'Inter_500Medium',
+            fontSize: 18,
+            fontWeight: 'bold',
+            left: 50,
+            position: 'absolute',
+        },
+        icon: {
+            color: colors.text,
+            fontSize: 15,
+            fontWeight: 'bold',
+        },
+    });
+
     return (
-        <TouchableOpacity onPress={onPress} style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={onPress}>
             <View style={styles.bg1} />
             <View style={styles.bg2} />
-            <Text style={styles.text}>{buttonText}</Text>
+            <Text style={styles.text}>
+                {icon ? <FontAwesome5 name={icon} style={styles.icon} /> : null}
+                {icon ? ' ' : ''}
+                {buttonText}
+            </Text>
         </TouchableOpacity>
     );
-}
-
-const width = 100;
-const buttomWidth = width * 3;
-const height = 4 * width;
-
-const styles = StyleSheet.create({
-    button: {
-        borderRadius: 40,
-        backgroundColor: 'green',
-        // from left to rigth items
-        flexDirection: 'row',
-        maxHeight: 90,
-        overflow: 'hidden',
-        width: buttomWidth,
-        // center
-        alignItems: 'center',
-    },
-    bg1: {
-        width,
-        height,
-        left: -30,
-        top: -30,
-        transform: [{ rotate: '20deg' }],
-        backgroundColor: 'red',
-    },
-    bg2: {
-        width,
-        height,
-        left: -30,
-        top: -30,
-        transform: [{ rotate: '20deg' }],
-        backgroundColor: 'blue',
-        marginRight: -30
-    }, 
-});
+};

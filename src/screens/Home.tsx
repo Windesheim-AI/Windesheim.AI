@@ -1,8 +1,9 @@
 import { NavigationProp } from '@react-navigation/native';
 import * as React from 'react';
-import { Button, View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
-import { useColorConfig } from '../constants/Colors';
+import { CustomButton } from '../components/buttons/Button';
+import { colorSchemes, useColorConfig } from '../constants/Colors';
 
 type HomeScreenProps = {
     navigation: NavigationProp<Record<string, object>>;
@@ -23,9 +24,11 @@ export const HomeScreen = ({ navigation }: HomeScreenProps) => {
     return (
         <View style={styles.container}>
             <Text>Home Screen</Text>
-            <Button
-                title="WTR"
-                onPress={() => navigation.navigate('WTR', { screen: 'WTR' })}
+            <CustomButton
+                buttonText="Windesheim Tech Radar"
+                colorGradientScheme={colorSchemes.blue}
+                screenName="WTR"
+                width={100}
             />
         </View>
     );
