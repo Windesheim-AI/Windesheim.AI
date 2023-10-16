@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
+import { WebView } from 'react-native-webview';
 
 import { CustomButton } from '../components/buttons/Button';
 import { colorSchemes, useColorConfig } from '../constants/Colors';
@@ -18,9 +19,25 @@ export const WTRScreen = () => {
     });
 
     return Platform.OS === 'web' ? (
-        <CustomButton buttonText="hi" colorGradientScheme={colorSchemes.blue} />
+        <>
+            <iframe
+                className="windesheim-tech-radar-frame"
+                height="100%"
+                sandbox=""
+                src="https://windesheim.tech"
+                width="100%"
+            />
+            <CustomButton
+                buttonText="hi"
+                colorGradientScheme={colorSchemes.blue}
+            />
+        </>
     ) : (
         <View style={styles.container}>
+            <WebView
+                source={{ uri: 'https://windesheim.tech' }}
+                style={styles.site}
+            />
             <CustomButton
                 buttonText="Go!"
                 colorGradientScheme={colorSchemes.blue}
