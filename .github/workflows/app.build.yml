@@ -54,7 +54,7 @@ jobs:
                   browser: ${{ matrix.test-platform }}
 
             # In each pull request to main, compare current code coverage
-            # against the code coverage badge in the README file
+            # against the code coverage badge in the README file.
             # Tip: if you really want to change code coverage you can edit that badge ...
             - name: Set code coverage commit status 📫
               # https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
