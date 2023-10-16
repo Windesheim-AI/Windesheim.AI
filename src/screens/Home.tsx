@@ -22,7 +22,7 @@ export const HomeScreen = ({ navigation }: HomeScreenProps) => {
 
     return (
         <View style={styles.container}>
-            <Text>Home Screen</Text>
+            <Text>Home Page</Text>
             <Button
                 title="WTR"
                 onPress={() => navigation.navigate('WTR', { screen: 'WTR' })}
