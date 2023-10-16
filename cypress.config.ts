@@ -12,12 +12,16 @@ export default defineConfig({
     },
 
     e2e: {
-        supportFile: false,
         baseUrl: 'http://localhost:19006',
 
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         setupNodeEvents(on, config) {
             // implement node event listeners here
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-var-requires
+            require('@cypress/code-coverage/task')(on, config);
+
+            // It's IMPORTANT to return the config object
+            // with any changed environment variables
+            return config;
         },
     },
 });

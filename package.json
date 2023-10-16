@@ -14,7 +14,12 @@
     "test:eslint-fix": "echo \"Running eslint check\" && eslint . --fix --max-warnings=0",
     "test:tsc": "echo \"Running typescript check\" && tsc",
     "cypress": "cypress open",
-    "test:e2e": "concurrently \"npm run web\" \"cypress run --browser electron\""
+    "test:e2e": "concurrently \"npm run web\" \"cypress run --browser electron\"",
+    "test:coverage": "nyc report --reporter=text-summary",
+    "tests": "npm run test:eslint && npm run test:tsc",
+    "coverage:print-env": "npx print-env GITHUB",
+    "coverage:set-gh-status": "npx set-gh-status --check-against-readme",
+    "coverage:update-badge": "npx update-badge"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -40,8 +45,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@bahmutov/print-env": "^2.1.2",
+    "@cypress/code-coverage": "^3.12.3",
     "@types/react": "~18.2.14",
     "@types/react-native-vector-icons": "^6.4.15",
+    "babel-plugin-istanbul": "^6.1.1",
+    "check-code-coverage": "^1.10.5",
     "concurrently": "^8.2.1",
     "cypress": "^13.3.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
@@ -56,6 +65,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-native": "^4.1.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "expo-updates": "^0.18.15",
+    "nyc": "^15.1.0",
     "prettier": "^3.0.3",
     "typescript": "^5.1.3"
   },
