@@ -39,18 +39,21 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     },
 };
 export type ColorGradientScheme = [string, string, string];
-export type ColorGraidentType = 'green' | 'blue' | 'yellow' | 'red';
+export type ColorTypes =
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'danger'
+    | 'warning';
 
-export type ColorGradientSchemes = Record<
-    ColorGraidentType,
-    ColorGradientScheme
->;
+export type ColorGradientSchemes = Record<ColorTypes, ColorGradientScheme>;
 
-export const colorSchemes: ColorGradientSchemes = {
-    yellow: ['#FFCB05', '#FFD949', '#FFF377'],
-    green: ['#45B97C', '#B1D249', '#D5E05B'],
-    blue: ['#4695D3', '#22BDC6', '#86D2D9'],
-    red: ['#EE3135', '#F16682', '#F287B7'],
+export const buttonColorSchemes: ColorGradientSchemes = {
+    secondary: ['#FFCB05', '#FFD949', '#FFF377'],
+    success: ['#45B97C', '#B1D249', '#D5E05B'],
+    primary: ['#4695D3', '#22BDC6', '#86D2D9'],
+    danger: ['#EE3135', '#F16682', '#F287B7'],
+    warning: ['#ff7300', '#f59e56', '#ffcc66'],
 };
 
 export function useColorConfig() {

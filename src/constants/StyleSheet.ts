@@ -4,7 +4,7 @@ import { colorMap } from './Colors';
 
 const colors = colorMap.dark;
 
-const WindesheimColorBackground = StyleSheet.create({
+const colorBackground = StyleSheet.create({
     bar: {
         backgroundColor: colors.bg1,
         flex: 1,
@@ -33,12 +33,12 @@ const WindesheimColorBackground = StyleSheet.create({
     container: {
         flex: 1,
         height: '100%',
+        width: '100%',
         overflow: 'hidden',
         position: 'absolute',
-        width: '100%',
     },
 });
 
 export const styleMap = {
-    WindesheimColorBackground,
+    colorBackground,
 };

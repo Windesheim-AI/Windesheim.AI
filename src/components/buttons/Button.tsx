@@ -6,7 +6,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
 
-export type CustomButtonProps = {
+export type ButtonProps = {
     onPress?: () => void;
     screenName?: string;
     buttonText?: string;
@@ -22,7 +22,7 @@ export const CustomButton = ({
     screenName,
     width,
     icon,
-}: CustomButtonProps) => {
+}: ButtonProps) => {
     const [fontsLoaded, fontError] = useFonts({
         Inter_500Medium,
     });
@@ -81,7 +81,6 @@ export const CustomButton = ({
             // from left to rigth items
             // shadow
             maxHeight: 90,
-            overflow: 'hidden',
             width: buttonWidth,
             // center
         },
@@ -91,6 +90,7 @@ export const CustomButton = ({
             fontSize: 18,
             fontWeight: 'bold',
             left: 50,
+
             position: 'absolute',
         },
         icon: {
