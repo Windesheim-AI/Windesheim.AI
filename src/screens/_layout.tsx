@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { Background } from '../components/Background';
+import { NavBar } from '../components/Navbar';
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -13,6 +14,7 @@ export const Layout = ({ children }: LayoutProps) => {
             borderRadius: 15,
             flex: 1,
             margin: 20,
+            marginBottom: 10,
             marginTop: 40,
             overflow: 'hidden',
         },
@@ -27,6 +29,7 @@ export const Layout = ({ children }: LayoutProps) => {
             <View style={styles.container}>
                 <View style={styles.innerContainer}>{children}</View>
             </View>
+            {/* <NavBar /> */}
         </>
     );
 };
