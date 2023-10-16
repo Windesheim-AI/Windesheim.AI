@@ -53,9 +53,6 @@ jobs:
                   start: npm run web
                   browser: ${{ matrix.test-platform }}
 
-            - name: Print GitHub variables
-              run: npm run coverage:print-env
-
             # In each pull request to main, compare current code coverage
             # against the code coverage badge in the README file
             # Tip: if you really want to change code coverage you can edit that badge ...
