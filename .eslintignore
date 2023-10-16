@@ -1,0 +1,15 @@
+# Ignore build files/folders
+node_modules/
+.expo/
+
+# Ignore test result files.
+coverage/
+instrument/
+.nyc_output/
+
+# Ignore github config
+.github/
+
+# Ignore specific files
+*.md
+package-lock.json
