@@ -1,7 +1,8 @@
 import { NavigationProp } from '@react-navigation/native';
 import * as React from 'react';
-import { Button, View, Text, StyleSheet } from 'react-native';
+import { Button, Text, StyleSheet, View } from 'react-native';
 
+import { CustomScrollView } from '../components/CustomScrollView';
 import { useColorConfig } from '../constants/Colors';
 
 type HomeScreenProps = {
@@ -16,17 +17,145 @@ export const TestScreen = ({ navigation }: HomeScreenProps) => {
             alignItems: 'center',
             backgroundColor: colors.background,
             flex: 1,
-            justifyContent: 'center',
+            padding: 20,
+            width: '100%',
         },
     });
 
     return (
-        <View style={styles.container}>
-            <Text>Test Screen</Text>
-            <Button
-                title="Home"
-                onPress={() => navigation.navigate('Home', { screen: 'Home' })}
-            />
-        </View>
+        <CustomScrollView>
+            <View style={styles.container}>
+                <Text>Test Screen</Text>
+                <Button
+                    title="Home"
+                    onPress={() =>
+                        navigation.navigate('Home', { screen: 'Home' })
+                    }
+                />
+                <Text>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                    euismod justo euismod, bibendum velit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elitvestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elitvestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elitvestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elitvestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit vestibulum, bibendum elit vel, bibendum nunc.
+                    Sed vel elit
+                </Text>
+            </View>
+        </CustomScrollView>
     );
 };

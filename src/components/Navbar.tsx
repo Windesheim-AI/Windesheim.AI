@@ -1,53 +1,51 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Animated } from 'react-native';
+import { StyleSheet, Text, Animated, Dimensions } from 'react-native';
+
 import { useColorConfig } from '../constants/Colors';
+import { useAnimatedValue } from '../lib/utility/animate';
+import { useAppSelector } from '../redux/Hooks';
 import { RootState } from '../redux/Store';
-import { useAppDispatch, useAppSelector } from '../redux/Hooks';
-import { NavigationSlice } from '../redux/NavigationSlice';
-import * as Animatable from 'react-native-animatable';
 
 export const NavBar = () => {
     const [showNavBar, setShowNavBar] = useState(true);
 
-    const navigation = useAppSelector(
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-return
-        (state: RootState) => state.navigation,
-    ) as NavigationSlice;
+    const navigation = useAppSelector((state: RootState) => state.navigation);
+
     const colors = useColorConfig();
+    const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         container: {
             alignItems: 'center',
             alignSelf: 'center',
+            backgroundColor: colors.navBar,
             borderRadius: 50,
+            bottom: 0,
             height: 50,
             justifyContent: 'center',
             marginBottom: 10,
             position: 'absolute',
-            bottom: 0,
-            width: '90%',
+            width: screenWidth - 40,
             zIndex: 1,
         },
     });
-
-    const containerStyle = {
-        ...styles.container,
-        backgroundColor: colors.navBar,
-
-    };
 
     useEffect(() => {
         setShowNavBar(navigation.showNavBar);
     }, [navigation]);
 
+    const [opacity, animateOpacity] = useAnimatedValue(1);
+    const [bottom, animateBottom] = useAnimatedValue(screenWidth - 40);
+    const [width, animateWidth] = useAnimatedValue(screenWidth - 40);
+
+    useEffect(() => {
+        animateOpacity(showNavBar ? 1 : 0, 200);
+        animateBottom(showNavBar ? 20 : -100, 200);
+        animateWidth(showNavBar ? screenWidth - 40 : 0, 200);
+    }, [showNavBar, animateOpacity, animateBottom, animateWidth, screenWidth]);
+
     return (
-        <Animatable.View
-            animation={showNavBar ? 'slideInUp' : 'slideOutDown'}
-            duration={200} // Adjust the duration as needed
-            style={containerStyle}
-        >
-            <View style={styles.container}>
-                <Text>NavBar</Text>
-            </View>
-        </Animatable.View>
+        <Animated.View style={{ ...styles.container, opacity, bottom, width }}>
+            <Text>NavBar</Text>
+        </Animated.View>
     );
 };
