@@ -19,7 +19,7 @@ export const HomeScreen = () => {
             marginBottom: 10,
         },
         description: {
-            color: 'gray',
+            color: colors.descriptionDefault,
             fontSize: 16,
         },
     });
