@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react';
+import { act } from 'react-dom/test-utils'; // Import the act function
+import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer'; // Import the renderer
 import configureStore from 'redux-mock-store'; // Import the store configuration utility
-import { act } from 'react-dom/test-utils'; // Import the act function
 
 import { NavBar } from '../../src/components/Navbar';
-import { Provider } from 'react-redux';
 
 const mockStore = configureStore([]);
 
