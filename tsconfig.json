@@ -2,7 +2,10 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "jsx": "react"
-  }
-
+    "jsx": "react",
+    "types": ["jest"],
+    "noEmit": true,
+  },
+  // only compile the production TS files
+  "exclude": ["__tests__/*", "cypress/*"]
 }
