@@ -43,4 +43,4 @@ cypress/screenshots
 coverage/
 .nyc_output/
 instrumented/
-*.span
+*.snap
