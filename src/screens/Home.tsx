@@ -1,22 +1,26 @@
-import { NavigationProp } from '@react-navigation/native';
 import * as React from 'react';
-import { Button, View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import SettingButton from '../components/SettingButton';
-import { useColorConfig } from '../constants/Colors';
+import { Button } from '../components/buttons/Button';
+import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
 
-type HomeScreenProps = {
-    navigation: NavigationProp<Record<string, object>>;
-};
-
-export const HomeScreen = ({ navigation }: HomeScreenProps) => {
+export const HomeScreen = () => {
     const colors = useColorConfig();
 
     const styles = StyleSheet.create({
         container: {
-            alignItems: 'center',
             backgroundColor: colors.background,
             flex: 1,
-            justifyContent: 'center',
+            padding: 20,
+        },
+        header: {
+            fontSize: 24,
+            fontWeight: 'bold',
+            marginBottom: 10,
+        },
+        description: {
+            color: 'gray',
+            fontSize: 16,
         },
     });
 
@@ -27,9 +31,15 @@ export const HomeScreen = ({ navigation }: HomeScreenProps) => {
     return (
         <View style={styles.container}>
             <Text>Home Screen</Text>
+            <Text style={styles.header}>Home</Text>
+            <Text style={styles.description}>
+                "Artificial intelligence is the key to innovating the future and transforming our lives"
+            </Text>
             <Button
-                title="WTR"
-                onPress={() => navigation.navigate('WTR', { screen: 'WTR' })}
+                buttonText="Windesheim Tech Radar"
+                colorGradientScheme={buttonColorSchemes.primary}
+                screenName="WTR"
+                width={100}
             />
             <SettingButton
                 description="Your setting description goes here"

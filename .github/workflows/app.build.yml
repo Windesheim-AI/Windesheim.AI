@@ -53,12 +53,12 @@ jobs:
                   start: npm run web
                   browser: ${{ matrix.test-platform }}
 
-            # In each pull request to main, compare current code coverage
+            # In each pull request to main, compare the current code coverage
             # against the code coverage badge in the README file.
             # Tip: if you really want to change code coverage you can edit that badge ...
             - name: Set code coverage commit status 📫
               # https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
-              if: github.event_name == 'pull_request' && github.base_ref == 'main'
+              if: github.event_name == 'pull_request' && github.base_ref == 'main' && ${{ github.actor != 'dependabot[bot]' }}
               run: npm run coverage:set-gh-status
               env:
                 # Show debug logs from "set-gh-status" script
@@ -73,9 +73,9 @@ jobs:
               if: github.event_name == 'push' && github.ref == 'refs/heads/main'
               run: npm run coverage:update-badge
 
-            # Commit any changed files (like the README with updated badge)
-            # if running on main branch https://github.com/mikeal/publish-to-github-action
-            - uses: mikeal/publish-to-github-action@master
+            # Push the update code overage badge in the README to the main branch.
+            # https://github.com/Windesheim-AI-App/publish-to-github-action
+            - uses: Windesheim-AI-App/publish-to-github-action@master
               if: github.event_name == 'push' && github.ref == 'refs/heads/main'
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

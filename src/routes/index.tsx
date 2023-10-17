@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
 
 import { HomeScreen } from '../screens/Home';
 import { WTRScreen } from '../screens/WTR';
@@ -10,7 +11,7 @@ export const Router = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator
-                initialRouteName="WTR"
+                initialRouteName="Home"
                 screenOptions={{
                     headerShown: false,
                 }}
