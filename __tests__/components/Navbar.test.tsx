@@ -1,59 +1,67 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react';
-import { act } from 'react-dom/test-utils'; // Import the act function
+import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
-import renderer from 'react-test-renderer'; // Import the renderer
-import configureStore from 'redux-mock-store'; // Import the store configuration utility
+import renderer from 'react-test-renderer';
+import configureStore from 'redux-mock-store';
 
 import { NavBar } from '../../src/components/Navbar';
 
 const mockStore = configureStore([]);
 
-test('NavBar renders with the correct text', async () => {
-    let component;
+jest.mock('react-native-vector-icons/FontAwesome5', () => 'FontAwesome5');
 
-    const store = mockStore({
-        navigation: {
-            showNavBar: true,
-        },
+jest.mock('@react-navigation/native', () => ({
+    useNavigation: () => ({
+        navigate: jest.fn(),
+    }),
+}));
+
+describe('NavBar Component', () => {
+    let store;
+
+    beforeEach(() => {
+        store = mockStore({
+            navigation: {
+                showNavBar: true,
+            },
+        });
     });
 
-    act(() => {
-        component = renderer.create(
-            <Provider store={store}>
-                <NavBar />
-            </Provider>,
-        );
+    it('renders with showNavBar=true', () => {
+        let component;
+
+        act(() => {
+            component = renderer.create(
+                <Provider store={store}>
+                    <NavBar />
+                </Provider>,
+            );
+        });
+
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
     });
 
-    await new Promise((resolve) => setTimeout(resolve, 300)); // Adjust the timeout as needed
+    it('renders with showNavBar=false', () => {
+        store = mockStore({
+            navigation: {
+                showNavBar: false,
+            },
+        });
 
-    const tree = component.toJSON();
+        let component;
 
-    expect(tree).toMatchSnapshot();
-});
+        act(() => {
+            component = renderer.create(
+                <Provider store={store}>
+                    <NavBar />
+                </Provider>,
+            );
+        });
 
-test('NavBar not visible', async () => {
-    let component;
-
-    const store = mockStore({
-        navigation: {
-            showNavBar: false,
-        },
+        const tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
     });
-
-    act(() => {
-        component = renderer.create(
-            <Provider store={store}>
-                <NavBar />
-            </Provider>,
-        );
-    });
-
-    await new Promise((resolve) => setTimeout(resolve, 300)); // Adjust the timeout as needed
-
-    const tree = component.toJSON();
-
-    expect(tree).toMatchSnapshot();
 });

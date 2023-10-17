@@ -1,3 +1,4 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { Provider } from 'react-redux';
 
@@ -8,9 +9,11 @@ import { Layout } from './src/screens/_layout';
 export default function App() {
     return (
         <Provider store={store}>
-            <Layout>
-                <Router />
-            </Layout>
+            <NavigationContainer>
+                <Layout>
+                    <Router />
+                </Layout>
+            </NavigationContainer>
         </Provider>
     );
 }
