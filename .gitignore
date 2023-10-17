@@ -16,6 +16,9 @@ web-build/
 *.key
 *.mobileprovision
 
+# Jest
+*.snap
+
 # Metro
 .metro-health-check*
 
@@ -38,8 +41,10 @@ yarn-error.*
 .vs/
 .idea/
 
+# Test result files
 cypress/screenshots
-
 coverage/
+coverage-jest/
 .nyc_output/
 instrumented/
+*.snap
