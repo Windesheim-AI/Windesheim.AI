@@ -74,7 +74,11 @@ export const CustomScrollView = ({ children }: CustomScrollViewProps) => {
     }, [dispatch]);
 
     return (
-        <ScrollView scrollEventThrottle={100} onScroll={handleScroll}>
+        <ScrollView
+            scrollEventThrottle={100}
+            testID="custom-scroll-view"
+            onScroll={handleScroll}
+        >
             {children}
         </ScrollView>
     );
