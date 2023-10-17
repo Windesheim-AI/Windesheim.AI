@@ -38,8 +38,9 @@ yarn-error.*
 .vs/
 .idea/
 
+# Test result files
 cypress/screenshots
-
 coverage/
 .nyc_output/
 instrumented/
+*.span
