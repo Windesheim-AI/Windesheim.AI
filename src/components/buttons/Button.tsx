@@ -83,6 +83,7 @@ export const Button = ({
             maxHeight: 90,
             width: buttonWidth,
             // center
+            overflow: 'hidden',
         },
         text: {
             color: colors.text,

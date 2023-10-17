@@ -29,7 +29,8 @@ export const HomeScreen = () => {
             <Text>Home Screen</Text>
             <Text style={styles.header}>Home</Text>
             <Text style={styles.description}>
-                "Artificial intelligence is the key to innovating the future and transforming our lives"
+                &quot; Artificial intelligence is the key to innovating the
+                future and transforming our lives &quot;
             </Text>
             <Button
                 buttonText="Windesheim Tech Radar"
