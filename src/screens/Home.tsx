@@ -1,62 +1,42 @@
-import { NavigationProp } from '@react-navigation/native';
 import * as React from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
-import { useColorConfig } from '../constants/Colors';
-import { useAppDispatch } from '../redux/Hooks';
+import { Button } from '../components/buttons/Button';
+import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
 
-type HomeScreenProps = {
-    navigation: NavigationProp<Record<string, object>>;
-};
-
-export const HomeScreen = ({ navigation }: HomeScreenProps) => {
+export const HomeScreen = () => {
     const colors = useColorConfig();
 
-    const dispatch = useAppDispatch();
-
     const styles = StyleSheet.create({
-        button: {
-            marginBottom: 10,
-        },
         container: {
-            alignItems: 'center',
             backgroundColor: colors.background,
             flex: 1,
-            height: 1000,
             padding: 20,
-            width: '100%',
+        },
+        header: {
+            fontSize: 24,
+            fontWeight: 'bold',
+            marginBottom: 10,
+        },
+        description: {
+            color: colors.descriptionDefault,
+            fontSize: 16,
         },
     });
 
     return (
         <View style={styles.container}>
+            <Text>Home Screen</Text>
+            <Text style={styles.header}>Home</Text>
+            <Text style={styles.description}>
+                &quot; Artificial intelligence is the key to innovating the
+                future and transforming our lives &quot;
+            </Text>
             <Button
-                style={styles.button}
-                title="Show NavBar"
-                onPress={() =>
-                    dispatch({
-                        type: 'navigation/showNavBar',
-                        payload: true,
-                    })
-                }
-            />
-            <Button
-                style={styles.button}
-                title="Hide NavBar"
-                onPress={() => {
-                    dispatch({
-                        type: 'navigation/showNavBar',
-                        payload: false,
-                    });
-                }}
-            />
-
-            <Button
-                style={styles.button}
-                title="Test page"
-                onPress={() => {
-                    navigation.navigate('Test', { screen: 'Test' });
-                }}
+                buttonText="Windesheim Tech Radar"
+                colorGradientScheme={buttonColorSchemes.primary}
+                screenName="WTR"
+                width={100}
             />
         </View>
     );

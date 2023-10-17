@@ -22,9 +22,17 @@
         "ecmaVersion": "latest",
         "sourceType": "module",
         "tsconfigRootDir": ".",
-        "project": ["./tsconfig.json"]
+        "project": [
+            "./tsconfig.lint.json"
+        ]
     },
-    "plugins": ["react", "react-native", "@typescript-eslint", "etc"],
+    "plugins": [
+        "react",
+        "react-native",
+        "@typescript-eslint",
+        "etc"
+    ],
+    "ignorePatterns": ["cypress/", "cypress.config.ts"],
     "settings": {
         "react": {
             "version": "18.x"
@@ -38,14 +46,6 @@
         "react-native/no-inline-styles": 2,
         "react-native/no-color-literals": 2,
         "react-native/no-raw-text": 2,
-        "react-native/sort-styles": [
-            "error",
-            "asc",
-            {
-                "ignoreClassNames": false,
-                "ignoreStyleProperties": false
-            }
-        ],
         "react/button-has-type": "error",
         "react/default-props-match-prop-types": "error",
         "react/destructuring-assignment": [

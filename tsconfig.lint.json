@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": [
+    "src/**/*",
+    "__tests__/**/*",
+    "jest.config.js",
+    "jest-setup.ts",
+    "babel.config.js",
+    "App.tsx"
+  ],
+  "exclude": ["cypress/*"]
+}
