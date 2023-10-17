@@ -19,7 +19,7 @@ jest.mock('@react-navigation/native', () => ({
 }));
 
 describe('NavBar Component', () => {
-    let store;
+    let store = mockStore({});
 
     beforeEach(() => {
         store = mockStore({
@@ -39,7 +39,8 @@ describe('NavBar Component', () => {
                 </Provider>,
             );
         });
-
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
@@ -60,7 +61,8 @@ describe('NavBar Component', () => {
                 </Provider>,
             );
         });
-
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
