@@ -44,6 +44,7 @@ yarn-error.*
 # Test result files
 cypress/screenshots
 coverage/
+coverage-jest/
 .nyc_output/
 instrumented/
 *.snap
