@@ -23,7 +23,7 @@
         "sourceType": "module",
         "tsconfigRootDir": ".",
         "project": [
-            "./tsconfig.json"
+            "./tsconfig.lint.json"
         ]
     },
     "plugins": [
@@ -32,6 +32,7 @@
         "@typescript-eslint",
         "etc"
     ],
+    "ignorePatterns": ["cypress/", "cypress.config.ts"],
     "settings": {
         "react": {
             "version": "18.x"

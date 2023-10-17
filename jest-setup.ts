@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access */
-
 // Import Jest Native matchers
 import '@testing-library/jest-native/extend-expect';
 

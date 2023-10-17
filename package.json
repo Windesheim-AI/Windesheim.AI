@@ -14,7 +14,7 @@
     "cypress": "cypress open",
     "test:eslint": "echo \"Running eslint check\" && eslint . --max-warnings=0",
     "test:eslint-fix": "echo \"Running eslint check\" && eslint . --fix --max-warnings=0",
-    "test:tsc": "echo \"Running typescript check\" && tsc --project tsconfig.json && tsc --project ./cypress/tsconfig.json",
+    "test:tsc": "echo \"Running typescript check\" && tsc --project tsconfig.lint.json && tsc --project ./cypress/tsconfig.json",
     "test:e2e": "concurrently \"npm run web\" \"cypress run --browser electron\"",
     "test:coverage": "nyc report --reporter=text-summary",
     "test:jest": "jest",
