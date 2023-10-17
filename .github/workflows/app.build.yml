@@ -53,7 +53,7 @@ jobs:
                   start: npm run web
                   browser: ${{ matrix.test-platform }}
 
-            # In each pull request to main, compare current code coverage
+            # In each pull request to main, compare the current code coverage
             # against the code coverage badge in the README file.
             # Tip: if you really want to change code coverage you can edit that badge ...
             - name: Set code coverage commit status 📫
