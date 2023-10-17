@@ -3,14 +3,6 @@ import { defineConfig } from 'cypress';
 export default defineConfig({
     fixturesFolder: false,
 
-    component: {
-        supportFile: false,
-        devServer: {
-            framework: 'react',
-            bundler: 'webpack',
-        },
-    },
-
     e2e: {
         baseUrl: 'http://localhost:19006',
 
