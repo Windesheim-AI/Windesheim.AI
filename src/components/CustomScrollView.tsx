@@ -7,6 +7,10 @@ type CustomScrollViewProps = {
     children: React.ReactNode;
 };
 
+const scrollHideShowThreshold = 50;
+const topThreshold = 50;
+const bottomThreshold = 300;
+
 export const CustomScrollView = ({ children }: CustomScrollViewProps) => {
     const dispatch = useAppDispatch();
 
@@ -33,29 +37,32 @@ export const CustomScrollView = ({ children }: CustomScrollViewProps) => {
 
         //if scrolling dow
         if (position > scrollPosition) {
-            if (showNav && position > lastShownNavBar + 50) {
+            if (
+                showNav &&
+                position > lastShownNavBar + scrollHideShowThreshold
+            ) {
                 setNavState(false);
             }
             setLastHiddenNavBar(position);
         } else if (position < scrollPosition) {
-            // Scrolling up
-            if (!showNav && position < lastHiddenNavBar - 50) {
+            if (
+                !showNav &&
+                position < lastHiddenNavBar - scrollHideShowThreshold
+            ) {
                 setNavState(true);
             }
             setLastShownNavBar(position);
         }
 
-        // if at the top of the page
-        if (position < 10) {
+        const maxScroll =
+            event.nativeEvent.contentSize.height - bottomThreshold;
+
+        // if at the top of the page or at the bottom
+        if (position < topThreshold) {
             setNavState(true);
             setLastHiddenNavBar(0);
             setLastShownNavBar(0);
-        }
-
-        const maxScroll = event.nativeEvent.contentSize.height - 1000;
-
-        // if at the bottom of the page hide nav bar
-        if (position > maxScroll - 10) {
+        } else if (position > maxScroll) {
             setNavState(false);
             setLastHiddenNavBar(maxScroll);
             setLastShownNavBar(maxScroll);
