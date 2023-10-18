@@ -30,8 +30,8 @@ export const WTRScreen = () => {
             <Button
                 buttonText="HOME"
                 colorGradientScheme={buttonColorSchemes.primary}
-                screenName="Home"
                 icon="link"
+                screenName="Home"
             />
         </View>
     ) : (
@@ -43,8 +43,8 @@ export const WTRScreen = () => {
             <Button
                 buttonText="Go!"
                 colorGradientScheme={buttonColorSchemes.primary}
-                screenName="Home"
                 icon="link"
+                screenName="Home"
             />
         </View>
     );
