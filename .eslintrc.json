@@ -75,16 +75,6 @@
         "react/jsx-no-useless-fragment": [2],
         "react/jsx-no-script-url": "error",
         "react/jsx-uses-react": "off",
-        "react/jsx-sort-props": [
-            2,
-            {
-                "callbacksLast": true,
-                "shorthandFirst": false,
-                "shorthandLast": true,
-                "multiline": "last",
-                "ignoreCase": false
-            }
-        ],
         "react/no-access-state-in-setstate": "error",
         "react/no-adjacent-inline-elements": "error",
         "react/no-array-index-key": "error",
@@ -112,12 +102,6 @@
         "react/prefer-stateless-function": "error",
         "react/react-in-jsx-scope": "off",
         "react/self-closing-comp": "error",
-        "react/sort-default-props": [
-            2,
-            {
-                "ignoreCase": false
-            }
-        ],
         "react/state-in-constructor": [2],
         "react/static-property-placement": [2],
         "react/style-prop-object": [2],
