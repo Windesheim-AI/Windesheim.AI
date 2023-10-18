@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import SettingButton from '../components/SettingButton';
+
 import { Button } from '../components/buttons/Button';
+import SettingButton from '../components/buttons/SettingButton';
 import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
 
 export const HomeScreen = () => {
@@ -24,10 +25,6 @@ export const HomeScreen = () => {
         },
     });
 
-    function handleButtonPress(): void {
-        throw new Error('Function not implemented.');
-    }
-
     return (
         <View style={styles.container}>
             <Text>Home Screen</Text>
@@ -43,9 +40,17 @@ export const HomeScreen = () => {
                 width={100}
             />
             <SettingButton
-                description="Your setting description goes here"
-                title="Your Setting Title"
-                onPress={handleButtonPress}
+                icon="cog"
+                title="Settings"
+                description="Change your settings, like this and this and this"
+                screenName="WTR"
+            />
+
+            <SettingButton
+                icon="paint-brush"
+                title="Theme"
+                description="Change your theme"
+                screenName="WTR"
             />
         </View>
     );
