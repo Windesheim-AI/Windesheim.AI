@@ -32,7 +32,10 @@ jobs:
             - name: Run TypeScript check
               run: npm run test:tsc
 
-    test:
+            - name: Run Unit & Component tests
+              run: npm run test:jest
+
+    end-to-end-testing:
         runs-on: self-hosted
         needs: build
         strategy:
