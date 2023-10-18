@@ -8,7 +8,7 @@ import configureStore from 'redux-mock-store';
 
 import { NavBar } from '../../src/components/Navbar';
 
-const mockStore = configureStore([]);
+jest.useFakeTimers();
 
 jest.mock('react-native-vector-icons/FontAwesome5', () => 'FontAwesome5');
 
@@ -17,6 +17,8 @@ jest.mock('@react-navigation/native', () => ({
         navigate: jest.fn(),
     }),
 }));
+
+const mockStore = configureStore([]);
 
 describe('NavBar Component', () => {
     let store = mockStore({});
