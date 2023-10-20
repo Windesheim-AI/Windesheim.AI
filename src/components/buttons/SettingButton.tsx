@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable react-native/no-color-literals */
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
@@ -106,5 +107,3 @@ export const SettingButton: React.FC<SettingButtonProps> = ({
         </TouchableOpacity>
     );
 };
-
-export default SettingButton;

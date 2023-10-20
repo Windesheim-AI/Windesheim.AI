@@ -6,7 +6,7 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import renderer from 'react-test-renderer'; // Import this if you're using react-test-renderer
 
-import SettingButton from '../../src/components/buttons/SettingButton';
+import { SettingButton } from '../../src/components/buttons/SettingButton';
 
 jest.mock('react-native-vector-icons/FontAwesome5', () => 'FontAwesome5');
 
@@ -33,6 +33,8 @@ describe('SettingButton', () => {
             component = renderer.create(<SettingButton {...mockProps} />);
         });
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });

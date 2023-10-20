@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import { Button } from '../components/buttons/Button';
-import SettingButton from '../components/buttons/SettingButton';
+import { SettingButton } from '../components/buttons/SettingButton';
 import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
 
 export const HomeScreen = () => {
@@ -43,13 +43,6 @@ export const HomeScreen = () => {
                 icon="cog"
                 title="Settings"
                 description="Change your settings, like this and this and this"
-                screenName="WTR"
-            />
-
-            <SettingButton
-                icon="paint-brush"
-                title="Theme"
-                description="Change your theme"
                 screenName="WTR"
             />
         </View>
