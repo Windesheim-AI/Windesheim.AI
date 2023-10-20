@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Button } from '../components/buttons/Button';
 import { PageView } from '../components/general/PageView';
 import { buttonColorSchemes } from '../constants/Colors';
-import { routes } from '../routes/routes';
+import { Routes } from '../routes/routes';
 
 export const HomeScreen = () => {
     return (
@@ -14,7 +14,7 @@ export const HomeScreen = () => {
             <Button
                 buttonText="Windesheim Tech Radar"
                 colorGradientScheme={buttonColorSchemes.primary}
-                screenName={routes.WTR}
+                screenName={Routes.WindesheimTechRadar}
                 width={100}
             />
         </PageView>

@@ -1,18 +1,21 @@
 import { HomeScreen } from '../screens/Home';
 import { SettingsScreen } from '../screens/Settings/Settings';
+import { ThemeSwitcherScreen } from '../screens/Settings/ThemeSwitcher';
 import { TestScreen } from '../screens/Test';
 import { WTRScreen } from '../screens/WTR';
 
-export const routes = {
-    HOME: 'Home',
-    TEST: 'Test',
-    WTR: 'WTR',
-    SETTINGS: 'Settings',
-};
+export enum Routes {
+    Home = 'Home',
+    Test = 'Test',
+    WindesheimTechRadar = 'WindesheimTechRadar',
+    Settings = 'Settings',
+    SettingsThemeSwitcher = 'SettingsThemeSwitcher',
+}
 
 export const screens = [
-    { name: routes.HOME, component: HomeScreen },
-    { name: routes.TEST, component: TestScreen },
-    { name: routes.WTR, component: WTRScreen },
-    { name: routes.SETTINGS, component: SettingsScreen },
+    { name: Routes.Home, component: HomeScreen },
+    { name: Routes.Test, component: TestScreen },
+    { name: Routes.WindesheimTechRadar, component: WTRScreen },
+    { name: Routes.Settings, component: SettingsScreen },
+    { name: Routes.SettingsThemeSwitcher, component: ThemeSwitcherScreen },
 ];
