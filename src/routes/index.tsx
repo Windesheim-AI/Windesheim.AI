@@ -5,6 +5,7 @@ import { HomeScreen } from '../screens/Home';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { TestScreen } from '../screens/Test';
 import { WTRScreen } from '../screens/WTR';
+import { LanguageScreen } from '../screens/Settings/Language';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,7 @@ export const Router = () => {
             <Stack.Screen component={TestScreen} name="Test" />
             <Stack.Screen component={WTRScreen} name="WTR" />
             <Stack.Screen component={SettingsScreen} name="Settings" />
+            <Stack.Screen component={LanguageScreen} name="Language" />
         </Stack.Navigator>
     );
 };

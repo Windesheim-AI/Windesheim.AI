@@ -93,7 +93,7 @@ export const SettingButton: React.FC<SettingButtonProps> = ({
             <View style={styles.titleContainer}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.description}>
-                    {truncate(description, 25)}
+                    {truncate(description, 30)}
                 </Text>
             </View>
             <View style={styles.arrowContainer}>
