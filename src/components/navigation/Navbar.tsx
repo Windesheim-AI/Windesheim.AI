@@ -16,10 +16,10 @@ import { RootState } from '../../redux/Store';
 import { Routes } from '../../routes/routes';
 
 const navLinks = [
-    { name: 'home', route: Routes.Home },
-    { name: 'search', route: Routes.WindesheimTechRadar },
-    { name: 'graduation-cap', route: Routes.Test },
-    { name: 'cog', route: Routes.Settings },
+    { icon: 'home', route: Routes.Home },
+    { icon: 'search', route: Routes.WindesheimTechRadar },
+    { icon: 'graduation-cap', route: Routes.Test },
+    { icon: 'cog', route: Routes.Settings },
 ];
 
 export const NavBar = () => {
@@ -84,7 +84,7 @@ export const NavBar = () => {
                     <View style={styles.icon}>
                         <FontAwesome5
                             color={colors.navBar.color}
-                            name={link.name}
+                            name={link.icon}
                             size={20}
                         />
                     </View>
