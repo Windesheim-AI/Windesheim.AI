@@ -3,7 +3,7 @@ import { Text } from 'react-native';
 
 import { PageView } from '../../components/general/PageView';
 
-export const SettingsScreen = () => {
+export const ThemeSwitcherScreen = () => {
     return (
         <PageView title="Settings > Theme switcher">
             <Text>test</Text>

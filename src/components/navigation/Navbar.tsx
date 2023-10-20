@@ -1,9 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import {
-    StyleSheet,
     Animated,
     Dimensions,
+    StyleSheet,
     TouchableWithoutFeedback,
     View,
 } from 'react-native';
@@ -13,12 +13,13 @@ import { useColorConfig } from '../../constants/Colors';
 import { useAnimatedValue } from '../../lib/utility/animate';
 import { useAppSelector } from '../../redux/Hooks';
 import { RootState } from '../../redux/Store';
+import { Routes } from '../../routes/routes';
 
 const navLinks = [
-    { name: 'home', route: 'Home' },
-    { name: 'search', route: 'WTR' },
-    { name: 'graduation-cap', route: 'Test' },
-    { name: 'cog', route: 'Settings' },
+    { name: 'home', route: Routes.Home },
+    { name: 'search', route: Routes.WindesheimTechRadar },
+    { name: 'graduation-cap', route: Routes.Test },
+    { name: 'cog', route: Routes.Settings },
 ];
 
 export const NavBar = () => {
