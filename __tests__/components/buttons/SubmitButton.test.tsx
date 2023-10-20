@@ -25,8 +25,7 @@ describe('SettingButton', () => {
     };
     it('renders correctly', () => {
         let component;
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        act(() => {
+        void act(() => {
             component = renderer.create(<SettingButton {...mockProps} />);
         });
 

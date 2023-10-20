@@ -1,3 +1,4 @@
+import { Store, AnyAction } from '@reduxjs/toolkit';
 import { render, fireEvent } from '@testing-library/react-native';
 import React from 'react';
 import { Text } from 'react-native';
@@ -10,7 +11,7 @@ const mockStore = configureStore([]);
 
 describe('WhScrollView component', () => {
     // @ts-ignore
-    let store;
+    let store: Store<unknown, AnyAction>;
 
     beforeEach(() => {
         store = mockStore({
@@ -24,7 +25,6 @@ describe('WhScrollView component', () => {
         // @ts-ignore
         const text = <Text>Test Child</Text>;
         const { getByText } = render(
-            // @ts-ignore
             <Provider store={store}>
                 <WhScrollView>{text}</WhScrollView>
             </Provider>,
@@ -35,7 +35,6 @@ describe('WhScrollView component', () => {
 
     it('toggles the navigation bar when scrolling down', () => {
         const { getByTestId } = render(
-            // @ts-ignore
             <Provider store={store}>
                 <WhScrollView>
                     <>Scrollable Content</>
@@ -62,7 +61,6 @@ describe('WhScrollView component', () => {
 
     it('toggles the navigation bar when scrolling up', () => {
         const { getByTestId } = render(
-            // @ts-ignore
             <Provider store={store}>
                 <WhScrollView>
                     <>Scrollable Content</>
