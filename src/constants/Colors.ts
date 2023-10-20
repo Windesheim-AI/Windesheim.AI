@@ -15,6 +15,12 @@ type ColorSchemeType = {
     bg1: string;
     bg2: string;
     bg3: string;
+    settingButtonBG: string;
+    subtext: string;
+    navBar: {
+        backgroundColor: string;
+        color: string;
+    };
 };
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
