@@ -4,6 +4,7 @@ import { WebView } from 'react-native-webview';
 
 import { Button } from '../components/buttons/Button';
 import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
+import { routes } from '../routes/routes';
 
 export const WTRScreen = () => {
     const colors = useColorConfig();
@@ -31,7 +32,7 @@ export const WTRScreen = () => {
                 buttonText="HOME"
                 colorGradientScheme={buttonColorSchemes.primary}
                 icon="link"
-                screenName="Home"
+                screenName={routes.HOME}
             />
         </View>
     ) : (
@@ -44,7 +45,7 @@ export const WTRScreen = () => {
                 buttonText="Go!"
                 colorGradientScheme={buttonColorSchemes.primary}
                 icon="link"
-                screenName="Home"
+                screenName={routes.HOME}
             />
         </View>
     );
