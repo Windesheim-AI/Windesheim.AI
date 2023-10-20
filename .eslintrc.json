@@ -68,7 +68,10 @@
         ],
         "react/jsx-max-depth": ["error", { "max": 6 }],
         "react/jsx-pascal-case": "error",
-        "react/jsx-no-leaked-render": ["error", { "validStrategies": ["ternary"] }],
+        "react/jsx-no-leaked-render": [
+            "error",
+            { "validStrategies": ["ternary"] }
+        ],
         "react/jsx-no-useless-fragment": [2],
         "react/jsx-no-script-url": "error",
         "react/jsx-uses-react": "off",
@@ -87,7 +90,10 @@
         "react/no-set-state": "error",
         "react/no-this-in-sfc": "error",
         "react/no-typos": "warn",
-        "react/no-unstable-nested-components": ["error", { "allowAsProps": true }],
+        "react/no-unstable-nested-components": [
+            "error",
+            { "allowAsProps": true }
+        ],
         "react/no-unused-class-component-methods": "error",
         "react/no-unused-prop-types": "error",
         "react/no-unused-state": "error",
@@ -140,6 +146,14 @@
         "complexity": ["error", { "max": 10 }],
         "no-console": "warn",
         "etc/no-commented-out-code": "warn",
-        "curly": "off"
+        "curly": "off",
+        "@typescript-eslint/no-restricted-imports": [
+            "error",
+            {
+                "name": "react-redux",
+                "importNames": ["useSelector", "useDispatch"],
+                "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
+            }
+        ]
     }
 }
