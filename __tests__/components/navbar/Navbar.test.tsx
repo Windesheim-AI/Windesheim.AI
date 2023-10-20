@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
@@ -11,6 +9,8 @@ import { NavBar } from '../../../src/components/navigation/Navbar';
 jest.useFakeTimers();
 
 jest.mock('react-native-vector-icons/FontAwesome5', () => 'FontAwesome5');
+jest.mock('@expo-google-fonts/inter', () => 'useFonts');
+jest.mock('react-native-webview', () => 'WebView');
 
 jest.mock('@react-navigation/native', () => ({
     useNavigation: () => ({
@@ -41,7 +41,6 @@ describe('NavBar Component', () => {
                 </Provider>,
             );
         });
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
@@ -63,7 +62,6 @@ describe('NavBar Component', () => {
                 </Provider>,
             );
         });
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
