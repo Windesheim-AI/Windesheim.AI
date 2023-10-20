@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Animated, View, StyleSheet } from 'react-native';
 
-import { Background } from '../components/Background';
-import { NavBar } from '../components/Navbar';
+import { Background } from '../components/general/Background';
+import { NavBar } from '../components/navigation/Navbar';
 import { useColorConfig } from '../constants/Colors';
 import { useAnimatedValue } from '../lib/utility/animate';
 import { useAppSelector } from '../redux/Hooks';

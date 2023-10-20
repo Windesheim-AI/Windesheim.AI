@@ -9,16 +9,16 @@ import {
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { useColorConfig } from '../constants/Colors';
-import { useAnimatedValue } from '../lib/utility/animate';
-import { useAppSelector } from '../redux/Hooks';
-import { RootState } from '../redux/Store';
+import { useColorConfig } from '../../constants/Colors';
+import { useAnimatedValue } from '../../lib/utility/animate';
+import { useAppSelector } from '../../redux/Hooks';
+import { RootState } from '../../redux/Store';
 
-const icons = [
+const navLinks = [
     { name: 'home', route: 'Home' },
     { name: 'search', route: 'WTR' },
     { name: 'graduation-cap', route: 'Test' },
-    { name: 'cog', route: 'Home' },
+    { name: 'cog', route: 'Settings' },
 ];
 
 export const NavBar = () => {
@@ -70,20 +70,20 @@ export const NavBar = () => {
 
     return (
         <Animated.View style={{ ...styles.container, opacity, bottom, width }}>
-            {icons.map((icon, index) => (
+            {navLinks.map((link, index) => (
                 <TouchableWithoutFeedback
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
                     onPress={() => {
                         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                         //@ts-ignore
-                        navigation.navigate(icon.route);
+                        navigation.navigate(link.route);
                     }}
                 >
                     <View style={styles.icon}>
                         <FontAwesome5
                             color={colors.navBar.color}
-                            name={icon.name}
+                            name={link.name}
                             size={20}
                         />
                     </View>

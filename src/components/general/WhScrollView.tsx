@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 
-import { useAppDispatch } from '../redux/Hooks';
+import { useAppDispatch } from '../../redux/Hooks';
 
-type CustomScrollViewProps = {
+type WhScrollViewProps = {
     children: React.ReactNode;
 };
 
@@ -11,7 +11,7 @@ const scrollHideShowThreshold = 50;
 const topThreshold = 50;
 const bottomThreshold = 300;
 
-export const CustomScrollView = ({ children }: CustomScrollViewProps) => {
+export const WhScrollView = ({ children }: WhScrollViewProps) => {
     const dispatch = useAppDispatch();
 
     const [scrollPosition, setScrollPosition] = useState(0);
