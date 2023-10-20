@@ -40,8 +40,7 @@ describe('SettingButton', () => {
         // @ts-ignore
         const touchableOpacity = instance.findByType(TouchableOpacity);
 
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        act(() => {
+        void act(() => {
             touchableOpacity.props.onPress();
         });
 
