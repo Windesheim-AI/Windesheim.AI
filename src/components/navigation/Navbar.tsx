@@ -76,7 +76,6 @@ export const NavBar = () => {
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
                     onPress={() => {
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                         //@ts-ignore
                         navigation.navigate(link.route);
                     }}
