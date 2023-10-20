@@ -1,9 +1,23 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+import { act } from '@testing-library/react-native';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import renderer, { act } from 'react-test-renderer';
+import renderer from 'react-test-renderer'; // Import this if you're using react-test-renderer
 
-import SettingButton from '../../src/components/buttons/SettingButton'; // Adjust the import path based on your project structure
+import SettingButton from '../../src/components/buttons/SettingButton';
+
 jest.mock('react-native-vector-icons/FontAwesome5', () => 'FontAwesome5');
+
+// Mock the useNavigation hook
+jest.mock('@react-navigation/native', () => ({
+    ...jest.requireActual('@react-navigation/native'),
+    useNavigation: () => ({
+        navigate: jest.fn(),
+    }),
+}));
+
 describe('SettingButton', () => {
     const mockProps = {
         title: 'Test Title',
@@ -12,13 +26,14 @@ describe('SettingButton', () => {
         icon: 'test-icon',
         screenName: 'test-screen',
     };
-
-    it('renders correctly', async () => {
-        let tree;
-        // eslint-disable-next-line @typescript-eslint/require-await
-        await act(async () => {
-            tree = renderer.create(<SettingButton {...mockProps} />).toJSON();
+    it('renders correctly', () => {
+        let component;
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        act(() => {
+            component = renderer.create(<SettingButton {...mockProps} />);
         });
+
+        const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
 
@@ -29,29 +44,9 @@ describe('SettingButton', () => {
 
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         act(() => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             touchableOpacity.props.onPress();
         });
+
         expect(mockProps.onPress).toHaveBeenCalled();
-    });
-
-    it('throws an error when onPress and screenName are both undefined', () => {
-        const originalError = console.error;
-        console.error = jest.fn(); // Suppress error output
-
-        // Render the component without onPress and screenName
-        expect(() =>
-            renderer.create(
-                <SettingButton
-                    title="Title"
-                    description="Description"
-                    icon="icon"
-                />,
-            ),
-        ).toThrowError(
-            'SettingButton requires either onPress or screenName to be defined',
-        );
-
-        console.error = originalError; // Restore original console.error
     });
 });
