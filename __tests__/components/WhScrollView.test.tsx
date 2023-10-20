@@ -7,7 +7,7 @@ import { Text } from 'react-native';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 
-import { CustomScrollView } from '../../src/components/CustomScrollView';
+import { WhScrollView } from '../../src/components/general/WhScrollView';
 
 const mockStore = configureStore([]);
 
@@ -29,9 +29,9 @@ describe('CustomScrollView component', () => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             <Provider store={store}>
-                <CustomScrollView>
+                <WhScrollView>
                     <Text>Test Child</Text>
-                </CustomScrollView>
+                </WhScrollView>
             </Provider>,
         );
 
@@ -43,9 +43,9 @@ describe('CustomScrollView component', () => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             <Provider store={store}>
-                <CustomScrollView>
+                <WhScrollView>
                     <Text>Scrollable Content</Text>
-                </CustomScrollView>
+                </WhScrollView>
             </Provider>,
         );
 
@@ -72,9 +72,9 @@ describe('CustomScrollView component', () => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             <Provider store={store}>
-                <CustomScrollView>
+                <WhScrollView>
                     <Text>Scrollable Content</Text>
-                </CustomScrollView>
+                </WhScrollView>
             </Provider>,
         );
 

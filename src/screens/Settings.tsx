@@ -4,12 +4,9 @@ import { Button } from '../components/buttons/Button';
 import { PageView } from '../components/general/PageView';
 import { buttonColorSchemes } from '../constants/Colors';
 
-export const HomeScreen = () => {
+export const SettingsScreen = () => {
     return (
-        <PageView
-            title="Home"
-            description='"Artificial intelligence is the key to innovating the future and transforming our lives"'
-        >
+        <PageView title="Settings">
             <Button
                 buttonText="Windesheim Tech Radar"
                 colorGradientScheme={buttonColorSchemes.primary}
