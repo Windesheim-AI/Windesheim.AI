@@ -15,12 +15,13 @@ type ColorSchemeType = {
     bg1: string;
     bg2: string;
     bg3: string;
+    settingButtonBG: string;
+    subtext: string;
     navBar: {
         backgroundColor: string;
         color: string;
     };
 };
-
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
         text: '#000',
@@ -32,6 +33,8 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg1: '#fff377',
         bg2: '#ffd949',
         bg3: '#ffcb05',
+        settingButtonBG: '#fffffff',
+        subtext: '#a8a7a7',
         navBar: {
             backgroundColor: '#FAFAFA',
             color: '#2B2A2A',
@@ -47,6 +50,8 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg1: '#86d2d9',
         bg2: '#22bdc6',
         bg3: '#4695d3',
+        settingButtonBG: '#373737',
+        subtext: '#a8a7a7',
         navBar: {
             backgroundColor: '#090A0A',
             color: '#c4c4c4',
