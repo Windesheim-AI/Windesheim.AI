@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
@@ -41,7 +39,6 @@ describe('NavBar Component', () => {
                 </Provider>,
             );
         });
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
@@ -63,7 +60,6 @@ describe('NavBar Component', () => {
                 </Provider>,
             );
         });
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();

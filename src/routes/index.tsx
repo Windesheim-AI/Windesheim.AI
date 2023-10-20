@@ -1,25 +1,25 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
-import { HomeScreen } from '../screens/Home';
-import { SettingsScreen } from '../screens/Settings/Settings';
-import { TestScreen } from '../screens/Test';
-import { WTRScreen } from '../screens/WTR';
+import { routes, screens } from './routes';
 
 const Stack = createNativeStackNavigator();
 
 export const Router = () => {
     return (
         <Stack.Navigator
-            initialRouteName="Home"
+            initialRouteName={routes.HOME}
             screenOptions={{
                 headerShown: false,
             }}
         >
-            <Stack.Screen component={HomeScreen} name="Home" />
-            <Stack.Screen component={TestScreen} name="Test" />
-            <Stack.Screen component={WTRScreen} name="WTR" />
-            <Stack.Screen component={SettingsScreen} name="Settings" />
+            {screens.map((screen) => (
+                <Stack.Screen
+                    key={screen.name}
+                    name={screen.name}
+                    component={screen.component}
+                />
+            ))}
         </Stack.Navigator>
     );
 };

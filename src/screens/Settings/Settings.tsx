@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { SettingButton } from '../../components/buttons/SettingButton';
 import { PageView } from '../../components/general/PageView';
+import { routes } from '../../routes/routes';
 
 export const SettingsScreen = () => {
     return (
@@ -10,7 +11,7 @@ export const SettingsScreen = () => {
                 icon="cog"
                 title="Theme switcher"
                 description="Change the theme to dark or light mode"
-                screenName="WTR"
+                screenName={routes.WTR}
             />
         </PageView>
     );

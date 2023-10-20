@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { Store, AnyAction } from '@reduxjs/toolkit';
 import { render, fireEvent } from '@testing-library/react-native';
 import React from 'react';
 import { Text } from 'react-native';
@@ -11,10 +9,9 @@ import { WhScrollView } from '../../../src/components/general/WhScrollView';
 
 const mockStore = configureStore([]);
 
-describe('CustomScrollView component', () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+describe('WhScrollView component', () => {
     // @ts-ignore
-    let store;
+    let store: Store<unknown, AnyAction>;
 
     beforeEach(() => {
         store = mockStore({
@@ -25,13 +22,11 @@ describe('CustomScrollView component', () => {
     });
 
     it('renders children correctly', () => {
+        // @ts-ignore
+        const text = <Text>Test Child</Text>;
         const { getByText } = render(
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
             <Provider store={store}>
-                <WhScrollView>
-                    <Text>Test Child</Text>
-                </WhScrollView>
+                <WhScrollView>{text}</WhScrollView>
             </Provider>,
         );
 
@@ -40,11 +35,9 @@ describe('CustomScrollView component', () => {
 
     it('toggles the navigation bar when scrolling down', () => {
         const { getByTestId } = render(
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
             <Provider store={store}>
                 <WhScrollView>
-                    <Text>Scrollable Content</Text>
+                    <>Scrollable Content</>
                 </WhScrollView>
             </Provider>,
         );
@@ -58,7 +51,6 @@ describe('CustomScrollView component', () => {
         });
 
         // Verify that the navigation bar is hidden (dispatch action "navigation/showNavBar" with payload false)
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const actions = store.getActions();
         expect(actions).toContainEqual({
@@ -69,11 +61,9 @@ describe('CustomScrollView component', () => {
 
     it('toggles the navigation bar when scrolling up', () => {
         const { getByTestId } = render(
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
             <Provider store={store}>
                 <WhScrollView>
-                    <Text>Scrollable Content</Text>
+                    <>Scrollable Content</>
                 </WhScrollView>
             </Provider>,
         );
@@ -87,7 +77,6 @@ describe('CustomScrollView component', () => {
         });
 
         // Verify that the navigation bar is shown (dispatch action "navigation/showNavBar" with payload true)
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const actions = store.getActions();
         expect(actions).toContainEqual({
