@@ -2,6 +2,7 @@ import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import { Button } from '../components/buttons/Button';
+import { SettingButton } from '../components/buttons/SettingButton';
 import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
 
 export const HomeScreen = () => {
@@ -37,6 +38,12 @@ export const HomeScreen = () => {
                 colorGradientScheme={buttonColorSchemes.primary}
                 screenName="WTR"
                 width={100}
+            />
+            <SettingButton
+                icon="cog"
+                title="Settings"
+                description="Change your settings, like this and this and this"
+                screenName="WTR"
             />
         </View>
     );
