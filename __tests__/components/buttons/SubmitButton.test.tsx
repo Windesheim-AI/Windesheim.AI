@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { act } from '@testing-library/react-native';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
@@ -33,7 +30,6 @@ describe('SettingButton', () => {
             component = renderer.create(<SettingButton {...mockProps} />);
         });
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
@@ -42,6 +38,7 @@ describe('SettingButton', () => {
     it('calls onPress when button is pressed', () => {
         const component = renderer.create(<SettingButton {...mockProps} />);
         const instance = component.root;
+        // @ts-ignore
         const touchableOpacity = instance.findByType(TouchableOpacity);
 
         // eslint-disable-next-line @typescript-eslint/no-floating-promises

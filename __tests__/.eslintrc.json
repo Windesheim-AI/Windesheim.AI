@@ -1,0 +1,12 @@
+{
+  "extends": "../.eslintrc.json",
+  "rules": {
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "react-native/no-raw-text": "off",
+    "react/jsx-no-useless-fragment": "off"
+  }
+}
