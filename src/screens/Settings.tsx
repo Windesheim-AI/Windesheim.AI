@@ -1,17 +1,16 @@
 import * as React from 'react';
 
-import { Button } from '../components/buttons/Button';
+import { SettingButton } from '../components/buttons/SettingButton';
 import { PageView } from '../components/general/PageView';
-import { buttonColorSchemes } from '../constants/Colors';
 
 export const SettingsScreen = () => {
     return (
         <PageView title="Settings">
-            <Button
-                buttonText="Windesheim Tech Radar"
-                colorGradientScheme={buttonColorSchemes.primary}
+            <SettingButton
+                icon="cog"
+                title="Theme switcher"
+                description="Change the theme to dark or light mode"
                 screenName="WTR"
-                width={100}
             />
         </PageView>
     );
