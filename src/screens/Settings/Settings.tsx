@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { SettingButton } from '../components/buttons/SettingButton';
-import { PageView } from '../components/general/PageView';
+import { SettingButton } from '../../components/buttons/SettingButton';
+import { PageView } from '../../components/general/PageView';
 
 export const SettingsScreen = () => {
     return (

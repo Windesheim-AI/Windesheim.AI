@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
 import { HomeScreen } from '../screens/Home';
-import { SettingsScreen } from '../screens/Settings';
+import { SettingsScreen } from '../screens/Settings/Settings';
 import { TestScreen } from '../screens/Test';
 import { WTRScreen } from '../screens/WTR';
 
