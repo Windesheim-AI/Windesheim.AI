@@ -69,7 +69,7 @@
     "concurrently": "^8.2.1",
     "cypress": "^13.3.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
-    "eslint": "^8.51.0",
+    "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-universe": "^12.0.0",
     "eslint-plugin-cyclomatic-complexity": "^2.0.11",
