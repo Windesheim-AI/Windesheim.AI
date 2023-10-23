@@ -2,7 +2,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
 import { Routes, screens } from './routes';
-import { LanguageScreen } from '../screens/Settings/Language';
 
 const Stack = createNativeStackNavigator();
 

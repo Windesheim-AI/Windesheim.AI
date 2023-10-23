@@ -11,13 +11,13 @@ export const SettingsScreen = () => {
                 icon="chart-bar"
                 title="Data"
                 description="Your score, progress, timeline etc.."
-                screenName="Data"
+                screenName={Routes.DataSettings}
             />
             <SettingButton
                 icon="globe"
                 title="Language"
                 description="Change the language that the app uses."
-                screenName="Language"
+                screenName={Routes.LanguageSettings}
             />
             <SettingButton
                 icon="cog"
