@@ -1,8 +1,14 @@
 import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-
-import { WhScrollView } from './WhScrollView';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
 import { useColorConfig } from '../../constants/Colors';
+
+type HorizontalScrollProps = {
+    children: React.ReactNode;
+};
+
+export const HorizontalScroll = ({ children }: HorizontalScrollProps) => {
+    return <ScrollView horizontal>{children}</ScrollView>;
+};
 
 type PageScrollViewProps = {
     children: React.ReactNode;
@@ -10,17 +16,12 @@ type PageScrollViewProps = {
     description?: string;
 };
 
-export const PageScrollView = ({
-    children,
-    title,
-    description,
-}: PageScrollViewProps) => {
+export const PageScrollView = ({ children, title, description }: PageScrollViewProps) => {
     const colors = useColorConfig();
 
     const styles = StyleSheet.create({
         container: {
             backgroundColor: colors.background,
-            flex: 1,
             padding: 20,
         },
         header: {
@@ -36,7 +37,7 @@ export const PageScrollView = ({
     });
 
     return (
-        <WhScrollView>
+        <HorizontalScroll>
             <View style={styles.container}>
                 <Text style={styles.header}>{title}</Text>
                 {description ? (
@@ -45,6 +46,6 @@ export const PageScrollView = ({
 
                 {children}
             </View>
-        </WhScrollView>
+        </HorizontalScroll>
     );
 };
