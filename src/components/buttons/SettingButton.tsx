@@ -5,6 +5,7 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
+import { truncate } from '../../lib/utility/stringutils';
 
 export type SettingButtonProps = {
     onPress?: () => void;
@@ -21,9 +22,6 @@ export const SettingButton = ({
     icon,
     screenName,
 }: SettingButtonProps) => {
-    const truncate = (str: string, n: number) => {
-        return str.length > n ? str.substring(0, n - 1) + '...' : str;
-    };
     const colors = useColorConfig();
     const navigation = useNavigation();
 
