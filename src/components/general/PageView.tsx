@@ -23,7 +23,6 @@ export const PageView = ({ children, title, description }: PageViewProps) => {
             fontSize: 24,
             fontWeight: 'bold',
             marginBottom: 10,
-            color: colors.text,
         },
         description: {
             color: colors.descriptionDefault,
