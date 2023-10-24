@@ -10,6 +10,7 @@ export type SettingCardProps = {
     description?: string;
     icon: string;
     children: React.ReactNode;
+    testID?: string;
 };
 
 export const SettingCard: React.FC<SettingCardProps> = ({
@@ -17,6 +18,7 @@ export const SettingCard: React.FC<SettingCardProps> = ({
     description,
     icon,
     children,
+    testID,
 }) => {
     const colors = useColorConfig();
 
@@ -57,7 +59,7 @@ export const SettingCard: React.FC<SettingCardProps> = ({
         },
     });
     return (
-        <View style={styles.buttonContainer}>
+        <View style={styles.buttonContainer} testID={testID}>
             <View style={styles.iconContainer}>
                 <FontAwesome5 style={styles.icon} name={icon} size={24} />
             </View>

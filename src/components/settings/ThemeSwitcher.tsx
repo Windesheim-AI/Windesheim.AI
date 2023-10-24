@@ -26,6 +26,7 @@ export const ThemeSwitcher = () => {
             onValueChange={toggleSwitch}
             isEnabled={isDarkMode}
             colors={colors}
+            testID="Theme switcher input"
         />
     );
 };

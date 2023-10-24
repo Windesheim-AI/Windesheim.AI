@@ -9,7 +9,11 @@ import { Routes } from '../../routes/routes';
 export const SettingsScreen = () => {
     return (
         <PageView title="Settings">
-            <SettingCard icon="cog" title="Enable dark mode">
+            <SettingCard
+                icon="cog"
+                title="Enable dark mode"
+                testID="Theme switcher"
+            >
                 <ThemeSwitcher />
             </SettingCard>
 

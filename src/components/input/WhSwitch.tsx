@@ -7,9 +7,15 @@ export type SwitchProps = {
     onValueChange?: () => void;
     isEnabled: boolean;
     colors: ColorSchemeType;
+    testID?: string;
 };
 
-export const WhSwitch = ({ onValueChange, isEnabled, colors }: SwitchProps) => {
+export const WhSwitch = ({
+    onValueChange,
+    isEnabled,
+    colors,
+    testID,
+}: SwitchProps) => {
     return (
         <Switch
             trackColor={{ false: colors.primary, true: colors.success }}
@@ -17,6 +23,7 @@ export const WhSwitch = ({ onValueChange, isEnabled, colors }: SwitchProps) => {
             ios_backgroundColor={colors.background}
             onValueChange={onValueChange}
             value={isEnabled}
+            testID={testID}
         />
     );
 };
