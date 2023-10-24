@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text ,Linking} from 'react-native';
 
 import { Button } from '../components/buttons/Button';
 import NewsItem from '../components/buttons/NewsItem';
@@ -7,8 +7,6 @@ import { HorizontalScroll } from '../components/general/HorizontalScroll';
 import { PageScrollView } from '../components/general/PageScrollView';
 import { buttonColorSchemes } from '../constants/Colors';
 import { Routes } from '../routes/routes';
-
-import { Linking } from 'react-native';
 
 const colors = {
     gray: 'gray',
@@ -33,31 +31,30 @@ const styles = StyleSheet.create({
 });
 
 export const HomeScreen = () => {
-
-    const handleNewsItemClick = (newsId: number) => {
+    const handleNewsItemClick = (newsId : number) => {
+        let url;
+        // 뉴스 아이템에 따라 URL 결정
         switch (newsId) {
             case 1:
-                // 첫 번째 아이템을 클릭했을 때의 URL
-                const url = 'https://www.artificialintelligence-news.com/';
-                // Linking API를 사용하여 해당 URL로 이동
-                Linking.openURL(url)
-                    .then((supported) => {
-                        if (!supported) {
-                            console.error('URL을 열 수 없습니다:', url);
-                        } else {
-                            return Linking.openURL(url);
-                        }
-                    })
-                    .catch((err) => console.error('에러 발생:', err));
+                url = 'https://www.artificialintelligence-news.com/';
                 break;
-            // 다른 뉴스 아이템에 대한 처리를 추가할 수 있습니다.
+            case 2:
+                url = 'https://www.artificialintelligence-news.com/';
+                break;
+            case 3:
+                url = 'https://www.artificialintelligence-news.com/';
+                break;
+            case 4:
+                url = 'https://www.artificialintelligence-news.com/';
+                break;
             default:
-                console.log(`News item ${newsId} clicked`);
-                break;
+                // newsId가 어떤 case와도 맞지 않으면 기본 URL을 엽니다
+                url = 'https://www.artificialintelligence-news.com/';
         }
+        
+        // 기기의 기본 브라우저에서 URL 열기
+        Linking.openURL(url).catch((err) => console.error('에러 발생', err));
     };
-    
-
     return (
         <PageScrollView title="Home">
             {/* description */}
