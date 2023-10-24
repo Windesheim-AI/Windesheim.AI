@@ -1,53 +1,41 @@
-import { configureStore } from '@reduxjs/toolkit';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import { persistReducer, persistStore } from 'redux-persist';
+import { PersistConfig } from 'redux-persist/es/types';
 
 import { navigationSlice } from './slices/NavigationSlice';
 import { themeSlice } from './slices/ThemeSlice';
-import { deleteProperty } from '../lib/utility/data';
 
-// convert object to string and redux in localStorage
-export function saveToLocalStorage(state: object) {
-    const serialisedState = JSON.stringify(state);
-    localStorage.setItem('persistentState', serialisedState);
-}
+const persistConfig: PersistConfig<unknown> = {
+    key: 'root',
+    storage: AsyncStorage,
+    version: 1,
+    whitelist: ['theme'],
+};
 
-// load string from localStorage and convert back in to an Object
-// invalid output must be undefined
-export function loadFromLocalStorage() {
-    try {
-        const serialisedState = localStorage.getItem('persistentState');
-        if (serialisedState === null) return undefined;
-
-        const result: unknown = JSON.parse(serialisedState);
-        if (typeof result !== 'object' || result === null) return undefined;
-
-        // Exclude navigation from persistent state.
-        deleteProperty(result, 'navigation');
-
-        return result;
-    } catch (e) {
-        return undefined;
-    }
-}
+const rootReducer = combineReducers({
+    navigation: navigationSlice.reducer,
+    theme: themeSlice.reducer,
+});
+// @ts-ignore
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-    reducer: {
-        navigation: navigationSlice.reducer,
-        theme: themeSlice.reducer,
-    },
-
-    preloadedState: loadFromLocalStorage(),
+    reducer: persistedReducer,
+    middleware: (middleware) =>
+        middleware({
+            serializableCheck: false,
+        }),
 });
 
-// listen for redux changes and use saveToLocalStorage to
-// save them to localStorage
-store.subscribe(() => saveToLocalStorage(store.getState()));
+const persistedStore = persistStore(store);
 
-export { store };
+export { store, persistedStore };
 
 // Infer the `RootState` and `AppDispatch` types from the redux itself
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof rootReducer>;
 // @see https://redux-toolkit.js.org/usage/usage-with-typescript#getting-the-dispatch-type
 export type AppDispatch = typeof store.dispatch;
 
