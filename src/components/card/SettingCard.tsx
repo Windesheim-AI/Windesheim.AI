@@ -13,13 +13,13 @@ export type SettingCardProps = {
     testID?: string;
 };
 
-export const SettingCard: React.FC<SettingCardProps> = ({
+export const SettingCard = ({
     title,
     description,
     icon,
     children,
     testID,
-}) => {
+}: SettingCardProps) => {
     const colors = useColorConfig();
 
     const styles = StyleSheet.create({
