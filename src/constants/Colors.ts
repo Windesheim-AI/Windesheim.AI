@@ -1,16 +1,21 @@
-import { ColorSchemeName, useColorScheme } from 'react-native';
-
 import { hasKeyInMap } from '../lib/utility/data';
+import { RootState, useAppSelector } from '../redux/Store';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
 
-type ColorSchemeType = {
+export type ColorSchemeType = {
+    primary: string;
+    secondary: string;
+    success: string;
+    warning: string;
+    danger: string;
     text: string;
     background: string;
     tint: string;
     tabIconDefault: string;
     tabIconSelected: string;
+    titleDefault: string;
     descriptionDefault: string;
     bg1: string;
     bg2: string;
@@ -24,11 +29,17 @@ type ColorSchemeType = {
 };
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
+        primary: '#4695D3',
+        secondary: '#fff377',
+        success: '#45B97C',
+        warning: '#ff7300',
+        danger: '#EE3135',
         text: '#000',
         background: '#fff',
         tint: tintColorLight,
         tabIconDefault: '#ccc',
         tabIconSelected: tintColorLight,
+        titleDefault: '#000',
         descriptionDefault: 'gray',
         bg1: '#fff377',
         bg2: '#ffd949',
@@ -41,11 +52,17 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         },
     },
     dark: {
+        primary: '#4695D3',
+        secondary: '#fff377',
+        success: '#45B97C',
+        warning: '#ff7300',
+        danger: '#EE3135',
         text: '#fff',
         background: '#2a2a2a',
         tint: tintColorDark,
         tabIconDefault: '#ccc',
         tabIconSelected: tintColorDark,
+        titleDefault: '#fff',
         descriptionDefault: 'gray',
         bg1: '#86d2d9',
         bg2: '#22bdc6',
@@ -76,8 +93,12 @@ export const buttonColorSchemes: ColorGradientSchemes = {
     warning: ['#ff7300', '#f59e56', '#ffcc66'],
 };
 
+export function useCurrentTheme() {
+    return useAppSelector((state: RootState) => state.theme).theme;
+}
+
 export function useColorConfig() {
-    const scheme: ColorSchemeName = useColorScheme();
-    if (scheme && hasKeyInMap(colorMap, scheme)) return colorMap[scheme];
+    const theme = useCurrentTheme();
+    if (hasKeyInMap(colorMap, theme)) return colorMap[theme];
     return colorMap.dark;
 }

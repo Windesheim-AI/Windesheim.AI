@@ -7,6 +7,10 @@ import configureStore from 'redux-mock-store';
 
 import { WhScrollView } from '../../../src/components/general/WhScrollView';
 
+jest.mock('@react-native-async-storage/async-storage', () =>
+    require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
+);
+
 const mockStore = configureStore([]);
 
 describe('WhScrollView component', () => {

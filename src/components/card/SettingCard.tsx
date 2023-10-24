@@ -1,41 +1,26 @@
 /* eslint-disable react-native/no-color-literals */
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
-import { truncate } from '../../lib/utility/stringutils';
 
-export type SettingButtonProps = {
-    onPress?: () => void;
+export type SettingCardProps = {
     title: string;
-    description: string;
+    description?: string;
     icon: string;
-    screenName?: string;
+    children: React.ReactNode;
+    testID?: string;
 };
 
-export const SettingButton = ({
+export const SettingCard = ({
     title,
     description,
-    onPress,
     icon,
-    screenName,
-}: SettingButtonProps) => {
+    children,
+    testID,
+}: SettingCardProps) => {
     const colors = useColorConfig();
-    const navigation = useNavigation();
-
-    if (!onPress) {
-        if (!screenName) {
-            throw new Error(
-                'SettingButton requires either onPress or screenName to be defined',
-            );
-        }
-        onPress = () => {
-            //@ts-ignore
-            navigation.navigate(screenName);
-        };
-    }
 
     const styles = StyleSheet.create({
         buttonContainer: {
@@ -70,37 +55,18 @@ export const SettingButton = ({
             color: colors.subtext,
             fontSize: 14,
         },
-        arrowContainer: {
-            justifyContent: 'center',
-        },
-        arrow: {
-            width: 20,
-            height: 20,
-            color: colors.text,
-        },
     });
+
     return (
-        <TouchableOpacity
-            testID={title}
-            style={styles.buttonContainer}
-            onPress={onPress}
-        >
+        <View style={styles.buttonContainer} testID={testID}>
             <View style={styles.iconContainer}>
                 <FontAwesome5 style={styles.icon} name={icon} size={24} />
             </View>
             <View style={styles.titleContainer}>
                 <Text style={styles.title}>{title}</Text>
-                <Text style={styles.description}>
-                    {truncate(description, 30)}
-                </Text>
+                <Text style={styles.description}>{description}</Text>
             </View>
-            <View style={styles.arrowContainer}>
-                <FontAwesome5
-                    style={styles.arrow}
-                    name="chevron-right"
-                    size={24}
-                />
-            </View>
-        </TouchableOpacity>
+            {children}
+        </View>
     );
 };

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 
-import { useAppDispatch } from '../../redux/Hooks';
+import { useAppDispatch } from '../../redux/Store';
+import { navigationActions } from '../../redux/slices/NavigationSlice';
 
 type WhScrollViewProps = {
     children: React.ReactNode;
@@ -12,7 +13,7 @@ const topThreshold = 50;
 const bottomThreshold = 300;
 
 export const WhScrollView = ({ children }: WhScrollViewProps) => {
-    const dispatch = useAppDispatch();
+    const storeDispatcher = useAppDispatch();
 
     const [scrollPosition, setScrollPosition] = useState(0);
     const [lastShownNavBar, setLastShownNavBar] = useState(0);
@@ -20,10 +21,7 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
     const [showNav, setShowNav] = useState(true);
 
     const setNavState = (show: boolean) => {
-        dispatch({
-            type: 'navigation/showNavBar',
-            payload: show,
-        });
+        storeDispatcher(navigationActions.showNavBar(show));
         setShowNav(show);
     };
 
@@ -73,12 +71,9 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
 
     //on firs load, show nav bar
     useEffect(() => {
-        dispatch({
-            type: 'navigation/showNavBar',
-            payload: true,
-        });
+        storeDispatcher(navigationActions.showNavBar(true));
         setShowNav(true);
-    }, [dispatch]);
+    }, [storeDispatcher]);
 
     return (
         <ScrollView
