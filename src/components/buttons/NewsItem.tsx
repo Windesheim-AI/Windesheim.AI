@@ -1,15 +1,17 @@
-import * as React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-interface NewsItemProps extends TouchableOpacityProps {
+type NewsItemProps = {
     title: string;
     onPress: () => void;
-}
+};
+
+const grayColor = '#e1e1e1';
 
 const NewsItem: React.FC<NewsItemProps> = ({ title, onPress }) => {
     return (
         <TouchableOpacity onPress={onPress}>
-            <View style={styles.newsItem}>
+            <View style={[styles.newsItem, { backgroundColor: grayColor }]}>
                 <Text style={styles.newsText}>{title}</Text>
             </View>
         </TouchableOpacity>
@@ -18,10 +20,9 @@ const NewsItem: React.FC<NewsItemProps> = ({ title, onPress }) => {
 
 const styles = StyleSheet.create({
     newsItem: {
-        width: 130,
-        height: 170,
+        width: 120,
+        height: 150,
         marginRight: 10,
-        backgroundColor: '#e1e1e1',
         padding: 10,
         borderRadius: 8,
     },
