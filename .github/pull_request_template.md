@@ -16,6 +16,7 @@ Description of your PR.
 - [ ] Unit tests are written for the general purpose code, e.g. libraries or utility methods
 - [ ] Component tests are written for standalone components, e.g. Buttons, Alerts
 - [ ] E2E tests are written for pages, e.g. the home page
+- [ ] E2E tests: Components use the "testID" attribute for testing
 
 ---
 

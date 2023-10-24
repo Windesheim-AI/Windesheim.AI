@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Animated, View, StyleSheet } from 'react-native';
+import { Animated, View, StyleSheet, SafeAreaView } from 'react-native';
 
 import { Background } from '../components/general/Background';
 import { NavBar } from '../components/navigation/Navbar';
@@ -19,16 +19,20 @@ export const Layout = ({ children }: LayoutProps) => {
         contentContainer: {
             borderRadius: 15,
             flex: 1,
-            margin: 20,
-            marginTop: 60,
+            margin: 10,
             overflow: 'hidden',
         },
         innerContainer: {
             backgroundColor: colors.background,
             flex: 1,
         },
+        pos_r: {
+            position: 'relative',
+        },
         wrapper: {
-            flex: 1,
+            width: '100%',
+            height: '100%',
+            position: 'relative',
             overflow: 'hidden',
         },
     });
@@ -37,13 +41,13 @@ export const Layout = ({ children }: LayoutProps) => {
         useAnimatedValue(20);
 
     useEffect(() => {
-        animateMarginBottomAnimation(navigation.showNavBar ? 90 : 20, 200);
+        animateMarginBottomAnimation(navigation.showNavBar ? 70 : 10, 200);
     }, [animateMarginBottomAnimation, navigation]);
 
     return (
         <>
             <Background />
-            <View style={styles.wrapper}>
+            <SafeAreaView style={styles.wrapper}>
                 <Animated.View // Use Animated.View here
                     style={{
                         ...styles.contentContainer,
@@ -52,8 +56,10 @@ export const Layout = ({ children }: LayoutProps) => {
                 >
                     <View style={styles.innerContainer}>{children}</View>
                 </Animated.View>
-                <NavBar />
-            </View>
+                <View style={styles.pos_r}>
+                    <NavBar />
+                </View>
+            </SafeAreaView>
         </>
     );
 };
