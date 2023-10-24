@@ -65,7 +65,7 @@ export const NavBar = () => {
 
     useEffect(() => {
         animateOpacity(showNavBar ? 1 : 0, 200);
-        animateBottom(showNavBar ? 20 : -100, 200);
+        animateBottom(showNavBar ? 0 : -100, 200);
         animateWidth(showNavBar ? screenWidth - 40 : 0, 200);
     }, [showNavBar, animateOpacity, animateBottom, animateWidth, screenWidth]);
 
