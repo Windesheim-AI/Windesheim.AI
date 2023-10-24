@@ -8,9 +8,7 @@ import { NavBar } from '../../../src/components/navigation/Navbar';
 
 jest.useFakeTimers();
 
-jest.mock('react-native-vector-icons/FontAwesome5', () => 'FontAwesome5');
 jest.mock('@expo-google-fonts/inter', () => 'useFonts');
-jest.mock('react-native-webview', () => 'WebView');
 
 jest.mock('@react-navigation/native', () => ({
     useNavigation: () => ({

@@ -7,7 +7,6 @@ import { SettingCard } from '../../../src/components/card/SettingCard';
 
 jest.useFakeTimers();
 
-jest.mock('react-native-vector-icons/FontAwesome5', () => 'FontAwesome5');
 jest.mock('react-redux', () => {
     const ActualReactRedux = jest.requireActual('react-redux');
     return {

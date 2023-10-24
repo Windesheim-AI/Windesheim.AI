@@ -6,7 +6,6 @@ import {
     GoBackButtonProps,
 } from '../../../src/components/buttons/GoBackButton';
 
-jest.mock('react-native-vector-icons/FontAwesome5', () => 'FontAwesome5');
 jest.mock('@react-navigation/native', () => ({
     ...jest.requireActual('@react-navigation/native'),
     useNavigation: () => ({
