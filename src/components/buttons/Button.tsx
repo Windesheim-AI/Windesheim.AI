@@ -28,8 +28,7 @@ export const Button = ({
         Inter_500Medium,
     });
 
-    const themeState = useAppSelector((state: RootState) => state.theme);
-    const colors = useColorConfig(themeState.theme);
+    const colors = useColorConfig();
     const navigation = useNavigation();
 
     if (!onPress) {

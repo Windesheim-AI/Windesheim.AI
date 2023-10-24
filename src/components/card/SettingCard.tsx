@@ -19,8 +19,7 @@ export const SettingCard: React.FC<SettingCardProps> = ({
     icon,
     children,
 }) => {
-    const themeState = useAppSelector((state: RootState) => state.theme);
-    const colors = useColorConfig(themeState.theme);
+    const colors = useColorConfig();
 
     const styles = StyleSheet.create({
         buttonContainer: {

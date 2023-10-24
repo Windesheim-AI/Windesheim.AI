@@ -4,12 +4,10 @@ import { WebView } from 'react-native-webview';
 
 import { Button } from '../components/buttons/Button';
 import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
-import { RootState, useAppSelector } from '../redux/Store';
 import { Routes } from '../routes/routes';
 
 export const WTRScreen = () => {
-    const themeState = useAppSelector((state: RootState) => state.theme);
-    const colors = useColorConfig(themeState.theme);
+    const colors = useColorConfig();
 
     const styles = StyleSheet.create({
         container: {

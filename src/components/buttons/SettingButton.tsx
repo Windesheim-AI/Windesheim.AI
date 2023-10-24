@@ -25,8 +25,7 @@ export const SettingButton: React.FC<SettingButtonProps> = ({
     const truncate = (str: string, n: number) => {
         return str.length > n ? str.substring(0, n - 1) + '...' : str;
     };
-    const themeState = useAppSelector((state: RootState) => state.theme);
-    const colors = useColorConfig(themeState.theme);
+    const colors = useColorConfig();
     const navigation = useNavigation();
 
     if (!onPress) {

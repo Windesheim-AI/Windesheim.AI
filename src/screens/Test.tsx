@@ -3,11 +3,9 @@ import { StyleSheet, Text } from 'react-native';
 
 import { PageScrollView } from '../components/general/PageScrollView';
 import { useColorConfig } from '../constants/Colors';
-import { RootState, useAppSelector } from '../redux/Store';
 
 export const TestScreen = () => {
-    const themeState = useAppSelector((state: RootState) => state.theme);
-    const colors = useColorConfig(themeState.theme);
+    const colors = useColorConfig();
 
     const styles = StyleSheet.create({
         text: {

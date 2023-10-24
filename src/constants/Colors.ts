@@ -1,4 +1,5 @@
 import { hasKeyInMap } from '../lib/utility/data';
+import { RootState, useAppSelector } from '../redux/Store';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
@@ -92,7 +93,8 @@ export const buttonColorSchemes: ColorGradientSchemes = {
     warning: ['#ff7300', '#f59e56', '#ffcc66'],
 };
 
-export function useColorConfig(theme: 'light' | 'dark') {
+export function useColorConfig() {
+    const theme = useAppSelector((state: RootState) => state.theme).theme;
     if (hasKeyInMap(colorMap, theme)) return colorMap[theme];
     return colorMap.dark;
 }

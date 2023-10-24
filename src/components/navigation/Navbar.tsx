@@ -29,8 +29,7 @@ export const NavBar = () => {
         (state: RootState) => state.navigation,
     );
 
-    const themeState = useAppSelector((state: RootState) => state.theme);
-    const colors = useColorConfig(themeState.theme);
+    const colors = useColorConfig();
     const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         container: {

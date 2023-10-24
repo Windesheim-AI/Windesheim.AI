@@ -5,8 +5,7 @@ import { useColorConfig } from '../../constants/Colors';
 import { RootState, useAppSelector } from '../../redux/Store';
 
 export const Background = () => {
-    const themeState = useAppSelector((state: RootState) => state.theme);
-    const colors = useColorConfig(themeState.theme);
+    const colors = useColorConfig();
 
     const styles = StyleSheet.create({
         bar: {

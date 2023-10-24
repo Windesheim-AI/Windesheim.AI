@@ -16,8 +16,7 @@ export const PageScrollView = ({
     title,
     description,
 }: PageScrollViewProps) => {
-    const themeState = useAppSelector((state: RootState) => state.theme);
-    const colors = useColorConfig(themeState.theme);
+    const colors = useColorConfig();
 
     const styles = StyleSheet.create({
         container: {

@@ -13,8 +13,7 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => {
     const navigation = useAppSelector((state) => state.navigation);
-    const theme = useAppSelector((state) => state.theme);
-    const colors = useColorConfig(theme.theme);
+    const colors = useColorConfig();
 
     const styles = StyleSheet.create({
         contentContainer: {
