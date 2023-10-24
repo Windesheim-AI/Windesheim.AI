@@ -5,6 +5,8 @@ import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
+import { useAppSelector } from '../../redux/Hooks';
+import { RootState } from '../../redux/Store';
 
 export type ButtonProps = {
     onPress?: () => void;
@@ -27,7 +29,8 @@ export const Button = ({
         Inter_500Medium,
     });
 
-    const colors = useColorConfig();
+    const themeState = useAppSelector((state: RootState) => state.theme);
+    const colors = useColorConfig(themeState.theme);
     const navigation = useNavigation();
 
     if (!onPress) {

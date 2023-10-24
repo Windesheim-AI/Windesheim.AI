@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { navigationSlice } from './NavigationSlice';
+import { themeSlice } from './ThemeMode';
 
 export const store = configureStore({
     reducer: {
         navigation: navigationSlice.reducer,
+        theme: themeSlice.reducer,
     },
 });
 

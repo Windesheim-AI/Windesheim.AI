@@ -2,9 +2,12 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
+import { useAppSelector } from '../../redux/Hooks';
+import { RootState } from '../../redux/Store';
 
 export const Background = () => {
-    const colors = useColorConfig();
+    const themeState = useAppSelector((state: RootState) => state.theme);
+    const colors = useColorConfig(themeState.theme);
 
     const styles = StyleSheet.create({
         bar: {

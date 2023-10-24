@@ -3,6 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import { WhScrollView } from './WhScrollView';
 import { useColorConfig } from '../../constants/Colors';
+import { useAppSelector } from '../../redux/Hooks';
+import { RootState } from '../../redux/Store';
 
 type PageScrollViewProps = {
     children: React.ReactNode;
@@ -15,7 +17,8 @@ export const PageScrollView = ({
     title,
     description,
 }: PageScrollViewProps) => {
-    const colors = useColorConfig();
+    const themeState = useAppSelector((state: RootState) => state.theme);
+    const colors = useColorConfig(themeState.theme);
 
     const styles = StyleSheet.create({
         container: {
