@@ -3,6 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import { Button } from '../components/buttons/Button';
 import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
+import StatusAlert from '../components/StatusAlert';
+import { StatusMessage } from '../components/StatusMessage';
 
 export const HomeScreen = () => {
     const colors = useColorConfig();
@@ -38,6 +40,11 @@ export const HomeScreen = () => {
                 screenName="WTR"
                 width={100}
             />
+
+            <StatusAlert message='Dit is een test alert' type='error'/>
+
+            <StatusMessage type='success' message='Message added' colorGradientScheme={buttonColorSchemes.success} icon='exclamation-circle'/>
+            <StatusMessage type='error' message='Er ging iets fout...' colorGradientScheme={buttonColorSchemes.danger} icon='exclamation-circle'/>
         </View>
     );
 };
