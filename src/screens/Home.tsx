@@ -2,11 +2,12 @@ import * as React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 import { Button } from '../components/buttons/Button';
-import NewsItem from '../components/buttons/NewsItem';
 import { HorizontalScroll } from '../components/general/HorizontalScroll';
 import { PageScrollView } from '../components/general/PageScrollView';
 import { buttonColorSchemes } from '../constants/Colors';
 import { Routes } from '../routes/routes';
+
+import NewsItem, { newsData } from '../components/buttons/NewsItem';
 
 const colors = {
     gray: 'gray',
@@ -43,23 +44,13 @@ export const HomeScreen = () => {
 
             {/* HorizontalScroll */}
             <HorizontalScroll>
-                {/* Newa Item */}
-                <NewsItem
-                    title="News 1"
-                    url="https://www.artificialintelligence-news.com/"
-                />
-                <NewsItem
-                    title="News 2"
-                    url="https://www.artificialintelligence-news.com/"
-                />
-                <NewsItem
-                    title="News 3"
-                    url="https://www.artificialintelligence-news.com/"
-                />
-                <NewsItem
-                    title="News 4"
-                    url="https://www.artificialintelligence-news.com/"
-                />
+                {newsData.map((newsItem) => (
+                    <NewsItem
+                        key={newsItem.title}
+                        title={newsItem.title}
+                        url={newsItem.url}
+                    />
+                ))}
             </HorizontalScroll>
 
             {/* Button */}
