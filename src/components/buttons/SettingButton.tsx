@@ -41,7 +41,6 @@ export const SettingButton = ({
         buttonContainer: {
             flexDirection: 'row',
             alignItems: 'center',
-            backgroundColor: colors.settingButtonBG,
             borderColor: '#CCC',
             borderWidth: 1,
             padding: 10,

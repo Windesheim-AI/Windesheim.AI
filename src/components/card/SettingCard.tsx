@@ -26,7 +26,6 @@ export const SettingCard = ({
         buttonContainer: {
             flexDirection: 'row',
             alignItems: 'center',
-            backgroundColor: colors.settingButtonBG,
             borderColor: '#CCC',
             borderWidth: 1,
             padding: 10,
@@ -57,6 +56,7 @@ export const SettingCard = ({
             fontSize: 14,
         },
     });
+
     return (
         <View style={styles.buttonContainer} testID={testID}>
             <View style={styles.iconContainer}>
@@ -66,7 +66,7 @@ export const SettingCard = ({
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.description}>{description}</Text>
             </View>
-            <View>{children}</View>
+            {children}
         </View>
     );
 };
