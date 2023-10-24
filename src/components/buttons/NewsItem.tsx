@@ -1,16 +1,36 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    Linking,
+} from 'react-native';
 
 type NewsItemProps = {
     title: string;
-    onPress: () => void;
+    url: string;
 };
 
 const grayColor = '#e1e1e1';
 
-const NewsItem: React.FC<NewsItemProps> = ({ title, onPress }) => {
+const NewsItem: React.FC<NewsItemProps> = ({ title, url }) => {
+    const handlePress = () => {
+        Linking.canOpenURL(url)
+          .then((supported) => {
+            if (supported) {
+              Linking.openURL(url);
+            } else {
+              throw new Error('URL is not supported');
+            }
+          })
+          .catch((error) => {
+            console.error('An error occurred:', error);
+          });
+      };
+
     return (
-        <TouchableOpacity onPress={onPress}>
+        <TouchableOpacity onPress={handlePress}>
             <View style={[styles.newsItem, { backgroundColor: grayColor }]}>
                 <Text style={styles.newsText}>{title}</Text>
             </View>
