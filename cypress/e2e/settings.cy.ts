@@ -1,11 +1,11 @@
-describe('Data page navigation', () => {
+describe('Theme Switch page navigation', () => {
   it('passes', () => {
     cy.visit('/');
 
     cy.get('[data-testid="Settings-navbar-button"]').click();
-    cy.get('[data-testid="Data"]').click();
+    cy.get('[data-testid="Theme switcher"]').click();
 
-    cy.get('[data-testid="Settings > Data"]').should('contain.text', 'Settings > Data')  })
+    cy.get('[data-testid="Settings > Theme switcher"]').should('contain.text', 'Settings > Theme switcher')  })
 })
 
 describe('Language page navigation', () => {
@@ -24,8 +24,8 @@ describe('GoBack Button Test', () => {
     cy.visit('/');
     cy.get('[data-testid="Settings-navbar-button"]').click();   
     cy.get('[data-testid="Settings"]').should('contain.text', 'Settings');
-    cy.get('[data-testid="Data"]').click();
-    cy.get('[data-testid="Settings > Data"]').should('contain.text', 'Settings > Data');
+    cy.get('[data-testid="Theme switcher"]').click();
+    cy.get('[data-testid="Settings > Theme switcher"]').should('contain.text', 'Settings > Theme switcher');
 
     cy.get('[data-testid="GoBackButton"]').click();
     cy.get('[data-testid="Settings"]').should('contain.text', 'Settings');
