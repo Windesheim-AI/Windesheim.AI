@@ -93,8 +93,12 @@ export const buttonColorSchemes: ColorGradientSchemes = {
     warning: ['#ff7300', '#f59e56', '#ffcc66'],
 };
 
+export function useCurrentTheme() {
+    return useAppSelector((state: RootState) => state.theme).theme;
+}
+
 export function useColorConfig() {
-    const theme = useAppSelector((state: RootState) => state.theme).theme;
+    const theme = useCurrentTheme();
     if (hasKeyInMap(colorMap, theme)) return colorMap[theme];
     return colorMap.dark;
 }
