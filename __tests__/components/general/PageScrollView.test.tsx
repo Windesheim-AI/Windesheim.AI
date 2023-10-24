@@ -10,6 +10,16 @@ import { PageScrollView } from '../../../src/components/general/PageScrollView';
 
 const mockStore = configureStore([]);
 
+jest.mock('react-redux', () => {
+    const ActualReactRedux = jest.requireActual('react-redux');
+    return {
+        ...ActualReactRedux,
+        useSelector: jest.fn().mockImplementation(() => {
+            return {};
+        }),
+    };
+});
+
 describe('PageScrollView component', () => {
     // @ts-ignore
     let store: Store<unknown, AnyAction>;

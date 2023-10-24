@@ -7,6 +7,16 @@ import { SettingButton } from '../../../src/components/buttons/SettingButton';
 
 jest.mock('react-native-vector-icons/FontAwesome5', () => 'FontAwesome5');
 
+jest.mock('react-redux', () => {
+    const ActualReactRedux = jest.requireActual('react-redux');
+    return {
+        ...ActualReactRedux,
+        useSelector: jest.fn().mockImplementation(() => {
+            return {};
+        }),
+    };
+});
+
 // Mock the useNavigation hook
 jest.mock('@react-navigation/native', () => ({
     ...jest.requireActual('@react-navigation/native'),

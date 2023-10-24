@@ -28,6 +28,9 @@ describe('NavBar Component', () => {
             navigation: {
                 showNavBar: true,
             },
+            theme: {
+                theme: 'light',
+            },
         });
     });
 
@@ -50,6 +53,9 @@ describe('NavBar Component', () => {
         store = mockStore({
             navigation: {
                 showNavBar: false,
+            },
+            theme: {
+                theme: 'light',
             },
         });
 

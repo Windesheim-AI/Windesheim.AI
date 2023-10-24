@@ -5,6 +5,16 @@ import renderer from 'react-test-renderer';
 
 import { PageView } from '../../../src/components/general/PageView';
 
+jest.mock('react-redux', () => {
+    const ActualReactRedux = jest.requireActual('react-redux');
+    return {
+        ...ActualReactRedux,
+        useSelector: jest.fn().mockImplementation(() => {
+            return {};
+        }),
+    };
+});
+
 describe('PageView component', () => {
     it('renders correctly', () => {
         let component;
