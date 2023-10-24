@@ -4,7 +4,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
-import { RootState, useAppSelector } from '../../redux/Store';
 
 export type SettingCardProps = {
     title: string;

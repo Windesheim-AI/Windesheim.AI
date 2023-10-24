@@ -3,7 +3,6 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import { WhScrollView } from './WhScrollView';
 import { useColorConfig } from '../../constants/Colors';
-import { RootState, useAppSelector } from '../../redux/Store';
 
 type PageScrollViewProps = {
     children: React.ReactNode;
