@@ -21,6 +21,7 @@ export const PageView = ({ children, title, description }: PageViewProps) => {
             padding: 20,
         },
         header: {
+            color: colors.titleDefault,
             fontSize: 24,
             fontWeight: 'bold',
             marginBottom: 10,

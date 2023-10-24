@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { Switch } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
 import { RootState, useAppDispatch, useAppSelector } from '../../redux/Store';
 import { themeActions } from '../../redux/slices/ThemeSlice';
+import { WhSwitch } from '../input/WhSwitch';
 
 export const ThemeSwitcher = () => {
     const storeDispatcher = useAppDispatch();
@@ -22,12 +22,10 @@ export const ThemeSwitcher = () => {
     };
 
     return (
-        <Switch
-            trackColor={{ false: colors.primary, true: colors.success }}
-            thumbColor={isDarkMode ? colors.success : colors.primary}
-            ios_backgroundColor={colors.background}
+        <WhSwitch
             onValueChange={toggleSwitch}
-            value={isDarkMode}
+            isEnabled={isDarkMode}
+            colors={colors}
         />
     );
 };

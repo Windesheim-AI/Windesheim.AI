@@ -1,12 +1,9 @@
-import { ColorSchemeName, useColorScheme } from 'react-native';
-
 import { hasKeyInMap } from '../lib/utility/data';
-import { ThemeSlice } from '../redux/slices/ThemeSlice';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
 
-type ColorSchemeType = {
+export type ColorSchemeType = {
     primary: string;
     secondary: string;
     success: string;
@@ -17,6 +14,7 @@ type ColorSchemeType = {
     tint: string;
     tabIconDefault: string;
     tabIconSelected: string;
+    titleDefault: string;
     descriptionDefault: string;
     bg1: string;
     bg2: string;
@@ -40,6 +38,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         tint: tintColorLight,
         tabIconDefault: '#ccc',
         tabIconSelected: tintColorLight,
+        titleDefault: '#000',
         descriptionDefault: 'gray',
         bg1: '#fff377',
         bg2: '#ffd949',
@@ -62,6 +61,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         tint: tintColorDark,
         tabIconDefault: '#ccc',
         tabIconSelected: tintColorDark,
+        titleDefault: '#fff',
         descriptionDefault: 'gray',
         bg1: '#86d2d9',
         bg2: '#22bdc6',
