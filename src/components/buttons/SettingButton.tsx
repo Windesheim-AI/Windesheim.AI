@@ -86,7 +86,11 @@ export const SettingButton = ({
         },
     });
     return (
-        <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
+        <TouchableOpacity
+            testID={title}
+            style={styles.buttonContainer}
+            onPress={onPress}
+        >
             <View style={styles.iconContainer}>
                 <FontAwesome5 style={styles.icon} name={icon} size={24} />
             </View>

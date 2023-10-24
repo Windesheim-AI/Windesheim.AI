@@ -40,7 +40,11 @@ export const GoBackButton = ({
     });
 
     return (
-        <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
+        <TouchableOpacity
+            testID="GoBackButton"
+            style={styles.buttonContainer}
+            onPress={onPress}
+        >
             <FontAwesome5 name="arrow-left" size={20} color={colors.text} />
             <Text style={styles.buttonText}>{buttonText}</Text>
         </TouchableOpacity>

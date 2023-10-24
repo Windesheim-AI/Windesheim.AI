@@ -32,7 +32,7 @@ export const PageView = ({ children, title, description }: PageViewProps) => {
     });
 
     return (
-        <View style={styles.container}>
+        <View testID={title} style={styles.container}>
             <Text style={styles.header}>{title}</Text>
             {description ? (
                 <Text style={styles.description}>{description}</Text>

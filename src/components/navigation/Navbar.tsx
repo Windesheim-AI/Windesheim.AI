@@ -80,6 +80,7 @@ export const NavBar = () => {
                         //@ts-ignore
                         navigation.navigate(link.route);
                     }}
+                    testID={link.route + '-navbar-button'}
                 >
                     <View style={styles.icon}>
                         <FontAwesome5
