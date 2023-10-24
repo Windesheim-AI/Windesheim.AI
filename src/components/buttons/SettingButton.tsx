@@ -14,13 +14,13 @@ export type SettingButtonProps = {
     screenName?: string;
 };
 
-export const SettingButton: React.FC<SettingButtonProps> = ({
+export const SettingButton = ({
     title,
     description,
     onPress,
     icon,
     screenName,
-}) => {
+}: SettingButtonProps) => {
     const truncate = (str: string, n: number) => {
         return str.length > n ? str.substring(0, n - 1) + '...' : str;
     };
