@@ -5,6 +5,10 @@ import { Background } from '../../../src/components/general/Background';
 
 jest.useFakeTimers();
 
+jest.mock('@react-native-async-storage/async-storage', () =>
+    require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
+);
+
 jest.mock('react-redux', () => {
     const ActualReactRedux = jest.requireActual('react-redux');
     return {
