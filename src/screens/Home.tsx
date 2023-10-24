@@ -2,12 +2,11 @@ import * as React from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 import { Button } from '../components/buttons/Button';
-import { HorizontalScroll } from '../components/general/HorizontalScroll';
+import NewsItem, { newsData } from '../components/buttons/NewsItem';
+import HorizontalScroll from '../components/general/HorizontalScroll';
 import { PageScrollView } from '../components/general/PageScrollView';
 import { buttonColorSchemes } from '../constants/Colors';
 import { Routes } from '../routes/routes';
-
-import NewsItem, { newsData } from '../components/buttons/NewsItem';
 
 const colors = {
     gray: 'gray',
