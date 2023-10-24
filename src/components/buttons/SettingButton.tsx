@@ -54,7 +54,6 @@ export const SettingButton = ({
         icon: {
             width: 24,
             height: 24,
-            resizeMode: 'contain',
             color: colors.text,
         },
         titleContainer: {
@@ -78,7 +77,6 @@ export const SettingButton = ({
         arrow: {
             width: 20,
             height: 20,
-            resizeMode: 'contain',
             color: colors.text,
         },
     });
