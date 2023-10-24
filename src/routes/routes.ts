@@ -10,7 +10,6 @@ export enum Routes {
     Test = 'Test',
     WindesheimTechRadar = 'WindesheimTechRadar',
     Settings = 'Settings',
-    SettingsThemeSwitcher = 'SettingsThemeSwitcher',
     DataSettings = 'DataSettings',
     LanguageSettings = 'LanguageSettings',
 }
@@ -20,7 +19,6 @@ export const screens = [
     { name: Routes.Test, component: TestScreen },
     { name: Routes.WindesheimTechRadar, component: WTRScreen },
     { name: Routes.Settings, component: SettingsScreen },
-    { name: Routes.SettingsThemeSwitcher, component: ThemeSwitcherScreen },
     { name: Routes.DataSettings, component: DataScreen },
     { name: Routes.LanguageSettings, component: LanguageScreen },
 ];
