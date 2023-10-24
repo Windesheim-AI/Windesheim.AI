@@ -2,8 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
-import { useAppSelector } from '../../redux/Hooks';
-import { RootState } from '../../redux/Store';
+import { RootState, useAppSelector } from '../../redux/Store';
 
 export const Background = () => {
     const themeState = useAppSelector((state: RootState) => state.theme);

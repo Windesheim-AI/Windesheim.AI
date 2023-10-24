@@ -5,8 +5,7 @@ import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
-import { useAppSelector } from '../../redux/Hooks';
-import { RootState } from '../../redux/Store';
+import { RootState, useAppSelector } from '../../redux/Store';
 
 export type SettingButtonProps = {
     onPress?: () => void;

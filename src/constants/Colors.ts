@@ -1,7 +1,7 @@
 import { ColorSchemeName, useColorScheme } from 'react-native';
 
 import { hasKeyInMap } from '../lib/utility/data';
-import { ThemeMode } from '../redux/ThemeMode';
+import { ThemeSlice } from '../redux/slices/ThemeSlice';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';

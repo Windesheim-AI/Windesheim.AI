@@ -1,12 +1,10 @@
 /* eslint-disable react-native/no-color-literals */
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
-import { useAppSelector } from '../../redux/Hooks';
-import { RootState } from '../../redux/Store';
+import { RootState, useAppSelector } from '../../redux/Store';
 
 export type SettingCardProps = {
     title: string;

@@ -2,8 +2,7 @@ import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
-import { useAppSelector } from '../../redux/Hooks';
-import { RootState } from '../../redux/Store';
+import { RootState, useAppSelector } from '../../redux/Store';
 
 type PageViewProps = {
     children: React.ReactNode;
