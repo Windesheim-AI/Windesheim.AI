@@ -1,4 +1,6 @@
 import { HomeScreen } from '../screens/Home';
+import { DataScreen } from '../screens/Settings/Data';
+import { LanguageScreen } from '../screens/Settings/Language';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { ThemeSwitcherScreen } from '../screens/Settings/ThemeSwitcher';
 import { TestScreen } from '../screens/Test';
@@ -10,6 +12,8 @@ export enum Routes {
     WindesheimTechRadar = 'WindesheimTechRadar',
     Settings = 'Settings',
     SettingsThemeSwitcher = 'SettingsThemeSwitcher',
+    DataSettings = 'DataSettings',
+    LanguageSettings = 'LanguageSettings',
 }
 
 export const screens = [
@@ -18,4 +22,6 @@ export const screens = [
     { name: Routes.WindesheimTechRadar, component: WTRScreen },
     { name: Routes.Settings, component: SettingsScreen },
     { name: Routes.SettingsThemeSwitcher, component: ThemeSwitcherScreen },
+    { name: Routes.DataSettings, component: DataScreen },
+    { name: Routes.LanguageSettings, component: LanguageScreen },
 ];

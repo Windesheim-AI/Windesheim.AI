@@ -14,13 +14,13 @@ export type SettingButtonProps = {
     screenName?: string;
 };
 
-export const SettingButton: React.FC<SettingButtonProps> = ({
+export const SettingButton = ({
     title,
     description,
     onPress,
     icon,
     screenName,
-}) => {
+}: SettingButtonProps) => {
     const truncate = (str: string, n: number) => {
         return str.length > n ? str.substring(0, n - 1) + '...' : str;
     };
@@ -45,8 +45,8 @@ export const SettingButton: React.FC<SettingButtonProps> = ({
             flexDirection: 'row',
             alignItems: 'center',
             backgroundColor: colors.settingButtonBG,
-            borderBottomColor: '#CCC',
-            borderBottomWidth: 1,
+            borderColor: '#CCC',
+            borderWidth: 1,
             padding: 10,
             borderRadius: 10,
             marginBottom: 20,
@@ -86,14 +86,18 @@ export const SettingButton: React.FC<SettingButtonProps> = ({
         },
     });
     return (
-        <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
+        <TouchableOpacity
+            testID={title}
+            style={styles.buttonContainer}
+            onPress={onPress}
+        >
             <View style={styles.iconContainer}>
                 <FontAwesome5 style={styles.icon} name={icon} size={24} />
             </View>
             <View style={styles.titleContainer}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.description}>
-                    {truncate(description, 25)}
+                    {truncate(description, 30)}
                 </Text>
             </View>
             <View style={styles.arrowContainer}>
