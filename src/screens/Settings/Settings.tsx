@@ -10,7 +10,7 @@ export const SettingsScreen = () => {
     return (
         <PageView title="Settings">
             <SettingCard
-                icon="cog"
+                icon="moon"
                 title="Enable dark mode"
                 testID="Theme switcher"
             >
@@ -18,10 +18,10 @@ export const SettingsScreen = () => {
             </SettingCard>
 
             <SettingButton
-                icon="globe"
-                title="Language"
-                description="Change the language that the app uses."
-                screenName={Routes.LanguageSettings}
+                icon="server"
+                title="Test"
+                description="This is a test setting."
+                screenName={Routes.TestSettings}
             />
         </PageView>
     );

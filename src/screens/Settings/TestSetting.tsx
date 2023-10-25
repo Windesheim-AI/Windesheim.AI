@@ -3,11 +3,11 @@ import * as React from 'react';
 import { GoBackButton } from '../../components/buttons/GoBackButton';
 import { PageView } from '../../components/general/PageView';
 
-export const LanguageScreen = () => {
+export const TestSettingScreen = () => {
     return (
         <PageView
-            title="Settings > Language"
-            description='"Artificial intelligence is the key to innovating the future and transforming our lives"'
+            title="Settings > Test"
+            description="This is a testing setting to demonstrate the capabilities."
         >
             <GoBackButton />
         </PageView>
