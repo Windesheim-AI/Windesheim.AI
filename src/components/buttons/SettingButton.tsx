@@ -1,10 +1,11 @@
 /* eslint-disable react-native/no-color-literals */
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
+import { truncate } from '../../lib/utility/stringutils';
 
 export type SettingButtonProps = {
     onPress?: () => void;
@@ -21,9 +22,6 @@ export const SettingButton = ({
     icon,
     screenName,
 }: SettingButtonProps) => {
-    const truncate = (str: string, n: number) => {
-        return str.length > n ? str.substring(0, n - 1) + '...' : str;
-    };
     const colors = useColorConfig();
     const navigation = useNavigation();
 
@@ -34,7 +32,6 @@ export const SettingButton = ({
             );
         }
         onPress = () => {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             //@ts-ignore
             navigation.navigate(screenName);
         };
@@ -44,7 +41,6 @@ export const SettingButton = ({
         buttonContainer: {
             flexDirection: 'row',
             alignItems: 'center',
-            backgroundColor: colors.settingButtonBG,
             borderColor: '#CCC',
             borderWidth: 1,
             padding: 10,
@@ -57,7 +53,6 @@ export const SettingButton = ({
         icon: {
             width: 24,
             height: 24,
-            resizeMode: 'contain',
             color: colors.text,
         },
         titleContainer: {
@@ -81,12 +76,11 @@ export const SettingButton = ({
         arrow: {
             width: 20,
             height: 20,
-            resizeMode: 'contain',
             color: colors.text,
         },
     });
     return (
-        <TouchableOpacity
+        <Pressable
             testID={title}
             style={styles.buttonContainer}
             onPress={onPress}
@@ -107,6 +101,6 @@ export const SettingButton = ({
                     size={24}
                 />
             </View>
-        </TouchableOpacity>
+        </Pressable>
     );
 };

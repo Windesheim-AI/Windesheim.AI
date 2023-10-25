@@ -12,7 +12,8 @@
         "plugin:etc/recommended",
         "plugin:@typescript-eslint/recommended-type-checked",
         "plugin:@typescript-eslint/stylistic-type-checked",
-        "plugin:@typescript-eslint/eslint-recommended"
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:deprecation/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -154,6 +155,7 @@
                 "importNames": ["useSelector", "useDispatch"],
                 "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
             }
-        ]
+        ],
+        "@typescript-eslint/ban-ts-comment": "off"
     }
 }

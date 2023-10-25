@@ -1,23 +1,36 @@
 import * as React from 'react';
 
 import { SettingButton } from '../../components/buttons/SettingButton';
+import { SettingCard } from '../../components/card/SettingCard';
 import { PageView } from '../../components/general/PageView';
+import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
+import { ThemeSwitcher } from '../../components/settings/ThemeSwitcher';
 import { Routes } from '../../routes/routes';
 
 export const SettingsScreen = () => {
     return (
         <PageView title="Settings">
-            <SettingButton
-                icon="globe"
+            <SettingCard
+                icon="moon"
+                title="Enable dark mode"
+                testID="Theme switcher"
+            >
+                <ThemeSwitcher />
+            </SettingCard>
+
+            <SettingCard
+                icon="language"
                 title="Language"
-                description="Change the language that the app uses."
-                screenName={Routes.LanguageSettings}
-            />
+                testID="Language switcher"
+            >
+                <LanguageSwitcher />
+            </SettingCard>
+
             <SettingButton
-                icon="cog"
-                title="Theme switcher"
-                description="Change the theme to dark or light mode"
-                screenName={Routes.SettingsThemeSwitcher}
+                icon="server"
+                title="Test"
+                description="This is a test setting."
+                screenName={Routes.TestSettings}
             />
         </PageView>
     );

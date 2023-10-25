@@ -8,9 +8,11 @@ import { NavBar } from '../../../src/components/navigation/Navbar';
 
 jest.useFakeTimers();
 
-jest.mock('react-native-vector-icons/FontAwesome5', () => 'FontAwesome5');
+jest.mock('@react-native-async-storage/async-storage', () =>
+    require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
+);
+
 jest.mock('@expo-google-fonts/inter', () => 'useFonts');
-jest.mock('react-native-webview', () => 'WebView');
 
 jest.mock('@react-navigation/native', () => ({
     useNavigation: () => ({
@@ -27,6 +29,9 @@ describe('NavBar Component', () => {
         store = mockStore({
             navigation: {
                 showNavBar: true,
+            },
+            theme: {
+                theme: 'light',
             },
         });
     });
@@ -50,6 +55,9 @@ describe('NavBar Component', () => {
         store = mockStore({
             navigation: {
                 showNavBar: false,
+            },
+            theme: {
+                theme: 'light',
             },
         });
 

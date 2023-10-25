@@ -17,3 +17,5 @@ export const navigationSlice = createSlice({
         },
     },
 });
+
+export const navigationActions = navigationSlice.actions;

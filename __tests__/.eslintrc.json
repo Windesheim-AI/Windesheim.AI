@@ -1,5 +1,5 @@
 {
-  "extends": "../.eslintrc.json",
+  "extends": ["../.eslintrc.json", "plugin:prettier/recommended"],
   "rules": {
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/ban-ts-comment": "off",
@@ -8,6 +8,7 @@
     "@typescript-eslint/no-unsafe-member-access": "off",
     "react-native/no-raw-text": "off",
     "no-void": "off",
-    "react/jsx-no-useless-fragment": "off"
+    "react/jsx-no-useless-fragment": "off",
+    "indent": ["error", 4]
   }
 }
