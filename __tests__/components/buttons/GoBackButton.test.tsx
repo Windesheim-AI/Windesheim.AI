@@ -6,13 +6,26 @@ import {
     GoBackButtonProps,
 } from '../../../src/components/buttons/GoBackButton';
 
-jest.mock('react-native-vector-icons/FontAwesome5', () => 'FontAwesome5');
+jest.mock('@react-native-async-storage/async-storage', () =>
+    require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
+);
+
 jest.mock('@react-navigation/native', () => ({
     ...jest.requireActual('@react-navigation/native'),
     useNavigation: () => ({
         navigate: jest.fn(),
     }),
 }));
+
+jest.mock('react-redux', () => {
+    const ActualReactRedux = jest.requireActual('react-redux');
+    return {
+        ...ActualReactRedux,
+        useSelector: jest.fn().mockImplementation(() => {
+            return {};
+        }),
+    };
+});
 
 describe('GoBackButton', () => {
     const mockOnPress = jest.fn();

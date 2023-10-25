@@ -5,15 +5,15 @@ import { Background } from '../components/general/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { useColorConfig } from '../constants/Colors';
 import { useAnimatedValue } from '../lib/utility/animate';
-import { useAppSelector } from '../redux/Hooks';
+import { useAppSelector } from '../redux/Store';
 
 type LayoutProps = {
     children: React.ReactNode;
 };
 
 export const Layout = ({ children }: LayoutProps) => {
-    const colors = useColorConfig();
     const navigation = useAppSelector((state) => state.navigation);
+    const colors = useColorConfig();
 
     const styles = StyleSheet.create({
         contentContainer: {
