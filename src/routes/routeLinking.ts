@@ -11,7 +11,6 @@ export const RouteLinking = {
             [Routes.Test]: 'test',
             [Routes.WindesheimTechRadar]: 'wtr',
             [Routes.Settings]: 'settings',
-            [Routes.LanguageSettings]: 'settings/language',
         },
     },
 };
