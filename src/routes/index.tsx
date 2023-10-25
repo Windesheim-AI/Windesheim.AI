@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 export const Router = () => {
     return (
         <Stack.Navigator
-            initialRouteName={Routes.Home}
+            initialRouteName={Routes.WindesheimTechRadar}
             screenOptions={{
                 headerShown: false,
             }}
