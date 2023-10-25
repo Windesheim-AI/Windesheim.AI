@@ -3,11 +3,11 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 
+import { appConfig } from '../../../app.config';
 import { Background } from '../../components/general/Background';
 import { useAppDispatch } from '../../redux/Store';
 import { hideSplashScreen } from '../../redux/slices/LayoutSlice';
 import { Routes } from '../../routes/routes';
-
 export const SplashScreen = () => {
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
@@ -19,7 +19,7 @@ export const SplashScreen = () => {
             dispatch(hideSplashScreen());
             // Navigate to the main app screen
             navigation.navigate(Routes.Home as never);
-        }, 3000);
+        }, appConfig.splashScreenTime);
     }, [dispatch, navigation]); // Include dispatch and navigation in the dependencies array
 
     const styles = StyleSheet.create({
