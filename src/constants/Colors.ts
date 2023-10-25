@@ -26,6 +26,7 @@ export type ColorSchemeType = {
         backgroundColor: string;
         color: string;
     };
+    borderColor: string;
 };
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
@@ -50,6 +51,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
             backgroundColor: '#FAFAFA',
             color: '#2B2A2A',
         },
+        borderColor: '#ccc',
     },
     dark: {
         primary: '#4695D3',
@@ -73,6 +75,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
             backgroundColor: '#090A0A',
             color: '#c4c4c4',
         },
+        borderColor: '#ccc',
     },
 };
 export type ColorGradientScheme = [string, string, string];
