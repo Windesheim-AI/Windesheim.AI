@@ -51,6 +51,7 @@ const newsData = [
 
 const NewsList = () => {
     const handleNewsItemClick = (url: string) => {
+        // eslint-disable-next-line no-void
         void Linking.openURL(url);
     };
     return (
