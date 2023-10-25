@@ -6,6 +6,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import { PersistConfig } from 'redux-persist/es/types';
 
 import { languageSlice } from './slices/LanguageSlice';
+import { layoutSlice } from './slices/LayoutSlice';
 import { navigationSlice } from './slices/NavigationSlice';
 import { themeSlice } from './slices/ThemeSlice';
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
     navigation: navigationSlice.reducer,
     theme: themeSlice.reducer,
     language: languageSlice.reducer,
+    layout: layoutSlice.reducer,
 });
 // @ts-ignore
 const persistedReducer = persistReducer(persistConfig, rootReducer);
