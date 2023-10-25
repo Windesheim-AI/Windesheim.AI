@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-color-literals */
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
@@ -80,7 +80,7 @@ export const SettingButton = ({
         },
     });
     return (
-        <TouchableOpacity
+        <Pressable
             testID={title}
             style={styles.buttonContainer}
             onPress={onPress}
@@ -101,6 +101,6 @@ export const SettingButton = ({
                     size={24}
                 />
             </View>
-        </TouchableOpacity>
+        </Pressable>
     );
 };

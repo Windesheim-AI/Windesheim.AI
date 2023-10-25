@@ -1,7 +1,7 @@
 import { act } from '@testing-library/react-native';
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
-import renderer from 'react-test-renderer'; // Import this if you're using react-test-renderer
+import { Pressable } from 'react-native';
+import renderer from 'react-test-renderer';
 
 import { SettingButton } from '../../../src/components/buttons/SettingButton';
 
@@ -50,10 +50,10 @@ describe('SettingButton', () => {
         const component = renderer.create(<SettingButton {...mockProps} />);
         const instance = component.root;
         // @ts-ignore
-        const touchableOpacity = instance.findByType(TouchableOpacity);
+        const pressable = instance.findByType(Pressable);
 
         void act(() => {
-            touchableOpacity.props.onPress();
+            pressable.props.onPress();
         });
 
         expect(mockProps.onPress).toHaveBeenCalled();
