@@ -7,32 +7,7 @@ import {
     Linking,
 } from 'react-native';
 
-const colors = {
-    gray: 'gray',
-    black: 'black',
-};
-
-const styles = StyleSheet.create({
-    newsItemContainer: {
-        flexDirection: 'row',
-        margin: 10,
-        marginRight: 10,
-    },
-    newsItem: {
-        width: 120,
-        height: 150,
-        backgroundColor: colors.gray,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: 10,
-        marginRight: 10,
-    },
-    newsItemText: {
-        fontSize: 14,
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-});
+import { useColorConfig } from '../../constants/Colors';
 
 const newsData = [
     {
@@ -50,10 +25,35 @@ const newsData = [
 ];
 
 const NewsList = () => {
+    const colors = useColorConfig();
+
     const handleNewsItemClick = (url: string) => {
         // eslint-disable-next-line no-void
         void Linking.openURL(url);
     };
+
+    const styles = StyleSheet.create({
+        newsItemContainer: {
+            flexDirection: 'row',
+            margin: 10,
+            marginRight: 10,
+        },
+        newsItem: {
+            width: 120,
+            height: 150,
+            backgroundColor: colors.gray,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 10,
+            marginRight: 10,
+        },
+        newsItemText: {
+            fontSize: 14,
+            fontWeight: 'bold',
+            textAlign: 'center',
+        },
+    });
+
     return (
         <View testID="newslist" style={styles.newsItemContainer}>
             {newsData.map((item) => (
