@@ -45,11 +45,11 @@ export const SplashScreen = () => {
         <>
           <Background />
           <View style={styles.container}>
-            <Image
+            <Image testID='winsight-logo'
               source={require('../../assets/images/WINsight_logo_light.png')}
               style={styles.centerImage}
             />
-            <Image
+            <Image testID='windesheim-logo'
               source={require('../../assets/images/windesheim_logo.png')}
               style={styles.originalSizeImage}
             />
