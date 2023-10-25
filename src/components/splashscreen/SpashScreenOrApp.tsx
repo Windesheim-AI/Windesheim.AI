@@ -1,17 +1,28 @@
 import React from 'react';
+import { StyleSheet, View } from 'react-native';
 
 import SplashScreen from './SplashScreen';
-import { useAppSelector } from '../../redux/Store';
-import { Router } from '../../routes/index';
+import { RootState, useAppSelector } from '../../redux/Store';
+import { Router } from '../../routes';
 import { Layout } from '../../screens/_layout';
 
 export default function SplashScreenOrApp() {
-    const isSplashVisible: boolean = useAppSelector(
-        (state) => state.layout,
-    ).isSplashVisible;
+    const layoutState = useAppSelector((state: RootState) => state.layout);
 
-    return isSplashVisible ? (
-        <SplashScreen />
+    const styles = StyleSheet.create({
+        splashScreenAppContainer: {
+            display: 'none',
+        },
+    });
+
+    return layoutState.isSplashVisible ? (
+        <>
+            <SplashScreen />
+
+            <View style={styles.splashScreenAppContainer}>
+                <Router />
+            </View>
+        </>
     ) : (
         <Layout>
             <Router />

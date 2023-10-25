@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+type LayoutState = {
+    isSplashVisible: boolean;
+};
+
+const initialState: LayoutState = {
     isSplashVisible: true,
 };
 
