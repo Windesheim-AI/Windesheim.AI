@@ -3,7 +3,6 @@ import React from 'react';
 
 import { Routes } from './routes';
 import { HomeScreen } from '../screens/Home';
-import { DataScreen } from '../screens/Settings/Data';
 import { LanguageScreen } from '../screens/Settings/Language';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { TestScreen } from '../screens/Test';
@@ -16,7 +15,6 @@ const screens = [
     { name: Routes.Test, component: TestScreen },
     { name: Routes.WindesheimTechRadar, component: WTRScreen },
     { name: Routes.Settings, component: SettingsScreen },
-    { name: Routes.DataSettings, component: DataScreen },
     { name: Routes.LanguageSettings, component: LanguageScreen },
 ];
 
