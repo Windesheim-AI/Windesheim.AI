@@ -17,4 +17,12 @@ describe('Routes', () => {
         cy.reload();
         cy.contains('Settings');
     });
+
+    it('will redirect back to the home page when a unknown page is visited', () => {
+        cy.visit('/fdafdsadfdaf');
+        cy.contains('Home');
+
+        cy.reload();
+        cy.contains('Home');
+    });
 });
