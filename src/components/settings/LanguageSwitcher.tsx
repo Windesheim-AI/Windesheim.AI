@@ -10,11 +10,7 @@ import { RootState, useAppDispatch, useAppSelector } from '../../redux/Store';
 import { languageActions } from '../../redux/slices/LanguageSlice';
 import { WhSelectDropdown } from '../input/WhSelectDropdown';
 
-export type LanguageSwitcherProps = {
-    testID?: string;
-};
-
-export const LanguageSwitcher = ({ testID }: LanguageSwitcherProps) => {
+export const LanguageSwitcher = () => {
     const storeDispatcher = useAppDispatch();
     const languageState = useAppSelector((state: RootState) => state.language);
     const [selectedLanguage, setSelectedLanguage] = useState<LanguageCode>(
@@ -43,7 +39,7 @@ export const LanguageSwitcher = ({ testID }: LanguageSwitcherProps) => {
                     }),
                 );
             }}
-            testID={testID}
+            testID="language-switcher"
         />
     );
 };
