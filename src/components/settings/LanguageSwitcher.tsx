@@ -23,7 +23,7 @@ export const LanguageSwitcher = () => {
     return (
         <WhSelectDropdown<string>
             data={selectableLanguages}
-            label="Select country"
+            label="Select language"
             defaultValue={selectedLanguageTranslation}
             onSelect={(selectedItem) => {
                 const newSelectedLanguage: LanguageCode | undefined =
