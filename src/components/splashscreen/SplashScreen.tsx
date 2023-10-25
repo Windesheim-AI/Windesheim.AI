@@ -2,7 +2,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
-import { useAppDispatch, store } from '../../redux/Store';
+import { useAppDispatch } from '../../redux/Store';
 import { hideSplashScreen } from '../../redux/slices/LayoutSlice';
 
 import { Routes } from '../../routes/routes';
