@@ -33,6 +33,7 @@ export const StatusMessage = ({
         return null;
     }
 
+    const defaultWidth = 90;
     const minWidth = 90;
     const baseWidth = width ? width : minWidth;
     const checkedWidth: number = baseWidth > minWidth ? baseWidth : minWidth;
@@ -91,7 +92,7 @@ export const StatusMessage = ({
         text: {
             color: colors.text,
             fontFamily: 'Inter_500Medium',
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: 'bold',
             left: 60,
 

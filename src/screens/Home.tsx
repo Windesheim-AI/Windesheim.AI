@@ -43,7 +43,7 @@ export const HomeScreen = () => {
 
             <StatusAlert message='Dit is een test alert' type='error'/>
 
-            <StatusMessage type='success' message='Message added' colorGradientScheme={buttonColorSchemes.success} icon='exclamation-circle'/>
+            <StatusMessage type='success' message='lorum ipsum bla hblah blah blah langere tekst how this ogengere tekst how this ogesngere tekst how this ogesngere tekst how this ogesngere tekst how this ogesngere tekst how this ogesngere tekst how this ogess' colorGradientScheme={buttonColorSchemes.success} icon='exclamation-circle'/>
             <StatusMessage type='error' message='Er ging iets fout...' colorGradientScheme={buttonColorSchemes.danger} icon='exclamation-circle'/>
         </View>
     );
