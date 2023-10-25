@@ -5,6 +5,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { persistReducer, persistStore } from 'redux-persist';
 import { PersistConfig } from 'redux-persist/es/types';
 
+import { languageSlice } from './slices/LanguageSlice';
 import { layoutSlice } from './slices/LayoutSlice';
 import { navigationSlice } from './slices/NavigationSlice';
 import { themeSlice } from './slices/ThemeSlice';
@@ -13,12 +14,13 @@ const persistConfig: PersistConfig<unknown> = {
     key: 'root',
     storage: AsyncStorage,
     version: 1,
-    whitelist: ['theme'],
+    whitelist: [themeSlice.name, languageSlice.name],
 };
 
 const rootReducer = combineReducers({
     navigation: navigationSlice.reducer,
     theme: themeSlice.reducer,
+    language: languageSlice.reducer,
     layout: layoutSlice.reducer,
 });
 // @ts-ignore
