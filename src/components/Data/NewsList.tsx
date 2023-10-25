@@ -38,14 +38,14 @@ const newsData = [
     {
         id: 1,
         title: '1',
-        content: '뉴스내용',
-        url: 'https://www.example.com/news1',
+        content: 'News1',
+        url: 'https://www.artificialintelligence-news.com/2023/10/24/nightshade-poisons-ai-models-fight-copyright-theft/',
     },
     {
         id: 2,
         title: '2',
-        content: '뉴스내용',
-        url: 'https://www.example.com/news2',
+        content: 'News2',
+        url: 'https://www.artificialintelligence-news.com/2023/10/19/umg-files-landmark-lawsuit-ai-developer-anthropic/',
     },
 ];
 
