@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import {
     Animated,
     Dimensions,
+    Pressable,
     StyleSheet,
-    TouchableWithoutFeedback,
     View,
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -36,7 +36,7 @@ export const NavBar = () => {
             flexDirection: 'row', // Horizontal arrangement
             alignItems: 'center',
             alignSelf: 'center',
-            justifyContent: 'space-between', // Spread icons horizontally
+            justifyContent: 'space-around', // Spread icons horizontally
             backgroundColor: colors.navBar.backgroundColor,
             borderRadius: 50,
             bottom: 0,
@@ -71,7 +71,7 @@ export const NavBar = () => {
     return (
         <Animated.View style={{ ...styles.container, opacity, bottom, width }}>
             {navLinks.map((link, index) => (
-                <TouchableWithoutFeedback
+                <Pressable
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
                     onPress={() => {
@@ -87,7 +87,7 @@ export const NavBar = () => {
                             size={20}
                         />
                     </View>
-                </TouchableWithoutFeedback>
+                </Pressable>
             ))}
         </Animated.View>
     );

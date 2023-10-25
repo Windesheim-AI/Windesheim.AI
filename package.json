@@ -39,6 +39,7 @@
     "@reduxjs/toolkit": "^1.9.7",
     "expo": "~49.0.11",
     "expo-font": "~11.4.0",
+    "expo-linking": "~5.0.2",
     "expo-status-bar": "~1.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -54,8 +55,7 @@
     "react-navigation": "^5.0.0",
     "react-redux": "^8.1.3",
     "redux-mock-store": "^1.5.4",
-    "redux-persist": "^6.0.0",
-    "expo-linking": "~5.0.2"
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -78,6 +78,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-universe": "^12.0.0",
     "eslint-plugin-cyclomatic-complexity": "^2.0.11",
+    "eslint-plugin-deprecation": "^2.0.0",
     "eslint-plugin-etc": "^2.0.3",
     "eslint-plugin-import": "^2.28.0",
     "eslint-plugin-jest": "^27.4.2",
