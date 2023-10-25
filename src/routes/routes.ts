@@ -3,6 +3,5 @@ export enum Routes {
     Test = 'Test',
     WindesheimTechRadar = 'WindesheimTechRadar',
     Settings = 'Settings',
-    DataSettings = 'DataSettings',
     LanguageSettings = 'LanguageSettings',
 }
