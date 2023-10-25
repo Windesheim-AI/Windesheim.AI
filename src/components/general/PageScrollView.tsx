@@ -24,7 +24,8 @@ export const PageScrollView = ({
             padding: 20,
         },
         header: {
-            fontSize: 27,
+            color: colors.titleDefault,
+            fontSize: 24,
             fontWeight: 'bold',
             marginBottom: 10,
         },
