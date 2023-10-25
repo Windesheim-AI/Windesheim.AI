@@ -9,7 +9,8 @@
     "jest.config.js",
     "jest-setup.ts",
     "babel.config.js",
-    "App.tsx"
+    "App.tsx",
+    "app.config.ts"
   ],
   "exclude": ["cypress/*"]
 }
