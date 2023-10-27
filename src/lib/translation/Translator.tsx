@@ -2,13 +2,15 @@ import React, { createContext, useCallback } from 'react';
 
 import { CacheProvider, TranslationHandler } from './Types';
 import TranslatorFactory from './translators/TranslatorFactory';
+import { defaultLanguageCode } from '../../constants/Languages';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const defaultHandler: TranslationHandler = () => {};
 
 export const TranslateContext: React.Context<TranslationHandler> =
     createContext(defaultHandler);
-export const LanguageContext: React.Context<string> = createContext('nl');
+export const LanguageContext: React.Context<string> =
+    createContext(defaultLanguageCode);
 
 type Props = {
     to: string;
