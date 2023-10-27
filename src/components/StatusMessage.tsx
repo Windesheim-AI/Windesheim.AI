@@ -18,7 +18,6 @@ export const StatusMessage = ({
     type,
     message,
     colorGradientScheme,
-    screenName,
     width,
     icon,
 }: StatusMessageProps) => {
@@ -33,7 +32,6 @@ export const StatusMessage = ({
         return null;
     }
 
-    const defaultWidth = 90;
     const minWidth = 90;
     const baseWidth = width ? width : minWidth;
     const checkedWidth: number = baseWidth > minWidth ? baseWidth : minWidth;
@@ -75,14 +73,14 @@ export const StatusMessage = ({
             transform: [{ rotate: '15deg' }],
             width: 24,
         },
-        button: {
+        alert: {
             alignItems: 'center',
             backgroundColor: '#f2f2f2',
             borderRadius: 15,
             flexDirection: 'row',
             height,
             margin: 10,
-            // from left to rigth items
+            // from left to right items
             // shadow
             maxHeight: 90,
             width: buttonWidth,
@@ -94,32 +92,28 @@ export const StatusMessage = ({
             fontFamily: 'Inter_500Medium',
             fontSize: 16,
             fontWeight: 'bold',
-            left: 60,
-
+            left: 50,
+            maxWidth: buttonWidth - 60,
             position: 'absolute',
         },
         icon: {
             color: colors.text,
-            fontSize: 15,
+            fontSize: 20,
             fontWeight: 'bold',
-        },
-        successAlert: {
-
-        },
-        errorAlert: {
-
-        },
+            position: 'absolute',
+            left: 10,
+            top: 10,
+        }
     });
 
     return (
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.alert}>
             <View style={styles.bg1} />
             <View style={styles.bg2} />
             <View style={styles.bg3} />
             <View style={styles.bg4} />
+            {icon ? <FontAwesome5 name={icon} style={styles.icon} /> : null}
             <Text style={styles.text}>
-                {icon ? <FontAwesome5 name={icon} style={styles.icon} /> : null}
-                {icon ? ' ' : ''}
                 {message}
             </Text>
         </TouchableOpacity>

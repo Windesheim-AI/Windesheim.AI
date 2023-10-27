@@ -45,6 +45,7 @@ export const HomeScreen = () => {
 
             <StatusMessage type='success' message='lorum ipsum bla hblah blah blah langere tekst how this ogengere tekst how this ogesngere tekst how this ogesngere tekst how this ogesngere tekst how this ogesngere tekst how this ogesngere tekst how this ogess' colorGradientScheme={buttonColorSchemes.success} icon='exclamation-circle'/>
             <StatusMessage type='error' message='Er ging iets fout...' colorGradientScheme={buttonColorSchemes.danger} icon='exclamation-circle'/>
+            <Button buttonText='add message' colorGradientScheme={buttonColorSchemes.success} screenName='WTR' width={100}/>
         </View>
     );
 };
