@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
 import { Routes } from './routes';
+import { LoadingScreen } from '../components/loadingscreen/LoadingScreen';
 import { HomeScreen } from '../screens/Home';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { TestSettingScreen } from '../screens/Settings/TestSetting';
@@ -16,6 +17,7 @@ const screens = [
     { name: Routes.WindesheimTechRadar, component: WTRScreen },
     { name: Routes.Settings, component: SettingsScreen },
     { name: Routes.TestSettings, component: TestSettingScreen },
+    { name: Routes.LoadingScreen, component: LoadingScreen },
 ];
 
 export const Router = () => {

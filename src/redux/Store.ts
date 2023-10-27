@@ -9,6 +9,7 @@ import { languageSlice } from './slices/LanguageSlice';
 import { layoutSlice } from './slices/LayoutSlice';
 import { navigationSlice } from './slices/NavigationSlice';
 import { themeSlice } from './slices/ThemeSlice';
+import { loadingSlice } from './slices/LoadingSlice';
 
 const persistConfig: PersistConfig<unknown> = {
     key: 'root',
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
     theme: themeSlice.reducer,
     language: languageSlice.reducer,
     layout: layoutSlice.reducer,
+    loading: loadingSlice.reducer,
 });
 // @ts-ignore
 const persistedReducer = persistReducer(persistConfig, rootReducer);
