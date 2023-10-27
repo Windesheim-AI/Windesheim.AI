@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../constants/Colors';
 
-import { RenderHTML } from 'react-native-render-html';
+import HTML from 'react-native-render-html';
 import { WhScrollView } from '../components/general/WhScrollView';
 
 export const WTRScreen = () => {
@@ -14,6 +14,7 @@ export const WTRScreen = () => {
         container: {
             backgroundColor: colors.background,
             flex: 1,
+            padding: 20,
         },
         site: {
             flex: 1,
@@ -21,20 +22,33 @@ export const WTRScreen = () => {
     });
 
     const tagsStyles = {
-        h1: {
-            color: 'red',
-            fontSize: 24,
-            fontWeight: 'bold',
-            marginBottom: 10,
+        h2: {
+            display: 'none',
+        },
+        h3: {
+            display: 'inline-block',
+        },
+        h4: {
+            marginBottom: 0,
         },
         p: {
-            color: 'blue',
             fontSize: 16,
             lineHeight: 24,
             marginBottom: 10,
+            marginTop: 0,
         },
-        'wp-block-heading img': {
-            height: 50,
+        a: {
+            fontSize: 16,
+            lineHeight: 24,
+            marginBottom: 10,
+            color: colors.text,
+            textDecorationLine: 'none',
+        },
+        body: {
+            color: colors.text,
+        },
+        figure: {
+            //display: 'none',
         },
     };
 
@@ -42,104 +56,73 @@ export const WTRScreen = () => {
         'floating-sidebar': {
             display: 'none',
         },
-    };
-
-    const parseCssToInline = (html: string, css: string) => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-
-        const elements = doc.querySelectorAll('[class], img'); // Include 'img' to target elements directly
-
-        elements.forEach((element) => {
-            const classNames = element.getAttribute('class');
-            if (classNames) {
-                const classNameList = classNames.split(' ');
-                let inlineStyles = '';
-
-                classNameList.forEach((className) => {
-                    const regex = new RegExp(
-                        `\\.${className}\\s*{([\\s\\S]*?)}`,
-                        'g',
-                    );
-                    let match;
-
-                    while ((match = regex.exec(css))) {
-                        const styleRules = match[1];
-                        if (styleRules) {
-                            inlineStyles += styleRules;
-                        }
-                    }
-                });
-
-                if (inlineStyles) {
-                    element.setAttribute('style', inlineStyles);
-                } else {
-                    //apply the component styles like img:{} to the element
-                    const regex = new RegExp(
-                        `\\.${element.nodeName}\\s*{([\\s\\S]*?)}`,
-                        'g',
-                    );
-                    let match;
-
-                    while ((match = regex.exec(css))) {
-                        console.log(match);
-
-                        const styleRules = match[1];
-                        if (styleRules) {
-                            inlineStyles += styleRules;
-                        }
-                    }
-                    if (inlineStyles) {
-                        element.setAttribute('style', inlineStyles);
-                    }
-                }
-            }
-        });
-
-        return doc.documentElement.outerHTML;
+        hideBigMedia: {
+            display: 'none',
+        },
+        'feedzy-rss': {
+            display: 'none',
+        },
     };
 
     useEffect(() => {
         // get data from wordpress
-        const URL = 'https://windesheim.tech/';
+        const URL = 'https://windesheim.tech';
         const PAGE = 'google';
         const FULL_URL = URL + '/wp-json/wp/v2/pages?slug=' + PAGE;
         fetch(FULL_URL)
             .then((response) => response.json())
             .then((json) => {
-                // console.log(json[0].content.rendered);
-                //use the json.content.rendered
-                // setContent(json[0].content.rendered);
-                console.log(json);
-
-                // using the juice library to inline the css
-                console.log('test');
                 const html = json[0].content.rendered;
-                // const inlined = juice.inlineContent(html, css);
-                // console.log(inlined);
                 setContent(html);
-                // console.log(cssContent);
-                const cssStyles =
-                    '.floating-sidebar { display: none; } img { display: none; }';
-
-                const htmlWithInlineStyles = parseCssToInline(html, cssStyles);
-                setContent(htmlWithInlineStyles);
             })
             .catch((error) => {
                 console.error(error);
             });
     }, []);
 
+    function onElement(element : any) {
+        // if the element is a link, remove the href attribute
+        if (element.tagName === 'a') {
+            element.attribs.href = '';
+            for (let i = 0; i < element.children.length; i++) {
+                if (element.children[i].tagName === 'img') {
+                    element.children[i].attribs.style =
+                        'height: 45px; width: 45px;display: inline;';
+                        element.attribs.style =
+                            'width: 100%; display: flex; align-items: center;margin-bottom: 0px;';
+                    return;
+                }
+            }
+            return;
+        }
+        // if h3 and had a image as child, remove the h3
+        if (element.tagName === 'h3') {
+            console.log(element.children);
+            for (let i = 0; i < element.children.length; i++) {
+                if (element.children[i].tagName === 'img') {
+                    element.children[i].attribs.style =
+                        'height: 45px; width: 45px;display: inline;';
+                    element.attribs.style =
+                        'width: 100%; display: flex; align-items: center;margin-bottom: 0px;';
+                    return;
+                }
+            }
+        }
+    }
+
+    const domVisitors = {
+        onElement: onElement,
+    };
+
     return (
         <WhScrollView>
             <View style={styles.container}>
-                {/* <HTML
+                <HTML
                     source={{ html: content }}
                     tagsStyles={tagsStyles}
                     classesStyles={classStyles}
-                /> */}
-
-                <RenderHTML source={{ html: content }} />
+                    domVisitors={domVisitors}
+                />
             </View>
         </WhScrollView>
     );

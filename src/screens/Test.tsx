@@ -14,7 +14,7 @@ export const TestScreen = () => {
     });
 
     return (
-        <PageScrollView title="Test">
+        <PageScrollView title="Dit is een Test pagina">
             <Text style={styles.text}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                 euismod justo euismod, bibendum velit vel, bibendum nunc. Sed
