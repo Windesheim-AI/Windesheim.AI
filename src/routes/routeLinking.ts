@@ -9,7 +9,12 @@ export const RouteLinking = {
         screens: {
             [Routes.Home]: 'home',
             [Routes.Test]: 'test',
-            [Routes.WindesheimTechRadar]: 'wtr',
+            [Routes.WindesheimTechRadar]: {
+                path: 'wtr/:page?',
+                parse: {
+                    page: (page: string) => page || 'apple',
+                },
+            },
             [Routes.Settings]: 'settings',
         },
     },

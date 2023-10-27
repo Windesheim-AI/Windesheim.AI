@@ -21,7 +21,7 @@ const screens = [
 export const Router = () => {
     return (
         <Stack.Navigator
-            initialRouteName={Routes.WindesheimTechRadar}
+            initialRouteName={Routes.Home}
             screenOptions={{
                 headerShown: false,
             }}
