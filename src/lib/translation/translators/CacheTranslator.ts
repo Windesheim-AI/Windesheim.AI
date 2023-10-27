@@ -3,7 +3,7 @@ import { isTranslationInBlacklist } from '../Config';
 
 export default class CacheTranslator extends GoogleTranslator {
     async translate(value: string): Promise<string | undefined> {
-        if (isTranslationInBlacklist(value)) {
+        if (value.length < 1 || isTranslationInBlacklist(value)) {
             return value;
         }
 

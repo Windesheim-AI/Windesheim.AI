@@ -3,7 +3,7 @@ import { getTranslateApiUrl, isTranslationInBlacklist } from '../Config';
 
 export default class GoogleTranslator extends Translator {
     async translate(value: string): Promise<string | undefined> {
-        if (isTranslationInBlacklist(value)) {
+        if (value.length < 1 || isTranslationInBlacklist(value)) {
             return value;
         }
 
