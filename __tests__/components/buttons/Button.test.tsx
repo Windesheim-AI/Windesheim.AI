@@ -2,8 +2,6 @@ import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 
 import { Button } from '../../../src/components/buttons/Button';
-import { useAppSelector } from '../../../src/redux/Store';
-import { ThemeState } from '../../../src/redux/slices/ThemeSlice';
 
 jest.useFakeTimers();
 

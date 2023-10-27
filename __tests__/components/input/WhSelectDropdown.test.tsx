@@ -8,7 +8,7 @@ const sampleData = ['Option 1', 'Option 2', 'Option 3'];
 
 describe('WhSelectDropdown', () => {
     it('renders the component with default values', () => {
-        const { getByText, getByTestId, findByText } = render(
+        const { getByText, getByTestId } = render(
             <WhSelectDropdown
                 data={sampleData}
                 label="Select an option"

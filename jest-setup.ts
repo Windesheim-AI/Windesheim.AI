@@ -18,6 +18,7 @@ jest.mock('@expo-google-fonts/inter', () => ({
     Inter_500Medium: {},
 }));
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-return
 jest.mock('@react-navigation/native', () => ({
     ...jest.requireActual('@react-navigation/native'),
     useNavigation: () => ({
