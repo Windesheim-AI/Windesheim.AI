@@ -12,7 +12,7 @@ jest.mock('@react-native-async-storage/async-storage', () =>
     require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
 );
 
-jest.mock('@expo-repositories-fonts/inter', () => 'useFonts');
+jest.mock('@expo-google-fonts/inter', () => 'useFonts');
 
 jest.mock('@react-navigation/native', () => ({
     useNavigation: () => ({
