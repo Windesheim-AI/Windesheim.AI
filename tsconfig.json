@@ -3,7 +3,7 @@
   "compilerOptions": {
     "strict": true,
     "jsx": "react",
-    "types": ["jest"],
+    "types": ["jest", "node"],
     "noEmit": true,
   },
   // only compile the production TS files

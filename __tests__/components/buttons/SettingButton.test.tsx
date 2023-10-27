@@ -5,27 +5,7 @@ import renderer from 'react-test-renderer';
 
 import { SettingButton } from '../../../src/components/buttons/SettingButton';
 
-jest.mock('@react-native-async-storage/async-storage', () =>
-    require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
-);
-
-jest.mock('react-redux', () => {
-    const ActualReactRedux = jest.requireActual('react-redux');
-    return {
-        ...ActualReactRedux,
-        useSelector: jest.fn().mockImplementation(() => {
-            return {};
-        }),
-    };
-});
-
-// Mock the useNavigation hook
-jest.mock('@react-navigation/native', () => ({
-    ...jest.requireActual('@react-navigation/native'),
-    useNavigation: () => ({
-        navigate: jest.fn(),
-    }),
-}));
+jest.useFakeTimers();
 
 describe('SettingButton', () => {
     const mockProps = {

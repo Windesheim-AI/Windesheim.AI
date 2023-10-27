@@ -2,6 +2,7 @@ import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
+import { TextTranslated } from '../text/TextTranslated';
 
 type PageViewProps = {
     children: React.ReactNode;
@@ -33,7 +34,9 @@ export const PageView = ({ children, title, description }: PageViewProps) => {
 
     return (
         <View testID={title} style={styles.container}>
-            <Text style={styles.header}>{title}</Text>
+            <Text style={styles.header}>
+                <TextTranslated text={title} />
+            </Text>
             {description ? (
                 <Text style={styles.description}>{description}</Text>
             ) : null}

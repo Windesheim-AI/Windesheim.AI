@@ -8,18 +8,6 @@ import { NavBar } from '../../../src/components/navigation/Navbar';
 
 jest.useFakeTimers();
 
-jest.mock('@react-native-async-storage/async-storage', () =>
-    require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
-);
-
-jest.mock('@expo-google-fonts/inter', () => 'useFonts');
-
-jest.mock('@react-navigation/native', () => ({
-    useNavigation: () => ({
-        navigate: jest.fn(),
-    }),
-}));
-
 const mockStore = configureStore([]);
 
 describe('NavBar Component', () => {
