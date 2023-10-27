@@ -8,7 +8,7 @@ export const RouteLinking = {
     config: {
         screens: {
             [Routes.Home]: 'home',
-            [Routes.Test]: 'test',
+            [Routes.Study]: 'Study',
             [Routes.WindesheimTechRadar]: 'wtr',
             [Routes.Settings]: 'settings',
         },

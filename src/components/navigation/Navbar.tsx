@@ -17,7 +17,7 @@ import { Routes } from '../../routes/routes';
 const navLinks = [
     { icon: 'home', route: Routes.Home },
     { icon: 'search', route: Routes.WindesheimTechRadar },
-    { icon: 'graduation-cap', route: Routes.Test },
+    { icon: 'graduation-cap', route: Routes.Study },
     { icon: 'cog', route: Routes.Settings },
 ];
 

@@ -1,6 +1,6 @@
 export enum Routes {
     Home = 'Home',
-    Test = 'Test',
+    Study = 'Study',
     WindesheimTechRadar = 'WindesheimTechRadar',
     Settings = 'Settings',
     TestSettings = 'TestSettings',
