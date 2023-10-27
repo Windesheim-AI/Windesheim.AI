@@ -1,6 +1,8 @@
+// @ts-ignore
+import { EXPO_PUBLIC_GTR_API_KEY } from '@env';
 import React from 'react';
-import Config from 'react-native-config';
 
+import { defaultLanguageCode } from '../constants/Languages';
 import { cacheProvider } from '../lib/translation/CacheProvider';
 import Translator from '../lib/translation/Translator';
 import { RootState, useAppSelector } from '../redux/Store';
@@ -16,8 +18,9 @@ export default function AppProviders({ children }: AppProvidersProps) {
         <Translator
             cacheProvider={cacheProvider}
             to={languageState.langCode}
-            from="en"
-            googleApiKey={Config.GOOGLE_TRANSLATE_API_KEY ?? ''}
+            from={defaultLanguageCode}
+            /* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */
+            googleApiKey={EXPO_PUBLIC_GTR_API_KEY}
         >
             {children}
         </Translator>
