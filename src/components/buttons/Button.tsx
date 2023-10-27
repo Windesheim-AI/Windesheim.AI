@@ -5,6 +5,7 @@ import { Text, StyleSheet, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
+import { TextTranslated } from '../text/TextTranslated';
 
 export type ButtonProps = {
     onPress?: () => void;
@@ -107,7 +108,7 @@ export const Button = ({
             <Text style={styles.text}>
                 {icon ? <FontAwesome5 name={icon} style={styles.icon} /> : null}
                 {icon ? ' ' : ''}
-                {buttonText}
+                <TextTranslated text={buttonText ?? ''} />
             </Text>
         </Pressable>
     );
