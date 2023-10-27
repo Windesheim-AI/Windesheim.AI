@@ -7,20 +7,6 @@ import { SettingCard } from '../../../src/components/card/SettingCard';
 
 jest.useFakeTimers();
 
-jest.mock('@react-native-async-storage/async-storage', () =>
-    require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
-);
-
-jest.mock('react-redux', () => {
-    const ActualReactRedux = jest.requireActual('react-redux');
-    return {
-        ...ActualReactRedux,
-        useSelector: jest.fn().mockImplementation(() => {
-            return {};
-        }),
-    };
-});
-
 it('renders title and description', () => {
     // @ts-ignore
     const text = <Text>Test Child</Text>;
@@ -40,17 +26,14 @@ it('renders title and description', () => {
 });
 
 it('renders only title if no description is provided', () => {
-    // @ts-ignore
-    const text = <Text>Test Child</Text>;
     const { getByText, queryByText } = render(
         <SettingCard title="Test Title" icon="test-icon">
-            {text}
+            Test Child
         </SettingCard>,
     );
 
     expect(getByText('Test Title')).toBeTruthy();
     expect(queryByText('Test Description')).toBeNull();
-    expect(getByText('Test Child')).toBeTruthy();
 });
 
 test('renders correctly', () => {

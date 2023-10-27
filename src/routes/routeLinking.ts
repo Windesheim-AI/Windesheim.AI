@@ -15,6 +15,7 @@ export const RouteLinking = {
                     page: (page: string) => page || 'apple',
                 },
             },
+            [Routes.Study]: 'Study',
             [Routes.Settings]: 'settings',
         },
     },
