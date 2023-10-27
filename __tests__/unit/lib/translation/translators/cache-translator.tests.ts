@@ -26,6 +26,12 @@ describe('CacheTranslator', () => {
             });
     });
 
+    it('should resolve the returned translation without cache when empty', async () => {
+        expect(await translator.translate('')).toEqual('');
+        // Ensure that fetchGoogleTranslation was not called during this test
+        expect(fetchGoogleTranslation).not.toHaveBeenCalled();
+    });
+
     it('should use the cached value when available', async () => {
         expect(await translator.translate('My menu')).toEqual('Mon menu');
         expect(fetchGoogleTranslation).not.toHaveBeenCalled();

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import GoogleTranslator from '../../../../../src/lib/translation/translators/GoogleTranslator';
 
 describe('GoogleTranslator', () => {
@@ -23,13 +24,23 @@ describe('GoogleTranslator', () => {
         );
     });
 
+    it('should resolve the returned translation without Google when empty', async () => {
+        expect(await translator.translate('')).toEqual('');
+        // Ensure that fetchGoogleTranslation was not called during this test
+        expect(translator.fetchGoogleTranslation).not.toHaveBeenCalled();
+    });
+
     it('should resolve the returned translation from Google', async () => {
         expect(await translator.translate('Hello world!')).toEqual(
             'Bonjour le monde!',
         );
+        // Ensure that fetchGoogleTranslation was called once during this test
+        expect(translator.fetchGoogleTranslation).toHaveBeenCalledTimes(1);
     });
 
     it('should resolve undefined if it errors', async () => {
         expect(await translator.translate('Error')).toBeUndefined();
+        // Ensure that fetchGoogleTranslation was called once during this test
+        expect(translator.fetchGoogleTranslation).toHaveBeenCalledTimes(1);
     });
 });
