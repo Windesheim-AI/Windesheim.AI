@@ -51,3 +51,6 @@ instrumented/
 
 %ProgramData%/**/.*
 /%ProgramData%/Microsoft/Windows/UUS/State/_active.uusver
+
+# Environment configuration
+/.env

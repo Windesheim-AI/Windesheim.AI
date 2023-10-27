@@ -14,7 +14,7 @@ type Props = {
     to: string;
     from: string;
     cacheProvider?: CacheProvider;
-    children: string;
+    children: React.ReactNode;
     googleApiKey: string;
 };
 

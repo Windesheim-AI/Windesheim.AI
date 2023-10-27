@@ -7,7 +7,7 @@ export type TranslationSetter = (translation?: string) => void;
 
 export interface CacheProvider {
     get: (language: string, key: string) => Promise<string | undefined>;
-    set: (language: string, key: string, translation: string) => void;
+    set: (language: string, key: string, translation: string) => Promise<void>;
 }
 
 export type TranslationOptions = {

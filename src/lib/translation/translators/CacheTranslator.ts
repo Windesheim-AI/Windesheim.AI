@@ -16,13 +16,18 @@ export default class CacheTranslator extends GoogleTranslator {
     ): Promise<string | undefined> {
         const translation = await this.tryGetGoogleTranslation(value);
 
-        this.setCachedTranslationForValue(value, translation);
+        await this.setCachedTranslationForValue(value, translation);
         return translation;
     }
 
-    setCachedTranslationForValue(value: string, translation?: string): void {
-        if (translation) {
-            this.cacheProvider?.set(this.to, value, translation);
+    async setCachedTranslationForValue(
+        value: string,
+        translation?: string,
+    ): Promise<void> {
+        if (!translation) {
+            return;
         }
+
+        await this.cacheProvider?.set(this.to, value, translation);
     }
 }
