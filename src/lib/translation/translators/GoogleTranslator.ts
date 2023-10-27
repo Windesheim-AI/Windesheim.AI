@@ -1,8 +1,12 @@
 import Translator from './Translator';
-import { getTranslateApiUrl } from '../Config';
+import { getTranslateApiUrl, isTranslationInBlacklist } from '../Config';
 
 export default class GoogleTranslator extends Translator {
     async translate(value: string): Promise<string | undefined> {
+        if (isTranslationInBlacklist(value)) {
+            return value;
+        }
+
         return await this.tryGetGoogleTranslation(value);
     }
 
