@@ -1,13 +1,13 @@
+import { TranslationOptions } from './Types';
+
 export function getTranslateApiUrl(
-    to: string,
-    from: string,
-    apiKey: string,
+    options: TranslationOptions,
     value: string,
 ): string {
-    return `https://translation.googleapis.com/language/translate/v2?source=${from}&target=${to}&key=${apiKey}&q=${value}&format=text`;
+    return `https://translation.googleapis.com/language/translate/v2?source=${options.from}&target=${options.to}&key=${options.apiKey}&q=${value}&format=text`;
 }
 
-export const translationBlacklist = ['Community of Practice'];
+const translationBlacklist = ['Community of Practice'];
 
 export function isTranslationInBlacklist(value: string) {
     return translationBlacklist.includes(value);
