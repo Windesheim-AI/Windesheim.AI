@@ -47,7 +47,7 @@ export const languages: LanguageTranslations = {
     hu: 'Magyar', // Hungarian
     is: 'Íslenska', // Icelandic
     ig: 'Igbo',
-    id: 'Bahasa Indonesia', // Indonesian
+    id: 'Bahasa Indonesia', // Indonesian language.
     ga: 'Gaeilge', // Irish
     it: 'Italiano', // Italian
     ja: '日本語', // Japanese

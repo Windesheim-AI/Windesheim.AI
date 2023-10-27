@@ -14,6 +14,8 @@ export default class Translator {
     }
 
     translate(value: string): Promise<string | undefined> {
-        throw new Error('You must extend the base `translate()` method!');
+        throw new Error(
+            `You must extend the base 'translate()' method to translate '${value}'!`,
+        );
     }
 }
