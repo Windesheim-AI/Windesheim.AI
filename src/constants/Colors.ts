@@ -1,41 +1,84 @@
-import { ColorSchemeName, useColorScheme } from 'react-native';
-
 import { hasKeyInMap } from '../lib/utility/data';
+import { RootState, useAppSelector } from '../redux/Store';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
 
-type ColorSchemeType = {
+export type ColorSchemeType = {
+    primary: string;
+    secondary: string;
+    success: string;
+    warning: string;
+    danger: string;
     text: string;
     background: string;
     tint: string;
+    gray: string;
     tabIconDefault: string;
     tabIconSelected: string;
+    titleDefault: string;
+    descriptionDefault: string;
     bg1: string;
     bg2: string;
     bg3: string;
+    settingButtonBG: string;
+    subtext: string;
+    navBar: {
+        backgroundColor: string;
+        color: string;
+    };
+    borderColor: string;
 };
-
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
+        primary: '#4695D3',
+        secondary: '#fff377',
+        success: '#45B97C',
+        warning: '#ff7300',
+        danger: '#EE3135',
         text: '#000',
         background: '#fff',
         tint: tintColorLight,
+        gray: '#ccc',
         tabIconDefault: '#ccc',
         tabIconSelected: tintColorLight,
+        titleDefault: '#000',
+        descriptionDefault: 'gray',
         bg1: '#fff377',
         bg2: '#ffd949',
         bg3: '#ffcb05',
+        settingButtonBG: '#fffffff',
+        subtext: '#a8a7a7',
+        navBar: {
+            backgroundColor: '#FAFAFA',
+            color: '#2B2A2A',
+        },
+        borderColor: '#ccc',
     },
     dark: {
+        primary: '#4695D3',
+        secondary: '#fff377',
+        success: '#45B97C',
+        warning: '#ff7300',
+        danger: '#EE3135',
         text: '#fff',
         background: '#2a2a2a',
         tint: tintColorDark,
+        gray: '#ccc',
         tabIconDefault: '#ccc',
         tabIconSelected: tintColorDark,
+        titleDefault: '#fff',
+        descriptionDefault: 'gray',
         bg1: '#86d2d9',
         bg2: '#22bdc6',
         bg3: '#4695d3',
+        settingButtonBG: '#373737',
+        subtext: '#a8a7a7',
+        navBar: {
+            backgroundColor: '#090A0A',
+            color: '#c4c4c4',
+        },
+        borderColor: '#ccc',
     },
 };
 export type ColorGradientScheme = [string, string, string];
@@ -56,8 +99,12 @@ export const buttonColorSchemes: ColorGradientSchemes = {
     warning: ['#ff7300', '#f59e56', '#ffcc66'],
 };
 
+export function useCurrentTheme() {
+    return useAppSelector((state: RootState) => state.theme).theme;
+}
+
 export function useColorConfig() {
-    const scheme: ColorSchemeName = useColorScheme();
-    if (scheme && hasKeyInMap(colorMap, scheme)) return colorMap[scheme];
+    const theme = useCurrentTheme();
+    if (hasKeyInMap(colorMap, theme)) return colorMap[theme];
     return colorMap.dark;
 }

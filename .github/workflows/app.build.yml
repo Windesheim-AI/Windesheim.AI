@@ -32,7 +32,10 @@ jobs:
             - name: Run TypeScript check
               run: npm run test:tsc
 
-    test:
+            - name: Run Unit & Component tests
+              run: npm run test:jest
+
+    end-to-end-testing:
         runs-on: self-hosted
         needs: build
         strategy:
@@ -52,31 +55,3 @@ jobs:
               with:
                   start: npm run web
                   browser: ${{ matrix.test-platform }}
-
-            # In each pull request to main, compare the current code coverage
-            # against the code coverage badge in the README file.
-            # Tip: if you really want to change code coverage you can edit that badge ...
-            - name: Set code coverage commit status 📫
-              # https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
-              if: github.event_name == 'pull_request' && github.base_ref == 'main' && ${{ github.actor != 'dependabot[bot]' }}
-              run: npm run coverage:set-gh-status
-              env:
-                # Show debug logs from "set-gh-status" script
-                DEBUG: check-code-coverage
-                # set the SHA of the _merged_ commit so the status check goes to PR
-                GH_SHA: ${{ github.event.after }}
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-            # If running on main branch, update the README code coverage badge
-            - name: Update code coverage badge 🥇
-              # https://help.github.com/en/actions/reference/events-that-trigger-workflows#push-event-push
-              if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-              run: npm run coverage:update-badge
-
-            # Push the update code overage badge in the README to the main branch.
-            # https://github.com/Windesheim-AI-App/publish-to-github-action
-            - uses: Windesheim-AI-App/publish-to-github-action@master
-              if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-              env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                BRANCH_NAME: 'main'

@@ -1,4 +1,4 @@
-Description.
+Description of your PR.
 
 ## Definition of Done
 
@@ -11,6 +11,12 @@ Description.
 - [ ] The implemented User Story complies with its acceptance criteria.
 - [ ] The new functionality is reviewed by at least two other team members.
 - [ ] The new functionality is compliant with the rules of chapter 6.2 Quality in the project plan.
+
+### Unit, component & E2E testing
+- [ ] Unit tests are written for the general purpose code, e.g. libraries or utility methods
+- [ ] Component tests are written for standalone components, e.g. Buttons, Alerts
+- [ ] E2E tests are written for pages, e.g. the home page
+- [ ] E2E tests: Components use the "testID" attribute for testing
 
 ---
 

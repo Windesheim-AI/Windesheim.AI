@@ -1,7 +1,7 @@
 import { useFonts, Inter_500Medium } from '@expo-google-fonts/inter';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
@@ -37,7 +37,6 @@ export const Button = ({
             );
         }
         onPress = () => {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             //@ts-ignore
             navigation.navigate(screenName);
         };
@@ -60,7 +59,7 @@ export const Button = ({
             backgroundColor: colorGradientScheme[0],
             height: barHeight,
             top: -30,
-            transform: [{ rotate: '20deg' }],
+            transform: 'rotate(20deg)',
             width: checkedWidth,
         },
         bg2: {
@@ -68,7 +67,7 @@ export const Button = ({
             height: barHeight,
             left: -30,
             top: -30,
-            transform: [{ rotate: '20deg' }],
+            transform: 'rotate(20deg)',
             width: checkedWidth,
         },
         button: {
@@ -102,7 +101,7 @@ export const Button = ({
     });
 
     return (
-        <TouchableOpacity style={styles.button} onPress={onPress}>
+        <Pressable style={styles.button} onPress={onPress}>
             <View style={styles.bg1} />
             <View style={styles.bg2} />
             <Text style={styles.text}>
@@ -110,6 +109,6 @@ export const Button = ({
                 {icon ? ' ' : ''}
                 {buttonText}
             </Text>
-        </TouchableOpacity>
+        </Pressable>
     );
 };

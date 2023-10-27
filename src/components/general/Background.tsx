@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { useColorConfig } from '../constants/Colors';
+import { useColorConfig } from '../../constants/Colors';
 
 export const Background = () => {
     const colors = useColorConfig();
@@ -20,7 +20,7 @@ export const Background = () => {
             left: '10%',
             position: 'absolute',
             top: '-50%',
-            transform: [{ rotate: '22.365deg' }],
+            transform: 'rotate(22.365deg)',
             width: '72%',
         },
         bar3: {
@@ -29,7 +29,7 @@ export const Background = () => {
             left: '55%',
             position: 'absolute',
             top: '-20%',
-            transform: [{ rotate: '22.365deg' }],
+            transform: 'rotate(22.365deg)',
             width: '100%',
         },
         container: {
