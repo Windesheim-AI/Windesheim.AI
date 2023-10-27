@@ -1,7 +1,7 @@
 import React, { createContext, useCallback } from 'react';
 
 import { CacheProvider, TranslationHandler } from './Types';
-import TranslatorFactory from './translators/TranslatorFactory';
+import { translatorFactory } from './translators/TranslatorFactory';
 import { defaultLanguageCode } from '../../constants/Languages';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -12,7 +12,7 @@ export const TranslateContext: React.Context<TranslationHandler> =
 export const LanguageContext: React.Context<string> =
     createContext(defaultLanguageCode);
 
-type Props = {
+type TranslatorProps = {
     to: string;
     from: string;
     cacheProvider?: CacheProvider;
@@ -26,7 +26,7 @@ export default function Translator({
     cacheProvider,
     children,
     googleApiKey,
-}: Props) {
+}: TranslatorProps) {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     const handleTranslationAsync: TranslationHandler = useCallback(
         async (value, setTranslation) => {
@@ -35,7 +35,7 @@ export default function Translator({
                 from,
                 apiKey: googleApiKey,
             };
-            const translator = TranslatorFactory.create(options, cacheProvider);
+            const translator = translatorFactory.create(options, cacheProvider);
             const translation = await translator.translate(value);
 
             if (translation) {

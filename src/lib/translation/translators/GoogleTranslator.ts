@@ -1,4 +1,5 @@
 import Translator from './Translator';
+import { getTranslateApiUrl } from '../Config';
 
 export default class GoogleTranslator extends Translator {
     async translate(value: string): Promise<string | undefined> {
@@ -15,7 +16,7 @@ export default class GoogleTranslator extends Translator {
 
     async fetchGoogleTranslation(value: string): Promise<string> {
         const response = await fetch(
-            `https://translation.googleapis.com/language/translate/v2?source=${this.from}&target=${this.to}&key=${this.apiKey}&q=${value}&format=text`,
+            getTranslateApiUrl(this.to, this.from, this.apiKey, value),
         );
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const { data } = await response.json();
