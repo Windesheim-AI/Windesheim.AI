@@ -156,6 +156,7 @@
                 "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
             }
         ],
-        "@typescript-eslint/ban-ts-comment": "off"
+        "@typescript-eslint/ban-ts-comment": "off",
+        "etc/no-implicit-any-catch": "off"
     }
 }
