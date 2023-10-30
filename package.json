@@ -64,7 +64,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@bahmutov/print-env": "^2.1.2",
-    "@cypress/code-coverage": "^3.12.4",
+    "@cypress/code-coverage": "^3.12.6",
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^12.3.0",
     "@types/jest": "^29.5.5",
