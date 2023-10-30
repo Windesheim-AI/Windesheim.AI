@@ -6,6 +6,7 @@ import { Button } from '../components/buttons/Button';
 import { Usecase } from '../components/buttons/UsecaseButton';
 import HorizontalScroll from '../components/general/HorizontalScroll';
 import { PageView } from '../components/general/PageView';
+import { TextTranslated } from '../components/text/TextTranslated';
 import { buttonColorSchemes } from '../constants/Colors';
 import { useStyles } from '../constants/_styles';
 import { Routes } from '../routes/routes';
@@ -22,7 +23,9 @@ export const HomeScreen = () => {
             </Text>
 
             {/* "News" */}
-            <Text style={styles.HeaderText}> text = News </Text>
+            <Text style={styles.HeaderText}>
+                <TextTranslated text="news" />
+            </Text>
 
             {/* NewsList */}
             <HorizontalScroll>
@@ -30,7 +33,9 @@ export const HomeScreen = () => {
             </HorizontalScroll>
 
             {/* "WTR" */}
-            <Text style={styles.HeaderText}>WTR</Text>
+            <Text style={styles.HeaderText}>
+                <TextTranslated text="Windesheim Tech Radar" />
+            </Text>
 
             {/* Button */}
             <Button
