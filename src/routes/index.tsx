@@ -7,8 +7,8 @@ import { SettingsScreen } from '../screens/Settings/Settings';
 import { TestSettingScreen } from '../screens/Settings/TestSetting';
 import { StudyScreen } from '../screens/Study';
 import { TestScreen } from '../screens/Test';
-import { WTRScreen } from '../screens/WTR';
-import { WTRContentScreen } from '../screens/WTRContent';
+import { WTRScreen } from '../screens/WTR/WTR';
+import { WTRContentScreen } from '../screens/WTR/WTRContent';
 
 const Stack = createNativeStackNavigator();
 

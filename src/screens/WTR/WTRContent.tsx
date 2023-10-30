@@ -9,23 +9,24 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { RenderHTML } from 'react-native-render-html';
 
-import { WhScrollView } from '../components/general/WhScrollView';
-import { useColorConfig } from '../constants/Colors';
-import { Routes } from '../routes/routes';
+import { WhScrollView } from '../../components/general/WhScrollView';
+import { useColorConfig } from '../../constants/Colors';
+import { Routes } from '../../routes/routes';
 
-export type WTRSContentcreenProps = {
+export type WTRSContentScreenProps = {
     page: string;
 };
 
 export const WTRContentScreen = () => {
     const navigator = useNavigation();
     const route = useRoute();
-    const params = route.params as WTRSContentcreenProps;
+    const params = route.params as WTRSContentScreenProps;
     const page = params?.page?.toString();
     console.log(page);
 
     useEffect(() => {
         if (!page) {
+            //@ts-ignore
             navigator.navigate(Routes.WindesheimTechRadar);
         }
     }, []);
@@ -165,7 +166,9 @@ export const WTRContentScreen = () => {
             <View style={styles.container}>
                 <RenderHTML
                     source={{ html: content }}
+                    //@ts-ignore
                     tagsStyles={tagsStyles}
+                    //@ts-ignore
                     classesStyles={classStyles}
                     domVisitors={domVisitors}
                     contentWidth={100}
