@@ -1,5 +1,5 @@
 describe('Theme Switcher', () => {
-    it.only('can change the theme', () => {
+    it('can change the theme', () => {
         cy.visit('/settings');
 
         cy.get('[data-testid="Theme switcher"]').click();
@@ -47,7 +47,7 @@ describe('GoBack Button Test', () => {
 
 // check if font-size grows when changing font-size
 describe('Font size', () => {
-    it.only('can change the font size', () => {
+    it('can change the font size', () => {
         cy.visit('/home');
         const defaultFontSizeOfH1 = 24;
         const DefaultSize = 24;
