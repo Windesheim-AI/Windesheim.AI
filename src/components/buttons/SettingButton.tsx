@@ -68,7 +68,7 @@ export const SettingButton = ({
             color: colors.text,
         },
         description: {
-            ...fonts.description
+            ...fonts.description,
         },
         arrowContainer: {
             justifyContent: 'center',
