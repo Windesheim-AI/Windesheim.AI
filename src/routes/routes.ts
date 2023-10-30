@@ -4,5 +4,4 @@ export enum Routes {
     WindesheimTechRadar = 'WindesheimTechRadar',
     Settings = 'Settings',
     TestSettings = 'TestSettings',
-    FontSettings = 'FontSettings',
 }

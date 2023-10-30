@@ -34,6 +34,8 @@ export const FontSwitcher = () => {
             paddingRight: 15,
             height: 'auto',
             backgroundColor: colors.text,
+            borderRadius: 8,
+            borderColor: colors.text,
         },
         text: {
             color: colors.background,
