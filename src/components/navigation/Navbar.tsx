@@ -42,7 +42,7 @@ export const NavBar = () => {
             backgroundColor: colors.navBar.backgroundColor,
             borderRadius: 50,
             bottom: 0,
-            height: 'auto',
+            height: 50,
             marginBottom: 10,
             position: 'absolute',
             width: screenWidth - 40,
@@ -86,7 +86,7 @@ export const NavBar = () => {
                         <FontAwesome5
                             color={colors.navBar.color}
                             name={link.icon}
-                            size={fonts.icon.fontSize}
+                            size={20}
                         />
                     </View>
                 </Pressable>
