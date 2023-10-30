@@ -5,6 +5,7 @@ import NewsList from '../components/Data/NewsList';
 import { Button } from '../components/buttons/Button';
 import HorizontalScroll from '../components/general/HorizontalScroll';
 import { PageView } from '../components/general/PageView';
+import { TextTranslated } from '../components/text/TextTranslated';
 import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
 import { Routes } from '../routes/routes';
 
@@ -28,7 +29,9 @@ export const HomeScreen = () => {
                 future and transforming our lives"
         >
             {/* "News" */}
-            <Text style={styles.newsHeaderText}>News</Text>
+            <Text style={styles.newsHeaderText}>
+                <TextTranslated text="News" />
+            </Text>
 
             {/* HorizontalScroll */}
             <HorizontalScroll>

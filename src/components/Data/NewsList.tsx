@@ -8,18 +8,19 @@ import {
 } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
+import { TextTranslated } from '../text/TextTranslated';
 
 const newsData = [
     {
         id: 1,
         title: '1',
-        content: 'News1',
+        content: 'News 1',
         url: 'https://www.artificialintelligence-news.com/2023/10/24/nightshade-poisons-ai-models-fight-copyright-theft/',
     },
     {
         id: 2,
         title: '2',
-        content: 'News2',
+        content: 'News 2',
         url: 'https://www.artificialintelligence-news.com/2023/10/19/umg-files-landmark-lawsuit-ai-developer-anthropic/',
     },
 ];
@@ -63,8 +64,12 @@ const NewsList = () => {
                     style={styles.newsItem}
                     onPress={() => handleNewsItemClick(item.url)}
                 >
-                    <Text style={styles.newsItemText}>{item.title}</Text>
-                    <Text style={styles.newsItemText}>{item.content}</Text>
+                    <Text style={styles.newsItemText}>
+                        <TextTranslated text={item.title} />
+                    </Text>
+                    <Text style={styles.newsItemText}>
+                        <TextTranslated text={item.content} />
+                    </Text>
                 </TouchableOpacity>
             ))}
         </View>

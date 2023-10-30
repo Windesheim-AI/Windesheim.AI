@@ -6,6 +6,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
 import { truncate } from '../../lib/utility/stringutils';
+import { TextTranslated } from '../text/TextTranslated';
 
 export type SettingButtonProps = {
     onPress?: () => void;
@@ -89,9 +90,11 @@ export const SettingButton = ({
                 <FontAwesome5 style={styles.icon} name={icon} size={24} />
             </View>
             <View style={styles.titleContainer}>
-                <Text style={styles.title}>{title}</Text>
+                <Text style={styles.title}>
+                    <TextTranslated text={title} />
+                </Text>
                 <Text style={styles.description}>
-                    {truncate(description, 30)}
+                    <TextTranslated text={truncate(description, 50)} />
                 </Text>
             </View>
             <View style={styles.arrowContainer}>
