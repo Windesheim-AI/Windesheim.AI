@@ -1,13 +1,12 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { WTRSContentScreenProps } from './WTRContent';
 import { TechProviders } from '../../components/WTR/TechProviders';
-import { WhScrollView } from '../../components/general/WhScrollView';
+import { Themes } from '../../components/WTR/Themes';
 import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
-import { Themes } from '../../components/WTR/Themes';
 
 export const WTRScreen = () => {
     const navigator = useNavigation();
@@ -22,6 +21,7 @@ export const WTRScreen = () => {
             backgroundColor: colors.background,
             flex: 1,
             padding: 20,
+            height: '100%',
         },
     });
 
@@ -33,12 +33,9 @@ export const WTRScreen = () => {
     }, [navigator, page]);
 
     return (
-        <WhScrollView>
-            <View style={styles.container}>
-                <Text>WTRScreen</Text>
-                <TechProviders />
-                <Themes />
-            </View>
-        </WhScrollView>
+        <View style={styles.container}>
+            <TechProviders />
+            <Themes />
+        </View>
     );
 };

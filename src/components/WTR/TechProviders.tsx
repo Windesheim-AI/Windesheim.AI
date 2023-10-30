@@ -65,7 +65,7 @@ export const TechProviders = () => {
             flexDirection: 'row',
             margin: 10,
             marginTop: 0,
-            padding: 10,
+            padding: Platform.OS !== 'web' ? 10 : 20,
             maxHeight: 90,
             overflow: 'hidden',
             backgroundColor: colors.listItemBg,
