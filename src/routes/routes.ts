@@ -3,5 +3,4 @@ export enum Routes {
     Study = 'Study',
     WindesheimTechRadar = 'WindesheimTechRadar',
     Settings = 'Settings',
-    TestSettings = 'TestSettings',
 }

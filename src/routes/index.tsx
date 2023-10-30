@@ -4,7 +4,6 @@ import React from 'react';
 import { Routes } from './routes';
 import { HomeScreen } from '../screens/Home';
 import { SettingsScreen } from '../screens/Settings/Settings';
-import { TestSettingScreen } from '../screens/Settings/TestSetting';
 import { StudyScreen } from '../screens/Study';
 import { WTRScreen } from '../screens/WTR';
 
@@ -15,7 +14,6 @@ const screens = [
     { name: Routes.Study, component: StudyScreen },
     { name: Routes.WindesheimTechRadar, component: WTRScreen },
     { name: Routes.Settings, component: SettingsScreen },
-    { name: Routes.TestSettings, component: TestSettingScreen },
 ];
 
 export const Router = () => {
