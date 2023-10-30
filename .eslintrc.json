@@ -33,7 +33,7 @@
         "@typescript-eslint",
         "etc"
     ],
-    "ignorePatterns": ["cypress/", "cypress.config.ts"],
+    "ignorePatterns": ["cypress/", "cypress.config.ts", "coverage", "coverage-jest"],
     "settings": {
         "react": {
             "version": "18.x"
