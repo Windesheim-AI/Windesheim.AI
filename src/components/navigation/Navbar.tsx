@@ -10,7 +10,6 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
 import { useAnimatedValue } from '../../lib/utility/animate';
 import { RootState, useAppSelector } from '../../redux/Store';
 import { Routes } from '../../routes/routes';
@@ -31,7 +30,6 @@ export const NavBar = () => {
     );
 
     const colors = useColorConfig();
-    const fonts = useFonts();
     const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         container: {
