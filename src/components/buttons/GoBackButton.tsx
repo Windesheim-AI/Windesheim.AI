@@ -4,6 +4,7 @@ import { Text, StyleSheet, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';
 
 export type GoBackButtonProps = {
@@ -16,6 +17,7 @@ export const GoBackButton = ({
     buttonText = 'Go Back',
 }: GoBackButtonProps) => {
     const colors = useColorConfig();
+    const fonts = useFonts();
     const navigation = useNavigation();
 
     if (!onPress) {
@@ -34,8 +36,7 @@ export const GoBackButton = ({
         },
         buttonText: {
             color: colors.text,
-            fontSize: 16,
-            fontWeight: 'bold',
+            ...fonts.button,
             marginLeft: 8,
         },
     });
