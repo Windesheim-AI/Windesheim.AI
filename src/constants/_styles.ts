@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { useColorConfig } from '../constants/Colors';
+import { useColorConfig } from './Colors';
 
 export const useStyles = () => {
     const colors = useColorConfig();

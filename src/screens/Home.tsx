@@ -18,8 +18,10 @@ export const HomeScreen = () => {
         <PageView title="Home">
             {/* "description" */}
             <Text style={styles.Info}>
-                Artificial intelligence is the key to innovating the future and
-                transforming our lives
+                <TextTranslated
+                    text="Artificial intelligence is the key to innovating the future and
+                transforming our lives"
+                />
             </Text>
 
             {/* "News" */}
