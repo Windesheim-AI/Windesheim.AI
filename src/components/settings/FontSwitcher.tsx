@@ -33,12 +33,12 @@ export const FontSwitcher = () => {
             paddingLeft: 15,
             paddingRight: 15,
             height: 'auto',
-            backgroundColor: colors.text,
+            backgroundColor: colors.background,
             borderRadius: 8,
             borderColor: colors.text,
         },
         text: {
-            color: colors.background,
+            color: colors.text,
             fontSize: 20,
         },
         parent: {
@@ -46,14 +46,14 @@ export const FontSwitcher = () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            backgroundColor: colors.text,
+            backgroundColor: colors.background,
             maxHeight: 50,
             borderRadius: 8,
             borderColor: colors.text,
-            borderWidth: 0,
+            borderWidth: 1,
+            padding: 10,
             // widfth fit-content
             alignSelf: 'center',
-            marginTop: 10,
         },
     });
     return (
