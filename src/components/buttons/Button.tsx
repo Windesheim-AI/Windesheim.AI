@@ -96,7 +96,7 @@ export const Button = ({
         },
         icon: {
             color: colors.text,
-            fontSize: 15,
+            ...fonts.icon,
             fontWeight: 'bold',
         },
     });

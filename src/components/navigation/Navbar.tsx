@@ -13,6 +13,7 @@ import { useColorConfig } from '../../constants/Colors';
 import { useAnimatedValue } from '../../lib/utility/animate';
 import { RootState, useAppSelector } from '../../redux/Store';
 import { Routes } from '../../routes/routes';
+import { useFonts } from '../../constants/Fonts';
 
 const navLinks = [
     { icon: 'home', route: Routes.Home },
@@ -30,6 +31,7 @@ export const NavBar = () => {
     );
 
     const colors = useColorConfig();
+    const fonts = useFonts();
     const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         container: {
@@ -40,7 +42,7 @@ export const NavBar = () => {
             backgroundColor: colors.navBar.backgroundColor,
             borderRadius: 50,
             bottom: 0,
-            height: 50,
+            height: 'auto',
             marginBottom: 10,
             position: 'absolute',
             width: screenWidth - 40,
@@ -84,7 +86,7 @@ export const NavBar = () => {
                         <FontAwesome5
                             color={colors.navBar.color}
                             name={link.icon}
-                            size={20}
+                            size={fonts.icon.fontSize}
                         />
                     </View>
                 </Pressable>

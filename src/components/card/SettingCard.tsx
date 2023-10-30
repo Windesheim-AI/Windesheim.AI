@@ -37,8 +37,7 @@ export const SettingCard = ({
             marginRight: 10,
         },
         icon: {
-            width: 24,
-            height: 24,
+            ...fonts.icon,
             color: colors.text,
         },
         titleContainer: {
