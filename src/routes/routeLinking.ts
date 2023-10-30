@@ -12,7 +12,13 @@ export const RouteLinking = {
             [Routes.WindesheimTechRadar]: {
                 path: 'wtr/:page?',
                 parse: {
-                    page: (page: string) => page || 'apple',
+                    page: (page: string) => page,
+                },
+            },
+            [Routes.WindesheimTechRadarContent]: {
+                path: 'wtr/view/:page',
+                parse: {
+                    page: (page: string) => page,
                 },
             },
             [Routes.Study]: 'Study',

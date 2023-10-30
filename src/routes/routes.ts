@@ -3,6 +3,7 @@ export enum Routes {
     Study = 'Study',
     Test = 'Test',
     WindesheimTechRadar = 'WindesheimTechRadar',
+    WindesheimTechRadarContent = 'WindesheimTechRadarContent',
     Settings = 'Settings',
     TestSettings = 'TestSettings',
 }
