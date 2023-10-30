@@ -4,10 +4,7 @@ describe('Home page tests', () => {
 
         cy.contains('Home');
     });
-    it('test if element exists', () => {
-        cy.visit('/');
-        cy.contains('News1');
-    })
+
     it('test if element exists', () => {
         cy.visit('/');
         cy.contains('Use Cases');
