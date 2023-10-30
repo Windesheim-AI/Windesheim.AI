@@ -6,10 +6,8 @@ import { Button } from '../components/buttons/Button';
 import { Usecase } from '../components/buttons/UsecaseButton';
 import HorizontalScroll from '../components/general/HorizontalScroll';
 import { PageView } from '../components/general/PageView';
-
-import { useStyles } from '../constants/_styles';
-import { TextTranslated } from '../components/text/TextTranslated';
 import { buttonColorSchemes } from '../constants/Colors';
+import { useStyles } from '../constants/_styles';
 import { Routes } from '../routes/routes';
 
 export const HomeScreen = () => {
@@ -24,10 +22,7 @@ export const HomeScreen = () => {
             </Text>
 
             {/* "News" */}
-
-            <Text style={styles.HeaderText}>
-                <TextTranslated text="News" />
-            </Text>
+            <Text style={styles.HeaderText}> text = News </Text>
 
             {/* NewsList */}
             <HorizontalScroll>
