@@ -12,21 +12,21 @@ import {
 //@ts-ignore
 import Ai from '../../assets/images/WTR/Themes/ai.jpg';
 //@ts-ignore
-import Green from '../../assets/images/WTR/Themes/green-it.jpg';
-//@ts-ignore
-import Trust from '../../assets/images/WTR/Themes/trust.jpg';
-//@ts-ignore
 import Cloud from '../../assets/images/WTR/Themes/cloud.jpg';
 //@ts-ignore
 import Ftti from '../../assets/images/WTR/Themes/ftti.jpg';
 //@ts-ignore
-import Work from '../../assets/images/WTR/Themes/work.jpeg';
-//@ts-ignore
-import Programming from '../../assets/images/WTR/Themes/programming.jpg';
+import Green from '../../assets/images/WTR/Themes/green-it.jpg';
 //@ts-ignore
 import Nexuit from '../../assets/images/WTR/Themes/nextui.jpg';
 //@ts-ignore
+import Programming from '../../assets/images/WTR/Themes/programming.jpg';
+//@ts-ignore
 import Quantum from '../../assets/images/WTR/Themes/quantum.jpg';
+//@ts-ignore
+import Trust from '../../assets/images/WTR/Themes/trust.jpg';
+//@ts-ignore
+import Work from '../../assets/images/WTR/Themes/work.jpeg';
 import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
 import HorizontalScroll from '../general/HorizontalScroll';

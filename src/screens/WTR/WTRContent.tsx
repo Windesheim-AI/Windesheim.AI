@@ -10,9 +10,9 @@ import { View, StyleSheet, Text } from 'react-native';
 import { RenderHTML } from 'react-native-render-html';
 
 import { WhScrollView } from '../../components/general/WhScrollView';
+import { TextTranslated } from '../../components/text/TextTranslated';
 import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
-import { TextTranslated } from '../../components/text/TextTranslated';
 
 export type WTRSContentScreenProps = {
     page: string;
