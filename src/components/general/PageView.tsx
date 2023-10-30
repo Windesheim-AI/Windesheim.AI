@@ -33,7 +33,7 @@ export const PageView = ({ children, title, description }: PageViewProps) => {
 
     return (
         <View testID={title} style={styles.container}>
-            <Text style={styles.header}>
+            <Text style={styles.header} testID={`${title}-description`}>
                 <TextTranslated text={title} />
             </Text>
             {description ? (

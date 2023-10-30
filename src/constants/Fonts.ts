@@ -92,10 +92,15 @@ export function useFonts() {
         if (font.fontSize) {
             newFontMap[key] = {
                 ...font,
-                fontSize: font.fontSize * (fontState.fontSize / DefaultSize),
+                fontSize: calculateNewSize(font.fontSize, fontState.fontSize),
                 color: font.color ?? colors.text,
             };
         }
     }
     return newFontMap;
 }
+
+export const calculateNewSize = (size: number, fontState: number) => {
+    const newSize = size * (fontState / DefaultSize);
+    return newSize;
+};

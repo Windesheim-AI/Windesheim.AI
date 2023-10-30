@@ -1,5 +1,5 @@
 describe('Theme Switcher', () => {
-    it('can change the theme', () => {
+    it.only('can change the theme', () => {
         cy.visit('/settings');
 
         cy.get('[data-testid="Theme switcher"]').click();
@@ -31,5 +31,42 @@ describe('GoBack Button Test', () => {
         );
         cy.get('[data-testid="GoBackButton"]').click();
         cy.get('[data-testid="Settings"]').should('contain.text', 'Settings');
+    });
+});
+
+// check if font-size grows when changing font-size
+describe('Font size', () => {
+    it.only('can change the font size', () => {
+        cy.visit('/home');
+        const defaultFontSizeOfH1 = 24;
+        const DefaultSize = 24;
+        const StepSize = 1;
+        function calculateNewSize(defaultFontSize: number, fontSize: number) {
+            const ratio = fontSize / defaultFontSize;
+            return defaultFontSizeOfH1 * ratio;
+        }
+        // check fontsize in css
+        cy.get('[data-testid="Home-description"]').then(($el) => {
+            const fontSize = window.getComputedStyle($el[0]).getPropertyValue('font-size');
+            cy.log(`The font size of #Home-description is ${fontSize}`);
+            // check if its
+            expect(fontSize).to.equal(`${DefaultSize}px`);
+        });
+        cy.visit('/settings');
+        cy.get('[data-testid="fontSize"]').should(
+            'contain.text', DefaultSize);
+        cy.get('[data-testid="increaseFont"]').click();
+        cy.get('[data-testid="fontSize"]').should(
+            'contain.text', DefaultSize + StepSize);
+
+        // go to another page, check fontsize in css
+        cy.visit('/home');
+        // check fontsize in css
+        cy.get('[data-testid="Home-description"]').then(($el) => {
+            const fontSize = window.getComputedStyle($el[0]).getPropertyValue('font-size');
+            cy.log(`The font size of #Home-description is ${fontSize}`);
+            // check if its
+            expect(fontSize).to.equal(`${calculateNewSize(defaultFontSizeOfH1, DefaultSize + StepSize)}px`);
+        });
     });
 });

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { fontActions } from './../../redux/slices/FontSlice';
 import { useColorConfig } from '../../constants/Colors';
 import { MaxSize, MinSize } from '../../constants/Fonts';
 import { RootState, useAppDispatch, useAppSelector } from '../../redux/Store';
-import { fontActions } from './../../redux/slices/FontSlice';
 
 export const FontSwitcher = () => {
     const storeDispatcher = useAppDispatch();
@@ -58,11 +58,21 @@ export const FontSwitcher = () => {
     });
     return (
         <View style={styles.parent}>
-            <Pressable style={styles.buttons} onPress={decreaseFontSize}>
+            <Pressable
+                style={styles.buttons}
+                testID="decreaseFont"
+                onPress={decreaseFontSize}
+            >
                 <Text style={styles.text}>-</Text>
             </Pressable>
-            <Text style={styles.text}>{fontSize}</Text>
-            <Pressable style={styles.buttons} onPress={increaseFontSize}>
+            <Text style={styles.text} testID="fontSize">
+                {fontSize}
+            </Text>
+            <Pressable
+                style={styles.buttons}
+                testID="increaseFont"
+                onPress={increaseFontSize}
+            >
                 <Text style={styles.text}>+</Text>
             </Pressable>
         </View>
