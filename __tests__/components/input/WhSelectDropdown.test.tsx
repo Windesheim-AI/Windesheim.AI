@@ -12,6 +12,7 @@ describe('WhSelectDropdown', () => {
             <WhSelectDropdown
                 data={sampleData}
                 label="Select an option"
+                searchText="Search"
                 testID="wh-select-dropdown"
             />,
         );

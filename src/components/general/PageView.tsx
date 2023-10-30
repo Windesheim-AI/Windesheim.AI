@@ -37,7 +37,9 @@ export const PageView = ({ children, title, description }: PageViewProps) => {
                 <TextTranslated text={title} />
             </Text>
             {description ? (
-                <Text style={styles.description}>{description}</Text>
+                <Text style={styles.description}>
+                    <TextTranslated text={description} />
+                </Text>
             ) : null}
 
             {children}

@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
+import { TextTranslated } from '../text/TextTranslated';
 import { useFonts } from '../../constants/Fonts';
 
 export type SettingCardProps = {
@@ -60,8 +61,12 @@ export const SettingCard = ({
                 <FontAwesome5 style={styles.icon} name={icon} size={24} />
             </View>
             <View style={styles.titleContainer}>
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.description}>{description}</Text>
+                <Text style={styles.title}>
+                    <TextTranslated text={title} />
+                </Text>
+                <Text style={styles.description}>
+                    <TextTranslated text={description ?? ''} />
+                </Text>
             </View>
             {children}
         </View>
