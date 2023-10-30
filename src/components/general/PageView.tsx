@@ -2,8 +2,8 @@ import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
-import { TextTranslated } from '../text/TextTranslated';
 import { useFonts } from '../../constants/Fonts';
+import { TextTranslated } from '../text/TextTranslated';
 
 type PageViewProps = {
     children: React.ReactNode;

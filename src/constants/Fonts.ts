@@ -1,9 +1,7 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { TextStyle } from 'react-native';
 
-import { RootState, useAppSelector } from '../redux/Store';
 import { useColorConfig } from './Colors';
+import { RootState, useAppSelector } from '../redux/Store';
 
 export const MaxSize = 40;
 export const MinSize = 12;

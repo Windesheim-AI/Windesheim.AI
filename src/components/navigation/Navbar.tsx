@@ -10,10 +10,10 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 import { useAnimatedValue } from '../../lib/utility/animate';
 import { RootState, useAppSelector } from '../../redux/Store';
 import { Routes } from '../../routes/routes';
-import { useFonts } from '../../constants/Fonts';
 
 const navLinks = [
     { icon: 'home', route: Routes.Home },

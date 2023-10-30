@@ -5,9 +5,9 @@ import { StyleSheet, Text, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 import { truncate } from '../../lib/utility/stringutils';
 import { TextTranslated } from '../text/TextTranslated';
-import { useFonts } from '../../constants/Fonts';
 
 export type SettingButtonProps = {
     onPress?: () => void;

@@ -7,8 +7,8 @@ import HorizontalScroll from '../components/general/HorizontalScroll';
 import { PageView } from '../components/general/PageView';
 import { TextTranslated } from '../components/text/TextTranslated';
 import { buttonColorSchemes } from '../constants/Colors';
-import { Routes } from '../routes/routes';
 import { useFonts } from '../constants/Fonts';
+import { Routes } from '../routes/routes';
 
 export const HomeScreen = () => {
     const fonts = useFonts();

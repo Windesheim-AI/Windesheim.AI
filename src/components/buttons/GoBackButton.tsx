@@ -4,8 +4,8 @@ import { Text, StyleSheet, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
-import { TextTranslated } from '../text/TextTranslated';
 import { useFonts } from '../../constants/Fonts';
+import { TextTranslated } from '../text/TextTranslated';
 
 export type GoBackButtonProps = {
     onPress?: () => void;

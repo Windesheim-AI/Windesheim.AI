@@ -5,11 +5,11 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { persistReducer, persistStore } from 'redux-persist';
 import { PersistConfig } from 'redux-persist/es/types';
 
+import { fontSlice } from './slices/FontSlice';
 import { languageSlice } from './slices/LanguageSlice';
 import { layoutSlice } from './slices/LayoutSlice';
 import { navigationSlice } from './slices/NavigationSlice';
 import { themeSlice } from './slices/ThemeSlice';
-import { fontSlice } from './slices/FontSlice';
 
 const persistConfig: PersistConfig<unknown> = {
     key: 'root',

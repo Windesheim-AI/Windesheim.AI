@@ -8,8 +8,8 @@ import {
 } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
-import { TextTranslated } from '../text/TextTranslated';
 import { useFonts } from '../../constants/Fonts';
+import { TextTranslated } from '../text/TextTranslated';
 
 const newsData = [
     {
