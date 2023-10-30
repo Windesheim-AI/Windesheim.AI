@@ -11,6 +11,8 @@ export const RouteLinking = {
             [Routes.Study]: 'Study',
             [Routes.WindesheimTechRadar]: 'wtr',
             [Routes.Settings]: 'settings',
+            [Routes.Usecase]: 'Usecase',
+            [Routes.CaseStudyInfo]: 'CaseStudyInfo',
         },
     },
 };

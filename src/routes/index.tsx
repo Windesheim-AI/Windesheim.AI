@@ -6,6 +6,8 @@ import { HomeScreen } from '../screens/Home';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { TestSettingScreen } from '../screens/Settings/TestSetting';
 import { StudyScreen } from '../screens/Study';
+import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
+import { UsecaseScreen } from '../screens/Usecase/Usecase';
 import { WTRScreen } from '../screens/WTR';
 
 const Stack = createNativeStackNavigator();
@@ -16,6 +18,8 @@ const screens = [
     { name: Routes.WindesheimTechRadar, component: WTRScreen },
     { name: Routes.Settings, component: SettingsScreen },
     { name: Routes.TestSettings, component: TestSettingScreen },
+    { name: Routes.Usecase, component: UsecaseScreen },
+    { name: Routes.CaseStudyInfo, component: CaseStudyInfo },
 ];
 
 export const Router = () => {

@@ -1,45 +1,48 @@
 import * as React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { Text } from 'react-native';
 
 import NewsList from '../components/Data/NewsList';
 import { Button } from '../components/buttons/Button';
+import { Usecase } from '../components/buttons/UsecaseButton';
 import HorizontalScroll from '../components/general/HorizontalScroll';
 import { PageView } from '../components/general/PageView';
-import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
+import { buttonColorSchemes } from '../constants/Colors';
+import { useStyles } from '../constants/_styles';
 import { Routes } from '../routes/routes';
 
 export const HomeScreen = () => {
-    const colors = useColorConfig();
-
-    const styles = StyleSheet.create({
-        newsHeaderText: {
-            fontSize: 23,
-            fontWeight: 'bold',
-            marginTop: 10,
-            marginBottom: 10,
-            color: colors.text,
-        },
-    });
+    const styles = useStyles();
 
     return (
-        <PageView
-            title="Home"
-            description="Artificial intelligence is the key to innovating the
-                future and transforming our lives"
-        >
-            {/* "News" */}
-            <Text style={styles.newsHeaderText}>News</Text>
+        <PageView title="Home">
+            {/* "description" */}
+            <Text style={styles.Info}>
+                Artificial intelligence is the key to innovating the future and
+                transforming our lives
+            </Text>
 
-            {/* HorizontalScroll */}
+            {/* "News" */}
+            <Text style={styles.HeaderText}>News</Text>
+
+            {/* NewsList */}
             <HorizontalScroll>
                 <NewsList />
             </HorizontalScroll>
+
+            {/* "WTR" */}
+            <Text style={styles.HeaderText}>WTR</Text>
 
             {/* Button */}
             <Button
                 buttonText="Windesheim Tech Radar"
                 colorGradientScheme={buttonColorSchemes.primary}
                 screenName={Routes.WindesheimTechRadar}
+                width={100}
+            />
+            {/* Button */}
+            <Usecase
+                buttonText="Use Cases"
+                screenName={Routes.Usecase}
                 width={100}
             />
         </PageView>

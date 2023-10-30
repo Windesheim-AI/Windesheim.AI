@@ -4,21 +4,19 @@ import React from 'react';
 import { Text, StyleSheet, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
+import { useColorConfig } from '../../constants/Colors';
 
 export type ButtonProps = {
     onPress?: () => void;
     screenName?: string;
     buttonText?: string;
-    colorGradientScheme: ColorGradientScheme;
     width?: number;
     icon?: string;
 };
 
-export const Button = ({
+export const Usecase = ({
     onPress,
     buttonText,
-    colorGradientScheme,
     screenName,
     width,
     icon,
@@ -53,62 +51,98 @@ export const Button = ({
         checkedWidth > minWidth ? checkedWidth * 3 : minWidth * 3;
     const barHeight = 3 * checkedWidth;
     const height = 60;
+    const bgWidth = buttonWidth / 15;
 
     const styles = StyleSheet.create({
         bg1: {
-            backgroundColor: colorGradientScheme[0],
+            backgroundColor: colors.bg1,
             height: barHeight,
             top: -30,
             transform: 'rotate(20deg)',
-            width: checkedWidth,
+            width: bgWidth,
         },
         bg2: {
-            backgroundColor: colorGradientScheme[1],
+            backgroundColor: colors.bg2,
             height: barHeight,
-            left: -30,
             top: -30,
             transform: 'rotate(20deg)',
-            width: checkedWidth,
+            width: bgWidth,
+        },
+        bg3: {
+            backgroundColor: colors.bg3,
+            height: barHeight,
+            top: -30,
+            transform: 'rotate(20deg)',
+            width: bgWidth,
         },
         button: {
             alignItems: 'center',
-            backgroundColor: colorGradientScheme[2],
+            backgroundColor: colors.listItemBg,
             borderRadius: 18,
             flexDirection: 'row',
             height,
             margin: 10,
-            // from left to rigth items
-            // shadow
             maxHeight: 90,
             width: buttonWidth,
             // center
             overflow: 'hidden',
+        },
+        icon: {
+            color: colors.text,
+            fontSize: 20,
+            fontWeight: 'bold',
+            position: 'absolute',
         },
         text: {
             color: colors.text,
             fontFamily: 'Inter_500Medium',
             fontSize: 18,
             fontWeight: 'bold',
-            left: 50,
-
             position: 'absolute',
         },
-        icon: {
-            color: colors.text,
-            fontSize: 15,
-            fontWeight: 'bold',
+        textStyle: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            left: 50,
+        },
+        iconStyle: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            position: 'absolute',
+            left: 75,
+        },
+        rightBg: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            position: 'absolute',
+            right: -20,
         },
     });
 
     return (
-        <Pressable style={styles.button} onPress={onPress}>
+        <Pressable
+            style={styles.button}
+            onPress={onPress}
+            testID="Usecase-button"
+        >
             <View style={styles.bg1} />
             <View style={styles.bg2} />
-            <Text style={styles.text}>
-                {icon ? <FontAwesome5 name={icon} style={styles.icon} /> : null}
-                {icon ? ' ' : ''}
-                {buttonText}
-            </Text>
+            <View style={styles.bg3} />
+            <View style={styles.textStyle}>
+                <Text style={styles.text}>{buttonText}</Text>
+            </View>
+            <View style={styles.iconStyle}>
+                {icon ? (
+                    <FontAwesome5 name={icon} style={styles.icon} />
+                ) : (
+                    <FontAwesome5 name="pencil-alt" style={styles.icon} />
+                )}
+            </View>
+            <View style={styles.rightBg}>
+                <View style={styles.bg3} />
+                <View style={styles.bg2} />
+                <View style={styles.bg1} />
+            </View>
         </Pressable>
     );
 };
