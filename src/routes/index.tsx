@@ -5,14 +5,18 @@ import { Routes } from './routes';
 import { HomeScreen } from '../screens/Home';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { StudyScreen } from '../screens/Study';
-import { WTRScreen } from '../screens/WTR';
+import { TestScreen } from '../screens/Test';
+import { WTRScreen } from '../screens/WTR/WTR';
+import { WTRContentScreen } from '../screens/WTR/WTRContent';
 
 const Stack = createNativeStackNavigator();
 
 const screens = [
     { name: Routes.Home, component: HomeScreen },
     { name: Routes.Study, component: StudyScreen },
+    { name: Routes.Test, component: TestScreen },
     { name: Routes.WindesheimTechRadar, component: WTRScreen },
+    { name: Routes.WindesheimTechRadarContent, component: WTRContentScreen },
     { name: Routes.Settings, component: SettingsScreen },
 ];
 

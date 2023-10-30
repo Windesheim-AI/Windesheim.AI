@@ -1,5 +1,12 @@
 import React, { useEffect } from 'react';
-import { Animated, View, StyleSheet, SafeAreaView } from 'react-native';
+import {
+    Animated,
+    View,
+    StyleSheet,
+    SafeAreaView,
+    Platform,
+    StatusBar,
+} from 'react-native';
 
 import { Background } from '../components/general/Background';
 import { NavBar } from '../components/navigation/Navbar';
@@ -35,6 +42,8 @@ export const Layout = ({ children }: LayoutProps) => {
             height: '100%',
             position: 'relative',
             overflow: 'hidden',
+            flex: 1,
+            paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         },
     });
 
