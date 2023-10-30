@@ -32,6 +32,13 @@ export const SettingsScreen = () => {
                 description="This is a test setting."
                 screenName={Routes.TestSettings}
             />
+
+            <SettingButton
+                icon="font"
+                title="Font Settings"
+                description="Change the font size"
+                screenName={Routes.FontSettings}
+            />
         </PageView>
     );
 };
