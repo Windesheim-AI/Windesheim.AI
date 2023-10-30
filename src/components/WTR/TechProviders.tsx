@@ -1,7 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+    Platform,
+    Pressable,
+    ScrollView,
+    StyleSheet,
+    Text,
+    View,
+} from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 //@ts-ignore
@@ -30,6 +37,7 @@ import SalesForce from '../../assets/images/WTR/TechProviders/salesforce.svg';
 import Sap from '../../assets/images/WTR/TechProviders/sap.svg';
 import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
+import { TextTranslated } from '../text/TextTranslated';
 
 export const TechProviders = () => {
     const navigation = useNavigation();
@@ -85,16 +93,19 @@ export const TechProviders = () => {
         },
     });
 
-    const navigate = (profider: string) => () => {
+    const navigate = (provider: string) => () => {
+        if (provider === 'Amazon') provider = 'AWS';
         //@ts-ignore
         navigation.navigate(Routes.WindesheimTechRadar, {
-            page: profider,
+            page: provider,
         });
     };
 
     return (
         <View>
-            <Text style={styles.heading}>TechProviders</Text>
+            <Text style={styles.heading}>
+                <TextTranslated text="Tech Providers" />
+            </Text>
             <ScrollView style={styles.container}>
                 {providers.map((provider) => (
                     <Pressable
@@ -102,11 +113,13 @@ export const TechProviders = () => {
                         onPress={navigate(provider.name)}
                         key={provider.name}
                     >
-                        <provider.logo
-                            width="24"
-                            height="24"
-                            fill={colors.text}
-                        />
+                        {Platform.OS !== 'web' ? (
+                            <provider.logo
+                                width="24"
+                                height="24"
+                                fill={colors.text}
+                            />
+                        ) : null}
                         <Text style={styles.text}>{provider.name}</Text>
                         {/* at the end of the button place a arrow */}
                         <FontAwesome5Icon

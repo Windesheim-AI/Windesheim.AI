@@ -7,6 +7,7 @@ import { TechProviders } from '../../components/WTR/TechProviders';
 import { WhScrollView } from '../../components/general/WhScrollView';
 import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
+import { Themes } from '../../components/WTR/Themes';
 
 export const WTRScreen = () => {
     const navigator = useNavigation();
@@ -36,6 +37,7 @@ export const WTRScreen = () => {
             <View style={styles.container}>
                 <Text>WTRScreen</Text>
                 <TechProviders />
+                <Themes />
             </View>
         </WhScrollView>
     );

@@ -41,7 +41,7 @@ export const WTRContentScreen = () => {
             flex: 1,
             padding: 20,
         },
-        text : {
+        text: {
             color: colors.text,
         },
     });
@@ -100,9 +100,7 @@ export const WTRContentScreen = () => {
                 setContent(html);
                 setLoaded(true);
             })
-            .catch((error) => {
-                // eslint-disable-next-line no-console
-                console.error(error);
+            .catch(() => {
                 FullUrl = URL + '/wp-json/wp/v2/pages?slug=' + defaultPage;
                 fetch(FullUrl)
                     .then((response) => response.json())
@@ -111,9 +109,11 @@ export const WTRContentScreen = () => {
                         setContent(html);
                         setLoaded(true);
                     })
-                    .catch((error2) => {
-                        // eslint-disable-next-line no-console
-                        console.error(error2);
+                    .catch(() => {
+                        setContent(
+                            '<h2>404</h2><p>Page not found</p><p>Something went wrong while loading the page. Please try again later.</p>',
+                        );
+                        setLoaded(true);
                     });
             });
     }, [page]);
@@ -176,6 +176,7 @@ export const WTRContentScreen = () => {
                     classesStyles={classStyles}
                     domVisitors={domVisitors}
                     contentWidth={100}
+                    ignoredDomTags={['iframe', 'amp-img']}
                 />
             </View>
         </WhScrollView>
