@@ -50,7 +50,7 @@ describe('Font size', () => {
     it('can change the font size', () => {
         cy.visit('/home');
         const defaultFontSizeOfH1 = 24;
-        const DefaultSize = 24;
+        const defaultSize = 24;
         const StepSize = 1;
         function calculateNewSize(defaultFontSize: number, fontSize: number) {
             const ratio = fontSize / defaultFontSize;
@@ -61,14 +61,14 @@ describe('Font size', () => {
             const fontSize = window.getComputedStyle($el[0]).getPropertyValue('font-size');
             cy.log(`The font size of #Home-description is ${fontSize}`);
             // check if its
-            expect(fontSize).to.equal(`${DefaultSize}px`);
+            expect(fontSize).to.equal(`${defaultSize}px`);
         });
         cy.visit('/settings');
         cy.get('[data-testid="fontSize"]').should(
-            'contain.text', DefaultSize);
+            'contain.text', defaultSize);
         cy.get('[data-testid="increaseFont"]').click();
         cy.get('[data-testid="fontSize"]').should(
-            'contain.text', DefaultSize + StepSize);
+            'contain.text', defaultSize + StepSize);
 
         // go to another page, check fontsize in css
         cy.visit('/home');
@@ -77,7 +77,7 @@ describe('Font size', () => {
             const fontSize = window.getComputedStyle($el[0]).getPropertyValue('font-size');
             cy.log(`The font size of #Home-description is ${fontSize}`);
             // check if its
-            expect(fontSize).to.equal(`${calculateNewSize(defaultFontSizeOfH1, DefaultSize + StepSize)}px`);
+            expect(fontSize).to.equal(`${calculateNewSize(defaultFontSizeOfH1, defaultSize + StepSize)}px`);
         });
     });
 });
