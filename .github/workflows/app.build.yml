@@ -41,6 +41,10 @@ jobs:
             - name: Run Unit & Component tests
               run: npm run test:jest-less-strict
 
+            - name: 'Remove env file'
+              run: |
+                rm .env
+
     end-to-end-testing:
         runs-on: self-hosted
         needs: build
@@ -67,3 +71,7 @@ jobs:
               with:
                   start: npm run web
                   browser: ${{ matrix.test-platform }}
+
+            - name: 'Remove env file'
+              run: |
+                rm .env
