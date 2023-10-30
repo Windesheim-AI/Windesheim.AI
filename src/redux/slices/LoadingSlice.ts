@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface LoadingState {
+type LoadingState = {
     isLoading: boolean;
-}
+};
 
 const initialState: LoadingState = {
-    isLoading: true,
+    isLoading: false,
 };
 
 export const loadingSlice = createSlice({

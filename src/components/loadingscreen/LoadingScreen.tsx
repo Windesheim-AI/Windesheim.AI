@@ -1,24 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Image, ActivityIndicator, StyleSheet } from 'react-native';
 
-import { appConfig } from '../../../app.config';
-import { Routes } from '../../routes/routes';
 import { Background } from '../general/Background';
 
 export const LoadingScreen = () => {
-    const navigation = useNavigation();
-
-    useEffect(() => {
-        // Simulate a delay while loading the app
-        setTimeout(() => {
-            // Navigate to the main app screen
-            navigation.navigate(Routes.Home as never);
-        }, appConfig.splashScreenTime);
-    }, [navigation]); // Include dispatch and navigation in the dependencies array
-
     const styles = StyleSheet.create({
+        fullScreenContainer: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 999,
+        },
         container: {
             flex: 1,
             justifyContent: 'center',
@@ -37,7 +32,7 @@ export const LoadingScreen = () => {
     });
 
     return (
-        <>
+        <View style={styles.fullScreenContainer}>
             <Background />
             <View style={styles.container}>
                 <ActivityIndicator size="large" color="#0000ff" />
@@ -52,7 +47,7 @@ export const LoadingScreen = () => {
                     style={styles.originalSizeImage}
                 />
             </View>
-        </>
+        </View>
     );
 };
 
