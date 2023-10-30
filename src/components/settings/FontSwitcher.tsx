@@ -52,7 +52,6 @@ export const FontSwitcher = () => {
             borderColor: colors.text,
             borderWidth: 1,
             padding: 10,
-            // widfth fit-content
             alignSelf: 'center',
         },
     });
