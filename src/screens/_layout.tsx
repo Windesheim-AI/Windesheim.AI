@@ -10,7 +10,7 @@ import {
 
 import { Background } from '../components/general/Background';
 import { NavBar } from '../components/navigation/Navbar';
-import { useColorConfig } from '../constants/Colors';
+import { useColorConfig, shadow } from '../constants/Colors';
 import { useAnimatedValue } from '../lib/utility/animate';
 import { useAppSelector } from '../redux/Store';
 
@@ -28,10 +28,11 @@ export const Layout = ({ children }: LayoutProps) => {
             flex: 1,
             margin: 10,
             overflow: 'hidden',
+            ...shadow,
         },
         innerContainer: {
             backgroundColor: colors.background,
-            flex: 1,
+            height: '100%',
         },
         pos_r: {
             position: 'relative',

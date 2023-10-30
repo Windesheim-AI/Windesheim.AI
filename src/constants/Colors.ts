@@ -90,6 +90,19 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         opacityLayer: 'rgba(0,0,0,0.6)',
     },
 };
+
+export const shadow = {
+    shadowColor: '#000',
+    shadowOffset: {
+        width: 5,
+        height: 5,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
+};
+
 export type ColorGradientScheme = [string, string, string];
 export type ColorTypes =
     | 'primary'
