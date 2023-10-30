@@ -2,6 +2,7 @@ import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';
 
 type PageViewProps = {
@@ -12,6 +13,7 @@ type PageViewProps = {
 
 export const PageView = ({ children, title, description }: PageViewProps) => {
     const colors = useColorConfig();
+    const fonts = useFonts();
 
     const styles = StyleSheet.create({
         container: {
@@ -20,21 +22,18 @@ export const PageView = ({ children, title, description }: PageViewProps) => {
             padding: 20,
         },
         header: {
-            color: colors.titleDefault,
-            fontSize: 24,
-            fontWeight: 'bold',
+            ...fonts.h1,
             marginBottom: 10,
         },
         description: {
-            color: colors.descriptionDefault,
-            fontSize: 16,
+            ...fonts.accent,
             textAlign: 'center',
         },
     });
 
     return (
         <View testID={title} style={styles.container}>
-            <Text style={styles.header}>
+            <Text style={styles.header} testID={`${title}-description`}>
                 <TextTranslated text={title} />
             </Text>
             {description ? (

@@ -6,19 +6,18 @@ import { Button } from '../components/buttons/Button';
 import HorizontalScroll from '../components/general/HorizontalScroll';
 import { PageView } from '../components/general/PageView';
 import { TextTranslated } from '../components/text/TextTranslated';
-import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
+import { buttonColorSchemes } from '../constants/Colors';
+import { useFonts } from '../constants/Fonts';
 import { Routes } from '../routes/routes';
 
 export const HomeScreen = () => {
-    const colors = useColorConfig();
+    const fonts = useFonts();
 
     const styles = StyleSheet.create({
         newsHeaderText: {
-            fontSize: 23,
-            fontWeight: 'bold',
+            ...fonts.h1,
             marginTop: 10,
             marginBottom: 10,
-            color: colors.text,
         },
     });
 
