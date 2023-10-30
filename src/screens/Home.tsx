@@ -5,19 +5,18 @@ import NewsList from '../components/Data/NewsList';
 import { Button } from '../components/buttons/Button';
 import HorizontalScroll from '../components/general/HorizontalScroll';
 import { PageView } from '../components/general/PageView';
-import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
+import { buttonColorSchemes } from '../constants/Colors';
 import { Routes } from '../routes/routes';
+import { useFonts } from '../constants/Fonts';
 
 export const HomeScreen = () => {
-    const colors = useColorConfig();
+    const fonts = useFonts();
 
     const styles = StyleSheet.create({
         newsHeaderText: {
-            fontSize: 23,
-            fontWeight: 'bold',
+            ...fonts.h1,
             marginTop: 10,
             marginBottom: 10,
-            color: colors.text,
         },
     });
 

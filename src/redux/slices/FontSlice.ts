@@ -14,7 +14,7 @@ export const fontSlice = createSlice({
     name: 'fontSize',
     initialState,
     reducers: {
-        changeFont: (state, action: PayloadAction<FontState>) => {
+        changeFontSize: (state, action: PayloadAction<FontState>) => {
             state.fontSize = action.payload.fontSize;
         },
     },

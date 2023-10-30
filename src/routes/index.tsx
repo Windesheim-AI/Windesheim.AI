@@ -3,11 +3,11 @@ import React from 'react';
 
 import { Routes } from './routes';
 import { HomeScreen } from '../screens/Home';
+import { FontSettingsScreen } from '../screens/Settings/FontSettings';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { TestSettingScreen } from '../screens/Settings/TestSetting';
 import { TestScreen } from '../screens/Test';
 import { WTRScreen } from '../screens/WTR';
-import { FontSettingsScreen } from '../screens/Settings/FontSettings';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +17,7 @@ const screens = [
     { name: Routes.WindesheimTechRadar, component: WTRScreen },
     { name: Routes.Settings, component: SettingsScreen },
     { name: Routes.TestSettings, component: TestSettingScreen },
-    { name: Routes.FontSettings, component: FontSettingsScreen}
+    { name: Routes.FontSettings, component: FontSettingsScreen },
 ];
 
 export const Router = () => {

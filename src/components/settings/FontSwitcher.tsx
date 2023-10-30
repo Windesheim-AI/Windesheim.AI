@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { useColorConfig, shadow } from '../../constants/Colors';
+import { useColorConfig } from '../../constants/Colors';
 import { MaxSize, MinSize } from '../../constants/Fonts';
 import { RootState, useAppDispatch, useAppSelector } from '../../redux/Store';
 import { fontActions } from './../../redux/slices/FontSlice';
@@ -17,6 +17,10 @@ export const FontSwitcher = () => {
         setFontSize((prevFontSize) => prevFontSize - 1);
     };
 
+    useEffect(() => {
+        storeDispatcher(fontActions.changeFontSize({ fontSize }));
+    }, [fontSize, storeDispatcher]);
+
     const increaseFontSize = () => {
         if (fontSize >= MaxSize) return;
         setFontSize((prevFontSize) => prevFontSize + 1);
@@ -31,7 +35,11 @@ export const FontSwitcher = () => {
             height: 'auto',
             backgroundColor: colors.text,
         },
-        container: {
+        text: {
+            color: colors.background,
+            fontSize: 20,
+        },
+        parent: {
             flex: 1,
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -44,17 +52,10 @@ export const FontSwitcher = () => {
             // widfth fit-content
             alignSelf: 'center',
             marginTop: 10,
-
-            // shadow
-            ...shadow,
-        },
-        text: {
-            fontSize: 25,
-            color: colors.background,
         },
     });
     return (
-        <View style={styles.container}>
+        <View style={styles.parent}>
             <Pressable style={styles.buttons} onPress={decreaseFontSize}>
                 <Text style={styles.text}>-</Text>
             </Pressable>

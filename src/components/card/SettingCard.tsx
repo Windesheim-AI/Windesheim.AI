@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 
 export type SettingCardProps = {
     title: string;
@@ -21,7 +22,7 @@ export const SettingCard = ({
     testID,
 }: SettingCardProps) => {
     const colors = useColorConfig();
-
+    const fonts = useFonts();
     const styles = StyleSheet.create({
         buttonContainer: {
             flexDirection: 'row',
@@ -46,14 +47,11 @@ export const SettingCard = ({
             marginRight: 10,
         },
         title: {
-            fontSize: 18,
-            fontWeight: 'bold',
+            ...fonts.h2,
             marginBottom: 5,
-            color: colors.text,
         },
         description: {
-            color: colors.subtext,
-            fontSize: 14,
+            ...fonts.description,
         },
     });
 

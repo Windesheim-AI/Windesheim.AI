@@ -9,12 +9,13 @@ import { languageSlice } from './slices/LanguageSlice';
 import { layoutSlice } from './slices/LayoutSlice';
 import { navigationSlice } from './slices/NavigationSlice';
 import { themeSlice } from './slices/ThemeSlice';
+import { fontSlice } from './slices/FontSlice';
 
 const persistConfig: PersistConfig<unknown> = {
     key: 'root',
     storage: AsyncStorage,
     version: 1,
-    whitelist: [themeSlice.name, languageSlice.name],
+    whitelist: [themeSlice.name, languageSlice.name, fontSlice.name],
 };
 
 const rootReducer = combineReducers({
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
     theme: themeSlice.reducer,
     language: languageSlice.reducer,
     layout: layoutSlice.reducer,
+    fontSize: fontSlice.reducer,
 });
 // @ts-ignore
 const persistedReducer = persistReducer(persistConfig, rootReducer);

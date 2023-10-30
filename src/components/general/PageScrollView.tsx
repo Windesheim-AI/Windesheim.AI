@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import { WhScrollView } from './WhScrollView';
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 
 type PageScrollViewProps = {
     children: React.ReactNode;
@@ -16,6 +17,7 @@ export const PageScrollView = ({
     description,
 }: PageScrollViewProps) => {
     const colors = useColorConfig();
+    const fonts = useFonts();
 
     const styles = StyleSheet.create({
         container: {
@@ -24,14 +26,11 @@ export const PageScrollView = ({
             padding: 20,
         },
         header: {
-            color: colors.titleDefault,
-            fontSize: 24,
-            fontWeight: 'bold',
+            ...fonts.h1,
             marginBottom: 10,
         },
         description: {
-            color: colors.descriptionDefault,
-            fontSize: 16,
+            ...fonts.description,
             textAlign: 'center',
         },
     });

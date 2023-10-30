@@ -6,6 +6,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
 import { truncate } from '../../lib/utility/stringutils';
+import { useFonts } from '../../constants/Fonts';
 
 export type SettingButtonProps = {
     onPress?: () => void;
@@ -24,6 +25,7 @@ export const SettingButton = ({
 }: SettingButtonProps) => {
     const colors = useColorConfig();
     const navigation = useNavigation();
+    const fonts = useFonts();
 
     if (!onPress) {
         if (!screenName) {
@@ -61,14 +63,12 @@ export const SettingButton = ({
             marginRight: 10,
         },
         title: {
-            fontSize: 18,
-            fontWeight: 'bold',
+            ...fonts.button,
             marginBottom: 5,
             color: colors.text,
         },
         description: {
-            color: colors.subtext,
-            fontSize: 14,
+            ...fonts.description
         },
         arrowContainer: {
             justifyContent: 'center',

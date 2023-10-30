@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 
 const newsData = [
     {
@@ -26,6 +27,7 @@ const newsData = [
 
 const NewsList = () => {
     const colors = useColorConfig();
+    const fonts = useFonts();
 
     const handleNewsItemClick = (url: string) => {
         // eslint-disable-next-line no-void
@@ -48,8 +50,7 @@ const NewsList = () => {
             marginRight: 10,
         },
         newsItemText: {
-            fontSize: 14,
-            fontWeight: 'bold',
+            ...fonts.h4,
             textAlign: 'center',
         },
     });
