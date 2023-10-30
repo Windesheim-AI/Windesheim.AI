@@ -4,18 +4,30 @@ import React from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
-import Apple from '../../assets/images/WTR/TechProfiders/apple.svg';
-import Amazon from '../../assets/images/WTR/TechProfiders/amazon.svg';
-import Cisco from '../../assets/images/WTR/TechProfiders/cisco.svg';
-import Google from '../../assets/images/WTR/TechProfiders/google.svg';
-import Hp from '../../assets/images/WTR/TechProfiders/hp.svg';
-import Ibm from '../../assets/images/WTR/TechProfiders/ibm.svg';
-import Intel from '../../assets/images/WTR/TechProfiders/intel.svg';
-import Meta from '../../assets/images/WTR/TechProfiders/meta.svg';
-import Microsoft from '../../assets/images/WTR/TechProfiders/microsoft.svg';
-import Oracle from '../../assets/images/WTR/TechProfiders/oracle.svg';
-import SaleceForce from '../../assets/images/WTR/TechProfiders/salesforce.svg';
-import Sap from '../../assets/images/WTR/TechProfiders/sap.svg';
+//@ts-ignore
+import Amazon from '../../assets/images/WTR/TechProviders/amazon.svg';
+//@ts-ignore
+import Apple from '../../assets/images/WTR/TechProviders/apple.svg';
+//@ts-ignore
+import Cisco from '../../assets/images/WTR/TechProviders/cisco.svg';
+//@ts-ignore
+import Google from '../../assets/images/WTR/TechProviders/google.svg';
+//@ts-ignore
+import Hp from '../../assets/images/WTR/TechProviders/hp.svg';
+//@ts-ignore
+import Ibm from '../../assets/images/WTR/TechProviders/ibm.svg';
+//@ts-ignore
+import Intel from '../../assets/images/WTR/TechProviders/intel.svg';
+//@ts-ignore
+import Meta from '../../assets/images/WTR/TechProviders/meta.svg';
+//@ts-ignore
+import Microsoft from '../../assets/images/WTR/TechProviders/microsoft.svg';
+//@ts-ignore
+import Oracle from '../../assets/images/WTR/TechProviders/oracle.svg';
+//@ts-ignore
+import SalesForce from '../../assets/images/WTR/TechProviders/salesforce.svg';
+//@ts-ignore
+import Sap from '../../assets/images/WTR/TechProviders/sap.svg';
 import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
 
@@ -34,7 +46,7 @@ export const TechProviders = () => {
         { name: 'Meta', logo: Meta },
         { name: 'Microsoft', logo: Microsoft },
         { name: 'Oracle', logo: Oracle },
-        { name: 'SalesForce', logo: SaleceForce },
+        { name: 'SalesForce', logo: SalesForce },
         { name: 'SAP', logo: Sap },
     ];
 

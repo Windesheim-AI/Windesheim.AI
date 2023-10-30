@@ -12,6 +12,7 @@ import { RenderHTML } from 'react-native-render-html';
 import { WhScrollView } from '../../components/general/WhScrollView';
 import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
+import { TextTranslated } from '../../components/text/TextTranslated';
 
 export type WTRSContentScreenProps = {
     page: string;
@@ -22,14 +23,12 @@ export const WTRContentScreen = () => {
     const route = useRoute();
     const params = route.params as WTRSContentScreenProps;
     const page = params?.page?.toString();
-    console.log(page);
-
     useEffect(() => {
         if (!page) {
             //@ts-ignore
             navigator.navigate(Routes.WindesheimTechRadar);
         }
-    }, []);
+    }, [navigator, page]);
 
     const [content, setContent] = useState('');
     const [loaded, setLoaded] = useState(false);
@@ -41,6 +40,9 @@ export const WTRContentScreen = () => {
             backgroundColor: colors.background,
             flex: 1,
             padding: 20,
+        },
+        text : {
+            color: colors.text,
         },
     });
 
@@ -90,10 +92,8 @@ export const WTRContentScreen = () => {
     useEffect(() => {
         // get data from WordPress
         const URL = 'https://windesheim.tech';
-        const FULL_URL = URL + '/wp-json/wp/v2/pages?slug=' + page;
-        console.log(FULL_URL);
-
-        fetch(FULL_URL)
+        let FullUrl = URL + '/wp-json/wp/v2/pages?slug=' + page;
+        fetch(FullUrl)
             .then((response) => response.json())
             .then((json) => {
                 const html = json[0].content.rendered;
@@ -101,18 +101,19 @@ export const WTRContentScreen = () => {
                 setLoaded(true);
             })
             .catch((error) => {
+                // eslint-disable-next-line no-console
                 console.error(error);
-                const FULL_URL =
-                    URL + '/wp-json/wp/v2/pages?slug=' + defaultPage;
-                fetch(FULL_URL)
+                FullUrl = URL + '/wp-json/wp/v2/pages?slug=' + defaultPage;
+                fetch(FullUrl)
                     .then((response) => response.json())
                     .then((json) => {
                         const html = json[0].content.rendered;
                         setContent(html);
                         setLoaded(true);
                     })
-                    .catch((error) => {
-                        console.error(error);
+                    .catch((error2) => {
+                        // eslint-disable-next-line no-console
+                        console.error(error2);
                     });
             });
     }, [page]);
@@ -146,18 +147,21 @@ export const WTRContentScreen = () => {
                 }
             }
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.error(error);
         }
     }
 
     const domVisitors = {
-        onElement: onElement,
+        onElement,
     };
 
     if (!loaded)
         return (
             <View style={styles.container}>
-                <Text>Loading content</Text>
+                <Text style={styles.text}>
+                    <TextTranslated text="Loading content" />
+                </Text>
             </View>
         );
 

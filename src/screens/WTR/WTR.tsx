@@ -1,12 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { WTRSContentScreenProps } from './WTRContent';
-import { TechProviders } from '../../components/WTR/TechProfiders';
-import { Routes } from '../../routes/routes';
+import { TechProviders } from '../../components/WTR/TechProviders';
+import { WhScrollView } from '../../components/general/WhScrollView';
 import { useColorConfig } from '../../constants/Colors';
+import { Routes } from '../../routes/routes';
 
 export const WTRScreen = () => {
     const navigator = useNavigation();
@@ -32,9 +32,11 @@ export const WTRScreen = () => {
     }, [navigator, page]);
 
     return (
-        <View style={styles.container}>
-            <Text>WTRScreen</Text>
-            <TechProviders />
-        </View>
+        <WhScrollView>
+            <View style={styles.container}>
+                <Text>WTRScreen</Text>
+                <TechProviders />
+            </View>
+        </WhScrollView>
     );
 };
