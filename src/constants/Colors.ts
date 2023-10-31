@@ -1,5 +1,5 @@
 import { hasKeyInMap } from '../lib/utility/data';
-import { RootState, useAppSelector } from '../redux/Store';
+import { RootState, useAppSelector } from '../redux/Hooks';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
