@@ -20,6 +20,7 @@ type TextStyling = {
     h5: TextStyle;
     h6: TextStyle;
     icon: TextStyle;
+    info: TextStyle;
     p: TextStyle;
     small: TextStyle;
     description: TextStyle;
@@ -53,6 +54,9 @@ export function useFonts() {
             fontSize: 12,
         },
         icon: {
+            fontSize: 15,
+        },
+        info: {
             fontSize: 15,
         },
         description: {
