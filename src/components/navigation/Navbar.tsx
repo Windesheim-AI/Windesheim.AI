@@ -10,9 +10,8 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
 import { useAnimatedValue } from '../../lib/utility/animate';
-import { RootState, useAppSelector } from '../../redux/Store';
+import { RootState, useAppSelector } from '../../redux/Hooks';
 import { Routes } from '../../routes/routes';
 
 const navLinks = [
@@ -31,7 +30,6 @@ export const NavBar = () => {
     );
 
     const colors = useColorConfig();
-    const fonts = useFonts();
     const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         container: {
@@ -42,7 +40,7 @@ export const NavBar = () => {
             backgroundColor: colors.navBar.backgroundColor,
             borderRadius: 50,
             bottom: 0,
-            height: 'auto',
+            height: 50,
             marginBottom: 10,
             position: 'absolute',
             width: screenWidth - 40,
@@ -86,7 +84,7 @@ export const NavBar = () => {
                         <FontAwesome5
                             color={colors.navBar.color}
                             name={link.icon}
-                            size={fonts.icon.fontSize}
+                            size={20}
                         />
                     </View>
                 </Pressable>

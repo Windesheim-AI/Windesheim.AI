@@ -1,7 +1,7 @@
 import { TextStyle } from 'react-native';
 
 import { useColorConfig } from './Colors';
-import { RootState, useAppSelector } from '../redux/Store';
+import { RootState, useAppSelector } from '../redux/Hooks';
 
 export const MaxSize = 40;
 export const MinSize = 12;
@@ -103,6 +103,5 @@ export function useFonts() {
 }
 
 export const calculateNewSize = (size: number, fontState: number) => {
-    const newSize = size * (fontState / DefaultSize);
-    return newSize;
+    return size * (fontState / DefaultSize);
 };

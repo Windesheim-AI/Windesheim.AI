@@ -4,7 +4,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { fontActions } from './../../redux/slices/FontSlice';
 import { useColorConfig } from '../../constants/Colors';
 import { MaxSize, MinSize } from '../../constants/Fonts';
-import { RootState, useAppDispatch, useAppSelector } from '../../redux/Store';
+import { RootState, useAppDispatch, useAppSelector } from '../../redux/Hooks';
 
 export const FontSwitcher = () => {
     const storeDispatcher = useAppDispatch();

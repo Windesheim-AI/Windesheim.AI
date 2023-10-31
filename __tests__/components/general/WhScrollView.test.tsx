@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 
 import { WhScrollView } from '../../../src/components/general/WhScrollView';
-import { useAppDispatch } from '../../../src/redux/Store';
+import { useAppDispatch } from '../../../src/redux/Hooks';
 
 jest.useFakeTimers();
 

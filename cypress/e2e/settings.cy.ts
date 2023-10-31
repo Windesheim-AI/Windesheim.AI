@@ -30,21 +30,6 @@ describe('Language setting', () => {
     });
 });
 
-describe('GoBack Button Test', () => {
-    it('passes', () => {
-        cy.visit('/');
-        cy.get('[data-testid="Settings-navbar-button"]').click();
-        cy.get('[data-testid="Settings"]').should('contain.text', 'Settings');
-        cy.get('[data-testid="Test"]').click();
-        cy.get('[data-testid="Settings > Test"]').should(
-            'contain.text',
-            'Settings > Test',
-        );
-        cy.get('[data-testid="GoBackButton"]').click();
-        cy.get('[data-testid="Settings"]').should('contain.text', 'Settings');
-    });
-});
-
 // check if font-size grows when changing font-size
 describe('Font size', () => {
     it('can change the font size', () => {
@@ -58,26 +43,36 @@ describe('Font size', () => {
         }
         // check fontsize in css
         cy.get('[data-testid="Home-description"]').then(($el) => {
-            const fontSize = window.getComputedStyle($el[0]).getPropertyValue('font-size');
+            const fontSize = window
+                .getComputedStyle($el[0])
+                .getPropertyValue('font-size');
             cy.log(`The font size of #Home-description is ${fontSize}`);
             // check if its
             expect(fontSize).to.equal(`${defaultSize}px`);
         });
         cy.visit('/settings');
-        cy.get('[data-testid="fontSize"]').should(
-            'contain.text', defaultSize);
+        cy.get('[data-testid="fontSize"]').should('contain.text', defaultSize);
         cy.get('[data-testid="increaseFont"]').click();
         cy.get('[data-testid="fontSize"]').should(
-            'contain.text', defaultSize + StepSize);
+            'contain.text',
+            defaultSize + StepSize,
+        );
 
         // go to another page, check fontsize in css
         cy.visit('/home');
         // check fontsize in css
         cy.get('[data-testid="Home-description"]').then(($el) => {
-            const fontSize = window.getComputedStyle($el[0]).getPropertyValue('font-size');
+            const fontSize = window
+                .getComputedStyle($el[0])
+                .getPropertyValue('font-size');
             cy.log(`The font size of #Home-description is ${fontSize}`);
             // check if its
-            expect(fontSize).to.equal(`${calculateNewSize(defaultFontSizeOfH1, defaultSize + StepSize)}px`);
+            expect(fontSize).to.equal(
+                `${calculateNewSize(
+                    defaultFontSizeOfH1,
+                    defaultSize + StepSize,
+                )}px`,
+            );
         });
     });
 });

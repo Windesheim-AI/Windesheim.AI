@@ -10,6 +10,9 @@ import { TextTranslated } from '../components/text/TextTranslated';
 import { buttonColorSchemes } from '../constants/Colors';
 import { useStyles } from '../constants/_styles';
 import { Routes } from '../routes/routes';
+import { TechProviders } from '../components/WTR/TechProviders';
+import { Themes } from '../components/WTR/Themes';
+import { View } from 'react-native';
 
 export const HomeScreen = () => {
     const styles = useStyles();
@@ -52,6 +55,11 @@ export const HomeScreen = () => {
                 screenName={Routes.Usecase}
                 width={100}
             />
+            {/* WTR-site content */}
+            <View>
+                <TechProviders />
+                <Themes />
+            </View>
         </PageView>
     );
 };

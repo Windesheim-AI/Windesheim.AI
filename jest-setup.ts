@@ -1,6 +1,6 @@
 // Import Jest Native matchers
 import '@testing-library/jest-native/extend-expect';
-import { useAppSelector } from './src/redux/Store';
+import { useAppSelector } from './src/redux/Hooks';
 import { ThemeState } from './src/redux/slices/ThemeSlice';
 
 // Silence the warning: Animated: `useNativeDriver` is not supported because the native animated module is missing
@@ -38,7 +38,7 @@ jest.mock('react-redux', () => {
     };
 });
 
-jest.mock('./src/redux/Store', () => ({
+jest.mock('./src/redux/Hooks', () => ({
     useAppSelector: jest.fn(),
     useAppDispatch: jest.fn(),
 }));

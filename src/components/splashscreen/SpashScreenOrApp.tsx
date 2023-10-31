@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import SplashScreen from './SplashScreen';
-import { RootState, useAppSelector } from '../../redux/Store';
+import { RootState, useAppSelector } from '../../redux/Hooks';
 import { Router } from '../../routes';
 import { Layout } from '../../screens/_layout';
 

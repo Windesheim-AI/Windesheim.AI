@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 
 import { useColorConfig } from '../../constants/Colors';
-import { RootState, useAppDispatch, useAppSelector } from '../../redux/Store';
+import { RootState, useAppDispatch, useAppSelector } from '../../redux/Hooks';
 import { themeActions } from '../../redux/slices/ThemeSlice';
 import { WhSwitch } from '../input/WhSwitch';
 

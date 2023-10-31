@@ -1,11 +1,18 @@
 import React, { useEffect } from 'react';
-import { Animated, View, StyleSheet, SafeAreaView } from 'react-native';
+import {
+    Animated,
+    View,
+    StyleSheet,
+    SafeAreaView,
+    Platform,
+    StatusBar,
+} from 'react-native';
 
 import { Background } from '../components/general/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { useColorConfig, shadow } from '../constants/Colors';
 import { useAnimatedValue } from '../lib/utility/animate';
-import { useAppSelector } from '../redux/Store';
+import { useAppSelector } from '../redux/Hooks';
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -35,6 +42,8 @@ export const Layout = ({ children }: LayoutProps) => {
             height: '100%',
             position: 'relative',
             overflow: 'hidden',
+            flex: 1,
+            paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         },
     });
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 
-import { useAppDispatch } from '../../redux/Store';
+import { useAppDispatch } from '../../redux/Hooks';
 import { navigationActions } from '../../redux/slices/NavigationSlice';
 
 type WhScrollViewProps = {
