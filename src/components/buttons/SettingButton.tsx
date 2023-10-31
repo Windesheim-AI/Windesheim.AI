@@ -5,7 +5,9 @@ import { StyleSheet, Text, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 import { truncate } from '../../lib/utility/stringutils';
+import { TextTranslated } from '../text/TextTranslated';
 
 export type SettingButtonProps = {
     onPress?: () => void;
@@ -24,6 +26,7 @@ export const SettingButton = ({
 }: SettingButtonProps) => {
     const colors = useColorConfig();
     const navigation = useNavigation();
+    const fonts = useFonts();
 
     if (!onPress) {
         if (!screenName) {
@@ -51,8 +54,7 @@ export const SettingButton = ({
             marginRight: 10,
         },
         icon: {
-            width: 24,
-            height: 24,
+            ...fonts.icon,
             color: colors.text,
         },
         titleContainer: {
@@ -61,14 +63,12 @@ export const SettingButton = ({
             marginRight: 10,
         },
         title: {
-            fontSize: 18,
-            fontWeight: 'bold',
+            ...fonts.button,
             marginBottom: 5,
             color: colors.text,
         },
         description: {
-            color: colors.subtext,
-            fontSize: 14,
+            ...fonts.description,
         },
         arrowContainer: {
             justifyContent: 'center',
@@ -89,9 +89,11 @@ export const SettingButton = ({
                 <FontAwesome5 style={styles.icon} name={icon} size={24} />
             </View>
             <View style={styles.titleContainer}>
-                <Text style={styles.title}>{title}</Text>
+                <Text style={styles.title}>
+                    <TextTranslated text={title} />
+                </Text>
                 <Text style={styles.description}>
-                    {truncate(description, 30)}
+                    <TextTranslated text={truncate(description, 50)} />
                 </Text>
             </View>
             <View style={styles.arrowContainer}>

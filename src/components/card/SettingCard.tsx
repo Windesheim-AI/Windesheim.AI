@@ -4,6 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
+import { TextTranslated } from '../text/TextTranslated';
 
 export type SettingCardProps = {
     title: string;
@@ -21,7 +23,7 @@ export const SettingCard = ({
     testID,
 }: SettingCardProps) => {
     const colors = useColorConfig();
-
+    const fonts = useFonts();
     const styles = StyleSheet.create({
         buttonContainer: {
             flexDirection: 'row',
@@ -36,8 +38,7 @@ export const SettingCard = ({
             marginRight: 10,
         },
         icon: {
-            width: 24,
-            height: 24,
+            ...fonts.icon,
             color: colors.text,
         },
         titleContainer: {
@@ -46,14 +47,11 @@ export const SettingCard = ({
             marginRight: 10,
         },
         title: {
-            fontSize: 18,
-            fontWeight: 'bold',
+            ...fonts.h2,
             marginBottom: 5,
-            color: colors.text,
         },
         description: {
-            color: colors.subtext,
-            fontSize: 14,
+            ...fonts.description,
         },
     });
 
@@ -63,8 +61,12 @@ export const SettingCard = ({
                 <FontAwesome5 style={styles.icon} name={icon} size={24} />
             </View>
             <View style={styles.titleContainer}>
-                <Text style={styles.title}>{title}</Text>
-                <Text style={styles.description}>{description}</Text>
+                <Text style={styles.title}>
+                    <TextTranslated text={title} />
+                </Text>
+                <Text style={styles.description}>
+                    <TextTranslated text={description ?? ''} />
+                </Text>
             </View>
             {children}
         </View>

@@ -1,10 +1,12 @@
-import { useFonts, Inter_500Medium } from '@expo-google-fonts/inter';
+import { useFonts as useFont, Inter_500Medium } from '@expo-google-fonts/inter';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text, StyleSheet, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
+import { TextTranslated } from '../text/TextTranslated';
 
 export type ButtonProps = {
     onPress?: () => void;
@@ -15,6 +17,7 @@ export type ButtonProps = {
     icon?: string;
 };
 
+// eslint-disable-next-line complexity
 export const Button = ({
     onPress,
     buttonText,
@@ -23,11 +26,12 @@ export const Button = ({
     width,
     icon,
 }: ButtonProps) => {
-    const [fontsLoaded, fontError] = useFonts({
+    const [fontsLoaded, fontError] = useFont({
         Inter_500Medium,
     });
 
     const colors = useColorConfig();
+    const fonts = useFonts();
     const navigation = useNavigation();
 
     if (!onPress) {
@@ -87,15 +91,14 @@ export const Button = ({
         text: {
             color: colors.text,
             fontFamily: 'Inter_500Medium',
-            fontSize: 18,
             fontWeight: 'bold',
             left: 50,
-
             position: 'absolute',
+            ...fonts.button,
         },
         icon: {
             color: colors.text,
-            fontSize: 15,
+            ...fonts.icon,
             fontWeight: 'bold',
         },
     });
@@ -107,7 +110,7 @@ export const Button = ({
             <Text style={styles.text}>
                 {icon ? <FontAwesome5 name={icon} style={styles.icon} /> : null}
                 {icon ? ' ' : ''}
-                {buttonText}
+                <TextTranslated text={buttonText ?? ''} />
             </Text>
         </Pressable>
     );

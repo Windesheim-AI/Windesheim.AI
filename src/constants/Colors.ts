@@ -1,5 +1,5 @@
 import { hasKeyInMap } from '../lib/utility/data';
-import { RootState, useAppSelector } from '../redux/Store';
+import { RootState, useAppSelector } from '../redux/Hooks';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
@@ -30,6 +30,7 @@ export type ColorSchemeType = {
     };
     borderColor: string;
     listItemBg: string;
+    opacityLayer: string;
 };
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
@@ -58,6 +59,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         borderColor: '#ccc',
         listItemBg: '#DCDCDC',
         black: '#000000',
+        opacityLayer: 'rgba(255,255,255,0.8)',
     },
     dark: {
         primary: '#4695D3',
@@ -85,8 +87,22 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         borderColor: '#ccc',
         listItemBg: '#373737',
         black: '#000000',
+        opacityLayer: 'rgba(0,0,0,0.6)',
     },
 };
+
+export const shadow = {
+    shadowColor: '#000',
+    shadowOffset: {
+        width: 5,
+        height: 5,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
+};
+
 export type ColorGradientScheme = [string, string, string];
 export type ColorTypes =
     | 'primary'

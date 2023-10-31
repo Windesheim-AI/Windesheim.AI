@@ -5,6 +5,7 @@ import { Text, StyleSheet, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
+import { TextTranslated } from '../text/TextTranslated';
 
 export type ButtonProps = {
     onPress?: () => void;
@@ -124,7 +125,9 @@ export const ListButton = ({
             <View style={styles.bg2} />
             <View style={styles.bg3} />
             <View style={styles.textStyle}>
-                <Text style={styles.text}>{buttonText}</Text>
+                <Text style={styles.text}>
+                    <TextTranslated text={buttonText ?? ''} />
+                </Text>
             </View>
             <View style={styles.iconStyle}>
                 {icon ? (
