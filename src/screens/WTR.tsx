@@ -4,9 +4,11 @@ import { WebView } from 'react-native-webview';
 
 import { Button } from '../components/buttons/Button';
 import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
+import { useStaticLoading } from '../lib/utility/loaderFunctions';
 import { Routes } from '../routes/routes';
 
 export const WTRScreen = () => {
+    useStaticLoading();
     const colors = useColorConfig();
 
     const styles = StyleSheet.create({
