@@ -17,6 +17,7 @@
     "test:tsc": "echo \"Running typescript check\" && tsc --project tsconfig.lint.json && tsc --project ./cypress/tsconfig.json",
     "test:e2e": "concurrently \"npm run web\" \"cypress run --browser electron\"",
     "test:jest": "echo \"Running unit & component tests\" && jest -u --verbose",
+    "test:jest-summary": "echo \"Running unit & component tests\" && jest -u",
     "test:jest-less-strict": "echo \"Running unit & component tests\" && jest -u --verbose --detectOpenHandles",
     "test:jest-strict": "echo \"Running unit & component tests\" && jest -u --verbose --detectLeaks --detectOpenHandles",
     "tests": "npm run test:eslint && npm run test:tsc && npm run test:jest",
