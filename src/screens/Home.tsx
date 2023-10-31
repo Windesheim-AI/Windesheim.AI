@@ -7,11 +7,12 @@ import HorizontalScroll from '../components/general/HorizontalScroll';
 import { PageView } from '../components/general/PageView';
 import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
 import { Routes } from '../routes/routes';
-import StatusAlert from '../components/StatusAlert';
-import { StatusMessage } from '../components/StatusMessage';
+import { StatusAlert } from '../components/alerts/StatusAlert';
+import { useState } from 'react';
 
 export const HomeScreen = () => {
     const colors = useColorConfig();
+    const [showAlert, setShowAlert] = useState(false);
 
     const styles = StyleSheet.create({
         newsHeaderText: {
@@ -22,6 +23,14 @@ export const HomeScreen = () => {
             color: colors.text,
         },
     });
+
+    const showStatusAlert = () => {
+        setShowAlert(true); // Set showAlert to true to show the StatusAlert
+        // Simulate hiding the StatusAlert after a delay
+        setTimeout(() => {
+            setShowAlert(false); // Hide the StatusAlert after a delay
+        }, 3000);
+    };
 
     return (
         <PageView
@@ -45,11 +54,30 @@ export const HomeScreen = () => {
                 width={100}
             />
 
-            <StatusAlert message='Dit is een test alert' type='error'/>
+            <Button buttonText='add message' onPress={showStatusAlert} colorGradientScheme={buttonColorSchemes.success} screenName='WTR' width={100} />
 
-            <StatusMessage type='success' message='lorum ipsum bla hblah blah blah langere tekst how this ogengere tekst how this ogesngere tekst how this ogesngere tekst how this ogesngere tekst how this ogesngere tekst how this ogesngere tekst how this ogess' colorGradientScheme={buttonColorSchemes.success} icon='exclamation-circle'/>
-            <StatusMessage type='error' message='Er ging iets fout...' colorGradientScheme={buttonColorSchemes.danger} icon='exclamation-circle'/>
-            <Button buttonText='add message' colorGradientScheme={buttonColorSchemes.success} screenName='WTR' width={100}/>
+            {showAlert && (
+                <StatusAlert
+                    type="success"
+                    message="Message Added!"
+                    colorGradientScheme={buttonColorSchemes.success}
+                    icon="exclamation-circle"
+                    isVisible={showAlert}
+                />
+            )}
+
+            {showAlert && (
+                <StatusAlert
+                    type="success"
+                    message="Er ging iets fout..."
+                    colorGradientScheme={buttonColorSchemes.danger}
+                    width={700}
+                    height={100}
+                    icon="exclamation-circle"
+                    isVisible={showAlert}
+                />
+            )}
+
         </PageView>
     );
 };
