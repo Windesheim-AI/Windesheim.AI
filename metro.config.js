@@ -24,8 +24,10 @@ const config = {
     },
 };
 
+// eslint-disable-next-line no-shadow
 const mergeConfig = (defaultConfig, config) => {
     const merged = { ...defaultConfig };
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     for (const key of Object.keys(config)) {
         const value = config[key];
         if (Array.isArray(value)) {
