@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 
 import { appConfig } from '../../../app.config';
-import { useAppDispatch } from '../../redux/Store';
+import { useAppDispatch } from '../../redux/Hooks';
 import { hideSplashScreen } from '../../redux/slices/LayoutSlice';
 import { Routes } from '../../routes/routes';
 import { Background } from '../general/Background';

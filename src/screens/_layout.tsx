@@ -12,7 +12,7 @@ import { Background } from '../components/general/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { useColorConfig, shadow } from '../constants/Colors';
 import { useAnimatedValue } from '../lib/utility/animate';
-import { useAppSelector } from '../redux/Store';
+import { useAppSelector } from '../redux/Hooks';
 
 type LayoutProps = {
     children: React.ReactNode;
