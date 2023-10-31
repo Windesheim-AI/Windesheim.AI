@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
+const { getDefaultConfig } = require('@expo/metro-config');
 
 const defaultConfig = getDefaultConfig(__dirname);
 const { assetExts, sourceExts } = defaultConfig.resolver;
@@ -21,6 +22,21 @@ const config = {
         assetExts: assetExts.filter((ext) => ext !== 'svg'),
         sourceExts: [...sourceExts, 'svg'],
     },
+};
+
+const mergeConfig = (defaultConfig, config) => {
+    const merged = { ...defaultConfig };
+    for (const key of Object.keys(config)) {
+        const value = config[key];
+        if (Array.isArray(value)) {
+            merged[key] = [...defaultConfig[key], ...value];
+        } else if (typeof value === 'object' && value !== null) {
+            merged[key] = { ...defaultConfig[key], ...value };
+        } else {
+            merged[key] = value;
+        }
+    }
+    return merged;
 };
 
 module.exports = mergeConfig(defaultConfig, config);

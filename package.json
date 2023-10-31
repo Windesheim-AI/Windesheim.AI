@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "main": "node_modules/expo/AppEntry.js",
   "engines": {
-    "node": ">=16"
+    "node": "=16"
   },
   "scripts": {
     "start": "expo start",
@@ -35,7 +35,6 @@
     "@mui/material": "^5.14.13",
     "@react-native-async-storage/async-storage": "1.18.2",
     "@react-native-community/eslint-config": "^3.2.0",
-    "@react-native/metro-config": "^0.74.0",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.15",
     "@react-navigation/stack": "^6.3.20",
@@ -69,7 +68,6 @@
     "redux-persist": "^6.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0",
     "@bahmutov/print-env": "^2.1.2",
     "@cypress/code-coverage": "^3.12.6",
     "@testing-library/jest-native": "^5.4.3",
@@ -82,7 +80,6 @@
     "@types/react-native-vector-icons": "^6.4.15",
     "@types/react-test-renderer": "^18.0.3",
     "@types/redux-mock-store": "^1.0.4",
-    "babel-plugin-istanbul": "^6.1.1",
     "check-code-coverage": "^1.10.5",
     "concurrently": "^8.2.1",
     "cypress": "^13.3.0",

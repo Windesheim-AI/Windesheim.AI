@@ -54,3 +54,4 @@ instrumented/
 
 # Environment configuration
 /.env
+eas.json
