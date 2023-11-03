@@ -6,6 +6,8 @@ import { HomeScreen } from '../screens/Home';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { StudyScreen } from '../screens/Study';
 import { TestScreen } from '../screens/Test';
+import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
+import { UsecaseScreen } from '../screens/Usecase/Usecase';
 import { WTRScreen } from '../screens/WTR/WTR';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
 
@@ -18,6 +20,8 @@ const screens = [
     { name: Routes.WindesheimTechRadar, component: WTRScreen },
     { name: Routes.WindesheimTechRadarContent, component: WTRContentScreen },
     { name: Routes.Settings, component: SettingsScreen },
+    { name: Routes.Usecase, component: UsecaseScreen },
+    { name: Routes.CaseStudyInfo, component: CaseStudyInfo },
 ];
 
 export const Router = () => {
