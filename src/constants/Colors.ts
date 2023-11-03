@@ -23,11 +23,13 @@ export type ColorSchemeType = {
     bg2: string;
     bg3: string;
     settingButtonBG: string;
+    modalBackground: string;
     subtext: string;
     navBar: {
         backgroundColor: string;
         color: string;
     };
+    subTitle: string;
     borderColor: string;
     listItemBg: string;
     opacityLayer: string;
@@ -51,12 +53,14 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg2: '#ffd949',
         bg3: '#ffcb05',
         settingButtonBG: '#fffffff',
+        modalBackground: 'rgba(0,0,0,0.5)',
         subtext: '#a8a7a7',
         navBar: {
             backgroundColor: '#FAFAFA',
             color: '#2B2A2A',
         },
         borderColor: '#ccc',
+        subTitle: '#2B2A2A',
         listItemBg: '#DCDCDC',
         black: '#000000',
         opacityLayer: 'rgba(255,255,255,0.8)',
@@ -74,6 +78,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         tabIconDefault: '#ccc',
         tabIconSelected: tintColorDark,
         titleDefault: '#fff',
+        modalBackground: 'rgba(0,0,0,0.5)',
         descriptionDefault: 'gray',
         bg1: '#86d2d9',
         bg2: '#22bdc6',
@@ -84,6 +89,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
             backgroundColor: '#090A0A',
             color: '#c4c4c4',
         },
+        subTitle: '#c4c4c4',
         borderColor: '#ccc',
         listItemBg: '#373737',
         black: '#000000',

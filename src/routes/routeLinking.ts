@@ -25,6 +25,7 @@ export const RouteLinking = {
             [Routes.Settings]: 'settings',
             [Routes.Usecase]: 'Usecase',
             [Routes.CaseStudyInfo]: 'CaseStudyInfo',
+            [Routes.Course]: 'course',
         },
     },
 };

@@ -8,4 +8,5 @@ export enum Routes {
     TestSettings = 'TestSettings',
     Usecase = 'Usecase',
     CaseStudyInfo = 'CaseStudyInfo',
+    Course = 'Course',
 }

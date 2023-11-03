@@ -7,7 +7,7 @@ import { TextTranslated } from '../text/TextTranslated';
 
 type PageViewProps = {
     children: React.ReactNode;
-    title: string;
+    title?: string;
     description?: string;
 };
 
@@ -33,9 +33,11 @@ export const PageView = ({ children, title, description }: PageViewProps) => {
 
     return (
         <View testID={title} style={styles.container}>
-            <Text style={styles.header} testID={`${title}-description`}>
-                <TextTranslated text={title} />
-            </Text>
+            {title ? (
+                <Text style={styles.header} testID={`${title}-description`}>
+                    <TextTranslated text={title} />
+                </Text>
+            ) : null}
             {description ? (
                 <Text style={styles.description}>
                     <TextTranslated text={description} />

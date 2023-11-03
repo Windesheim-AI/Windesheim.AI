@@ -1,3 +1,9 @@
+import {
+    useFonts as useExpoFonts,
+    Inter_600SemiBold,
+    Inter_400Regular,
+    Inter_300Light,
+} from '@expo-google-fonts/inter';
 import { TextStyle } from 'react-native';
 
 import { useColorConfig } from './Colors';
@@ -26,16 +32,24 @@ type TextStyling = {
     description: TextStyle;
     accent: TextStyle;
     button: TextStyle;
+    courseTitle: TextStyle;
+    courseSubTitle: TextStyle;
 };
 
 export function useFonts() {
     const colors = useColorConfig();
+    const expoFonts = useExpoFonts({
+        Inter_600SemiBold,
+        Inter_400Regular,
+        Inter_300Light,
+    });
 
     const fontMap: TextStyling = {
         h1: {
             fontSize: 24,
             fontWeight: 'bold',
             color: colors.titleDefault,
+            fontFamily: 'Inter_600SemiBold',
         },
         h2: {
             fontSize: 18,
@@ -47,8 +61,8 @@ export function useFonts() {
         },
         h4: {
             fontSize: 14,
-            fontWeight: 'bold',
             color: colors.text,
+            fontFamily: 'Inter_400Regular',
         },
         h5: {
             fontSize: 12,
@@ -60,15 +74,16 @@ export function useFonts() {
             fontSize: 15,
         },
         description: {
-            color: colors.subtext,
+            color: colors.text,
             fontSize: 14,
+            fontFamily: 'Inter_300Light',
         },
         h6: {
             fontSize: 10,
         },
         p: {
             fontSize: 12,
-            color: colors.background,
+            color: colors.subtext,
         },
         small: {
             fontSize: 10,
@@ -80,6 +95,18 @@ export function useFonts() {
         button: {
             fontSize: 16,
             fontWeight: 'bold',
+        },
+        courseTitle: {
+            fontSize: 18,
+            fontWeight: 'bold',
+            color: colors.text,
+            fontFamily: 'Inter_600SemiBold',
+        },
+        courseSubTitle: {
+            fontSize: 12,
+            fontStyle: 'italic',
+            color: colors.subTitle,
+            fontFamily: 'Inter_400Regular',
         },
     };
 
