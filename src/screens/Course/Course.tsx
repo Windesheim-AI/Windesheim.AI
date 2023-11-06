@@ -61,6 +61,8 @@ export default function Course() {
                 text="Absolutely! When planning team-building activities for a group that includes remote employees, it’s essential to choose icebreakers that can be easily shared across digital platforms. Here are a couple of activities designed to engage both in-person and remote participants:"
             />
 
+            <Text>{'Wed'}</Text>
+
             <View style={styles.button}>
                 <Button
                     buttonText="Next"
