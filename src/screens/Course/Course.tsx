@@ -2,19 +2,20 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import * as Progress from 'react-native-progress';
 
-import { Button } from '../../components/buttons/Button';
-import AIGeneratedOutput from '../../components/course/AIGeneratedOutput';
+import * as j from '../../assets/courses/test.json';
 import { CourseNavigation } from '../../components/course/CourseNavigation';
+import StageRenderer from '../../components/course/StageRenderer';
 import { PageView } from '../../components/general/PageView';
 import { TextTranslated } from '../../components/text/TextTranslated';
-import {
-    buttonColorSchemes,
-    shadow,
-    useColorConfig,
-} from '../../constants/Colors';
+import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { Course } from '../../types/Course';
+import { Stage } from '../../types/Stage';
 
-export default function Course() {
+export default function CoursePage() {
+    //@ts-ignore
+    const course: Course = j;
+    const activeStageId = '1';
     const fonts = useFonts();
     const colors = useColorConfig();
     const styles = StyleSheet.create({
@@ -29,47 +30,51 @@ export default function Course() {
             marginTop: 15,
             marginBottom: 10,
         },
-        button: {
-            marginTop: 'auto',
-        },
     });
 
-    const title = 'Learn, Understand, Verify';
-    const subTitle = 'The basics of generative AI';
-    const text =
-        'This course is an introduction to the basics of generative AI. It is a hands-on course, which means that you will be working with the tools and techniques that are used in the field.';
+    if (!course) {
+        return null; // or a loading indicator
+    }
+
+    const stage = course.stages.find((e) => e.id === activeStageId) as Stage;
+
     return (
         <PageView>
-            <CourseNavigation title={title} subTitle={subTitle} />
+            <CourseNavigation
+                title={course.title}
+                subTitle={
+                    course.stages.find((e) => e.id === activeStageId)?.title ??
+                    'test'
+                }
+            />
 
             <Progress.Bar
-                progress={0.03}
+                progress={course.stages.length / Number.parseInt(activeStageId)}
                 width={null}
                 style={styles.progressBar}
             />
-
             <View style={styles.courseTitle}>
-                <TextTranslated text={title} />
+                <TextTranslated text={course.title} />
             </View>
 
+            <StageRenderer key={stage.id} stage={stage} />
+            {/*
             <View style={fonts.description}>
-                <TextTranslated text={text} />
+                <TextTranslated text={course.text} />
             </View>
 
             <AIGeneratedOutput
-                prompt="I did this using not ChatGPT"
-                text="Absolutely! When planning team-building activities for a group that includes remote employees, it’s essential to choose icebreakers that can be easily shared across digital platforms. Here are a couple of activities designed to engage both in-person and remote participants:"
+                prompt={course.prompt}
+                text={course.generatedText}
             />
-
-            <Text>{'Wed'}</Text>
 
             <View style={styles.button}>
                 <Button
-                    buttonText="Next"
-                    colorGradientScheme={buttonColorSchemes.primary}
-                    screenName="ted"
+                    buttonText={course.buttonText}
+                    colorGradientScheme={course.colorGradientScheme}
+                    screenName={course.screenName}
                 />
-            </View>
+            </View> */}
         </PageView>
     );
 }
