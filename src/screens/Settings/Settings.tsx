@@ -5,8 +5,9 @@ import { PageView } from '../../components/general/PageView';
 import { FontSwitcher } from '../../components/settings/FontSwitcher';
 import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../../components/settings/ThemeSwitcher';
-
+import { useStaticLoading } from '../../lib/utility/loaderFunctions';
 export const SettingsScreen = () => {
+    useStaticLoading(500);
     return (
         <PageView title="Settings">
             <SettingCard
