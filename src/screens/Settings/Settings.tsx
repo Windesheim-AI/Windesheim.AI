@@ -7,7 +7,7 @@ import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../../components/settings/ThemeSwitcher';
 import { useStaticLoading } from '../../lib/utility/loaderFunctions';
 export const SettingsScreen = () => {
-    useStaticLoading();
+    useStaticLoading(500);
     return (
         <PageView title="Settings">
             <SettingCard

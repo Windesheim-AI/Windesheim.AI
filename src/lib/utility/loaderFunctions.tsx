@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch, RootState } from '../../redux/Hooks';
 import { setLoading } from '../../redux/slices/LoadingSlice';
 
-export function useStaticLoading() {
+export function useStaticLoading(delay: number) {
     const storeDispatch = useAppDispatch();
     const loadingState = useAppSelector((state: RootState) => state.loading);
 
@@ -19,15 +19,13 @@ export function useStaticLoading() {
         if (isLoadingCompleted) {
             return;
         }
-
-        const delay = 500;
         // Simulate a delay
         setTimeout(() => {
             storeDispatch(setLoading(false));
             setIsLoading(false);
             setIsLoadingCompleted(true);
         }, delay);
-    }, [storeDispatch, isLoading, isLoadingCompleted, loadingState]);
+    }, [storeDispatch, isLoading, isLoadingCompleted, loadingState, delay]);
 }
 
 export function useDynamicLoading<T>(callback: () => T) {
@@ -59,10 +57,10 @@ export function useDynamicLoading<T>(callback: () => T) {
                         setIsLoadingCompleted(true);
                     })
                     .catch((error) => {
-                        console.error(error);
                         storeDispatch(setLoading(false));
                         setIsLoading(false);
                         setIsLoadingCompleted(true);
+                        throw error;
                     });
             } else {
                 // For synchronous callbacks, update loading state immediately
@@ -72,10 +70,10 @@ export function useDynamicLoading<T>(callback: () => T) {
             }
         } catch (error) {
             // Handle synchronous errors here
-            console.error(error);
             storeDispatch(setLoading(false));
             setIsLoading(false);
             setIsLoadingCompleted(true);
+            throw error;
         }
     }, [storeDispatch, isLoading, isLoadingCompleted, loadingState, callback]);
 }
