@@ -52,13 +52,13 @@ export const SplashScreen = () => {
                     <LogoBlack style={styles.centerImage} />
                 ) : (
                     // eslint-disable-next-line react-native/no-raw-text
-                    <View testID="LogoBlack">.</View>
+                    <View testID="LogoBlack">..</View>
                 )}
                 {Platform.OS !== 'web' ? (
                     <LogoWin style={styles.originalSizeImage} />
                 ) : (
                     // eslint-disable-next-line react-native/no-raw-text
-                    <View testID="LogoWin">.</View>
+                    <View testID="LogoWin">..</View>
                 )}
             </View>
         </>
