@@ -1,9 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { Platform, View, StyleSheet } from 'react-native';
 
 import { appConfig } from '../../../app.config';
+//@ts-ignore
+import LogoBlack from '../../assets/images/Logo_black.svg';
+//@ts-ignore
+import LogoWin from '../../assets/images/Logo_windesheim.svg';
 import { useAppDispatch } from '../../redux/Hooks';
 import { hideSplashScreen } from '../../redux/slices/LayoutSlice';
 import { Routes } from '../../routes/routes';
@@ -45,16 +48,18 @@ export const SplashScreen = () => {
         <>
             <Background />
             <View style={styles.container}>
-                <Image
-                    testID="WingAI-logo"
-                    source={require('../../assets/images/WingAI_logo_light.png')}
-                    style={styles.centerImage}
-                />
-                <Image
-                    testID="windesheim-logo"
-                    source={require('../../assets/images/windesheim_logo.png')}
-                    style={styles.originalSizeImage}
-                />
+                {Platform.OS !== 'web' ? (
+                    <LogoBlack style={styles.centerImage} />
+                ) : (
+                    // eslint-disable-next-line react-native/no-raw-text
+                    <View testID="LogoBlack">.</View>
+                )}
+                {Platform.OS !== 'web' ? (
+                    <LogoWin style={styles.originalSizeImage} />
+                ) : (
+                    // eslint-disable-next-line react-native/no-raw-text
+                    <View testID="LogoWin">.</View>
+                )}
             </View>
         </>
     );
