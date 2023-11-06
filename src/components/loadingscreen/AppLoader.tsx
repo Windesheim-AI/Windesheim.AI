@@ -1,7 +1,7 @@
 import React from 'react';
 
 import LoadingScreen from './LoadingScreen';
-import { RootState, useAppSelector } from '../../redux/Store';
+import { RootState, useAppSelector } from '../../redux/Hooks';
 
 const AppLoader = () => {
     const loadingState = useAppSelector((state: RootState) => state.loading);

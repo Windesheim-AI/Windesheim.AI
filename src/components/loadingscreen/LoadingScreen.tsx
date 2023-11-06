@@ -37,8 +37,8 @@ export const LoadingScreen = () => {
             <View style={styles.container}>
                 <ActivityIndicator size="large" color="#0000ff" />
                 <Image
-                    testID="winsight-logo"
-                    source={require('../../assets/images/WINsight_logo_light.png')}
+                    testID="WingAI-logo"
+                    source={require('../../assets/images/WingAI_logo_light.png')}
                     style={styles.centerImage}
                 />
                 <Image
