@@ -113,18 +113,6 @@ export const WTRContentScreen = () => {
                     }
                     return;
                 }
-                //i need all text on the page to be translated
-                if (child.type === 'text') {
-                    const translator = translatorFactory.create({
-                        to: languageState.langCode,
-                        from: 'nl',
-                        apiKey: EXPO_PUBLIC_GTR_API_KEY,
-                    });
-
-                    child.data = await translator.translate(child.data);
-                    element.children[i] = child;
-                    console.log(child.data);
-                }
             }
         } catch (error) {
             console.error(error);

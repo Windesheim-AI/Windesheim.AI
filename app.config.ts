@@ -9,7 +9,7 @@ export type AppConfigOptions = {
 };
 
 export const appConfig: AppConfigOptions = {
-    wordPressUrl: 'http://localhost/TestWpSite/TestWpSite',
+    wordPressUrl: 'https://windesheim.tech',
     splashScreenTime: 500,
     localStoragePrefixes: {
         translations: 'translations',
