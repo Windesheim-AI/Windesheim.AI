@@ -30,6 +30,8 @@ import Meta from '../../assets/images/WTR/TechProviders/meta.svg';
 //@ts-ignore
 import Microsoft from '../../assets/images/WTR/TechProviders/microsoft.svg';
 //@ts-ignore
+import OpenAI from '../../assets/images/WTR/TechProviders/openai.svg';
+//@ts-ignore
 import Oracle from '../../assets/images/WTR/TechProviders/oracle.svg';
 //@ts-ignore
 import SalesForce from '../../assets/images/WTR/TechProviders/salesforce.svg';
@@ -39,24 +41,25 @@ import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../text/TextTranslated';
 
+const providers = [
+    { name: 'Apple', logo: Apple },
+    { name: 'Amazon', logo: Amazon },
+    { name: 'Cisco', logo: Cisco },
+    { name: 'Google', logo: Google },
+    { name: 'HP', logo: Hp },
+    { name: 'IBM', logo: Ibm },
+    { name: 'Intel', logo: Intel },
+    { name: 'Meta', logo: Meta },
+    { name: 'Microsoft', logo: Microsoft },
+    { name: 'OpenAI', logo: OpenAI },
+    { name: 'Oracle', logo: Oracle },
+    { name: 'SalesForce', logo: SalesForce },
+    { name: 'SAP', logo: Sap },
+];
+
 export const TechProviders = () => {
     const navigation = useNavigation();
     const colors = useColorConfig();
-
-    const providers = [
-        { name: 'Apple', logo: Apple },
-        { name: 'Amazon', logo: Amazon },
-        { name: 'Cisco', logo: Cisco },
-        { name: 'Google', logo: Google },
-        { name: 'HP', logo: Hp },
-        { name: 'IBM', logo: Ibm },
-        { name: 'Intel', logo: Intel },
-        { name: 'Meta', logo: Meta },
-        { name: 'Microsoft', logo: Microsoft },
-        { name: 'Oracle', logo: Oracle },
-        { name: 'SalesForce', logo: SalesForce },
-        { name: 'SAP', logo: Sap },
-    ];
 
     const styles = StyleSheet.create({
         button: {
