@@ -11,8 +11,8 @@ import {
 import LogoBlack from '../../assets/images/Logo/Logo_black.svg';
 //@ts-ignore
 import LogoWin from '../../assets/images/Logo/Logo_windesheim.svg';
-import { Background } from '../general/Background';
 import { useCurrentTheme } from '../../constants/Colors';
+import { Background } from '../general/Background';
 
 export const LoadingScreen = () => {
     const theme = useCurrentTheme();
@@ -53,8 +53,8 @@ export const LoadingScreen = () => {
                 ) : (
                     <Image
                         testID="LogoBlack"
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                         source={
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                             theme === 'light'
                                 ? require('../../assets/images/Logo/Logo_light.png')
                                 : require('../../assets/images/Logo/Logo_dark.png')
@@ -67,8 +67,8 @@ export const LoadingScreen = () => {
                 ) : (
                     <Image
                         testID="LogoWin"
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                         source={
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                             theme === 'light'
                                 ? require('../../assets/images/Logo/Logo_windesheim_black.png')
                                 : require('../../assets/images/Logo/Logo_windesheim.png')
