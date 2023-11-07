@@ -1,15 +1,21 @@
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import * as Progress from 'react-native-progress';
 
 import * as j from '../../assets/courses/test.json';
+import { Button } from '../../components/buttons/Button';
 import { CourseNavigation } from '../../components/course/CourseNavigation';
 import StageRenderer from '../../components/course/StageRenderer';
 import { PageView } from '../../components/general/PageView';
 import { TextTranslated } from '../../components/text/TextTranslated';
-import { shadow, useColorConfig } from '../../constants/Colors';
+import {
+    buttonColorSchemes,
+    shadow,
+    useColorConfig,
+} from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { Routes } from '../../routes/routes';
 import { Course } from '../../types/Course';
 
 type CoursePageProps = {
@@ -21,9 +27,17 @@ export default function CoursePage() {
     //@ts-ignore
     const course: Course = j; //later replaced dby a fetch.
     const route = useRoute();
+    const navigator = useNavigation();
     const params = route.params as CoursePageProps;
 
     const stageId = params.stageId;
+    if (stageId === 'start') {
+        //@ts-ignore
+        navigator.navigate(Routes.Course.toString(), {
+            courseId: course.id,
+            stageId: course.stages[0].id,
+        });
+    }
     const activeStageCount = course.stages.findIndex((e) => e.id === stageId);
 
     const fonts = useFonts();
@@ -47,6 +61,22 @@ export default function CoursePage() {
     }
 
     const stage = course.stages.find((e) => e.id === stageId)!;
+    const nextStage = course.stages[activeStageCount + 1];
+    function onPress() {
+        if (!nextStage) {
+            //@ts-ignore
+            navigator.navigate(Routes.CourseFinished.toString(), {
+                courseId: course.id,
+            });
+            return;
+        }
+
+        //@ts-ignore
+        navigator.navigate(Routes.Course.toString(), {
+            courseId: course.id,
+            stageId: nextStage.id,
+        });
+    }
 
     return (
         <PageView>
@@ -74,6 +104,11 @@ export default function CoursePage() {
                         key={stage.id}
                         courseId={course.id}
                         stage={stage}
+                    />
+                    <Button
+                        buttonText="Next"
+                        onPress={onPress}
+                        colorGradientScheme={buttonColorSchemes.primary}
                     />
                 </>
             ) : (

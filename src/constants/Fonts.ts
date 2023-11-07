@@ -95,6 +95,7 @@ export function useFonts() {
         button: {
             fontSize: 16,
             fontWeight: 'bold',
+            color: colors.buttonText,
         },
         courseTitle: {
             fontSize: 18,

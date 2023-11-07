@@ -45,9 +45,12 @@ export function CourseNavigation({
         title: {
             ...fonts.courseTitle,
             flexDirection: 'row',
+            marginBottom: 3,
         },
         icon: {
             marginRight: 10,
+            marginBottom: 'auto',
+            marginTop: 'auto',
         },
         chevronIcon: {
             marginLeft: 'auto',
@@ -74,6 +77,9 @@ export function CourseNavigation({
             padding: 10,
             borderRadius: 10,
         },
+        block: {
+            width: '95%',
+        },
     });
 
     function onDropdownPress(stageId: string) {
@@ -88,7 +94,7 @@ export function CourseNavigation({
                 style={styles.topBar}
                 onTouchEnd={() => setShowDropdown(!showDropdown)}
             >
-                <View>
+                <View style={styles.block}>
                     <View style={styles.title}>
                         <FontAwesome5Icon
                             name="graduation-cap"

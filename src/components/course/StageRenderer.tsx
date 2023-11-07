@@ -13,13 +13,7 @@ const blockRenderers = [
     { blockType: BlockType.Button, component: ButtonBlock },
 ];
 
-export default function StageRenderer({
-    stage,
-    courseId,
-}: {
-    stage: Stage;
-    courseId: string;
-}) {
+export default function StageRenderer({ stage, courseId }: { stage: Stage, courseId: string }) {
     return (
         <>
             {stage.description.map((block: Block) => {

@@ -19,6 +19,7 @@ export type ColorSchemeType = {
     tabIconSelected: string;
     titleDefault: string;
     descriptionDefault: string;
+    buttonText: string;
     bg1: string;
     bg2: string;
     bg3: string;
@@ -41,6 +42,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#45B97C',
         warning: '#ff7300',
         danger: '#EE3135',
+        buttonText: '#3F3f3f',
         text: '#000',
         background: '#fff',
         tint: tintColorLight,
@@ -72,6 +74,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         warning: '#ff7300',
         danger: '#EE3135',
         text: '#fff',
+        buttonText: '#3F3f3f',
         background: '#2a2a2a',
         tint: tintColorDark,
         gray: '#919191',

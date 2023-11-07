@@ -50,7 +50,7 @@ export const Button = ({
         return null;
     }
 
-    const minWidth = 70;
+    const minWidth = 80;
     const baseWidth = width ? width : minWidth;
     const checkedWidth: number = baseWidth > minWidth ? baseWidth : minWidth;
     const buttonWidth =
@@ -89,7 +89,7 @@ export const Button = ({
             overflow: 'hidden',
         },
         text: {
-            color: colors.text,
+            color: colors.buttonText,
             fontFamily: 'Inter_500Medium',
             fontWeight: 'bold',
             left: 50,
@@ -97,7 +97,7 @@ export const Button = ({
             ...fonts.button,
         },
         icon: {
-            color: colors.text,
+            color: colors.buttonText,
             ...fonts.icon,
             fontWeight: 'bold',
         },

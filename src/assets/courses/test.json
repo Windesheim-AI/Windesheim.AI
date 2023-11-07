@@ -25,14 +25,6 @@
                     "content": {
                         "text": "Generative AI is one of the most exciting developments in artificial intelligence technology because of its ability to create something new. It opens the door to an entire world of possibilities for human and computer creativity, with practical applications emerging across industries, from turning sketches into images for accelerated product development, to improving computer-aided design of complex objects. It takes two neural networks against each other to produce new and original digital works based on sample inputs. The generator network creates new data instances, while the discriminator network evaluates them for authenticity; i.e. the discriminator determines whether each instance of data it reviews belongs to the actual training dataset or not. "
                     }
-                },
-                {
-                    "blockType": "button",
-                    "content": {
-                        "text": "Next Page >",
-                        "navigateToStageId": "the-basics-of-generative-ai",
-                        "colorOptions": "primary"
-                    }
                 }
             ]
         },
