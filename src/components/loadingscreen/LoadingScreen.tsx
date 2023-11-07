@@ -12,8 +12,11 @@ import LogoBlack from '../../assets/images/Logo/Logo_black.svg';
 //@ts-ignore
 import LogoWin from '../../assets/images/Logo/Logo_windesheim.svg';
 import { Background } from '../general/Background';
+import { useCurrentTheme } from '../../constants/Colors';
 
 export const LoadingScreen = () => {
+    const theme = useCurrentTheme();
+
     const styles = StyleSheet.create({
         fullScreenContainer: {
             position: 'absolute',
@@ -51,7 +54,11 @@ export const LoadingScreen = () => {
                     <Image
                         testID="LogoBlack"
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                        source={require('../../assets/images/Logo/Logo_black.webp')}
+                        source={
+                            theme === 'light'
+                                ? require('../../assets/images/Logo/Logo_light.png')
+                                : require('../../assets/images/Logo/Logo_dark.png')
+                        }
                         style={styles.centerImage}
                     />
                 )}
@@ -61,7 +68,11 @@ export const LoadingScreen = () => {
                     <Image
                         testID="LogoWin"
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                        source={require('../../assets/images/Logo/Logo_windesheim_black.png')}
+                        source={
+                            theme === 'light'
+                                ? require('../../assets/images/Logo/Logo_windesheim_black.png')
+                                : require('../../assets/images/Logo/Logo_windesheim.png')
+                        }
                         style={styles.originalSizeImage}
                     />
                 )}
