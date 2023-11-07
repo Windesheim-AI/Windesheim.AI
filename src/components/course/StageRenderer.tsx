@@ -2,15 +2,24 @@ import React from 'react';
 import { Text } from 'react-native';
 
 import AIRenderer from './stages/ai';
+import ButtonBlock from './stages/button';
 import TextRenderer from './stages/text';
-import { Block, BlockType, Stage } from '../../types/Stage';
+import { Block, BlockType } from '../../types/Block';
+import { Stage } from '../../types/Stage';
 
 const blockRenderers = [
     { blockType: BlockType.AIGenerated, component: AIRenderer },
     { blockType: BlockType.Text, component: TextRenderer },
+    { blockType: BlockType.Button, component: ButtonBlock },
 ];
 
-export default function StageRenderer({ stage }: { stage: Stage }) {
+export default function StageRenderer({
+    stage,
+    courseId,
+}: {
+    stage: Stage;
+    courseId: string;
+}) {
     return (
         <>
             {stage.description.map((block: Block) => {
@@ -23,7 +32,12 @@ export default function StageRenderer({ stage }: { stage: Stage }) {
                     return <Text>Unknown block type</Text>;
                 }
                 const Component = renderer.component;
-                return <Component key={block.id} options={block.content} />;
+                const options = {
+                    ...block.content,
+                    courseId,
+                    stageId: stage.id,
+                };
+                return <Component key={block.id} options={options} />;
             })}
         </>
     );

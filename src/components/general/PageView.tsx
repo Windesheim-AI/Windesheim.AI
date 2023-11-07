@@ -20,6 +20,7 @@ export const PageView = ({ children, title, description }: PageViewProps) => {
             backgroundColor: colors.background,
             flex: 1,
             padding: 20,
+            overflow: 'scroll',
         },
         header: {
             ...fonts.h1,

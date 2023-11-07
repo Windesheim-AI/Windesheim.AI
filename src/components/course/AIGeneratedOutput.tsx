@@ -22,7 +22,6 @@ export default function AIGeneratedOutput({ text, prompt }: Props) {
             ...shadow,
             padding: 20,
             borderRadius: 15,
-            marginTop: 20,
         },
         icon: {
             marginRight: 10,
@@ -51,6 +50,7 @@ export default function AIGeneratedOutput({ text, prompt }: Props) {
             padding: 20,
             borderRadius: 15,
             alignItems: 'center',
+            margin: 20,
         },
         modalText: {
             ...fonts.h4,

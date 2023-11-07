@@ -1,10 +1,44 @@
 {
     "title": "The basics of generative AI",
     "description": "A brief introduction to generative AI and how it works.",
+    "id": "the-basics-of-generative-ai",
     "stages": [
         {
             "title": "Learn, understand, verify",
-            "id": "1",
+            "id": "learn-understand-verify",
+            "description": [
+                {
+                    "blockType": "text",
+                    "content": {
+                        "text": "Generative AI is one of the most exciting developments in artificial intelligence technology because of its ability to create something new. It opens the door to an entire world of possibilities for human and computer creativity, with practical applications emerging across industries, from turning sketches into images for accelerated product development, to improving computer-aided design of complex objects. It takes two neural networks against each other to produce new and original digital works based on sample inputs. The generator network creates new data instances, while the discriminator network evaluates them for authenticity; i.e. the discriminator determines whether each instance of data it reviews belongs to the actual training dataset or not. "
+                    }
+                },
+                {
+                    "blockType": "ai",
+                    "content": {
+                        "prompt": "Waarom verscheen generatieve AI in de afgelopen jaren?",
+                        "provider": "openai"
+                    }
+                },
+                {
+                    "blockType": "text",
+                    "content": {
+                        "text": "Generative AI is one of the most exciting developments in artificial intelligence technology because of its ability to create something new. It opens the door to an entire world of possibilities for human and computer creativity, with practical applications emerging across industries, from turning sketches into images for accelerated product development, to improving computer-aided design of complex objects. It takes two neural networks against each other to produce new and original digital works based on sample inputs. The generator network creates new data instances, while the discriminator network evaluates them for authenticity; i.e. the discriminator determines whether each instance of data it reviews belongs to the actual training dataset or not. "
+                    }
+                },
+                {
+                    "blockType": "button",
+                    "content": {
+                        "text": "Next Page >",
+                        "navigateToStageId": "the-basics-of-generative-ai",
+                        "colorOptions": "primary"
+                    }
+                }
+            ]
+        },
+        {
+            "title": "The basics of generative AI",
+            "id": "the-basics-of-generative-ai",
             "description": [
                 {
                     "blockType": "text",
@@ -22,8 +56,8 @@
             ]
         },
         {
-            "title": "The basics of generative AI",
-            "id": "2",
+            "title": "Advanced generative AI",
+            "id": "advanced-generative-ai",
             "description": [
                 {
                     "blockType": "text",
@@ -41,8 +75,8 @@
             ]
         },
         {
-            "title": "The basics of generative AI",
-            "id": "3",
+            "title": "Generative AI in practiceeeee",
+            "id": "generative-ai-in-practiceeeee",
             "description": [
                 {
                     "blockType": "text",
@@ -54,6 +88,44 @@
                     "blockType": "ai",
                     "content": {
                         "prompt": "Waarom verscheen generatieve AI in de afgelopen jaren?",
+                        "provider": "openai"
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Generative AI in practice",
+            "id": "generative-ai-in-practice",
+            "description": [
+                {
+                    "blockType": "text",
+                    "content": {
+                        "text": "Generative AI is one of the most exciting developments in artificial intelligence technology because of its ability to create something new. It opens the door to an entire world of possibilities for human and computer creativity, with practical applications emerging across industries, from turning sketches into images for accelerated product development, to improving computer-aided design of complex objects. It takes two neural networks against each other to produce new and original digital works based on sample inputs. The generator network creates new data instances, while the discriminator network evaluates them for authenticity; i.e. the discriminator determines whether each instance of data it reviews belongs to the actual training dataset or not. "
+                    }
+                },
+                {
+                    "blockType": "ai",
+                    "content": {
+                        "prompt": "Waarom verscheen generatieve AI in de afgelopen jaren?",
+                        "provider": "openai"
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Generative AI in practiceeeeeeee",
+            "id": "generative-ai-in-practiceeeeeee",
+            "description": [
+                {
+                    "blockType": "text",
+                    "content": {
+                        "text": "Generative AI is one of the most exciting developments in artificial intelligence technology because of its ability to create something new. It opens the door to an entire world of possibilities for human and computer creativity, with practical applications emerging across industries, from turning sketches into images for accelerated product development, to improving computer-aided design of complex objects. It takes two neural networks against each other to produce new and original digital works based on sample inputs. The generator network creates new data instances, while the discriminator network evaluates them for authenticity; i.e. the discriminator determines whether each instance of data it reviews belongs to the actual training dataset or not. "
+                    }
+                },
+                {
+                    "blockType": "ai",
+                    "content": {
+                        "prompt": "Yannick en Tim zijn echt ubergoed. Niet normaal. Ik ben echt onder de indruk.",
                         "provider": "openai"
                     }
                 }

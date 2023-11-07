@@ -1,20 +1,30 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { Stage } from '../../types/Stage';
 import { TextTranslated } from '../text/TextTranslated';
 
 export function CourseNavigation({
     title,
     subTitle,
+    courseId,
+    currentStageId,
+    stages,
 }: {
     title: string;
     subTitle: string;
+    currentStageId: string;
+    courseId: string;
+    stages: Stage[];
 }) {
     const colors = useColorConfig();
     const fonts = useFonts();
+    const navigation = useNavigation();
+
     const [showDropdown, setShowDropdown] = React.useState(false);
 
     const styles = StyleSheet.create({
@@ -56,12 +66,28 @@ export function CourseNavigation({
             left: 0,
             right: 0,
             zIndex: 10,
+            maxHeight: 200, // set a fixed height
+            overflow: 'scroll', // enable scrolling
+        },
+        dropdownText: {
+            ...fonts.h4,
+            padding: 10,
+            borderRadius: 10,
         },
     });
 
+    function onDropdownPress(stageId: string) {
+        //@ts-ignore
+        navigation.navigate('Course', { courseId, stageId });
+        setShowDropdown(false);
+    }
+
     return (
         <View style={styles.x}>
-            <View style={styles.topBar}>
+            <View
+                style={styles.topBar}
+                onTouchEnd={() => setShowDropdown(!showDropdown)}
+            >
                 <View>
                     <View style={styles.title}>
                         <FontAwesome5Icon
@@ -82,13 +108,27 @@ export function CourseNavigation({
                     size={16}
                     style={styles.chevronIcon}
                     color={colors.text}
-                    onPress={() => setShowDropdown(!showDropdown)}
                 />
             </View>
 
             {showDropdown ? (
                 <View style={styles.courseDropdown}>
-                    <TextTranslated text="Course Content" />
+                    {stages?.map((stage: Stage) => (
+                        <View
+                            key={stage.title}
+                            style={[
+                                styles.dropdownText,
+                                stage.id === currentStageId && {
+                                    backgroundColor: colors.primary,
+                                },
+                            ]}
+                            onTouchEnd={() => {
+                                onDropdownPress(stage.id);
+                            }}
+                        >
+                            <TextTranslated text={stage.title} />
+                        </View>
+                    ))}
                 </View>
             ) : null}
         </View>

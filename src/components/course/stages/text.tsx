@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 import { TextTranslated } from '../../text/TextTranslated';
 import { useFonts } from '../../../constants/Fonts';
-import { TextOptions } from '../../../types/Stage';
+import { TextOptions } from '../../../types/Block';
 
 export default function TextRenderer({ options }: { options: TextOptions }) {
     const fonts = useFonts();

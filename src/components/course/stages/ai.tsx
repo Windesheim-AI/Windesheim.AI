@@ -1,8 +1,46 @@
-import React from 'react';
+//@ts-ignore
+import { OPENAI_API_KEY, AI_ENABLED } from '@env';
+import OpenAI from 'openai';
+import React, { useState, useEffect } from 'react';
 
+import BlockWrapper from './block';
+import { AIOptions } from '../../../types/Block';
 import AIGeneratedOutput from '../AIGeneratedOutput';
-import { AIOptions } from '../../../types/Stage';
 
 export default function AIRenderer({ options }: { options: AIOptions }) {
-    return <AIGeneratedOutput text={options.prompt} prompt={options.prompt} />;
+    const [text, setText] = useState(''); // set default value to an empty string
+    const openai = new OpenAI({
+        apiKey: OPENAI_API_KEY as string, // defaults to process.env["OPENAI_API_KEY"]
+        dangerouslyAllowBrowser: true,
+    });
+
+    useEffect(() => {
+        async function main() {
+            const chatCompletion = await openai.chat.completions.create({
+                messages: [
+                    {
+                        role: 'user',
+                        content: options.prompt + 'Houd het zeer kort!',
+                    },
+                ],
+                model: 'gpt-3.5-turbo',
+            });
+            //@ts-ignore
+            setText(chatCompletion.choices[0].message.content);
+        }
+        if (AI_ENABLED == 'true') {
+            void main();
+        } else {
+            setText(
+                'Live AI has been disabled in the .env file. Showing prompt;' +
+                    options.prompt,
+            );
+        }
+    }, [options.prompt]);
+
+    return (
+        <BlockWrapper>
+            <AIGeneratedOutput text={text} prompt={options.prompt} />
+        </BlockWrapper>
+    );
 }

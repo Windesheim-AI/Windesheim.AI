@@ -1,3 +1,4 @@
+import { useRoute } from '@react-navigation/native';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import * as Progress from 'react-native-progress';
@@ -10,12 +11,21 @@ import { TextTranslated } from '../../components/text/TextTranslated';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { Course } from '../../types/Course';
-import { Stage } from '../../types/Stage';
+
+type CoursePageProps = {
+    courseId: string;
+    stageId: string;
+};
 
 export default function CoursePage() {
     //@ts-ignore
-    const course: Course = j;
-    const activeStageId = '1';
+    const course: Course = j; //later replaced dby a fetch.
+    const route = useRoute();
+    const params = route.params as CoursePageProps;
+
+    const stageId = params.stageId;
+    const activeStageCount = course.stages.findIndex((e) => e.id === stageId);
+
     const fonts = useFonts();
     const colors = useColorConfig();
     const styles = StyleSheet.create({
@@ -36,45 +46,40 @@ export default function CoursePage() {
         return null; // or a loading indicator
     }
 
-    const stage = course.stages.find((e) => e.id === activeStageId) as Stage;
+    const stage = course.stages.find((e) => e.id === stageId)!;
 
     return (
         <PageView>
-            <CourseNavigation
-                title={course.title}
-                subTitle={
-                    course.stages.find((e) => e.id === activeStageId)?.title ??
-                    'test'
-                }
-            />
-
-            <Progress.Bar
-                progress={course.stages.length / Number.parseInt(activeStageId)}
-                width={null}
-                style={styles.progressBar}
-            />
-            <View style={styles.courseTitle}>
-                <TextTranslated text={course.title} />
-            </View>
-
-            <StageRenderer key={stage.id} stage={stage} />
-            {/*
-            <View style={fonts.description}>
-                <TextTranslated text={course.text} />
-            </View>
-
-            <AIGeneratedOutput
-                prompt={course.prompt}
-                text={course.generatedText}
-            />
-
-            <View style={styles.button}>
-                <Button
-                    buttonText={course.buttonText}
-                    colorGradientScheme={course.colorGradientScheme}
-                    screenName={course.screenName}
-                />
-            </View> */}
+            {stage ? (
+                <>
+                    <CourseNavigation
+                        title={course.title}
+                        subTitle={
+                            course.stages.find((e) => e.id === stageId)
+                                ?.title ?? 'test'
+                        }
+                        stages={course.stages}
+                        courseId={course.id}
+                        currentStageId={stageId}
+                    />
+                    <Progress.Bar
+                        progress={(activeStageCount + 1) / course.stages.length}
+                        width={null}
+                        style={styles.progressBar}
+                    />
+                    <View style={styles.courseTitle}>
+                        <TextTranslated text={course.title} />
+                    </View>
+                    <StageRenderer
+                        key={stage.id}
+                        courseId={course.id}
+                        stage={stage}
+                    />
+                </>
+            ) : (
+                // eslint-disable-next-line react-native/no-raw-text
+                <h1>Course not found!</h1>
+            )}
         </PageView>
     );
 }
