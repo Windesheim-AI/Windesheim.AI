@@ -1,4 +1,4 @@
-# WingAI 
+# WingAI
 
 [![Build Status](https://github.com/Windesheim-AI-App/WingAI/actions/workflows/app.build.yml/badge.svg)](https://github.com/Windesheim-AI-App/WingAI/actions/workflows/app.build.yml)
 ![check-code-coverage](https://img.shields.io/badge/code--coverage-72.99%25-yellow)
@@ -9,8 +9,8 @@ This is the repository for the WingAI-app.
 
 Make sure you have the following prerequisites installed on your system before proceeding with the installation:
 
-- Node.js
-- NPM (Node Package Manager)
+-   Node.js
+-   NPM (Node Package Manager)
 
 ## Installation
 
@@ -25,10 +25,11 @@ cp .env.example .env
 ```
 
 #### Required values
+
 The table below shows the required values for the .env file.
 
 | Name                      | Description                                 | Link                                                               |
-|---------------------------|---------------------------------------------|--------------------------------------------------------------------|
+| ------------------------- | ------------------------------------------- | ------------------------------------------------------------------ |
 | `EXPO_PUBLIC_GTR_API_KEY` | The key to access the Google Translate API. | https://console.cloud.google.com/apis/api/translate.googleapis.com |
 
 ### Install dependencies

@@ -5,5 +5,5 @@ describe('Study page tests', () => {
     it('test if element exists', () => {
         cy.visit('/Study');
         cy.contains('Study');
-    })
+    });
 });
