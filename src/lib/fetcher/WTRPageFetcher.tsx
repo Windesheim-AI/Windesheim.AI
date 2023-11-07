@@ -12,10 +12,10 @@ export const useFetchWTRPage = (page: string, defaultPage: string) => {
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        const URL = appConfig.wordPressUrl;
-        let FullUrl = URL + '/wp-json/wp/v2/pages?slug=' + page;
+        const backendUrl = appConfig.backendUrl;
+        let contentUrl = backendUrl + '/wp-json/wp/v2/pages?slug=' + page;
 
-        fetch(FullUrl)
+        fetch(contentUrl)
             .then((response) => response.json() as Promise<PageData[]>)
             .then((json) => {
                 const html = json[0]?.content?.rendered || '';
@@ -23,8 +23,9 @@ export const useFetchWTRPage = (page: string, defaultPage: string) => {
                 setLoaded(true);
             })
             .catch(() => {
-                FullUrl = URL + '/wp-json/wp/v2/pages?slug=' + defaultPage;
-                fetch(FullUrl)
+                contentUrl =
+                    backendUrl + '/wp-json/wp/v2/pages?slug=' + defaultPage;
+                fetch(contentUrl)
                     .then((response) => response.json() as Promise<PageData[]>)
                     .then((json) => {
                         const html = json[0]?.content?.rendered || '';

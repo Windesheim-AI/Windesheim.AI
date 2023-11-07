@@ -1,7 +1,7 @@
 import { ExpoConfig } from '@expo/config';
 
 export type AppConfigOptions = {
-    wordPressUrl: string;
+    backendUrl: string;
     splashScreenTime: number;
     localStoragePrefixes: {
         translations: string;
@@ -9,7 +9,7 @@ export type AppConfigOptions = {
 };
 
 export const appConfig: AppConfigOptions = {
-    wordPressUrl: 'https://windesheim.tech',
+    backendUrl: 'https://windesheim.tech',
     splashScreenTime: 500,
     localStoragePrefixes: {
         translations: 'translations',

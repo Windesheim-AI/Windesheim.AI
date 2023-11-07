@@ -26,7 +26,6 @@ export type WTRSContentScreenProps = {
 };
 
 export const WTRContentScreen = () => {
-    const languageState = useAppSelector((state: RootState) => state.language);
     const navigator = useNavigation();
     const route = useRoute();
     const params = route.params as WTRSContentScreenProps;
