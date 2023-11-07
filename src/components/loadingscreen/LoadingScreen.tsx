@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { Platform, View, ActivityIndicator, StyleSheet } from 'react-native';
 
 //@ts-ignore
 import LogoBlack from '../../assets/images/Logo_black.svg';
@@ -39,8 +39,18 @@ export const LoadingScreen = () => {
             <Background />
             <View style={styles.container}>
                 <ActivityIndicator size="large" color="#0000ff" />
-                <LogoBlack testID="LogoBlack" style={styles.centerImage} />
-                <LogoWin testID="LogoWin" style={styles.originalSizeImage} />
+                {Platform.OS !== 'web' ? (
+                    <LogoBlack style={styles.centerImage} />
+                ) : (
+                    // eslint-disable-next-line react-native/no-raw-text
+                    <View testID="LogoBlack">..</View>
+                )}
+                {Platform.OS !== 'web' ? (
+                    <LogoWin style={styles.originalSizeImage} />
+                ) : (
+                    // eslint-disable-next-line react-native/no-raw-text
+                    <View testID="LogoWin">..</View>
+                )}
             </View>
         </View>
     );
