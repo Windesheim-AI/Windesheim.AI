@@ -42,19 +42,19 @@ import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../text/TextTranslated';
 
 const providers = [
-    { name: 'Apple', logo: Apple },
-    { name: 'Amazon', logo: Amazon },
-    { name: 'Cisco', logo: Cisco },
-    { name: 'Google', logo: Google },
-    { name: 'HP', logo: Hp },
-    { name: 'IBM', logo: Ibm },
-    { name: 'Intel', logo: Intel },
-    { name: 'Meta', logo: Meta },
-    { name: 'Microsoft', logo: Microsoft },
-    { name: 'OpenAI', logo: OpenAI },
-    { name: 'Oracle', logo: Oracle },
-    { name: 'SalesForce', logo: SalesForce },
-    { name: 'SAP', logo: Sap },
+    { name: 'Apple', slug: 'apple', logo: Apple },
+    { name: 'Amazon', slug: 'aws', logo: Amazon },
+    { name: 'Cisco', slug: 'cisco-systems', logo: Cisco },
+    { name: 'Google', slug: 'google', logo: Google },
+    { name: 'HP', slug: 'hp', logo: Hp },
+    { name: 'IBM', slug: 'ibm', logo: Ibm },
+    { name: 'Intel', slug: 'intel', logo: Intel },
+    { name: 'Meta', slug: 'meta', logo: Meta },
+    { name: 'Microsoft', slug: 'microsoft', logo: Microsoft },
+    { name: 'OpenAI', slug: 'openai', logo: OpenAI },
+    { name: 'Oracle', slug: 'oracle', logo: Oracle },
+    { name: 'SalesForce', slug: 'salesforce', logo: SalesForce },
+    { name: 'SAP', slug: 'sap', logo: Sap },
 ];
 
 export const TechProviders = () => {
@@ -97,7 +97,6 @@ export const TechProviders = () => {
     });
 
     const navigate = (provider: string) => () => {
-        if (provider === 'Amazon') provider = 'AWS';
         //@ts-ignore
         navigation.navigate(Routes.WindesheimTechRadar, {
             page: provider,
@@ -113,8 +112,8 @@ export const TechProviders = () => {
                 {providers.map((provider) => (
                     <Pressable
                         style={styles.button}
-                        onPress={navigate(provider.name)}
-                        key={provider.name}
+                        onPress={navigate(provider.slug)}
+                        key={provider.slug}
                     >
                         {Platform.OS !== 'web' ? (
                             <provider.logo

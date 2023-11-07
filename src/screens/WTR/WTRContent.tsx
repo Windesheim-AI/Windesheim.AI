@@ -9,12 +9,12 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect, useMemo } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import { WhScrollView } from '../../components/general/WhScrollView';
 import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
 import { useFetchWTRPage } from '../../lib/fetcher/WTRPageFetcher';
 import WTRHtmlDisplay from '../../components/WTR/html/WTRHtmlDisplay';
 import { TextTranslated } from '../../components/text/TextTranslated';
+
 import { PageView } from '../../components/general/PageView';
 
 export type WTRSContentScreenProps = {
