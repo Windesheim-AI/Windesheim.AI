@@ -53,10 +53,6 @@ export const useFetchWTRPage = (page: string, defaultPage: string) => {
                         setIsLoadingCompleted(true);
                     })
                     .catch(() => {
-                        setContent(
-                            '<h2>404</h2><p>Page not found</p><p>Something went wrong while loading the page. Please try again later.</p>',
-                        );
-
                         storeDispatch(setLoading(false));
                         setIsLoading(false);
                         setIsLoadingCompleted(true);

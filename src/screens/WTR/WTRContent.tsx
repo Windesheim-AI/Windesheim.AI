@@ -7,14 +7,15 @@
 // @ts-ignore
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect, useMemo } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { RenderHTML } from 'react-native-render-html';
+import { View, Text, StyleSheet } from 'react-native';
 
 import { WhScrollView } from '../../components/general/WhScrollView';
 import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
 import { useFetchWTRPage } from '../../lib/fetcher/WTRPageFetcher';
 import WTRHtmlDisplay from '../../components/WTR/html/WTRHtmlDisplay';
+import { TextTranslated } from '../../components/text/TextTranslated';
+import { PageView } from '../../components/general/PageView';
 
 export type WTRSContentScreenProps = {
     page: string;
@@ -49,11 +50,25 @@ export const WTRContentScreen = () => {
         });
     }, [colors.background, colors.text]);
 
+    if (content.length < 1) {
+        return (
+            <PageView title="Page not found">
+                <Text style={styles.text}>
+                    <TextTranslated
+                        text={
+                            "We're sorry, but we couldn't find the page you were looking for."
+                        }
+                    />
+                </Text>
+            </PageView>
+        );
+    }
+
     return (
-        <WhScrollView>
+        <View>
             <View style={styles.container}>
                 <WTRHtmlDisplay html={content} colors={colors} />
             </View>
-        </WhScrollView>
+        </View>
     );
 };
