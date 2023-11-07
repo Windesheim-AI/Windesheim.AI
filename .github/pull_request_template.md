@@ -23,7 +23,8 @@ Description of your PR.
 
 ### App testing
 
-Build the app and test it on your phone
+Build the app and test it on your phone. 
+This is important, because we've on a regular basis issues with the app on mobile phones, but not with the website.
 
 -   [ ] Everything works as expected
 -   [ ] No weird usability bugs
