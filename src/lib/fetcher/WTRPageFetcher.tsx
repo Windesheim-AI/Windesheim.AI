@@ -63,5 +63,6 @@ export const useFetchWTRPage = (page: string, defaultPage: string) => {
                     });
             });
     }, [page, defaultPage]);
+
     return { content };
 };
