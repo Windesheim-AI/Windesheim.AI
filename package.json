@@ -38,7 +38,7 @@
         "@mui/material": "^5.14.17",
         "@react-native-async-storage/async-storage": "1.18.2",
         "@react-native-community/eslint-config": "^3.2.0",
-        "@react-native/metro-config": "^0.73.0",
+        "@react-native/metro-config": "^0.73.2",
         "@react-navigation/native": "^6.1.9",
         "@react-navigation/native-stack": "^6.9.15",
         "@react-navigation/stack": "^6.3.20",
