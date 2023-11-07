@@ -1,5 +1,11 @@
 import React from 'react';
-import { Platform, Image, View, ActivityIndicator, StyleSheet } from 'react-native';
+import {
+    Platform,
+    Image,
+    View,
+    ActivityIndicator,
+    StyleSheet,
+} from 'react-native';
 
 //@ts-ignore
 import LogoBlack from '../../assets/images/Logo/Logo_black.svg';
