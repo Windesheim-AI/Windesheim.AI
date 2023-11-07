@@ -37,6 +37,9 @@ jobs:
             - name: Run ESLint
               run: npm run test:eslint
 
+            - name: Run Prettier
+              run: npm run test:prettier
+
             - name: Run TypeScript check
               run: npm run test:tsc
 
