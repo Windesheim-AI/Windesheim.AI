@@ -1,5 +1,10 @@
 import React, { useMemo } from 'react';
-import { RenderHTML } from 'react-native-render-html';
+import {
+    defaultSystemFonts,
+    HTMLContentModel,
+    HTMLElementModel,
+    RenderHTML,
+} from 'react-native-render-html';
 import { DomVisitorCallbacks } from '@native-html/transient-render-engine';
 import { ColorSchemeType } from '../../../constants/Colors';
 
@@ -7,8 +12,12 @@ function onElement(element: any) {
     try {
         for (let i = 0; i < element.children.length; i++) {
             const child = element.children[i];
+
+            // Make sure that the page title and theme links are displayed
+            // correctly. Otherwise, the images are displayed too big.
             if (
                 (element.tagName === 'a' && child.tagName === 'img') ||
+                (element.tagName === 'h1' && child.tagName === 'img') ||
                 (element.tagName === 'h3' && child.tagName === 'img')
             ) {
                 child.attribs.style =
@@ -38,6 +47,15 @@ const classStyles = {
     },
 };
 
+const systemFonts = ['space-mono', ...defaultSystemFonts];
+
+const customHTMLElementModels = {
+    font: HTMLElementModel.fromCustomModel({
+        tagName: 'font',
+        contentModel: HTMLContentModel.block,
+    }),
+};
+
 export type WTRHtmlDisplayProps = {
     html: string;
     colors: ColorSchemeType;
@@ -55,8 +73,11 @@ const WTRHtmlDisplay = React.memo(({ html, colors }: WTRHtmlDisplayProps) => {
 
     const tagsStyles = useMemo(() => {
         return {
+            h1: {
+                display: 'inline-block',
+            },
             h2: {
-                display: 'none',
+                display: 'inline-block',
             },
             h3: {
                 display: 'inline-block',
@@ -93,9 +114,12 @@ const WTRHtmlDisplay = React.memo(({ html, colors }: WTRHtmlDisplayProps) => {
             tagsStyles={tagsStyles}
             //@ts-ignore
             classesStyles={classStyles}
+            systemFonts={systemFonts}
             domVisitors={domVisitors}
             contentWidth={100}
-            ignoredDomTags={['iframe', 'amp-img', 'font', 'color']}
+            ignoredDomTags={['iframe', 'amp-img']}
+            customHTMLElementModels={customHTMLElementModels}
+            enableExperimentalMarginCollapsing={true}
         />
     );
 });
