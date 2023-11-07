@@ -1,12 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { Platform, View, StyleSheet } from 'react-native';
+import { Platform, Image, View, StyleSheet } from 'react-native';
 
 import { appConfig } from '../../../app.config';
 //@ts-ignore
-import LogoBlack from '../../assets/images/Logo_black.svg';
+import LogoBlack from '../../assets/images/Logo/Logo_black.svg';
 //@ts-ignore
-import LogoWin from '../../assets/images/Logo_windesheim.svg';
+import LogoWin from '../../assets/images/Logo/Logo_windesheim.svg';
 import { useAppDispatch } from '../../redux/Hooks';
 import { hideSplashScreen } from '../../redux/slices/LayoutSlice';
 import { Routes } from '../../routes/routes';
@@ -51,14 +51,20 @@ export const SplashScreen = () => {
                 {Platform.OS !== 'web' ? (
                     <LogoBlack style={styles.centerImage} />
                 ) : (
-                    // eslint-disable-next-line react-native/no-raw-text
-                    <View testID="LogoBlack">..</View>
+                    <Image
+                        testID="LogoBlack"
+                        source={require('../../assets/images/Logo/Logo_black.webp')}
+                        style={styles.centerImage}
+                    />
                 )}
                 {Platform.OS !== 'web' ? (
                     <LogoWin style={styles.originalSizeImage} />
                 ) : (
-                    // eslint-disable-next-line react-native/no-raw-text
-                    <View testID="LogoWin">..</View>
+                    <Image
+                        testID="LogoWin"
+                        source={require('../../assets/images/Logo/Logo_windesheim_black.png')}
+                        style={styles.originalSizeImage}
+                    />
                 )}
             </View>
         </>
