@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
     ImageBackground,
+    Pressable,
     StyleSheet,
     Text,
     TouchableOpacity,
@@ -32,37 +33,37 @@ import { Routes } from '../../routes/routes';
 import HorizontalScroll from '../general/HorizontalScroll';
 import { TextTranslated } from '../text/TextTranslated';
 
+const themes = [
+    {
+        name: 'Artificial Intelligence',
+        slug: 'artificial-intelligence',
+        image: Ai,
+    },
+    { name: 'Building Trust', slug: 'building-trust', image: Trust },
+    { name: 'Cloud Everywhere', slug: 'cloud-everywhere', image: Cloud },
+    {
+        name: 'Transaction to interaction',
+        slug: 'transaction-interaction',
+        image: Ftti,
+    },
+    {
+        name: 'Future of programming',
+        slug: 'programming',
+        image: Programming,
+    },
+    { name: 'Future of Work', slug: 'future-of-work', image: Work },
+    { name: 'Green IT', slug: 'green-it', image: Green },
+    { name: 'Next UI', slug: 'next-ui', image: Nexuit },
+    {
+        name: 'Quantum computing',
+        slug: 'quantum-computing',
+        image: Quantum,
+    },
+];
+
 export const Themes = () => {
     const colors = useColorConfig();
     const navigation = useNavigation();
-
-    const themes = [
-        {
-            name: 'Artificial Intelligence',
-            slug: 'artificial-intelligence',
-            image: Ai,
-        },
-        { name: 'Building Trust', slug: 'building-trust', image: Trust },
-        { name: 'Cloud Everywhere', slug: 'cloud-everywhere', image: Cloud },
-        {
-            name: 'From transaction to interaction',
-            slug: 'transaction-interaction',
-            image: Ftti,
-        },
-        {
-            name: 'Future of programming',
-            slug: 'programming',
-            image: Programming,
-        },
-        { name: 'Future of Work', slug: 'future-of-work', image: Work },
-        { name: 'Green IT', slug: 'green-it', image: Green },
-        { name: 'Next UI & Metaverse', slug: 'next-ui', image: Nexuit },
-        {
-            name: 'Quantum computing',
-            slug: 'quantum-computing',
-            image: Quantum,
-        },
-    ];
 
     const styles = StyleSheet.create({
         heading: {
@@ -109,10 +110,7 @@ export const Themes = () => {
             </Text>
             <HorizontalScroll>
                 {themes.map((theme) => (
-                    <TouchableOpacity
-                        key={theme.slug}
-                        onPress={navigate(theme.slug)}
-                    >
+                    <Pressable key={theme.slug} onPress={navigate(theme.slug)}>
                         <ImageBackground
                             source={theme.image}
                             style={styles.themeItem}
@@ -123,7 +121,7 @@ export const Themes = () => {
                                 </Text>
                             </View>
                         </ImageBackground>
-                    </TouchableOpacity>
+                    </Pressable>
                 ))}
             </HorizontalScroll>
         </View>
