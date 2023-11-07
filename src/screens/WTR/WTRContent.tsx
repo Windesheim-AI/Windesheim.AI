@@ -6,15 +6,15 @@
 // @ts-ignore eslint-disable
 // @ts-ignore
 import { useNavigation, useRoute } from '@react-navigation/native';
-import React, { useEffect, useMemo } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, StyleSheet, Text } from 'react-native';
 
+import { WhScrollView } from '../../components/general/WhScrollView';
+import { TextTranslated } from '../../components/text/TextTranslated';
 import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
 import { useFetchWTRPage } from '../../lib/fetcher/WTRPageFetcher';
 import WTRHtmlDisplay from '../../components/WTR/html/WTRHtmlDisplay';
-import { TextTranslated } from '../../components/text/TextTranslated';
-
 import { PageView } from '../../components/general/PageView';
 
 export type WTRSContentScreenProps = {
@@ -37,18 +37,16 @@ export const WTRContentScreen = () => {
         }
     }, [navigator, page]);
 
-    const styles = useMemo(() => {
-        return StyleSheet.create({
-            container: {
-                backgroundColor: colors.background,
-                flex: 1,
-                padding: 20,
-            },
-            text: {
-                color: colors.text,
-            },
-        });
-    }, [colors.background, colors.text]);
+    const styles = StyleSheet.create({
+        container: {
+            backgroundColor: colors.background,
+            flex: 1,
+            padding: 20,
+        },
+        text: {
+            color: colors.text,
+        },
+    });
 
     if (content.length < 1) {
         return (
@@ -65,10 +63,10 @@ export const WTRContentScreen = () => {
     }
 
     return (
-        <View>
+        <WhScrollView>
             <View style={styles.container}>
                 <WTRHtmlDisplay html={content} colors={colors} />
             </View>
-        </View>
+        </WhScrollView>
     );
 };
