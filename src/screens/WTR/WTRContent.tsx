@@ -6,7 +6,7 @@
 // @ts-ignore eslint-disable
 // @ts-ignore
 import { useNavigation, useRoute } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { RenderHTML } from 'react-native-render-html';
 
@@ -14,6 +14,7 @@ import { WhScrollView } from '../../components/general/WhScrollView';
 import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
 import { useFetchWTRPage } from '../../lib/fetcher/WTRPageFetcher';
+import WTRHtmlDisplay from '../../components/WTR/html/WTRHtmlDisplay';
 
 export type WTRSContentScreenProps = {
     page: string;
@@ -35,100 +36,23 @@ export const WTRContentScreen = () => {
         }
     }, [navigator, page]);
 
-    const styles = StyleSheet.create({
-        container: {
-            backgroundColor: colors.background,
-            flex: 1,
-            padding: 20,
-        },
-        text: {
-            color: colors.text,
-        },
-    });
-
-    const tagsStyles = {
-        h2: {
-            display: 'none',
-        },
-        h3: {
-            display: 'inline-block',
-        },
-        h4: {
-            marginBottom: 0,
-        },
-        p: {
-            fontSize: 16,
-            lineHeight: 24,
-            marginBottom: 10,
-            marginTop: 0,
-        },
-        a: {
-            fontSize: 16,
-            lineHeight: 24,
-            marginBottom: 10,
-            color: colors.text,
-            textDecorationLine: 'none',
-        },
-        body: {
-            color: colors.text,
-        },
-        figure: {
-            display: 'none',
-        },
-    };
-
-    const classStyles = {
-        'floating-sidebar': {
-            display: 'none',
-        },
-        hideBigMedia: {
-            display: 'none',
-        },
-        'feedzy-rss': {
-            display: 'none',
-        },
-    };
-
-    async function onElement(element: any) {
-        try {
-            for (let i = 0; i < element.children.length; i++) {
-                const child = element.children[i];
-                if (
-                    (element.tagName === 'a' && child.tagName === 'img') ||
-                    (element.tagName === 'h3' && child.tagName === 'img')
-                ) {
-                    child.attribs.style =
-                        'height: 45px; width: 45px; display: inline;';
-                    element.attribs.style =
-                        'width: 100%; display: flex; align-items: center; margin-bottom: 0px;';
-                    if (element.tagName === 'a') {
-                        element.attribs.href = '';
-                    }
-                    return;
-                }
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    const domVisitors = {
-        onElement,
-    };
+    const styles = useMemo(() => {
+        return StyleSheet.create({
+            container: {
+                backgroundColor: colors.background,
+                flex: 1,
+                padding: 20,
+            },
+            text: {
+                color: colors.text,
+            },
+        });
+    }, [colors.background, colors.text]);
 
     return (
         <WhScrollView>
             <View style={styles.container}>
-                <RenderHTML
-                    source={{ html: content }}
-                    //@ts-ignore
-                    tagsStyles={tagsStyles}
-                    //@ts-ignore
-                    classesStyles={classStyles}
-                    domVisitors={domVisitors}
-                    contentWidth={100}
-                    ignoredDomTags={['iframe', 'amp-img']}
-                />
+                <WTRHtmlDisplay html={content} colors={colors} />
             </View>
         </WhScrollView>
     );
