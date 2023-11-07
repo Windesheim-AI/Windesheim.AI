@@ -23,6 +23,7 @@ export const RouteLinking = {
             },
             [Routes.Study]: 'Study',
             [Routes.Settings]: 'settings',
+            [Routes.LoadingScreen]: 'LoadingScreen',
         },
     },
 };

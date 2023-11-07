@@ -1,34 +1,31 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
-import { Platform, Image, View, StyleSheet } from 'react-native';
+import React from 'react';
+import {
+    Platform,
+    Image,
+    View,
+    ActivityIndicator,
+    StyleSheet,
+} from 'react-native';
 
-import { appConfig } from '../../../app.config';
 //@ts-ignore
 import LogoBlack from '../../assets/images/Logo/Logo_black.svg';
 //@ts-ignore
 import LogoWin from '../../assets/images/Logo/Logo_windesheim.svg';
 import { useCurrentTheme } from '../../constants/Colors';
-import { useAppDispatch } from '../../redux/Hooks';
-import { hideSplashScreen } from '../../redux/slices/LayoutSlice';
-import { Routes } from '../../routes/routes';
 import { Background } from '../general/Background';
 
-export const SplashScreen = () => {
-    const navigation = useNavigation();
-    const storeDispatcher = useAppDispatch();
+export const LoadingScreen = () => {
     const theme = useCurrentTheme();
 
-    useEffect(() => {
-        // Simulate a delay while loading the app
-        setTimeout(() => {
-            // Dispatch the action to hide the splash screen and change the state
-            storeDispatcher(hideSplashScreen());
-            // Navigate to the main app screen
-            navigation.navigate(Routes.Home as never);
-        }, appConfig.splashScreenTime);
-    }, [storeDispatcher, navigation]); // Include dispatch and navigation in the dependencies array
-
     const styles = StyleSheet.create({
+        fullScreenContainer: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 999,
+        },
         container: {
             flex: 1,
             justifyContent: 'center',
@@ -47,9 +44,10 @@ export const SplashScreen = () => {
     });
 
     return (
-        <>
+        <View style={styles.fullScreenContainer}>
             <Background />
             <View style={styles.container}>
+                <ActivityIndicator size="large" color="#0000ff" />
                 {Platform.OS !== 'web' ? (
                     <LogoBlack style={styles.centerImage} />
                 ) : (
@@ -79,8 +77,8 @@ export const SplashScreen = () => {
                     />
                 )}
             </View>
-        </>
+        </View>
     );
 };
 
-export default SplashScreen;
+export default LoadingScreen;

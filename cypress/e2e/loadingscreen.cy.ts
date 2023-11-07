@@ -1,18 +1,14 @@
-import { appConfig } from '../../app.config';
-
-describe('Check if Images load', () => {
+describe('Loading Screen shows', () => {
     it('passes', () => {
-        cy.visit('/');
+        cy.visit('/settings');
         cy.get('[data-testid="LogoBlack"]');
         cy.get('[data-testid="LogoWin"]');
     });
 });
 
-describe('Check if Splash Screen dissapears', () => {
+describe('Loading Screen Dissapears', () => {
     it('passes', () => {
-        cy.visit('/');
-        cy.wait(appConfig.splashScreenTime + 100);
-
+        cy.visit('/settings');
         cy.get('[data-testid="LogoBlack"]').should('not.exist');
         cy.get('[data-testid="LogoWin"]').should('not.exist');
     });

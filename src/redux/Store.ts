@@ -6,6 +6,7 @@ import { PersistConfig } from 'redux-persist/es/types';
 import { fontSlice } from './slices/FontSlice';
 import { languageSlice } from './slices/LanguageSlice';
 import { layoutSlice } from './slices/LayoutSlice';
+import { loadingSlice } from './slices/LoadingSlice';
 import { navigationSlice } from './slices/NavigationSlice';
 import { themeSlice } from './slices/ThemeSlice';
 
@@ -21,6 +22,7 @@ export const rootReducer = combineReducers({
     theme: themeSlice.reducer,
     language: languageSlice.reducer,
     layout: layoutSlice.reducer,
+    loading: loadingSlice.reducer,
     fontSize: fontSlice.reducer,
 });
 // @ts-ignore
