@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import { appConfig } from '../../../app.config';
 import { useAppDispatch } from '../../redux/Hooks';
 import { setLoading } from '../../redux/slices/LoadingSlice';
@@ -58,7 +59,7 @@ export const useFetchWTRPage = (page: string, defaultPage: string) => {
                         setIsLoadingCompleted(true);
                     });
             });
-    }, [page, defaultPage]);
+    }, [page, defaultPage, isLoading, isLoadingCompleted, storeDispatch]);
 
     return { content };
 };

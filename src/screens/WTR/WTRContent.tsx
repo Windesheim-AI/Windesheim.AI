@@ -1,21 +1,14 @@
-/* eslint-disable @typescript-eslint/prefer-for-of */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-// @ts-ignore eslint-disable
-// @ts-ignore
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
+import WTRHtmlDisplay from '../../components/WTR/html/WTRHtmlDisplay';
+import { PageView } from '../../components/general/PageView';
 import { WhScrollView } from '../../components/general/WhScrollView';
 import { TextTranslated } from '../../components/text/TextTranslated';
 import { useColorConfig } from '../../constants/Colors';
-import { Routes } from '../../routes/routes';
 import { useFetchWTRPage } from '../../lib/fetcher/WTRPageFetcher';
-import WTRHtmlDisplay from '../../components/WTR/html/WTRHtmlDisplay';
-import { PageView } from '../../components/general/PageView';
+import { Routes } from '../../routes/routes';
 
 export type WTRSContentScreenProps = {
     page: string;

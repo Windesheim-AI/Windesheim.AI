@@ -1,3 +1,11 @@
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+// @ts-ignore eslint-disable
+
+import { DomVisitorCallbacks } from '@native-html/transient-render-engine';
 import React, { useMemo } from 'react';
 import {
     defaultSystemFonts,
@@ -5,7 +13,7 @@ import {
     HTMLElementModel,
     RenderHTML,
 } from 'react-native-render-html';
-import { DomVisitorCallbacks } from '@native-html/transient-render-engine';
+
 import { ColorSchemeType } from '../../../constants/Colors';
 
 function onElement(element: any) {
@@ -31,6 +39,7 @@ function onElement(element: any) {
             }
         }
     } catch (error) {
+        // eslint-disable-next-line no-console
         console.error(error);
     }
 }
@@ -119,9 +128,11 @@ const WTRHtmlDisplay = React.memo(({ html, colors }: WTRHtmlDisplayProps) => {
             contentWidth={100}
             ignoredDomTags={['iframe', 'amp-img']}
             customHTMLElementModels={customHTMLElementModels}
-            enableExperimentalMarginCollapsing={true}
+            enableExperimentalMarginCollapsing
         />
     );
 });
+
+WTRHtmlDisplay.displayName = 'WTRHtmlDisplay';
 
 export default WTRHtmlDisplay;
