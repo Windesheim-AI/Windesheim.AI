@@ -22,7 +22,7 @@
         "test:jest-summary": "echo \"Running unit & component tests\" && jest -u",
         "test:jest-less-strict": "echo \"Running unit & component tests\" && jest -u --verbose --detectOpenHandles",
         "test:jest-strict": "echo \"Running unit & component tests\" && jest -u --verbose --detectLeaks --detectOpenHandles",
-        "tests": "npm run test:eslint && npm run test:tsc && npm run test:jest",
+        "tests": "npm run test:eslint && npm run test:prettier && npm run test:tsc && npm run test:jest",
         "coverage:jest": "echo \"Running unit & component tests\" && jest --coverage --coverageDirectory='coverage-jest'",
         "coverage:e2e": "nyc report --reporter=text-summary",
         "coverage:tests": "npm run coverage:jest && npm run coverage:e2e",
