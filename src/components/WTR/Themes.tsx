@@ -86,6 +86,7 @@ export const Themes = () => {
             fontSize: 14,
             fontWeight: 'bold',
             textAlign: 'center',
+            flexWrap: 'wrap',
         },
         opacityLayer: {
             width: '100%',
