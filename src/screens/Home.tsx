@@ -58,7 +58,6 @@ export const HomeScreen = () => {
 
             {showAlert && (
                 <StatusAlert
-                    type="success"
                     message="Message Added!"
                     colorGradientScheme={buttonColorSchemes.success}
                     icon="exclamation-circle"
@@ -68,7 +67,6 @@ export const HomeScreen = () => {
 
             {showAlert && (
                 <StatusAlert
-                    type="success"
                     message="Er ging iets fout..."
                     colorGradientScheme={buttonColorSchemes.danger}
                     width={700}

@@ -5,7 +5,6 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
 
 export type StatusAlertProps = {
-    type: string;
     screenName?: string;
     message: string;
     colorGradientScheme: ColorGradientScheme;
@@ -16,7 +15,6 @@ export type StatusAlertProps = {
 };
 
 export const StatusAlert = ({
-    type,
     message,
     colorGradientScheme,
     width,
@@ -30,9 +28,6 @@ export const StatusAlert = ({
 
     const colors = useColorConfig();
 
-    //const slideAnim = useRef(new Animated.Value(0)).current; // Animation for sliding in
-    //const expandAnim = useRef(new Animated.Value(0)).current; // Animation for expanding
-    //const fadeAnim = useRef(new Animated.Value(0)).current; // Animation for fading in/out
     const slideAnim = useRef(new Animated.Value(-100)).current; // Initialize off-screen
 
     useEffect(() => {
@@ -124,7 +119,6 @@ export const StatusAlert = ({
             justifyContent: 'center',
             alignSelf: 'center',
             backgroundColor: '#f2f2f2',
-            //transform: [{ translateY: slideAnim }], // Apply translateY based on slideAnim value,
             borderRadius: 15,
             flexDirection: 'row',
             height: alertHeight,
@@ -137,7 +131,6 @@ export const StatusAlert = ({
             flex: 1,
             alignContent: 'center',
             alignSelf: 'center',
-            //backgroundColor: 'blue',
             paddingRight: alertWidth * 0.03,
             paddingLeft: alertWidth * 0.03,
             left: 50,
