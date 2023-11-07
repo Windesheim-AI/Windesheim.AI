@@ -1,7 +1,16 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react';
-import { View, Image, ActivityIndicator, StyleSheet } from 'react-native';
+import {
+    Platform,
+    Image,
+    View,
+    ActivityIndicator,
+    StyleSheet,
+} from 'react-native';
 
+//@ts-ignore
+import LogoBlack from '../../assets/images/Logo/Logo_black.svg';
+//@ts-ignore
+import LogoWin from '../../assets/images/Logo/Logo_windesheim.svg';
 import { Background } from '../general/Background';
 
 export const LoadingScreen = () => {
@@ -36,16 +45,26 @@ export const LoadingScreen = () => {
             <Background />
             <View style={styles.container}>
                 <ActivityIndicator size="large" color="#0000ff" />
-                <Image
-                    testID="WingAI-logo"
-                    source={require('../../assets/images/WingAI_logo_light.png')}
-                    style={styles.centerImage}
-                />
-                <Image
-                    testID="windesheim-logo"
-                    source={require('../../assets/images/windesheim_logo.png')}
-                    style={styles.originalSizeImage}
-                />
+                {Platform.OS !== 'web' ? (
+                    <LogoBlack style={styles.centerImage} />
+                ) : (
+                    <Image
+                        testID="LogoBlack"
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        source={require('../../assets/images/Logo/Logo_black.webp')}
+                        style={styles.centerImage}
+                    />
+                )}
+                {Platform.OS !== 'web' ? (
+                    <LogoWin style={styles.originalSizeImage} />
+                ) : (
+                    <Image
+                        testID="LogoWin"
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        source={require('../../assets/images/Logo/Logo_windesheim_black.png')}
+                        style={styles.originalSizeImage}
+                    />
+                )}
             </View>
         </View>
     );

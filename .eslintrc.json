@@ -23,17 +23,15 @@
         "ecmaVersion": "latest",
         "sourceType": "module",
         "tsconfigRootDir": ".",
-        "project": [
-            "./tsconfig.lint.json"
-        ]
+        "project": ["./tsconfig.lint.json"]
     },
-    "plugins": [
-        "react",
-        "react-native",
-        "@typescript-eslint",
-        "etc"
+    "plugins": ["react", "react-native", "@typescript-eslint", "etc"],
+    "ignorePatterns": [
+        "cypress/",
+        "cypress.config.ts",
+        "coverage",
+        "coverage-jest"
     ],
-    "ignorePatterns": ["cypress/", "cypress.config.ts", "coverage", "coverage-jest"],
     "settings": {
         "react": {
             "version": "18.x"
