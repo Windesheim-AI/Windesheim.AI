@@ -37,7 +37,11 @@ export const Themes = () => {
     const navigation = useNavigation();
 
     const themes = [
-        { name: 'Artificial Intelligence', slug: 'ai', image: Ai },
+        {
+            name: 'Artificial Intelligence',
+            slug: 'artificial-intelligence',
+            image: Ai,
+        },
         { name: 'Building Trust', slug: 'building-trust', image: Trust },
         { name: 'Cloud Everywhere', slug: 'cloud-everywhere', image: Cloud },
         {
