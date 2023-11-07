@@ -5,21 +5,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // @ts-ignore eslint-disable
 // @ts-ignore
-import { EXPO_PUBLIC_GTR_API_KEY } from '@env';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import React, { useContext, useEffect } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, StyleSheet } from 'react-native';
 import { RenderHTML } from 'react-native-render-html';
 
 import { WhScrollView } from '../../components/general/WhScrollView';
-import { TextTranslated } from '../../components/text/TextTranslated';
 import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
 import { useFetchWTRPage } from '../../lib/fetcher/WTRPageFetcher';
-import { TranslateContext } from '../../lib/translation/Translator';
-import { translatorFactory } from '../../lib/translation/translators/TranslatorFactory';
-import { defaultLanguageCode } from '../../constants/Languages';
-import { RootState, useAppSelector } from '../../redux/Hooks';
 
 export type WTRSContentScreenProps = {
     page: string;
@@ -32,7 +26,7 @@ export const WTRContentScreen = () => {
     const page = params?.page?.toString();
     const colors = useColorConfig();
     const defaultPage = 'windesheim-technology-radar';
-    const { content, loaded } = useFetchWTRPage(page, defaultPage);
+    const { content } = useFetchWTRPage(page, defaultPage);
 
     useEffect(() => {
         if (!page) {
@@ -121,15 +115,6 @@ export const WTRContentScreen = () => {
     const domVisitors = {
         onElement,
     };
-
-    if (!loaded)
-        return (
-            <View style={styles.container}>
-                <Text style={styles.text}>
-                    <TextTranslated text="Loading content" />
-                </Text>
-            </View>
-        );
 
     return (
         <WhScrollView>
