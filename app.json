@@ -1,9 +1,9 @@
 {
     "expo": {
         "name": "WingAI",
-        "slug": "wingai",
+        "slug": "winsight",
         "scheme": "wingai",
-        "version": "1.0.2",
+        "version": "1.0.0",
         "orientation": "portrait",
         "icon": "./src/assets/images/icon/icon.png",
         "userInterfaceStyle": "light",
@@ -15,11 +15,11 @@
         "assetBundlePatterns": ["*/"],
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "com.wingai.wingai2",
-            "buildNumber": "1.0.2"
+            "bundleIdentifier": "com.windesheim.wingai",
+            "buildNumber": "1.0.0"
         },
         "android": {
-            "package": "com.wingai.wingai",
+            "package": "com.windesheim.wingai",
             "versionCode": 3,
             "adaptiveIcon": {
                 "foregroundImage": "./src/assets/images/icon/adaptive-icon.png",
