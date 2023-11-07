@@ -53,6 +53,7 @@ export const SplashScreen = () => {
                 ) : (
                     <Image
                         testID="LogoBlack"
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                         source={require('../../assets/images/Logo/Logo_black.webp')}
                         style={styles.centerImage}
                     />
@@ -62,6 +63,7 @@ export const SplashScreen = () => {
                 ) : (
                     <Image
                         testID="LogoWin"
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                         source={require('../../assets/images/Logo/Logo_windesheim_black.png')}
                         style={styles.originalSizeImage}
                     />
