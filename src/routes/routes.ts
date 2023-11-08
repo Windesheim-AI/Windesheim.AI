@@ -10,4 +10,5 @@ export enum Routes {
     CaseStudyInfo = 'CaseStudyInfo',
     Course = 'Course',
     CourseFinished = 'CourseFinished',
+    CourseOverview = 'CourseOverview',
 }

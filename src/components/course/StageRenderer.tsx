@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text } from 'react-native';
 
-import AIRenderer from './stages/ai';
-import ButtonBlock from './stages/button';
-import TextRenderer from './stages/text';
+import AIRenderer from './stages/AIBlock';
+import ButtonBlock from './stages/ButtonBlock';
+import TextRenderer from './stages/TextBlock';
 import { Block, BlockType } from '../../types/Block';
 import { Stage } from '../../types/Stage';
 
@@ -13,7 +13,13 @@ const blockRenderers = [
     { blockType: BlockType.Button, component: ButtonBlock },
 ];
 
-export default function StageRenderer({ stage, courseId }: { stage: Stage, courseId: string }) {
+export default function StageRenderer({
+    stage,
+    courseId,
+}: {
+    stage: Stage;
+    courseId: string;
+}) {
     return (
         <>
             {stage.description.map((block: Block) => {
@@ -31,7 +37,7 @@ export default function StageRenderer({ stage, courseId }: { stage: Stage, cours
                     courseId,
                     stageId: stage.id,
                 };
-                return <Component key={block.id} options={options} />;
+                return <Component key={Math.random()} options={options} />;
             })}
         </>
     );

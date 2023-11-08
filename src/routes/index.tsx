@@ -12,6 +12,7 @@ import { WTRScreen } from '../screens/WTR/WTR';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
 import CoursePage from '../screens/Course/Course';
 import CourseFinished from '../screens/Course/CourseFinished';
+import CourseOverview from '../screens/Course/CourseOverview';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ const screens = [
     { name: Routes.CaseStudyInfo, component: CaseStudyInfo },
     { name: Routes.Course, component: CoursePage },
     { name: Routes.CourseFinished, component: CourseFinished },
+    { name: Routes.CourseOverview, component: CourseOverview },
 ];
 
 export const Router = () => {

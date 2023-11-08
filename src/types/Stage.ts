@@ -5,3 +5,8 @@ export type Stage = {
     title: string;
     description: Block[];
 };
+
+export type StageData = {
+    isCompletedByUser: boolean;
+    stage: Stage;
+};

@@ -5,6 +5,7 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
 import { TextTranslated } from '../text/TextTranslated';
 
@@ -80,11 +81,24 @@ export function CourseNavigation({
         block: {
             width: '95%',
         },
+        courseOverview: {
+            ...fonts.h4,
+            fontWeight: 'bold',
+            padding: 10,
+            borderBottomColor: colors.listItemBg,
+            borderBottomWidth: 1,
+        },
     });
 
     function onDropdownPress(stageId: string) {
         //@ts-ignore
         navigation.navigate('Course', { courseId, stageId });
+        setShowDropdown(false);
+    }
+
+    function onCourseOverviewPress() {
+        //@ts-ignore
+        navigation.navigate(Routes.CourseOverview, { courseId });
         setShowDropdown(false);
     }
 
@@ -119,9 +133,16 @@ export function CourseNavigation({
 
             {showDropdown ? (
                 <View style={styles.courseDropdown}>
+                    {/* course overview button */}
+                    <View
+                        style={styles.courseOverview}
+                        onTouchEnd={onCourseOverviewPress}
+                    >
+                        <TextTranslated text="Course Overview" />
+                    </View>
                     {stages?.map((stage: Stage) => (
                         <View
-                            key={stage.title}
+                            key={stage.id}
                             style={[
                                 styles.dropdownText,
                                 stage.id === currentStageId && {

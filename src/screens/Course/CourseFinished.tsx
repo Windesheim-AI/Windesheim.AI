@@ -1,6 +1,8 @@
 import { useRoute } from '@react-navigation/native';
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useRef } from 'react';
+import { StyleSheet, View, Animated } from 'react-native';
+import ConfettiCannon from 'react-native-confetti-cannon';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 import * as j from '../../assets/courses/test.json';
 import { Button } from '../../components/buttons/Button';
@@ -9,8 +11,6 @@ import { TextTranslated } from '../../components/text/TextTranslated';
 import { buttonColorSchemes, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { Course } from '../../types/Course';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 type CourseFinishedProps = {
     courseId: string;
@@ -41,15 +41,33 @@ export default function CourseFinished() {
             marginBottom: 10,
         },
     });
+
+    const spinValue = useRef(new Animated.Value(0)).current;
+
+    Animated.loop(
+        Animated.timing(spinValue, {
+            toValue: 1,
+            duration: 2500,
+            useNativeDriver: true,
+        }),
+    ).start();
+
+    const spin = spinValue.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg'],
+    });
+
     return (
         <PageView>
             <View style={styles.container}>
-                <FontAwesome5Icon
-                    name="react"
-                    style={styles.icon}
-                    size={200}
-                    color={colors.text}
-                />
+                <Animated.View style={{ transform: [{ rotate: spin }] }}>
+                    <FontAwesome5Icon
+                        name="react"
+                        style={styles.icon}
+                        size={200}
+                        color={colors.text}
+                    />
+                </Animated.View>
                 <View style={styles.courseTitle}>
                     <TextTranslated text="Course finished!" />
                 </View>
@@ -62,6 +80,13 @@ export default function CourseFinished() {
                     colorGradientScheme={buttonColorSchemes.success}
                 />
             </View>
+            <ConfettiCannon
+                count={40}
+                origin={{ x: -10, y: 50 }}
+                explosionSpeed={500}
+                fallSpeed={2000}
+                fadeOut
+            />
         </PageView>
     );
 }

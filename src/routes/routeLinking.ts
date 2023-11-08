@@ -25,17 +25,23 @@ export const RouteLinking = {
             [Routes.Settings]: 'settings',
             [Routes.Usecase]: 'Usecase',
             [Routes.CaseStudyInfo]: 'CaseStudyInfo',
+            [Routes.CourseFinished]: {
+                path: 'course/:courseId/finished',
+                parse: {
+                    courseId: (courseId: string) => courseId,
+                },
+            },
+            [Routes.CourseOverview]: {
+                path: 'course/:courseId/overview',
+                parse: {
+                    courseId: (courseId: string) => courseId,
+                },
+            },
             [Routes.Course]: {
                 path: 'course/:courseId/:stageId',
                 parse: {
                     courseId: (courseId: string) => courseId,
                     stageId: (stageId: string) => stageId,
-                },
-            },
-            [Routes.CourseFinished]: {
-                path: 'course/:courseId/finished',
-                parse: {
-                    courseId: (courseId: string) => courseId,
                 },
             },
         },
