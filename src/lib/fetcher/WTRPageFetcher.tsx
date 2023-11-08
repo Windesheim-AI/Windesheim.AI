@@ -14,20 +14,19 @@ export const useFetchWTRPage = (page: string, defaultPage: string) => {
     const storeDispatch = useAppDispatch();
 
     const [content, setContent] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const [isLoadingCompleted, setIsLoadingCompleted] = useState(false);
 
     useEffect(() => {
-        const backendUrl = appConfig.backendUrl;
-        let contentUrl = backendUrl + '/wp-json/wp/v2/pages?slug=' + page;
-
-        if (!isLoading && !isLoadingCompleted) {
-            storeDispatch(setLoading(true));
-            setIsLoading(true);
+        if (content.length > 1) {
+            return;
         }
 
-        if (isLoadingCompleted) {
-            return;
+        const backendUrl = appConfig.backendUrl;
+        const contentUrl = backendUrl + '/wp-json/wp/v2/pages?slug=' + page;
+        const defaultUrl =
+            backendUrl + '/wp-json/wp/v2/pages?slug=' + defaultPage;
+
+        if (content.length < 1) {
+            storeDispatch(setLoading(true));
         }
 
         fetch(contentUrl)
@@ -35,31 +34,18 @@ export const useFetchWTRPage = (page: string, defaultPage: string) => {
             .then((json) => {
                 const html = json[0]?.content?.rendered || '';
                 setContent(html);
-
-                storeDispatch(setLoading(false));
-                setIsLoading(false);
-                setIsLoadingCompleted(true);
             })
             .catch(() => {
-                contentUrl =
-                    backendUrl + '/wp-json/wp/v2/pages?slug=' + defaultPage;
-                fetch(contentUrl)
+                fetch(defaultUrl)
                     .then((response) => response.json() as Promise<PageData[]>)
                     .then((json) => {
                         const html = json[0]?.content?.rendered || '';
                         setContent(html);
-
-                        storeDispatch(setLoading(false));
-                        setIsLoading(false);
-                        setIsLoadingCompleted(true);
                     })
-                    .catch(() => {
-                        storeDispatch(setLoading(false));
-                        setIsLoading(false);
-                        setIsLoadingCompleted(true);
-                    });
-            });
-    }, [page, defaultPage, isLoading, isLoadingCompleted, storeDispatch]);
+                    .finally(() => storeDispatch(setLoading(false)));
+            })
+            .finally(() => storeDispatch(setLoading(false)));
+    }, [page, defaultPage, storeDispatch]);
 
     return { content };
 };
