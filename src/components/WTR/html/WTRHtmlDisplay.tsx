@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/prefer-for-of */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // @ts-ignore eslint-disable
@@ -12,9 +11,13 @@ import {
     HTMLContentModel,
     HTMLElementModel,
     RenderHTML,
+    useInternalRenderer,
 } from 'react-native-render-html';
 
 import { ColorSchemeType } from '../../../constants/Colors';
+import { useWindowDimensions, View } from 'react-native';
+import { CustomTagRendererRecord } from 'react-native-render-html/src/render/render-types';
+import { InternalRendererProps } from 'react-native-render-html/lib/typescript/shared-types';
 
 function onElement(element: any) {
     try {
@@ -63,6 +66,48 @@ const customHTMLElementModels = {
         tagName: 'font',
         contentModel: HTMLContentModel.block,
     }),
+    'amp-img': HTMLElementModel.fromNativeModel({
+        tagName: 'img',
+        category: 'embedded',
+        isVoid: true,
+        getReactNativeProps({ attributes }, props) {
+            // see https://w3c.github.io/html-aria/#el-img
+            const label = attributes['aria-label'] || attributes.alt;
+            if (
+                label &&
+                (!props?.view || props.view.accessibilityRole !== 'none')
+            ) {
+                return {
+                    native: {
+                        accessibilityLabel: label,
+                        accessibilityRole: 'image',
+                    },
+                };
+            }
+            return {
+                native: {
+                    accessibilityRole: 'image',
+                },
+            };
+        },
+    }).extend({
+        contentModel: HTMLContentModel.block,
+    }),
+};
+
+function CustomImageRenderer(props: InternalRendererProps<any>) {
+    const { Renderer, rendererProps } = useInternalRenderer('img', props);
+
+    return (
+        <View>
+            <Renderer {...rendererProps} />
+        </View>
+    );
+}
+
+const renderers: CustomTagRendererRecord = {
+    img: CustomImageRenderer,
+    'amp-img': CustomImageRenderer,
 };
 
 export type WTRHtmlDisplayProps = {
@@ -76,6 +121,8 @@ export type WTRHtmlDisplayProps = {
  * See: https://stackoverflow.com/questions/68966120
  */
 const WTRHtmlDisplay = React.memo(({ html, colors }: WTRHtmlDisplayProps) => {
+    const { width } = useWindowDimensions();
+
     const domVisitors: DomVisitorCallbacks = {
         onElement,
     };
@@ -110,8 +157,15 @@ const WTRHtmlDisplay = React.memo(({ html, colors }: WTRHtmlDisplayProps) => {
             body: {
                 color: colors.text,
             },
+            img: {
+                overflow: 'hidden',
+                width: '100%',
+                objectFit: 'center',
+                alignSelf: 'center',
+                resizeMode: 'contain',
+            },
             figure: {
-                display: 'none',
+                display: 'block',
             },
         };
     }, [colors.text]);
@@ -125,9 +179,10 @@ const WTRHtmlDisplay = React.memo(({ html, colors }: WTRHtmlDisplayProps) => {
             classesStyles={classStyles}
             systemFonts={systemFonts}
             domVisitors={domVisitors}
-            contentWidth={100}
-            ignoredDomTags={['iframe', 'amp-img']}
+            contentWidth={width}
+            ignoredDomTags={['iframe', 'script']}
             customHTMLElementModels={customHTMLElementModels}
+            renderers={renderers}
             enableExperimentalMarginCollapsing
         />
     );
