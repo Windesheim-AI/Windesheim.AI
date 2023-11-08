@@ -9,26 +9,21 @@ import { TextTranslated } from '../../components/text/TextTranslated';
 import { useColorConfig } from '../../constants/Colors';
 import { useFetchWTRPage } from '../../lib/fetcher/WTRPageFetcher';
 import { Routes } from '../../routes/routes';
+import { setLoading } from '../../redux/slices/LoadingSlice';
+import { useAppDispatch } from '../../redux/Hooks';
 
 export type WTRSContentScreenProps = {
     page: string;
 };
 
 export const WTRContentScreen = () => {
+    const storeDispatcher = useAppDispatch();
     const navigator = useNavigation();
     const route = useRoute();
     const params = route.params as WTRSContentScreenProps;
     const page = params?.page?.toString();
     const colors = useColorConfig();
-    const defaultPage = 'windesheim-technology-radar';
-    const { content } = useFetchWTRPage(page, defaultPage);
-
-    useEffect(() => {
-        if (!page) {
-            //@ts-ignore
-            navigator.navigate(Routes.WindesheimTechRadar);
-        }
-    }, [navigator, page]);
+    const { content, hasContent, isLoading } = useFetchWTRPage(page);
 
     const styles = StyleSheet.create({
         container: {
@@ -41,7 +36,18 @@ export const WTRContentScreen = () => {
         },
     });
 
-    if (content.length < 1) {
+    useEffect(() => {
+        if (!page) {
+            //@ts-ignore
+            navigator.navigate(Routes.WindesheimTechRadar);
+        }
+    }, [navigator, page]);
+
+    useEffect(() => {
+        storeDispatcher(setLoading(isLoading));
+    }, [isLoading, storeDispatcher]);
+
+    if (!hasContent) {
         return (
             <PageView title="Page not found">
                 <Text style={styles.text}>
