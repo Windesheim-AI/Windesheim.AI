@@ -9,7 +9,7 @@ import { layoutSlice } from './slices/LayoutSlice';
 import { loadingSlice } from './slices/LoadingSlice';
 import { navigationSlice } from './slices/NavigationSlice';
 import { themeSlice } from './slices/ThemeSlice';
-
+import { tutorialSlice } from './slices/TutorialSlice';
 const persistConfig: PersistConfig<unknown> = {
     key: 'root',
     storage: AsyncStorage,
@@ -24,6 +24,7 @@ export const rootReducer = combineReducers({
     layout: layoutSlice.reducer,
     loading: loadingSlice.reducer,
     fontSize: fontSlice.reducer,
+    tutorial: tutorialSlice.reducer,
 });
 // @ts-ignore
 const persistedReducer = persistReducer(persistConfig, rootReducer);

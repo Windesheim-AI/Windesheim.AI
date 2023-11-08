@@ -3,9 +3,9 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
     ImageBackground,
+    Pressable,
     StyleSheet,
     Text,
-    TouchableOpacity,
     View,
 } from 'react-native';
 
@@ -105,10 +105,7 @@ export const Themes = () => {
             </Text>
             <HorizontalScroll>
                 {themes.map((theme) => (
-                    <TouchableOpacity
-                        key={theme.slug}
-                        onPress={navigate(theme.slug)}
-                    >
+                    <Pressable key={theme.slug} onPress={navigate(theme.slug)}>
                         <ImageBackground
                             source={theme.image}
                             style={styles.themeItem}
@@ -119,7 +116,7 @@ export const Themes = () => {
                                 </Text>
                             </View>
                         </ImageBackground>
-                    </TouchableOpacity>
+                    </Pressable>
                 ))}
             </HorizontalScroll>
         </View>

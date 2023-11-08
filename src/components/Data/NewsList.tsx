@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Linking,
-} from 'react-native';
+import { View, Text, StyleSheet, Pressable, Linking } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
@@ -59,7 +53,7 @@ const NewsList = () => {
     return (
         <View testID="newslist" style={styles.newsItemContainer}>
             {newsData.map((item) => (
-                <TouchableOpacity
+                <Pressable
                     testID="newsitem"
                     key={item.id}
                     style={styles.newsItem}
@@ -71,7 +65,7 @@ const NewsList = () => {
                     <Text style={styles.newsItemText}>
                         <TextTranslated text={item.content} />
                     </Text>
-                </TouchableOpacity>
+                </Pressable>
             ))}
         </View>
     );
