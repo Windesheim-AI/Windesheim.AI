@@ -1,13 +1,16 @@
-describe('StatusAlert component', () => {
+describe('StatusAlert tests', () => {
   beforeEach(() => {
-    cy.visit('/home'); 
+    cy.visit('/'); // Vervang 'jouw-pagina' door de daadwerkelijke URL van je applicatie
   });
 
-  it('displays and disappears the alert after a button click', () => {
-    cy.contains('add message').click();
-    cy.get('.status-alert').should('be.visible'); // Check if the alert is visible
+  it('Toont de StatusAlert wanneer de knop wordt ingedrukt', () => {
+    // Verifieer dat de StatusAlert niet aanwezig is voor het indrukken van de knop
+    cy.contains('Message Added!').should('not.exist');
 
-    cy.wait(3000); // Wait for 3 seconds
-    cy.get('.status-alert').should('not.exist'); // Check if the alert is no longer visible
+    // Klik op de knop die de StatusAlert toont
+    cy.contains('add message').click();
+
+    // Verifieer dat de StatusAlert verschijnt na het klikken op de knop
+    cy.contains('Message Added!').should('be.visible');
   });
 });

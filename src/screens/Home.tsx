@@ -7,13 +7,13 @@ import HorizontalScroll from '../components/general/HorizontalScroll';
 import { PageView } from '../components/general/PageView';
 import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
 import { Routes } from '../routes/routes';
-import { StatusAlert } from '../components/alerts/StatusAlert';
-import { useState } from 'react';
+import { useAppDispatch } from '../redux/Store';
+import { NotificationActions } from '../redux/slices/NotificatieSlice';
+import { Notification, NotificationType } from '../components/alerts/Notification';
 
 export const HomeScreen = () => {
     const colors = useColorConfig();
-    const [showAlert, setShowAlert] = useState(false);
-
+    const storeDispatcher = useAppDispatch();
     const styles = StyleSheet.create({
         newsHeaderText: {
             fontSize: 23,
@@ -24,12 +24,21 @@ export const HomeScreen = () => {
         },
     });
 
-    const showStatusAlert = () => {
-        setShowAlert(true); // Set showAlert to true to show the StatusAlert
-        // Simulate hiding the StatusAlert after a delay
-        setTimeout(() => {
-            setShowAlert(false); // Hide the StatusAlert after a delay
-        }, 3000);
+    
+
+    const addNewNotification = () => {
+
+        const notification = {
+            id: 1,
+            //type: "success",
+            screenName: 'WTR',
+            message: 'message added',
+            colorGradientScheme: buttonColorSchemes.success,
+            icon: 'circle-exclamation',
+            isVisible: false,
+        } as NotificationType
+
+        storeDispatcher(NotificationActions.addNotification(notification));
     };
 
     return (
@@ -54,28 +63,7 @@ export const HomeScreen = () => {
                 width={100}
             />
 
-            <Button buttonText='add message' onPress={showStatusAlert} colorGradientScheme={buttonColorSchemes.success} screenName='WTR' width={100} />
-
-            {showAlert && (
-                <StatusAlert
-                    message="Message Added!"
-                    colorGradientScheme={buttonColorSchemes.success}
-                    icon="exclamation-circle"
-                    isVisible={showAlert}
-                />
-            )}
-
-            {showAlert && (
-                <StatusAlert
-                    message="Er ging iets fout..."
-                    colorGradientScheme={buttonColorSchemes.danger}
-                    width={700}
-                    height={100}
-                    icon="exclamation-circle"
-                    isVisible={showAlert}
-                />
-            )}
-
+            <Button buttonText='add message' onPress={addNewNotification} colorGradientScheme={buttonColorSchemes.success} screenName='WTR' width={100} />
         </PageView>
     );
 };

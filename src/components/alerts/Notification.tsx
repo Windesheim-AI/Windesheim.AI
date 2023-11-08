@@ -4,7 +4,9 @@ import { Animated, Text, StyleSheet, Dimensions, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
 
-export type StatusAlertProps = {
+export type NotificationType = {
+    id: number;
+    //type: 'info' | 'success' | 'error';
     screenName?: string;
     message: string;
     colorGradientScheme: ColorGradientScheme;
@@ -14,14 +16,16 @@ export type StatusAlertProps = {
     isVisible: boolean;
 };
 
-export const StatusAlert = ({
+export const Notification = ({
+    id,
+    //type,
     message,
     colorGradientScheme,
     width,
     height,
     icon,
     isVisible,
-}: StatusAlertProps) => {
+}: NotificationType) => {
     const [fontsLoaded, fontError] = useFonts({
         Inter_500Medium,
     });
@@ -50,13 +54,14 @@ export const StatusAlert = ({
         return null;
     }
 
+    //To adjust for different widths and heights, these variables are used, however too small will make it look weird.
     const defaultWidth = Dimensions.get('window').width;
     const alertWidth = width ? width : defaultWidth * 0.9;
     const defaultHeight = 60;
     const alertHeight = height ? height : defaultHeight;
     const barWidth = alertWidth * 0.03;
     const barHeight = alertHeight * 1.4;
-    
+
     const styles = StyleSheet.create({
         bg1: {
             backgroundColor: colorGradientScheme[0],
@@ -111,7 +116,7 @@ export const StatusAlert = ({
             top: 0,
             left: 0,
             right: 0,
-            zIndex: 999, // Ensure it's displayed on top of other content
+            zIndex: 999, 
             transform: [{ translateY: slideAnim }],
         },
         alert: {
@@ -177,5 +182,5 @@ export const StatusAlert = ({
 
         </View>
         </Animated.View>
-    );
+        )
 };
