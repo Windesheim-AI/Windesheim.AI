@@ -110,7 +110,11 @@ export const Themes = () => {
             </Text>
             <HorizontalScroll>
                 {themes.map((theme) => (
-                    <Pressable key={theme.slug} onPress={navigate(theme.slug)}>
+                    <Pressable
+                        key={theme.slug}
+                        onPress={navigate(theme.slug)}
+                        testID={`theme-${theme.slug}-button`}
+                    >
                         <ImageBackground
                             source={theme.image}
                             style={styles.themeItem}

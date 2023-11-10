@@ -114,6 +114,7 @@ export const TechProviders = () => {
                         style={styles.button}
                         onPress={navigate(provider.slug)}
                         key={provider.slug}
+                        testID={`tech-provider-${provider.slug}-button`}
                     >
                         {Platform.OS !== 'web' ? (
                             <provider.logo
