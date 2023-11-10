@@ -44,6 +44,7 @@ export const RouteLinking = {
                     stageId: (stageId: string) => stageId,
                 },
             },
+            [Routes.Courses]: 'courses',
         },
     },
 };

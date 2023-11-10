@@ -11,4 +11,5 @@ export enum Routes {
     Course = 'Course',
     CourseFinished = 'CourseFinished',
     CourseOverview = 'CourseOverview',
+    Courses = 'Courses',
 }

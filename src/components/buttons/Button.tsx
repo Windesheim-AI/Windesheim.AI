@@ -104,7 +104,7 @@ export const Button = ({
     });
 
     return (
-        <Pressable style={styles.button} onPress={onPress}>
+        <View style={styles.button} onTouchEnd={onPress}>
             <View style={styles.bg1} />
             <View style={styles.bg2} />
             <Text style={styles.text}>
@@ -112,6 +112,6 @@ export const Button = ({
                 {icon ? ' ' : ''}
                 <TextTranslated text={buttonText ?? ''} />
             </Text>
-        </Pressable>
+        </View>
     );
 };

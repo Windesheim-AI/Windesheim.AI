@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { TextTranslated } from '../../components/text/TextTranslated';
-import { useColorConfig } from '../../constants/Colors';
+import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { Routes } from '../../routes/routes';
 import { StageDataMapped } from '../../types/Stage';
@@ -31,6 +31,15 @@ export const StageItem = ({
             marginLeft: 10,
             color: colors.text,
         },
+
+        card: {
+            backgroundColor: colors.listItemBg,
+            borderRadius: 10,
+            marginBottom: 16,
+            paddingLeft: 10,
+            ...shadow,
+            elevation: 5,
+        },
     });
 
     function handlePress() {
@@ -42,7 +51,7 @@ export const StageItem = ({
     }
 
     return (
-        <View onTouchEnd={handlePress}>
+        <View onTouchEnd={handlePress} style={styles.card}>
             <View style={styles.courseTitle}>
                 {isCompletedByUser ? (
                     <MaterialCommunityIcons
