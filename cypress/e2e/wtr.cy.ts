@@ -127,4 +127,18 @@ describe('WTR page tests', () => {
         cy.contains('Programmeren met ChatGPT');
         cy.contains('Internet of Things');
     });
+
+    it('can view the an empty page', () => {
+        cy.intercept('GET', '/wp-json/wp/v2/pages?slug=empty-page', {
+            fixture: 'wtr-content/empty-page.json',
+        }).as('getPage');
+
+        cy.visit('/wtr-content/empty-page');
+        cy.wait(['@getPage']);
+
+        cy.contains('Page not found');
+        cy.contains(
+            "We're sorry, but we couldn't find the page you were looking for.",
+        );
+    });
 });
