@@ -9,13 +9,13 @@ export const RouteLinking = {
         screens: {
             [Routes.Home]: 'home',
             [Routes.WindesheimTechRadar]: {
-                path: 'wtr/:page?',
+                path: 'wtr-content/:page?',
                 parse: {
                     page: (page: string) => page,
                 },
             },
             [Routes.WindesheimTechRadarContent]: {
-                path: 'wtr-content/:page',
+                path: 'wtr-content-content/:page',
                 parse: {
                     page: (page: string) => page,
                 },
