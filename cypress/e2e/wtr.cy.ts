@@ -1,8 +1,8 @@
-describe('Home page tests', () => {
-    it('can display the home page', () => {
-        cy.visit('/');
+describe('WTR page tests', () => {
+    it('can display the WTR page', () => {
+        cy.visit('/wtr');
 
-        cy.contains('Home');
+        cy.contains('Windesheim Tech Radar');
 
         cy.contains('Tech Providers');
         cy.contains('Apple');

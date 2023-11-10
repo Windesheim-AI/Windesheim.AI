@@ -1,9 +1,9 @@
 describe('Study page tests', () => {
-    it('the study page works', () => {
+    it('can display the study page', () => {
         cy.visit('/Study');
-    });
-    it('test if element exists', () => {
-        cy.visit('/Study');
+
         cy.contains('Study');
+        cy.get('[data-testid="Study-button"]');
+        cy.get('[data-testid="Study-button"]').should('contain.text', 'Study');
     });
 });
