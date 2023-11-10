@@ -2,11 +2,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 
-import {
-    buttonColorSchemes,
-    shadow,
-    useColorConfig,
-} from './../../constants/Colors';
+import { buttonColorSchemes } from './../../constants/Colors';
 import { StageItem } from './StageItem';
 import { Button } from '../../components/buttons/Button';
 import { PageView } from '../../components/general/PageView';
