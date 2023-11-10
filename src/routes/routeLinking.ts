@@ -8,15 +8,14 @@ export const RouteLinking = {
     config: {
         screens: {
             [Routes.Home]: 'home',
-            [Routes.Test]: 'test',
             [Routes.WindesheimTechRadar]: {
-                path: 'wtr/:page?',
+                path: 'wtr-content/:page?',
                 parse: {
                     page: (page: string) => page,
                 },
             },
             [Routes.WindesheimTechRadarContent]: {
-                path: 'wtr/view/:page',
+                path: 'wtr-content-content/:page',
                 parse: {
                     page: (page: string) => page,
                 },
@@ -45,6 +44,7 @@ export const RouteLinking = {
                 },
             },
             [Routes.Courses]: 'courses',
+            [Routes.LoadingScreen]: 'LoadingScreen',
         },
     },
 };

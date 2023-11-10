@@ -5,10 +5,10 @@ import { Routes } from './routes';
 import CoursePage from '../screens/Course/Course';
 import CourseFinished from '../screens/Course/CourseFinished';
 import CourseOverview from '../screens/Course/CourseOverview';
+import { LoadingScreen } from '../components/loadingscreen/LoadingScreen';
 import { HomeScreen } from '../screens/Home';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { StudyScreen } from '../screens/Study';
-import { TestScreen } from '../screens/Test';
 import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
 import { UsecaseScreen } from '../screens/Usecase/Usecase';
 import { WTRScreen } from '../screens/WTR/WTR';
@@ -20,10 +20,10 @@ const Stack = createNativeStackNavigator();
 const screens = [
     { name: Routes.Home, component: HomeScreen },
     { name: Routes.Study, component: StudyScreen },
-    { name: Routes.Test, component: TestScreen },
     { name: Routes.WindesheimTechRadar, component: WTRScreen },
     { name: Routes.WindesheimTechRadarContent, component: WTRContentScreen },
     { name: Routes.Settings, component: SettingsScreen },
+    { name: Routes.LoadingScreen, component: LoadingScreen },
     { name: Routes.Usecase, component: UsecaseScreen },
     { name: Routes.CaseStudyInfo, component: CaseStudyInfo },
     { name: Routes.Course, component: CoursePage },
