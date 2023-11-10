@@ -7,7 +7,7 @@ export type NavigationBarLink = {
 
 export const navigationBarLinks: NavigationBarLink[] = [
     { icon: 'home', route: Routes.Home },
-    { icon: 'search', route: Routes.WindesheimTechRadar },
+    { icon: 'newspaper', route: Routes.WindesheimTechRadar },
     { icon: 'graduation-cap', route: Routes.Study },
     { icon: 'cog', route: Routes.Settings },
 ];
