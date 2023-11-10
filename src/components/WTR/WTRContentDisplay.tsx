@@ -4,11 +4,11 @@ import { View, StyleSheet, Text } from 'react-native';
 import WTRHtmlDisplay from '../../components/WTR/html/WTRHtmlDisplay';
 import { useColorConfig } from '../../constants/Colors';
 import { useFetchWTRPage } from '../../lib/fetcher/WTRPageFetcher';
-import { setLoading } from '../../redux/slices/LoadingSlice';
 import { useAppDispatch } from '../../redux/Hooks';
+import { setLoading } from '../../redux/slices/LoadingSlice';
 import { PageView } from '../general/PageView';
-import { TextTranslated } from '../text/TextTranslated';
 import { WhScrollView } from '../general/WhScrollView';
+import { TextTranslated } from '../text/TextTranslated';
 
 export type WTRSContentDisplayProps = {
     page: string;

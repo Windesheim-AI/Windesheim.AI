@@ -5,8 +5,8 @@ import { StyleSheet, View } from 'react-native';
 import { WTRSContentScreenProps } from './WTRContent';
 import { TechProviders } from '../../components/WTR/TechProviders';
 import { Themes } from '../../components/WTR/Themes';
-import { useColorConfig } from '../../constants/Colors';
 import { WTRContentDisplay } from '../../components/WTR/WTRContentDisplay';
+import { useColorConfig } from '../../constants/Colors';
 
 export const WTRScreen = () => {
     const route = useRoute();

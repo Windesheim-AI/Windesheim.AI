@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../redux/Hooks';
 import { setLoading } from '../../redux/slices/LoadingSlice';
 
-export function useStaticLoading(delay: number, canExecute: boolean = true) {
+export function useStaticLoading(delay: number, canExecute = true) {
     const storeDispatch = useAppDispatch();
 
     const [isLoading, setIsLoading] = useState(false);

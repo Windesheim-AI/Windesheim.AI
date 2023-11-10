@@ -1,11 +1,12 @@
-/* eslint-disable @typescript-eslint/prefer-for-of */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable react/no-multi-comp */
 // @ts-ignore eslint-disable
 
 import { DomVisitorCallbacks } from '@native-html/transient-render-engine';
 import React, { useMemo } from 'react';
+import { useWindowDimensions, View } from 'react-native';
 import {
     defaultSystemFonts,
     HTMLContentModel,
@@ -13,22 +14,20 @@ import {
     RenderHTML,
     useInternalRenderer,
 } from 'react-native-render-html';
+import { InternalRendererProps } from 'react-native-render-html/lib/typescript/shared-types';
+import { CustomTagRendererRecord } from 'react-native-render-html/src/render/render-types';
 
 import { ColorSchemeType } from '../../../constants/Colors';
-import { useWindowDimensions, View } from 'react-native';
-import { CustomTagRendererRecord } from 'react-native-render-html/src/render/render-types';
-import { InternalRendererProps } from 'react-native-render-html/lib/typescript/shared-types';
 
 function onElement(element: any) {
     try {
-        for (let i = 0; i < element.children.length; i++) {
-            const child = element.children[i];
-
+        element.children.forEach((child: any) => {
             // Make sure that the page title and theme links are displayed
             // correctly. Otherwise, the images are displayed too big.
             if (
                 (element.tagName === 'a' && child.tagName === 'img') ||
                 (element.tagName === 'h1' && child.tagName === 'img') ||
+                (element.tagName === 'h2' && child.tagName === 'img') ||
                 (element.tagName === 'h3' && child.tagName === 'img')
             ) {
                 child.attribs.style =
@@ -38,9 +37,8 @@ function onElement(element: any) {
                 if (element.tagName === 'a') {
                     element.attribs.href = '';
                 }
-                return;
             }
-        }
+        });
     } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error);

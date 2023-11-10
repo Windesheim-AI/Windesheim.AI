@@ -1,5 +1,6 @@
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
+
 import { WTRContentDisplay } from '../../components/WTR/WTRContentDisplay';
 
 export type WTRSContentScreenProps = {

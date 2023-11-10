@@ -1,6 +1,5 @@
-import { appConfig } from '../../../app.config';
-
 import { fetchJsonData, useDataFetcher } from './DataFetcher';
+import { appConfig } from '../../../app.config';
 
 interface PageData {
     content: {
@@ -9,9 +8,7 @@ interface PageData {
 }
 
 export const useFetchWTRPage = (page: string) => {
-    const { data, error, isLoading, isValidating, mutate } = useDataFetcher<
-        PageData[]
-    >(fetchJsonData, {
+    const { data, isLoading } = useDataFetcher<PageData[]>(fetchJsonData, {
         url: appConfig.backendUrl + '/wp-json/wp/v2/pages?slug=' + page,
     });
 
