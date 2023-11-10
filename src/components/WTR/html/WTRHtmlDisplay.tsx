@@ -97,7 +97,7 @@ function CustomImageRenderer(props: InternalRendererProps<any>) {
     const { Renderer, rendererProps } = useInternalRenderer('img', props);
 
     return (
-        <View>
+        <View testID="custom-image">
             <Renderer {...rendererProps} />
         </View>
     );

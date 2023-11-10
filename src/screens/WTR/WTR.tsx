@@ -4,7 +4,7 @@ import { View } from 'react-native';
 
 import { WTRSContentScreenProps } from './WTRContent';
 import { TechProviders } from '../../components/WTR/TechProviders';
-import { Themes } from '../../components/WTR/Themes';
+import { Themes } from '../../components/WTR/Theme';
 import { WTRContentDisplay } from '../../components/WTR/WTRContentDisplay';
 import { PageView } from '../../components/general/PageView';
 

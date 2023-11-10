@@ -41,7 +41,7 @@ import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../text/TextTranslated';
 
-const providers = [
+const techProviderItems = [
     { name: 'Apple', slug: 'apple', logo: Apple },
     { name: 'Amazon', slug: 'aws', logo: Amazon },
     { name: 'Cisco', slug: 'cisco-systems', logo: Cisco },
@@ -109,7 +109,7 @@ export const TechProviders = () => {
                 <TextTranslated text="Tech Providers" />
             </Text>
             <ScrollView style={styles.container}>
-                {providers.map((provider) => (
+                {techProviderItems.map((provider) => (
                     <Pressable
                         style={styles.button}
                         onPress={navigate(provider.slug)}
