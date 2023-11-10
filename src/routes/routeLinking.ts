@@ -16,7 +16,7 @@ export const RouteLinking = {
                 },
             },
             [Routes.WindesheimTechRadarContent]: {
-                path: 'wtr/view/:page',
+                path: 'wtr-content/:page',
                 parse: {
                     page: (page: string) => page,
                 },

@@ -1,20 +1,19 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import { useRoute } from '@react-navigation/native';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { WTRSContentScreenProps } from './WTRContent';
 import { TechProviders } from '../../components/WTR/TechProviders';
 import { Themes } from '../../components/WTR/Themes';
 import { useColorConfig } from '../../constants/Colors';
-import { Routes } from '../../routes/routes';
+import { WTRContentDisplay } from '../../components/WTR/WTRContentDisplay';
 
 export const WTRScreen = () => {
-    const navigator = useNavigation();
     const route = useRoute();
+    const colors = useColorConfig();
+
     const params = route.params as WTRSContentScreenProps;
     const page = params?.page?.toString();
-
-    const colors = useColorConfig();
 
     const styles = StyleSheet.create({
         container: {
@@ -25,12 +24,9 @@ export const WTRScreen = () => {
         },
     });
 
-    useEffect(() => {
-        if (page && page !== 'view') {
-            //@ts-ignore
-            navigator.navigate(Routes.WindesheimTechRadarContent, { page });
-        }
-    }, [navigator, page]);
+    if (page) {
+        return <WTRContentDisplay page={page} />;
+    }
 
     return (
         <View style={styles.container}>
