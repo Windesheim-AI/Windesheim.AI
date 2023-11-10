@@ -55,7 +55,7 @@ export const Layout = ({ children }: LayoutProps) => {
     }, [animateMarginBottomAnimation, navigation]);
 
     return (
-        <React.StrictMode>
+        <>
             <Background />
             <SafeAreaView style={styles.wrapper}>
                 <Animated.View // Use Animated.View here
@@ -70,6 +70,6 @@ export const Layout = ({ children }: LayoutProps) => {
                     <NavBar />
                 </View>
             </SafeAreaView>
-        </React.StrictMode>
+        </>
     );
 };
