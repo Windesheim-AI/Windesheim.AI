@@ -8,9 +8,11 @@ import {
     StyleSheet,
     Animated,
     Dimensions,
+    Platform,
 } from 'react-native';
 
 import animationSource from '../../assets/json/500_man.json';
+import { appConfig } from '../../../app.config';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -95,15 +97,19 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({
     return (
         <View style={styles.container} testID="error-fallback-container">
             <View style={styles.animationContainer}>
-                <LottieView
-                    source={animationSource}
-                    autoPlay
-                    loop
-                    style={styles.animationContainer}
-                />
+                {Platform.OS !== 'web' ? (
+                    <LottieView
+                        source={animationSource}
+                        autoPlay
+                        loop
+                        style={styles.animationContainer}
+                    />
+                ) : null}
             </View>
             <Text style={styles.title}>Something happened!</Text>
-            <Text style={styles.text}>{error.toString()}</Text>
+            <Text style={styles.text}>
+                {appConfig.debug ? error.toString() : ''}
+            </Text>
             <View style={styles.textContainer}>
                 <TouchableOpacity
                     style={[
