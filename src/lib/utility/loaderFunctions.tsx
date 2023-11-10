@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 
-import { useAppSelector, useAppDispatch, RootState } from '../../redux/Hooks';
+import { useAppSelector, useAppDispatch } from '../../redux/Hooks';
 import { setLoading } from '../../redux/slices/LoadingSlice';
 
-export function useStaticLoading(delay: number) {
+export function useStaticLoading(delay: number, canExecute: boolean = true) {
     const storeDispatch = useAppDispatch();
-    const loadingState = useAppSelector((state: RootState) => state.loading);
 
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadingCompleted, setIsLoadingCompleted] = useState(false);
 
     useEffect(() => {
+        if (!canExecute) return;
+
         if (!isLoading && !isLoadingCompleted) {
             storeDispatch(setLoading(true));
             setIsLoading(true);
@@ -25,7 +26,7 @@ export function useStaticLoading(delay: number) {
             setIsLoading(false);
             setIsLoadingCompleted(true);
         }, delay);
-    }, [storeDispatch, isLoading, isLoadingCompleted, loadingState, delay]);
+    }, [storeDispatch, isLoading, isLoadingCompleted, delay, canExecute]);
 }
 
 export function useDynamicLoading<T>(callback: () => T) {
