@@ -1,7 +1,7 @@
+import { render } from '@testing-library/react-native';
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react-native';
-import { theme, Themes } from '../../../src/components/WTR/Theme';
-import { Routes } from '../../../src/routes/routes';
+
+import { themeItems, Themes } from '../../../src/components/WTR/Theme';
 
 test('renders Themes component without crashing', () => {
     render(<Themes />);
@@ -10,7 +10,7 @@ test('renders Themes component without crashing', () => {
 test('displays all themes', () => {
     const { getByText } = render(<Themes />);
 
-    theme.forEach((theme) => {
+    themeItems.forEach((theme) => {
         const themeName = getByText(theme.name);
         expect(themeName).toBeTruthy();
     });

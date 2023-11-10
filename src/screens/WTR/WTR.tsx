@@ -1,6 +1,5 @@
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
-import { View } from 'react-native';
 
 import { WTRSContentScreenProps } from './WTRContent';
 import { TechProviders } from '../../components/WTR/TechProviders';

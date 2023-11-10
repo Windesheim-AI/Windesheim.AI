@@ -32,7 +32,7 @@ import { Routes } from '../../routes/routes';
 import HorizontalScroll from '../general/HorizontalScroll';
 import { TextTranslated } from '../text/TextTranslated';
 
-export const theme = [
+export const themeItems = [
     {
         name: 'Artificial Intelligence',
         slug: 'artificial-intelligence',
@@ -109,7 +109,7 @@ export const Themes = () => {
                 <TextTranslated text="Themes" />
             </Text>
             <HorizontalScroll>
-                {theme.map((theme) => (
+                {themeItems.map((theme) => (
                     <Pressable
                         key={theme.slug}
                         onPress={navigate(theme.slug)}

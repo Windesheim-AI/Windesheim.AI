@@ -1,9 +1,10 @@
+import { render, waitFor } from '@testing-library/react-native';
 import React from 'react';
-import { act, render, waitFor } from '@testing-library/react-native';
-import { WTRContentDisplay } from '../../../src/components/WTR/WTRContentDisplay';
-import configureStore from 'redux-mock-store';
-import { useAppDispatch } from '../../../src/redux/Hooks';
 import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+
+import { WTRContentDisplay } from '../../../src/components/WTR/WTRContentDisplay';
+import { useAppDispatch } from '../../../src/redux/Hooks';
 
 jest.mock('../../../src/lib/fetcher/WTRPageFetcher', () => ({
     useFetchWTRPage: jest.fn(() => ({
@@ -22,6 +23,7 @@ const mockStore = configureStore([]);
 describe('WTRContentDisplay', () => {
     // @ts-ignore
     let store: Store<unknown, AnyAction>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let consoleSpy: any;
 
     beforeEach(() => {
@@ -51,6 +53,7 @@ describe('WTRContentDisplay', () => {
     test('renders page not found when there is no data', async () => {
         // Mock isLoading to be true
         jest.spyOn(
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
             require('../../../src/lib/fetcher/WTRPageFetcher'),
             'useFetchWTRPage',
         ).mockImplementation(() => ({
