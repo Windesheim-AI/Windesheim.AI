@@ -15,6 +15,8 @@ import {
     useColorConfig,
 } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { useAppDispatch } from '../../redux/Hooks';
+import { courseDataActions } from '../../redux/slices/CourseDataSlice';
 import { Routes } from '../../routes/routes';
 import { Course } from '../../types/Course';
 
@@ -29,6 +31,8 @@ export default function CoursePage() {
     const route = useRoute();
     const navigator = useNavigation();
     const params = route.params as CoursePageProps;
+
+    const storeDispatcher = useAppDispatch();
 
     const stageId = params.stageId;
     if (stageId === 'start') {
@@ -63,6 +67,16 @@ export default function CoursePage() {
     const stage = course.stages.find((e) => e.id === stageId)!;
     const nextStage = course.stages[activeStageCount + 1];
     function onPress() {
+        // store
+
+        // complete the stage in the array
+        storeDispatcher(
+            courseDataActions.completeStage({
+                courseId: course.id,
+                stageId,
+            }),
+        );
+
         if (!nextStage) {
             //@ts-ignore
             navigator.navigate(Routes.CourseFinished.toString(), {

@@ -2,6 +2,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
 import { Routes } from './routes';
+import CoursePage from '../screens/Course/Course';
+import CourseFinished from '../screens/Course/CourseFinished';
+import CourseOverview from '../screens/Course/CourseOverview';
 import { HomeScreen } from '../screens/Home';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { StudyScreen } from '../screens/Study';
@@ -10,9 +13,6 @@ import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
 import { UsecaseScreen } from '../screens/Usecase/Usecase';
 import { WTRScreen } from '../screens/WTR/WTR';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
-import CoursePage from '../screens/Course/Course';
-import CourseFinished from '../screens/Course/CourseFinished';
-import CourseOverview from '../screens/Course/CourseOverview';
 
 const Stack = createNativeStackNavigator();
 

@@ -1,10 +1,10 @@
+import { Link } from '@react-navigation/native';
 import * as React from 'react';
 import { Text, View } from 'react-native';
 
 import { TechProviders } from '../components/WTR/TechProviders';
 import { Themes } from '../components/WTR/Themes';
 import { PageView } from '../components/general/PageView';
-import { Link } from '@react-navigation/native';
 
 export const HomeScreen = () => {
     return (

@@ -1,20 +1,20 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { TextTranslated } from '../../components/text/TextTranslated';
 import { useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { Routes } from '../../routes/routes';
-import { Course } from '../../types/Course';
-import { StageData } from '../../types/Stage';
+import { StageDataMapped } from '../../types/Stage';
 
 export const StageItem = ({
-    stage,
+    title,
+    id,
     isCompletedByUser,
     courseId,
-}: StageData & { courseId: string }) => {
+}: StageDataMapped & { courseId: string }) => {
     const fonts = useFonts();
     const colors = useColorConfig();
     const navigation = useNavigation();
@@ -37,7 +37,7 @@ export const StageItem = ({
         //@ts-ignore
         navigation.navigate(Routes.Course.toString(), {
             courseId,
-            stageId: stage.id,
+            stageId: id,
         });
     }
 
@@ -58,7 +58,7 @@ export const StageItem = ({
                     />
                 )}
                 <View style={styles.title}>
-                    <TextTranslated text={stage.title} />
+                    <TextTranslated text={title} />
                 </View>
             </View>
         </View>
