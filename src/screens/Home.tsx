@@ -9,7 +9,7 @@ import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
 import { Routes } from '../routes/routes';
 import { useAppDispatch } from '../redux/Store';
 import { NotificationActions } from '../redux/slices/NotificatieSlice';
-import { Notification, NotificationType } from '../components/alerts/Notification';
+import { NotificationType } from '../components/alerts/Notification';
 
 export const HomeScreen = () => {
     const colors = useColorConfig();
@@ -24,19 +24,27 @@ export const HomeScreen = () => {
         },
     });
 
-    
-
     const addNewNotification = () => {
-
         const notification = {
             id: 1,
-            //type: "success",
             screenName: 'WTR',
             message: 'message added',
             colorGradientScheme: buttonColorSchemes.success,
-            icon: 'circle-exclamation',
-            isVisible: false,
-        } as NotificationType
+            icon: 'exclamation-circle',
+        } as NotificationType;
+
+        storeDispatcher(NotificationActions.addNotification(notification));
+    };
+
+    const addNewError = () => {
+        const notification = {
+            id: 1,
+            screenName: 'WTR',
+            message: 'Something went wrong...',
+            colorGradientScheme: buttonColorSchemes.danger,
+            icon: 'exclamation-circle',
+            width: 500,
+        } as NotificationType;
 
         storeDispatcher(NotificationActions.addNotification(notification));
     };
@@ -64,6 +72,7 @@ export const HomeScreen = () => {
             />
 
             <Button buttonText='add message' onPress={addNewNotification} colorGradientScheme={buttonColorSchemes.success} screenName='WTR' width={100} />
+            <Button buttonText='add error' onPress={addNewError} colorGradientScheme={buttonColorSchemes.danger} screenName='WTR' width={100} />
         </PageView>
     );
 };

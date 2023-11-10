@@ -1,62 +1,76 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useFonts, Inter_500Medium } from '@expo-google-fonts/inter';
+import { useDispatch } from 'react-redux';
+import { NotificationActions } from '../../redux/slices/NotificatieSlice';
 import { Animated, Text, StyleSheet, Dimensions, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
 
+
 export type NotificationType = {
     id: number;
-    //type: 'info' | 'success' | 'error';
     screenName?: string;
     message: string;
     colorGradientScheme: ColorGradientScheme;
     width?: number;
     height?: number;
     icon?: string;
-    isVisible: boolean;
 };
 
 export const Notification = ({
     id,
-    //type,
     message,
     colorGradientScheme,
     width,
     height,
     icon,
-    isVisible,
 }: NotificationType) => {
     const [fontsLoaded, fontError] = useFonts({
         Inter_500Medium,
     });
 
+    const dispatch = useDispatch();
     const colors = useColorConfig();
 
-    const slideAnim = useRef(new Animated.Value(-100)).current; // Initialize off-screen
+    const slideAnim = useRef(new Animated.Value(-80)).current; // Initialize off-screen
+    const fadeAnim = useRef(new Animated.Value(1)).current; // Initial value for opacity: 1
+    const heightAnim = useRef(new Animated.Value(50)).current; // Initial value for height: 50
 
     useEffect(() => {
-        if (isVisible) {
-            Animated.timing(slideAnim, {
-                toValue: 0, // Slide in (0 = fully visible)
-                duration: 500,
-                useNativeDriver: true,
-            }).start();
-        } else {
-            Animated.timing(slideAnim, {
-                toValue: -100, // Slide out (-100 = off-screen)
-                duration: 500,
-                useNativeDriver: true,
-            }).start();
-        }
-    }, [isVisible]);
+        const timer = setTimeout(() => {
+          Animated.parallel([
+            Animated.timing(fadeAnim, {
+              toValue: 0,
+              duration: 500,
+              useNativeDriver: true,
+            }),
+            Animated.timing(heightAnim, {
+              toValue: 0,
+              duration: 500,
+              useNativeDriver: false,
+            }),
+          ]).start(() => {
+            dispatch(NotificationActions.removeNotification(id));
+          });
+        }, 3000);
+    
+        return () => clearTimeout(timer); // this will clear the timeout if the component is unmounted before the timeout finishes
+      }, [dispatch, id]);
+
+    useEffect(() => {
+        Animated.timing(slideAnim, {
+            toValue: 0, // Slide in (0 = fully visible)
+            duration: 500,
+            useNativeDriver: true,
+        }).start();
+    });
 
     if (!fontsLoaded || fontError) {
         return null;
     }
 
-    //To adjust for different widths and heights, these variables are used, however too small will make it look weird.
     const defaultWidth = Dimensions.get('window').width;
-    const alertWidth = width ? width : defaultWidth * 0.9;
+    const alertWidth = width ? width : defaultWidth * 0.97;
     const defaultHeight = 60;
     const alertHeight = height ? height : defaultHeight;
     const barWidth = alertWidth * 0.03;
@@ -111,14 +125,6 @@ export const Notification = ({
             transform: [{ rotate: '15deg' }],
             width: (barWidth / 1) * 0.85,
         },
-        overlay: {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            zIndex: 999, 
-            transform: [{ translateY: slideAnim }],
-        },
         alert: {
             alignItems: 'center',
             justifyContent: 'center',
@@ -130,6 +136,7 @@ export const Notification = ({
             margin: 10,
             width: alertWidth,
             overflow: 'hidden',
+            transform: [{ translateY: slideAnim }]
         },
         textContainer: {
             position: 'absolute',
@@ -161,8 +168,8 @@ export const Notification = ({
     });
 
     return (
-        <Animated.View style={styles.overlay}>
-        <View style={styles.alert}>
+        
+        <Animated.View style={[styles.alert, {opacity: fadeAnim, height: heightAnim}]}>
 
             <View style={styles.bg1} />
             <View style={styles.bg2} />
@@ -180,7 +187,7 @@ export const Notification = ({
                 </Text>
             </View>
 
-        </View>
         </Animated.View>
+        
         )
 };

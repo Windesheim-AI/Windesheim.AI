@@ -1,14 +1,22 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet } from 'react-native';
 import { useAppSelector } from '../../redux/Store';
-import {NotificationType} from './Notification';
+//import { Transition, Transitioning } from 'react-native-reanimated';
+import {NotificationType, Notification} from './Notification';
 
+
+// const transition = (
+//     <Transition.Together>
+//       <Transition.In type="fade" durationMs={200} />
+//       <Transition.Change />
+//       <Transition.Out type="slide-bottom" durationMs={200} />
+//     </Transition.Together>
+//   );
 
 export const NotificationList = () => {
-  //const notifications = useSelector((state) => state.notifications.notifications);
   const notifications = useAppSelector((state) => state.notification);
   const [notificationList, setNotificationList] = useState<NotificationType[]>([]);
+
 
   useEffect(() => {
       setNotificationList(notifications.notifications);
@@ -16,13 +24,9 @@ export const NotificationList = () => {
 
   return (
     <View style={styles.notificationContainer}>
-      {notificationList.map((notification) => (
-        <View key={notification.id} style={styles.notification}>
-          <Text>{notification.message}</Text>
-        </View>
+      {notificationList.map((notification, index) => (
+        <Notification key={index} {...notification} />
       ))}
-
-
     </View>
   );
 };
@@ -30,14 +34,10 @@ export const NotificationList = () => {
 const styles = StyleSheet.create({
   notificationContainer: {
     position: 'absolute',
-    top: 0,
+    top: '3%',
     right: 0,
     left: 0,
-  },
-  notification: {
-    padding: 10,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    color: 'white',
+    zIndex: 999,
   },
 });
 
