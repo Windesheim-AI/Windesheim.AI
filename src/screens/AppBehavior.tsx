@@ -1,7 +1,7 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../redux/Hooks';
-import { useNavigation } from '@react-navigation/native';
 import { navigationActions } from '../redux/slices/NavigationSlice';
 
 type AppProvidersProps = {
@@ -27,5 +27,5 @@ export default function AppBehavior({ children }: AppProvidersProps) {
         };
     }, [navigation, navigationState.showNavBar, storeDispatcher]);
 
-    return <>{children}</>;
+    return children;
 }
