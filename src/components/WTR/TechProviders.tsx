@@ -102,7 +102,6 @@ export const TechProviders = () => {
             page: provider,
         });
     };
-
     return (
         <View>
             <Text style={styles.heading}>
