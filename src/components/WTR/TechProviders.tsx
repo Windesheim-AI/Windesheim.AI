@@ -102,7 +102,7 @@ export const TechProviders = () => {
             page: provider,
         });
     };
-
+    throw new Error('Error!!!!');
     return (
         <View>
             <Text style={styles.heading}>

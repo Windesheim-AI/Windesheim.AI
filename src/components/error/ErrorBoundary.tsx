@@ -1,6 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable react-native/no-color-literals */
 import Constants from 'expo-constants';
 import LottieView from 'lottie-react-native';
 import * as React from 'react';
@@ -13,8 +10,14 @@ import {
     Dimensions,
 } from 'react-native';
 
+import animationSource from '../../assets/json/500_man.json';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+const colors = {
+    white: 'white',
+    blue: 'blue',
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -24,7 +27,7 @@ const styles = StyleSheet.create({
         paddingTop: Constants.statusBarHeight,
         padding: 8,
         textAlign: 'center',
-        backgroundColor: 'white',
+        backgroundColor: colors.white,
     },
     title: {
         fontSize: windowWidth * 0.08,
@@ -42,16 +45,16 @@ const styles = StyleSheet.create({
         padding: 8,
     },
     button: {
-        justifyContent: 'center', // 세로 정렬 추가
-        alignItems: 'center', // 가로 정렬 추가
+        justifyContent: 'center',
+        alignItems: 'center',
         width: windowWidth * 0.3,
         height: windowHeight * 0.08,
-        backgroundColor: 'blue',
+        backgroundColor: colors.blue,
         borderRadius: 8,
     },
     buttonText: {
         fontSize: windowWidth * 0.05,
-        color: 'white',
+        color: colors.white,
         textAlign: 'center',
         fontWeight: 'bold',
     },
@@ -93,10 +96,10 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({
         <View style={styles.container} testID="error-fallback-container">
             <View style={styles.animationContainer}>
                 <LottieView
-                    source={require('../../assets/json/500_man.json')}
+                    source={animationSource}
                     autoPlay
                     loop
-                    style={{ width: '100%', height: '100%' }}
+                    style={styles.animationContainer}
                 />
             </View>
             <Text style={styles.title}>Something happened!</Text>
