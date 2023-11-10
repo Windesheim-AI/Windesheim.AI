@@ -21,6 +21,15 @@ Description of your PR.
 -   [ ] E2E tests are written for pages, e.g. the home page
 -   [ ] E2E tests: Components use the "testID" attribute for testing
 
+### App testing
+
+Build the app and test it on your phone.
+This is important, because we've on a regular basis issues with the app on mobile phones, but not with the website.
+
+-   [ ] Everything works as expected
+-   [ ] No weird usability bugs
+-   [ ] No errors or warnings during the tests
+
 ---
 
 Please ensure that all the checkboxes are ticked before submitting the pull request.
