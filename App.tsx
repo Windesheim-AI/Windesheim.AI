@@ -6,6 +6,7 @@ import AppLoader from './src/components/loadingscreen/AppLoader';
 import SplashScreenOrApp from './src/components/splashscreen/SplashScreenOrApp';
 import { store } from './src/redux/Store';
 import { RouteLinking } from './src/routes/routeLinking';
+import AppBehavior from './src/screens/AppBehavior';
 import AppProviders from './src/screens/AppProviders';
 
 export default function App() {
@@ -13,8 +14,10 @@ export default function App() {
         <Provider store={store}>
             <NavigationContainer linking={RouteLinking}>
                 <AppProviders>
-                    <SplashScreenOrApp />
-                    <AppLoader />
+                    <AppBehavior>
+                        <SplashScreenOrApp />
+                        <AppLoader />
+                    </AppBehavior>
                 </AppProviders>
             </NavigationContainer>
         </Provider>

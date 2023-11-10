@@ -9,17 +9,17 @@ export const StudyScreen = () => {
         <PageView title="Welcome to WIN game">
             <ListButton
                 buttonText="Study"
-                screenName={Routes.WindesheimTechRadarContent}
+                screenName={Routes.WindesheimTechRadar}
                 width={100}
             />
             <ListButton
                 buttonText="Game"
-                screenName={Routes.WindesheimTechRadarContent}
+                screenName={Routes.WindesheimTechRadar}
                 width={100}
             />
             <ListButton
                 buttonText="Community of Practice"
-                screenName={Routes.WindesheimTechRadarContent}
+                screenName={Routes.WindesheimTechRadar}
                 width={100}
             />
         </PageView>
