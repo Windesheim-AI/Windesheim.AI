@@ -7,13 +7,9 @@ import HorizontalScroll from '../components/general/HorizontalScroll';
 import { PageView } from '../components/general/PageView';
 import { buttonColorSchemes, useColorConfig } from '../constants/Colors';
 import { Routes } from '../routes/routes';
-import { useAppDispatch } from '../redux/Store';
-import { NotificationActions } from '../redux/slices/NotificatieSlice';
-import { NotificationType } from '../components/alerts/Notification';
 
 export const HomeScreen = () => {
     const colors = useColorConfig();
-    const storeDispatcher = useAppDispatch();
     const styles = StyleSheet.create({
         newsHeaderText: {
             fontSize: 23,
@@ -23,31 +19,6 @@ export const HomeScreen = () => {
             color: colors.text,
         },
     });
-
-    const addNewNotification = () => {
-        const notification = {
-            id: 1,
-            screenName: 'WTR',
-            message: 'message added',
-            colorGradientScheme: buttonColorSchemes.success,
-            icon: 'exclamation-circle',
-        } as NotificationType;
-
-        storeDispatcher(NotificationActions.addNotification(notification));
-    };
-
-    const addNewError = () => {
-        const notification = {
-            id: 1,
-            screenName: 'WTR',
-            message: 'Something went wrong...',
-            colorGradientScheme: buttonColorSchemes.danger,
-            icon: 'exclamation-circle',
-            width: 500,
-        } as NotificationType;
-
-        storeDispatcher(NotificationActions.addNotification(notification));
-    };
 
     return (
         <PageView
@@ -70,9 +41,6 @@ export const HomeScreen = () => {
                 screenName={Routes.WindesheimTechRadar}
                 width={100}
             />
-
-            <Button buttonText='add message' onPress={addNewNotification} colorGradientScheme={buttonColorSchemes.success} screenName='WTR' width={100} />
-            <Button buttonText='add error' onPress={addNewError} colorGradientScheme={buttonColorSchemes.danger} screenName='WTR' width={100} />
         </PageView>
     );
 };

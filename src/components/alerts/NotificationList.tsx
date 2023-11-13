@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useAppSelector } from '../../redux/Store';
-//import { Transition, Transitioning } from 'react-native-reanimated';
 import {NotificationType, Notification} from './Notification';
 
-
-// const transition = (
-//     <Transition.Together>
-//       <Transition.In type="fade" durationMs={200} />
-//       <Transition.Change />
-//       <Transition.Out type="slide-bottom" durationMs={200} />
-//     </Transition.Together>
-//   );
 
 export const NotificationList = () => {
   const notifications = useAppSelector((state) => state.notification);

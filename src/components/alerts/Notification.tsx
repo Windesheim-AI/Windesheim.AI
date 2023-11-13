@@ -1,12 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import { useFonts, Inter_500Medium } from '@expo-google-fonts/inter';
 import { useDispatch } from 'react-redux';
-import { NotificationActions } from '../../redux/slices/NotificatieSlice';
+import { NotificationActions } from '../../redux/slices/NotificationSlice';
 import { Animated, Text, StyleSheet, Dimensions, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
 
-
+/* To add a Notification:
+1. Import NotificationActions from redux/slices/NotificationSlice.ts
+2. Import NotificationType from components/alerts/Notification.tsx
+3. Make a Notification object, and add it with NotificationActions.addNotification(notification)
+*/
 export type NotificationType = {
     id: number;
     screenName?: string;
@@ -34,9 +38,23 @@ export const Notification = ({
 
     const slideAnim = useRef(new Animated.Value(-80)).current; // Initialize off-screen
     const fadeAnim = useRef(new Animated.Value(1)).current; // Initial value for opacity: 1
-    const heightAnim = useRef(new Animated.Value(50)).current; // Initial value for height: 50
+    const scaleYAnim = useRef(new Animated.Value(1)).current; 
+    const translateYAnim = useRef(new Animated.Value(-50)).current;
 
     useEffect(() => {
+        Animated.parallel([
+          Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 500,
+            useNativeDriver: true,
+          }),
+          Animated.timing(translateYAnim, {
+            toValue: 0,
+            duration: 500,
+            useNativeDriver: true,
+          }),
+        ]).start();
+      
         const timer = setTimeout(() => {
           Animated.parallel([
             Animated.timing(fadeAnim, {
@@ -44,26 +62,17 @@ export const Notification = ({
               duration: 500,
               useNativeDriver: true,
             }),
-            Animated.timing(heightAnim, {
+            Animated.timing(scaleYAnim, {
               toValue: 0,
               duration: 500,
-              useNativeDriver: false,
+              useNativeDriver: true,
             }),
           ]).start(() => {
             dispatch(NotificationActions.removeNotification(id));
           });
         }, 3000);
-    
-        return () => clearTimeout(timer); // this will clear the timeout if the component is unmounted before the timeout finishes
-      }, [dispatch, id]);
-
-    useEffect(() => {
-        Animated.timing(slideAnim, {
-            toValue: 0, // Slide in (0 = fully visible)
-            duration: 500,
-            useNativeDriver: true,
-        }).start();
-    });
+        return () => clearTimeout(timer);
+    }, [dispatch, id]);
 
     if (!fontsLoaded || fontError) {
         return null;
@@ -168,8 +177,9 @@ export const Notification = ({
     });
 
     return (
-        
-        <Animated.View style={[styles.alert, {opacity: fadeAnim, height: heightAnim}]}>
+        //Two view containers are needed to make the animation work (on phone).
+        <Animated.View style={{opacity: fadeAnim, transform: [{ translateY: translateYAnim }]}}>
+        <Animated.View style={[styles.alert, {opacity: fadeAnim, transform: [{ scaleY: scaleYAnim }]}]}>
 
             <View style={styles.bg1} />
             <View style={styles.bg2} />
@@ -188,6 +198,6 @@ export const Notification = ({
             </View>
 
         </Animated.View>
-        
-        )
+        </Animated.View>       
+    )
 };

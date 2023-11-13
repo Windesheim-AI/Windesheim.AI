@@ -9,7 +9,7 @@ import { languageSlice } from './slices/LanguageSlice';
 import { layoutSlice } from './slices/LayoutSlice';
 import { navigationSlice } from './slices/NavigationSlice';
 import { themeSlice } from './slices/ThemeSlice';
-import { notificationSlice } from './slices/NotificatieSlice';
+import { notificationSlice } from './slices/NotificationSlice';
 
 const persistConfig: PersistConfig<unknown> = {
     key: 'root',
