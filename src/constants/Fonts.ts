@@ -102,7 +102,7 @@ export function useFonts() {
 
     const fontState = useAppSelector((state: RootState) => state.fontSize);
     // normal size * (font size / default size)
-    // for all of font map
+    // for all font map
     const keys = Object.keys(fontMap) as (keyof typeof fontMap)[];
     // new font map
     const newFontMap = {} as typeof fontMap;
