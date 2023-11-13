@@ -3,12 +3,17 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable react/no-multi-comp */
 // @ts-ignore eslint-disable
-
-import { DomVisitorCallbacks } from '@native-html/transient-render-engine';
+import {
+    DomVisitorCallbacks,
+    isDomElement,
+    isDomText,
+    Node,
+} from '@native-html/transient-render-engine';
 import React, { useMemo } from 'react';
 import { useWindowDimensions, View } from 'react-native';
 import {
     defaultSystemFonts,
+    domNodeToHTMLString,
     HTMLContentModel,
     HTMLElementModel,
     RenderHTML,
@@ -18,6 +23,9 @@ import { InternalRendererProps } from 'react-native-render-html/lib/typescript/s
 import { CustomTagRendererRecord } from 'react-native-render-html/src/render/render-types';
 
 import { ColorSchemeType } from '../../../constants/Colors';
+import HtmlTranslated from '../../text/HtmlTranslated';
+import strigifyEntities from 'stringify-entities';
+import { DomNodeToHtmlReporter } from 'react-native-render-html/src/helpers/domNodeToHTMLString';
 
 function onElement(element: any) {
     try {
@@ -103,9 +111,57 @@ function CustomImageRenderer(props: InternalRendererProps<any>) {
     );
 }
 
+function renderOpeningTag(tag: string, attributes: Record<string, string>) {
+    const strAttributes: string[] = [];
+    Object.keys(attributes).forEach((key) => {
+        strAttributes.push(
+            `${key}="${strigifyEntities(`${attributes[key]}`)}"`,
+        );
+    });
+    return `<${tag}${strAttributes.length ? ' ' : ''}${strAttributes.join(
+        ' ',
+    )}>`;
+}
+
+function internalDomNodeToHTMLString(
+    root: Node | null,
+    reporter?: DomNodeToHtmlReporter,
+    depth = 0,
+) {
+    let html = '';
+    if (isDomElement(root)) {
+        const strChildren = root.children.reduce((prev, curr) => {
+            const convertedNode = domNodeToHTMLString(
+                curr,
+                reporter,
+                depth + 1,
+            );
+            return `${prev}${convertedNode}`;
+        }, '');
+        html = `${renderOpeningTag(
+            root.tagName,
+            root.attribs,
+        )}${strChildren}</${root.tagName}>`;
+    } else if (isDomText(root)) {
+        html = strigifyEntities(root.data, { escapeOnly: true });
+    }
+    typeof reporter === 'function' && reporter(root, depth, html);
+    return html;
+}
+
+function HtmlTextTranslateRenderer({ tnode }: any) {
+    const html = React.useMemo(
+        () => internalDomNodeToHTMLString(tnode.domNode),
+        [tnode.domNode],
+    );
+
+    return <HtmlTranslated source={html} />;
+}
+
 const renderers: CustomTagRendererRecord = {
     img: CustomImageRenderer,
     'amp-img': CustomImageRenderer,
+    p: HtmlTextTranslateRenderer,
 };
 
 export type WTRHtmlDisplayProps = {

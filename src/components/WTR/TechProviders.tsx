@@ -42,7 +42,7 @@ import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../text/TextTranslated';
 
 const techProviderItems = [
-    { name: 'Apple', slug: 'apple', logo: Apple },
+    { name: 'Apple', slug: 'techrepublic', logo: Apple },
     { name: 'Amazon', slug: 'aws', logo: Amazon },
     { name: 'Cisco', slug: 'cisco-systems', logo: Cisco },
     { name: 'Google', slug: 'google', logo: Google },

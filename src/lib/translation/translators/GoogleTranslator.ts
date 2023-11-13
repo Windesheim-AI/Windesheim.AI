@@ -14,16 +14,17 @@ export default class GoogleTranslator extends Translator {
         try {
             return await this.fetchGoogleTranslation(value);
         } catch (e) {
+            console.error(e);
             return undefined;
         }
     }
 
-    async fetchGoogleTranslation(value: string): Promise<string> {
+    async fetchGoogleTranslation(value: string): Promise<string | undefined> {
         const response = await fetch(getTranslateApiUrl(this, value));
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const { data } = await response.json();
 
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
-        return data.translations[0]?.translatedText;
+        return data?.translations[0]?.translatedText ?? undefined;
     }
 }
