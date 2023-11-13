@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Modal, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, Modal, Pressable, Text } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 import WordAnimation from './WordAnimation';
@@ -73,11 +73,11 @@ export default function AIGeneratedOutput({ text, prompt }: Props) {
                     color={colors.text}
                 />
                 <TextTranslated text="AI Generated Output" />
-                <TouchableOpacity onPress={() => setModalVisible(true)}>
+                <Pressable onPress={() => setModalVisible(true)}>
                     <View style={styles.seePrompt}>
                         <TextTranslated text="(See Prompt)" />
                     </View>
-                </TouchableOpacity>
+                </Pressable>
             </View>
             <View style={fonts.description}>
                 <WordAnimation text={text} speed={1.3} />
@@ -90,11 +90,9 @@ export default function AIGeneratedOutput({ text, prompt }: Props) {
                 <View style={styles.modalContainer}>
                     <View style={styles.modalContent}>
                         <Text style={styles.modalText}>{prompt}</Text>
-                        <TouchableOpacity
-                            onPress={() => setModalVisible(false)}
-                        >
+                        <Pressable onPress={() => setModalVisible(false)}>
                             <Text style={styles.modalCloseButton}>Close</Text>
-                        </TouchableOpacity>
+                        </Pressable>
                     </View>
                 </View>
             </Modal>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
 
@@ -54,14 +54,14 @@ const CaseStudyList = ({ onPress }: CaseStudyListProps) => {
     return (
         <View testID="CaseStudy" style={styles.CaseStudyContainer}>
             {CaseStudy.map((item) => (
-                <TouchableOpacity
+                <Pressable
                     testID="casestudyitem"
                     key={item.id}
                     style={styles.CaseStudyItem}
                     onPress={() => onPress && onPress(item.id)}
                 >
                     <Text style={styles.CaseStudyText}>{item.title}</Text>
-                </TouchableOpacity>
+                </Pressable>
             ))}
         </View>
     );
