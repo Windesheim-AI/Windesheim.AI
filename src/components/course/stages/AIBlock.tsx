@@ -28,6 +28,7 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
             //@ts-ignore
             setText(chatCompletion.choices[0].message.content);
         }
+
         if (AI_ENABLED === 'true') {
             // eslint-disable-next-line no-void
             void main();

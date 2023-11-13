@@ -1,16 +1,16 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { Bar } from 'react-native-progress';
 
-import { shadow, useColorConfig } from './../../constants/Colors';
+import { shadow, useColorConfig } from '../../constants/Colors';
 import * as j from '../../assets/courses/test.json';
-import { PageView } from '../../components/general/PageView';
 import { TextTranslated } from '../../components/text/TextTranslated';
 import { useFonts } from '../../constants/Fonts';
 import { useCourseWithData } from '../../hooks/useCourseWithData';
 import { Routes } from '../../routes/routes';
 import { Course } from '../../types/Course';
+import { PageScrollView } from '../../components/general/PageScrollView';
 
 export function Courses() {
     const fonts = useFonts();
@@ -61,9 +61,11 @@ export function Courses() {
     }
 
     return (
-        <PageView>
+        <PageScrollView>
             <View style={fonts.h1}>
-                <TextTranslated text="Courses" />
+                <Text>
+                    <TextTranslated text="Courses" />
+                </Text>
             </View>
 
             {/* map the courses */}
@@ -77,10 +79,14 @@ export function Courses() {
                         }}
                     >
                         <View style={styles.title}>
-                            <TextTranslated text={course.title} />
+                            <Text>
+                                <TextTranslated text={course.title} />
+                            </Text>
                         </View>
                         <View style={styles.description}>
-                            <TextTranslated text={course.description} />
+                            <Text>
+                                <TextTranslated text={course.description} />
+                            </Text>
                         </View>
 
                         <View style={styles.progressBar}>
@@ -96,6 +102,6 @@ export function Courses() {
                     </View>
                 ))}
             </View>
-        </PageView>
+        </PageScrollView>
     );
 }

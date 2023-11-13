@@ -1,13 +1,12 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import * as Progress from 'react-native-progress';
 
-import * as j from '../../assets/courses/test.json';
+import * as courseTestData from '../../assets/courses/test.json';
 import { Button } from '../../components/buttons/Button';
 import { CourseNavigation } from '../../components/course/CourseNavigation';
 import StageRenderer from '../../components/course/StageRenderer';
-import { PageView } from '../../components/general/PageView';
 import { TextTranslated } from '../../components/text/TextTranslated';
 import {
     buttonColorSchemes,
@@ -19,6 +18,7 @@ import { useAppDispatch } from '../../redux/Hooks';
 import { courseDataActions } from '../../redux/slices/CourseDataSlice';
 import { Routes } from '../../routes/routes';
 import { Course } from '../../types/Course';
+import { PageScrollView } from '../../components/general/PageScrollView';
 
 type CoursePageProps = {
     courseId: string;
@@ -27,7 +27,7 @@ type CoursePageProps = {
 
 export default function CoursePage() {
     //@ts-ignore
-    const course: Course = j; //later replaced dby a fetch.
+    const course: Course = courseTestData; //later replaced dby a fetch.
     const route = useRoute();
     const navigator = useNavigation();
     const params = route.params as CoursePageProps;
@@ -93,7 +93,7 @@ export default function CoursePage() {
     }
 
     return (
-        <PageView>
+        <PageScrollView>
             {stage ? (
                 <>
                     <CourseNavigation
@@ -112,7 +112,9 @@ export default function CoursePage() {
                         style={styles.progressBar}
                     />
                     <View style={styles.courseTitle}>
-                        <TextTranslated text={course.title} />
+                        <Text>
+                            <TextTranslated text={course.title} />
+                        </Text>
                     </View>
                     <StageRenderer
                         key={stage.id}
@@ -126,9 +128,12 @@ export default function CoursePage() {
                     />
                 </>
             ) : (
-                // eslint-disable-next-line react-native/no-raw-text
-                <h1>Course not found!</h1>
+                <View style={styles.courseTitle}>
+                    <Text>
+                        <TextTranslated text="Course not found!" />
+                    </Text>
+                </View>
             )}
-        </PageView>
+        </PageScrollView>
     );
 }

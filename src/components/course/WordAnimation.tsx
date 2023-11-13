@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
 import { useFonts } from '../../constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';
@@ -59,7 +59,9 @@ const WordAnimation = ({ text, speed = 1 }: Props) => {
     });
     return (
         <View style={styles.p}>
-            <TextTranslated text={displayText} />
+            <Text>
+                <TextTranslated text={displayText} />
+            </Text>
         </View>
     );
 };

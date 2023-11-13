@@ -1,16 +1,16 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet, Text } from 'react-native';
 
-import { buttonColorSchemes } from './../../constants/Colors';
+import { buttonColorSchemes } from '../../constants/Colors';
 import { StageItem } from './StageItem';
 import { Button } from '../../components/buttons/Button';
-import { PageView } from '../../components/general/PageView';
 import { TextTranslated } from '../../components/text/TextTranslated';
 import { useFonts } from '../../constants/Fonts';
 import { useCourseWithData } from '../../hooks/useCourseWithData';
 import { Routes } from '../../routes/routes';
 import { Stage, StageDataMapped } from '../../types/Stage';
+import { PageView } from '../../components/general/PageView';
 
 type CourseOverviewPageProps = {
     courseId: string;
@@ -51,16 +51,20 @@ export default function CourseOverview() {
         //@ts-ignore
         navigator.navigate(Routes.Courses.toString());
     }
+
     return (
         <PageView>
             <View style={styles.container}>
-                <TextTranslated text="Course Overview" />
+                <Text>
+                    <TextTranslated text="Course Overview" />
+                </Text>
 
                 <Button
                     buttonText="Back to Courses"
                     colorGradientScheme={buttonColorSchemes.primary}
                     onPress={navigateBackToCourses}
                 />
+
                 {/* map the stages of the course */}
                 <View>
                     <FlatList

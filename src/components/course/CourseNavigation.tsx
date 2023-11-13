@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { shadow, useColorConfig } from '../../constants/Colors';
@@ -116,10 +116,14 @@ export function CourseNavigation({
                             style={styles.icon}
                             color={colors.text}
                         />
-                        <TextTranslated text={title} />
+                        <Text>
+                            <TextTranslated text={title} />
+                        </Text>
                     </View>
                     <View style={fonts.courseSubTitle}>
-                        <TextTranslated text={subTitle} />
+                        <Text>
+                            <TextTranslated text={subTitle} />
+                        </Text>
                     </View>
                 </View>
 
@@ -138,7 +142,9 @@ export function CourseNavigation({
                         style={styles.courseOverview}
                         onTouchEnd={onCourseOverviewPress}
                     >
-                        <TextTranslated text="Course Overview" />
+                        <Text>
+                            <TextTranslated text="Course Overview" />
+                        </Text>
                     </View>
                     {stages?.map((stage: Stage) => (
                         <View
@@ -153,7 +159,9 @@ export function CourseNavigation({
                                 onDropdownPress(stage.id);
                             }}
                         >
-                            <TextTranslated text={stage.title} />
+                            <Text>
+                                <TextTranslated text={stage.title} />
+                            </Text>
                         </View>
                     ))}
                 </View>

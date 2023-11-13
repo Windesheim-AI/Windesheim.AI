@@ -72,10 +72,14 @@ export default function AIGeneratedOutput({ text, prompt }: Props) {
                     style={styles.icon}
                     color={colors.text}
                 />
-                <TextTranslated text="AI Generated Output" />
+                <Text>
+                    <TextTranslated text="AI Generated Output" />
+                </Text>
                 <Pressable onPress={() => setModalVisible(true)}>
                     <View style={styles.seePrompt}>
-                        <TextTranslated text="(See Prompt)" />
+                        <Text>
+                            <TextTranslated text="(See Prompt)" />
+                        </Text>
                     </View>
                 </Pressable>
             </View>
@@ -91,7 +95,9 @@ export default function AIGeneratedOutput({ text, prompt }: Props) {
                     <View style={styles.modalContent}>
                         <Text style={styles.modalText}>{prompt}</Text>
                         <Pressable onPress={() => setModalVisible(false)}>
-                            <Text style={styles.modalCloseButton}>Close</Text>
+                            <Text style={styles.modalCloseButton}>
+                                <TextTranslated text="Close" />
+                            </Text>
                         </Pressable>
                     </View>
                 </View>

@@ -6,6 +6,7 @@ import ButtonBlock from './stages/ButtonBlock';
 import TextRenderer from './stages/TextBlock';
 import { Block, BlockType } from '../../types/Block';
 import { Stage } from '../../types/Stage';
+import { TextTranslated } from '../text/TextTranslated';
 
 const blockRenderers = [
     { blockType: BlockType.AIGenerated, component: AIRenderer },
@@ -26,18 +27,23 @@ export default function StageRenderer({
                 const renderer = blockRenderers.find(
                     (e) => e.blockType === block.blockType,
                 );
+                const key = Math.random();
 
                 if (!renderer) {
-                    // eslint-disable-next-line react/jsx-key
-                    return <Text>Unknown block type</Text>;
+                    return (
+                        <Text key={key}>
+                            <TextTranslated text="Unknown block type" />
+                        </Text>
+                    );
                 }
+
                 const Component = renderer.component;
                 const options = {
                     ...block.content,
                     courseId,
                     stageId: stage.id,
                 };
-                return <Component key={Math.random()} options={options} />;
+                return <Component key={key} options={options} />;
             })}
         </>
     );

@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { TextTranslated } from '../../components/text/TextTranslated';
@@ -67,7 +67,9 @@ export const StageItem = ({
                     />
                 )}
                 <View style={styles.title}>
-                    <TextTranslated text={title} />
+                    <Text>
+                        <TextTranslated text={title} />
+                    </Text>
                 </View>
             </View>
         </View>

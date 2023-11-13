@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { StyleSheet, View, Animated } from 'react-native';
+import { StyleSheet, View, Animated, Text } from 'react-native';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -62,10 +62,14 @@ export default function CourseFinished() {
                     />
                 </Animated.View>
                 <View style={styles.courseTitle}>
-                    <TextTranslated text="Course finished!" />
+                    <Text>
+                        <TextTranslated text="Course finished!" />
+                    </Text>
                 </View>
                 <View style={styles.courseSubTitle}>
-                    <TextTranslated text={course.title} />
+                    <Text>
+                        <TextTranslated text={course.title} />
+                    </Text>
                 </View>
                 <Button
                     buttonText="Home"
