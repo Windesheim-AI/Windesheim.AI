@@ -15,6 +15,8 @@ export type ColorSchemeType = {
     tint: string;
     gray: string;
     black: string;
+    white: string;
+    blue: string;
     tabIconDefault: string;
     tabIconSelected: string;
     titleDefault: string;
@@ -64,7 +66,9 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         borderColor: '#ccc',
         subTitle: '#2B2A2A',
         listItemBg: '#DCDCDC',
+        white: '#FFFFFF',
         black: '#000000',
+        blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.8)',
     },
     dark: {
@@ -95,7 +99,9 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         subTitle: '#c4c4c4',
         borderColor: '#ccc',
         listItemBg: '#373737',
+        white: '#FFFFFF',
         black: '#000000',
+        blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
     },
 };
