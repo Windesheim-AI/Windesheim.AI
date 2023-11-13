@@ -1,9 +1,3 @@
-import {
-    useFonts as useExpoFonts,
-    Inter_600SemiBold,
-    Inter_400Regular,
-    Inter_300Light,
-} from '@expo-google-fonts/inter';
 import { TextStyle } from 'react-native';
 
 import { useColorConfig } from './Colors';
@@ -38,11 +32,6 @@ type TextStyling = {
 
 export function useFonts() {
     const colors = useColorConfig();
-    const expoFonts = useExpoFonts({
-        Inter_600SemiBold,
-        Inter_400Regular,
-        Inter_300Light,
-    });
 
     const fontMap: TextStyling = {
         h1: {

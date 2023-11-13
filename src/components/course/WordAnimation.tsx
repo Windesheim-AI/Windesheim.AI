@@ -16,6 +16,7 @@ const WordAnimation = ({ text, speed = 1 }: Props) => {
         // Split the text into an array of words
         const words = text.split(' ');
 
+        // @ts-ignore
         let intervalId: NodeJS.Timeout;
 
         const displayWords = async () => {
@@ -40,6 +41,7 @@ const WordAnimation = ({ text, speed = 1 }: Props) => {
         };
 
         // Call the displayWords function
+        // eslint-disable-next-line no-void
         void displayWords();
 
         // Clean up the interval when the component unmounts

@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Bar } from 'react-native-progress';
@@ -8,9 +9,8 @@ import { PageView } from '../../components/general/PageView';
 import { TextTranslated } from '../../components/text/TextTranslated';
 import { useFonts } from '../../constants/Fonts';
 import { useCourseWithData } from '../../hooks/useCourseWithData';
-import { Course } from '../../types/Course';
-import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes/routes';
+import { Course } from '../../types/Course';
 
 export function Courses() {
     const fonts = useFonts();
@@ -18,12 +18,12 @@ export function Courses() {
     const courses = [j] as unknown as Course[];
     const navigator = useNavigation();
 
-    const course = useCourseWithData(courses[0].id);
+    const currentCourse = useCourseWithData(courses[0].id);
 
-    const completedStages = course.stageData.filter(
+    const completedStages = currentCourse.stageData.filter(
         (stage) => stage.isCompletedByUser,
     ).length;
-    const totalStages = course.stageData.length;
+    const totalStages = currentCourse.stageData.length;
     const progressPercentage = Math.round(
         (completedStages / totalStages) * 100,
     );

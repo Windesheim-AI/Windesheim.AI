@@ -28,7 +28,8 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
             //@ts-ignore
             setText(chatCompletion.choices[0].message.content);
         }
-        if (AI_ENABLED == 'true') {
+        if (AI_ENABLED === 'true') {
+            // eslint-disable-next-line no-void
             void main();
         } else {
             setText(
@@ -36,7 +37,7 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
                     options.prompt,
             );
         }
-    }, [options.prompt]);
+    }, [options.prompt, openai.chat.completions]);
 
     return (
         <BlockWrapper>
