@@ -8,18 +8,8 @@ export const StudyScreen = () => {
     return (
         <PageView title="Welcome to WIN game">
             <ListButton
-                buttonText="Study"
-                screenName={Routes.WindesheimTechRadar}
-                width={100}
-            />
-            <ListButton
-                buttonText="Game"
-                screenName={Routes.WindesheimTechRadar}
-                width={100}
-            />
-            <ListButton
-                buttonText="Community of Practice"
-                screenName={Routes.WindesheimTechRadar}
+                buttonText="Courses"
+                screenName={Routes.Courses}
                 width={100}
             />
         </PageView>

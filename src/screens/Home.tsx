@@ -1,6 +1,5 @@
-import { Link } from '@react-navigation/native';
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import { TechProviders } from '../components/WTR/TechProviders';
 import { Themes } from '../components/WTR/Theme';
@@ -18,9 +17,6 @@ export const HomeScreen = () => {
                 <TechProviders />
                 <Themes />
             </View>
-            <Link to="/Course">
-                <Text>Course</Text>
-            </Link>
         </PageView>
     );
 };
