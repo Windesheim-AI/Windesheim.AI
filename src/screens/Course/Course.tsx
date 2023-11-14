@@ -7,10 +7,11 @@ import * as courseTestData from '../../assets/courses/test.json';
 import { Button } from '../../components/buttons/Button';
 import { CourseNavigation } from '../../components/course/CourseNavigation';
 import StageRenderer from '../../components/course/StageRenderer';
+import { PageScrollView } from '../../components/general/PageScrollView';
 import { TextTranslated } from '../../components/text/TextTranslated';
 import {
-    buttonColorSchemes,
     shadow,
+    stateColorSchemes,
     useColorConfig,
 } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
@@ -18,7 +19,6 @@ import { useAppDispatch } from '../../redux/Hooks';
 import { courseDataActions } from '../../redux/slices/CourseDataSlice';
 import { Routes } from '../../routes/routes';
 import { Course } from '../../types/Course';
-import { PageScrollView } from '../../components/general/PageScrollView';
 
 type CoursePageProps = {
     courseId: string;
@@ -124,7 +124,7 @@ export default function CoursePage() {
                     <Button
                         buttonText="Next"
                         onPress={onPress}
-                        colorGradientScheme={buttonColorSchemes.primary}
+                        colorGradientScheme={stateColorSchemes.primary}
                     />
                 </>
             ) : (

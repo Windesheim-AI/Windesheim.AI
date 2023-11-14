@@ -7,7 +7,7 @@ import * as courseTestData from '../../assets/courses/test.json';
 import { Button } from '../../components/buttons/Button';
 import { PageView } from '../../components/general/PageView';
 import { TextTranslated } from '../../components/text/TextTranslated';
-import { buttonColorSchemes, useColorConfig } from '../../constants/Colors';
+import { stateColorSchemes, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { Course } from '../../types/Course';
 
@@ -74,7 +74,7 @@ export default function CourseFinished() {
                 <Button
                     buttonText="Home"
                     screenName="Home"
-                    colorGradientScheme={buttonColorSchemes.success}
+                    colorGradientScheme={stateColorSchemes.success}
                 />
             </View>
             <ConfettiCannon

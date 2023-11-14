@@ -2,15 +2,15 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { View, FlatList, StyleSheet, Text } from 'react-native';
 
-import { buttonColorSchemes } from '../../constants/Colors';
 import { StageItem } from './StageItem';
 import { Button } from '../../components/buttons/Button';
+import { PageView } from '../../components/general/PageView';
 import { TextTranslated } from '../../components/text/TextTranslated';
+import { stateColorSchemes } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useCourseWithData } from '../../hooks/useCourseWithData';
 import { Routes } from '../../routes/routes';
 import { Stage, StageDataMapped } from '../../types/Stage';
-import { PageView } from '../../components/general/PageView';
 
 type CourseOverviewPageProps = {
     courseId: string;
@@ -61,7 +61,7 @@ export default function CourseOverview() {
 
                 <Button
                     buttonText="Back to Courses"
-                    colorGradientScheme={buttonColorSchemes.primary}
+                    colorGradientScheme={stateColorSchemes.primary}
                     onPress={navigateBackToCourses}
                 />
 

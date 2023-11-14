@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import { InteractableView } from '../../components/general/InteractableView';
 import { TextTranslated } from '../../components/text/TextTranslated';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
@@ -51,7 +52,7 @@ export const StageItem = ({
     }
 
     return (
-        <View onTouchEnd={handlePress} style={styles.card}>
+        <InteractableView onPress={handlePress} style={styles.card}>
             <View style={styles.courseTitle}>
                 {isCompletedByUser ? (
                     <MaterialCommunityIcons
@@ -72,6 +73,6 @@ export const StageItem = ({
                     </Text>
                 </View>
             </View>
-        </View>
+        </InteractableView>
     );
 };

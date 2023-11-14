@@ -7,6 +7,7 @@ import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
+import { InteractableView } from '../general/InteractableView';
 import { TextTranslated } from '../text/TextTranslated';
 
 export function CourseNavigation({
@@ -104,9 +105,9 @@ export function CourseNavigation({
 
     return (
         <View style={styles.x}>
-            <View
+            <InteractableView
                 style={styles.topBar}
-                onTouchEnd={() => setShowDropdown(!showDropdown)}
+                onPress={() => setShowDropdown(!showDropdown)}
             >
                 <View style={styles.block}>
                     <View style={styles.title}>
@@ -133,21 +134,21 @@ export function CourseNavigation({
                     style={styles.chevronIcon}
                     color={colors.text}
                 />
-            </View>
+            </InteractableView>
 
             {showDropdown ? (
                 <View style={styles.courseDropdown}>
                     {/* course overview button */}
-                    <View
+                    <InteractableView
                         style={styles.courseOverview}
-                        onTouchEnd={onCourseOverviewPress}
+                        onPress={onCourseOverviewPress}
                     >
                         <Text>
                             <TextTranslated text="Course Overview" />
                         </Text>
-                    </View>
+                    </InteractableView>
                     {stages?.map((stage: Stage) => (
-                        <View
+                        <InteractableView
                             key={stage.id}
                             style={[
                                 styles.dropdownText,
@@ -155,14 +156,14 @@ export function CourseNavigation({
                                     backgroundColor: colors.primary,
                                 },
                             ]}
-                            onTouchEnd={() => {
+                            onPress={() => {
                                 onDropdownPress(stage.id);
                             }}
                         >
                             <Text>
                                 <TextTranslated text={stage.title} />
                             </Text>
-                        </View>
+                        </InteractableView>
                     ))}
                 </View>
             ) : null}

@@ -3,14 +3,15 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Bar } from 'react-native-progress';
 
-import { shadow, useColorConfig } from '../../constants/Colors';
 import * as j from '../../assets/courses/test.json';
+import { InteractableView } from '../../components/general/InteractableView';
+import { PageScrollView } from '../../components/general/PageScrollView';
 import { TextTranslated } from '../../components/text/TextTranslated';
+import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useCourseWithData } from '../../hooks/useCourseWithData';
 import { Routes } from '../../routes/routes';
 import { Course } from '../../types/Course';
-import { PageScrollView } from '../../components/general/PageScrollView';
 
 export function Courses() {
     const fonts = useFonts();
@@ -71,12 +72,10 @@ export function Courses() {
             {/* map the courses */}
             <View style={styles.cardContainer}>
                 {courses.map((course: Course) => (
-                    <View
+                    <InteractableView
                         key={course.id}
                         style={styles.card}
-                        onTouchEnd={() => {
-                            onPress(course.id);
-                        }}
+                        onPress={() => onPress(course.id)}
                     >
                         <View style={styles.title}>
                             <Text>
@@ -99,7 +98,7 @@ export function Courses() {
                                 unfilledColor={colors.listItemBg}
                             />
                         </View>
-                    </View>
+                    </InteractableView>
                 ))}
             </View>
         </PageScrollView>
