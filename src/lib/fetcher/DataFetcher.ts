@@ -1,6 +1,7 @@
 import useSWRNative from '@nandorojo/swr-react-native';
-import { BareFetcher, Fetcher, SWRConfiguration } from 'swr';
 import { Buffer } from 'buffer';
+import { BareFetcher, Fetcher, SWRConfiguration } from 'swr';
+
 import { HttpStatusCode } from '../../types/Response';
 
 interface FetcherOptions {

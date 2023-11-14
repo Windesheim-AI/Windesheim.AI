@@ -16,7 +16,7 @@ export function useCourseWithData(courseId: string): CourseDataMapped {
         courseId: course.id,
         title: course.title,
         description: course.description,
-        stageData: course.stages.map((stage) => {
+        stages: course.stages.map((stage) => {
             const isCompletedByUser = courseData.some(
                 (stageData) => stageData.stageId === stage.id,
             );

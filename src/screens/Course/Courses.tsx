@@ -3,6 +3,9 @@ import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Bar } from 'react-native-progress';
 
+import { TextTranslated } from '../../components/general/text/TextTranslated';
+import { IntractableView } from '../../components/general/views/IntractableView';
+import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useCourseWithData } from '../../lib/fetcher/useCourseWithData';
@@ -10,9 +13,6 @@ import { useAppDispatch } from '../../redux/Hooks';
 import { setLoading } from '../../redux/slices/LoadingSlice';
 import { Routes } from '../../routes/routes';
 import { CourseDataMapped } from '../../types/Course';
-import { PageScrollView } from '../../components/general/views/PageScrollView';
-import { TextTranslated } from '../../components/general/text/TextTranslated';
-import { IntractableView } from '../../components/general/views/IntractableView';
 
 export function Courses() {
     const fonts = useFonts();
@@ -32,7 +32,7 @@ export function Courses() {
     }
 
     function getProgressPercentage(course: CourseDataMapped) {
-        const stages = course.stageData;
+        const stages = course.stages;
         const stagesCompleted = stages.filter(
             (stage) => stage.isCompletedByUser,
         );

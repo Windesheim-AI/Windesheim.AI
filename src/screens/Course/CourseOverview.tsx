@@ -52,19 +52,17 @@ export default function CourseOverview() {
 
                 {/* map the stages of the course */}
                 <View style={styles.courseStageContainer}>
-                    {course?.data.map((stage) => {
-                        return stage.stageData.map((item) => {
-                            return (
-                                <StageItem
-                                    key={item.id}
-                                    title={stage.title}
-                                    id={item.id}
-                                    description={item.description}
-                                    isCompletedByUser={item.isCompletedByUser}
-                                    courseId={stage.courseId}
-                                />
-                            );
-                        });
+                    {course?.stages.map((stage) => {
+                        return (
+                            <StageItem
+                                key={stage.id}
+                                title={stage.title}
+                                id={stage.id}
+                                description={stage.description}
+                                isCompletedByUser={stage.isCompletedByUser}
+                                courseId={course.courseId}
+                            />
+                        );
                     })}
                 </View>
 
