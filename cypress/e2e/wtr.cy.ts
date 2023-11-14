@@ -1,8 +1,8 @@
-describe('Home page tests', () => {
-    it('can display the home page', () => {
-        cy.visit('/');
+describe('WTR page tests', () => {
+    it('can display the WTR page', () => {
+        cy.visit('/wtr-content');
 
-        cy.contains('Home');
+        cy.contains('Windesheim Tech Radar');
 
         cy.contains('Tech Providers');
         cy.contains('Apple');
@@ -59,6 +59,53 @@ describe('Home page tests', () => {
         cy.get('Apple newsroom').should('not.exist');
     });
 
+    it('can view the tech provider Google', () => {
+        cy.intercept('GET', '/wp-json/wp/v2/pages?slug=google', {
+            fixture: 'wtr-content/google-page.json',
+        }).as('getPage');
+
+        cy.visit('/wtr-content');
+
+        cy.contains('Windesheim Tech Radar');
+        cy.get('[data-testid="tech-provider-google-button"]').click();
+        cy.wait(['@getPage']);
+
+        cy.contains('Google');
+        cy.contains(
+            'Alphabet is het bedrijf achter de welbekende Google zoekmachine. Google is snel gegroeid in de ICT branche en heeft al vele bedrijven overgenomen zoals YouTube.',
+        );
+        cy.contains('Innovatie');
+        cy.contains('Future of Programming');
+        cy.contains('Future of Work');
+        cy.contains('Quantum Computing');
+        cy.contains('Cloud Everywhere');
+        cy.contains('Fun Facts');
+
+        cy.get('Google Cloud Nieuws').should('not.exist');
+    });
+
+    it('can view the theme Building Trust', () => {
+        cy.intercept('GET', '/wp-json/wp/v2/pages?slug=building-trust', {
+            fixture: 'wtr-content/building-trust-page.json',
+        }).as('getPage');
+
+        cy.visit('/wtr-content');
+
+        cy.contains('Windesheim Tech Radar');
+        cy.get('[data-testid="theme-building-trust-button"]').click();
+        cy.wait(['@getPage']);
+
+        cy.contains('Building Trust');
+        cy.contains(
+            'Je kunt geen gezonde relatie hebben zonder vertrouwen. En: vertrouwen komt te voet en gaat te paard! “Building Trust” is het creëren en vergroten van vertrouwen tussen de organisatie en de bezoeker of klant. Deloitte onderscheidt deze vier aspecten:',
+        );
+        cy.contains('Trends');
+        cy.contains('Impact');
+        cy.contains('Privacy');
+
+        cy.get('Artikelen en Blogs').should('not.exist');
+    });
+
     it('can view the theme Future of programming', () => {
         cy.intercept('GET', '/wp-json/wp/v2/pages?slug=future-of-programming', {
             fixture: 'wtr-content/future-of-programming-page.json',
@@ -79,5 +126,19 @@ describe('Home page tests', () => {
         cy.contains('Trends');
         cy.contains('Programmeren met ChatGPT');
         cy.contains('Internet of Things');
+    });
+
+    it('can view the an empty page', () => {
+        cy.intercept('GET', '/wp-json/wp/v2/pages?slug=empty-page', {
+            fixture: 'wtr-content/empty-page.json',
+        }).as('getPage');
+
+        cy.visit('/wtr-content/empty-page');
+        cy.wait(['@getPage']);
+
+        cy.contains('Page not found');
+        cy.contains(
+            "We're sorry, but we couldn't find the page you were looking for.",
+        );
     });
 });
