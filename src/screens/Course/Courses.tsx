@@ -5,7 +5,7 @@ import { Bar } from 'react-native-progress';
 
 import * as j from '../../assets/courses/test.json';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
-import { InteractableView } from '../../components/general/views/InteractableView';
+import { IntractableView } from '../../components/general/views/IntractableView';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
@@ -68,7 +68,7 @@ export function Courses() {
             {/* map the courses */}
             <View style={styles.cardContainer}>
                 {courses.map((course: Course) => (
-                    <InteractableView
+                    <IntractableView
                         key={course.id}
                         style={styles.card}
                         onPress={() => onPress(course.id)}
@@ -92,7 +92,7 @@ export function Courses() {
                                 unfilledColor={colors.listItemBg}
                             />
                         </View>
-                    </InteractableView>
+                    </IntractableView>
                 ))}
             </View>
         </PageScrollView>

@@ -8,7 +8,7 @@ import { useFonts } from '../../constants/Fonts';
 import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
 import { TextTranslated } from '../general/text/TextTranslated';
-import { InteractableView } from '../general/views/InteractableView';
+import { IntractableView } from '../general/views/IntractableView';
 
 export function CourseNavigation({
     title,
@@ -103,7 +103,7 @@ export function CourseNavigation({
 
     return (
         <View style={styles.x}>
-            <InteractableView
+            <IntractableView
                 style={styles.topBar}
                 onPress={() => setShowDropdown(!showDropdown)}
             >
@@ -129,12 +129,12 @@ export function CourseNavigation({
                     style={styles.chevronIcon}
                     color={colors.text}
                 />
-            </InteractableView>
+            </IntractableView>
 
             {showDropdown ? (
                 <View style={styles.courseDropdown}>
                     {/* course overview button */}
-                    <InteractableView
+                    <IntractableView
                         style={styles.courseOverview}
                         onPress={onCourseOverviewPress}
                     >
@@ -142,9 +142,9 @@ export function CourseNavigation({
                             style={styles.courseOverview}
                             text="Course Overview"
                         />
-                    </InteractableView>
+                    </IntractableView>
                     {stages?.map((stage: Stage) => (
-                        <InteractableView
+                        <IntractableView
                             key={stage.id}
                             style={[
                                 styles.dropdownText,
@@ -165,7 +165,7 @@ export function CourseNavigation({
                                 ]}
                                 text={stage.title}
                             />
-                        </InteractableView>
+                        </IntractableView>
                     ))}
                 </View>
             ) : null}
