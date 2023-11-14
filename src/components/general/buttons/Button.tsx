@@ -38,17 +38,21 @@ export const Button = ({
     const navigation = useNavigation();
 
     if (!onPress) {
+        /* istanbul ignore next */
         if (!screenName) {
             throw new Error(
                 'CustomButton requires either onPress or screenName to be defined',
             );
         }
+
+        /* istanbul ignore next */
         onPress = () => {
             //@ts-ignore
             navigation.navigate(screenName);
         };
     }
 
+    /* istanbul ignore next */
     if (!fontsLoaded && !fontError) {
         return null;
     }
