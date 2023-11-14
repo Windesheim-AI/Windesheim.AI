@@ -3,12 +3,12 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { StageItem } from './StageItem';
-import { Button } from '../../components/buttons/Button';
-import { PageView } from '../../components/general/PageView';
-import { TextTranslated } from '../../components/text/TextTranslated';
+import { Button } from '../../components/general/buttons/Button';
+import { PageView } from '../../components/general/views/PageView';
+import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { stateColorSchemes } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { useCourseWithData } from '../../hooks/useCourseWithData';
+import { useCourseWithData } from '../../lib/fetcher/courses/useCourseWithData';
 import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
 

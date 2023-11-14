@@ -4,7 +4,7 @@ import React from 'react';
 import {
     GoBackButton,
     GoBackButtonProps,
-} from '../../../src/components/buttons/GoBackButton';
+} from '../../../src/components/general/buttons/GoBackButton';
 
 jest.useFakeTimers();
 

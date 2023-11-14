@@ -11,8 +11,8 @@ import {
     Platform,
 } from 'react-native';
 
-import { appConfig } from '../../../app.config';
-import animationSource from '../../assets/json/500_man.json';
+import { appConfig } from '../../../../app.config';
+import animationSource from '../../../assets/json/500_man.json';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

@@ -1,38 +1,32 @@
-import { useFonts as useFont, Inter_500Medium } from '@expo-google-fonts/inter';
+import { useFonts, Inter_500Medium } from '@expo-google-fonts/inter';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
-import { InteractableView } from '../general/InteractableView';
+import { useColorConfig } from '../../../constants/Colors';
 import { TextTranslated } from '../text/TextTranslated';
 
 export type ButtonProps = {
     onPress?: () => void;
     screenName?: string;
     buttonText?: string;
-    colorGradientScheme: ColorGradientScheme;
     width?: number;
     icon?: string;
 };
 
-// eslint-disable-next-line complexity
-export const Button = ({
+export const ListButton = ({
     onPress,
     buttonText,
-    colorGradientScheme,
     screenName,
     width,
     icon,
 }: ButtonProps) => {
-    const [fontsLoaded, fontError] = useFont({
+    const [fontsLoaded, fontError] = useFonts({
         Inter_500Medium,
     });
 
     const colors = useColorConfig();
-    const fonts = useFonts();
     const navigation = useNavigation();
 
     if (!onPress) {
@@ -51,74 +45,94 @@ export const Button = ({
         return null;
     }
 
-    const minWidth = 80;
+    const minWidth = 70;
     const baseWidth = width ? width : minWidth;
     const checkedWidth: number = baseWidth > minWidth ? baseWidth : minWidth;
     const buttonWidth =
         checkedWidth > minWidth ? checkedWidth * 3 : minWidth * 3;
     const barHeight = 3 * checkedWidth;
     const height = 60;
+    const bgWidth = buttonWidth / 15;
 
     const styles = StyleSheet.create({
         bg1: {
-            backgroundColor: colorGradientScheme[0],
+            backgroundColor: colors.bg1,
             height: barHeight,
             top: -30,
             transform: 'rotate(20deg)',
-            width: checkedWidth,
+            width: bgWidth,
         },
         bg2: {
-            backgroundColor: colorGradientScheme[1],
+            backgroundColor: colors.bg2,
             height: barHeight,
-            left: -30,
+
             top: -30,
             transform: 'rotate(20deg)',
-            width: checkedWidth,
+            width: bgWidth,
+        },
+        bg3: {
+            backgroundColor: colors.bg3,
+            height: barHeight,
+
+            top: -30,
+            transform: 'rotate(20deg)',
+            width: bgWidth,
         },
         button: {
             alignItems: 'center',
-            backgroundColor: colorGradientScheme[2],
-            borderRadius: 18,
+            backgroundColor: colors.listItemBg,
+            borderRadius: 40,
             flexDirection: 'row',
             height,
             margin: 10,
-            // from left to rigth items
-            // shadow
             maxHeight: 90,
             width: buttonWidth,
             // center
             overflow: 'hidden',
         },
-        textContainer: {
-            color: colors.buttonText,
-            fontFamily: 'Inter_500Medium',
+        icon: {
+            color: colors.text,
+            fontSize: 15,
             fontWeight: 'bold',
-            left: 50,
             position: 'absolute',
-            ...fonts.button,
         },
         text: {
-            color: colors.buttonText,
+            color: colors.text,
             fontFamily: 'Inter_500Medium',
+            fontSize: 18,
             fontWeight: 'bold',
-            ...fonts.button,
+            position: 'absolute',
         },
-        icon: {
-            color: colors.buttonText,
-            ...fonts.icon,
-            fontWeight: 'bold',
+        textStyle: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            right: 15,
+        },
+        iconStyle: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            right: -200,
         },
     });
 
     return (
-        <InteractableView style={styles.button} onPress={onPress}>
+        <Pressable
+            style={styles.button}
+            onPress={onPress}
+            testID="Study-button"
+        >
             <View style={styles.bg1} />
             <View style={styles.bg2} />
-            <Text style={styles.textContainer}>
-                {icon ? <FontAwesome5 name={icon} style={styles.icon} /> : null}
-                {icon ? ' ' : ''}
+            <View style={styles.bg3} />
+            <View style={styles.textStyle}>
                 <TextTranslated style={styles.text} text={buttonText ?? ''} />
-            </Text>
-        </InteractableView>
+            </View>
+            <View style={styles.iconStyle}>
+                <FontAwesome5
+                    name={icon ?? 'arrow-right'}
+                    style={styles.icon}
+                />
+            </View>
+        </Pressable>
     );
 };

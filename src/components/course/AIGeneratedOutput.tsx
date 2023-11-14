@@ -5,7 +5,7 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import WordAnimation from './WordAnimation';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { TextTranslated } from '../text/TextTranslated';
+import { TextTranslated } from '../general/text/TextTranslated';
 
 interface Props {
     text: string;

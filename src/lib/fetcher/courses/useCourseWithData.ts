@@ -1,6 +1,6 @@
-import * as courseTestData from '../assets/courses/test.json';
-import { useAppSelector, RootState } from '../redux/Hooks';
-import { Course, CourseDataMapped } from '../types/Course';
+import * as courseTestData from '../../../assets/courses/test.json';
+import { useAppSelector, RootState } from '../../../redux/Hooks';
+import { Course, CourseDataMapped } from '../../../types/Course';
 
 export function useCourseWithData(courseId: string): CourseDataMapped {
     const course = courseTestData as unknown as Course;

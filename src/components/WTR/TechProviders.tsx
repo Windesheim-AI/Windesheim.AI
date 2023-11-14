@@ -39,7 +39,7 @@ import SalesForce from '../../assets/images/WTR/TechProviders/salesforce.svg';
 import Sap from '../../assets/images/WTR/TechProviders/sap.svg';
 import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
-import { TextTranslated } from '../text/TextTranslated';
+import { TextTranslated } from '../general/text/TextTranslated';
 
 const techProviderItems = [
     { name: 'Apple', slug: 'apple', logo: Apple },

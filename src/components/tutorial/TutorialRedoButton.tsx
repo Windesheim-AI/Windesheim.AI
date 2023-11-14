@@ -6,7 +6,7 @@ import { useColorConfig } from '../../constants/Colors';
 import { useAppDispatch } from '../../redux/Hooks';
 import { setCompleted } from '../../redux/slices/TutorialSlice';
 import { Routes } from '../../routes/routes';
-import { TextTranslated } from '../text/TextTranslated';
+import { TextTranslated } from '../general/text/TextTranslated';
 
 export const TutorialRedoButton = () => {
     const storeDispatcher = useAppDispatch();

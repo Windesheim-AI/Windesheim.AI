@@ -2,8 +2,8 @@ import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { WhScrollView } from './WhScrollView';
-import { useColorConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+import { useColorConfig } from '../../../constants/Colors';
+import { useFonts } from '../../../constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';
 
 type PageScrollViewProps = {

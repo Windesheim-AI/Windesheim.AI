@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 
-import { Button } from '../../../src/components/buttons/Button';
+import { Button } from '../../../src/components/general/buttons/Button';
 
 jest.useFakeTimers();
 

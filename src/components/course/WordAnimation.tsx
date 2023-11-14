@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { useFonts } from '../../constants/Fonts';
-import { TextTranslated } from '../text/TextTranslated';
+import { TextTranslated } from '../general/text/TextTranslated';
 
 interface Props {
     text: string;

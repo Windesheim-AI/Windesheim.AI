@@ -9,7 +9,7 @@ import {
     CourseStageBlockType,
 } from '../../types/CourseStageBlock';
 import { Stage } from '../../types/Stage';
-import { TextTranslated } from '../text/TextTranslated';
+import { TextTranslated } from '../general/text/TextTranslated';
 
 const blockRenderers = [
     { blockType: CourseStageBlockType.AIGenerated, component: AIRenderer },

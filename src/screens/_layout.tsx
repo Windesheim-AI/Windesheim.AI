@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import { NotificationList } from '../components/alerts/NotificationList';
-import { Background } from '../components/general/Background';
+import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { Tutorial } from '../components/tutorial/Tutorial';
 import { useColorConfig, shadow } from '../constants/Colors';

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useFonts } from '../../../constants/Fonts';
 import { TextOptions } from '../../../types/CourseStageBlock';
-import { TextTranslated } from '../../text/TextTranslated';
+import { TextTranslated } from '../../general/text/TextTranslated';
 
 export default function TextRenderer({ options }: { options: TextOptions }) {
     const fonts = useFonts();

@@ -4,9 +4,9 @@ import ConfettiCannon from 'react-native-confetti-cannon';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 import * as courseTestData from '../../assets/courses/test.json';
-import { Button } from '../../components/buttons/Button';
-import { PageView } from '../../components/general/PageView';
-import { TextTranslated } from '../../components/text/TextTranslated';
+import { Button } from '../../components/general/buttons/Button';
+import { PageView } from '../../components/general/views/PageView';
+import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { stateColorSchemes, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { Routes } from '../../routes/routes';

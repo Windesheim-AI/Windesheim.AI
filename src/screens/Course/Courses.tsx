@@ -4,12 +4,12 @@ import { View, StyleSheet } from 'react-native';
 import { Bar } from 'react-native-progress';
 
 import * as j from '../../assets/courses/test.json';
-import { InteractableView } from '../../components/general/InteractableView';
-import { PageScrollView } from '../../components/general/PageScrollView';
-import { TextTranslated } from '../../components/text/TextTranslated';
+import { InteractableView } from '../../components/general/views/InteractableView';
+import { PageScrollView } from '../../components/general/views/PageScrollView';
+import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { useCourseWithData } from '../../hooks/useCourseWithData';
+import { useCourseWithData } from '../../lib/fetcher/courses/useCourseWithData';
 import { Routes } from '../../routes/routes';
 import { Course } from '../../types/Course';
 

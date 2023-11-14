@@ -3,7 +3,7 @@ import React from 'react';
 import ErrorBoundary from 'react-native-error-boundary';
 import { Provider } from 'react-redux';
 
-import ErrorFallback from './src/components/error/ErrorBoundary';
+import ErrorFallback from './src/components/general/error/ErrorBoundary';
 import AppLoader from './src/components/loadingscreen/AppLoader';
 import SplashScreenOrApp from './src/components/splashscreen/SplashScreenOrApp';
 import { store } from './src/redux/Store';

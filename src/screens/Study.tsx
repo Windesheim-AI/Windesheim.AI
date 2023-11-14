@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { ListButton } from '../components/buttons/ListButton';
-import { PageView } from '../components/general/PageView';
+import { ListButton } from '../components/general/buttons/ListButton';
+import { PageView } from '../components/general/views/PageView';
 import { Routes } from '../routes/routes';
 
 export const StudyScreen = () => {

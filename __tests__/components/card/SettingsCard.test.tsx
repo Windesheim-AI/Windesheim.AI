@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Text } from 'react-native';
 import renderer from 'react-test-renderer';
 
-import { SettingCard } from '../../../src/components/card/SettingCard';
+import { SettingCard } from '../../../src/components/general/card/SettingCard';
 
 jest.useFakeTimers();
 

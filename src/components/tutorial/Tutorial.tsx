@@ -7,7 +7,7 @@ import { useColorConfig } from '../../constants/Colors';
 import { tutorialData } from '../../constants/TutorialData';
 import { useAppSelector, useAppDispatch } from '../../redux/Hooks';
 import { nextStep, setCompleted } from '../../redux/slices/TutorialSlice';
-import { TextTranslated } from '../text/TextTranslated';
+import { TextTranslated } from '../general/text/TextTranslated';
 
 export const Tutorial = () => {
     const storeDispatcher = useAppDispatch();
