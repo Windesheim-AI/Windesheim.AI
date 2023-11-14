@@ -2,12 +2,13 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
+import { useColorConfig } from '../../constants/Colors';
 import { useAppDispatch } from '../../redux/Hooks';
 import { setCompleted } from '../../redux/slices/TutorialSlice';
 import { Routes } from '../../routes/routes';
-import { useColorConfig } from '../../constants/Colors';
+import { TextTranslated } from '../text/TextTranslated';
 
-export const TutorialResetButton = () => {
+export const TutorialRedoButton = () => {
     const storeDispatcher = useAppDispatch();
     const navigation = useNavigation();
     const colors = useColorConfig();
@@ -32,7 +33,9 @@ export const TutorialResetButton = () => {
 
     return (
         <Pressable style={styles.button} onPress={handleReset}>
-            <Text style={styles.buttonText}>Reset Tutorial</Text>
+            <Text style={styles.buttonText}>
+                <TextTranslated text="Redo Tutorial" />
+            </Text>
         </Pressable>
     );
 };

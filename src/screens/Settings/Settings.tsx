@@ -5,7 +5,7 @@ import { PageView } from '../../components/general/PageView';
 import { FontSwitcher } from '../../components/settings/FontSwitcher';
 import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../../components/settings/ThemeSwitcher';
-import { TutorialResetButton } from '../../components/tutorial/TutorialResetButton';
+import { TutorialRedoButton } from '../../components/tutorial/TutorialRedoButton';
 
 export const SettingsScreen = () => {
     return (
@@ -29,12 +29,13 @@ export const SettingsScreen = () => {
             <SettingCard icon="font" title="Font" testID="font switcher">
                 <FontSwitcher />
             </SettingCard>
+
             <SettingCard
                 icon="redo"
-                title="Tutorial Reset"
+                title="Redo tutorial"
                 testID="tutorial reset"
             >
-                <TutorialResetButton />
+                <TutorialRedoButton />
             </SettingCard>
         </PageView>
     );

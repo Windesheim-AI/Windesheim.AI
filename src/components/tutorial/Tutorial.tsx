@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-depth */
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { Modal, Text, Pressable, View, StyleSheet } from 'react-native';
@@ -6,6 +7,7 @@ import { useColorConfig } from '../../constants/Colors';
 import { tutorialData } from '../../constants/TutorialData';
 import { useAppSelector, useAppDispatch } from '../../redux/Hooks';
 import { nextStep, setCompleted } from '../../redux/slices/TutorialSlice';
+import { TextTranslated } from '../text/TextTranslated';
 
 export const Tutorial = () => {
     const storeDispatcher = useAppDispatch();
@@ -49,10 +51,9 @@ export const Tutorial = () => {
             alignItems: 'center',
             justifyContent: 'center',
         },
-        // eslint-disable-next-line react-native/no-color-literals
         modalBackground: {
             flex: 1,
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            backgroundColor: colors.backgroundModal,
             alignItems: 'center',
             justifyContent: 'center',
         },
@@ -118,10 +119,14 @@ export const Tutorial = () => {
                 <View style={styles.modalBackground}>
                     <View style={styles.modalContent}>
                         <Text style={styles.modalText}>
-                            {tutorialData[tutorialStep].Title}
+                            <TextTranslated
+                                text={tutorialData[tutorialStep].Title}
+                            />
                         </Text>
                         <Text style={styles.subText}>
-                            {tutorialData[tutorialStep].Subtext}
+                            <TextTranslated
+                                text={tutorialData[tutorialStep].Subtext}
+                            />
                         </Text>
                         <View style={styles.buttonContainer}>
                             <Pressable
@@ -132,7 +137,9 @@ export const Tutorial = () => {
                                     storeDispatcher(setCompleted(true));
                                 }}
                             >
-                                <Text style={styles.buttonText}>Skip</Text>
+                                <Text style={styles.buttonText}>
+                                    <TextTranslated text="Skip" />
+                                </Text>
                             </Pressable>
                             {tutorialStep === tutorialData.length - 1 ? (
                                 <Pressable
@@ -145,7 +152,7 @@ export const Tutorial = () => {
                                     }}
                                 >
                                     <Text style={styles.buttonText}>
-                                        Finish
+                                        <TextTranslated text="Finish" />
                                     </Text>
                                 </Pressable>
                             ) : (
@@ -157,8 +164,9 @@ export const Tutorial = () => {
                                     }}
                                 >
                                     <Text style={styles.buttonText}>
-                                        Next {tutorialStep + 1} /{' '}
-                                        {tutorialData.length}
+                                        <TextTranslated text="Next" />
+                                        {' - '}
+                                        {tutorialStep + 1}/{tutorialData.length}
                                     </Text>
                                 </Pressable>
                             )}

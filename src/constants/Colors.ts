@@ -13,6 +13,7 @@ export type ColorSchemeType = {
     text: string;
     textLight: string;
     background: string;
+    backgroundModal: string;
     tint: string;
     gray: string;
     black: string;
@@ -45,6 +46,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         text: '#000',
         textLight: '#fff',
         background: '#fff',
+        backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorLight,
         gray: '#ccc',
         tabIconDefault: '#ccc',
@@ -76,6 +78,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         text: '#fff',
         textLight: '#fff',
         background: '#2a2a2a',
+        backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorDark,
         gray: '#ccc',
         tabIconDefault: '#ccc',
