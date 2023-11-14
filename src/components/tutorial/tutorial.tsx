@@ -131,6 +131,7 @@ export const Tutorial = () => {
                         </Text>
                         <View style={styles.buttonContainer}>
                             <Pressable
+                                testID="tutorial-skip-button"
                                 style={[styles.button, styles.skipButton]}
                                 onPress={() => {
                                     setModalVisible(false);
@@ -141,6 +142,7 @@ export const Tutorial = () => {
                             </Pressable>
                             {tutorialStep === tutorialData.length - 1 ? (
                                 <Pressable
+                                    testID="tutorial-finish-button"
                                     style={[styles.button, styles.finishButton]}
                                     onPress={() => {
                                         // Handle logic for finishing the tutorial
@@ -154,6 +156,7 @@ export const Tutorial = () => {
                                 </Pressable>
                             ) : (
                                 <Pressable
+                                    testID="tutorial-next-button"
                                     style={[styles.button, styles.nextButton]}
                                     onPress={() => {
                                         handleNext();
