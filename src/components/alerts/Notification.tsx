@@ -3,7 +3,11 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, Text, StyleSheet, Dimensions, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
+import {
+    ColorGradientScheme,
+    shadow,
+    useColorConfig,
+} from '../../constants/Colors';
 import { useAppDispatch } from '../../redux/Hooks';
 import { NotificationActions } from '../../redux/slices/NotificationSlice';
 
@@ -141,6 +145,7 @@ export const Notification = ({
             width: alertWidth,
             overflow: 'hidden',
             transform: [{ translateY: slideAnim }],
+            ...shadow,
         },
         textContainer: {
             position: 'absolute',
