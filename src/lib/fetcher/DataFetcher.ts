@@ -1,7 +1,19 @@
 import useSWRNative from '@nandorojo/swr-react-native';
 import { BareFetcher, Fetcher, SWRConfiguration } from 'swr';
-
 import { HttpStatusCode } from '../../types/Response';
+import { Buffer } from 'buffer';
+
+function btoa(str: string | Buffer): string {
+    let buffer;
+
+    if (str instanceof Buffer) {
+        buffer = str;
+    } else {
+        buffer = Buffer.from(str.toString(), 'binary');
+    }
+
+    return buffer.toString('base64');
+}
 
 interface FetcherOptions {
     input: RequestInfo | URL | string;
@@ -16,7 +28,14 @@ export const fetchData = async (options: FetcherOptions) => {
     }
 
     if (response.status !== HttpStatusCode.Ok.valueOf()) {
-        throw new Error('An error occurred while fetching the data.');
+        console.error(
+            'An error occurred while fetching the data. Received status code: ' +
+                response.status,
+        );
+        throw new Error(
+            'An error occurred while fetching the data. Received status code: ' +
+                response.status,
+        );
     }
 
     return response;
