@@ -1,4 +1,14 @@
 describe('App settings test', () => {
+    beforeEach(() => {
+        cy.visit('/');
+        cy.window()
+            .its('store')
+            .invoke('dispatch', {
+                type: 'tutorial/setCompleted',
+                payload: { completed: true },
+            });
+    });
+
     it('can change the theme', () => {
         cy.visit('/settings');
 

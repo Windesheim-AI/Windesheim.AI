@@ -164,9 +164,10 @@ export const Tutorial = () => {
                                     }}
                                 >
                                     <Text style={styles.buttonText}>
-                                        <TextTranslated text="Next" />
-                                        {' - '}
-                                        {tutorialStep + 1}/{tutorialData.length}
+                                        <TextTranslated text="Next" />{' '}
+                                        {tutorialStep + 1}
+                                        {' / '}
+                                        {tutorialData.length}
                                     </Text>
                                 </Pressable>
                             )}
