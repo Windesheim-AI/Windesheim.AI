@@ -29,6 +29,27 @@ describe('NotificationSlice', () => {
         expect(nextState.notifications).toEqual([notification]);
     });
 
+    it('can add a notification once', () => {
+        const initialState = { notifications: [] };
+        const notification = {
+            id: 1,
+            message: 'message added',
+            colorGradientScheme: ['#FFF', '#CCC', '#333'],
+            icon: 'exclamation-circle',
+        } as NotificationType;
+
+        notificationSlice.reducer(
+            initialState,
+            NotificationActions.addNotificationOnce(notification),
+        );
+        const nextState = notificationSlice.reducer(
+            initialState,
+            NotificationActions.addNotificationOnce(notification),
+        );
+
+        expect(nextState.notifications).toEqual([notification]);
+    });
+
     it('should handle removing a notification', () => {
         const initialState = {
             notifications: [
