@@ -14,7 +14,12 @@ const persistConfig: PersistConfig<unknown> = {
     key: 'root',
     storage: AsyncStorage,
     version: 1,
-    whitelist: [themeSlice.name, languageSlice.name, fontSlice.name],
+    whitelist: [
+        themeSlice.name,
+        languageSlice.name,
+        fontSlice.name,
+        tutorialSlice.name,
+    ],
 };
 
 export const rootReducer = combineReducers({

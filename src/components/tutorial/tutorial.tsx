@@ -11,7 +11,7 @@ export const Tutorial = () => {
     const layoutState = useAppSelector((state: RootState) => state.layout);
     const loadingState = useAppSelector((state: RootState) => state.loading);
 
-    const [modalVisible, setModalVisible] = useState(true);
+    const [modalVisible, setModalVisible] = useState(false);
     const colors = useColorConfig();
     const navigation = useNavigation();
     const tutorialStep = useAppSelector(
