@@ -112,27 +112,51 @@ export const shadow = {
 export type ColorGradientScheme = [string, string, string];
 export type ColorTypes =
     | 'primary'
+    | 'info'
     | 'secondary'
     | 'success'
     | 'danger'
     | 'warning';
 
-export type ColorGradientSchemes = Record<ColorTypes, ColorGradientScheme>;
-
-export const buttonColorSchemes: ColorGradientSchemes = {
-    secondary: ['#FFCB05', '#FFD949', '#FFF377'],
-    success: ['#45B97C', '#B1D249', '#D5E05B'],
-    primary: ['#4695D3', '#22BDC6', '#86D2D9'],
-    danger: ['#EE3135', '#F16682', '#F287B7'],
-    warning: ['#ff7300', '#f59e56', '#ffcc66'],
+export type ColorIconMapping = {
+    [key in ColorTypes]: string;
 };
 
-export function useCurrentTheme() {
+export const colorIconMapping: ColorIconMapping = {
+    primary: 'info',
+    info: 'info',
+    secondary: 'square',
+    success: 'check-circle',
+    danger: 'times-circle',
+    warning: 'exclamation-triangle',
+};
+
+export type ColorGradientSchemes = Record<ColorTypes, ColorGradientScheme>;
+
+export type stateColorGradientSchemes = {
+    primary: ColorGradientScheme;
+    info: ColorGradientScheme;
+    secondary: ColorGradientScheme;
+    success: ColorGradientScheme;
+    warning: ColorGradientScheme;
+    danger: ColorGradientScheme;
+};
+
+export const stateColorSchemes: stateColorGradientSchemes = {
+    primary: ['#4695D3', '#22BDC6', '#86D2D9'],
+    info: ['#4695D3', '#22BDC6', '#86D2D9'],
+    secondary: ['#FFCB05', '#FFD949', '#FFF377'],
+    success: ['#45B97C', '#B1D249', '#D5E05B'],
+    warning: ['#ff7300', '#f59e56', '#ffcc66'],
+    danger: ['#EE3135', '#F16682', '#F287B7'],
+};
+
+export function useCurrentTheme(): 'dark' | 'light' {
     return useAppSelector((state: RootState) => state.theme).theme;
 }
 
-export function useColorConfig() {
+export function useColorConfig(): ColorSchemeType {
     const theme = useCurrentTheme();
-    if (hasKeyInMap(colorMap, theme)) return colorMap[theme];
-    return colorMap.dark;
+
+    return hasKeyInMap(colorMap, theme) ? colorMap[theme] : colorMap.dark;
 }
