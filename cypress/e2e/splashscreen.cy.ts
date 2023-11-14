@@ -1,6 +1,16 @@
 import { appConfig } from '../../app.config';
 
 describe('Tests the splashscreen', () => {
+    beforeEach(() => {
+        cy.visit('/');
+        cy.window()
+            .its('store')
+            .invoke('dispatch', {
+                type: 'tutorial/setCompleted',
+                payload: { completed: true },
+            });
+    });
+
     it('can see the logos on the splashscreen', () => {
         cy.visit('/');
         cy.get('[data-testid="LogoBlack"]');

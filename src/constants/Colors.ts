@@ -11,7 +11,9 @@ export type ColorSchemeType = {
     warning: string;
     danger: string;
     text: string;
+    textLight: string;
     background: string;
+    backgroundModal: string;
     tint: string;
     gray: string;
     black: string;
@@ -46,7 +48,9 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         danger: '#EE3135',
         buttonText: '#3F3f3f',
         text: '#000',
+        textLight: '#fff',
         background: '#fff',
+        backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorLight,
         gray: '#919191',
         tabIconDefault: '#ccc',
@@ -78,8 +82,10 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         warning: '#ff7300',
         danger: '#EE3135',
         text: '#fff',
+        textLight: '#fff',
         buttonText: '#3F3f3f',
         background: '#2a2a2a',
+        backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorDark,
         gray: '#919191',
         tabIconDefault: '#ccc',
@@ -121,27 +127,51 @@ export const shadow = {
 export type ColorGradientScheme = [string, string, string];
 export type ColorTypes =
     | 'primary'
+    | 'info'
     | 'secondary'
     | 'success'
     | 'danger'
     | 'warning';
 
-export type ColorGradientSchemes = Record<ColorTypes, ColorGradientScheme>;
-
-export const buttonColorSchemes: ColorGradientSchemes = {
-    secondary: ['#FFCB05', '#FFD949', '#FFF377'],
-    success: ['#45B97C', '#B1D249', '#D5E05B'],
-    primary: ['#4695D3', '#22BDC6', '#86D2D9'],
-    danger: ['#EE3135', '#F16682', '#F287B7'],
-    warning: ['#ff7300', '#f59e56', '#ffcc66'],
+export type ColorIconMapping = {
+    [key in ColorTypes]: string;
 };
 
-export function useCurrentTheme() {
+export const colorIconMapping: ColorIconMapping = {
+    primary: 'info',
+    info: 'info',
+    secondary: 'square',
+    success: 'check-circle',
+    danger: 'times-circle',
+    warning: 'exclamation-triangle',
+};
+
+export type ColorGradientSchemes = Record<ColorTypes, ColorGradientScheme>;
+
+export type StateColorGradientSchemes = {
+    primary: ColorGradientScheme;
+    info: ColorGradientScheme;
+    secondary: ColorGradientScheme;
+    success: ColorGradientScheme;
+    warning: ColorGradientScheme;
+    danger: ColorGradientScheme;
+};
+
+export const stateColorSchemes: StateColorGradientSchemes = {
+    primary: ['#4695D3', '#22BDC6', '#86D2D9'],
+    info: ['#4695D3', '#22BDC6', '#86D2D9'],
+    secondary: ['#FFCB05', '#FFD949', '#FFF377'],
+    success: ['#45B97C', '#B1D249', '#D5E05B'],
+    warning: ['#ff7300', '#f59e56', '#ffcc66'],
+    danger: ['#EE3135', '#F16682', '#F287B7'],
+};
+
+export function useCurrentTheme(): 'dark' | 'light' {
     return useAppSelector((state: RootState) => state.theme).theme;
 }
 
-export function useColorConfig() {
+export function useColorConfig(): ColorSchemeType {
     const theme = useCurrentTheme();
-    if (hasKeyInMap(colorMap, theme)) return colorMap[theme];
-    return colorMap.dark;
+
+    return hasKeyInMap(colorMap, theme) ? colorMap[theme] : colorMap.dark;
 }

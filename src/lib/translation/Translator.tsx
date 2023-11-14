@@ -38,9 +38,7 @@ export default function Translator({
             const translator = translatorFactory.create(options, cacheProvider);
             const translation = await translator.translate(value);
 
-            if (translation) {
-                setTranslation(translation);
-            }
+            setTranslation(translation ?? value);
         },
         [to, from, googleApiKey, cacheProvider],
     );

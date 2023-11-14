@@ -1,4 +1,14 @@
 describe('WTR page tests', () => {
+    beforeEach(() => {
+        cy.visit('/');
+        cy.window()
+            .its('store')
+            .invoke('dispatch', {
+                type: 'tutorial/setCompleted',
+                payload: { completed: true },
+            });
+    });
+
     it('can display the WTR page', () => {
         cy.visit('/wtr-content');
 
@@ -128,7 +138,7 @@ describe('WTR page tests', () => {
         cy.contains('Internet of Things');
     });
 
-    it('can view the an empty page', () => {
+    it('can view an empty page', () => {
         cy.intercept('GET', '/wp-json/wp/v2/pages?slug=empty-page', {
             fixture: 'wtr-content/empty-page.json',
         }).as('getPage');

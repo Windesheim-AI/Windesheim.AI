@@ -1,4 +1,14 @@
 describe('Home page tests', () => {
+    beforeEach(() => {
+        cy.visit('/');
+        cy.window()
+            .its('store')
+            .invoke('dispatch', {
+                type: 'tutorial/setCompleted',
+                payload: { completed: true },
+            });
+    });
+
     it('can display the home page', () => {
         cy.visit('/');
 

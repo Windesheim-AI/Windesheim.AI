@@ -1,4 +1,14 @@
 describe('Study page tests', () => {
+    beforeEach(() => {
+        cy.visit('/');
+        cy.window()
+            .its('store')
+            .invoke('dispatch', {
+                type: 'tutorial/setCompleted',
+                payload: { completed: true },
+            });
+    });
+
     it('can display the study page', () => {
         cy.visit('/Study');
 

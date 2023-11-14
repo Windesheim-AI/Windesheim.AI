@@ -4,6 +4,7 @@ import { View } from 'react-native';
 import { TechProviders } from '../components/WTR/TechProviders';
 import { Themes } from '../components/WTR/Theme';
 import { PageView } from '../components/general/PageView';
+import { WhScrollView } from '../components/general/WhScrollView';
 
 export const HomeScreen = () => {
     return (
@@ -13,10 +14,12 @@ export const HomeScreen = () => {
                 future and transforming our lives"
         >
             {/* WTR-site content */}
-            <View>
-                <TechProviders />
-                <Themes />
-            </View>
+            <WhScrollView>
+                <View>
+                    <TechProviders />
+                    <Themes />
+                </View>
+            </WhScrollView>
         </PageView>
     );
 };

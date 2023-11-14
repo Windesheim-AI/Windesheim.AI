@@ -9,8 +9,9 @@ import { languageSlice } from './slices/LanguageSlice';
 import { layoutSlice } from './slices/LayoutSlice';
 import { loadingSlice } from './slices/LoadingSlice';
 import { navigationSlice } from './slices/NavigationSlice';
+import { notificationSlice } from './slices/NotificationSlice';
 import { themeSlice } from './slices/ThemeSlice';
-
+import { tutorialSlice } from './slices/TutorialSlice';
 const persistConfig: PersistConfig<unknown> = {
     key: 'root',
     storage: AsyncStorage,
@@ -20,10 +21,12 @@ const persistConfig: PersistConfig<unknown> = {
         languageSlice.name,
         fontSlice.name,
         courseDataSlice.name,
+        tutorialSlice.name,
     ],
 };
 
 export const rootReducer = combineReducers({
+    notification: notificationSlice.reducer,
     navigation: navigationSlice.reducer,
     theme: themeSlice.reducer,
     language: languageSlice.reducer,
@@ -31,6 +34,7 @@ export const rootReducer = combineReducers({
     loading: loadingSlice.reducer,
     fontSize: fontSlice.reducer,
     courseData: courseDataSlice.reducer,
+    tutorial: tutorialSlice.reducer,
 });
 // @ts-ignore
 const persistedReducer = persistReducer(persistConfig, rootReducer);

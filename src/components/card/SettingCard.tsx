@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-color-literals */
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -28,7 +27,7 @@ export const SettingCard = ({
         buttonContainer: {
             flexDirection: 'row',
             alignItems: 'center',
-            borderColor: '#CCC',
+            borderColor: colors.gray,
             borderWidth: 1,
             padding: 10,
             borderRadius: 10,
