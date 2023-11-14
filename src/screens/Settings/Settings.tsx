@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { SettingCard } from '../../components/card/SettingCard';
 import { PageView } from '../../components/general/PageView';

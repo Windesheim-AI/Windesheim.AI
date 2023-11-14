@@ -8,6 +8,7 @@ import {
     StatusBar,
 } from 'react-native';
 
+import { NotificationList } from '../components/alerts/NotificationList';
 import { Background } from '../components/general/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { Tutorial } from '../components/tutorial/Tutorial';
@@ -59,6 +60,7 @@ export const Layout = ({ children }: LayoutProps) => {
         <>
             <Background />
             <SafeAreaView style={styles.wrapper}>
+                <NotificationList />
                 <Animated.View // Use Animated.View here
                     style={{
                         ...styles.contentContainer,

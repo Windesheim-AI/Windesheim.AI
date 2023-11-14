@@ -47,6 +47,27 @@ describe('useStaticLoading', () => {
         );
         expect(state).toBe(false);
     });
+
+    it('should not set loading to true when execution is disabled', () => {
+        // Mock the isLoading value in the Redux state
+        (useAppSelector as jest.Mock).mockReturnValue(false);
+
+        // Mock the setLoading action
+        const dispatchMock = jest.fn();
+        (useAppDispatch as jest.Mock).mockReturnValue(dispatchMock);
+
+        // Call the useStaticLoading hook to ensure it's invoked
+        renderHook(() => useStaticLoading(500, false));
+
+        // Verify that the setLoading action has been dispatched with the expected payloads
+        expect(dispatchMock).not.toHaveBeenCalled();
+
+        // Verify that the isLoading state is set to false
+        const state = useAppSelector(
+            (reduxState) => reduxState.loading.isLoading,
+        );
+        expect(state).toBe(false);
+    });
 });
 
 describe('useDynamicLoading', () => {

@@ -32,33 +32,37 @@ import { Routes } from '../../routes/routes';
 import HorizontalScroll from '../general/HorizontalScroll';
 import { TextTranslated } from '../text/TextTranslated';
 
+export const themeItems = [
+    {
+        name: 'Artificial Intelligence',
+        slug: 'artificial-intelligence',
+        image: Ai,
+    },
+    { name: 'Next UI', slug: 'next-ui', image: Nexuit },
+    { name: 'Green IT', slug: 'green-it', image: Green },
+    {
+        name: 'Transaction to interaction',
+        slug: 'customer-centricity',
+        image: Ftti,
+    },
+    { name: 'Future of Work', slug: 'future-of-work', image: Work },
+    { name: 'Cloud Everywhere', slug: 'cloud-everywhere', image: Cloud },
+    {
+        name: 'Future of programming',
+        slug: 'future-of-programming',
+        image: Programming,
+    },
+    { name: 'Building Trust', slug: 'building-trust', image: Trust },
+    {
+        name: 'Quantum computing',
+        slug: 'quantum-computing',
+        image: Quantum,
+    },
+];
+
 export const Themes = () => {
     const colors = useColorConfig();
     const navigation = useNavigation();
-
-    const themes = [
-        { name: 'Artificial Intelligence', slug: 'ai', image: Ai },
-        { name: 'Building Trust', slug: 'building-trust', image: Trust },
-        { name: 'Cloud Everywhere', slug: 'cloud-everywhere', image: Cloud },
-        {
-            name: 'From transaction to interaction',
-            slug: 'transaction-interaction',
-            image: Ftti,
-        },
-        {
-            name: 'Future of programming',
-            slug: 'programming',
-            image: Programming,
-        },
-        { name: 'Future of Work', slug: 'future-of-work', image: Work },
-        { name: 'Green IT', slug: 'green-it', image: Green },
-        { name: 'Next UI & Metaverse', slug: 'next-ui', image: Nexuit },
-        {
-            name: 'Quantum computing',
-            slug: 'quantum-computing',
-            image: Quantum,
-        },
-    ];
 
     const styles = StyleSheet.create({
         heading: {
@@ -81,6 +85,7 @@ export const Themes = () => {
             fontSize: 14,
             fontWeight: 'bold',
             textAlign: 'center',
+            flexWrap: 'wrap',
         },
         opacityLayer: {
             width: '100%',
@@ -104,8 +109,12 @@ export const Themes = () => {
                 <TextTranslated text="Themes" />
             </Text>
             <HorizontalScroll>
-                {themes.map((theme) => (
-                    <Pressable key={theme.slug} onPress={navigate(theme.slug)}>
+                {themeItems.map((theme) => (
+                    <Pressable
+                        key={theme.slug}
+                        onPress={navigate(theme.slug)}
+                        testID={`theme-${theme.slug}-button`}
+                    >
                         <ImageBackground
                             source={theme.image}
                             style={styles.themeItem}
