@@ -72,7 +72,10 @@ export default function AIGeneratedOutput({ text, prompt }: Props) {
                     style={styles.icon}
                     color={colors.text}
                 />
-                <TextTranslated text="AI Generated Output" />
+                <TextTranslated
+                    style={fonts.description}
+                    text="AI Generated Output"
+                />
                 <Pressable onPress={() => setModalVisible(true)}>
                     <TextTranslated
                         style={styles.seePrompt}

@@ -4,7 +4,6 @@ import {
     Inter_400Regular,
     Inter_300Light,
 } from '@expo-google-fonts/inter';
-
 import { TextStyle } from 'react-native';
 
 import { useColorConfig } from './Colors';

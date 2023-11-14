@@ -30,18 +30,12 @@ export default function CourseOverview() {
     const courseId = params.courseId;
 
     const course = useCourseWithData(courseId);
-    const renderItem = ({ item }: { item: StageDataMapped }) => (
-        <StageItem
-            title={item.title}
-            id={item.id}
-            description={item.description}
-            isCompletedByUser={item.isCompletedByUser}
-            courseId={course.courseId}
-        />
-    );
 
     const styles = StyleSheet.create({
         container: {
+            marginTop: 10,
+        },
+        courseStageContainer: {
             marginTop: 10,
         },
     });
@@ -56,14 +50,8 @@ export default function CourseOverview() {
             <View style={styles.container}>
                 <TextTranslated style={fonts.h1} text="Course Overview" />
 
-                <Button
-                    buttonText="Back to Courses"
-                    colorGradientScheme={stateColorSchemes.primary}
-                    onPress={navigateBackToCourses}
-                />
-
                 {/* map the stages of the course */}
-                <View>
+                <View style={styles.courseStageContainer}>
                     {course?.stageData.map((stage) => {
                         return (
                             <StageItem
@@ -77,6 +65,12 @@ export default function CourseOverview() {
                         );
                     })}
                 </View>
+
+                <Button
+                    buttonText="Back to Courses"
+                    colorGradientScheme={stateColorSchemes.primary}
+                    onPress={navigateBackToCourses}
+                />
             </View>
         </PageView>
     );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { useFonts } from '../../constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';

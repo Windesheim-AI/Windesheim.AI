@@ -9,8 +9,8 @@ import { PageView } from '../../components/general/PageView';
 import { TextTranslated } from '../../components/text/TextTranslated';
 import { stateColorSchemes, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { Course } from '../../types/Course';
 import { Routes } from '../../routes/routes';
+import { Course } from '../../types/Course';
 
 export default function CourseFinished() {
     const colors = useColorConfig();
@@ -73,7 +73,7 @@ export default function CourseFinished() {
                 />
 
                 <Button
-                    buttonText="Go back to courses overview"
+                    buttonText="Go back to courses"
                     screenName={Routes.Courses}
                     colorGradientScheme={stateColorSchemes.success}
                 />
