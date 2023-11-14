@@ -8,6 +8,7 @@ import { languageSlice } from './slices/LanguageSlice';
 import { layoutSlice } from './slices/LayoutSlice';
 import { loadingSlice } from './slices/LoadingSlice';
 import { navigationSlice } from './slices/NavigationSlice';
+import { notificationSlice } from './slices/NotificationSlice';
 import { themeSlice } from './slices/ThemeSlice';
 
 const persistConfig: PersistConfig<unknown> = {
@@ -18,6 +19,7 @@ const persistConfig: PersistConfig<unknown> = {
 };
 
 export const rootReducer = combineReducers({
+    notification: notificationSlice.reducer,
     navigation: navigationSlice.reducer,
     theme: themeSlice.reducer,
     language: languageSlice.reducer,
