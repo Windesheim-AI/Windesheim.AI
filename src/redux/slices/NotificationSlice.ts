@@ -1,6 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { NotificationType } from '../../components/alerts/Notification';
+import {
+    stateColorSchemes,
+    ColorGradientScheme,
+    ColorTypes,
+    colorIconMapping,
+} from '../../constants/Colors';
+import { useAppDispatch } from '../Hooks';
+import { useEffect } from 'react';
+
+export type AddNotificationAction = {
+    id: number;
+    message: string;
+    colorGradientScheme: ColorGradientScheme;
+    width?: number;
+    height?: number;
+    icon?: string;
+};
 
 export interface NotificationSlice {
     notifications: NotificationType[];
@@ -14,10 +31,33 @@ export const notificationSlice = createSlice({
     name: 'notifications',
     initialState,
     reducers: {
-        addNotification: (state, action: PayloadAction<NotificationType>) => {
-            if (state.notifications.length > 0)
-                action.payload.id =
-                    state.notifications[state.notifications.length - 1].id + 1;
+        addNotification: (
+            state,
+            action: PayloadAction<AddNotificationAction>,
+        ) => {
+            let id =
+                state.notifications.length > 0
+                    ? state.notifications[state.notifications.length - 1].id + 1
+                    : 1;
+            state.notifications.push({
+                ...action.payload,
+                id: id,
+            });
+        },
+        addNotificationOnce: (
+            state,
+            action: PayloadAction<AddNotificationAction>,
+        ) => {
+            const existingNotification = state.notifications.find(
+                (notification) => {
+                    return notification.id === action.payload.id;
+                },
+            );
+
+            if (existingNotification) {
+                return;
+            }
+
             state.notifications.push(action.payload);
         },
         removeNotification: (state, action: PayloadAction<number>) => {
@@ -25,7 +65,31 @@ export const notificationSlice = createSlice({
                 (notification) => notification.id !== action.payload,
             );
         },
+        clearNotification: (state) => {
+            state.notifications = [];
+        },
     },
 });
 
 export const NotificationActions = notificationSlice.actions;
+
+export const useNotificationOnce = (
+    id: number,
+    message: string,
+    colorType?: ColorTypes,
+) => {
+    const storeDispatcher = useAppDispatch();
+
+    useEffect(() => {
+        storeDispatcher(
+            NotificationActions.addNotificationOnce({
+                id: id,
+                message: message,
+                colorGradientScheme: colorType
+                    ? stateColorSchemes[colorType]
+                    : stateColorSchemes.primary,
+                icon: colorType ? colorIconMapping[colorType] : 'info',
+            } as AddNotificationAction),
+        );
+    });
+};
