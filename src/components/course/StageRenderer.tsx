@@ -4,14 +4,17 @@ import { Text } from 'react-native';
 import AIRenderer from './stages/AIBlock';
 import ButtonBlock from './stages/ButtonBlock';
 import TextRenderer from './stages/TextBlock';
-import { Block, BlockType } from '../../types/Block';
+import {
+    CourseStageBlock,
+    CourseStageBlockType,
+} from '../../types/CourseStageBlock';
 import { Stage } from '../../types/Stage';
 import { TextTranslated } from '../text/TextTranslated';
 
 const blockRenderers = [
-    { blockType: BlockType.AIGenerated, component: AIRenderer },
-    { blockType: BlockType.Text, component: TextRenderer },
-    { blockType: BlockType.Button, component: ButtonBlock },
+    { blockType: CourseStageBlockType.AIGenerated, component: AIRenderer },
+    { blockType: CourseStageBlockType.Text, component: TextRenderer },
+    { blockType: CourseStageBlockType.Button, component: ButtonBlock },
 ];
 
 export default function StageRenderer({
@@ -23,7 +26,7 @@ export default function StageRenderer({
 }) {
     return (
         <>
-            {stage.description.map((block: Block) => {
+            {stage.description.map((block: CourseStageBlock) => {
                 const renderer = blockRenderers.find(
                     (e) => e.blockType === block.blockType,
                 );

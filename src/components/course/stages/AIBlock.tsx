@@ -1,10 +1,10 @@
 //@ts-ignore
 import { OPENAI_API_KEY, AI_ENABLED } from '@env';
-import OpenAI from 'openai';
+import OpenAI, { ClientOptions } from 'openai';
 import React, { useState, useEffect } from 'react';
 
 import BlockWrapper from './block';
-import { AIOptions } from '../../../types/Block';
+import { AIOptions } from '../../../types/CourseStageBlock';
 import AIGeneratedOutput from '../AIGeneratedOutput';
 
 export default function AIRenderer({ options }: { options: AIOptions }) {
@@ -12,7 +12,7 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
     const openai = new OpenAI({
         apiKey: OPENAI_API_KEY as string, // defaults to process.env["OPENAI_API_KEY"]
         dangerouslyAllowBrowser: true,
-    });
+    } as ClientOptions);
 
     useEffect(() => {
         async function main() {
@@ -34,7 +34,7 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
             void main();
         } else {
             setText(
-                'Live AI has been disabled in the .env file. Showing prompt;' +
+                'Live AI has been disabled in the .env file. Showing prompt; ' +
                     options.prompt,
             );
         }

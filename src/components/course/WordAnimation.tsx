@@ -11,6 +11,7 @@ interface Props {
 
 const WordAnimation = ({ text, speed = 1 }: Props) => {
     const [displayText, setDisplayText] = useState('');
+    const fonts = useFonts();
 
     useEffect(() => {
         // Split the text into an array of words
@@ -48,8 +49,6 @@ const WordAnimation = ({ text, speed = 1 }: Props) => {
         return () => clearInterval(intervalId);
     }, [text, speed]);
 
-    const fonts = useFonts();
-
     const styles = StyleSheet.create({
         p: {
             ...fonts.p,
@@ -57,13 +56,8 @@ const WordAnimation = ({ text, speed = 1 }: Props) => {
             fontStyle: 'italic',
         },
     });
-    return (
-        <View style={styles.p}>
-            <Text>
-                <TextTranslated text={displayText} />
-            </Text>
-        </View>
-    );
+
+    return <TextTranslated style={styles.p} text={displayText} />;
 };
 
 export default WordAnimation;

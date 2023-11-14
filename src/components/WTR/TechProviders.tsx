@@ -104,9 +104,8 @@ export const TechProviders = () => {
     };
     return (
         <View>
-            <Text style={styles.heading}>
-                <TextTranslated text="Tech Providers" />
-            </Text>
+            <TextTranslated style={styles.heading} text="Tech Providers" />
+
             <ScrollView style={styles.container}>
                 {techProviderItems.map((provider) => (
                     <Pressable

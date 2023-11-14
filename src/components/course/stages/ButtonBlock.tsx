@@ -4,7 +4,7 @@ import React from 'react';
 import BlockWrapper from './block';
 import { stateColorSchemes } from '../../../constants/Colors';
 import { Routes } from '../../../routes/routes';
-import { ButtonOptions } from '../../../types/Block';
+import { ButtonOptions } from '../../../types/CourseStageBlock';
 import { Button } from '../../buttons/Button';
 
 export default function ButtonBlock({ options }: { options: ButtonOptions }) {

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { StyleSheet, View, Animated, Text } from 'react-native';
+import { StyleSheet, View, Animated } from 'react-native';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -10,6 +10,7 @@ import { TextTranslated } from '../../components/text/TextTranslated';
 import { stateColorSchemes, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { Course } from '../../types/Course';
+import { Routes } from '../../routes/routes';
 
 export default function CourseFinished() {
     const colors = useColorConfig();
@@ -61,19 +62,19 @@ export default function CourseFinished() {
                         color={colors.text}
                     />
                 </Animated.View>
-                <View style={styles.courseTitle}>
-                    <Text>
-                        <TextTranslated text="Course finished!" />
-                    </Text>
-                </View>
-                <View style={styles.courseSubTitle}>
-                    <Text>
-                        <TextTranslated text={course.title} />
-                    </Text>
-                </View>
+
+                <TextTranslated
+                    style={styles.courseTitle}
+                    text="Course finished!"
+                />
+                <TextTranslated
+                    style={styles.courseSubTitle}
+                    text={course.title}
+                />
+
                 <Button
-                    buttonText="Home"
-                    screenName="Home"
+                    buttonText="Go back to courses overview"
+                    screenName={Routes.Courses}
                     colorGradientScheme={stateColorSchemes.success}
                 />
             </View>

@@ -125,16 +125,13 @@ export const ListButton = ({
             <View style={styles.bg2} />
             <View style={styles.bg3} />
             <View style={styles.textStyle}>
-                <Text style={styles.text}>
-                    <TextTranslated text={buttonText ?? ''} />
-                </Text>
+                <TextTranslated style={styles.text} text={buttonText ?? ''} />
             </View>
             <View style={styles.iconStyle}>
-                {icon ? (
-                    <FontAwesome5 name={icon} style={styles.icon} />
-                ) : (
-                    <FontAwesome5 name="arrow-right" style={styles.icon} />
-                )}
+                <FontAwesome5
+                    name={icon ?? 'arrow-right'}
+                    style={styles.icon}
+                />
             </View>
         </Pressable>
     );

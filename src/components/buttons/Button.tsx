@@ -89,12 +89,18 @@ export const Button = ({
             // center
             overflow: 'hidden',
         },
-        text: {
+        textContainer: {
             color: colors.buttonText,
             fontFamily: 'Inter_500Medium',
             fontWeight: 'bold',
             left: 50,
             position: 'absolute',
+            ...fonts.button,
+        },
+        text: {
+            color: colors.buttonText,
+            fontFamily: 'Inter_500Medium',
+            fontWeight: 'bold',
             ...fonts.button,
         },
         icon: {
@@ -108,10 +114,10 @@ export const Button = ({
         <InteractableView style={styles.button} onPress={onPress}>
             <View style={styles.bg1} />
             <View style={styles.bg2} />
-            <Text style={styles.text}>
+            <Text style={styles.textContainer}>
                 {icon ? <FontAwesome5 name={icon} style={styles.icon} /> : null}
                 {icon ? ' ' : ''}
-                <TextTranslated text={buttonText ?? ''} />
+                <TextTranslated style={styles.text} text={buttonText ?? ''} />
             </Text>
         </InteractableView>
     );

@@ -1,3 +1,10 @@
+import {
+    useFonts as useExpoFonts,
+    Inter_600SemiBold,
+    Inter_400Regular,
+    Inter_300Light,
+} from '@expo-google-fonts/inter';
+
 import { TextStyle } from 'react-native';
 
 import { useColorConfig } from './Colors';
@@ -33,12 +40,20 @@ type TextStyling = {
 export function useFonts() {
     const colors = useColorConfig();
 
+    const [areFontsLoaded] = useExpoFonts({
+        Inter_600SemiBold,
+        Inter_400Regular,
+        Inter_300Light,
+    });
+
     const fontMap: TextStyling = {
         h1: {
             fontSize: 24,
             fontWeight: 'bold',
             color: colors.titleDefault,
-            fontFamily: 'Inter_600SemiBold',
+            fontFamily: areFontsLoaded
+                ? 'Inter_600SemiBold'
+                : 'sans-serif-medium',
         },
         h2: {
             fontSize: 18,
@@ -51,7 +66,7 @@ export function useFonts() {
         h4: {
             fontSize: 14,
             color: colors.text,
-            fontFamily: 'Inter_400Regular',
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'sans-serif',
         },
         h5: {
             fontSize: 12,
@@ -65,7 +80,7 @@ export function useFonts() {
         description: {
             color: colors.text,
             fontSize: 14,
-            fontFamily: 'Inter_300Light',
+            fontFamily: areFontsLoaded ? 'Inter_300Light' : 'sans-serif-light',
         },
         h6: {
             fontSize: 10,
@@ -90,13 +105,15 @@ export function useFonts() {
             fontSize: 18,
             fontWeight: 'bold',
             color: colors.text,
-            fontFamily: 'Inter_600SemiBold',
+            fontFamily: areFontsLoaded
+                ? 'Inter_600SemiBold'
+                : 'sans-serif-medium',
         },
         courseSubTitle: {
             fontSize: 12,
             fontStyle: 'italic',
             color: colors.subTitle,
-            fontFamily: 'Inter_400Regular',
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'sans-serif',
         },
     };
 

@@ -71,12 +71,10 @@ export function CourseNavigation({
             left: 0,
             right: 0,
             zIndex: 10,
-            maxHeight: 200, // set a fixed height
-            overflow: 'scroll', // enable scrolling
         },
         dropdownText: {
             ...fonts.h4,
-            padding: 10,
+            padding: 5,
             borderRadius: 10,
         },
         block: {
@@ -85,7 +83,7 @@ export function CourseNavigation({
         courseOverview: {
             ...fonts.h4,
             fontWeight: 'bold',
-            padding: 10,
+            padding: 5,
             borderBottomColor: colors.listItemBg,
             borderBottomWidth: 1,
         },
@@ -117,15 +115,12 @@ export function CourseNavigation({
                             style={styles.icon}
                             color={colors.text}
                         />
-                        <Text>
-                            <TextTranslated text={title} />
-                        </Text>
+                        <TextTranslated style={styles.title} text={title} />
                     </View>
-                    <View style={fonts.courseSubTitle}>
-                        <Text>
-                            <TextTranslated text={subTitle} />
-                        </Text>
-                    </View>
+                    <TextTranslated
+                        style={fonts.courseSubTitle}
+                        text={subTitle}
+                    />
                 </View>
 
                 <FontAwesome5Icon
@@ -143,9 +138,10 @@ export function CourseNavigation({
                         style={styles.courseOverview}
                         onPress={onCourseOverviewPress}
                     >
-                        <Text>
-                            <TextTranslated text="Course Overview" />
-                        </Text>
+                        <TextTranslated
+                            style={styles.courseOverview}
+                            text="Course Overview"
+                        />
                     </InteractableView>
                     {stages?.map((stage: Stage) => (
                         <InteractableView
@@ -160,9 +156,15 @@ export function CourseNavigation({
                                 onDropdownPress(stage.id);
                             }}
                         >
-                            <Text>
-                                <TextTranslated text={stage.title} />
-                            </Text>
+                            <TextTranslated
+                                style={[
+                                    styles.dropdownText,
+                                    stage.id === currentStageId && {
+                                        color: colors.textLight,
+                                    },
+                                ]}
+                                text={stage.title}
+                            />
                         </InteractableView>
                     ))}
                 </View>

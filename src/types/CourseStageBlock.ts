@@ -1,12 +1,12 @@
 import { ColorTypes } from '../constants/Colors';
 
-export type Block = {
-    blockType: BlockType;
+export type CourseStageBlock = {
+    blockType: CourseStageBlockType;
     id: string;
     content: TextOptions & AIOptions & ButtonOptions; //json string or AIOptions
 };
 
-export type BlockOptions = {
+export type CourseStageBlockOptions = {
     courseId: string;
     stageId: string;
 };
@@ -14,28 +14,28 @@ export type BlockOptions = {
 export type AIOptions = {
     prompt: string;
     provider: string;
-} & BlockOptions;
+} & CourseStageBlockOptions;
 
 export type TextOptions = {
     text: string;
-} & BlockOptions;
+} & CourseStageBlockOptions;
 
 export type ImageOptions = {
     url: string;
-} & BlockOptions;
+} & CourseStageBlockOptions;
 
 export type VideoOptions = {
     url: string;
-} & BlockOptions;
+} & CourseStageBlockOptions;
 
 export type ButtonOptions = {
     text: string;
     colorOptions: ColorTypes;
     navigateToStageId?: string;
     url?: string;
-} & BlockOptions;
+} & CourseStageBlockOptions;
 
-export enum BlockType {
+export enum CourseStageBlockType {
     Text = 'text',
     AIGenerated = 'ai',
     Image = 'image',

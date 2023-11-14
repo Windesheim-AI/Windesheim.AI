@@ -40,14 +40,13 @@ export const PageScrollView = ({
         <WhScrollView>
             <View style={styles.container}>
                 {title ? (
-                    <Text style={styles.header}>
-                        <TextTranslated text={title} />
-                    </Text>
+                    <TextTranslated style={styles.header} text={title} />
                 ) : null}
                 {description ? (
-                    <Text style={styles.description}>
-                        <TextTranslated text={description} />
-                    </Text>
+                    <TextTranslated
+                        style={styles.description}
+                        text={description}
+                    />
                 ) : null}
 
                 {children}

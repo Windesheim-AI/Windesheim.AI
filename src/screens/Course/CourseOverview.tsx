@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import { View, FlatList, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { StageItem } from './StageItem';
 import { Button } from '../../components/buttons/Button';
@@ -56,7 +56,6 @@ export default function CourseOverview() {
     const styles = StyleSheet.create({
         container: {
             marginTop: 10,
-            ...fonts.h1,
         },
     });
 
@@ -68,9 +67,7 @@ export default function CourseOverview() {
     return (
         <PageView>
             <View style={styles.container}>
-                <Text>
-                    <TextTranslated text="Course Overview" />
-                </Text>
+                <TextTranslated style={fonts.h1} text="Course Overview" />
 
                 <Button
                     buttonText="Back to Courses"
@@ -80,11 +77,18 @@ export default function CourseOverview() {
 
                 {/* map the stages of the course */}
                 <View>
-                    <FlatList
-                        data={course.stageData}
-                        renderItem={renderItem}
-                        keyExtractor={(item) => item.id}
-                    />
+                    {course?.stageData.map((stage) => {
+                        return (
+                            <StageItem
+                                key={stage.id}
+                                title={stage.title}
+                                id={stage.id}
+                                description={stage.description}
+                                isCompletedByUser={stage.isCompletedByUser}
+                                courseId={course.courseId}
+                            />
+                        );
+                    })}
                 </View>
             </View>
         </PageView>

@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import { Bar } from 'react-native-progress';
 
 import { InteractableView } from '../../components/general/InteractableView';
@@ -73,11 +73,7 @@ export function Courses() {
 
     return (
         <PageScrollView>
-            <View style={fonts.h1}>
-                <Text>
-                    <TextTranslated text="Courses" />
-                </Text>
-            </View>
+            <TextTranslated style={fonts.h1} text="Courses" />
 
             {/* map the courses */}
             <View style={styles.cardContainer}>
@@ -87,16 +83,14 @@ export function Courses() {
                         style={styles.card}
                         onPress={() => onPress(course.courseId)}
                     >
-                        <View style={styles.title}>
-                            <Text>
-                                <TextTranslated text={course.title} />
-                            </Text>
-                        </View>
-                        <View style={styles.description}>
-                            <Text>
-                                <TextTranslated text={course.description} />
-                            </Text>
-                        </View>
+                        <TextTranslated
+                            style={styles.title}
+                            text={course.title}
+                        />
+                        <TextTranslated
+                            style={styles.description}
+                            text={course.description}
+                        />
 
                         <View style={styles.progressBar}>
                             <Bar

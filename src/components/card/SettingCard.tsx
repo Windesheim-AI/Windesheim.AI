@@ -60,12 +60,11 @@ export const SettingCard = ({
                 <FontAwesome5 style={styles.icon} name={icon} size={24} />
             </View>
             <View style={styles.titleContainer}>
-                <Text style={styles.title}>
-                    <TextTranslated text={title} />
-                </Text>
-                <Text style={styles.description}>
-                    <TextTranslated text={description ?? ''} />
-                </Text>
+                <TextTranslated style={styles.title} text={title} />
+                <TextTranslated
+                    style={styles.description}
+                    text={description ?? ''}
+                />
             </View>
             {children}
         </View>
