@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { InteractableView } from '../../components/general/InteractableView';
@@ -67,11 +67,7 @@ export const StageItem = ({
                         color={colors.text}
                     />
                 )}
-                <View style={styles.title}>
-                    <Text>
-                        <TextTranslated text={title} />
-                    </Text>
-                </View>
+                <TextTranslated style={styles.title} text={title} />
             </View>
         </InteractableView>
     );

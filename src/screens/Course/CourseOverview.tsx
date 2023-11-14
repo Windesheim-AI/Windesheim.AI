@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { View, FlatList, StyleSheet, Text } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 
 import { StageItem } from './StageItem';
 import { Button } from '../../components/buttons/Button';
@@ -43,7 +43,6 @@ export default function CourseOverview() {
     const styles = StyleSheet.create({
         container: {
             marginTop: 10,
-            ...fonts.h1,
         },
     });
 
@@ -55,9 +54,7 @@ export default function CourseOverview() {
     return (
         <PageView>
             <View style={styles.container}>
-                <Text>
-                    <TextTranslated text="Course Overview" />
-                </Text>
+                <TextTranslated style={fonts.h1} text="Course Overview" />
 
                 <Button
                     buttonText="Back to Courses"

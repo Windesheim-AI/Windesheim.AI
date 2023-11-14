@@ -1,11 +1,5 @@
 // @ts-ignore
 import { EXPO_PUBLIC_GTR_API_KEY } from '@env';
-import {
-    Inter_600SemiBold,
-    Inter_400Regular,
-    useFonts,
-    Inter_300Light,
-} from '@expo-google-fonts/inter';
 import React from 'react';
 
 import { defaultLanguageCode } from '../constants/Languages';
@@ -19,16 +13,6 @@ type AppProvidersProps = {
 
 export default function AppProviders({ children }: AppProvidersProps) {
     const languageState = useAppSelector((state: RootState) => state.language);
-
-    const [fontsLoaded] = useFonts({
-        Inter_600SemiBold,
-        Inter_400Regular,
-        Inter_300Light,
-    });
-
-    if (!fontsLoaded) {
-        return null;
-    }
 
     return (
         <Translator

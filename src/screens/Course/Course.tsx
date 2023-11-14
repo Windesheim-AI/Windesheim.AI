@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import * as Progress from 'react-native-progress';
 
 import * as courseTestData from '../../assets/courses/test.json';
@@ -111,11 +111,11 @@ export default function CoursePage() {
                         width={null}
                         style={styles.progressBar}
                     />
-                    <View style={styles.courseTitle}>
-                        <Text>
-                            <TextTranslated text={course.title} />
-                        </Text>
-                    </View>
+                    <TextTranslated
+                        style={styles.courseTitle}
+                        text={course.title}
+                    />
+
                     <StageRenderer
                         key={stage.id}
                         courseId={course.id}
@@ -128,11 +128,10 @@ export default function CoursePage() {
                     />
                 </>
             ) : (
-                <View style={styles.courseTitle}>
-                    <Text>
-                        <TextTranslated text="Course not found!" />
-                    </Text>
-                </View>
+                <TextTranslated
+                    style={styles.courseTitle}
+                    text="Course not found!"
+                />
             )}
         </PageScrollView>
     );

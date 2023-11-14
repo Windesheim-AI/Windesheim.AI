@@ -117,15 +117,12 @@ export function CourseNavigation({
                             style={styles.icon}
                             color={colors.text}
                         />
-                        <Text>
-                            <TextTranslated text={title} />
-                        </Text>
+                        <TextTranslated style={styles.title} text={title} />
                     </View>
-                    <View style={fonts.courseSubTitle}>
-                        <Text>
-                            <TextTranslated text={subTitle} />
-                        </Text>
-                    </View>
+                    <TextTranslated
+                        style={fonts.courseSubTitle}
+                        text={subTitle}
+                    />
                 </View>
 
                 <FontAwesome5Icon
@@ -143,9 +140,10 @@ export function CourseNavigation({
                         style={styles.courseOverview}
                         onPress={onCourseOverviewPress}
                     >
-                        <Text>
-                            <TextTranslated text="Course Overview" />
-                        </Text>
+                        <TextTranslated
+                            style={styles.courseOverview}
+                            text="Course Overview"
+                        />
                     </InteractableView>
                     {stages?.map((stage: Stage) => (
                         <InteractableView
@@ -160,9 +158,10 @@ export function CourseNavigation({
                                 onDropdownPress(stage.id);
                             }}
                         >
-                            <Text>
-                                <TextTranslated text={stage.title} />
-                            </Text>
+                            <TextTranslated
+                                style={styles.dropdownText}
+                                text={stage.title}
+                            />
                         </InteractableView>
                     ))}
                 </View>
