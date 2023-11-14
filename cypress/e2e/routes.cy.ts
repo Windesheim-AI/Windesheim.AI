@@ -10,8 +10,8 @@ describe('Routes', () => {
     it('can save the route to the url', () => {
         cy.visit('/');
         cy.contains('Home');
-        
-        if (cy.get('[data-testid="tutorial-skip-button"]')){
+
+        if (cy.get('[data-testid="tutorial-skip-button"]')) {
             cy.get('[data-testid="tutorial-skip-button"]').click();
         }
         cy.get('[data-testid="Settings-navbar-button"]').click();
