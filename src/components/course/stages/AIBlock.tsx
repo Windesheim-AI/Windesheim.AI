@@ -4,7 +4,7 @@ import OpenAI, { ClientOptions } from 'openai';
 import React, { useState, useEffect } from 'react';
 
 import BlockWrapper from './block';
-import { AIOptions } from '../../../types/Block';
+import { AIOptions } from '../../../types/CourseStageBlock';
 import AIGeneratedOutput from '../AIGeneratedOutput';
 
 export default function AIRenderer({ options }: { options: AIOptions }) {

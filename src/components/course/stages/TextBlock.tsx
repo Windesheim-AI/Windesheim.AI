@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 import { useFonts } from '../../../constants/Fonts';
-import { TextOptions } from '../../../types/Block';
+import { TextOptions } from '../../../types/CourseStageBlock';
 import { TextTranslated } from '../../text/TextTranslated';
 
 export default function TextRenderer({ options }: { options: TextOptions }) {
