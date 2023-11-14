@@ -4,36 +4,30 @@ import { Modal, Text, Pressable, View, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
 import { tutorialData } from '../../constants/TutorialData';
-import { RootState, useAppSelector, useAppDispatch } from '../../redux/Hooks';
+import { useAppSelector, useAppDispatch } from '../../redux/Hooks';
 import { nextStep, setCompleted } from '../../redux/slices/TutorialSlice';
 
 export const Tutorial = () => {
-    const layoutState = useAppSelector((state: RootState) => state.layout);
-    const loadingState = useAppSelector((state: RootState) => state.loading);
-
-    const [modalVisible, setModalVisible] = useState(false);
+    const storeDispatcher = useAppDispatch();
     const colors = useColorConfig();
     const navigation = useNavigation();
-    const tutorialStep = useAppSelector(
-        (state: RootState) => state.tutorial.currentStep,
-    );
+
+    const [modalVisible, setModalVisible] = useState(false);
+    const layoutState = useAppSelector((state) => state.layout);
+    const loadingState = useAppSelector((state) => state.loading);
+    const tutorialStep = useAppSelector((state) => state.tutorial.currentStep);
     const tutorialCompleted = useAppSelector(
-        (state: RootState) => state.tutorial.tutorialCompleted,
+        (state) => state.tutorial.tutorialCompleted,
     );
-    const dispatch = useAppDispatch();
 
     // Check if the splash screen is still visible
     useEffect(() => {
-        if (
+        // If the splash screen is not visible, show the modal
+        setModalVisible(
             !layoutState.isSplashVisible &&
-            !tutorialCompleted &&
-            !loadingState.isLoading
-        ) {
-            // If the splash screen is not visible, show the modal
-            setModalVisible(true);
-        } else {
-            setModalVisible(false);
-        }
+                !tutorialCompleted &&
+                !loadingState.isLoading,
+        );
     }, [
         layoutState.isSplashVisible,
         tutorialCompleted,
@@ -41,7 +35,7 @@ export const Tutorial = () => {
     ]);
 
     const handleNext = () => {
-        dispatch(nextStep());
+        storeDispatcher(nextStep());
         const nextStepRoute = tutorialData[tutorialStep]?.NextPage;
         if (nextStepRoute) {
             navigation.navigate(nextStepRoute as never);
@@ -104,7 +98,7 @@ export const Tutorial = () => {
             backgroundColor: colors.danger,
         },
         buttonText: {
-            color: colors.text,
+            color: colors.textLight,
             fontSize: 16,
             fontWeight: 'bold',
             textAlign: 'center',
@@ -135,7 +129,7 @@ export const Tutorial = () => {
                                 style={[styles.button, styles.skipButton]}
                                 onPress={() => {
                                     setModalVisible(false);
-                                    dispatch(setCompleted(true));
+                                    storeDispatcher(setCompleted(true));
                                 }}
                             >
                                 <Text style={styles.buttonText}>Skip</Text>
@@ -147,7 +141,7 @@ export const Tutorial = () => {
                                     onPress={() => {
                                         // Handle logic for finishing the tutorial
                                         setModalVisible(false);
-                                        dispatch(setCompleted(true));
+                                        storeDispatcher(setCompleted(true));
                                     }}
                                 >
                                     <Text style={styles.buttonText}>

@@ -10,7 +10,7 @@ import {
 
 import { Background } from '../components/general/Background';
 import { NavBar } from '../components/navigation/Navbar';
-import { Tutorial } from '../components/tutorial/tutorial';
+import { Tutorial } from '../components/tutorial/Tutorial';
 import { useColorConfig, shadow } from '../constants/Colors';
 import { useAnimatedValue } from '../lib/utility/animate';
 import { useAppSelector } from '../redux/Hooks';

@@ -5,13 +5,28 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 import { useAppDispatch } from '../../redux/Hooks';
 import { setCompleted } from '../../redux/slices/TutorialSlice';
 import { Routes } from '../../routes/routes';
+import { useColorConfig } from '../../constants/Colors';
 
 export const TutorialResetButton = () => {
-    const dispatch = useAppDispatch();
+    const storeDispatcher = useAppDispatch();
     const navigation = useNavigation();
+    const colors = useColorConfig();
+
+    const styles = StyleSheet.create({
+        button: {
+            backgroundColor: colors.danger,
+            padding: 10,
+            borderRadius: 5,
+        },
+        buttonText: {
+            color: colors.textLight,
+            fontSize: 16,
+            textAlign: 'center',
+        },
+    });
 
     const handleReset = () => {
-        dispatch(setCompleted(false));
+        storeDispatcher(setCompleted(false));
         navigation.navigate(Routes.Home as never);
     };
 
@@ -21,18 +36,3 @@ export const TutorialResetButton = () => {
         </Pressable>
     );
 };
-
-const styles = StyleSheet.create({
-    // eslint-disable-next-line react-native/no-color-literals
-    button: {
-        backgroundColor: '#3498db',
-        padding: 10,
-        borderRadius: 5,
-    },
-    // eslint-disable-next-line react-native/no-color-literals
-    buttonText: {
-        color: '#ffffff',
-        fontSize: 16,
-        textAlign: 'center',
-    },
-});

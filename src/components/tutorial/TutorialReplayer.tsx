@@ -8,11 +8,11 @@ import { setCompleted } from '../../redux/slices/TutorialSlice';
 import { Routes } from '../../routes/routes';
 
 export const TutorialResetButton = () => {
-    const dispatch = useAppDispatch();
+    const storeDispatcher = useAppDispatch();
     const navigation = useNavigation();
 
     const handleReset = () => {
-        dispatch(setCompleted(false));
+        storeDispatcher(setCompleted(false));
         navigation.navigate(Routes.Home as never);
     };
 

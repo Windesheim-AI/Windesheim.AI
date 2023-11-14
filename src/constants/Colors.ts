@@ -11,6 +11,7 @@ export type ColorSchemeType = {
     warning: string;
     danger: string;
     text: string;
+    textLight: string;
     background: string;
     tint: string;
     gray: string;
@@ -40,6 +41,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         warning: '#ff7300',
         danger: '#EE3135',
         text: '#000',
+        textLight: '#fff',
         background: '#fff',
         tint: tintColorLight,
         gray: '#ccc',
@@ -68,6 +70,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         warning: '#ff7300',
         danger: '#EE3135',
         text: '#fff',
+        textLight: '#fff',
         background: '#2a2a2a',
         tint: tintColorDark,
         gray: '#ccc',
