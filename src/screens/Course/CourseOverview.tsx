@@ -10,7 +10,7 @@ import { stateColorSchemes } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useCourseWithData } from '../../hooks/useCourseWithData';
 import { Routes } from '../../routes/routes';
-import { Stage, StageDataMapped } from '../../types/Stage';
+import { Stage } from '../../types/Stage';
 
 type CourseOverviewPageProps = {
     courseId: string;
