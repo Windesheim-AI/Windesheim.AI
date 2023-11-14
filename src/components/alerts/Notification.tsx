@@ -103,7 +103,7 @@ export const Notification = ({
             position: 'absolute',
             left: '3%',
             transform: [{ rotate: '15deg' }],
-            width: (barWidth / 1) * 0.85,
+            width: barWidth * 0.85,
         },
         bg4: {
             backgroundColor: colorGradientScheme[0],
@@ -127,7 +127,7 @@ export const Notification = ({
             position: 'absolute',
             right: '3%',
             transform: [{ rotate: '15deg' }],
-            width: (barWidth / 1) * 0.85,
+            width: barWidth * 0.85,
         },
         alert: {
             alignItems: 'center',
