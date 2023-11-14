@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, FlatList, StyleSheet, Text } from 'react-native';
 
 import { StageItem } from './StageItem';
@@ -9,6 +9,8 @@ import { TextTranslated } from '../../components/text/TextTranslated';
 import { stateColorSchemes } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useCourseWithData } from '../../hooks/useCourseWithData';
+import { useAppDispatch } from '../../redux/Hooks';
+import { setLoading } from '../../redux/slices/LoadingSlice';
 import { Routes } from '../../routes/routes';
 import { Stage, StageDataMapped } from '../../types/Stage';
 
@@ -29,7 +31,18 @@ export default function CourseOverview() {
     const params = route.params as CourseOverviewPageProps;
     const courseId = params.courseId;
 
-    const course = useCourseWithData(courseId);
+    const { data, isLoading } = useCourseWithData(courseId);
+
+    const storeDispatcher = useAppDispatch();
+    useEffect(() => {
+        storeDispatcher(setLoading(isLoading));
+    }, [isLoading, storeDispatcher]);
+
+    const course = data[0] ?? undefined;
+    if (isLoading) {
+        return null;
+    }
+
     const renderItem = ({ item }: { item: StageDataMapped }) => (
         <StageItem
             title={item.title}

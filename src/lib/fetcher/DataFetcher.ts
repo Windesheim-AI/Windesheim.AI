@@ -37,6 +37,8 @@ export interface SwrRequestInput {
     url: string | URL | RequestInfo;
     payload?: RequestInit;
     bearerToken?: string;
+    password?: string;
+    username?: string;
 }
 
 /**
@@ -48,7 +50,13 @@ export const useDataFetcher = <DataType>(
     config: SWRConfiguration = {},
 ) => {
     // Default values for the request input
-    const { url, payload = {}, bearerToken = '' } = options;
+    const {
+        url,
+        payload = {},
+        bearerToken = '',
+        username = '',
+        password = '',
+    } = options;
 
     // The headers are merged with the payload headers.
     const headers: HeadersInit = {
@@ -56,6 +64,10 @@ export const useDataFetcher = <DataType>(
         ...(bearerToken.length > 0 && {
             Authorization: `Bearer ${bearerToken}`,
         }),
+        ...(username.length > 0 &&
+            password.length > 0 && {
+                Authorization: `Basic ${btoa(`${username}:${password}`)}`,
+            }),
     };
 
     // Prepare the fetcher options for the SWR hook.

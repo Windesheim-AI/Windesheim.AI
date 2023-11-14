@@ -1,33 +1,43 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Bar } from 'react-native-progress';
 
-import * as j from '../../assets/courses/test.json';
 import { InteractableView } from '../../components/general/InteractableView';
 import { PageScrollView } from '../../components/general/PageScrollView';
 import { TextTranslated } from '../../components/text/TextTranslated';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useCourseWithData } from '../../hooks/useCourseWithData';
+import { useAppDispatch } from '../../redux/Hooks';
+import { setLoading } from '../../redux/slices/LoadingSlice';
 import { Routes } from '../../routes/routes';
-import { Course } from '../../types/Course';
+import { CourseDataMapped } from '../../types/Course';
 
 export function Courses() {
     const fonts = useFonts();
     const colors = useColorConfig();
-    const courses = [j] as unknown as Course[];
+    const { data, isLoading } = useCourseWithData();
     const navigator = useNavigation();
 
-    const currentCourse = useCourseWithData(courses[0].id);
+    const storeDispatcher = useAppDispatch();
+    useEffect(() => {
+        storeDispatcher(setLoading(isLoading));
+    }, [isLoading, storeDispatcher]);
 
-    const completedStages = currentCourse.stageData.filter(
-        (stage) => stage.isCompletedByUser,
-    ).length;
-    const totalStages = currentCourse.stageData.length;
-    const progressPercentage = Math.round(
-        (completedStages / totalStages) * 100,
-    );
+    const courses: CourseDataMapped[] = data;
+
+    if (isLoading) {
+        return null;
+    }
+
+    function getProgressPercentage(course: CourseDataMapped) {
+        const stages = course.stageData;
+        const stagesCompleted = stages.filter(
+            (stage) => stage.isCompletedByUser,
+        );
+        return (stagesCompleted.length / stages.length) * 100;
+    }
 
     const styles = StyleSheet.create({
         card: {
@@ -71,11 +81,11 @@ export function Courses() {
 
             {/* map the courses */}
             <View style={styles.cardContainer}>
-                {courses.map((course: Course) => (
+                {courses.map((course: CourseDataMapped) => (
                     <InteractableView
-                        key={course.id}
+                        key={course.courseId}
                         style={styles.card}
-                        onPress={() => onPress(course.id)}
+                        onPress={() => onPress(course.courseId)}
                     >
                         <View style={styles.title}>
                             <Text>
@@ -90,7 +100,7 @@ export function Courses() {
 
                         <View style={styles.progressBar}>
                             <Bar
-                                progress={progressPercentage / 100}
+                                progress={getProgressPercentage(course)}
                                 width={null}
                                 height={7}
                                 borderRadius={10}

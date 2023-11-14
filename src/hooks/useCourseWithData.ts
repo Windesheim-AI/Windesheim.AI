@@ -1,9 +1,14 @@
-import * as j from '../assets/courses/test.json';
+import { useFetchCourseData } from '../lib/fetcher/CourseDataFetcher';
 import { useAppSelector, RootState } from '../redux/Hooks';
 import { Course, CourseDataMapped } from '../types/Course';
 
-export function useCourseWithData(courseId: string): CourseDataMapped {
-    const course = j as unknown as Course;
+export type CourseDataResult = {
+    data: CourseDataMapped[];
+    isLoading: boolean;
+};
+
+export function useCourseWithData(courseId?: string): CourseDataResult {
+    const { data: courses, isLoading } = useFetchCourseData(courseId);
     const courseDataState = useAppSelector(
         (state: RootState) => state.courseData,
     );
@@ -12,21 +17,32 @@ export function useCourseWithData(courseId: string): CourseDataMapped {
         (stage) => stage.courseId === courseId,
     );
 
-    return {
-        courseId: course.id,
-        title: course.title,
-        description: course.description,
-        stageData: course.stages.map((stage) => {
-            const isCompletedByUser = courseData.some(
-                (stageData) => stageData.stageId === stage.id,
-            );
+    if (!courses)
+        return {
+            data: [],
+            isLoading: true,
+        };
 
-            return {
-                id: stage.id,
-                title: stage.title,
-                description: stage.description,
-                isCompletedByUser,
-            };
-        }),
+    const coursesWithData = courses.map((course: Course) => {
+        return {
+            courseId: course.id,
+            title: course.title,
+            description: course.description,
+            stageData: course.stages.map((stage) => {
+                const isCompletedByUser = courseData.some(
+                    (stageData) => stageData.stageId === stage.id,
+                );
+                return {
+                    id: stage.id,
+                    title: stage.title,
+                    description: stage.description,
+                    isCompletedByUser,
+                };
+            }),
+        };
+    });
+    return {
+        data: coursesWithData,
+        isLoading,
     };
 }
