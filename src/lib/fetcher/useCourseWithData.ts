@@ -17,11 +17,12 @@ export function useCourseWithData(courseId?: string): CourseDataResult {
         (stage) => stage.courseId === courseId,
     );
 
-    if (!courses)
+    if (!courses) {
         return {
             data: [],
             isLoading: true,
         };
+    }
 
     const coursesWithData = courses.map((course: Course) => {
         return {
