@@ -16,6 +16,7 @@ export type ButtonProps = {
     colorGradientScheme: ColorGradientScheme;
     width?: number;
     icon?: string;
+    testId?: string;
 };
 
 // eslint-disable-next-line complexity
@@ -26,6 +27,7 @@ export const Button = ({
     screenName,
     width,
     icon,
+    testId,
 }: ButtonProps) => {
     const [fontsLoaded, fontError] = useFont({
         Inter_500Medium,
@@ -111,7 +113,11 @@ export const Button = ({
     });
 
     return (
-        <IntractableView style={styles.button} onPress={onPress}>
+        <IntractableView
+            style={styles.button}
+            onPress={onPress}
+            testID={testId}
+        >
             <View style={styles.bg1} />
             <View style={styles.bg2} />
             <Text style={styles.textContainer}>
