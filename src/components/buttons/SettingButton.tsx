@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-color-literals */
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
@@ -44,7 +43,7 @@ export const SettingButton = ({
         buttonContainer: {
             flexDirection: 'row',
             alignItems: 'center',
-            borderColor: '#CCC',
+            borderColor: colors.gray,
             borderWidth: 1,
             padding: 10,
             borderRadius: 10,

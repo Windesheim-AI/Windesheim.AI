@@ -11,6 +11,7 @@ import {
 import { NotificationList } from '../components/alerts/NotificationList';
 import { Background } from '../components/general/Background';
 import { NavBar } from '../components/navigation/Navbar';
+import { Tutorial } from '../components/tutorial/Tutorial';
 import { useColorConfig, shadow } from '../constants/Colors';
 import { useAnimatedValue } from '../lib/utility/animate';
 import { useAppSelector } from '../redux/Hooks';
@@ -67,6 +68,7 @@ export const Layout = ({ children }: LayoutProps) => {
                     }}
                 >
                     <View style={styles.innerContainer}>{children}</View>
+                    <Tutorial />
                 </Animated.View>
                 <View style={styles.pos_r}>
                     <NavBar />

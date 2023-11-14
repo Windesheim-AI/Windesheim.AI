@@ -1,4 +1,14 @@
 describe('Routes', () => {
+    beforeEach(() => {
+        cy.visit('/');
+        cy.window()
+            .its('store')
+            .invoke('dispatch', {
+                type: 'tutorial/setCompleted',
+                payload: { completed: true },
+            });
+    });
+
     it('can directly visit a route via the url', () => {
         cy.visit('/settings');
         cy.contains('Settings');
