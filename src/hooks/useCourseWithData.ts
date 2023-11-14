@@ -1,9 +1,9 @@
-import * as j from '../assets/courses/test.json';
+import * as courseTestData from '../assets/courses/test.json';
 import { useAppSelector, RootState } from '../redux/Hooks';
 import { Course, CourseDataMapped } from '../types/Course';
 
 export function useCourseWithData(courseId: string): CourseDataMapped {
-    const course = j as unknown as Course;
+    const course = courseTestData as unknown as Course;
     const courseDataState = useAppSelector(
         (state: RootState) => state.courseData,
     );
