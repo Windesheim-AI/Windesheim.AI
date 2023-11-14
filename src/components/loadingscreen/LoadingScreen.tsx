@@ -12,7 +12,7 @@ import LogoBlack from '../../assets/images/Logo/Logo_black.svg';
 //@ts-ignore
 import LogoWin from '../../assets/images/Logo/Logo_windesheim.svg';
 import { useCurrentTheme } from '../../constants/Colors';
-import { Background } from '../general/Background';
+import { Background } from '../general/background/Background';
 
 export const LoadingScreen = () => {
     const theme = useCurrentTheme();

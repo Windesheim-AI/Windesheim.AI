@@ -3,7 +3,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import renderer from 'react-test-renderer';
 
-import { PageView } from '../../../src/components/general/PageView';
+import { PageView } from '../../../src/components/general/views/PageView';
 
 jest.useFakeTimers();
 

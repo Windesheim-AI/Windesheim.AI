@@ -3,8 +3,8 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { InteractableView } from '../../components/general/InteractableView';
-import { TextTranslated } from '../../components/text/TextTranslated';
+import { TextTranslated } from '../../components/general/text/TextTranslated';
+import { InteractableView } from '../../components/general/views/InteractableView';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { Routes } from '../../routes/routes';

@@ -5,7 +5,7 @@ import { WTRSContentScreenProps } from './WTRContent';
 import { TechProviders } from '../../components/WTR/TechProviders';
 import { Themes } from '../../components/WTR/Theme';
 import { WTRContentDisplay } from '../../components/WTR/WTRContentDisplay';
-import { PageView } from '../../components/general/PageView';
+import { PageView } from '../../components/general/views/PageView';
 
 export const WTRScreen = () => {
     const route = useRoute();

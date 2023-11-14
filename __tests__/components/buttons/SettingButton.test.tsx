@@ -3,7 +3,7 @@ import React from 'react';
 import { Pressable } from 'react-native';
 import renderer from 'react-test-renderer';
 
-import { SettingButton } from '../../../src/components/buttons/SettingButton';
+import { SettingButton } from '../../../src/components/general/buttons/SettingButton';
 
 jest.useFakeTimers();
 

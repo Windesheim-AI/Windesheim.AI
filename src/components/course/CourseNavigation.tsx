@@ -7,8 +7,8 @@ import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
-import { InteractableView } from '../general/InteractableView';
-import { TextTranslated } from '../text/TextTranslated';
+import { TextTranslated } from '../general/text/TextTranslated';
+import { InteractableView } from '../general/views/InteractableView';
 
 export function CourseNavigation({
     title,

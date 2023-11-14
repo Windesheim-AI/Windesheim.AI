@@ -1,7 +1,7 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
 
-import { Background } from '../../../src/components/general/Background';
+import { Background } from '../../../src/components/general/background/Background';
 
 jest.useFakeTimers();
 

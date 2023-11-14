@@ -5,7 +5,7 @@ import BlockWrapper from './block';
 import { stateColorSchemes } from '../../../constants/Colors';
 import { Routes } from '../../../routes/routes';
 import { ButtonOptions } from '../../../types/CourseStageBlock';
-import { Button } from '../../buttons/Button';
+import { Button } from '../../general/buttons/Button';
 
 export default function ButtonBlock({ options }: { options: ButtonOptions }) {
     const colorGradientScheme = stateColorSchemes[options.colorOptions];

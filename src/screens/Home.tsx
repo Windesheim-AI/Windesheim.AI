@@ -3,8 +3,8 @@ import { View } from 'react-native';
 
 import { TechProviders } from '../components/WTR/TechProviders';
 import { Themes } from '../components/WTR/Theme';
-import { PageView } from '../components/general/PageView';
-import { WhScrollView } from '../components/general/WhScrollView';
+import { PageView } from '../components/general/views/PageView';
+import { WhScrollView } from '../components/general/views/WhScrollView';
 
 export const HomeScreen = () => {
     return (

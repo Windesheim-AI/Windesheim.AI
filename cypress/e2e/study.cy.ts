@@ -12,8 +12,11 @@ describe('Study page tests', () => {
     it('can display the study page', () => {
         cy.visit('/Study');
 
-        cy.contains('Study');
-        cy.get('[data-testid="Study-button"]');
-        cy.get('[data-testid="Study-button"]').should('contain.text', 'Study');
+        cy.contains('Welcome to WIN game');
+        cy.get('[data-testid="courses-button"]');
+        cy.get('[data-testid="courses-button"]').should(
+            'contain.text',
+            'Courses',
+        );
     });
 });

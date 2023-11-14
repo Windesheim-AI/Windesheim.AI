@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { SettingCard } from '../../components/card/SettingCard';
-import { PageView } from '../../components/general/PageView';
+import { SettingCard } from '../../components/general/card/SettingCard';
+import { PageView } from '../../components/general/views/PageView';
 import { FontSwitcher } from '../../components/settings/FontSwitcher';
 import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../../components/settings/ThemeSwitcher';

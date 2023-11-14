@@ -4,7 +4,7 @@ import React from 'react';
 import { Text, StyleSheet, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { useColorConfig } from '../../constants/Colors';
+import { useColorConfig } from '../../../constants/Colors';
 
 export type ButtonProps = {
     onPress?: () => void;

@@ -11,7 +11,7 @@ import { useCurrentTheme } from '../../constants/Colors';
 import { useAppDispatch } from '../../redux/Hooks';
 import { hideSplashScreen } from '../../redux/slices/LayoutSlice';
 import { Routes } from '../../routes/routes';
-import { Background } from '../general/Background';
+import { Background } from '../general/background/Background';
 
 export const SplashScreen = () => {
     const navigation = useNavigation();

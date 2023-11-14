@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { useColorConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+import { useColorConfig } from '../../../constants/Colors';
+import { useFonts } from '../../../constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';
 
 export type SettingCardProps = {

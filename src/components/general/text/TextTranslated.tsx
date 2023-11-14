@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { TextProps, Text } from 'react-native';
 
-import { TranslateContext } from '../../lib/translation/Translator';
+import { TranslateContext } from '../../../lib/translation/Translator';
 
 type TextTranslatedProps = {
     text: string;
