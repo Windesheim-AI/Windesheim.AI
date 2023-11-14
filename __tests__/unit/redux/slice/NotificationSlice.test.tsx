@@ -69,7 +69,7 @@ describe('NotificationSlice', () => {
             icon: 'exclamation-circle',
         } as NotificationType;
 
-        let nextState = notificationSlice.reducer(
+        const nextState = notificationSlice.reducer(
             initialState,
             NotificationActions.addNotificationOnce(newNotification),
         );

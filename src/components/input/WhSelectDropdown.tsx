@@ -80,13 +80,11 @@ export function WhSelectDropdown<T>({
                 /* istanbul ignore next */
                 buttonTextAfterSelection={(selectedItem) => {
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-                    /* istanbul ignore next */
                     return selectedItem;
                 }}
                 /* istanbul ignore next */
                 rowTextForSelection={(item) => {
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-                    /* istanbul ignore next */
                     return item;
                 }}
                 buttonStyle={styles.dropdown2BtnStyle}

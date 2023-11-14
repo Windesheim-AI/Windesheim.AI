@@ -42,7 +42,6 @@ function onElement(element: any) {
         });
     } catch (error) {
         // eslint-disable-next-line no-console
-        /* istanbul ignore next */
         console.error(error);
     }
 }
