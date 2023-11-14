@@ -5,7 +5,7 @@ import { PageView } from '../../components/general/PageView';
 import { FontSwitcher } from '../../components/settings/FontSwitcher';
 import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../../components/settings/ThemeSwitcher';
-import { TutorialResetButton } from '../../components/settings/TutorialReplayer';
+import { TutorialResetButton } from '../../components/settings/TutorialResetButton';
 import { useStaticLoading } from '../../lib/utility/loaderFunctions';
 export const SettingsScreen = () => {
     useStaticLoading(500);

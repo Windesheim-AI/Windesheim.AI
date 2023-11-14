@@ -2,27 +2,21 @@ import { Routes } from '../routes/routes';
 
 export const tutorialData = [
     {
-        Title: 'WingAI Tutorial',
+        Title: 'Welcome!',
         Subtext:
             "Welcome to the WingAI app! This tutorial will explain all of the features in the app and where you can find certain elements. You can also skip this tutorial if you don't find it necessary.",
         NextPage: '',
     },
     {
-        Title: 'WTR Themes',
+        Title: 'Home Screen',
         Subtext:
-            'In this section you can find the different Windesheim TechRadar themes. Where you can find more information about the themes that are currently relevant in the IT world.',
-        NextPage: '',
-    },
-    {
-        Title: 'WTR Providers',
-        Subtext:
-            'In this section you can find the different providers from the Windesheim TechRadar.',
+            'On the home screen you can find the latest news relating to AI technology, as well as a quick link to the Windesheim TechRadar.',
         NextPage: Routes.WindesheimTechRadar,
     },
     {
         Title: 'Windesheim TechRadar',
         Subtext:
-            'On this page you can scroll through the Windesheim TechRadar.',
+            'On this screen you can browse the Windesheim Tech Radar, which is a collection of the newest trends & innovations in the tech industry. You can also find the latest trends with the biggest tech providers.',
         NextPage: Routes.Study,
     },
     {

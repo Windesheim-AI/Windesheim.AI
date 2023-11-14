@@ -6,10 +6,12 @@ import { useColorConfig } from '../../constants/Colors';
 import { tutorialData } from '../../constants/TutorialData';
 import { RootState, useAppSelector, useAppDispatch } from '../../redux/Hooks';
 import { nextStep, setCompleted } from '../../redux/slices/TutorialSlice';
+
 export const Tutorial = () => {
     const layoutState = useAppSelector((state: RootState) => state.layout);
+    const loadingState = useAppSelector((state: RootState) => state.loading);
 
-    const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisible, setModalVisible] = useState(true);
     const colors = useColorConfig();
     const navigation = useNavigation();
     const tutorialStep = useAppSelector(
@@ -22,17 +24,26 @@ export const Tutorial = () => {
 
     // Check if the splash screen is still visible
     useEffect(() => {
-        if (!layoutState.isSplashVisible) {
+        if (
+            !layoutState.isSplashVisible &&
+            !tutorialCompleted &&
+            !loadingState.isLoading
+        ) {
             // If the splash screen is not visible, show the modal
-            setModalVisible(!tutorialCompleted);
+            setModalVisible(true);
+        } else {
+            setModalVisible(false);
         }
-    }, [layoutState.isSplashVisible, tutorialCompleted]);
+    }, [
+        layoutState.isSplashVisible,
+        tutorialCompleted,
+        loadingState.isLoading,
+    ]);
 
     const handleNext = () => {
         dispatch(nextStep());
         const nextStepRoute = tutorialData[tutorialStep]?.NextPage;
         if (nextStepRoute) {
-            setModalVisible(false);
             navigation.navigate(nextStepRoute as never);
         }
     };
@@ -123,6 +134,7 @@ export const Tutorial = () => {
                                 style={[styles.button, styles.skipButton]}
                                 onPress={() => {
                                     setModalVisible(false);
+                                    dispatch(setCompleted(true));
                                 }}
                             >
                                 <Text style={styles.buttonText}>Skip</Text>
@@ -133,7 +145,7 @@ export const Tutorial = () => {
                                     onPress={() => {
                                         // Handle logic for finishing the tutorial
                                         setModalVisible(false);
-                                        setCompleted(true);
+                                        dispatch(setCompleted(true));
                                     }}
                                 >
                                     <Text style={styles.buttonText}>
@@ -157,7 +169,6 @@ export const Tutorial = () => {
                     </View>
                 </View>
             </Modal>
-            {/* Rest of the app */}
         </View>
     );
 };
