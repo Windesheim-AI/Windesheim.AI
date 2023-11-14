@@ -4,7 +4,6 @@ import {
     notificationSlice,
 } from '../../../../src/redux/slices/NotificationSlice';
 
-
 describe('NotificationSlice', () => {
     it('should have the correct initial state', () => {
         const initialState = notificationSlice.reducer(undefined, {

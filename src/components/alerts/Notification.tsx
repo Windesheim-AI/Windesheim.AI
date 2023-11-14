@@ -1,19 +1,14 @@
-import React, { useEffect, useRef } from 'react';
 import { useFonts, Inter_500Medium } from '@expo-google-fonts/inter';
-import { useDispatch } from 'react-redux';
-import { NotificationActions } from '../../redux/slices/NotificationSlice';
+import React, { useEffect, useRef } from 'react';
 import { Animated, Text, StyleSheet, Dimensions, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
 
-/* To add a Notification:
-1. Import NotificationActions from redux/slices/NotificationSlice.ts
-2. Import NotificationType from components/alerts/Notification.tsx
-3. Make a Notification object, and add it with NotificationActions.addNotification(notification)
-*/
+import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
+import { useAppDispatch } from '../../redux/Store';
+import { NotificationActions } from '../../redux/slices/NotificationSlice';
+
 export type NotificationType = {
     id: number;
-    screenName?: string;
     message: string;
     colorGradientScheme: ColorGradientScheme;
     width?: number;
@@ -33,46 +28,46 @@ export const Notification = ({
         Inter_500Medium,
     });
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const colors = useColorConfig();
 
     const slideAnim = useRef(new Animated.Value(-80)).current; // Initialize off-screen
     const fadeAnim = useRef(new Animated.Value(1)).current; // Initial value for opacity: 1
-    const scaleYAnim = useRef(new Animated.Value(1)).current; 
+    const scaleYAnim = useRef(new Animated.Value(1)).current;
     const translateYAnim = useRef(new Animated.Value(-50)).current;
 
     useEffect(() => {
         Animated.parallel([
-          Animated.timing(fadeAnim, {
-            toValue: 1,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-          Animated.timing(translateYAnim, {
-            toValue: 0,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-        ]).start();
-      
-        const timer = setTimeout(() => {
-          Animated.parallel([
             Animated.timing(fadeAnim, {
-              toValue: 0,
-              duration: 500,
-              useNativeDriver: true,
+                toValue: 1,
+                duration: 500,
+                useNativeDriver: true,
             }),
-            Animated.timing(scaleYAnim, {
-              toValue: 0,
-              duration: 500,
-              useNativeDriver: true,
+            Animated.timing(translateYAnim, {
+                toValue: 0,
+                duration: 500,
+                useNativeDriver: true,
             }),
-          ]).start(() => {
-            dispatch(NotificationActions.removeNotification(id));
-          });
+        ]).start();
+
+        const timer = setTimeout(() => {
+            Animated.parallel([
+                Animated.timing(fadeAnim, {
+                    toValue: 0,
+                    duration: 500,
+                    useNativeDriver: true,
+                }),
+                Animated.timing(scaleYAnim, {
+                    toValue: 0,
+                    duration: 500,
+                    useNativeDriver: true,
+                }),
+            ]).start(() => {
+                dispatch(NotificationActions.removeNotification(id));
+            });
         }, 3000);
         return () => clearTimeout(timer);
-    }, [dispatch, id]);
+    }, [dispatch, fadeAnim, id, scaleYAnim, translateYAnim]);
 
     if (!fontsLoaded || fontError) {
         return null;
@@ -138,14 +133,14 @@ export const Notification = ({
             alignItems: 'center',
             justifyContent: 'center',
             alignSelf: 'center',
-            backgroundColor: '#f2f2f2',
+            backgroundColor: colors.navBar.backgroundColor,
             borderRadius: 15,
             flexDirection: 'row',
             height: alertHeight,
             margin: 10,
             width: alertWidth,
             overflow: 'hidden',
-            transform: [{ translateY: slideAnim }]
+            transform: [{ translateY: slideAnim }],
         },
         textContainer: {
             position: 'absolute',
@@ -167,37 +162,45 @@ export const Notification = ({
             flex: 1,
             alignContent: 'center',
             left: 10,
-            top: 10
+            top: 10,
         },
         icon: {
             color: colors.text,
             fontSize: 18,
             fontWeight: 'bold',
-        }, 
+        },
     });
 
     return (
         //Two view containers are needed to make the animation work (on phone).
-        <Animated.View style={{opacity: fadeAnim, transform: [{ translateY: translateYAnim }]}}>
-        <Animated.View style={[styles.alert, {opacity: fadeAnim, transform: [{ scaleY: scaleYAnim }]}]}>
+        <Animated.View
+            style={{
+                opacity: fadeAnim,
+                transform: [{ translateY: translateYAnim }],
+            }}
+        >
+            <Animated.View
+                style={[
+                    styles.alert,
+                    { opacity: fadeAnim, transform: [{ scaleY: scaleYAnim }] },
+                ]}
+            >
+                <View style={styles.bg1} />
+                <View style={styles.bg2} />
+                <View style={styles.bg3} />
+                <View style={styles.bg4} />
+                <View style={styles.bg5} />
+                <View style={styles.bg6} />
 
-            <View style={styles.bg1} />
-            <View style={styles.bg2} />
-            <View style={styles.bg3} />
-            <View style={styles.bg4} />
-            <View style={styles.bg5} />
-            <View style={styles.bg6} />
-
-            <View style={styles.iconContainer}>
-                {icon ? <FontAwesome5 name={icon} style={styles.icon} /> : null}
-            </View>
-            <View style={styles.textContainer}>
-                <Text style={styles.text}>
-                    {message}
-                </Text>
-            </View>
-
+                <View style={styles.iconContainer}>
+                    {icon ? (
+                        <FontAwesome5 name={icon} style={styles.icon} />
+                    ) : null}
+                </View>
+                <View style={styles.textContainer}>
+                    <Text style={styles.text}>{message}</Text>
+                </View>
+            </Animated.View>
         </Animated.View>
-        </Animated.View>       
-    )
+    );
 };

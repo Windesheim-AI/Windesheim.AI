@@ -8,8 +8,8 @@ import { PersistConfig } from 'redux-persist/es/types';
 import { languageSlice } from './slices/LanguageSlice';
 import { layoutSlice } from './slices/LayoutSlice';
 import { navigationSlice } from './slices/NavigationSlice';
-import { themeSlice } from './slices/ThemeSlice';
 import { notificationSlice } from './slices/NotificationSlice';
+import { themeSlice } from './slices/ThemeSlice';
 
 const persistConfig: PersistConfig<unknown> = {
     key: 'root',
@@ -19,7 +19,7 @@ const persistConfig: PersistConfig<unknown> = {
 };
 
 const rootReducer = combineReducers({
-    notification : notificationSlice.reducer,
+    notification: notificationSlice.reducer,
     navigation: navigationSlice.reducer,
     theme: themeSlice.reducer,
     language: languageSlice.reducer,

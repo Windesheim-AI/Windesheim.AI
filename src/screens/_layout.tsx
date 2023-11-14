@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Animated, View, StyleSheet, SafeAreaView } from 'react-native';
 
+import { NotificationList } from '../components/alerts/NotificationList';
 import { Background } from '../components/general/Background';
 import { NavBar } from '../components/navigation/Navbar';
-import { NotificationList } from '../components/alerts/NotificationList';
 import { useColorConfig } from '../constants/Colors';
 import { useAnimatedValue } from '../lib/utility/animate';
 import { useAppSelector } from '../redux/Store';
