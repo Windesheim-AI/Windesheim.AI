@@ -1,7 +1,6 @@
-import * as courseTestData from '../assets/courses/test.json';
-import { useFetchCourseData } from '../lib/fetcher/CourseDataFetcher';
-import { useAppSelector, RootState } from '../redux/Hooks';
-import { Course, CourseDataMapped } from '../types/Course';
+import { useFetchCourseData } from './CourseDataFetcher';
+import { useAppSelector, RootState } from '../../redux/Hooks';
+import { Course, CourseDataMapped } from '../../types/Course';
 
 export type CourseDataResult = {
     data: CourseDataMapped[];

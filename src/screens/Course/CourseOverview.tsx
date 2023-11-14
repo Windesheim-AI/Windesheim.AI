@@ -8,7 +8,7 @@ import { PageView } from '../../components/general/PageView';
 import { TextTranslated } from '../../components/text/TextTranslated';
 import { stateColorSchemes } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { useCourseWithData } from '../../hooks/useCourseWithData';
+import { useCourseWithData } from '../../lib/fetcher/useCourseWithData';
 import { useAppDispatch } from '../../redux/Hooks';
 import { setLoading } from '../../redux/slices/LoadingSlice';
 import { Routes } from '../../routes/routes';
