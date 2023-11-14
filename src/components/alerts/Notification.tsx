@@ -4,7 +4,7 @@ import { Animated, Text, StyleSheet, Dimensions, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
-import { useAppDispatch } from '../../redux/Store';
+import { useAppDispatch } from '../../redux/Hooks';
 import { NotificationActions } from '../../redux/slices/NotificationSlice';
 
 export type NotificationType = {
