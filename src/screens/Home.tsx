@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { TechProviders } from '../components/WTR/TechProviders';
 import { Themes } from '../components/WTR/Themes';
 import { PageView } from '../components/general/PageView';
-import { TutorialStart } from '../components/tutorial/tutorialstart';
+import { Tutorial } from '../components/tutorial/tutorial';
 
 export const HomeScreen = () => {
     return (
@@ -15,7 +15,7 @@ export const HomeScreen = () => {
         >
             {/* WTR-site content */}
             <View>
-                <TutorialStart />
+                <Tutorial />
                 <TechProviders />
                 <Themes />
             </View>

@@ -1,50 +1,42 @@
-import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-
+import React, { useEffect, useState } from 'react';
 import { Modal, Text, Pressable, View, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
+import { tutorialData } from '../../constants/TutorialData';
 import { RootState, useAppSelector, useAppDispatch } from '../../redux/Hooks';
-import { nextStep } from '../../redux/slices/TutorialSlice';
-import { Routes } from '../../routes/routes';
-
+import { nextStep, setCompleted } from '../../redux/slices/TutorialSlice';
 export const Tutorial = () => {
-    const [modalVisible, setModalVisible] = useState(true);
+    const layoutState = useAppSelector((state: RootState) => state.layout);
+
+    const [modalVisible, setModalVisible] = useState(false);
     const colors = useColorConfig();
     const navigation = useNavigation();
     const tutorialStep = useAppSelector(
         (state: RootState) => state.tutorial.currentStep,
     );
+    const tutorialCompleted = useAppSelector(
+        (state: RootState) => state.tutorial.tutorialCompleted,
+    );
     const dispatch = useAppDispatch();
-    const tutorialSteps = [
-        {
-            Title: '',
-            Subtext: `Welcome to the WingAI app! This tutorial will
-            explain all of the features in the app and where you
-            can find certain elements. You can also skip this
-            tutorial if you don't find it necessary.`,
-            NextPage: Routes.Settings,
-        },
-        {
-            Title: 'Example Title',
-            Subtext: 'This is step 2',
-            NextPage: '',
-        },
-        {
-            Title: 'Example Title',
-            Subtext: 'This is step 3',
-            NextPage: '',
-        },
-    ];
+
+    // Check if the splash screen is still visible
+    useEffect(() => {
+        if (!layoutState.isSplashVisible) {
+            // If the splash screen is not visible, show the modal
+            setModalVisible(!tutorialCompleted);
+        }
+    }, [layoutState.isSplashVisible, tutorialCompleted]);
 
     const handleNext = () => {
         dispatch(nextStep());
-        const nextStepRoute = tutorialSteps[tutorialStep]?.NextPage;
+        const nextStepRoute = tutorialData[tutorialStep]?.NextPage;
         if (nextStepRoute) {
             setModalVisible(false);
             navigation.navigate(nextStepRoute as never);
         }
     };
+
     const styles = StyleSheet.create({
         container: {
             flex: 1,
@@ -55,7 +47,7 @@ export const Tutorial = () => {
         // eslint-disable-next-line react-native/no-color-literals
         modalBackground: {
             flex: 1,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
             alignItems: 'center',
             justifyContent: 'center',
         },
@@ -66,17 +58,20 @@ export const Tutorial = () => {
             alignItems: 'center',
             justifyContent: 'center',
             maxWidth: '80%', // Set a maximum width for the modal content
+            height: 'auto',
         },
         modalText: {
             color: colors.text,
             fontSize: 18,
             fontWeight: 'bold',
             marginBottom: 10,
+            textAlign: 'center',
         },
         subText: {
             color: colors.text,
             fontSize: 14,
             marginBottom: 20,
+            textAlign: 'center',
         },
         buttonContainer: {
             flexDirection: 'row',
@@ -93,6 +88,9 @@ export const Tutorial = () => {
         },
         nextButton: {
             backgroundColor: colors.primary,
+        },
+        finishButton: {
+            backgroundColor: colors.danger,
         },
         buttonText: {
             color: colors.text,
@@ -115,10 +113,10 @@ export const Tutorial = () => {
                 <View style={styles.modalBackground}>
                     <View style={styles.modalContent}>
                         <Text style={styles.modalText}>
-                            App Guided Tutorial
+                            {tutorialData[tutorialStep].Title}
                         </Text>
                         <Text style={styles.subText}>
-                            {tutorialSteps[tutorialStep].Subtext}
+                            {tutorialData[tutorialStep].Subtext}
                         </Text>
                         <View style={styles.buttonContainer}>
                             <Pressable
@@ -129,17 +127,32 @@ export const Tutorial = () => {
                             >
                                 <Text style={styles.buttonText}>Skip</Text>
                             </Pressable>
-                            <Pressable
-                                style={[styles.button, styles.nextButton]}
-                                onPress={() => {
-                                    handleNext();
-                                }}
-                            >
-                                <Text style={styles.buttonText}>
-                                    Next {tutorialStep} /
-                                    {tutorialSteps.length - 1}
-                                </Text>
-                            </Pressable>
+                            {tutorialStep === tutorialData.length - 1 ? (
+                                <Pressable
+                                    style={[styles.button, styles.finishButton]}
+                                    onPress={() => {
+                                        // Handle logic for finishing the tutorial
+                                        setModalVisible(false);
+                                        setCompleted(true);
+                                    }}
+                                >
+                                    <Text style={styles.buttonText}>
+                                        Finish
+                                    </Text>
+                                </Pressable>
+                            ) : (
+                                <Pressable
+                                    style={[styles.button, styles.nextButton]}
+                                    onPress={() => {
+                                        handleNext();
+                                    }}
+                                >
+                                    <Text style={styles.buttonText}>
+                                        Next {tutorialStep + 1} /{' '}
+                                        {tutorialData.length}
+                                    </Text>
+                                </Pressable>
+                            )}
                         </View>
                     </View>
                 </View>

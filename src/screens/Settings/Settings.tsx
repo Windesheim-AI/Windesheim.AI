@@ -5,6 +5,7 @@ import { PageView } from '../../components/general/PageView';
 import { FontSwitcher } from '../../components/settings/FontSwitcher';
 import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../../components/settings/ThemeSwitcher';
+import { TutorialResetButton } from '../../components/settings/TutorialReplayer';
 import { useStaticLoading } from '../../lib/utility/loaderFunctions';
 export const SettingsScreen = () => {
     useStaticLoading(500);
@@ -28,6 +29,13 @@ export const SettingsScreen = () => {
 
             <SettingCard icon="font" title="Font" testID="font switcher">
                 <FontSwitcher />
+            </SettingCard>
+            <SettingCard
+                icon="redo"
+                title="Tutorial Reset"
+                testID="tutorial reset"
+            >
+                <TutorialResetButton />
             </SettingCard>
         </PageView>
     );
