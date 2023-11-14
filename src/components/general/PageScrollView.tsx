@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { WhScrollView } from './WhScrollView';
 import { useColorConfig } from '../../constants/Colors';
@@ -8,7 +8,7 @@ import { TextTranslated } from '../text/TextTranslated';
 
 type PageScrollViewProps = {
     children: React.ReactNode;
-    title: string;
+    title?: string;
     description?: string;
 };
 
@@ -39,13 +39,14 @@ export const PageScrollView = ({
     return (
         <WhScrollView>
             <View style={styles.container}>
-                <Text style={styles.header}>
-                    <TextTranslated text={title} />
-                </Text>
+                {title ? (
+                    <TextTranslated style={styles.header} text={title} />
+                ) : null}
                 {description ? (
-                    <Text style={styles.description}>
-                        <TextTranslated text={description} />
-                    </Text>
+                    <TextTranslated
+                        style={styles.description}
+                        text={description}
+                    />
                 ) : null}
 
                 {children}

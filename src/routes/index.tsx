@@ -3,9 +3,15 @@ import React from 'react';
 
 import { Routes } from './routes';
 import { LoadingScreen } from '../components/loadingscreen/LoadingScreen';
+import CoursePage from '../screens/Course/Course';
+import CourseFinished from '../screens/Course/CourseFinished';
+import CourseOverview from '../screens/Course/CourseOverview';
+import { Courses } from '../screens/Course/Courses';
 import { HomeScreen } from '../screens/Home';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { StudyScreen } from '../screens/Study';
+import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
+import { UsecaseScreen } from '../screens/Usecase/Usecase';
 import { WTRScreen } from '../screens/WTR/WTR';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
 
@@ -18,6 +24,12 @@ const screens = [
     { name: Routes.WindesheimTechRadarContent, component: WTRContentScreen },
     { name: Routes.Settings, component: SettingsScreen },
     { name: Routes.LoadingScreen, component: LoadingScreen },
+    { name: Routes.Usecase, component: UsecaseScreen },
+    { name: Routes.CaseStudyInfo, component: CaseStudyInfo },
+    { name: Routes.Course, component: CoursePage },
+    { name: Routes.CourseFinished, component: CourseFinished },
+    { name: Routes.CourseOverview, component: CourseOverview },
+    { name: Routes.Courses, component: Courses },
 ];
 
 export const Router = () => {

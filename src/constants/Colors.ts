@@ -23,15 +23,18 @@ export type ColorSchemeType = {
     tabIconSelected: string;
     titleDefault: string;
     descriptionDefault: string;
+    buttonText: string;
     bg1: string;
     bg2: string;
     bg3: string;
     settingButtonBG: string;
+    modalBackground: string;
     subtext: string;
     navBar: {
         backgroundColor: string;
         color: string;
     };
+    subTitle: string;
     borderColor: string;
     listItemBg: string;
     opacityLayer: string;
@@ -43,12 +46,13 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#45B97C',
         warning: '#ff7300',
         danger: '#EE3135',
+        buttonText: '#3F3f3f',
         text: '#000',
         textLight: '#fff',
         background: '#fff',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorLight,
-        gray: '#ccc',
+        gray: '#919191',
         tabIconDefault: '#ccc',
         tabIconSelected: tintColorLight,
         titleDefault: '#000',
@@ -57,12 +61,14 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg2: '#ffd949',
         bg3: '#ffcb05',
         settingButtonBG: '#fffffff',
+        modalBackground: 'rgba(0,0,0,0.5)',
         subtext: '#a8a7a7',
         navBar: {
             backgroundColor: '#FAFAFA',
             color: '#2B2A2A',
         },
         borderColor: '#ccc',
+        subTitle: '#2B2A2A',
         listItemBg: '#DCDCDC',
         white: '#FFFFFF',
         black: '#000000',
@@ -77,13 +83,15 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         danger: '#EE3135',
         text: '#fff',
         textLight: '#fff',
+        buttonText: '#3F3f3f',
         background: '#2a2a2a',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorDark,
-        gray: '#ccc',
+        gray: '#919191',
         tabIconDefault: '#ccc',
         tabIconSelected: tintColorDark,
         titleDefault: '#fff',
+        modalBackground: 'rgba(0,0,0,0.5)',
         descriptionDefault: 'gray',
         bg1: '#86d2d9',
         bg2: '#22bdc6',
@@ -94,6 +102,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
             backgroundColor: '#090A0A',
             color: '#c4c4c4',
         },
+        subTitle: '#c4c4c4',
         borderColor: '#ccc',
         listItemBg: '#373737',
         white: '#FFFFFF',

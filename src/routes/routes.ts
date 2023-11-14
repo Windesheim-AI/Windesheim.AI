@@ -5,4 +5,11 @@ export enum Routes {
     WindesheimTechRadarContent = 'Windesheim Tech Radar Content',
     Settings = 'Settings',
     LoadingScreen = 'Loading screen',
+    TestSettings = 'TestSettings',
+    Usecase = 'Usecase',
+    CaseStudyInfo = 'CaseStudyInfo',
+    Course = 'Course',
+    CourseFinished = 'CourseFinished',
+    CourseOverview = 'CourseOverview',
+    Courses = 'Courses',
 }

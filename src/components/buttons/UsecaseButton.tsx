@@ -1,11 +1,10 @@
 import { useFonts, Inter_500Medium } from '@expo-google-fonts/inter';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, View, Pressable } from 'react-native';
+import { Text, StyleSheet, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
-import { TextTranslated } from '../text/TextTranslated';
 
 export type ButtonProps = {
     onPress?: () => void;
@@ -15,7 +14,7 @@ export type ButtonProps = {
     icon?: string;
 };
 
-export const ListButton = ({
+export const Usecase = ({
     onPress,
     buttonText,
     screenName,
@@ -65,7 +64,6 @@ export const ListButton = ({
         bg2: {
             backgroundColor: colors.bg2,
             height: barHeight,
-
             top: -30,
             transform: 'rotate(20deg)',
             width: bgWidth,
@@ -73,7 +71,6 @@ export const ListButton = ({
         bg3: {
             backgroundColor: colors.bg3,
             height: barHeight,
-
             top: -30,
             transform: 'rotate(20deg)',
             width: bgWidth,
@@ -81,7 +78,7 @@ export const ListButton = ({
         button: {
             alignItems: 'center',
             backgroundColor: colors.listItemBg,
-            borderRadius: 40,
+            borderRadius: 18,
             flexDirection: 'row',
             height,
             margin: 10,
@@ -92,7 +89,7 @@ export const ListButton = ({
         },
         icon: {
             color: colors.text,
-            fontSize: 15,
+            fontSize: 20,
             fontWeight: 'bold',
             position: 'absolute',
         },
@@ -106,12 +103,19 @@ export const ListButton = ({
         textStyle: {
             flexDirection: 'row',
             alignItems: 'center',
-            right: 15,
+            left: 50,
         },
         iconStyle: {
             flexDirection: 'row',
             alignItems: 'center',
-            right: -200,
+            position: 'absolute',
+            left: 75,
+        },
+        rightBg: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            position: 'absolute',
+            right: -20,
         },
     });
 
@@ -119,19 +123,25 @@ export const ListButton = ({
         <Pressable
             style={styles.button}
             onPress={onPress}
-            testID="Study-button"
+            testID="Usecase-button"
         >
             <View style={styles.bg1} />
             <View style={styles.bg2} />
             <View style={styles.bg3} />
             <View style={styles.textStyle}>
-                <TextTranslated style={styles.text} text={buttonText ?? ''} />
+                <Text style={styles.text}>{buttonText}</Text>
             </View>
             <View style={styles.iconStyle}>
-                <FontAwesome5
-                    name={icon ?? 'arrow-right'}
-                    style={styles.icon}
-                />
+                {icon ? (
+                    <FontAwesome5 name={icon} style={styles.icon} />
+                ) : (
+                    <FontAwesome5 name="pencil-alt" style={styles.icon} />
+                )}
+            </View>
+            <View style={styles.rightBg}>
+                <View style={styles.bg3} />
+                <View style={styles.bg2} />
+                <View style={styles.bg1} />
             </View>
         </Pressable>
     );

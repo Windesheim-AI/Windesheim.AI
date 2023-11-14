@@ -1,11 +1,12 @@
 import { useFonts as useFont, Inter_500Medium } from '@expo-google-fonts/inter';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Text, StyleSheet, View, Pressable } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { ColorGradientScheme, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { InteractableView } from '../general/InteractableView';
 import { TextTranslated } from '../text/TextTranslated';
 
 export type ButtonProps = {
@@ -50,7 +51,7 @@ export const Button = ({
         return null;
     }
 
-    const minWidth = 70;
+    const minWidth = 80;
     const baseWidth = width ? width : minWidth;
     const checkedWidth: number = baseWidth > minWidth ? baseWidth : minWidth;
     const buttonWidth =
@@ -77,7 +78,7 @@ export const Button = ({
         button: {
             alignItems: 'center',
             backgroundColor: colorGradientScheme[2],
-            borderRadius: 40,
+            borderRadius: 18,
             flexDirection: 'row',
             height,
             margin: 10,
@@ -88,30 +89,36 @@ export const Button = ({
             // center
             overflow: 'hidden',
         },
-        text: {
-            color: colors.text,
+        textContainer: {
+            color: colors.buttonText,
             fontFamily: 'Inter_500Medium',
             fontWeight: 'bold',
             left: 50,
             position: 'absolute',
             ...fonts.button,
         },
+        text: {
+            color: colors.buttonText,
+            fontFamily: 'Inter_500Medium',
+            fontWeight: 'bold',
+            ...fonts.button,
+        },
         icon: {
-            color: colors.text,
+            color: colors.buttonText,
             ...fonts.icon,
             fontWeight: 'bold',
         },
     });
 
     return (
-        <Pressable style={styles.button} onPress={onPress}>
+        <InteractableView style={styles.button} onPress={onPress}>
             <View style={styles.bg1} />
             <View style={styles.bg2} />
-            <Text style={styles.text}>
+            <Text style={styles.textContainer}>
                 {icon ? <FontAwesome5 name={icon} style={styles.icon} /> : null}
                 {icon ? ' ' : ''}
-                <TextTranslated text={buttonText ?? ''} />
+                <TextTranslated style={styles.text} text={buttonText ?? ''} />
             </Text>
-        </Pressable>
+        </InteractableView>
     );
 };
