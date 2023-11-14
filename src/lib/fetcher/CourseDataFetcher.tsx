@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+// @ts-ignore
+import { WP_USERNAME, WP_PASSWORD } from '@env';
+
 import { fetchJsonData, useDataFetcher } from './DataFetcher';
 import { appConfig } from '../../../app.config';
 import * as courseTestData from '../../assets/courses/test.json';
 import { Course } from '../../types/Course';
-// import env
-// @ts-ignore
-import { WP_USERNAME, WP_PASSWORD } from '@env';
 
 type FetchCourseResult = {
     data: Course[] | undefined;
@@ -16,7 +16,7 @@ type FetchCourseResult = {
 // When no id is provided, fetch all courses
 export function useFetchCourseData(id?: string): FetchCourseResult {
     const extension = id ? '/' + id : '';
-    const { data, isLoading, error } = useDataFetcher(fetchJsonData, {
+    const { data, isLoading, error } = useDataFetcher<string>(fetchJsonData, {
         url: appConfig.backendUrl + '/wp-json/wingai/v1/courses' + extension,
         username: WP_USERNAME,
         password: WP_PASSWORD,

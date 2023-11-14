@@ -4,7 +4,6 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { useColorConfig } from '../../constants/Colors';
 import { useAppDispatch } from '../../redux/Hooks';
 import { navigationActions } from '../../redux/slices/NavigationSlice';
-import { useColorConfig } from '../../constants/Colors';
 
 type WhScrollViewProps = {
     children: React.ReactNode;
@@ -18,18 +17,11 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
     const storeDispatcher = useAppDispatch();
     const colors = useColorConfig();
 
-    const colors = useColorConfig();
     const [scrollPosition, setScrollPosition] = useState(0);
     const [lastShownNavBar, setLastShownNavBar] = useState(0);
     const [lastHiddenNavBar, setLastHiddenNavBar] = useState(0);
 
     const [showNav, setShowNav] = useState(true);
-
-    const styles = StyleSheet.create({
-        container: {
-            backgroundColor: colors.background,
-        },
-    });
 
     const setNavState = (show: boolean) => {
         storeDispatcher(navigationActions.showNavBar(show));
@@ -98,7 +90,6 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
             scrollEventThrottle={100}
             testID="custom-scroll-view"
             onScroll={handleScroll}
-            style={styles.container}
         >
             {children}
         </ScrollView>

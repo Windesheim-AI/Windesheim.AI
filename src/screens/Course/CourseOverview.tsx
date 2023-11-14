@@ -8,7 +8,7 @@ import { PageView } from '../../components/general/PageView';
 import { TextTranslated } from '../../components/text/TextTranslated';
 import { stateColorSchemes } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { useCourseWithData } from '../../hooks/useCourseWithData';
+import { useCourseWithData } from '../../lib/fetcher/useCourseWithData';
 import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
 
@@ -52,17 +52,19 @@ export default function CourseOverview() {
 
                 {/* map the stages of the course */}
                 <View style={styles.courseStageContainer}>
-                    {course?.stageData.map((stage) => {
-                        return (
-                            <StageItem
-                                key={stage.id}
-                                title={stage.title}
-                                id={stage.id}
-                                description={stage.description}
-                                isCompletedByUser={stage.isCompletedByUser}
-                                courseId={course.courseId}
-                            />
-                        );
+                    {course?.data.map((stage) => {
+                        return stage.stageData.map((item) => {
+                            return (
+                                <StageItem
+                                    key={item.id}
+                                    title={stage.title}
+                                    id={item.id}
+                                    description={item.description}
+                                    isCompletedByUser={item.isCompletedByUser}
+                                    courseId={stage.courseId}
+                                />
+                            );
+                        });
                     })}
                 </View>
 

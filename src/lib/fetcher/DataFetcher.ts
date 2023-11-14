@@ -1,19 +1,7 @@
 import useSWRNative from '@nandorojo/swr-react-native';
 import { BareFetcher, Fetcher, SWRConfiguration } from 'swr';
-import { HttpStatusCode } from '../../types/Response';
 import { Buffer } from 'buffer';
-
-function btoa(str: string | Buffer): string {
-    let buffer;
-
-    if (str instanceof Buffer) {
-        buffer = str;
-    } else {
-        buffer = Buffer.from(str.toString(), 'binary');
-    }
-
-    return buffer.toString('base64');
-}
+import { HttpStatusCode } from '../../types/Response';
 
 interface FetcherOptions {
     input: RequestInfo | URL | string;
@@ -28,6 +16,7 @@ export const fetchData = async (options: FetcherOptions) => {
     }
 
     if (response.status !== HttpStatusCode.Ok.valueOf()) {
+        // eslint-disable-next-line no-console
         console.error(
             'An error occurred while fetching the data. Received status code: ' +
                 response.status,
@@ -77,16 +66,18 @@ export const useDataFetcher = <DataType>(
         password = '',
     } = options;
 
+    const hasBasicAuthCredentials = username.length > 0 && password.length > 0;
     // The headers are merged with the payload headers.
     const headers: HeadersInit = {
         ...payload.headers,
         ...(bearerToken.length > 0 && {
             Authorization: `Bearer ${bearerToken}`,
         }),
-        ...(username.length > 0 &&
-            password.length > 0 && {
-                Authorization: `Basic ${btoa(`${username}:${password}`)}`,
-            }),
+        ...(hasBasicAuthCredentials && {
+            Authorization: `Basic ${Buffer.from(
+                `${username}:${password}`,
+            ).toString('base64')}`,
+        }),
     };
 
     // Prepare the fetcher options for the SWR hook.
