@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { StageItem } from './StageItem';
 import { Button } from '../../components/buttons/Button';
@@ -64,11 +64,18 @@ export default function CourseOverview() {
 
                 {/* map the stages of the course */}
                 <View>
-                    <FlatList
-                        data={course.stageData}
-                        renderItem={renderItem}
-                        keyExtractor={(item) => item.id}
-                    />
+                    {course?.stageData.map((stage) => {
+                        return (
+                            <StageItem
+                                key={stage.id}
+                                title={stage.title}
+                                id={stage.id}
+                                description={stage.description}
+                                isCompletedByUser={stage.isCompletedByUser}
+                                courseId={course.courseId}
+                            />
+                        );
+                    })}
                 </View>
             </View>
         </PageView>

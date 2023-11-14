@@ -71,12 +71,10 @@ export function CourseNavigation({
             left: 0,
             right: 0,
             zIndex: 10,
-            maxHeight: 200, // set a fixed height
-            overflow: 'scroll', // enable scrolling
         },
         dropdownText: {
             ...fonts.h4,
-            padding: 10,
+            padding: 5,
             borderRadius: 10,
         },
         block: {
@@ -85,7 +83,7 @@ export function CourseNavigation({
         courseOverview: {
             ...fonts.h4,
             fontWeight: 'bold',
-            padding: 10,
+            padding: 5,
             borderBottomColor: colors.listItemBg,
             borderBottomWidth: 1,
         },
@@ -159,7 +157,12 @@ export function CourseNavigation({
                             }}
                         >
                             <TextTranslated
-                                style={styles.dropdownText}
+                                style={[
+                                    styles.dropdownText,
+                                    stage.id === currentStageId && {
+                                        color: colors.textLight,
+                                    },
+                                ]}
                                 text={stage.title}
                             />
                         </InteractableView>
