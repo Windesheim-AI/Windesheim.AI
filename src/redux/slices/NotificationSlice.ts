@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { useEffect } from 'react';
 
 import { NotificationType } from '../../components/alerts/Notification';
 import {
@@ -8,7 +9,6 @@ import {
     colorIconMapping,
 } from '../../constants/Colors';
 import { useAppDispatch } from '../Hooks';
-import { useEffect } from 'react';
 
 export type AddNotificationAction = {
     id: number;
@@ -35,13 +35,13 @@ export const notificationSlice = createSlice({
             state,
             action: PayloadAction<AddNotificationAction>,
         ) => {
-            let id =
+            const id =
                 state.notifications.length > 0
                     ? state.notifications[state.notifications.length - 1].id + 1
                     : 1;
             state.notifications.push({
                 ...action.payload,
-                id: id,
+                id,
             });
         },
         addNotificationOnce: (
@@ -83,8 +83,8 @@ export const useNotificationOnce = (
     useEffect(() => {
         storeDispatcher(
             NotificationActions.addNotificationOnce({
-                id: id,
-                message: message,
+                id,
+                message,
                 colorGradientScheme: colorType
                     ? stateColorSchemes[colorType]
                     : stateColorSchemes.primary,

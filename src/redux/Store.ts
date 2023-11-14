@@ -18,7 +18,7 @@ const persistConfig: PersistConfig<unknown> = {
     whitelist: [themeSlice.name, languageSlice.name, fontSlice.name],
 };
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
     notification: notificationSlice.reducer,
     navigation: navigationSlice.reducer,
     theme: themeSlice.reducer,

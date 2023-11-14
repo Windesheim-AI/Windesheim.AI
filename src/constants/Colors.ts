@@ -133,7 +133,7 @@ export const colorIconMapping: ColorIconMapping = {
 
 export type ColorGradientSchemes = Record<ColorTypes, ColorGradientScheme>;
 
-export type stateColorGradientSchemes = {
+export type StateColorGradientSchemes = {
     primary: ColorGradientScheme;
     info: ColorGradientScheme;
     secondary: ColorGradientScheme;
@@ -142,7 +142,7 @@ export type stateColorGradientSchemes = {
     danger: ColorGradientScheme;
 };
 
-export const stateColorSchemes: stateColorGradientSchemes = {
+export const stateColorSchemes: StateColorGradientSchemes = {
     primary: ['#4695D3', '#22BDC6', '#86D2D9'],
     info: ['#4695D3', '#22BDC6', '#86D2D9'],
     secondary: ['#FFCB05', '#FFD949', '#FFF377'],
