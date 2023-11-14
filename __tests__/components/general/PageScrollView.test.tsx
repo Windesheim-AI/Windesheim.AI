@@ -7,22 +7,13 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 
 import { PageScrollView } from '../../../src/components/general/PageScrollView';
+import { useAppDispatch } from '../../../src/redux/Hooks';
 
 const mockStore = configureStore([]);
 
-jest.mock('@react-native-async-storage/async-storage', () =>
-    require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
-);
+jest.useFakeTimers();
 
-jest.mock('react-redux', () => {
-    const ActualReactRedux = jest.requireActual('react-redux');
-    return {
-        ...ActualReactRedux,
-        useSelector: jest.fn().mockImplementation(() => {
-            return {};
-        }),
-    };
-});
+(useAppDispatch as jest.Mock).mockReturnValue(jest.fn());
 
 describe('PageScrollView component', () => {
     // @ts-ignore

@@ -11,15 +11,8 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
 import { useAnimatedValue } from '../../lib/utility/animate';
-import { RootState, useAppSelector } from '../../redux/Store';
-import { Routes } from '../../routes/routes';
-
-const navLinks = [
-    { icon: 'home', route: Routes.Home },
-    { icon: 'search', route: Routes.WindesheimTechRadar },
-    { icon: 'graduation-cap', route: Routes.Test },
-    { icon: 'cog', route: Routes.Settings },
-];
+import { RootState, useAppSelector } from '../../redux/Hooks';
+import { navigationBarLinks } from '../../routes/navigation';
 
 export const NavBar = () => {
     const [showNavBar, setShowNavBar] = useState(true);
@@ -47,7 +40,9 @@ export const NavBar = () => {
             zIndex: 1,
             padding: 10, // Add some padding to space out the icons
         },
-        icon: {
+        item: {
+            width: 55,
+            height: 35,
             flex: 1, // Make the icons equally distribute horizontally
             alignItems: 'center', // Center horizontally
             justifyContent: 'center', // Center vertically
@@ -70,7 +65,7 @@ export const NavBar = () => {
 
     return (
         <Animated.View style={{ ...styles.container, opacity, bottom, width }}>
-            {navLinks.map((link, index) => (
+            {navigationBarLinks.map((link, index) => (
                 <Pressable
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
@@ -78,9 +73,10 @@ export const NavBar = () => {
                         //@ts-ignore
                         navigation.navigate(link.route);
                     }}
+                    style={styles.item}
                     testID={link.route + '-navbar-button'}
                 >
-                    <View style={styles.icon}>
+                    <View>
                         <FontAwesome5
                             color={colors.navBar.color}
                             name={link.icon}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import {
     getLanguageCodeByTranslation,
@@ -6,7 +6,8 @@ import {
     languageLabels,
     languages,
 } from '../../constants/Languages';
-import { RootState, useAppDispatch, useAppSelector } from '../../redux/Store';
+import { TranslateContext } from '../../lib/translation/Translator';
+import { RootState, useAppDispatch, useAppSelector } from '../../redux/Hooks';
 import { languageActions } from '../../redux/slices/LanguageSlice';
 import { WhSelectDropdown } from '../input/WhSelectDropdown';
 
@@ -16,14 +17,24 @@ export const LanguageSwitcher = () => {
     const [selectedLanguage, setSelectedLanguage] = useState<LanguageCode>(
         languageState.langCode,
     );
+    const handleTranslate = useContext(TranslateContext);
+    const [selectLanguageText, setSelectLanguageText] =
+        useState('Select language');
+    const [searchText, setSearchText] = useState('Search...');
 
     const selectableLanguages = languageLabels();
     const selectedLanguageTranslation = languages[selectedLanguage];
 
+    useEffect(() => {
+        handleTranslate(selectLanguageText, setSelectLanguageText);
+        handleTranslate(searchText, setSearchText);
+    }, [handleTranslate, searchText, selectLanguageText]);
+
     return (
         <WhSelectDropdown<string>
             data={selectableLanguages}
-            label="Select language"
+            label={selectLanguageText}
+            searchText={searchText}
             defaultValue={selectedLanguageTranslation}
             onSelect={(selectedItem) => {
                 const newSelectedLanguage: LanguageCode | undefined =

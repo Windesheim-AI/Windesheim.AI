@@ -9,6 +9,7 @@ export type WhSelectDropdownProps<T> = {
     data: T[];
     onSelect?: (selectedItem: T, index: number) => void;
     label: string;
+    searchText: string;
     width?: number;
     defaultValueByIndex?: number;
     defaultValue?: string;
@@ -19,6 +20,7 @@ export function WhSelectDropdown<T>({
     data,
     onSelect,
     label,
+    searchText,
     width,
     defaultValueByIndex,
     defaultValue,
@@ -99,7 +101,7 @@ export function WhSelectDropdown<T>({
                 selectedRowStyle={styles.dropdown2SelectedRowStyle}
                 search
                 searchInputStyle={styles.dropdown2searchInputStyleStyle}
-                searchPlaceHolder="Search..."
+                searchPlaceHolder={searchText}
                 searchPlaceHolderColor={colors.text}
                 searchInputTxtColor={colors.text}
                 renderSearchInputLeftIcon={() => (

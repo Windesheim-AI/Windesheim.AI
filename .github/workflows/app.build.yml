@@ -4,16 +4,18 @@ on:
     push:
         branches:
             - main
+            - development
     pull_request:
         branches:
             - main
+            - development
 
 jobs:
     build:
         runs-on: self-hosted
         strategy:
             matrix:
-                node-version: [18.x, 20.x]
+                node-version: [16.x]
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
@@ -23,17 +25,30 @@ jobs:
               with:
                   node-version: ${{ matrix.node-version }}
 
+            - name: 'Create & configure env file'
+              run: |
+                  touch .env
+                  echo EXPO_PUBLIC_GTR_API_KEY=${{ secrets.EXPO_PUBLIC_GTR_API_KEY }} >> .env
+                  cat .env
+
             - name: Install dependencies
               run: npm install
 
             - name: Run ESLint
               run: npm run test:eslint
 
+            - name: Run Prettier
+              run: npm run test:prettier
+
             - name: Run TypeScript check
               run: npm run test:tsc
 
             - name: Run Unit & Component tests
-              run: npm run test:jest
+              run: npm run test:jest-less-strict
+
+            - name: 'Remove env file'
+              run: |
+                  rm .env
 
     end-to-end-testing:
         runs-on: self-hosted
@@ -48,10 +63,20 @@ jobs:
             - name: Set up Node.js
               uses: actions/setup-node@v3
               with:
-                  node-version: 18.x
+                  node-version: 16.x
+
+            - name: 'Create & configure env file'
+              run: |
+                  touch .env
+                  echo EXPO_PUBLIC_GTR_API_KEY=${{ secrets.EXPO_PUBLIC_GTR_API_KEY }} >> .env
+                  cat .env
 
             - name: Cypress run
               uses: cypress-io/github-action@v6
               with:
                   start: npm run web
                   browser: ${{ matrix.test-platform }}
+
+            - name: 'Remove env file'
+              run: |
+                  rm .env

@@ -1,38 +1,16 @@
-import { render, fireEvent } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 
 import { Button } from '../../../src/components/buttons/Button';
 
-jest.mock('@react-native-async-storage/async-storage', () =>
-    require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
-);
-
-jest.mock('@expo-google-fonts/inter', () => ({
-    useFonts: () => [true, null],
-    Inter_500Medium: {},
-}));
-
-jest.mock('@react-navigation/native', () => ({
-    ...jest.requireActual('@react-navigation/native'),
-    useNavigation: () => ({
-        navigate: jest.fn(),
-    }),
-}));
-
-jest.mock('react-redux', () => {
-    const ActualReactRedux = jest.requireActual('react-redux');
-    return {
-        ...ActualReactRedux,
-        useSelector: jest.fn().mockImplementation(() => {
-            return {};
-        }),
-    };
-});
+jest.useFakeTimers();
 
 describe('Button Component', () => {
     it('renders button text correctly', () => {
         const onPressHandler = jest.fn();
         const buttonText = 'Click Me';
+
+        // Check that the `Button` component is correctly set up.
         const { getByText } = render(
             <Button
                 buttonText={buttonText}
@@ -40,6 +18,8 @@ describe('Button Component', () => {
                 onPress={onPressHandler}
             />,
         );
+
+        // Ensure the `render` method is being called before querying the component.
         expect(getByText(buttonText)).toBeDefined();
     });
 

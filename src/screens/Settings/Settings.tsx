@@ -1,11 +1,10 @@
 import * as React from 'react';
 
-import { SettingButton } from '../../components/buttons/SettingButton';
 import { SettingCard } from '../../components/card/SettingCard';
 import { PageView } from '../../components/general/PageView';
+import { FontSwitcher } from '../../components/settings/FontSwitcher';
 import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../../components/settings/ThemeSwitcher';
-import { Routes } from '../../routes/routes';
 
 export const SettingsScreen = () => {
     return (
@@ -26,12 +25,9 @@ export const SettingsScreen = () => {
                 <LanguageSwitcher />
             </SettingCard>
 
-            <SettingButton
-                icon="server"
-                title="Test"
-                description="This is a test setting."
-                screenName={Routes.TestSettings}
-            />
+            <SettingCard icon="font" title="Font" testID="font switcher">
+                <FontSwitcher />
+            </SettingCard>
         </PageView>
     );
 };

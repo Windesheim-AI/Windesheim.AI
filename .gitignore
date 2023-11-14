@@ -32,7 +32,7 @@ yarn-error.*
 *.pem
 
 # local env files
-.env*.local
+.env
 
 # typescript
 *.tsbuildinfo
@@ -51,3 +51,7 @@ instrumented/
 
 %ProgramData%/**/.*
 /%ProgramData%/Microsoft/Windows/UUS/State/_active.uusver
+
+# Environment configuration
+/.env
+eas.json
