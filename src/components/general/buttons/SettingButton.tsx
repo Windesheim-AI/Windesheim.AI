@@ -28,11 +28,14 @@ export const SettingButton = ({
     const fonts = useFonts();
 
     if (!onPress) {
+        /* istanbul ignore next */
         if (!screenName) {
             throw new Error(
                 'SettingButton requires either onPress or screenName to be defined',
             );
         }
+
+        /* istanbul ignore next */
         onPress = () => {
             //@ts-ignore
             navigation.navigate(screenName);

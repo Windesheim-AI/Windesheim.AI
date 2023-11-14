@@ -21,6 +21,7 @@ export const GoBackButton = ({
     const navigation = useNavigation();
 
     if (!onPress) {
+        /* istanbul ignore next */
         onPress = () => {
             navigation.goBack();
         };

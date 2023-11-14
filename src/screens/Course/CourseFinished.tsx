@@ -76,6 +76,7 @@ export default function CourseFinished() {
                     buttonText="Go back to courses"
                     screenName={Routes.Courses}
                     colorGradientScheme={stateColorSchemes.success}
+                    testId="go-back-to-courses-button"
                 />
             </View>
             <ConfettiCannon

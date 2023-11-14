@@ -125,6 +125,7 @@ export default function CoursePage() {
                         buttonText="Next"
                         onPress={onPress}
                         colorGradientScheme={stateColorSchemes.primary}
+                        testId={`next-stage-${stage.id}-button`}
                     />
                 </>
             ) : (

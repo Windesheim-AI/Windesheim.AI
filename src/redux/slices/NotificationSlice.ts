@@ -65,7 +65,7 @@ export const notificationSlice = createSlice({
                 (notification) => notification.id !== action.payload,
             );
         },
-        clearNotification: (state) => {
+        clearNotifications: (state) => {
             state.notifications = [];
         },
     },

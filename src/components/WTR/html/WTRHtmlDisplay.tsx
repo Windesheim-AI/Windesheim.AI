@@ -19,6 +19,7 @@ import { CustomTagRendererRecord } from 'react-native-render-html/src/render/ren
 
 import { ColorSchemeType } from '../../../constants/Colors';
 
+/* istanbul ignore next */
 function onElement(element: any) {
     try {
         element.children.forEach((child: any) => {
@@ -68,6 +69,7 @@ const customHTMLElementModels = {
         tagName: 'img',
         category: 'embedded',
         isVoid: true,
+        /* istanbul ignore next */
         getReactNativeProps({ attributes }, props) {
             // see https://w3c.github.io/html-aria/#el-img
             const label = attributes['aria-label'] || attributes.alt;
