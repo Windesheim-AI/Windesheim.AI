@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { StageItem } from './StageItem';
@@ -8,11 +8,9 @@ import { PageView } from '../../components/general/PageView';
 import { TextTranslated } from '../../components/text/TextTranslated';
 import { stateColorSchemes } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { useCourseWithData } from '../../lib/fetcher/useCourseWithData';
-import { useAppDispatch } from '../../redux/Hooks';
-import { setLoading } from '../../redux/slices/LoadingSlice';
+import { useCourseWithData } from '../../hooks/useCourseWithData';
 import { Routes } from '../../routes/routes';
-import { Stage, StageDataMapped } from '../../types/Stage';
+import { Stage } from '../../types/Stage';
 
 type CourseOverviewPageProps = {
     courseId: string;
@@ -31,30 +29,13 @@ export default function CourseOverview() {
     const params = route.params as CourseOverviewPageProps;
     const courseId = params.courseId;
 
-    const { data, isLoading } = useCourseWithData(courseId);
-
-    const storeDispatcher = useAppDispatch();
-    useEffect(() => {
-        storeDispatcher(setLoading(isLoading));
-    }, [isLoading, storeDispatcher]);
-
-    const course = data[0] ?? undefined;
-    if (isLoading) {
-        return null;
-    }
-
-    const renderItem = ({ item }: { item: StageDataMapped }) => (
-        <StageItem
-            title={item.title}
-            id={item.id}
-            description={item.description}
-            isCompletedByUser={item.isCompletedByUser}
-            courseId={course.courseId}
-        />
-    );
+    const course = useCourseWithData(courseId);
 
     const styles = StyleSheet.create({
         container: {
+            marginTop: 10,
+        },
+        courseStageContainer: {
             marginTop: 10,
         },
     });
@@ -69,14 +50,8 @@ export default function CourseOverview() {
             <View style={styles.container}>
                 <TextTranslated style={fonts.h1} text="Course Overview" />
 
-                <Button
-                    buttonText="Back to Courses"
-                    colorGradientScheme={stateColorSchemes.primary}
-                    onPress={navigateBackToCourses}
-                />
-
                 {/* map the stages of the course */}
-                <View>
+                <View style={styles.courseStageContainer}>
                     {course?.stageData.map((stage) => {
                         return (
                             <StageItem
@@ -90,6 +65,12 @@ export default function CourseOverview() {
                         );
                     })}
                 </View>
+
+                <Button
+                    buttonText="Back to Courses"
+                    colorGradientScheme={stateColorSchemes.primary}
+                    onPress={navigateBackToCourses}
+                />
             </View>
         </PageView>
     );

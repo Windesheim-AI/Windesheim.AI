@@ -1,5 +1,4 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 
 import { useFonts } from '../../../constants/Fonts';
 import { TextOptions } from '../../../types/CourseStageBlock';

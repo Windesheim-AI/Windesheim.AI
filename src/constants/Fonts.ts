@@ -4,7 +4,6 @@ import {
     Inter_400Regular,
     Inter_300Light,
 } from '@expo-google-fonts/inter';
-
 import { TextStyle } from 'react-native';
 
 import { useColorConfig } from './Colors';
@@ -80,7 +79,7 @@ export function useFonts() {
         description: {
             color: colors.text,
             fontSize: 14,
-            fontFamily: areFontsLoaded ? 'Inter_300Light' : 'sans-serif-light',
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'sans-serif',
         },
         h6: {
             fontSize: 10,
