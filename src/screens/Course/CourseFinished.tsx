@@ -10,6 +10,7 @@ import { TextTranslated } from '../../components/text/TextTranslated';
 import { stateColorSchemes, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { Course } from '../../types/Course';
+import { Routes } from '../../routes/routes';
 
 export default function CourseFinished() {
     const colors = useColorConfig();
@@ -72,8 +73,8 @@ export default function CourseFinished() {
                     </Text>
                 </View>
                 <Button
-                    buttonText="Home"
-                    screenName="Home"
+                    buttonText="Go back to courses overview"
+                    screenName={Routes.Courses}
                     colorGradientScheme={stateColorSchemes.success}
                 />
             </View>
