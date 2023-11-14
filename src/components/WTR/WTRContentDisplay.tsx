@@ -6,9 +6,9 @@ import { useColorConfig } from '../../constants/Colors';
 import { useFetchWTRPage } from '../../lib/fetcher/WTRPageFetcher';
 import { useAppDispatch } from '../../redux/Hooks';
 import { setLoading } from '../../redux/slices/LoadingSlice';
+import { TextTranslated } from '../general/text/TextTranslated';
 import { PageView } from '../general/views/PageView';
 import { WhScrollView } from '../general/views/WhScrollView';
-import { TextTranslated } from '../general/text/TextTranslated';
 
 export type WTRSContentDisplayProps = {
     page: string;

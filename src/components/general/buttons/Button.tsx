@@ -6,8 +6,8 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { ColorGradientScheme, useColorConfig } from '../../../constants/Colors';
 import { useFonts } from '../../../constants/Fonts';
-import { InteractableView } from '../views/InteractableView';
 import { TextTranslated } from '../text/TextTranslated';
+import { InteractableView } from '../views/InteractableView';
 
 export type ButtonProps = {
     onPress?: () => void;

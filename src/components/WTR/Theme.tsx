@@ -29,8 +29,8 @@ import Trust from '../../assets/images/WTR/Themes/trust.jpg';
 import Work from '../../assets/images/WTR/Themes/work.jpeg';
 import { useColorConfig } from '../../constants/Colors';
 import { Routes } from '../../routes/routes';
-import HorizontalScroll from '../general/views/HorizontalScroll';
 import { TextTranslated } from '../general/text/TextTranslated';
+import HorizontalScroll from '../general/views/HorizontalScroll';
 
 export const themeItems = [
     {

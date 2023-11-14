@@ -4,11 +4,11 @@ import { StyleSheet } from 'react-native';
 import * as Progress from 'react-native-progress';
 
 import * as courseTestData from '../../assets/courses/test.json';
-import { Button } from '../../components/general/buttons/Button';
 import { CourseNavigation } from '../../components/course/CourseNavigation';
 import StageRenderer from '../../components/course/StageRenderer';
-import { PageScrollView } from '../../components/general/views/PageScrollView';
+import { Button } from '../../components/general/buttons/Button';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
+import { PageScrollView } from '../../components/general/views/PageScrollView';
 import {
     shadow,
     stateColorSchemes,

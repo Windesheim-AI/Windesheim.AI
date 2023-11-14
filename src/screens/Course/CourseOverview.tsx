@@ -4,8 +4,8 @@ import { View, StyleSheet } from 'react-native';
 
 import { StageItem } from './StageItem';
 import { Button } from '../../components/general/buttons/Button';
-import { PageView } from '../../components/general/views/PageView';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
+import { PageView } from '../../components/general/views/PageView';
 import { stateColorSchemes } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useCourseWithData } from '../../lib/fetcher/courses/useCourseWithData';
