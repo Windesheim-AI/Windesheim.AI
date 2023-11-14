@@ -13,6 +13,7 @@ export type ButtonProps = {
     buttonText?: string;
     width?: number;
     icon?: string;
+    testId?: string;
 };
 
 export const ListButton = ({
@@ -21,6 +22,7 @@ export const ListButton = ({
     screenName,
     width,
     icon,
+    testId,
 }: ButtonProps) => {
     const [fontsLoaded, fontError] = useFonts({
         Inter_500Medium,
@@ -116,11 +118,7 @@ export const ListButton = ({
     });
 
     return (
-        <Pressable
-            style={styles.button}
-            onPress={onPress}
-            testID="Study-button"
-        >
+        <Pressable style={styles.button} onPress={onPress} testID={testId}>
             <View style={styles.bg1} />
             <View style={styles.bg2} />
             <View style={styles.bg3} />
