@@ -137,7 +137,7 @@ export const Notification = ({
             alignItems: 'center',
             justifyContent: 'center',
             alignSelf: 'center',
-            backgroundColor: colors.navBar.backgroundColor,
+            backgroundColor: colors.listItemBg,
             borderRadius: 15,
             flexDirection: 'row',
             height: alertHeight,
