@@ -7,7 +7,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { ColorGradientScheme, useColorConfig } from '../../../constants/Colors';
 import { useFonts } from '../../../constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';
-import { InteractableView } from '../views/InteractableView';
+import { IntractableView } from '../views/IntractableView';
 
 export type ButtonProps = {
     onPress?: () => void;
@@ -111,7 +111,7 @@ export const Button = ({
     });
 
     return (
-        <InteractableView style={styles.button} onPress={onPress}>
+        <IntractableView style={styles.button} onPress={onPress}>
             <View style={styles.bg1} />
             <View style={styles.bg2} />
             <Text style={styles.textContainer}>
@@ -119,6 +119,6 @@ export const Button = ({
                 {icon ? ' ' : ''}
                 <TextTranslated style={styles.text} text={buttonText ?? ''} />
             </Text>
-        </InteractableView>
+        </IntractableView>
     );
 };

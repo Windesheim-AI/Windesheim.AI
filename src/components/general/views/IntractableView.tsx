@@ -1,11 +1,11 @@
 import React from 'react';
 import { Platform, Pressable, View, ViewProps } from 'react-native';
 
-type InteractableViewProps = {
+type IntractableViewProps = {
     onPress: () => void;
 } & ViewProps;
 
-export function InteractableView({ onPress, ...props }: InteractableViewProps) {
+export function IntractableView({ onPress, ...props }: IntractableViewProps) {
     return Platform.OS !== 'web' ? (
         <View {...props} onTouchEnd={onPress}>
             {props.children}

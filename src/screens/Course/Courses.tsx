@@ -3,9 +3,6 @@ import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Bar } from 'react-native-progress';
 
-import { InteractableView } from '../../components/general/InteractableView';
-import { PageScrollView } from '../../components/general/PageScrollView';
-import { TextTranslated } from '../../components/text/TextTranslated';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useCourseWithData } from '../../lib/fetcher/useCourseWithData';
@@ -13,6 +10,9 @@ import { useAppDispatch } from '../../redux/Hooks';
 import { setLoading } from '../../redux/slices/LoadingSlice';
 import { Routes } from '../../routes/routes';
 import { CourseDataMapped } from '../../types/Course';
+import { PageScrollView } from '../../components/general/views/PageScrollView';
+import { TextTranslated } from '../../components/general/text/TextTranslated';
+import { IntractableView } from '../../components/general/views/IntractableView';
 
 export function Courses() {
     const fonts = useFonts();
@@ -78,7 +78,7 @@ export function Courses() {
             {/* map the courses */}
             <View style={styles.cardContainer}>
                 {courses.map((course: CourseDataMapped) => (
-                    <InteractableView
+                    <IntractableView
                         key={course.courseId}
                         style={styles.card}
                         onPress={() => onPress(course.courseId)}
@@ -102,7 +102,7 @@ export function Courses() {
                                 unfilledColor={colors.listItemBg}
                             />
                         </View>
-                    </InteractableView>
+                    </IntractableView>
                 ))}
             </View>
         </PageScrollView>
