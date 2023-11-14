@@ -11,7 +11,7 @@ export const StudyScreen = () => {
                 buttonText="Courses"
                 screenName={Routes.Courses}
                 width={100}
-                testId={'courses-button'}
+                testId="courses-button"
             />
         </PageView>
     );
