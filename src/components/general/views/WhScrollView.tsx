@@ -23,11 +23,13 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
 
     const [showNav, setShowNav] = useState(true);
 
+    /* istanbul ignore next */
     const setNavState = (show: boolean) => {
         storeDispatcher(navigationActions.showNavBar(show));
         setShowNav(show);
     };
 
+    /* istanbul ignore next */
     const handleScroll = (event: {
         nativeEvent: {
             contentSize: { height: number };

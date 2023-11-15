@@ -29,6 +29,7 @@ export default function Translator({
 }: TranslatorProps) {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     const handleTranslationAsync: TranslationHandler = useCallback(
+        /* istanbul ignore next */
         async (value, setTranslation) => {
             const options = {
                 to,

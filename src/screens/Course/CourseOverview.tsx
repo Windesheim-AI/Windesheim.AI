@@ -70,6 +70,7 @@ export default function CourseOverview() {
                     buttonText="Back to Courses"
                     colorGradientScheme={stateColorSchemes.primary}
                     onPress={navigateBackToCourses}
+                    testId="back-to-courses-button"
                 />
             </View>
         </PageView>

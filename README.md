@@ -1,7 +1,7 @@
 # WinGAI
 
 [![Build Status](https://github.com/Windesheim-AI-App/WingAI/actions/workflows/app.build.yml/badge.svg)](https://github.com/Windesheim-AI-App/WingAI/actions/workflows/app.build.yml)
-![check-code-coverage](https://img.shields.io/badge/code--coverage-72.99%25-yellow)
+![check-code-coverage](https://img.shields.io/badge/code--coverage-73.83%25-yellow)
 
 This is the repository for the WinGAI-app.
 

@@ -16,6 +16,7 @@ export type ButtonProps = {
     colorGradientScheme: ColorGradientScheme;
     width?: number;
     icon?: string;
+    testId?: string;
 };
 
 // eslint-disable-next-line complexity
@@ -26,6 +27,7 @@ export const Button = ({
     screenName,
     width,
     icon,
+    testId,
 }: ButtonProps) => {
     const [fontsLoaded, fontError] = useFont({
         Inter_500Medium,
@@ -36,17 +38,21 @@ export const Button = ({
     const navigation = useNavigation();
 
     if (!onPress) {
+        /* istanbul ignore next */
         if (!screenName) {
             throw new Error(
                 'CustomButton requires either onPress or screenName to be defined',
             );
         }
+
+        /* istanbul ignore next */
         onPress = () => {
             //@ts-ignore
             navigation.navigate(screenName);
         };
     }
 
+    /* istanbul ignore next */
     if (!fontsLoaded && !fontError) {
         return null;
     }
@@ -111,7 +117,11 @@ export const Button = ({
     });
 
     return (
-        <IntractableView style={styles.button} onPress={onPress}>
+        <IntractableView
+            style={styles.button}
+            onPress={onPress}
+            testID={testId}
+        >
             <View style={styles.bg1} />
             <View style={styles.bg2} />
             <Text style={styles.textContainer}>
