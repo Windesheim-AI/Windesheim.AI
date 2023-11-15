@@ -62,9 +62,6 @@ export const Themes = () => {
 
     const styles = StyleSheet.create({
         heading: {
-            color: colors.text,
-            fontSize: 24,
-            fontWeight: 'bold',
             margin: 10,
             ...fonts.h1,
         },

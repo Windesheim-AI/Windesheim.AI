@@ -68,9 +68,8 @@ export const Tutorial = () => {
             height: 'auto',
         },
         modalText: {
-            ...fonts.description,
+            ...fonts.h1,
             color: colors.text,
-            fontSize: 18,
             fontWeight: 'bold',
             marginBottom: 10,
             textAlign: 'center',
@@ -78,7 +77,6 @@ export const Tutorial = () => {
         subText: {
             ...fonts.description,
             color: colors.text,
-            fontSize: 14,
             marginBottom: 20,
             textAlign: 'center',
         },
@@ -104,7 +102,6 @@ export const Tutorial = () => {
         buttonText: {
             ...fonts.button,
             color: colors.textLight,
-            fontSize: 16,
             fontWeight: 'bold',
             textAlign: 'center',
         },

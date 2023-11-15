@@ -1,4 +1,3 @@
-import { useFonts, Inter_500Medium } from '@expo-google-fonts/inter';
 import React, { useEffect, useRef } from 'react';
 import { Animated, Text, StyleSheet, Dimensions, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -10,6 +9,7 @@ import {
 } from '../../constants/Colors';
 import { useAppDispatch } from '../../redux/Hooks';
 import { NotificationActions } from '../../redux/slices/NotificationSlice';
+import { useFonts } from '../../constants/Fonts';
 
 export type NotificationType = {
     id: number;
@@ -28,12 +28,9 @@ export const Notification = ({
     height,
     icon,
 }: NotificationType) => {
-    const [fontsLoaded, fontError] = useFonts({
-        Inter_500Medium,
-    });
-
     const dispatch = useAppDispatch();
     const colors = useColorConfig();
+    const fonts = useFonts();
 
     const slideAnim = useRef(new Animated.Value(-80)).current; // Initialize off-screen
     const fadeAnim = useRef(new Animated.Value(1)).current; // Initial value for opacity: 1
@@ -72,10 +69,6 @@ export const Notification = ({
         }, 3000);
         return () => clearTimeout(timer);
     }, [dispatch, fadeAnim, id, scaleYAnim, translateYAnim]);
-
-    if (!fontsLoaded || fontError) {
-        return null;
-    }
 
     const defaultWidth = Dimensions.get('window').width;
     const alertWidth = width ? width : defaultWidth * 0.97;
@@ -156,12 +149,6 @@ export const Notification = ({
             paddingLeft: alertWidth * 0.03,
             left: 50,
         },
-        text: {
-            color: colors.text,
-            fontFamily: 'Inter_500Medium',
-            fontSize: 16,
-            fontWeight: 'bold',
-        },
         iconContainer: {
             position: 'absolute',
             flex: 1,
@@ -170,7 +157,7 @@ export const Notification = ({
             top: 10,
         },
         icon: {
-            color: colors.text,
+            ...fonts.icon,
             fontSize: 18,
             fontWeight: 'bold',
         },
@@ -203,7 +190,7 @@ export const Notification = ({
                     ) : null}
                 </View>
                 <View style={styles.textContainer}>
-                    <Text style={styles.text}>{message}</Text>
+                    <Text style={fonts.alert}>{message}</Text>
                 </View>
             </Animated.View>
         </Animated.View>

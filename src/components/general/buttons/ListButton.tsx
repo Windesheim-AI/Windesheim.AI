@@ -1,4 +1,3 @@
-import { useFonts, Inter_500Medium } from '@expo-google-fonts/inter';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, View, Pressable } from 'react-native';
@@ -6,6 +5,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../../constants/Colors';
 import { TextTranslated } from '../text/TextTranslated';
+import { useFonts } from '../../../constants/Fonts';
 
 export type ButtonProps = {
     onPress?: () => void;
@@ -24,11 +24,8 @@ export const ListButton = ({
     icon,
     testId,
 }: ButtonProps) => {
-    const [fontsLoaded, fontError] = useFonts({
-        Inter_500Medium,
-    });
-
     const colors = useColorConfig();
+    const fonts = useFonts();
     const navigation = useNavigation();
 
     if (!onPress) {
@@ -41,10 +38,6 @@ export const ListButton = ({
             //@ts-ignore
             navigation.navigate(screenName);
         };
-    }
-
-    if (!fontsLoaded && !fontError) {
-        return null;
     }
 
     const minWidth = 70;
@@ -99,10 +92,7 @@ export const ListButton = ({
             position: 'absolute',
         },
         text: {
-            color: colors.text,
-            fontFamily: 'Inter_500Medium',
-            fontSize: 18,
-            fontWeight: 'bold',
+            ...fonts.buttonLarger,
             position: 'absolute',
         },
         textStyle: {

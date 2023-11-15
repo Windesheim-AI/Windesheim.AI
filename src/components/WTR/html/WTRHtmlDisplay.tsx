@@ -18,6 +18,8 @@ import { InternalRendererProps } from 'react-native-render-html/lib/typescript/s
 import { CustomTagRendererRecord } from 'react-native-render-html/src/render/render-types';
 
 import { ColorSchemeType } from '../../../constants/Colors';
+import { useFonts } from '../../../constants/Fonts';
+import decimal from '@jsamr/counter-style/presets/decimal';
 
 /* istanbul ignore next */
 function onElement(element: any) {
@@ -122,6 +124,7 @@ export type WTRHtmlDisplayProps = {
  */
 const WTRHtmlDisplay = React.memo(({ html, colors }: WTRHtmlDisplayProps) => {
     const { width } = useWindowDimensions();
+    const fonts = useFonts();
 
     const domVisitors: DomVisitorCallbacks = {
         onElement,
@@ -131,28 +134,48 @@ const WTRHtmlDisplay = React.memo(({ html, colors }: WTRHtmlDisplayProps) => {
         return {
             h1: {
                 display: 'inline-block',
+                ...fonts.h1,
             },
             h2: {
                 display: 'inline-block',
+                ...fonts.h2,
             },
             h3: {
                 display: 'inline-block',
+                ...fonts.h3,
             },
             h4: {
                 marginBottom: 0,
+                ...fonts.h4,
+            },
+            h5: {
+                marginBottom: 0,
+                ...fonts.h5,
+            },
+            h6: {
+                marginBottom: 0,
+                ...fonts.h6,
+            },
+            ul: {
+                ...fonts.default,
+                lineHeight: 24,
+                marginBottom: 5,
+                marginTop: 5,
+            },
+            ol: {
+                ...fonts.default,
+                lineHeight: 24,
+                marginBottom: 5,
+                marginTop: 5,
             },
             p: {
-                fontSize: 16,
+                ...fonts.default,
                 lineHeight: 24,
                 marginBottom: 10,
                 marginTop: 0,
             },
             a: {
-                fontSize: 16,
-                lineHeight: 24,
-                marginBottom: 10,
-                color: colors.text,
-                textDecorationLine: 'none',
+                ...fonts.link,
             },
             body: {
                 color: colors.text,
@@ -168,7 +191,17 @@ const WTRHtmlDisplay = React.memo(({ html, colors }: WTRHtmlDisplayProps) => {
                 display: 'block',
             },
         };
-    }, [colors.text]);
+    }, [
+        fonts.h1,
+        fonts.h2,
+        fonts.h3,
+        fonts.h4,
+        fonts.link,
+        fonts.h5,
+        fonts.h6,
+        colors.text,
+        fonts.default,
+    ]);
 
     return (
         <RenderHTML
@@ -182,6 +215,12 @@ const WTRHtmlDisplay = React.memo(({ html, colors }: WTRHtmlDisplayProps) => {
             contentWidth={width}
             ignoredDomTags={['iframe', 'script']}
             customHTMLElementModels={customHTMLElementModels}
+            customListStyleSpecs={{
+                1: {
+                    type: 'textual',
+                    counterStyleRenderer: decimal,
+                },
+            }}
             renderers={renderers}
             enableExperimentalMarginCollapsing
         />

@@ -1,4 +1,3 @@
-import { useFonts as useFont, Inter_500Medium } from '@expo-google-fonts/inter';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text, StyleSheet, View } from 'react-native';
@@ -29,10 +28,6 @@ export const Button = ({
     icon,
     testId,
 }: ButtonProps) => {
-    const [fontsLoaded, fontError] = useFont({
-        Inter_500Medium,
-    });
-
     const colors = useColorConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
@@ -50,11 +45,6 @@ export const Button = ({
             //@ts-ignore
             navigation.navigate(screenName);
         };
-    }
-
-    /* istanbul ignore next */
-    if (!fontsLoaded && !fontError) {
-        return null;
     }
 
     const minWidth = 80;
@@ -96,17 +86,11 @@ export const Button = ({
             overflow: 'hidden',
         },
         textContainer: {
-            color: colors.buttonText,
-            fontFamily: 'Inter_500Medium',
-            fontWeight: 'bold',
             left: 50,
             position: 'absolute',
             ...fonts.button,
         },
         text: {
-            color: colors.buttonText,
-            fontFamily: 'Inter_500Medium',
-            fontWeight: 'bold',
             ...fonts.button,
         },
         icon: {
