@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, Text, View, Pressable } from 'react-native';
+import { StyleSheet, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../../constants/Colors';
@@ -91,12 +91,11 @@ export const SettingButton = ({
                 <FontAwesome5 style={styles.icon} name={icon} size={24} />
             </View>
             <View style={styles.titleContainer}>
-                <Text style={styles.title}>
-                    <TextTranslated text={title} />
-                </Text>
-                <Text style={styles.description}>
-                    <TextTranslated text={truncate(description, 50)} />
-                </Text>
+                <TextTranslated style={styles.title} text={title} />
+                <TextTranslated
+                    style={styles.description}
+                    text={truncate(description, 50)}
+                />
             </View>
             <View style={styles.arrowContainer}>
                 <FontAwesome5

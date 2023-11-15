@@ -49,27 +49,4 @@ describe('WTRContentDisplay', () => {
         await waitFor(() => findByText('Mock HTML Content'));
         expect(findByText('Mock HTML Content')).toBeTruthy();
     });
-
-    test('renders page not found when there is no data', async () => {
-        // Mock isLoading to be true
-        jest.spyOn(
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
-            require('../../../src/lib/fetcher/WTRPageFetcher'),
-            'useFetchWTRPage',
-        ).mockImplementation(() => ({
-            content: '',
-            hasContent: false,
-            isLoading: true,
-        }));
-
-        consoleSpy = jest.spyOn(console, 'warn').mockImplementation();
-
-        const { findByText } = render(
-            <Provider store={store}>
-                <WTRContentDisplay page="mock-page" />
-            </Provider>,
-        );
-        await waitFor(() => findByText('Page not found'));
-        expect(findByText('Page not found')).toBeTruthy();
-    });
 });

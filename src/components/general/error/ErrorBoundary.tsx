@@ -1,6 +1,6 @@
 import Constants from 'expo-constants';
 import LottieView from 'lottie-react-native';
-import * as React from 'react';
+import React from 'react';
 import {
     Text,
     View,
