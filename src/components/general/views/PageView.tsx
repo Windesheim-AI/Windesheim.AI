@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../../constants/Colors';
 import { useFonts } from '../../../constants/Fonts';
@@ -35,14 +35,14 @@ export const PageView = ({ children, title, description }: PageViewProps) => {
     return (
         <View testID={title} style={styles.container}>
             {title ? (
-                <Text style={styles.header} testID={`${title}-description`}>
-                    <TextTranslated text={title} />
-                </Text>
+                <TextTranslated
+                    style={styles.header}
+                    testID={`${title}-description`}
+                    text={title}
+                />
             ) : null}
             {description ? (
-                <Text style={styles.description}>
-                    <TextTranslated text={description} />
-                </Text>
+                <TextTranslated style={styles.description} text={description} />
             ) : null}
 
             {children}

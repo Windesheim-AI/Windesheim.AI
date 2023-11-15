@@ -1,8 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 import { useAppDispatch } from '../../redux/Hooks';
 import { setCompleted } from '../../redux/slices/TutorialSlice';
 import { Routes } from '../../routes/routes';
@@ -12,6 +13,7 @@ export const TutorialRedoButton = () => {
     const storeDispatcher = useAppDispatch();
     const navigation = useNavigation();
     const colors = useColorConfig();
+    const fonts = useFonts();
 
     const styles = StyleSheet.create({
         button: {
@@ -20,9 +22,10 @@ export const TutorialRedoButton = () => {
             borderRadius: 5,
         },
         buttonText: {
-            color: colors.textLight,
             fontSize: 16,
             textAlign: 'center',
+            ...fonts.button,
+            color: colors.textLight,
         },
     });
 
@@ -33,9 +36,7 @@ export const TutorialRedoButton = () => {
 
     return (
         <Pressable style={styles.button} onPress={handleReset}>
-            <Text style={styles.buttonText}>
-                <TextTranslated text="Redo Tutorial" />
-            </Text>
+            <TextTranslated style={styles.buttonText} text="Redo Tutorial" />
         </Pressable>
     );
 };

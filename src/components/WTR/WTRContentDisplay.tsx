@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import WTRHtmlDisplay from '../../components/WTR/html/WTRHtmlDisplay';
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 import { useFetchWTRPage } from '../../lib/fetcher/WTRPageFetcher';
 import { useAppDispatch } from '../../redux/Hooks';
 import { setLoading } from '../../redux/slices/LoadingSlice';
@@ -17,6 +18,7 @@ export type WTRSContentDisplayProps = {
 export const WTRContentDisplay = ({ page }: WTRSContentDisplayProps) => {
     const storeDispatcher = useAppDispatch();
     const colors = useColorConfig();
+    const fonts = useFonts();
     const { content, hasContent, isLoading } = useFetchWTRPage(page);
 
     const styles = StyleSheet.create({
@@ -27,6 +29,7 @@ export const WTRContentDisplay = ({ page }: WTRSContentDisplayProps) => {
         },
         text: {
             color: colors.text,
+            ...fonts.description,
         },
     });
 
@@ -37,13 +40,12 @@ export const WTRContentDisplay = ({ page }: WTRSContentDisplayProps) => {
     if (!hasContent) {
         return (
             <PageView title="Page not found">
-                <Text style={styles.text}>
-                    <TextTranslated
-                        text={
-                            "We're sorry, but we couldn't find the page you were looking for."
-                        }
-                    />
-                </Text>
+                <TextTranslated
+                    style={styles.text}
+                    text={
+                        "We're sorry, but we couldn't find the page you were looking for."
+                    }
+                />
             </PageView>
         );
     }

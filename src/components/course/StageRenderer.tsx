@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from 'react-native';
 
 import AIRenderer from './stages/AIBlock';
 import ButtonBlock from './stages/ButtonBlock';
@@ -34,9 +33,7 @@ export default function StageRenderer({
 
                 if (!renderer) {
                     return (
-                        <Text key={key}>
-                            <TextTranslated text="Unknown block type" />
-                        </Text>
+                        <TextTranslated key={key} text="Unknown block type" />
                     );
                 }
 
