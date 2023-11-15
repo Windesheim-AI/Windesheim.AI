@@ -52,7 +52,7 @@ export default function CourseOverview() {
 
                 {/* map the stages of the course */}
                 <View style={styles.courseStageContainer}>
-                    {course?.stages.map((stage) => {
+                    {course?.stageData.map((stage) => {
                         return (
                             <StageItem
                                 key={stage.id}

@@ -13,5 +13,5 @@ export type CourseDataMapped = {
     courseId: string;
     title: string;
     description: string;
-    stages: StageDataMapped[];
+    stageData: StageDataMapped[];
 };

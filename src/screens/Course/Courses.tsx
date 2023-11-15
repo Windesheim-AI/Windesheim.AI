@@ -32,7 +32,7 @@ export function Courses() {
     }
 
     function getProgressPercentage(course: CourseDataMapped) {
-        const stages = course.stages;
+        const stages = course.stageData;
         const stagesCompleted = stages.filter(
             (stage) => stage.isCompletedByUser,
         );

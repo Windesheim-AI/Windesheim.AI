@@ -1,6 +1,7 @@
 import { useFetchCourseData } from './CourseDataFetcher';
 import { useAppSelector, RootState } from '../../redux/Hooks';
 import { Course, CourseDataMapped } from '../../types/Course';
+import { Stage, StageDataMapped } from '../../types/Stage';
 
 export type CourseDataResult = {
     data: CourseDataMapped[];
@@ -13,7 +14,7 @@ export function useCourseWithData(courseId?: string): CourseDataResult {
         (state: RootState) => state.courseData,
     );
 
-    const courseData = courseDataState.completedStages.filter(
+    const courseData = courseDataState.completedStages?.filter(
         (stage) => stage.courseId === courseId,
     );
 
@@ -24,12 +25,12 @@ export function useCourseWithData(courseId?: string): CourseDataResult {
         };
     }
 
-    const coursesWithData = courses.map((course: Course) => {
+    const coursesWithData = courses.map((course: Course): CourseDataMapped => {
         return {
             courseId: course.id,
             title: course.title,
             description: course.description,
-            stageData: course.stages.map((stage) => {
+            stageData: course.stages.map((stage): StageDataMapped => {
                 const isCompletedByUser = courseData.some(
                     (stageData) => stageData.stageId === stage.id,
                 );

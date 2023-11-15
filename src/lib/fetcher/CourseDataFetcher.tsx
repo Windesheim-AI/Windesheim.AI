@@ -16,7 +16,7 @@ type FetchCourseResult = {
 // When no id is provided, fetch all courses
 export function useFetchCourseData(id?: string): FetchCourseResult {
     const extension = id ? '/' + id : '';
-    const { data, isLoading, error } = useDataFetcher<string>(fetchJsonData, {
+    const { data, isLoading, error } = useDataFetcher<Course[]>(fetchJsonData, {
         url: appConfig.backendUrl + '/wp-json/wingai/v1/courses' + extension,
         username: WP_USERNAME,
         password: WP_PASSWORD,
@@ -31,7 +31,6 @@ export function useFetchCourseData(id?: string): FetchCourseResult {
     if (!hasContent) {
         return { data: [], isLoading, hasContent };
     }
-    const parsedData = JSON.parse(data ?? '') as Course[];
 
-    return { data: parsedData, hasContent, isLoading };
+    return { data, hasContent, isLoading };
 }
