@@ -12,7 +12,7 @@ describe('Study page tests', () => {
     it('can display the study page', () => {
         cy.visit('/Study');
 
-        cy.contains('Welcome to WIN game');
+        cy.contains('Welcome to study');
         cy.get('[data-testid="courses-button"]');
         cy.get('[data-testid="courses-button"]').should(
             'contain.text',

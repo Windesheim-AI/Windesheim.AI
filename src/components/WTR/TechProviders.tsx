@@ -75,22 +75,21 @@ export const TechProviders = () => {
             overflow: 'hidden',
             backgroundColor: colors.listItemBg,
         },
-        text: {
+        itemText: {
             color: colors.text,
-            fontSize: 18,
+            fontSize: 14,
             fontWeight: 'bold',
+            textAlign: 'center',
+            flexWrap: 'wrap',
             left: 50,
             position: 'absolute',
             ...fonts.description,
         },
-        nav_button: {
+        navButton: {
             position: 'absolute',
             right: 10,
         },
         heading: {
-            color: colors.text,
-            fontSize: 24,
-            fontWeight: 'bold',
             margin: 10,
             ...fonts.h1,
         },
@@ -125,13 +124,13 @@ export const TechProviders = () => {
                                 fill={colors.text}
                             />
                         ) : null}
-                        <Text style={styles.text}>{provider.name}</Text>
+                        <Text style={styles.itemText}>{provider.name}</Text>
                         {/* at the end of the button place an arrow */}
                         <FontAwesome5Icon
                             name="arrow-right"
                             size={24}
                             color={colors.text}
-                            style={styles.nav_button}
+                            style={styles.navButton}
                         />
                     </Pressable>
                 ))}

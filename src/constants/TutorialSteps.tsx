@@ -1,6 +1,12 @@
 import { Routes } from '../routes/routes';
 
-export const tutorialData = [
+interface TutorialStep {
+    Title: string;
+    Subtext: string;
+    NextPage: Routes | string;
+}
+
+export const tutorialSteps: TutorialStep[] = [
     {
         Title: 'Welcome!',
         Subtext:
@@ -14,7 +20,7 @@ export const tutorialData = [
         NextPage: Routes.WindesheimTechRadar,
     },
     {
-        Title: 'Windesheim TechRadar',
+        Title: 'Windesheim Tech Radar',
         Subtext:
             'On this screen you can browse the Windesheim Tech Radar, which is a collection of the newest trends & innovations in the tech industry. You can also find the latest trends with the biggest tech providers.',
         NextPage: Routes.Study,

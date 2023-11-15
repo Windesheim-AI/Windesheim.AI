@@ -5,10 +5,10 @@
         "scheme": "wingai",
         "version": "1.0.0",
         "orientation": "portrait",
-        "icon": "./src/assets/images/icon/icon.png",
+        "icon": "./src/assets/images/Icon/icon.png",
         "userInterfaceStyle": "light",
         "splash": {
-            "image": "./src/assets/images/icon/splash.png",
+            "image": "./src/assets/images/Icon/splash.png",
             "resizeMode": "contain",
             "backgroundColor": "#ffffff"
         },
@@ -16,18 +16,18 @@
         "ios": {
             "supportsTablet": true,
             "bundleIdentifier": "com.windesheim.wingai",
-            "buildNumber": "1.0.0"
+            "buildNumber": "1.0.1"
         },
         "android": {
             "package": "com.windesheim.wingai",
-            "versionCode": 3,
+            "versionCode": 2,
             "adaptiveIcon": {
-                "foregroundImage": "./src/assets/images/icon/adaptive-icon.png",
+                "foregroundImage": "./src/assets/images/Icon/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
             }
         },
         "web": {
-            "favicon": "./src/assets/images/icon/favicon.png"
+            "favicon": "./src/assets/images/Icon/favicon.png"
         },
         "extra": {
             "eas": {
@@ -40,6 +40,10 @@
         "updates": {
             "url": "https://u.expo.dev/0f525e57-fad9-45bd-9085-714b0d610d6d"
         },
-        "owner": "wingai"
+        "owner": "wingai",
+        "androidStatusBar": {
+            "backgroundColor": "#fff377",
+            "translucent": true
+        }
     }
 }

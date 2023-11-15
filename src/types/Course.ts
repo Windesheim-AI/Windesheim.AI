@@ -1,6 +1,6 @@
 import { Stage, StageDataMapped } from './Stage';
 
-//saved in wordpress
+//saved in WordPress
 export type Course = {
     title: string;
     id: string;
