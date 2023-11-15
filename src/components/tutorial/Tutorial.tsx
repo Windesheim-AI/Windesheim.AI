@@ -4,7 +4,7 @@ import { Modal, Text, Pressable, View, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { tutorialData } from '../../constants/TutorialData';
+import { tutorialSteps } from '../../constants/TutorialSteps';
 import { useAppSelector, useAppDispatch } from '../../redux/Hooks';
 import { nextStep, setCompleted } from '../../redux/slices/TutorialSlice';
 import { TextTranslated } from '../general/text/TextTranslated';
@@ -39,7 +39,7 @@ export const Tutorial = () => {
 
     const handleNext = () => {
         storeDispatcher(nextStep());
-        const nextStepRoute = tutorialData[tutorialStep]?.NextPage;
+        const nextStepRoute = tutorialSteps[tutorialStep]?.NextPage;
         if (nextStepRoute) {
             navigation.navigate(nextStepRoute as never);
         }
@@ -124,11 +124,11 @@ export const Tutorial = () => {
                     <View style={styles.modalContent}>
                         <TextTranslated
                             style={styles.modalText}
-                            text={tutorialData[tutorialStep].Title}
+                            text={tutorialSteps[tutorialStep].Title}
                         />
                         <TextTranslated
                             style={styles.subText}
-                            text={tutorialData[tutorialStep].Subtext}
+                            text={tutorialSteps[tutorialStep].Subtext}
                         />
                         <View style={styles.buttonContainer}>
                             <Pressable
@@ -144,7 +144,7 @@ export const Tutorial = () => {
                                     text="Skip"
                                 />
                             </Pressable>
-                            {tutorialStep === tutorialData.length - 1 ? (
+                            {tutorialStep === tutorialSteps.length - 1 ? (
                                 <Pressable
                                     testID="tutorial-finish-button"
                                     style={[styles.button, styles.finishButton]}
@@ -174,7 +174,7 @@ export const Tutorial = () => {
                                         />{' '}
                                         {tutorialStep + 1}
                                         {' / '}
-                                        {tutorialData.length}
+                                        {tutorialSteps.length}
                                     </Text>
                                 </Pressable>
                             )}
