@@ -6,9 +6,10 @@ import { StageItem } from './StageItem';
 import { Button } from '../../components/general/buttons/Button';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
+import LoadingScreen from '../../components/loadingscreen/LoadingScreen';
 import { stateColorSchemes } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { useCourseWithData } from '../../lib/fetcher/courses/useCourseWithData';
+import { useCourseWithData } from '../../lib/fetcher/useCourseWithData';
 import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
 
@@ -29,7 +30,7 @@ export default function CourseOverview() {
     const params = route.params as CourseOverviewPageProps;
     const courseId = params.courseId;
 
-    const course = useCourseWithData(courseId);
+    const { data, isLoading } = useCourseWithData(courseId);
 
     const styles = StyleSheet.create({
         container: {
@@ -45,6 +46,12 @@ export default function CourseOverview() {
         navigator.navigate(Routes.Courses.toString());
     }
 
+    if (isLoading) {
+        return <LoadingScreen />;
+    }
+
+    const course = data[0];
+
     return (
         <PageView>
             <View style={styles.container}>
@@ -58,7 +65,7 @@ export default function CourseOverview() {
                                 key={stage.id}
                                 title={stage.title}
                                 id={stage.id}
-                                description={stage.description}
+                                blocks={stage.blocks}
                                 isCompletedByUser={stage.isCompletedByUser}
                                 courseId={course.courseId}
                             />

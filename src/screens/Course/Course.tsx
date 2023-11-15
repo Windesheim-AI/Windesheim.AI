@@ -3,22 +3,22 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import * as Progress from 'react-native-progress';
 
-import * as courseTestData from '../../assets/courses/test.json';
 import { CourseNavigation } from '../../components/course/CourseNavigation';
 import StageRenderer from '../../components/course/StageRenderer';
 import { Button } from '../../components/general/buttons/Button';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
+import LoadingScreen from '../../components/loadingscreen/LoadingScreen';
 import {
     shadow,
     stateColorSchemes,
     useColorConfig,
 } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { useCourseWithData } from '../../lib/fetcher/useCourseWithData';
 import { useAppDispatch } from '../../redux/Hooks';
 import { courseDataActions } from '../../redux/slices/CourseDataSlice';
 import { Routes } from '../../routes/routes';
-import { Course } from '../../types/Course';
 
 type CoursePageProps = {
     courseId: string;
@@ -27,22 +27,27 @@ type CoursePageProps = {
 
 export default function CoursePage() {
     //@ts-ignore
-    const course: Course = courseTestData; //later replaced dby a fetch.
     const route = useRoute();
     const navigator = useNavigation();
     const params = route.params as CoursePageProps;
-
     const storeDispatcher = useAppDispatch();
 
     const stageId = params.stageId;
+    const courseId = params.courseId;
+
+    const { data, isLoading } = useCourseWithData(courseId);
+    const course = data[0];
+
     if (stageId === 'start') {
         //@ts-ignore
         navigator.navigate(Routes.Course.toString(), {
-            courseId: course.id,
-            stageId: course.stages[0].id,
+            courseId: course.courseId,
+            stageId: course.stageData[0].id,
         });
     }
-    const activeStageCount = course.stages.findIndex((e) => e.id === stageId);
+    const activeStageCount = course.stageData.findIndex(
+        (e) => e.id === stageId,
+    );
 
     const fonts = useFonts();
     const colors = useColorConfig();
@@ -64,15 +69,15 @@ export default function CoursePage() {
         return null; // or a loading indicator
     }
 
-    const stage = course.stages.find((e) => e.id === stageId)!;
-    const nextStage = course.stages[activeStageCount + 1];
+    const stage = course.stageData.find((e) => e.id === stageId)!;
+    const nextStage = course.stageData[activeStageCount + 1];
     function onPress() {
         // store
 
         // complete the stage in the array
         storeDispatcher(
             courseDataActions.completeStage({
-                courseId: course.id,
+                courseId: course.courseId,
                 stageId,
             }),
         );
@@ -80,16 +85,20 @@ export default function CoursePage() {
         if (!nextStage) {
             //@ts-ignore
             navigator.navigate(Routes.CourseFinished.toString(), {
-                courseId: course.id,
+                courseId: course.courseId,
             });
             return;
         }
 
         //@ts-ignore
         navigator.navigate(Routes.Course.toString(), {
-            courseId: course.id,
+            courseId: course.courseId,
             stageId: nextStage.id,
         });
+    }
+
+    if (isLoading) {
+        return <LoadingScreen />;
     }
 
     return (
@@ -99,15 +108,17 @@ export default function CoursePage() {
                     <CourseNavigation
                         title={course.title}
                         subTitle={
-                            course.stages.find((e) => e.id === stageId)
+                            course.stageData.find((e) => e.id === stageId)
                                 ?.title ?? 'test'
                         }
-                        stages={course.stages}
-                        courseId={course.id}
+                        stages={course.stageData}
+                        courseId={course.courseId}
                         currentStageId={stageId}
                     />
                     <Progress.Bar
-                        progress={(activeStageCount + 1) / course.stages.length}
+                        progress={
+                            (activeStageCount + 1) / course.stageData.length
+                        }
                         width={null}
                         style={styles.progressBar}
                     />
@@ -118,7 +129,7 @@ export default function CoursePage() {
 
                     <StageRenderer
                         key={stage.id}
-                        courseId={course.id}
+                        courseId={course.courseId}
                         stage={stage}
                     />
                     <Button

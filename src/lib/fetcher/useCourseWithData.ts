@@ -1,7 +1,7 @@
 import { useFetchCourseData } from './CourseDataFetcher';
 import { useAppSelector, RootState } from '../../redux/Hooks';
 import { Course, CourseDataMapped } from '../../types/Course';
-import { Stage, StageDataMapped } from '../../types/Stage';
+import { StageDataMapped } from '../../types/Stage';
 
 export type CourseDataResult = {
     data: CourseDataMapped[];
@@ -25,24 +25,32 @@ export function useCourseWithData(courseId?: string): CourseDataResult {
         };
     }
 
-    const coursesWithData = courses.map((course: Course): CourseDataMapped => {
-        return {
-            courseId: course.id,
-            title: course.title,
-            description: course.description,
-            stageData: course.stages.map((stage): StageDataMapped => {
-                const isCompletedByUser = courseData.some(
-                    (stageData) => stageData.stageId === stage.id,
-                );
-                return {
-                    id: stage.id,
-                    title: stage.title,
-                    description: stage.description,
-                    isCompletedByUser,
-                };
-            }),
-        };
-    });
+    let useableData;
+    if (Array.isArray(courses)) {
+        useableData = courses;
+    } else {
+        useableData = [courses];
+    }
+    const coursesWithData = useableData.map(
+        (course: Course): CourseDataMapped => {
+            return {
+                courseId: course.id,
+                title: course.title,
+                description: course.description,
+                stageData: course.stages.map((stage): StageDataMapped => {
+                    const isCompletedByUser = courseData.some(
+                        (stageData) => stageData.stageId === stage.id,
+                    );
+                    return {
+                        id: stage.id,
+                        title: stage.title,
+                        blocks: stage.blocks,
+                        isCompletedByUser,
+                    };
+                }),
+            };
+        },
+    );
     return {
         data: coursesWithData,
         isLoading,

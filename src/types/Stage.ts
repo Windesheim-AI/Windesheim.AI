@@ -4,13 +4,13 @@ import { CourseStageBlock } from './CourseStageBlock';
 export type Stage = {
     id: string;
     title: string;
-    description: CourseStageBlock[];
+    blocks: CourseStageBlock[];
 };
 
 // brought to UI
 export type StageDataMapped = {
     id: string;
     title: string;
-    description: CourseStageBlock[];
+    blocks: CourseStageBlock[];
     isCompletedByUser: boolean;
 };

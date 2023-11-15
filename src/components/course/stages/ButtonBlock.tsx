@@ -8,7 +8,8 @@ import { ButtonOptions } from '../../../types/CourseStageBlock';
 import { Button } from '../../general/buttons/Button';
 
 export default function ButtonBlock({ options }: { options: ButtonOptions }) {
-    const colorGradientScheme = stateColorSchemes[options.colorOptions];
+    // ToDo: use the configured color scheme of the options.
+    const colorGradientScheme = stateColorSchemes.primary;
     const navigator = useNavigation();
     function onPress() {
         //@ts-ignore

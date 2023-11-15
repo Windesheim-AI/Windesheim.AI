@@ -36,6 +36,7 @@ export function Courses() {
         const stagesCompleted = stages.filter(
             (stage) => stage.isCompletedByUser,
         );
+
         return (stagesCompleted.length / stages.length) * 100;
     }
 
