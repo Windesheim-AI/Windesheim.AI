@@ -1,10 +1,10 @@
-import { useFonts, Inter_500Medium } from '@expo-google-fonts/inter';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text, StyleSheet, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../../constants/Colors';
+import { useFonts } from '../../../constants/Fonts';
 
 export type ButtonProps = {
     onPress?: () => void;
@@ -14,18 +14,15 @@ export type ButtonProps = {
     icon?: string;
 };
 
-export const Usecase = ({
+export const UseCaseButton = ({
     onPress,
     buttonText,
     screenName,
     width,
     icon,
 }: ButtonProps) => {
-    const [fontsLoaded, fontError] = useFonts({
-        Inter_500Medium,
-    });
-
     const colors = useColorConfig();
+    const fonts = useFonts();
     const navigation = useNavigation();
 
     if (!onPress) {
@@ -38,10 +35,6 @@ export const Usecase = ({
             //@ts-ignore
             navigation.navigate(screenName);
         };
-    }
-
-    if (!fontsLoaded && !fontError) {
-        return null;
     }
 
     const minWidth = 70;
@@ -94,10 +87,7 @@ export const Usecase = ({
             position: 'absolute',
         },
         text: {
-            color: colors.text,
-            fontFamily: 'Inter_500Medium',
-            fontSize: 18,
-            fontWeight: 'bold',
+            ...fonts.buttonLarger,
             position: 'absolute',
         },
         textStyle: {

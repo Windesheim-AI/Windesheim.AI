@@ -5,14 +5,14 @@ import React from 'react';
 import { defaultLanguageCode } from '../constants/Languages';
 import { cacheProvider } from '../lib/translation/CacheProvider';
 import Translator from '../lib/translation/Translator';
-import { RootState, useAppSelector } from '../redux/Hooks';
+import { useAppSelector } from '../redux/Hooks';
 
 type AppProvidersProps = {
     children: React.ReactNode;
 };
 
 export default function AppProviders({ children }: AppProvidersProps) {
-    const languageState = useAppSelector((state: RootState) => state.language);
+    const languageState = useAppSelector((state) => state.language);
 
     return (
         <Translator
