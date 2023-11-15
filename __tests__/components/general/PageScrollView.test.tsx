@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 
-import { PageScrollView } from '../../../src/components/general/PageScrollView';
+import { PageScrollView } from '../../../src/components/general/views/PageScrollView';
 import { useAppDispatch } from '../../../src/redux/Hooks';
 
 const mockStore = configureStore([]);

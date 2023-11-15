@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { useColorConfig } from './Colors';
-import { useFonts } from '../constants/Fonts';
+import { useFonts } from './Fonts';
 
 export const useStyles = () => {
     const colors = useColorConfig();

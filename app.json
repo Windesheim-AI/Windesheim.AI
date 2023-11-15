@@ -1,33 +1,33 @@
 {
     "expo": {
         "name": "WingAI",
-        "slug": "wingai",
+        "slug": "winsight",
         "scheme": "wingai",
-        "version": "1.0.2",
+        "version": "1.0.0",
         "orientation": "portrait",
-        "icon": "./src/assets/images/icon.png",
+        "icon": "./src/assets/images/Icon/icon.png",
         "userInterfaceStyle": "light",
         "splash": {
-            "image": "./src/assets/images/splash.png",
+            "image": "./src/assets/images/Icon/splash.png",
             "resizeMode": "contain",
             "backgroundColor": "#ffffff"
         },
         "assetBundlePatterns": ["*/"],
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "com.wingai.wingai2",
-            "buildNumber": "1.0.2"
+            "bundleIdentifier": "com.windesheim.wingai",
+            "buildNumber": "1.0.1"
         },
         "android": {
-            "package": "com.wingai.wingai",
-            "versionCode": 3,
+            "package": "com.windesheim.wingai",
+            "versionCode": 2,
             "adaptiveIcon": {
-                "foregroundImage": "./src/assets/images/adaptive-icon.png",
+                "foregroundImage": "./src/assets/images/Icon/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
             }
         },
         "web": {
-            "favicon": "./src/assets/images/favicon.png"
+            "favicon": "./src/assets/images/Icon/favicon.png"
         },
         "extra": {
             "eas": {

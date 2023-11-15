@@ -1,4 +1,14 @@
 describe('Routes', () => {
+    beforeEach(() => {
+        cy.visit('/');
+        cy.window()
+            .its('store')
+            .invoke('dispatch', {
+                type: 'tutorial/setCompleted',
+                payload: { completed: true },
+            });
+    });
+
     it('can directly visit a route via the url', () => {
         cy.visit('/settings');
         cy.contains('Settings');
@@ -11,7 +21,7 @@ describe('Routes', () => {
         cy.visit('/');
         cy.contains('Home');
 
-        cy.get('[data-testid="Settings-navbar-button"]').click();
+        cy.get('[data-testid="Settings-navbar-button"]').click({ force: true });
         cy.contains('Settings');
 
         cy.reload();

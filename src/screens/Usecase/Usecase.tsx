@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import { Text } from 'react-native';
 
-import CaseStudyList from '../../components/Data/CaseStudyList';
-import { Usecase } from '../../components/buttons/UsecaseButton';
-import HorizontalScroll from '../../components/general/HorizontalScroll';
-import { PageScrollView } from '../../components/general/PageScrollView';
+import CaseStudyList from '../../components/caseStudies/CaseStudyList';
+import { Usecase } from '../../components/general/buttons/UsecaseButton';
+import HorizontalScroll from '../../components/general/views/HorizontalScroll';
+import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { useStyles } from '../../constants/_styles';
 import { Routes } from '../../routes/routes';
 

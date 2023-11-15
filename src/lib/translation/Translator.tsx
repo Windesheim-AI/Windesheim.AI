@@ -29,6 +29,7 @@ export default function Translator({
 }: TranslatorProps) {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     const handleTranslationAsync: TranslationHandler = useCallback(
+        /* istanbul ignore next */
         async (value, setTranslation) => {
             const options = {
                 to,
@@ -38,9 +39,7 @@ export default function Translator({
             const translator = translatorFactory.create(options, cacheProvider);
             const translation = await translator.translate(value);
 
-            if (translation) {
-                setTranslation(translation);
-            }
+            setTranslation(translation ?? value);
         },
         [to, from, googleApiKey, cacheProvider],
     );

@@ -30,33 +30,38 @@ import Meta from '../../assets/images/WTR/TechProviders/meta.svg';
 //@ts-ignore
 import Microsoft from '../../assets/images/WTR/TechProviders/microsoft.svg';
 //@ts-ignore
+import OpenAI from '../../assets/images/WTR/TechProviders/openai.svg';
+//@ts-ignore
 import Oracle from '../../assets/images/WTR/TechProviders/oracle.svg';
 //@ts-ignore
 import SalesForce from '../../assets/images/WTR/TechProviders/salesforce.svg';
 //@ts-ignore
 import Sap from '../../assets/images/WTR/TechProviders/sap.svg';
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 import { Routes } from '../../routes/routes';
-import { TextTranslated } from '../text/TextTranslated';
+import { TextTranslated } from '../general/text/TextTranslated';
+
+const techProviderItems = [
+    { name: 'Apple', slug: 'apple', logo: Apple },
+    { name: 'Amazon', slug: 'aws', logo: Amazon },
+    { name: 'Cisco', slug: 'cisco-systems', logo: Cisco },
+    { name: 'Google', slug: 'google', logo: Google },
+    { name: 'HP', slug: 'hp', logo: Hp },
+    { name: 'IBM', slug: 'ibm', logo: Ibm },
+    { name: 'Intel', slug: 'intel', logo: Intel },
+    { name: 'Meta', slug: 'meta', logo: Meta },
+    { name: 'Microsoft', slug: 'microsoft', logo: Microsoft },
+    { name: 'OpenAI', slug: 'openai', logo: OpenAI },
+    { name: 'Oracle', slug: 'oracle', logo: Oracle },
+    { name: 'SalesForce', slug: 'salesforce', logo: SalesForce },
+    { name: 'SAP', slug: 'sap', logo: Sap },
+];
 
 export const TechProviders = () => {
     const navigation = useNavigation();
     const colors = useColorConfig();
-
-    const providers = [
-        { name: 'Apple', logo: Apple },
-        { name: 'Amazon', logo: Amazon },
-        { name: 'Cisco', logo: Cisco },
-        { name: 'Google', logo: Google },
-        { name: 'HP', logo: Hp },
-        { name: 'IBM', logo: Ibm },
-        { name: 'Intel', logo: Intel },
-        { name: 'Meta', logo: Meta },
-        { name: 'Microsoft', logo: Microsoft },
-        { name: 'Oracle', logo: Oracle },
-        { name: 'SalesForce', logo: SalesForce },
-        { name: 'SAP', logo: Sap },
-    ];
+    const fonts = useFonts();
 
     const styles = StyleSheet.create({
         button: {
@@ -76,6 +81,7 @@ export const TechProviders = () => {
             fontWeight: 'bold',
             left: 50,
             position: 'absolute',
+            ...fonts.description,
         },
         nav_button: {
             position: 'absolute',
@@ -86,6 +92,7 @@ export const TechProviders = () => {
             fontSize: 24,
             fontWeight: 'bold',
             margin: 10,
+            ...fonts.h1,
         },
         container: {
             backgroundColor: colors.background,
@@ -94,24 +101,22 @@ export const TechProviders = () => {
     });
 
     const navigate = (provider: string) => () => {
-        if (provider === 'Amazon') provider = 'AWS';
         //@ts-ignore
         navigation.navigate(Routes.WindesheimTechRadar, {
             page: provider,
         });
     };
-
     return (
         <View>
-            <Text style={styles.heading}>
-                <TextTranslated text="Tech Providers" />
-            </Text>
+            <TextTranslated style={styles.heading} text="Tech Providers" />
+
             <ScrollView style={styles.container}>
-                {providers.map((provider) => (
+                {techProviderItems.map((provider) => (
                     <Pressable
                         style={styles.button}
-                        onPress={navigate(provider.name)}
-                        key={provider.name}
+                        onPress={navigate(provider.slug)}
+                        key={provider.slug}
+                        testID={`tech-provider-${provider.slug}-button`}
                     >
                         {Platform.OS !== 'web' ? (
                             <provider.logo
@@ -121,7 +126,7 @@ export const TechProviders = () => {
                             />
                         ) : null}
                         <Text style={styles.text}>{provider.name}</Text>
-                        {/* at the end of the button place a arrow */}
+                        {/* at the end of the button place an arrow */}
                         <FontAwesome5Icon
                             name="arrow-right"
                             size={24}
