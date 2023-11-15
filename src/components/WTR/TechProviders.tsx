@@ -38,6 +38,7 @@ import SalesForce from '../../assets/images/WTR/TechProviders/salesforce.svg';
 //@ts-ignore
 import Sap from '../../assets/images/WTR/TechProviders/sap.svg';
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 
@@ -60,6 +61,7 @@ const techProviderItems = [
 export const TechProviders = () => {
     const navigation = useNavigation();
     const colors = useColorConfig();
+    const fonts = useFonts();
 
     const styles = StyleSheet.create({
         button: {
@@ -79,6 +81,7 @@ export const TechProviders = () => {
             fontWeight: 'bold',
             left: 50,
             position: 'absolute',
+            ...fonts.description,
         },
         nav_button: {
             position: 'absolute',
@@ -89,6 +92,7 @@ export const TechProviders = () => {
             fontSize: 24,
             fontWeight: 'bold',
             margin: 10,
+            ...fonts.h1,
         },
         container: {
             backgroundColor: colors.background,
@@ -122,7 +126,7 @@ export const TechProviders = () => {
                             />
                         ) : null}
                         <Text style={styles.text}>{provider.name}</Text>
-                        {/* at the end of the button place a arrow */}
+                        {/* at the end of the button place an arrow */}
                         <FontAwesome5Icon
                             name="arrow-right"
                             size={24}

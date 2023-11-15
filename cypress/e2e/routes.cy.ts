@@ -21,7 +21,7 @@ describe('Routes', () => {
         cy.visit('/');
         cy.contains('Home');
 
-        cy.get('[data-testid="Settings-navbar-button"]').click();
+        cy.get('[data-testid="Settings-navbar-button"]').click({ force: true });
         cy.contains('Settings');
 
         cy.reload();

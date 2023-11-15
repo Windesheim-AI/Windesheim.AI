@@ -1,9 +1,9 @@
-/* eslint-disable react/jsx-max-depth */
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { Modal, Text, Pressable, View, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 import { tutorialData } from '../../constants/TutorialData';
 import { useAppSelector, useAppDispatch } from '../../redux/Hooks';
 import { nextStep, setCompleted } from '../../redux/slices/TutorialSlice';
@@ -12,6 +12,7 @@ import { TextTranslated } from '../general/text/TextTranslated';
 export const Tutorial = () => {
     const storeDispatcher = useAppDispatch();
     const colors = useColorConfig();
+    const fonts = useFonts();
     const navigation = useNavigation();
 
     const [modalVisible, setModalVisible] = useState(false);
@@ -67,6 +68,7 @@ export const Tutorial = () => {
             height: 'auto',
         },
         modalText: {
+            ...fonts.description,
             color: colors.text,
             fontSize: 18,
             fontWeight: 'bold',
@@ -74,6 +76,7 @@ export const Tutorial = () => {
             textAlign: 'center',
         },
         subText: {
+            ...fonts.description,
             color: colors.text,
             fontSize: 14,
             marginBottom: 20,
@@ -99,6 +102,7 @@ export const Tutorial = () => {
             backgroundColor: colors.danger,
         },
         buttonText: {
+            ...fonts.button,
             color: colors.textLight,
             fontSize: 16,
             fontWeight: 'bold',
@@ -118,16 +122,14 @@ export const Tutorial = () => {
             >
                 <View style={styles.modalBackground}>
                     <View style={styles.modalContent}>
-                        <Text style={styles.modalText}>
-                            <TextTranslated
-                                text={tutorialData[tutorialStep].Title}
-                            />
-                        </Text>
-                        <Text style={styles.subText}>
-                            <TextTranslated
-                                text={tutorialData[tutorialStep].Subtext}
-                            />
-                        </Text>
+                        <TextTranslated
+                            style={styles.modalText}
+                            text={tutorialData[tutorialStep].Title}
+                        />
+                        <TextTranslated
+                            style={styles.subText}
+                            text={tutorialData[tutorialStep].Subtext}
+                        />
                         <View style={styles.buttonContainer}>
                             <Pressable
                                 testID="tutorial-skip-button"
@@ -137,9 +139,10 @@ export const Tutorial = () => {
                                     storeDispatcher(setCompleted(true));
                                 }}
                             >
-                                <Text style={styles.buttonText}>
-                                    <TextTranslated text="Skip" />
-                                </Text>
+                                <TextTranslated
+                                    style={styles.buttonText}
+                                    text="Skip"
+                                />
                             </Pressable>
                             {tutorialStep === tutorialData.length - 1 ? (
                                 <Pressable
@@ -151,9 +154,10 @@ export const Tutorial = () => {
                                         storeDispatcher(setCompleted(true));
                                     }}
                                 >
-                                    <Text style={styles.buttonText}>
-                                        <TextTranslated text="Finish" />
-                                    </Text>
+                                    <TextTranslated
+                                        style={styles.buttonText}
+                                        text="Finish"
+                                    />
                                 </Pressable>
                             ) : (
                                 <Pressable
@@ -164,7 +168,10 @@ export const Tutorial = () => {
                                     }}
                                 >
                                     <Text style={styles.buttonText}>
-                                        <TextTranslated text="Next" />{' '}
+                                        <TextTranslated
+                                            style={styles.buttonText}
+                                            text="Next"
+                                        />{' '}
                                         {tutorialStep + 1}
                                         {' / '}
                                         {tutorialData.length}

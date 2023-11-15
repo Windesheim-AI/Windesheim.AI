@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { ListButton } from '../components/general/buttons/ListButton';
 import { PageView } from '../components/general/views/PageView';

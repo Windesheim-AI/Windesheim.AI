@@ -1,13 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import {
-    ImageBackground,
-    Pressable,
-    StyleSheet,
-    Text,
-    View,
-} from 'react-native';
+import { ImageBackground, Pressable, StyleSheet, View } from 'react-native';
 
 //@ts-ignore
 import Ai from '../../assets/images/WTR/Themes/ai.jpg';
@@ -28,6 +22,7 @@ import Trust from '../../assets/images/WTR/Themes/trust.jpg';
 //@ts-ignore
 import Work from '../../assets/images/WTR/Themes/work.jpeg';
 import { useColorConfig } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 import HorizontalScroll from '../general/views/HorizontalScroll';
@@ -63,6 +58,7 @@ export const themeItems = [
 export const Themes = () => {
     const colors = useColorConfig();
     const navigation = useNavigation();
+    const fonts = useFonts();
 
     const styles = StyleSheet.create({
         heading: {
@@ -70,6 +66,7 @@ export const Themes = () => {
             fontSize: 24,
             fontWeight: 'bold',
             margin: 10,
+            ...fonts.h1,
         },
         themeItem: {
             width: 120,
@@ -86,6 +83,7 @@ export const Themes = () => {
             fontWeight: 'bold',
             textAlign: 'center',
             flexWrap: 'wrap',
+            ...fonts.description,
         },
         opacityLayer: {
             width: '100%',
@@ -105,9 +103,7 @@ export const Themes = () => {
 
     return (
         <View>
-            <Text style={styles.heading}>
-                <TextTranslated text="Themes" />
-            </Text>
+            <TextTranslated style={styles.heading} text="Themes" />
             <HorizontalScroll>
                 {themeItems.map((theme) => (
                     <Pressable
@@ -120,9 +116,10 @@ export const Themes = () => {
                             style={styles.themeItem}
                         >
                             <View style={styles.opacityLayer}>
-                                <Text style={styles.themeItemText}>
-                                    <TextTranslated text={theme.name} />
-                                </Text>
+                                <TextTranslated
+                                    style={styles.themeItemText}
+                                    text={theme.name}
+                                />
                             </View>
                         </ImageBackground>
                     </Pressable>
