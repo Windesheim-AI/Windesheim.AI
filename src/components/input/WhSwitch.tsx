@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Switch } from 'react-native';
 
 import { ColorSchemeType } from '../../constants/Colors';

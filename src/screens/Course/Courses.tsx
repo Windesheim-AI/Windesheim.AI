@@ -3,7 +3,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Bar } from 'react-native-progress';
 
-import * as j from '../../assets/courses/test.json';
+import * as courseDefaultData from '../../assets/courses/test.json';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { IntractableView } from '../../components/general/views/IntractableView';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
@@ -16,7 +16,7 @@ import { Course } from '../../types/Course';
 export function Courses() {
     const fonts = useFonts();
     const colors = useColorConfig();
-    const courses = [j] as unknown as Course[];
+    const courses = [courseDefaultData] as unknown as Course[];
     const navigator = useNavigation();
 
     const currentCourse = useCourseWithData(courses[0].id);
