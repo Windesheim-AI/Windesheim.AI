@@ -1,5 +1,5 @@
 import * as courseTestData from '../../../assets/courses/test.json';
-import { useAppSelector, RootState } from '../../../redux/Hooks';
+import { useAppSelector } from '../../../redux/Hooks';
 import { Course, CourseDataMapped } from '../../../types/Course';
 
 export function useCourseWithData(courseId: string): CourseDataMapped {

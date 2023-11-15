@@ -11,7 +11,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
 import { useAnimatedValue } from '../../lib/utility/animate';
-import { RootState, useAppSelector } from '../../redux/Hooks';
+import { useAppSelector } from '../../redux/Hooks';
 import { navigationBarLinks } from '../../routes/navigation';
 
 export const NavBar = () => {
