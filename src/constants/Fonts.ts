@@ -8,7 +8,7 @@ import {
 import { TextStyle } from 'react-native';
 
 import { useColorConfig } from './Colors';
-import { RootState, useAppSelector } from '../redux/Hooks';
+import { useAppSelector } from '../redux/Hooks';
 
 export const MaxSize = 40;
 export const MinSize = 12;
@@ -42,6 +42,7 @@ type TextStyling = {
     courseSubTitle: TextStyle;
 };
 
+// eslint-disable-next-line complexity
 export function useFonts() {
     const colors = useColorConfig();
 
@@ -156,7 +157,7 @@ export function useFonts() {
         },
     };
 
-    const fontState = useAppSelector((state: RootState) => state.fontSize);
+    const fontState = useAppSelector((state) => state.fontSize);
     // normal size * (font size / default size)
     // for all font map
     const keys = Object.keys(fontMap) as (keyof typeof fontMap)[];

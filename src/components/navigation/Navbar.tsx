@@ -18,9 +18,7 @@ export const NavBar = () => {
     const [showNavBar, setShowNavBar] = useState(true);
     const navigation = useNavigation();
 
-    const navigationState = useAppSelector(
-        (state: RootState) => state.navigation,
-    );
+    const navigationState = useAppSelector((state) => state.navigation);
 
     const colors = useColorConfig();
     const screenWidth = Dimensions.get('window').width;

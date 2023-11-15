@@ -7,7 +7,7 @@ import { Router } from '../../routes';
 import { Layout } from '../../screens/_layout';
 
 export default function SplashScreenOrApp() {
-    const layoutState = useAppSelector((state: RootState) => state.layout);
+    const layoutState = useAppSelector((state) => state.layout);
 
     const styles = StyleSheet.create({
         splashScreenAppContainer: {

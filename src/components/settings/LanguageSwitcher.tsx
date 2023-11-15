@@ -13,7 +13,7 @@ import { WhSelectDropdown } from '../input/WhSelectDropdown';
 
 export const LanguageSwitcher = () => {
     const storeDispatcher = useAppDispatch();
-    const languageState = useAppSelector((state: RootState) => state.language);
+    const languageState = useAppSelector((state) => state.language);
     const [selectedLanguage, setSelectedLanguage] = useState<LanguageCode>(
         languageState.langCode,
     );

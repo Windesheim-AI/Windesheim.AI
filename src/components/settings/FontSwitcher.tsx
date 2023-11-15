@@ -8,7 +8,7 @@ import { RootState, useAppDispatch, useAppSelector } from '../../redux/Hooks';
 
 export const FontSwitcher = () => {
     const storeDispatcher = useAppDispatch();
-    const fontState = useAppSelector((state: RootState) => state.fontSize);
+    const fontState = useAppSelector((state) => state.fontSize);
     const [fontSize, setFontSize] = useState<number>(fontState.fontSize);
 
     const colors = useColorConfig();

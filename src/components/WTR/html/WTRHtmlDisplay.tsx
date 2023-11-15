@@ -4,6 +4,7 @@
 /* eslint-disable react/no-multi-comp */
 // @ts-ignore eslint-disable
 
+import decimal from '@jsamr/counter-style/presets/decimal';
 import { DomVisitorCallbacks } from '@native-html/transient-render-engine';
 import React, { useMemo } from 'react';
 import { useWindowDimensions, View } from 'react-native';
@@ -19,7 +20,6 @@ import { CustomTagRendererRecord } from 'react-native-render-html/src/render/ren
 
 import { ColorSchemeType } from '../../../constants/Colors';
 import { useFonts } from '../../../constants/Fonts';
-import decimal from '@jsamr/counter-style/presets/decimal';
 
 /* istanbul ignore next */
 function onElement(element: any) {

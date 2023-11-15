@@ -7,9 +7,9 @@ import {
     shadow,
     useColorConfig,
 } from '../../constants/Colors';
+import { useFonts } from '../../constants/Fonts';
 import { useAppDispatch } from '../../redux/Hooks';
 import { NotificationActions } from '../../redux/slices/NotificationSlice';
-import { useFonts } from '../../constants/Fonts';
 
 export type NotificationType = {
     id: number;

@@ -170,7 +170,7 @@ export const stateColorSchemes: StateColorGradientSchemes = {
 };
 
 export function useCurrentTheme(): 'dark' | 'light' {
-    return useAppSelector((state: RootState) => state.theme).theme;
+    return useAppSelector((state) => state.theme).theme;
 }
 
 export function useColorConfig(): ColorSchemeType {

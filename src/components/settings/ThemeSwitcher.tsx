@@ -7,7 +7,7 @@ import { WhSwitch } from '../input/WhSwitch';
 
 export const ThemeSwitcher = () => {
     const storeDispatcher = useAppDispatch();
-    const themeState = useAppSelector((state: RootState) => state.theme);
+    const themeState = useAppSelector((state) => state.theme);
     const colors = useColorConfig();
     const [isDarkMode, setIsDarkMode] = useState(themeState.theme === 'dark');
 

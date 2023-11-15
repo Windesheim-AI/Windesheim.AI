@@ -12,7 +12,7 @@ type AppProvidersProps = {
 };
 
 export default function AppProviders({ children }: AppProvidersProps) {
-    const languageState = useAppSelector((state: RootState) => state.language);
+    const languageState = useAppSelector((state) => state.language);
 
     return (
         <Translator

@@ -4,9 +4,7 @@ import { Course, CourseDataMapped } from '../../../types/Course';
 
 export function useCourseWithData(courseId: string): CourseDataMapped {
     const course = courseTestData as unknown as Course;
-    const courseDataState = useAppSelector(
-        (state: RootState) => state.courseData,
-    );
+    const courseDataState = useAppSelector((state) => state.courseData);
 
     const courseData = courseDataState.completedStages.filter(
         (stage) => stage.courseId === courseId,
