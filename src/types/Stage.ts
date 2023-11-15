@@ -1,6 +1,6 @@
 import { CourseStageBlock } from './CourseStageBlock';
 
-// saved in wordpress
+// saved in WordPress
 export type Stage = {
     id: string;
     title: string;

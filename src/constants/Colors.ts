@@ -149,8 +149,6 @@ export const colorIconMapping: ColorIconMapping = {
     warning: 'exclamation-triangle',
 };
 
-export type ColorGradientSchemes = Record<ColorTypes, ColorGradientScheme>;
-
 export type StateColorGradientSchemes = {
     primary: ColorGradientScheme;
     info: ColorGradientScheme;

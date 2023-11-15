@@ -10,15 +10,10 @@ import { stateColorSchemes } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useCourseWithData } from '../../lib/fetcher/courses/useCourseWithData';
 import { Routes } from '../../routes/routes';
-import { Stage } from '../../types/Stage';
 
 type CourseOverviewPageProps = {
     courseId: string;
     stageId: string;
-};
-
-export type StageItemProps = {
-    stage: Stage;
 };
 
 export default function CourseOverview() {
