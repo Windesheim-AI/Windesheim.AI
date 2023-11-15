@@ -10,6 +10,7 @@ import { setLoading } from '../../redux/slices/LoadingSlice';
 import { TextTranslated } from '../general/text/TextTranslated';
 import { PageView } from '../general/views/PageView';
 import { WhScrollView } from '../general/views/WhScrollView';
+import LoadingScreen from '../loadingscreen/LoadingScreen';
 
 export type WTRSContentDisplayProps = {
     page: string;
@@ -38,6 +39,10 @@ export const WTRContentDisplay = ({ page }: WTRSContentDisplayProps) => {
     }, [isLoading, storeDispatcher]);
 
     if (!hasContent) {
+        if (isLoading) {
+            return <LoadingScreen />;
+        }
+
         return (
             <PageView title="Page not found">
                 <TextTranslated
