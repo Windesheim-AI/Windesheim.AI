@@ -13,7 +13,7 @@ export default function ButtonBlock({ options }: { options: ButtonOptions }) {
     const navigator = useNavigation();
     function onPress() {
         //@ts-ignore
-        navigator.navigate(Routes.Course.toString(), {
+        navigator.navigate(Routes.Stage.toString(), {
             courseId: options.courseId,
             stageId: options.navigateToStageId,
         });

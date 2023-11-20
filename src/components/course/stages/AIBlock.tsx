@@ -9,12 +9,11 @@ import AIGeneratedOutput from '../AIGeneratedOutput';
 
 export default function AIRenderer({ options }: { options: AIOptions }) {
     const [text, setText] = useState(''); // set default value to an empty string
-    const openai = new OpenAI({
-        apiKey: OPENAI_API_KEY as string, // defaults to process.env["OPENAI_API_KEY"]
-        dangerouslyAllowBrowser: true,
-    } as ClientOptions);
-
     useEffect(() => {
+        const openai = new OpenAI({
+            apiKey: OPENAI_API_KEY as string, // defaults to process.env["OPENAI_API_KEY"]
+            dangerouslyAllowBrowser: true,
+        } as ClientOptions);
         async function main() {
             const chatCompletion = await openai.chat.completions.create({
                 messages: [
@@ -38,7 +37,7 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
                     options.prompt,
             );
         }
-    }, [options.prompt, openai.chat.completions]);
+    }, [options.prompt]);
 
     return (
         <BlockWrapper>

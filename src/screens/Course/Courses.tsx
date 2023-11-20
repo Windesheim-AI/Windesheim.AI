@@ -1,43 +1,32 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Bar } from 'react-native-progress';
 
+import { DataWrapper } from '../../components/base/DataWrapper';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { IntractableView } from '../../components/general/views/IntractableView';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { useCourseWithData } from '../../lib/fetcher/useCourseWithData';
-import { useAppDispatch } from '../../redux/Hooks';
-import { setLoading } from '../../redux/slices/LoadingSlice';
+import useAllCourses from '../../lib/fetcher/useAllCourses';
 import { Routes } from '../../routes/routes';
 import { CourseDataMapped } from '../../types/Course';
+import { useMapMultipleCoursesToData } from '../../util/data/mapMultipleCourseToData';
 
 export function Courses() {
     const fonts = useFonts();
     const colors = useColorConfig();
-    const { data, isLoading } = useCourseWithData();
+    const { data, isLoading, error } = useAllCourses();
+    const courses = useMapMultipleCoursesToData(data);
     const navigator = useNavigation();
-
-    const storeDispatcher = useAppDispatch();
-    useEffect(() => {
-        storeDispatcher(setLoading(isLoading));
-    }, [isLoading, storeDispatcher]);
-
-    const courses: CourseDataMapped[] = data;
-
-    if (isLoading) {
-        return null;
-    }
 
     function getProgressPercentage(course: CourseDataMapped) {
         const stages = course.stageData;
         const stagesCompleted = stages.filter(
             (stage) => stage.isCompletedByUser,
         );
-
-        return (stagesCompleted.length / stages.length) * 100;
+        return stagesCompleted.length / stages.length;
     }
 
     const styles = StyleSheet.create({
@@ -67,45 +56,47 @@ export function Courses() {
 
     function onPress(courseId: string) {
         //@ts-ignore
-        navigator.navigate(Routes.CourseOverview.toString(), {
+        navigator.navigate(Routes.StageOverview.toString(), {
             courseId,
         });
     }
 
     return (
-        <PageScrollView>
-            <TextTranslated style={fonts.h1} text="Courses" />
+        <DataWrapper error={error} isLoading={isLoading}>
+            <PageScrollView>
+                <TextTranslated style={fonts.h1} text="Courses" />
 
-            {/* map the courses */}
-            <View style={styles.cardContainer}>
-                {courses.map((course: CourseDataMapped) => (
-                    <IntractableView
-                        key={course.courseId}
-                        style={styles.card}
-                        onPress={() => onPress(course.courseId)}
-                    >
-                        <TextTranslated
-                            style={styles.title}
-                            text={course.title}
-                        />
-                        <TextTranslated
-                            style={styles.description}
-                            text={course.description}
-                        />
-
-                        <View style={styles.progressBar}>
-                            <Bar
-                                progress={getProgressPercentage(course)}
-                                width={null}
-                                height={7}
-                                borderRadius={10}
-                                color={colors.success}
-                                unfilledColor={colors.listItemBg}
+                {/* map the courses */}
+                <View style={styles.cardContainer}>
+                    {courses?.map((course: CourseDataMapped) => (
+                        <IntractableView
+                            key={course.courseId}
+                            style={styles.card}
+                            onPress={() => onPress(course.courseId)}
+                        >
+                            <TextTranslated
+                                style={styles.title}
+                                text={course.title}
                             />
-                        </View>
-                    </IntractableView>
-                ))}
-            </View>
-        </PageScrollView>
+                            <TextTranslated
+                                style={styles.description}
+                                text={course.description}
+                            />
+
+                            <View style={styles.progressBar}>
+                                <Bar
+                                    progress={getProgressPercentage(course)}
+                                    width={null}
+                                    height={7}
+                                    borderRadius={10}
+                                    color={colors.success}
+                                    unfilledColor={colors.listItemBg}
+                                />
+                            </View>
+                        </IntractableView>
+                    ))}
+                </View>
+            </PageScrollView>
+        </DataWrapper>
     );
 }

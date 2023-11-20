@@ -91,13 +91,13 @@ export function CourseNavigation({
 
     function onDropdownPress(stageId: string) {
         //@ts-ignore
-        navigation.navigate('Course', { courseId, stageId });
+        navigation.navigate(Routes.Stage, { courseId, stageId });
         setShowDropdown(false);
     }
 
     function onCourseOverviewPress() {
         //@ts-ignore
-        navigation.navigate(Routes.CourseOverview, { courseId });
+        navigation.navigate(Routes.StageOverview, { courseId });
         setShowDropdown(false);
     }
 

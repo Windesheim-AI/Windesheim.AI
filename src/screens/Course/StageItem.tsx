@@ -45,7 +45,7 @@ export const StageItem = ({
 
     function handlePress() {
         //@ts-ignore
-        navigation.navigate(Routes.Course.toString(), {
+        navigation.navigate(Routes.Stage.toString(), {
             courseId,
             stageId: id,
         });
