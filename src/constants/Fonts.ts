@@ -1,10 +1,6 @@
-import {
-    useFonts as useExpoFonts,
-    Inter_600SemiBold,
-    Inter_400Regular,
-    Inter_300Light,
-    Inter_500Medium,
-} from '@expo-google-fonts/inter';
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import * as Font from 'expo-font';
+import { useEffect, useState } from 'react';
 import { TextStyle } from 'react-native';
 
 import { useColorConfig } from './Colors';
@@ -46,21 +42,36 @@ type TextStyling = {
 export function useFonts() {
     const colors = useColorConfig();
 
-    const [areFontsLoaded] = useExpoFonts({
-        Inter_600SemiBold,
-        Inter_500Medium,
-        Inter_400Regular,
-        Inter_300Light,
-    });
+    const [fontsLoaded, setFontsLoaded] = useState(false);
+    async function loadInFonts() {
+        await Font.loadAsync({
+            Inter_100Thin: require('../assets/fonts/Inter-Thin.ttf'),
+            Inter_200ExtraLight: require('../assets/fonts/Inter-ExtraLight.ttf'),
+            Inter_300Light: require('../assets/fonts/Inter-Light.ttf'),
+            Inter_400Regular: require('../assets/fonts/Inter-Regular.ttf'),
+            Inter_500Medium: require('../assets/fonts/Inter-Medium.ttf'),
+            Inter_600SemiBold: require('../assets/fonts/Inter-SemiBold.ttf'),
+            Inter_700Bold: require('../assets/fonts/Inter-Bold.ttf'),
+            Inter_800ExtraBold: require('../assets/fonts/Inter-ExtraBold.ttf'),
+            Inter_900Black: require('../assets/fonts/Inter-Black.ttf'),
+        });
+    }
+    useEffect(() => {
+        async function loadFonts() {
+            await loadInFonts();
+            setFontsLoaded(true);
+        }
+
+        // eslint-disable-next-line no-void
+        void loadFonts();
+    }, []);
 
     const fontMap: TextStyling = {
         h1: {
             fontSize: 24,
             fontWeight: 'bold',
             color: colors.titleDefault,
-            fontFamily: areFontsLoaded
-                ? 'Inter_600SemiBold'
-                : 'sans-serif-medium',
+            fontFamily: fontsLoaded ? 'Inter_600SemiBold' : 'System',
         },
         h2: {
             fontSize: 18,
@@ -73,7 +84,7 @@ export function useFonts() {
         h4: {
             fontSize: 14,
             color: colors.text,
-            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'sans-serif',
+            fontFamily: fontsLoaded ? 'Inter_400Regular' : 'System',
         },
         h5: {
             fontSize: 13,
@@ -90,16 +101,16 @@ export function useFonts() {
         default: {
             fontSize: 16,
             color: colors.text,
-            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'sans-serif',
+            fontFamily: fontsLoaded ? 'Inter_400Regular' : 'System',
         },
         description: {
             color: colors.text,
             fontSize: 14,
-            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'sans-serif',
+            fontFamily: fontsLoaded ? 'Inter_400Regular' : 'System',
         },
         quote: {
             color: colors.text,
-            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'sans-serif',
+            fontFamily: fontsLoaded ? 'Inter_400Regular' : 'System',
             fontSize: 16,
             fontStyle: 'italic',
         },
@@ -125,9 +136,7 @@ export function useFonts() {
         },
         alert: {
             color: colors.text,
-            fontFamily: areFontsLoaded
-                ? 'Inter_500Medium'
-                : 'sans-serif-medium',
+            fontFamily: fontsLoaded ? 'Inter_500Medium' : 'System',
             fontSize: 16,
             fontWeight: 'bold',
         },
@@ -145,15 +154,13 @@ export function useFonts() {
             fontSize: 18,
             fontWeight: 'bold',
             color: colors.text,
-            fontFamily: areFontsLoaded
-                ? 'Inter_600SemiBold'
-                : 'sans-serif-medium',
+            fontFamily: fontsLoaded ? 'Inter_600SemiBold' : 'System',
         },
         courseSubTitle: {
             fontSize: 12,
             fontStyle: 'italic',
             color: colors.subTitle,
-            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'sans-serif',
+            fontFamily: fontsLoaded ? 'Inter_400Regular' : 'System',
         },
     };
 
