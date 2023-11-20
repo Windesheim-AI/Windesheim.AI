@@ -7,13 +7,13 @@ import {
     languages,
 } from '../../constants/Languages';
 import { TranslateContext } from '../../lib/translation/Translator';
-import { RootState, useAppDispatch, useAppSelector } from '../../redux/Hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
 import { languageActions } from '../../redux/slices/LanguageSlice';
 import { WhSelectDropdown } from '../input/WhSelectDropdown';
 
 export const LanguageSwitcher = () => {
     const storeDispatcher = useAppDispatch();
-    const languageState = useAppSelector((state: RootState) => state.language);
+    const languageState = useAppSelector((state) => state.language);
     const [selectedLanguage, setSelectedLanguage] = useState<LanguageCode>(
         languageState.langCode,
     );

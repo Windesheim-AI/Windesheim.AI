@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { fontActions } from './../../redux/slices/FontSlice';
 import { useColorConfig } from '../../constants/Colors';
 import { MaxSize, MinSize } from '../../constants/Fonts';
-import { RootState, useAppDispatch, useAppSelector } from '../../redux/Hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
+import { fontActions } from '../../redux/slices/FontSlice';
 
 export const FontSwitcher = () => {
     const storeDispatcher = useAppDispatch();
-    const fontState = useAppSelector((state: RootState) => state.fontSize);
+    const fontState = useAppSelector((state) => state.fontSize);
     const [fontSize, setFontSize] = useState<number>(fontState.fontSize);
 
     const colors = useColorConfig();

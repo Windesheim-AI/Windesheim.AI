@@ -1,5 +1,5 @@
 import { hasKeyInMap } from '../lib/utility/data';
-import { RootState, useAppSelector } from '../redux/Hooks';
+import { useAppSelector } from '../redux/Hooks';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
@@ -10,6 +10,7 @@ export type ColorSchemeType = {
     success: string;
     warning: string;
     danger: string;
+    link: string;
     text: string;
     textLight: string;
     background: string;
@@ -47,6 +48,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         warning: '#ff7300',
         danger: '#EE3135',
         buttonText: '#3F3f3f',
+        link: '#ffcb05',
         text: '#000',
         textLight: '#fff',
         background: '#fff',
@@ -81,6 +83,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#45B97C',
         warning: '#ff7300',
         danger: '#EE3135',
+        link: '#ffcb05',
         text: '#fff',
         textLight: '#fff',
         buttonText: '#3F3f3f',
@@ -146,8 +149,6 @@ export const colorIconMapping: ColorIconMapping = {
     warning: 'exclamation-triangle',
 };
 
-export type ColorGradientSchemes = Record<ColorTypes, ColorGradientScheme>;
-
 export type StateColorGradientSchemes = {
     primary: ColorGradientScheme;
     info: ColorGradientScheme;
@@ -167,7 +168,7 @@ export const stateColorSchemes: StateColorGradientSchemes = {
 };
 
 export function useCurrentTheme(): 'dark' | 'light' {
-    return useAppSelector((state: RootState) => state.theme).theme;
+    return useAppSelector((state) => state.theme).theme;
 }
 
 export function useColorConfig(): ColorSchemeType {
