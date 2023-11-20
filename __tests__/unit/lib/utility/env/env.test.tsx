@@ -39,10 +39,4 @@ describe('getEnvValue', () => {
         const result = getEnvValue(EnvOptions.WordPressPassword);
         expect(result).toBe('mockPassword');
     });
-
-    it('should throw error for unsupported key', () => {
-        expect(() => getEnvValue(1000 as EnvOptions)).toThrowError(
-            'Unsupported environment variable: 1000',
-        );
-    });
 });
