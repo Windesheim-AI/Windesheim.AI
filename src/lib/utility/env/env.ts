@@ -33,8 +33,6 @@ export function getEnvValue(key: EnvOptions): string {
             envValue = EnvValues.WordPressPassword;
             envKey = 'WP_PASSWORD';
             break;
-        default:
-            throw new Error(`Unsupported environment variable: ${key}`);
     }
 
     if (typeof envValue !== 'string' || envValue === '') {

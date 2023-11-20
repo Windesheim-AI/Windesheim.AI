@@ -1,3 +1,5 @@
+/* eslint @typescript-eslint/no-unsafe-assignment: 0 */
+
 import {
     EXPO_PUBLIC_GTR_API_KEY,
     OPENAI_API_KEY,
@@ -7,7 +9,13 @@ import {
     // @ts-ignore
 } from '@env';
 
-export const EnvValues = {
+export const EnvValues: {
+    WordPressUsername: string | undefined;
+    AiEnabled: string | undefined;
+    OpenAIApiKey: string | undefined;
+    GoogleTranslateApiKey: string | undefined;
+    WordPressPassword: string | undefined;
+} = {
     GoogleTranslateApiKey: EXPO_PUBLIC_GTR_API_KEY,
     OpenAIApiKey: OPENAI_API_KEY,
     AiEnabled: AI_ENABLED,

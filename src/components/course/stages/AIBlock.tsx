@@ -2,9 +2,9 @@ import OpenAI, { ClientOptions } from 'openai';
 import React, { useEffect, useState } from 'react';
 
 import BlockWrapper from './block';
+import { EnvOptions, getEnvValue } from '../../../lib/utility/env/env';
 import { AIOptions } from '../../../types/CourseStageBlock';
 import AIGeneratedOutput from '../AIGeneratedOutput';
-import { EnvOptions, getEnvValue } from '../../../lib/utility/env/env';
 
 export default function AIRenderer({ options }: { options: AIOptions }) {
     const [text, setText] = useState(''); // set default value to an empty string

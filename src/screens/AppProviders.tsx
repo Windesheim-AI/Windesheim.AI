@@ -3,8 +3,8 @@ import React from 'react';
 import { defaultLanguageCode } from '../constants/Languages';
 import { cacheProvider } from '../lib/translation/CacheProvider';
 import Translator from '../lib/translation/Translator';
-import { useAppSelector } from '../redux/Hooks';
 import { EnvOptions, getEnvValue } from '../lib/utility/env/env';
+import { useAppSelector } from '../redux/Hooks';
 
 type AppProvidersProps = {
     children: React.ReactNode;
