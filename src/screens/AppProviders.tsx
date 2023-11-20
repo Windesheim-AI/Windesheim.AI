@@ -1,11 +1,10 @@
-// @ts-ignore
-import { EXPO_PUBLIC_GTR_API_KEY } from '@env';
 import React from 'react';
 
 import { defaultLanguageCode } from '../constants/Languages';
 import { cacheProvider } from '../lib/translation/CacheProvider';
 import Translator from '../lib/translation/Translator';
 import { useAppSelector } from '../redux/Hooks';
+import { EnvOptions, getEnvValue } from '../lib/utility/env/env';
 
 type AppProvidersProps = {
     children: React.ReactNode;
@@ -19,8 +18,7 @@ export default function AppProviders({ children }: AppProvidersProps) {
             cacheProvider={cacheProvider}
             to={languageState.langCode}
             from={defaultLanguageCode}
-            /* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */
-            googleApiKey={EXPO_PUBLIC_GTR_API_KEY}
+            googleApiKey={getEnvValue(EnvOptions.GoogleTranslateApiKey)}
         >
             {children}
         </Translator>

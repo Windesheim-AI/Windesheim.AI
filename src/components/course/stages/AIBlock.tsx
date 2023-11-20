@@ -1,16 +1,15 @@
-//@ts-ignore
-import { OPENAI_API_KEY, AI_ENABLED } from '@env';
 import OpenAI, { ClientOptions } from 'openai';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import BlockWrapper from './block';
 import { AIOptions } from '../../../types/CourseStageBlock';
 import AIGeneratedOutput from '../AIGeneratedOutput';
+import { EnvOptions, getEnvValue } from '../../../lib/utility/env/env';
 
 export default function AIRenderer({ options }: { options: AIOptions }) {
     const [text, setText] = useState(''); // set default value to an empty string
     const openai = new OpenAI({
-        apiKey: OPENAI_API_KEY as string, // defaults to process.env["OPENAI_API_KEY"]
+        apiKey: getEnvValue(EnvOptions.OpenAIApiKey),
         dangerouslyAllowBrowser: true,
     } as ClientOptions);
 
@@ -29,7 +28,7 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
             setText(chatCompletion.choices[0].message.content);
         }
 
-        if (AI_ENABLED === 'true') {
+        if (getEnvValue(EnvOptions.AiEnabled) === 'true') {
             // eslint-disable-next-line no-void
             void main();
         } else {
