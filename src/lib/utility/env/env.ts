@@ -1,45 +1,11 @@
-import { EnvValues } from './env.values';
-
-export enum EnvOptions {
-    GoogleTranslateApiKey,
-    OpenAIApiKey,
-    AiEnabled,
-    WordPressUsername,
-    WordPressPassword,
-}
+import { EnvOptions, EnvValues } from './env.values';
 
 export function getEnvValue(key: EnvOptions): string {
-    let envValue: string | null | undefined = null;
-    let envKey = '';
-
-    switch (key) {
-        case EnvOptions.GoogleTranslateApiKey:
-            envValue = EnvValues.GoogleTranslateApiKey;
-            envKey = 'EXPO_PUBLIC_GTR_API_KEY';
-            break;
-        case EnvOptions.OpenAIApiKey:
-            envValue = EnvValues.OpenAIApiKey;
-            envKey = 'OPENAI_API_KEY';
-            break;
-        case EnvOptions.AiEnabled:
-            envValue = EnvValues.AiEnabled;
-            envKey = 'AI_ENABLED';
-            break;
-        case EnvOptions.WordPressUsername:
-            envValue = EnvValues.WordPressUsername;
-            envKey = 'WP_USERNAME';
-            break;
-        case EnvOptions.WordPressPassword:
-            envValue = EnvValues.WordPressPassword;
-            envKey = 'WP_PASSWORD';
-            break;
-    }
-
-    if (typeof envValue !== 'string' || envValue === '') {
+    const value = EnvValues[key];
+    if (value === undefined) {
         throw new Error(
-            `Couldn't find or invalid environment variable: ${envKey}`,
+            `Couldn't find or invalid environment variable: ${key}`,
         );
     }
-
-    return envValue;
+    return value;
 }

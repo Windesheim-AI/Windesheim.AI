@@ -2,7 +2,8 @@ import OpenAI, { ClientOptions } from 'openai';
 import React, { useEffect, useState } from 'react';
 
 import BlockWrapper from './block';
-import { EnvOptions, getEnvValue } from '../../../lib/utility/env/env';
+import { getEnvValue } from '../../../lib/utility/env/env';
+import { EnvOptions } from '../../../lib/utility/env/env.values';
 import { AIOptions } from '../../../types/CourseStageBlock';
 import AIGeneratedOutput from '../AIGeneratedOutput';
 

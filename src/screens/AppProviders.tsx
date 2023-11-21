@@ -3,7 +3,8 @@ import React from 'react';
 import { defaultLanguageCode } from '../constants/Languages';
 import { cacheProvider } from '../lib/translation/CacheProvider';
 import Translator from '../lib/translation/Translator';
-import { EnvOptions, getEnvValue } from '../lib/utility/env/env';
+import { getEnvValue } from '../lib/utility/env/env';
+import { EnvOptions } from '../lib/utility/env/env.values';
 import { useAppSelector } from '../redux/Hooks';
 
 type AppProvidersProps = {
