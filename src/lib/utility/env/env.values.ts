@@ -10,14 +10,22 @@ import {
 } from '@env';
 
 export enum EnvOptions {
-    GoogleTranslateApiKey,
-    OpenAIApiKey,
-    AiEnabled,
-    WordPressUsername,
-    WordPressPassword,
+    GoogleTranslateApiKey = 'GoogleTranslateApiKey',
+    OpenAIApiKey = 'OpenAIApiKey',
+    AiEnabled = 'AiEnabled',
+    WordPressUsername = 'WordPressUsername',
+    WordPressPassword = 'WordPressPassword',
 }
 
 export type Env = Record<EnvOptions, string | undefined>;
+
+export const mockEnvValues: Env = {
+    [EnvOptions.GoogleTranslateApiKey]: 'mockGoogleTranslateApiKey',
+    [EnvOptions.OpenAIApiKey]: 'mockOpenAIApiKey',
+    [EnvOptions.AiEnabled]: 'true',
+    [EnvOptions.WordPressUsername]: 'mockUsername',
+    [EnvOptions.WordPressPassword]: 'mockPassword',
+};
 
 export const EnvValues: Env = {
     [EnvOptions.GoogleTranslateApiKey]: EXPO_PUBLIC_GTR_API_KEY,

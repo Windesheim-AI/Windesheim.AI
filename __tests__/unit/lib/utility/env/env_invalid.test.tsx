@@ -15,9 +15,10 @@ jest.mock('../../../../../src/lib/utility/env/env.values.ts', () => ({
 describe('getEnvValue when undefined', () => {
     it('should throw error for missing or invalid environment variable', () => {
         expect(() =>
-            getEnvValue(EnvOptions.GoogleTranslateApiKey),
+            getEnvValue(EnvOptions.GoogleTranslateApiKey, true),
         ).toThrowError(
-            "Couldn't find or invalid environment variable: EXPO_PUBLIC_GTR_API_KEY",
+            "Couldn't find or invalid environment variable: " +
+                EnvOptions.GoogleTranslateApiKey,
         );
     });
 });
