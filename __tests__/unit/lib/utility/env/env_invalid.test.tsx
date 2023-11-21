@@ -1,7 +1,5 @@
-import {
-    EnvOptions,
-    getEnvValue,
-} from '../../../../../src/lib/utility/env/env';
+import { getEnvValue } from '../../../../../src/lib/utility/env/env';
+import { EnvOptions } from '../../../../../src/lib/utility/env/env.values';
 
 // Mock the ./env.values module
 jest.mock('../../../../../src/lib/utility/env/env.values.ts', () => ({
