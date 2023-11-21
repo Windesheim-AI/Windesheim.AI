@@ -18,7 +18,7 @@ describe('getEnvValue', () => {
     });
 
     it('should get WordPressUsername', () => {
-        const result = getEnvValue(EnvOptions.WordPressPassword, true);
+        const result = getEnvValue(EnvOptions.WordPressUsername, true);
         expect(result).toBe('mockUsername');
     });
 
