@@ -1,10 +1,10 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
 import { TextTranslated } from '../general/text/TextTranslated';
@@ -90,13 +90,11 @@ export function CourseNavigation({
     });
 
     function onDropdownPress(stageId: string) {
-        //@ts-ignore
         navigation.navigate(Routes.Stage, { courseId, stageId });
         setShowDropdown(false);
     }
 
     function onCourseOverviewPress() {
-        //@ts-ignore
         navigation.navigate(Routes.StageOverview, { courseId });
         setShowDropdown(false);
     }

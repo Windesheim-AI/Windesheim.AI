@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Bar } from 'react-native-progress';
@@ -10,6 +9,7 @@ import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import useAllCourses from '../../lib/fetcher/useAllCourses';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { CourseDataMapped } from '../../types/Course';
 import { useMapMultipleCoursesToData } from '../../util/data/mapMultipleCourseToData';

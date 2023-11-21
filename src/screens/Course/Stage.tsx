@@ -1,4 +1,4 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import * as Progress from 'react-native-progress';
@@ -16,6 +16,7 @@ import {
 } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import useSingleCourse from '../../lib/fetcher/useSingleCourse';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { useAppDispatch } from '../../redux/Hooks';
 import { courseDataActions } from '../../redux/slices/CourseDataSlice';
 import { Routes } from '../../routes/routes';
@@ -70,8 +71,6 @@ export default function Stage() {
     const stage = course.stageData.find((e) => e.id === stageId);
     const nextStage = course.stageData[activeStageCount + 1];
     function onPress() {
-        // store
-
         // complete the stage in the array
         storeDispatcher(
             courseDataActions.completeStage({
@@ -81,7 +80,6 @@ export default function Stage() {
         );
 
         if (!nextStage) {
-            //@ts-ignore
             navigator.navigate(Routes.CourseFinished.toString(), {
                 courseId: course.courseId,
             });

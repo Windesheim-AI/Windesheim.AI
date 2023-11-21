@@ -1,4 +1,4 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
@@ -14,6 +14,7 @@ import useSingleCourse from '../../lib/fetcher/useSingleCourse';
 import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
 import { useMapSingleCourseToData } from '../../util/data/mapSingleCourseToData';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 
 type StageOverviewPageProps = {
     courseId: string;
@@ -45,12 +46,7 @@ export default function StageOverview() {
     });
 
     function navigateBackToCourses() {
-        //@ts-ignore
         navigator.navigate(Routes.Courses.toString());
-    }
-
-    if (isLoading) {
-        return <LoadingScreen />;
     }
 
     return (

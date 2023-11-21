@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -6,6 +5,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { useColorConfig } from '../../../constants/Colors';
 import { useFonts } from '../../../constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';
+import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 
 export type GoBackButtonProps = {
     onPress?: () => void;

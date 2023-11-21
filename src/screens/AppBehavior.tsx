@@ -1,6 +1,6 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 
+import { useNavigation } from '../lib/utility/navigation/useNavigation';
 import { useAppDispatch, useAppSelector } from '../redux/Hooks';
 import { navigationActions } from '../redux/slices/NavigationSlice';
 
@@ -14,7 +14,7 @@ export default function AppBehavior({ children }: AppProvidersProps) {
     const navigation = useNavigation();
 
     useEffect(() => {
-        const unsubscribe = navigation.addListener('state', () => {
+        const unsubscribe = navigation.addEventListener('state', () => {
             if (navigationState.showNavBar) {
                 return;
             }
