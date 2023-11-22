@@ -7,7 +7,7 @@ export enum Routes {
     LoadingScreen = 'Loading screen',
     Usecase = 'Usecase',
     CaseStudyInfo = 'CaseStudyInfo',
-    Stage = 'Stage',
+    CourseStage = 'Stage',
     CourseFinished = 'CourseFinished',
     StageOverview = 'StageOverview',
     Courses = 'Courses',

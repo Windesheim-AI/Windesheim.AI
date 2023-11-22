@@ -4,17 +4,15 @@ import { View, StyleSheet } from 'react-native';
 
 import { StageItem } from './StageItem';
 import { DataWrapper } from '../../components/base/DataWrapper';
-import { Button } from '../../components/general/buttons/Button';
+import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
-import LoadingScreen from '../../components/loadingscreen/LoadingScreen';
-import { stateColorSchemes } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import useSingleCourse from '../../lib/fetcher/useSingleCourse';
+import { useMapSingleCourseToData } from '../../lib/repositories/mapSingleCourseToData';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
-import { useMapSingleCourseToData } from '../../util/data/mapSingleCourseToData';
-import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 
 type StageOverviewPageProps = {
     courseId: string;
@@ -54,6 +52,10 @@ export default function StageOverview() {
             <PageView>
                 <View style={styles.container}>
                     <TextTranslated style={fonts.h1} text="Course Overview" />
+                    <GoBackButton
+                        buttonText="Courses"
+                        onPress={navigateBackToCourses}
+                    />
 
                     {/* map the stages of the course */}
                     <View style={styles.courseStageContainer}>
@@ -70,13 +72,6 @@ export default function StageOverview() {
                             );
                         })}
                     </View>
-
-                    <Button
-                        buttonText="Back to Courses"
-                        colorGradientScheme={stateColorSchemes.primary}
-                        onPress={navigateBackToCourses}
-                        testId="back-to-courses-button"
-                    />
                 </View>
             </PageView>
         </DataWrapper>

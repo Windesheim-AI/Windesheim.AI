@@ -1,6 +1,6 @@
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import * as Progress from 'react-native-progress';
 
 import { DataWrapper } from '../../components/base/DataWrapper';
@@ -16,11 +16,11 @@ import {
 } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import useSingleCourse from '../../lib/fetcher/useSingleCourse';
+import { useMapSingleCourseToData } from '../../lib/repositories/mapSingleCourseToData';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { useAppDispatch } from '../../redux/Hooks';
 import { courseDataActions } from '../../redux/slices/CourseDataSlice';
 import { Routes } from '../../routes/routes';
-import { useMapSingleCourseToData } from '../../util/data/mapSingleCourseToData';
 
 type CoursePageProps = {
     courseId: string;
@@ -28,7 +28,6 @@ type CoursePageProps = {
 };
 
 export default function Stage() {
-    //@ts-ignore
     const route = useRoute();
     const navigator = useNavigation();
     const fonts = useFonts();
@@ -66,6 +65,10 @@ export default function Stage() {
             marginTop: 15,
             marginBottom: 10,
         },
+        container: {
+            paddingBottom: 30,
+            backgroundColor: colors.background,
+        },
     });
 
     const stage = course.stageData.find((e) => e.id === stageId);
@@ -86,8 +89,7 @@ export default function Stage() {
             return;
         }
 
-        //@ts-ignore
-        navigator.navigate(Routes.Stage.toString(), {
+        navigator.navigate(Routes.CourseStage, {
             courseId: course.courseId,
             stageId: nextStage.id,
         });
@@ -95,47 +97,49 @@ export default function Stage() {
 
     return (
         <DataWrapper error={error} isLoading={isLoading}>
-            <PageScrollView>
-                {stage ? (
-                    <>
-                        <CourseNavigation
-                            title={course.title}
-                            subTitle={stage.title}
-                            stages={course.stageData}
-                            courseId={course.courseId}
-                            currentStageId={stageId}
-                        />
-                        <Progress.Bar
-                            progress={
-                                (activeStageCount + 1) / course.stageData.length
-                            }
-                            width={null}
-                            style={styles.progressBar}
-                        />
+            <View style={styles.container}>
+                <PageScrollView>
+                    {stage ? (
+                        <>
+                            <CourseNavigation
+                                title={course.title}
+                                subTitle={stage.title}
+                                stages={course.stageData}
+                                courseId={course.courseId}
+                                currentStageId={stageId}
+                            />
+                            <Progress.Bar
+                                progress={
+                                    (activeStageCount + 1) / course.stageData.length
+                                }
+                                width={null}
+                                style={styles.progressBar}
+                            />
+                            <TextTranslated
+                                style={styles.courseTitle}
+                                text={course.title}
+                            />
+
+                            <StageRenderer
+                                key={stage.id}
+                                courseId={course.courseId}
+                                stage={stage}
+                            />
+                            <Button
+                                buttonText="Next"
+                                onPress={onPress}
+                                colorGradientScheme={stateColorSchemes.primary}
+                                testId={`next-stage-${stage.id}-button`}
+                            />
+                        </>
+                    ) : (
                         <TextTranslated
                             style={styles.courseTitle}
-                            text={course.title}
+                            text="Course not found!"
                         />
-
-                        <StageRenderer
-                            key={stage.id}
-                            courseId={course.courseId}
-                            stage={stage}
-                        />
-                        <Button
-                            buttonText="Next"
-                            onPress={onPress}
-                            colorGradientScheme={stateColorSchemes.primary}
-                            testId={`next-stage-${stage.id}-button`}
-                        />
-                    </>
-                ) : (
-                    <TextTranslated
-                        style={styles.courseTitle}
-                        text="Course not found!"
-                    />
-                )}
-            </PageScrollView>
+                    )}
+                </PageScrollView>
+            </View>
         </DataWrapper>
     );
 }

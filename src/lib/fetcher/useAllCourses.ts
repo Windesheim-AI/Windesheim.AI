@@ -6,8 +6,6 @@ import { useDataFetcher, fetchJsonData } from './DataFetcher';
 import { appConfig } from '../../../app.config';
 import { Course } from '../../types/Course';
 
-// @ts-ignore
-
 export default function useAllCourses() {
     return useDataFetcher<Course[]>(fetchJsonData, {
         url: appConfig.backendUrl + '/wp-json/wingai/v1/courses/',

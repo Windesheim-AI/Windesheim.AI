@@ -9,7 +9,6 @@ export type StageDataState = {
     courseId: string;
 };
 
-
 const initialState: CourseDataState = {
     completedStages: [],
 };
@@ -26,10 +25,12 @@ export const courseDataSlice = createSlice({
                 courseId: string | undefined;
             }>,
         ) => {
-            if (action.payload.courseId === undefined) return;
+            // destruct
+            const { stageId, courseId } = action.payload;
+            if (courseId === undefined) return;
             state.completedStages.push({
-                stageId: action.payload.stageId,
-                courseId: action.payload.courseId,
+                stageId,
+                courseId,
             });
         },
     },

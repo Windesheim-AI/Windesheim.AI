@@ -12,7 +12,7 @@ export default function ButtonBlock({ options }: { options: ButtonOptions }) {
     const colorGradientScheme = stateColorSchemes.primary;
     const navigator = useNavigation();
     function onPress() {
-        navigator.navigate(Routes.Stage, {
+        navigator.navigate(Routes.CourseStage, {
             stageId: options.navigateToStageId,
         });
     }

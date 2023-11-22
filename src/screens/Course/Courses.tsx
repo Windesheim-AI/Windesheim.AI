@@ -9,10 +9,10 @@ import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import useAllCourses from '../../lib/fetcher/useAllCourses';
+import { useMapMultipleCoursesToData } from '../../lib/repositories/mapMultipleCourseToData';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { CourseDataMapped } from '../../types/Course';
-import { useMapMultipleCoursesToData } from '../../util/data/mapMultipleCourseToData';
 
 export function Courses() {
     const fonts = useFonts();
@@ -67,12 +67,13 @@ export function Courses() {
                 <TextTranslated style={fonts.h1} text="Courses" />
 
                 {/* map the courses */}
-                <View style={styles.cardContainer}>
+                <View style={styles.cardContainer} testID="test-container">
                     {courses?.map((course: CourseDataMapped) => (
                         <IntractableView
                             key={course.courseId}
                             style={styles.card}
                             onPress={() => onPress(course.courseId)}
+                            testID={`course-card-${course.courseId}`}
                         >
                             <TextTranslated
                                 style={styles.title}

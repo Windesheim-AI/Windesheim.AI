@@ -1,4 +1,6 @@
-describe('Study courses tests', () => {
+import { Course } from "../../src/types/Course";
+
+describe('Courses page tests', () => {
     beforeEach(() => {
         cy.visit('/');
         cy.window()
@@ -9,72 +11,98 @@ describe('Study courses tests', () => {
             });
     });
 
-    it('can display the courses overview page', () => {
-        // cy.intercept('GET', '/wp-json/wp/v2/pages?slug=google', {
-        //     fixture: 'courses/test-courses.json',
-        // }).as('getPage');
+    it('can show the courses', () => {
+        cy.intercept('GET', '/wp-json/wingai/v1/courses/', {
+            fixture: 'courses/test-courses.json',
+        }).as('getCourses');
+
+        // get the fixture and put it in a const
+        const courses = require('../fixtures/courses/test-courses.json');
 
         cy.visit('/courses');
-        // cy.wait(['@getPage']);
+        cy.wait(['@getCourses']);
 
+        // check if the courses are displayed
         cy.contains('Courses');
-        cy.contains('The basics of Generative AI');
-        cy.contains('A brief introduction to generative AI and how it works.');
-    });
+        cy.contains(courses[0].title);
+    })
 
-    it('can display the course overview page', () => {
-        cy.visit('/course/the-basics-of-generative-ai/overview');
+    it('can view a course', () => {
+        // get the fixture and put it in a const
+        const courses: Course[] = require('../fixtures/courses/test-courses.json');
+        cy.intercept('GET', '/wp-json/wingai/v1/courses/', {
+            fixture: 'courses/test-courses.json',
+        }).as('getCourses');
 
-        cy.contains('Course Overview');
-        cy.contains('Back to Courses');
-        cy.contains('Learn, understand, verify');
-        cy.contains('The basics of generative AI');
-        cy.contains('Advanced generative AI');
-        cy.contains('Generative AI in practice');
-    });
+        cy.intercept('GET', `/wp-json/wingai/v1/courses/${courses[0].id}`, {
+            fixture: 'courses/test-course.json',
+        }).as('getCourse');
 
-    it('can display the course lesson page', () => {
-        cy.visit('/course/the-basics-of-generative-ai/learn-understand-verify');
-        cy.contains('The basics of generative AI');
-        cy.contains(
-            'Generative AI is one of the most exciting developments in artificial intelligence technology because of its ability to create something new. It opens the door to an entire world of possibilities for human and computer creativity, with practical applications emerging across industries, from turning sketches into images for accelerated product development, to improving computer-aided design of complex objects. It takes two neural networks against each other to produce new and original digital works based on sample inputs. The generator network creates new data instances, while the discriminator network evaluates them for authenticity; i.e. the discriminator determines whether each instance of data it reviews belongs to the actual training dataset or not.',
-        );
-        cy.contains('AI Generated Output');
-        cy.contains('(See Prompt)');
-        cy.get('Next').should('be.visible');
-    });
 
-    it.only('can complete a course', () => {
-        cy.visit('/course/the-basics-of-generative-ai/learn-understand-verify');
-        cy.contains('The basics of generative AI');
-        cy.get(
-            '[data-testid="next-stage-learn-understand-verify-button"]',
-        ).click();
-        cy.contains('The basics of generative AI');
-        cy.get(
-            '[data-testid="next-stage-the-basics-of-generative-ai-2-button"]',
-        ).click();
-        cy.contains('Advanced generative AI');
-        cy.get(
-            '[data-testid="next-stage-advanced-generative-ai-button"]',
-        ).click();
-        cy.contains('Generative AI in practice');
-        cy.get(
-            '[data-testid="next-stage-generative-ai-in-practice-1-button"]',
-        ).click();
-        cy.contains('Generative AI in practice');
-        cy.get(
-            '[data-testid="next-stage-generative-ai-in-practice-2-button"]',
-        ).click();
-        cy.contains('Generative AI in practice');
-        cy.get(
-            '[data-testid="next-stage-generative-ai-in-practice-3-button"]',
-        ).click();
+        cy.visit('/courses');
+        cy.wait(['@getCourses']);
 
-        cy.contains('Course finished!');
-        cy.contains('The basics of generative AI');
-        cy.contains('Go back to courses');
-        cy.get('[data-testid="go-back-to-courses-button"]').click();
+        // check if the courses are displayed
         cy.contains('Courses');
-    });
+        cy.contains(courses[0].title);
+
+        // click on the course
+        cy.get(`[data-testid="course-card-${courses[0].id}"]`).first().click();
+
+        // check if the course is displayed
+        cy.contains(courses[0].title);
+
+        // check if contains the stages
+        cy.contains(courses[0].stages[0].title);
+
+        // check if the stage item is displayed testId=stage-card-stageid
+        cy.get(`[data-testid="stage-card-${courses[0].stages[0].id}"]`).should('exist');
+        // click it
+        cy.get(`[data-testid="stage-card-${courses[0].stages[0].id}"]`).click();
+
+        // check if the stage is displayed
+        cy.contains(courses[0].stages[0].title);
+    })
+
+    // course navigation
+    it.only('can navigate to overview using navigation', () => {
+        // get the fixture and put it in a const
+        const courses: Course[] = require('../fixtures/courses/test-courses.json');
+        cy.intercept('GET', '/wp-json/wingai/v1/courses/', {
+            fixture: 'courses/test-courses.json',
+        }).as('getCourses');
+
+        cy.intercept('GET', `/wp-json/wingai/v1/courses/${courses[0].id}`, {
+            fixture: 'courses/test-course.json',
+        }).as('getCourse');
+
+
+        cy.visit('/courses');
+        cy.wait(['@getCourses']);
+
+        // check if the courses are displayed
+        cy.contains('Courses');
+        cy.contains(courses[0].title);
+
+        // click on the course
+        cy.get(`[data-testid="course-card-${courses[0].id}"]`).first().click();
+
+        // check if the course is displayed
+        cy.contains(courses[0].title);
+
+        // check if contains the stages
+        cy.contains(courses[0].stages[0].title);
+
+        //click
+        cy.get(`[data-testid="stage-card-${courses[0].stages[0].id}"]`).click();
+
+        // navigate to the next stage
+        cy.get('[data-testid="course-navigation"]').click();
+
+        // navigate to courseoverview
+        cy.get('[data-testid="course-overview-button"]').click();
+        
+        // check if the course is displayed
+        cy.contains(courses[0].title);
+    })
 });

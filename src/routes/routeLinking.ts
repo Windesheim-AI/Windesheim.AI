@@ -36,7 +36,7 @@ export const RouteLinking = {
                     courseId: (courseId: string) => courseId,
                 },
             },
-            [Routes.Stage]: {
+            [Routes.CourseStage]: {
                 path: 'course/:courseId/:stageId',
                 parse: {
                     courseId: (courseId: string) => courseId,

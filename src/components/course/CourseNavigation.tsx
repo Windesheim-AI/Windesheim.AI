@@ -47,6 +47,8 @@ export function CourseNavigation({
         title: {
             ...fonts.courseTitle,
             flexDirection: 'row',
+            overflow: 'hidden',
+            width: '97%',
             marginBottom: 3,
         },
         icon: {
@@ -90,7 +92,7 @@ export function CourseNavigation({
     });
 
     function onDropdownPress(stageId: string) {
-        navigation.navigate(Routes.Stage, { courseId, stageId });
+        navigation.navigate(Routes.CourseStage, { courseId, stageId });
         setShowDropdown(false);
     }
 
@@ -104,6 +106,7 @@ export function CourseNavigation({
             <IntractableView
                 style={styles.topBar}
                 onPress={() => setShowDropdown(!showDropdown)}
+                testID="course-navigation"
             >
                 <View style={styles.block}>
                     <View style={styles.title}>
@@ -135,6 +138,7 @@ export function CourseNavigation({
                     <IntractableView
                         style={styles.courseOverview}
                         onPress={onCourseOverviewPress}
+                        testID="course-overview-button"
                     >
                         <TextTranslated
                             style={styles.courseOverview}
@@ -144,6 +148,7 @@ export function CourseNavigation({
                     {stages?.map((stage: Stage) => (
                         <IntractableView
                             key={stage.id}
+                            testID={`stage-${stage.id}`}
                             style={[
                                 styles.dropdownText,
                                 stage.id === currentStageId && {

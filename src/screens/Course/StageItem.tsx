@@ -44,14 +44,18 @@ export const StageItem = ({
     });
 
     function handlePress() {
-        navigation.navigate(Routes.Stage.toString(), {
+        navigation.navigate(Routes.CourseStage, {
             courseId,
             stageId: id,
         });
     }
 
     return (
-        <IntractableView onPress={handlePress} style={styles.card}>
+        <IntractableView
+            onPress={handlePress}
+            style={styles.card}
+            testID={`stage-card-${id}`}
+        >
             <View style={styles.courseTitle}>
                 {isCompletedByUser ? (
                     <MaterialCommunityIcons
