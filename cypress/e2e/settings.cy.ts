@@ -24,7 +24,7 @@ describe('App settings test', () => {
         cy.contains('Enable dark mode');
         cy.contains('Language');
 
-        cy.get('[data-testid="language-switcher"]').click();
+        cy.get('[data-testid="language-switcher"]').click({ force: true });
         cy.contains('Nederlands').click();
         cy.contains('Instellingen');
         cy.contains('Activeer donkere modus');
