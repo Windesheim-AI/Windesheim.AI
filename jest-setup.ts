@@ -45,3 +45,16 @@ jest.mock('./src/redux/Hooks', () => ({
 
 const mockedState: ThemeState = { theme: 'light' };
 (useAppSelector as jest.Mock).mockReturnValue(mockedState);
+
+jest.mock('react-i18next', () => ({
+    // this mock makes sure any components using the translation hook can use it
+    // without a warning being shown
+    useTranslation: () => {
+        return {
+            t: (str: unknown) => str,
+            i18n: {
+                changeLanguage: () => new Promise(() => {}),
+            },
+        };
+    },
+}));

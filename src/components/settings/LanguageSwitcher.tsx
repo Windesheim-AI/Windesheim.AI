@@ -8,6 +8,7 @@ import {
 } from '../../constants/Languages';
 import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
 import { languageActions } from '../../redux/slices/LanguageSlice';
+import { useTextTranslate } from '../../translations/hooks';
 import { WhSelectDropdown } from '../input/WhSelectDropdown';
 
 export const LanguageSwitcher = () => {
@@ -23,8 +24,8 @@ export const LanguageSwitcher = () => {
     return (
         <WhSelectDropdown<string>
             data={selectableLanguages}
-            label="Select language"
-            searchText="Search..."
+            label={useTextTranslate('Select language')}
+            searchText={useTextTranslate('Search...')}
             defaultValue={selectedLanguageTranslation}
             onSelect={(selectedItem) => {
                 const newSelectedLanguage: LanguageCode | undefined =
