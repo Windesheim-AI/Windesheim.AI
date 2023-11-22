@@ -19,6 +19,7 @@ import { CustomTagRendererRecord } from 'react-native-render-html/src/render/ren
 
 import { ColorSchemeType } from '../../../constants/Colors';
 import { useFonts } from '../../../constants/Fonts';
+import { handleError } from '../../../lib/utility/errorHandler';
 
 /* istanbul ignore next */
 function onElement(element: any) {
@@ -41,9 +42,8 @@ function onElement(element: any) {
                 }
             }
         });
-    } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error);
+    } catch (error: any) {
+        handleError(error);
     }
 }
 

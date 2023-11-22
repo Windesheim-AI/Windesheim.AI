@@ -5,6 +5,7 @@ import { defaultLanguageCode } from './languageOptions';
 import * as afTranslations from './languages/af.json';
 import * as deTranslations from './languages/de.json';
 import * as nlTranslations from './languages/nl.json';
+import { handleError } from '../lib/utility/errorHandler';
 
 i18n.use(initReactI18next) // passes i18n down to react-i18next
     .init({
@@ -32,5 +33,4 @@ i18n.use(initReactI18next) // passes i18n down to react-i18next
     .then(() => {
         /* Do nothing, everything is configured correctly. */
     })
-    // eslint-disable-next-line no-console
-    .catch((error) => console.error(error));
+    .catch((error) => handleError('Could not initialize i18n'));

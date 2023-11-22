@@ -4,6 +4,7 @@ import SelectDropdown from 'react-native-select-dropdown';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
+import { handleError } from '../../lib/utility/errorHandler';
 
 export type WhSelectDropdownProps<T> = {
     data: T[];
@@ -74,7 +75,13 @@ export function WhSelectDropdown<T>({
                 data={data}
                 defaultValueByIndex={defaultValueByIndex}
                 defaultValue={defaultValue}
-                onSelect={onSelect ?? (() => {}) /* istanbul ignore next */}
+                onSelect={
+                    onSelect ??
+                    (() =>
+                        handleError(
+                            'WhSelectDropdown onSelect is not implemented',
+                        ))
+                }
                 defaultButtonText={label}
                 buttonStyle={styles.dropdown2BtnStyle}
                 buttonTextStyle={styles.dropdown2BtnTxtStyle}
