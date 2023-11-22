@@ -7,12 +7,10 @@ import { PageView } from '../components/general/views/PageView';
 import { WhScrollView } from '../components/general/views/WhScrollView';
 
 export const HomeScreen = () => {
+    const description =
+        'Artificial intelligence is the key to innovating the future and transforming our lives';
     return (
-        <PageView
-            title="Home"
-            description="Artificial intelligence is the key to innovating the
-                future and transforming our lives"
-        >
+        <PageView title="Home" description={description}>
             {/* WTR-site content */}
             <WhScrollView>
                 <View>

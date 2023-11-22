@@ -30,11 +30,7 @@ export const SettingsScreen = () => {
                 <FontSwitcher />
             </SettingCard>
 
-            <SettingCard
-                icon="redo"
-                title="Redo tutorial"
-                testID="tutorial reset"
-            >
+            <SettingCard icon="redo" title="Tutorial" testID="tutorial reset">
                 <TutorialRedoButton />
             </SettingCard>
         </PageView>
