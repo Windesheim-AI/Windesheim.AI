@@ -13,6 +13,7 @@ import {
 
 import { appConfig } from '../../../../app.config';
 import animationSource from '../../../assets/json/500_man.json';
+import { useAnimatedValue } from '../../../lib/utility/animate';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -75,7 +76,7 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({
     error,
     resetError,
 }: ErrorFallbackProps) => {
-    const scaleValue = React.useRef(new Animated.Value(1)).current;
+    const [scaleValue, _] = useAnimatedValue(1);
 
     const handlePress = () => {
         Animated.sequence([

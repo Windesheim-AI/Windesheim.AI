@@ -3,6 +3,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import { PersistConfig } from 'redux-persist/es/types';
 
+import { animationSlice } from './slices/AnimationSlice';
 import { courseDataSlice } from './slices/CourseDataSlice';
 import { fontSlice } from './slices/FontSlice';
 import { languageSlice } from './slices/LanguageSlice';
@@ -22,6 +23,7 @@ const persistConfig: PersistConfig<unknown> = {
         fontSlice.name,
         courseDataSlice.name,
         tutorialSlice.name,
+        animationSlice.name,
     ],
 };
 
@@ -35,6 +37,8 @@ export const rootReducer = combineReducers({
     fontSize: fontSlice.reducer,
     courseData: courseDataSlice.reducer,
     tutorial: tutorialSlice.reducer,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    animation: animationSlice.reducer,
 });
 // @ts-ignore
 const persistedReducer = persistReducer(persistConfig, rootReducer);

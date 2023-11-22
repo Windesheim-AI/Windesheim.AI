@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { Animated, Text, StyleSheet, Dimensions, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
@@ -8,6 +8,7 @@ import {
     useColorConfig,
 } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { useAnimatedValue } from '../../lib/utility/animate';
 import { useAppDispatch } from '../../redux/Hooks';
 import { NotificationActions } from '../../redux/slices/NotificationSlice';
 
@@ -32,43 +33,28 @@ export const Notification = ({
     const colors = useColorConfig();
     const fonts = useFonts();
 
-    const slideAnim = useRef(new Animated.Value(-80)).current; // Initialize off-screen
-    const fadeAnim = useRef(new Animated.Value(1)).current; // Initial value for opacity: 1
-    const scaleYAnim = useRef(new Animated.Value(1)).current;
-    const translateYAnim = useRef(new Animated.Value(-50)).current;
+    const [slideAnim, _] = useAnimatedValue(-80);
+    const [fadeAnim, animateFade] = useAnimatedValue(1);
+    const [scaleYAnim, animateScaleY] = useAnimatedValue(1);
+    const [translateYAnim, animateTranslateY] = useAnimatedValue(-50);
 
     useEffect(() => {
         Animated.parallel([
-            Animated.timing(fadeAnim, {
-                toValue: 1,
-                duration: 500,
-                useNativeDriver: true,
-            }),
-            Animated.timing(translateYAnim, {
-                toValue: 0,
-                duration: 500,
-                useNativeDriver: true,
-            }),
+            animateFade(1, 500) as unknown as Animated.CompositeAnimation,
+            animateTranslateY(0, 500) as unknown as Animated.CompositeAnimation,
         ]).start();
 
         const timer = setTimeout(() => {
             Animated.parallel([
-                Animated.timing(fadeAnim, {
-                    toValue: 0,
-                    duration: 500,
-                    useNativeDriver: true,
-                }),
-                Animated.timing(scaleYAnim, {
-                    toValue: 0,
-                    duration: 500,
-                    useNativeDriver: true,
-                }),
+                animateFade(0, 500) as unknown as Animated.CompositeAnimation,
+                animateScaleY(0, 500) as unknown as Animated.CompositeAnimation,
             ]).start(() => {
                 dispatch(NotificationActions.removeNotification(id));
             });
         }, 3000);
+
         return () => clearTimeout(timer);
-    }, [dispatch, fadeAnim, id, scaleYAnim, translateYAnim]);
+    }, [dispatch, animateFade, animateScaleY, animateTranslateY, id]);
 
     const defaultWidth = Dimensions.get('window').width;
     const alertWidth = width ? width : defaultWidth * 0.97;

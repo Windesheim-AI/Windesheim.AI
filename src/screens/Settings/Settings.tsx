@@ -6,6 +6,7 @@ import { FontSwitcher } from '../../components/settings/FontSwitcher';
 import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../../components/settings/ThemeSwitcher';
 import { TutorialRedoButton } from '../../components/tutorial/TutorialRedoButton';
+import { AnimationToggle } from '../../components/settings/AnimationToggle';
 
 export const SettingsScreen = () => {
     return (
@@ -28,6 +29,14 @@ export const SettingsScreen = () => {
 
             <SettingCard icon="font" title="Font" testID="font switcher">
                 <FontSwitcher />
+            </SettingCard>
+
+            <SettingCard
+                icon="gears"
+                title="Animation"
+                testID="Animation Toggle"
+            >
+                <AnimationToggle />
             </SettingCard>
 
             <SettingCard

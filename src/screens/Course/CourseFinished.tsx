@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, Animated } from 'react-native';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
@@ -11,6 +11,7 @@ import { stateColorSchemes, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { Routes } from '../../routes/routes';
 import { Course } from '../../types/Course';
+import { useAnimatedValue } from '../../lib/utility/animate';
 
 export default function CourseFinished() {
     const colors = useColorConfig();
@@ -36,15 +37,16 @@ export default function CourseFinished() {
         },
     });
 
-    const spinValue = useRef(new Animated.Value(0)).current;
+    // Usage in your component
+    const [spinValue, animateSpinValue] = useAnimatedValue(0);
 
-    Animated.loop(
-        Animated.timing(spinValue, {
-            toValue: 1,
-            duration: 2500,
-            useNativeDriver: true,
-        }),
-    ).start();
+    useEffect(() => {
+        const spinAnimation = animateSpinValue(
+            1,
+            2500,
+        ) as unknown as Animated.CompositeAnimation;
+        return () => spinAnimation.stop();
+    }, [animateSpinValue]);
 
     const spin = spinValue.interpolate({
         inputRange: [0, 1],
