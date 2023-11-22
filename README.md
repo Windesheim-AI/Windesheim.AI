@@ -29,7 +29,7 @@ cp .env.example .env
 The table below shows the required values for the .env file.
 
 | Name             | Description                       | Link                                 |
-|------------------|-----------------------------------|--------------------------------------|
+| ---------------- | --------------------------------- | ------------------------------------ |
 | `OPENAI_API_KEY` | The key to access the OpenAI API. | https://platform.openai.com/api-keys |
 
 ### Install dependencies
