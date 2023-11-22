@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable react/no-multi-comp */
@@ -42,7 +41,7 @@ function onElement(element: any) {
                 }
             }
         });
-    } catch (error: any) {
+    } catch (error) {
         handleError(error);
     }
 }

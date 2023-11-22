@@ -33,4 +33,4 @@ i18n.use(initReactI18next) // passes i18n down to react-i18next
     .then(() => {
         /* Do nothing, everything is configured correctly. */
     })
-    .catch((error) => handleError('Could not initialize i18n'));
+    .catch((error) => handleError(error));

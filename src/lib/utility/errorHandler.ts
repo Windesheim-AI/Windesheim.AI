@@ -1,6 +1,6 @@
 import { appConfig } from '../../../app.config';
 
-export function handleError(error: Error | string) {
+export function handleError(error: any) {
     if (!appConfig.debug) {
         return;
     }
