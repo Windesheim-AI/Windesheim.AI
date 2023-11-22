@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 // @ts-ignore
 import { WP_USERNAME, WP_PASSWORD } from '@env';
+
 import { useDataFetcher, fetchJsonData } from './DataFetcher';
 import { appConfig } from '../../../app.config';
 import { Course } from '../../types/Course';

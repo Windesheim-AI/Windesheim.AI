@@ -1,4 +1,4 @@
-import { Course } from "../../src/types/Course";
+import { Course } from '../../src/types/Course';
 
 describe('Courses page tests', () => {
     beforeEach(() => {
@@ -25,7 +25,7 @@ describe('Courses page tests', () => {
         // check if the courses are displayed
         cy.contains('Courses');
         cy.contains(courses[0].title);
-    })
+    });
 
     it('can view a course', () => {
         // get the fixture and put it in a const
@@ -37,7 +37,6 @@ describe('Courses page tests', () => {
         cy.intercept('GET', `/wp-json/wingai/v1/courses/${courses[0].id}`, {
             fixture: 'courses/test-course.json',
         }).as('getCourse');
-
 
         cy.visit('/courses');
         cy.wait(['@getCourses']);
@@ -56,13 +55,15 @@ describe('Courses page tests', () => {
         cy.contains(courses[0].stages[0].title);
 
         // check if the stage item is displayed testId=stage-card-stageid
-        cy.get(`[data-testid="stage-card-${courses[0].stages[0].id}"]`).should('exist');
+        cy.get(`[data-testid="stage-card-${courses[0].stages[0].id}"]`).should(
+            'exist',
+        );
         // click it
         cy.get(`[data-testid="stage-card-${courses[0].stages[0].id}"]`).click();
 
         // check if the stage is displayed
         cy.contains(courses[0].stages[0].title);
-    })
+    });
 
     // course navigation
     it.only('can navigate to overview using navigation', () => {
@@ -75,7 +76,6 @@ describe('Courses page tests', () => {
         cy.intercept('GET', `/wp-json/wingai/v1/courses/${courses[0].id}`, {
             fixture: 'courses/test-course.json',
         }).as('getCourse');
-
 
         cy.visit('/courses');
         cy.wait(['@getCourses']);
@@ -101,8 +101,8 @@ describe('Courses page tests', () => {
 
         // navigate to courseoverview
         cy.get('[data-testid="course-overview-button"]').click();
-        
+
         // check if the course is displayed
         cy.contains(courses[0].title);
-    })
+    });
 });

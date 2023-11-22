@@ -110,7 +110,8 @@ export default function Stage() {
                             />
                             <Progress.Bar
                                 progress={
-                                    (activeStageCount + 1) / course.stageData.length
+                                    (activeStageCount + 1) /
+                                    course.stageData.length
                                 }
                                 width={null}
                                 style={styles.progressBar}

@@ -22,10 +22,10 @@ import Trust from '../../assets/images/WTR/Themes/trust.jpg';
 import Work from '../../assets/images/WTR/Themes/work.jpeg';
 import { useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 import HorizontalScroll from '../general/views/HorizontalScroll';
-import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 
 export const themeItems = [
     {

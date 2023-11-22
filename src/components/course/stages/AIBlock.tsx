@@ -38,6 +38,7 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
                     options.prompt,
             );
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [options.prompt]);
 
     return (
