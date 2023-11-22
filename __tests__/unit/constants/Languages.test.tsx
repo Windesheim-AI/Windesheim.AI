@@ -1,15 +1,15 @@
 import {
-    languages,
+    languageOptions,
     LanguageCode,
     getLanguageCodeByTranslation,
     languageLabels,
-} from '../../../src/constants/Languages';
+} from '../../../src/translations/languageOptions';
 
 describe('Languages', () => {
     it('should return language labels', () => {
         const labels = languageLabels();
         // @ts-ignore
-        expect(labels).toEqual(Object.values(languages));
+        expect(labels).toEqual(Object.values(languageOptions));
     });
 
     it('should get language code by translations', () => {

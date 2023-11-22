@@ -4,8 +4,8 @@ import {
     getLanguageCodeByTranslation,
     LanguageCode,
     languageLabels,
-    languages,
-} from '../../constants/Languages';
+    languageOptions,
+} from '../../translations/languageOptions';
 import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
 import { languageActions } from '../../redux/slices/LanguageSlice';
 import { useTextTranslate } from '../../translations/hooks';
@@ -19,7 +19,7 @@ export const LanguageSwitcher = () => {
     );
 
     const selectableLanguages = languageLabels();
-    const selectedLanguageTranslation = languages[selectedLanguage];
+    const selectedLanguageTranslation = languageOptions[selectedLanguage];
 
     return (
         <WhSelectDropdown<string>

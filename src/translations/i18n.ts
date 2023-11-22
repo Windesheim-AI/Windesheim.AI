@@ -1,8 +1,9 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import * as nlTranslations from './nl.json';
-import { defaultLanguageCode } from '../constants/Languages';
+import * as nlTranslations from './languages/nl.json';
+import * as deTranslations from './languages/de.json';
+import { defaultLanguageCode } from './languageOptions';
 
 i18n.use(initReactI18next) // passes i18n down to react-i18next
     .init({
@@ -13,6 +14,9 @@ i18n.use(initReactI18next) // passes i18n down to react-i18next
         resources: {
             nl: {
                 translation: nlTranslations,
+            },
+            de: {
+                translation: deTranslations,
             },
         },
         fallbackLng: defaultLanguageCode,
