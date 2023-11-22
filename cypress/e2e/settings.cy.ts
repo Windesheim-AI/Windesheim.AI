@@ -16,7 +16,6 @@ describe('App settings test', () => {
         cy.get('[data-testid="Theme switcher input"] > input').click();
     });
 
-    // Currently broken because of the unauthorized Google Cloud API.
     it('can change the language', () => {
         cy.visit('/settings');
         cy.contains('English');
