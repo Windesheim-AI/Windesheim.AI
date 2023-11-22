@@ -1,10 +1,10 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { ColorGradientScheme, useColorConfig } from '../../../constants/Colors';
 import { useFonts } from '../../../constants/Fonts';
+import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
 import { IntractableView } from '../views/IntractableView';
 
@@ -41,7 +41,6 @@ export const Button = ({
 
         /* istanbul ignore next */
         onPress = () => {
-            //@ts-ignore
             navigation.navigate(screenName);
         };
     }

@@ -38,7 +38,7 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
                     options.prompt,
             );
         }
-    }, [options.prompt, openai.chat.completions]);
+    }, [options.prompt]);
 
     return (
         <BlockWrapper>

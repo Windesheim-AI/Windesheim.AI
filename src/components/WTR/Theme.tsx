@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { ImageBackground, Pressable, StyleSheet, View } from 'react-native';
 
@@ -26,6 +25,7 @@ import { useFonts } from '../../constants/Fonts';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 import HorizontalScroll from '../general/views/HorizontalScroll';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 
 export const themeItems = [
     {

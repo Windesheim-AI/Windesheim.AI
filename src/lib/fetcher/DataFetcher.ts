@@ -1,4 +1,5 @@
 import useSWRNative from '@nandorojo/swr-react-native';
+import { Buffer } from 'buffer';
 import { BareFetcher, Fetcher, SWRConfiguration } from 'swr';
 
 import { HttpStatusCode } from '../../types/Response';
@@ -16,7 +17,15 @@ export const fetchData = async (options: FetcherOptions) => {
     }
 
     if (response.status !== HttpStatusCode.Ok.valueOf()) {
-        throw new Error('An error occurred while fetching the data.');
+        // eslint-disable-next-line no-console
+        console.error(
+            'An error occurred while fetching the data. Received status code: ' +
+                response.status,
+        );
+        throw new Error(
+            'An error occurred while fetching the data. Received status code: ' +
+                response.status,
+        );
     }
 
     return response;
@@ -37,6 +46,8 @@ export interface SwrRequestInput {
     url: string | URL | RequestInfo;
     payload?: RequestInit;
     bearerToken?: string;
+    password?: string;
+    username?: string;
 }
 
 /**
@@ -48,13 +59,25 @@ export const useDataFetcher = <DataType>(
     config: SWRConfiguration = {},
 ) => {
     // Default values for the request input
-    const { url, payload = {}, bearerToken = '' } = options;
+    const {
+        url,
+        payload = {},
+        bearerToken = '',
+        username = '',
+        password = '',
+    } = options;
 
+    const hasBasicAuthCredentials = username.length > 0 && password.length > 0;
     // The headers are merged with the payload headers.
     const headers: HeadersInit = {
         ...payload.headers,
         ...(bearerToken.length > 0 && {
             Authorization: `Bearer ${bearerToken}`,
+        }),
+        ...(hasBasicAuthCredentials && {
+            Authorization: `Basic ${Buffer.from(
+                `${username}:${password}`,
+            ).toString('base64')}`,
         }),
     };
 

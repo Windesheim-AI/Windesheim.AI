@@ -3,10 +3,10 @@ import React from 'react';
 
 import { Routes } from './routes';
 import { LoadingScreen } from '../components/loadingscreen/LoadingScreen';
-import CoursePage from '../screens/Course/Course';
 import CourseFinished from '../screens/Course/CourseFinished';
-import CourseOverview from '../screens/Course/CourseOverview';
 import { Courses } from '../screens/Course/Courses';
+import Stage from '../screens/Course/Stage';
+import StageOverview from '../screens/Course/StageOverview';
 import { HomeScreen } from '../screens/Home';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { StudyScreen } from '../screens/Study';
@@ -26,9 +26,9 @@ const screens = [
     { name: Routes.LoadingScreen, component: LoadingScreen },
     { name: Routes.Usecase, component: UsecaseScreen },
     { name: Routes.CaseStudyInfo, component: CaseStudyInfo },
-    { name: Routes.Course, component: CoursePage },
+    { name: Routes.CourseStage, component: Stage },
     { name: Routes.CourseFinished, component: CourseFinished },
-    { name: Routes.CourseOverview, component: CourseOverview },
+    { name: Routes.StageOverview, component: StageOverview },
     { name: Routes.Courses, component: Courses },
 ];
 
