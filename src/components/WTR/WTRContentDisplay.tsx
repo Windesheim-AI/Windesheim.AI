@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import WTRHtmlDisplay from '../../components/WTR/html/WTRHtmlDisplay';
 import { useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { useFetchWTRPage } from '../../lib/fetcher/WTRPageFetcher';
+import { useFetchWTRPage } from '../../lib/repositories/WTR/WTRPageFetcher';
 import { useAppDispatch } from '../../redux/Hooks';
 import { setLoading } from '../../redux/slices/LoadingSlice';
 import { TextTranslated } from '../general/text/TextTranslated';

@@ -141,7 +141,7 @@
                 "format": ["PascalCase", "UPPER_CASE"]
             }
         ],
-        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/consistent-type-definitions": "off",
         "complexity": ["error", { "max": 10 }],
         "no-console": "warn",
@@ -156,6 +156,7 @@
             }
         ],
         "@typescript-eslint/ban-ts-comment": "off",
+        "node/handle-callback-err": "off",
         "etc/no-implicit-any-catch": "off"
     }
 }
