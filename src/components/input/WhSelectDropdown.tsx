@@ -74,19 +74,8 @@ export function WhSelectDropdown<T>({
                 data={data}
                 defaultValueByIndex={defaultValueByIndex}
                 defaultValue={defaultValue}
-                // @ts-ignore
-                onSelect={onSelect}
+                onSelect={onSelect ?? (() => {}) /* istanbul ignore next */}
                 defaultButtonText={label}
-                /* istanbul ignore next */
-                buttonTextAfterSelection={(selectedItem) => {
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-                    return selectedItem;
-                }}
-                /* istanbul ignore next */
-                rowTextForSelection={(item) => {
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-                    return item;
-                }}
                 buttonStyle={styles.dropdown2BtnStyle}
                 buttonTextStyle={styles.dropdown2BtnTxtStyle}
                 renderDropdownIcon={(isOpened) => (
