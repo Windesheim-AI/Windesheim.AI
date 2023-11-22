@@ -14,6 +14,8 @@ import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
 import { UsecaseScreen } from '../screens/Usecase/Usecase';
 import { WTRScreen } from '../screens/WTR/WTR';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
+import { PromptLibrary } from '../screens/PromptLibrary/PromptLibrary';
+import { PromptPage } from '../screens/PromptLibrary/PromptPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +32,8 @@ const screens = [
     { name: Routes.CourseFinished, component: CourseFinished },
     { name: Routes.StageOverview, component: StageOverview },
     { name: Routes.Courses, component: Courses },
+    { name: Routes.PromptLibrary, component: PromptLibrary },
+    { name: Routes.Prompt, component: PromptPage },
 ];
 
 export const Router = () => {

@@ -13,6 +13,12 @@ export const StudyScreen = () => {
                 width={100}
                 testId="courses-button"
             />
+            <ListButton
+                buttonText="Prompt Library"
+                screenName={Routes.PromptLibrary}
+                width={100}
+                testId="prompt-library-button"
+            />
         </PageView>
     );
 };
