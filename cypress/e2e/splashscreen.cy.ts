@@ -3,12 +3,7 @@ import { appConfig } from '../../app.config';
 describe('Tests the splashscreen', () => {
     beforeEach(() => {
         cy.visit('/');
-        cy.window()
-            .its('store')
-            .invoke('dispatch', {
-                type: 'tutorial/setCompleted',
-                payload: { completed: true },
-            });
+        cy.get('[data-testid="tutorial-skip-button"]').click();
     });
 
     it('can see the logos on the splashscreen', () => {

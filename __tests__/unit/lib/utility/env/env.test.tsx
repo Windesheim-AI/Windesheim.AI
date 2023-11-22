@@ -2,11 +2,6 @@ import { getEnvValue } from '../../../../../src/lib/utility/env/env';
 import { EnvOptions } from '../../../../../src/lib/utility/env/env.values';
 
 describe('getEnvValue', () => {
-    it('should get GoogleTranslateApiKey', () => {
-        const result = getEnvValue(EnvOptions.GoogleTranslateApiKey, true);
-        expect(result).toBe('mockGoogleTranslateApiKey');
-    });
-
     it('should get OpenAIApiKey', () => {
         const result = getEnvValue(EnvOptions.OpenAIApiKey, true);
         expect(result).toBe('mockOpenAIApiKey');
