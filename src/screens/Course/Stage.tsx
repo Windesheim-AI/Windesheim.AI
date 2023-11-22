@@ -41,18 +41,6 @@ export default function Stage() {
     const { data, isLoading, error } = useSingleCourse(courseId);
     const course = useMapSingleCourseToData(data);
 
-    // this meaning there is not data, while loading has finished.
-    if (!data && !isLoading) {
-        return (
-            <DataWrapper error={error} isLoading={isLoading}>
-                <TextTranslated text="Course not found!" />
-            </DataWrapper>
-        );
-    }
-
-    const activeStageCount =
-        course?.stageData.findIndex((e) => e.id === stageId) ?? 0;
-
     const styles = StyleSheet.create({
         progressBar: {
             marginTop: 15,
@@ -71,8 +59,23 @@ export default function Stage() {
         },
     });
 
+    // this meaning there is not data, while loading has finished.
+    if ((!data && !isLoading) || !course.stageData) {
+        return (
+            <View style={styles.container}>
+                <PageScrollView>
+                    <TextTranslated text="Course not found!" />
+                </PageScrollView>
+            </View>
+        );
+    }
+
+    const activeStageCount =
+        course?.stageData.findIndex((e) => e.id === stageId) ?? 0;
+
     const stage = course.stageData.find((e) => e.id === stageId);
-    const nextStage = course.stageData[activeStageCount + 1];
+    const nextStage = course.stageData[activeStageCount + 1] ?? undefined;
+
     function onPress() {
         // complete the stage in the array
         storeDispatcher(
