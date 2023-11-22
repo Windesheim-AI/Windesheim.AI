@@ -4,6 +4,7 @@ describe('Tutorial', () => {
     beforeEach(() => {
         cy.visit('/');
     });
+
     it('should display the tutorial prompt', () => {
         cy.get('[data-testid="tutorial-next-button"]').contains('Next 1 /');
     });

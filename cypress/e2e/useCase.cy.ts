@@ -1,12 +1,7 @@
 describe('Usecase page tests', () => {
     beforeEach(() => {
         cy.visit('/');
-        cy.window()
-            .its('store')
-            .invoke('dispatch', {
-                type: 'tutorial/setCompleted',
-                payload: { completed: true },
-            });
+        cy.get('[data-testid="tutorial-skip-button"]').click();
     });
 
     it('Usecase page works', () => {

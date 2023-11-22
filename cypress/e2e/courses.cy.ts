@@ -3,12 +3,7 @@ import { Course } from '../../src/types/Course';
 describe('Courses page tests', () => {
     beforeEach(() => {
         cy.visit('/');
-        cy.window()
-            .its('store')
-            .invoke('dispatch', {
-                type: 'tutorial/setCompleted',
-                payload: { completed: true },
-            });
+        cy.get('[data-testid="tutorial-skip-button"]').click();
     });
 
     it('can show the courses', () => {
@@ -65,8 +60,7 @@ describe('Courses page tests', () => {
         cy.contains(courses[0].stages[0].title);
     });
 
-    // course navigation
-    it.only('can navigate to overview using navigation', () => {
+    it('can navigate to overview using navigation', () => {
         // get the fixture and put it in a const
         const courses: Course[] = require('../fixtures/courses/test-courses.json');
         cy.intercept('GET', '/wp-json/wingai/v1/courses/', {
