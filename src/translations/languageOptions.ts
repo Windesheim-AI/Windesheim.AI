@@ -5,6 +5,7 @@ export type LanguageTranslations = Record<LanguageCode, NativeTranslation>;
 
 export const defaultLanguageCode: LanguageCode = 'en';
 export const languageOptions: LanguageTranslations = {
+    af: 'Afrikaans', // Afrikaans
     nl: 'Nederlands', // Dutch
     en: 'English',
     de: 'Deutsch', // German
