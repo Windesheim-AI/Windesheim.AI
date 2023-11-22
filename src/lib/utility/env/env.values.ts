@@ -1,7 +1,6 @@
 /* eslint @typescript-eslint/no-unsafe-assignment: 0 */
 
 import {
-    EXPO_PUBLIC_GTR_API_KEY,
     OPENAI_API_KEY,
     AI_ENABLED,
     WP_USERNAME,
