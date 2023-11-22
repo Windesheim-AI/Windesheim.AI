@@ -16,7 +16,15 @@ import { CourseDataMapped } from '../../types/Course';
 
 function getProgressPercentage(course: CourseDataMapped) {
     const stages = course.stageData;
-    const stagesCompleted = stages.filter((stage) => stage.isCompletedByUser);
+    if (stages.length === 0) {
+        return 0;
+    }
+
+    const stagesCompleted = stages?.filter((stage) => stage.isCompletedByUser);
+    if (stagesCompleted?.length === 0) {
+        return 0;
+    }
+
     return stagesCompleted.length / stages.length;
 }
 
@@ -74,11 +82,11 @@ export function Courses() {
                         >
                             <TextTranslated
                                 style={styles.title}
-                                text={course.title}
+                                text={course.title ?? ''}
                             />
                             <TextTranslated
                                 style={styles.description}
-                                text={course.description}
+                                text={course.description ?? ''}
                             />
 
                             <View style={styles.progressBar}>

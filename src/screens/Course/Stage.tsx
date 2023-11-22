@@ -105,7 +105,7 @@ export default function Stage() {
                     {stage ? (
                         <>
                             <CourseNavigation
-                                title={course.title}
+                                title={course.title ?? ''}
                                 subTitle={stage.title}
                                 stages={course.stageData}
                                 courseId={course.courseId}
@@ -121,7 +121,7 @@ export default function Stage() {
                             />
                             <TextTranslated
                                 style={styles.courseTitle}
-                                text={course.title}
+                                text={course.title ?? ''}
                             />
 
                             <StageRenderer

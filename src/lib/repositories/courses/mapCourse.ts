@@ -14,7 +14,7 @@ export function mapCourseToData(
         courseId: course.id,
         title: course.title,
         description: course.description,
-        stageData: course.stages.map((stage): StageDataMapped => {
+        stageData: course.stages?.map((stage): StageDataMapped => {
             const isCompletedByUser = courseData.some(
                 (stageData) => stageData.stageId === stage.id,
             );

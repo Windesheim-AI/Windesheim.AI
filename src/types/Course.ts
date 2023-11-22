@@ -11,7 +11,7 @@ export type Course = {
 //brought to UI
 export type CourseDataMapped = {
     courseId: string;
-    title: string;
-    description: string;
+    title: string | undefined;
+    description: string | undefined;
     stageData: StageDataMapped[];
 };
