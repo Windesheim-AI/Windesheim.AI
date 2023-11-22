@@ -8,8 +8,8 @@ import { IntractableView } from '../../components/general/views/IntractableView'
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import useAllCourses from '../../lib/repositories/courses/useAllCourses';
 import { useMapMultipleCoursesToData } from '../../lib/repositories/courses/mapMultipleCourseToData';
+import useAllCourses from '../../lib/repositories/courses/useAllCourses';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { CourseDataMapped } from '../../types/Course';

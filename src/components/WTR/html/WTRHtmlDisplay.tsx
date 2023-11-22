@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable react/no-multi-comp */
-// @ts-ignore eslint-disable
 
 import decimal from '@jsamr/counter-style/presets/decimal';
 import { DomVisitorCallbacks } from '@native-html/transient-render-engine';
