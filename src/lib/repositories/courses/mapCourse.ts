@@ -1,14 +1,13 @@
-import { RootState } from '../../redux/Hooks';
-import { StageDataState } from '../../redux/slices/CourseDataSlice';
-import { Course, CourseDataMapped } from '../../types/Course';
-import { StageDataMapped } from '../../types/Stage';
+import { CourseDataState } from '../../../redux/slices/CourseDataSlice';
+import { Course, CourseDataMapped } from '../../../types/Course';
+import { StageDataMapped } from '../../../types/Stage';
 
 export function mapCourseToData(
     course: Course,
-    courseDataState: RootState['courseData'],
+    courseDataState: CourseDataState,
 ): CourseDataMapped {
     const courseData = courseDataState.completedStages?.filter(
-        (stage: StageDataState) => stage.courseId === course.id,
+        (stage) => stage.courseId === course.id,
     );
 
     return {

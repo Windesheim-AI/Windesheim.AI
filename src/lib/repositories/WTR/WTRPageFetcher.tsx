@@ -1,5 +1,5 @@
-import { fetchJsonData, useDataFetcher } from './DataFetcher';
-import { appConfig } from '../../../app.config';
+import { fetchJsonData, useDataFetcher } from '../../fetcher/DataFetcher';
+import { appConfig } from '../../../../app.config';
 
 interface PageData {
     content: {

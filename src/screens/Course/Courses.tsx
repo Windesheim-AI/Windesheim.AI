@@ -8,11 +8,17 @@ import { IntractableView } from '../../components/general/views/IntractableView'
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import useAllCourses from '../../lib/fetcher/useAllCourses';
-import { useMapMultipleCoursesToData } from '../../lib/repositories/mapMultipleCourseToData';
+import useAllCourses from '../../lib/repositories/courses/useAllCourses';
+import { useMapMultipleCoursesToData } from '../../lib/repositories/courses/mapMultipleCourseToData';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { CourseDataMapped } from '../../types/Course';
+
+function getProgressPercentage(course: CourseDataMapped) {
+    const stages = course.stageData;
+    const stagesCompleted = stages.filter((stage) => stage.isCompletedByUser);
+    return stagesCompleted.length / stages.length;
+}
 
 export function Courses() {
     const fonts = useFonts();
@@ -20,14 +26,6 @@ export function Courses() {
     const { data, isLoading, error } = useAllCourses();
     const courses = useMapMultipleCoursesToData(data);
     const navigator = useNavigation();
-
-    function getProgressPercentage(course: CourseDataMapped) {
-        const stages = course.stageData;
-        const stagesCompleted = stages.filter(
-            (stage) => stage.isCompletedByUser,
-        );
-        return stagesCompleted.length / stages.length;
-    }
 
     const styles = StyleSheet.create({
         card: {
@@ -55,7 +53,6 @@ export function Courses() {
     });
 
     function onPress(courseId: string) {
-        //@ts-ignore
         navigator.navigate(Routes.StageOverview.toString(), {
             courseId,
         });

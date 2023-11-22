@@ -15,8 +15,8 @@ import {
     useColorConfig,
 } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import useSingleCourse from '../../lib/fetcher/useSingleCourse';
-import { useMapSingleCourseToData } from '../../lib/repositories/mapSingleCourseToData';
+import useSingleCourse from '../../lib/repositories/courses/useSingleCourse';
+import { useMapSingleCourseToData } from '../../lib/repositories/courses/mapSingleCourseToData';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { useAppDispatch } from '../../redux/Hooks';
 import { courseDataActions } from '../../redux/slices/CourseDataSlice';
