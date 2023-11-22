@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { defaultLanguageCode, LanguageCode } from '../../constants/Languages';
+import {
+    defaultLanguageCode,
+    LanguageCode,
+} from '../../translations/languageOptions';
 
 export interface LanguageState {
     langCode: LanguageCode;

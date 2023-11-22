@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { defaultLanguageCode } from '../constants/Languages';
+import { defaultLanguageCode } from './languageOptions';
 import { useAppSelector } from '../redux/Hooks';
 
 export function useTextTranslate(text: string): string {
