@@ -14,6 +14,7 @@ import {
 import { appConfig } from '../../../../app.config';
 import animationSource from '../../../assets/json/500_man.json';
 import { useAnimatedValue } from '../../../lib/utility/animate';
+import { useAppSelector } from '../../../redux/Hooks';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -77,6 +78,7 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({
     resetError,
 }: ErrorFallbackProps) => {
     const [scaleValue, _] = useAnimatedValue(1);
+    const animationState = useAppSelector((state) => state.animation);
 
     const handlePress = () => {
         Animated.sequence([
@@ -98,11 +100,17 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({
     return (
         <View style={styles.container} testID="error-fallback-container">
             <View style={styles.animationContainer}>
-                {Platform.OS !== 'web' ? (
+                {Platform.OS !== 'web' && animationState.isEnabled ? (
                     <LottieView
                         source={animationSource}
                         autoPlay
-                        loop
+                        loop={animationState.isEnabled} // Set loop based on animation state
+                        style={styles.animationContainer}
+                    />
+                ) : Platform.OS !== 'web' && !animationState.isEnabled ? (
+                    <LottieView
+                        source={animationSource}
+                        progress={1}
                         style={styles.animationContainer}
                     />
                 ) : null}

@@ -40,14 +40,14 @@ export const Notification = ({
 
     useEffect(() => {
         Animated.parallel([
-            animateFade(1, 500) as unknown as Animated.CompositeAnimation,
-            animateTranslateY(0, 500) as unknown as Animated.CompositeAnimation,
+            animateFade(1, 500),
+            animateTranslateY(0, 500),
         ]).start();
 
         const timer = setTimeout(() => {
             Animated.parallel([
-                animateFade(0, 500) as unknown as Animated.CompositeAnimation,
-                animateScaleY(0, 500) as unknown as Animated.CompositeAnimation,
+                animateFade(0, 500),
+                animateScaleY(0, 500),
             ]).start(() => {
                 dispatch(NotificationActions.removeNotification(id));
             });

@@ -37,7 +37,6 @@ export const rootReducer = combineReducers({
     fontSize: fontSlice.reducer,
     courseData: courseDataSlice.reducer,
     tutorial: tutorialSlice.reducer,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     animation: animationSlice.reducer,
 });
 // @ts-ignore

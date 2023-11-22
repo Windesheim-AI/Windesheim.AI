@@ -3,9 +3,9 @@ import { View } from 'react-native';
 
 import { TechProviders } from '../components/WTR/TechProviders';
 import { Themes } from '../components/WTR/Theme';
+import { Notification } from '../components/alerts/Notification';
 import { PageView } from '../components/general/views/PageView';
 import { WhScrollView } from '../components/general/views/WhScrollView';
-import { Notification } from '../components/alerts/Notification';
 
 export const HomeScreen = () => {
     const description =

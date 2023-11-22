@@ -2,11 +2,11 @@ import React from 'react';
 
 import { SettingCard } from '../../components/general/card/SettingCard';
 import { PageView } from '../../components/general/views/PageView';
+import { AnimationToggle } from '../../components/settings/AnimationToggle';
 import { FontSwitcher } from '../../components/settings/FontSwitcher';
 import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../../components/settings/ThemeSwitcher';
 import { TutorialRedoButton } from '../../components/tutorial/TutorialRedoButton';
-import { AnimationToggle } from '../../components/settings/AnimationToggle';
 
 export const SettingsScreen = () => {
     return (
@@ -32,7 +32,7 @@ export const SettingsScreen = () => {
             </SettingCard>
 
             <SettingCard
-                icon="gears"
+                icon="cogs"
                 title="Animation"
                 testID="Animation Toggle"
             >
