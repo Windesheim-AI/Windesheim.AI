@@ -17,8 +17,7 @@ describe('App settings test', () => {
     });
 
     // Currently broken because of the unauthorized Google Cloud API.
-    // TODO: Fix this test.
-    it.skip('can change the language', () => {
+    it('can change the language', () => {
         cy.visit('/settings');
         cy.contains('English');
         cy.contains('Settings');
@@ -28,14 +27,14 @@ describe('App settings test', () => {
         cy.get('[data-testid="language-switcher"]').click();
         cy.contains('Nederlands').click();
         cy.contains('Instellingen');
-        cy.contains('Schakel de donkere modus in');
+        cy.contains('Activeer donkere modus');
         cy.contains('Taal');
         cy.contains('Nederlands');
 
         cy.reload();
         cy.contains('Instellingen');
         cy.contains('Nederlands');
-        cy.contains('Schakel de donkere modus in');
+        cy.contains('Activeer donkere modus');
         cy.contains('Taal');
     });
 
