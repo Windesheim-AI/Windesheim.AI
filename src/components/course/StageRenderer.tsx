@@ -25,7 +25,7 @@ export default function StageRenderer({
 }) {
     return (
         <>
-            {stage.description.map((block: CourseStageBlock) => {
+            {stage.blocks.map((block: CourseStageBlock) => {
                 const renderer = blockRenderers.find(
                     (e) => e.blockType === block.blockType,
                 );

@@ -86,7 +86,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         link: '#ffcb05',
         text: '#fff',
         textLight: '#fff',
-        buttonText: '#3F3f3f',
+        buttonText: '#fff',
         background: '#2a2a2a',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorDark,

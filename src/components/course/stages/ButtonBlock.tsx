@@ -1,19 +1,18 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 
 import BlockWrapper from './block';
 import { stateColorSchemes } from '../../../constants/Colors';
+import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../../routes/routes';
 import { ButtonOptions } from '../../../types/CourseStageBlock';
 import { Button } from '../../general/buttons/Button';
 
 export default function ButtonBlock({ options }: { options: ButtonOptions }) {
-    const colorGradientScheme = stateColorSchemes[options.colorOptions];
+    // ToDo: use the configured color scheme of the options.
+    const colorGradientScheme = stateColorSchemes.primary;
     const navigator = useNavigation();
     function onPress() {
-        //@ts-ignore
-        navigator.navigate(Routes.Course.toString(), {
-            courseId: options.courseId,
+        navigator.navigate(Routes.CourseStage, {
             stageId: options.navigateToStageId,
         });
     }

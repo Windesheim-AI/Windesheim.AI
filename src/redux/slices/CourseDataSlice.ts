@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface CourseDataState {
-    completedStages: {
-        stageId: string;
-        courseId: string;
-    }[];
+    completedStages: StageDataState[];
 }
+
+export type StageDataState = {
+    stageId: string;
+    courseId: string;
+};
 
 const initialState: CourseDataState = {
     completedStages: [],
@@ -18,11 +20,17 @@ export const courseDataSlice = createSlice({
         // type {stageId, courseId}
         completeStage: (
             state,
-            action: PayloadAction<{ stageId: string; courseId: string }>,
+            action: PayloadAction<{
+                stageId: string;
+                courseId: string | undefined;
+            }>,
         ) => {
+            // destruct
+            const { stageId, courseId } = action.payload;
+            if (courseId === undefined) return;
             state.completedStages.push({
-                stageId: action.payload.stageId,
-                courseId: action.payload.courseId,
+                stageId,
+                courseId,
             });
         },
     },

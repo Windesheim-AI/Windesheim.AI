@@ -1,33 +1,33 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Bar } from 'react-native-progress';
 
-import * as courseDefaultData from '../../assets/courses/test.json';
+import { DataWrapper } from '../../components/base/DataWrapper';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { IntractableView } from '../../components/general/views/IntractableView';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { useCourseWithData } from '../../lib/fetcher/courses/useCourseWithData';
+import useAllCourses from '../../lib/fetcher/useAllCourses';
+import { useMapMultipleCoursesToData } from '../../lib/repositories/mapMultipleCourseToData';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
-import { Course } from '../../types/Course';
+import { CourseDataMapped } from '../../types/Course';
 
 export function Courses() {
     const fonts = useFonts();
     const colors = useColorConfig();
-    const courses = [courseDefaultData] as unknown as Course[];
+    const { data, isLoading, error } = useAllCourses();
+    const courses = useMapMultipleCoursesToData(data);
     const navigator = useNavigation();
 
-    const currentCourse = useCourseWithData(courses[0].id);
-
-    const completedStages = currentCourse.stageData.filter(
-        (stage) => stage.isCompletedByUser,
-    ).length;
-    const totalStages = currentCourse.stageData.length;
-    const progressPercentage = Math.round(
-        (completedStages / totalStages) * 100,
-    );
+    function getProgressPercentage(course: CourseDataMapped) {
+        const stages = course.stageData;
+        const stagesCompleted = stages.filter(
+            (stage) => stage.isCompletedByUser,
+        );
+        return stagesCompleted.length / stages.length;
+    }
 
     const styles = StyleSheet.create({
         card: {
@@ -56,45 +56,48 @@ export function Courses() {
 
     function onPress(courseId: string) {
         //@ts-ignore
-        navigator.navigate(Routes.CourseOverview.toString(), {
+        navigator.navigate(Routes.StageOverview.toString(), {
             courseId,
         });
     }
 
     return (
-        <PageScrollView>
-            <TextTranslated style={fonts.h1} text="Courses" />
+        <DataWrapper error={error} isLoading={isLoading}>
+            <PageScrollView>
+                <TextTranslated style={fonts.h1} text="Courses" />
 
-            {/* map the courses */}
-            <View style={styles.cardContainer}>
-                {courses.map((course: Course) => (
-                    <IntractableView
-                        key={course.id}
-                        style={styles.card}
-                        onPress={() => onPress(course.id)}
-                    >
-                        <TextTranslated
-                            style={styles.title}
-                            text={course.title}
-                        />
-                        <TextTranslated
-                            style={styles.description}
-                            text={course.description}
-                        />
-
-                        <View style={styles.progressBar}>
-                            <Bar
-                                progress={progressPercentage / 100}
-                                width={null}
-                                height={7}
-                                borderRadius={10}
-                                color={colors.success}
-                                unfilledColor={colors.listItemBg}
+                {/* map the courses */}
+                <View style={styles.cardContainer} testID="test-container">
+                    {courses?.map((course: CourseDataMapped) => (
+                        <IntractableView
+                            key={course.courseId}
+                            style={styles.card}
+                            onPress={() => onPress(course.courseId)}
+                            testID={`course-card-${course.courseId}`}
+                        >
+                            <TextTranslated
+                                style={styles.title}
+                                text={course.title}
                             />
-                        </View>
-                    </IntractableView>
-                ))}
-            </View>
-        </PageScrollView>
+                            <TextTranslated
+                                style={styles.description}
+                                text={course.description}
+                            />
+
+                            <View style={styles.progressBar}>
+                                <Bar
+                                    progress={getProgressPercentage(course)}
+                                    width={null}
+                                    height={7}
+                                    borderRadius={10}
+                                    color={colors.success}
+                                    unfilledColor={colors.listItemBg}
+                                />
+                            </View>
+                        </IntractableView>
+                    ))}
+                </View>
+            </PageScrollView>
+        </DataWrapper>
     );
 }

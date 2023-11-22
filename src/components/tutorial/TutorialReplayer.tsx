@@ -1,8 +1,8 @@
 /* eslint-disable react/self-closing-comp */
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Pressable } from 'react-native';
 
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { useAppDispatch } from '../../redux/Hooks';
 import { setCompleted } from '../../redux/slices/TutorialSlice';
 import { Routes } from '../../routes/routes';
