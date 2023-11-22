@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import './src/translations/i18n';
+import './src/translations/i18n'; // Required import to enable translations
 import ErrorBoundary from 'react-native-error-boundary';
 import { Provider } from 'react-redux';
 
