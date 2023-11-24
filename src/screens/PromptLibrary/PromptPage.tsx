@@ -15,7 +15,7 @@ import {
     useColorConfig,
 } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import useSinglePrompt from '../../lib/fetcher/useSinglePrompt';
+import useSinglePrompt from '../../lib/repositories/promptLibrary/useSinglePrompt';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 

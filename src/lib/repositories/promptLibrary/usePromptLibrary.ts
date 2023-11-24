@@ -1,8 +1,8 @@
-import { useDataFetcher, fetchJsonData } from './DataFetcher';
-import { appConfig } from '../../../app.config';
-import { Prompt } from '../../types/Prompt';
-import { getEnvValue } from '../utility/env/env';
-import { EnvOptions } from '../utility/env/env.values';
+import { appConfig } from '../../../../app.config';
+import { Prompt } from '../../../types/Prompt';
+import { useDataFetcher, fetchJsonData } from '../../fetcher/DataFetcher';
+import { getEnvValue } from '../../utility/env/env';
+import { EnvOptions } from '../../utility/env/env.values';
 
 export default function usePromptLibrary() {
     return useDataFetcher<Prompt[]>(fetchJsonData, {

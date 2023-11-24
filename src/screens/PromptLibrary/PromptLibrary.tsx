@@ -9,7 +9,7 @@ import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { stateColorSchemes } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import usePromptLibrary from '../../lib/fetcher/usePromptLibrary';
+import usePromptLibrary from '../../lib/repositories/promptLibrary/usePromptLibrary';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { Sector } from '../../types/Prompt';
