@@ -6,7 +6,6 @@ export type AppConfigOptions = {
     localStoragePrefixes: {
         translations: string;
     };
-    debug: boolean;
 };
 
 export const appConfig: AppConfigOptions = {
@@ -15,7 +14,6 @@ export const appConfig: AppConfigOptions = {
     localStoragePrefixes: {
         translations: 'translations',
     },
-    debug: true,
 };
 
 export default ({ config }: { config: ExpoConfig }) => {

@@ -2,18 +2,19 @@ import Constants from 'expo-constants';
 import LottieView from 'lottie-react-native';
 import React from 'react';
 import {
-    Text,
-    View,
-    TouchableOpacity,
-    StyleSheet,
     Animated,
     Dimensions,
     Platform,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from 'react-native';
 
-import { appConfig } from '../../../../app.config';
 import animationSource from '../../../assets/json/500_man.json';
 import { useAnimatedValue } from '../../../lib/utility/animate';
+import { getEnvValue } from '../../../lib/utility/env/env';
+import { EnvOptions } from '../../../lib/utility/env/env.values';
 import { useAppSelector } from '../../../redux/Hooks';
 
 const windowWidth = Dimensions.get('window').width;
@@ -117,7 +118,9 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({
             </View>
             <Text style={styles.title}>Something happened!</Text>
             <Text style={styles.text}>
-                {appConfig.debug ? error.toString() : ''}
+                {getEnvValue(EnvOptions.AppDebug) === 'true'
+                    ? error.toString()
+                    : ''}
             </Text>
             <View style={styles.textContainer}>
                 <TouchableOpacity
