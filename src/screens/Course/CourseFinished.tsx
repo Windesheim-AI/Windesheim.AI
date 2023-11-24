@@ -15,7 +15,7 @@ import { useAnimatedValue } from '../../lib/utility/animate';
 import { useAppSelector } from '../../redux/Hooks';
 import { Routes } from '../../routes/routes';
 
-type CourseFinishedProps = {
+type CourseFinishedRouteParams = {
     courseId: string | undefined;
 };
 
@@ -24,7 +24,7 @@ export default function CourseFinished() {
     const route = useRoute();
     const fonts = useFonts();
 
-    const params = route.params as CourseFinishedProps;
+    const params = route.params as CourseFinishedRouteParams;
     const { data, error, isLoading } = useSingleCourse(params.courseId); //later replaced dby a fetch.
     const course = data;
 
