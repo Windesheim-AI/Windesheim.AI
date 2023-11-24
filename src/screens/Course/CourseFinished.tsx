@@ -16,7 +16,7 @@ import { useAppSelector } from '../../redux/Hooks';
 import { Routes } from '../../routes/routes';
 
 type CourseFinishedProps = {
-    courseId: string;
+    courseId: string | undefined;
 };
 
 export default function CourseFinished() {
