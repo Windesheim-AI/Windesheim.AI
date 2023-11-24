@@ -6,16 +6,14 @@ export type AppConfigOptions = {
     localStoragePrefixes: {
         translations: string;
     };
-    debug: boolean;
 };
 
 export const appConfig: AppConfigOptions = {
-    backendUrl: 'https://windesheim.tech',
+    backendUrl: 'https://www.windesheim.tech',
     splashScreenTime: 500,
     localStoragePrefixes: {
         translations: 'translations',
     },
-    debug: true,
 };
 
 export default ({ config }: { config: ExpoConfig }) => {

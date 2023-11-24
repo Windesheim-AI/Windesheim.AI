@@ -11,6 +11,8 @@
     "Redo": "Opnieuw",
     "Search...": "Zoeken...",
     "Welcome!": "Welkom!",
+    "Description": "Beschrijving",
+    "Open Tool": "Open Tool",
     "Skip": "Overslaan",
     "Next": "Volgende",
     "Home Screen": "Startscherm",
@@ -31,5 +33,7 @@
     "Enable dark mode": "Activeer donkere modus",
     "Page not found": "Pagina niet gevonden!",
     "Animations": "Animaties",
+    "Prompt Library": "Prompt bibliotheek",
+    "Filter by tool and sector, hold long on a tag to select only that one.": "Filter op tool en sector, houd lang vast op een tag om alleen die te selecteren.",
     "We're sorry, but we couldn't find the page you were looking for.": "Het spijt ons, maar we konden de pagina die u zocht niet vinden."
 }

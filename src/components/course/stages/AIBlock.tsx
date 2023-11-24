@@ -34,12 +34,10 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
             void main();
         } else {
             setText(
-                'Live AI has been disabled in the .env file. Showing prompt; ' +
-                    options.prompt,
+                `Live AI has been disabled in the .env file. Showing prompt; ${options.prompt}`,
             );
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [options.prompt]);
+    }, [openai.chat.completions, options.prompt]);
 
     return (
         <BlockWrapper>

@@ -11,6 +11,8 @@
     "Redo": "Wiederholen",
     "Search...": "Suchen...",
     "Welcome!": "Willkommen!",
+    "Description": "Beschreibung",
+    "Open Tool": "Werkzeug öffnen",
     "Skip": "Überspringen",
     "Next": "Weiter",
     "Home Screen": "Startbildschirm",
@@ -31,5 +33,7 @@
     "Enable dark mode": "Dunkelmodus aktivieren",
     "Page not found": "Seite nicht gefunden!",
     "Animations": "Animationen",
+    "Prompt Library": "Prompt Bibliothek",
+    "Filter by tool and sector, hold long on a tag to select only that one.": "Filtern Sie nach Werkzeug und Sektor, halten Sie lange auf einem Tag, um nur diesen auszuwählen.",
     "We're sorry, but we couldn't find the page you were looking for.": "Es tut uns leid, aber wir konnten die von Ihnen gesuchte Seite nicht finden."
 }

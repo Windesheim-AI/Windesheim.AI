@@ -118,8 +118,8 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
 export const shadow = {
     shadowColor: '#000',
     shadowOffset: {
-        width: 5,
-        height: 5,
+        width: 3,
+        height: 3,
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,

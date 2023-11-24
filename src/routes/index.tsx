@@ -9,6 +9,8 @@ import { Courses } from '../screens/Course/Courses';
 import Stage from '../screens/Course/Stage';
 import StageOverview from '../screens/Course/StageOverview';
 import { HomeScreen } from '../screens/Home';
+import { PromptLibrary } from '../screens/PromptLibrary/PromptLibrary';
+import { PromptPage } from '../screens/PromptLibrary/PromptPage';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { StudyScreen } from '../screens/Study';
 import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
@@ -31,6 +33,8 @@ const screens = [
     { name: Routes.CourseFinished, component: CourseFinished },
     { name: Routes.StageOverview, component: StageOverview },
     { name: Routes.Courses, component: Courses },
+    { name: Routes.PromptLibrary, component: PromptLibrary },
+    { name: Routes.Prompt, component: PromptPage },
 ];
 
 export const Router = () => {
