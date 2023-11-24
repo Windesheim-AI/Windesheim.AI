@@ -2,7 +2,7 @@ import { Course } from '../../src/types/Course';
 
 describe('Courses page tests', () => {
     beforeEach(() => {
-        cy.visit('/');
+        cy.visit('http://localhost:19006/');
         cy.location('pathname', { timeout: 60000 }).should('include', '/');
 
         cy.visit('/settings');
