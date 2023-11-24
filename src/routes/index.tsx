@@ -8,14 +8,14 @@ import { Courses } from '../screens/Course/Courses';
 import Stage from '../screens/Course/Stage';
 import StageOverview from '../screens/Course/StageOverview';
 import { HomeScreen } from '../screens/Home';
+import { PromptLibrary } from '../screens/PromptLibrary/PromptLibrary';
+import { PromptPage } from '../screens/PromptLibrary/PromptPage';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { StudyScreen } from '../screens/Study';
 import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
 import { UsecaseScreen } from '../screens/Usecase/Usecase';
 import { WTRScreen } from '../screens/WTR/WTR';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
-import { PromptLibrary } from '../screens/PromptLibrary/PromptLibrary';
-import { PromptPage } from '../screens/PromptLibrary/PromptPage';
 
 const Stack = createNativeStackNavigator();
 
