@@ -31,8 +31,8 @@ jobs:
                   echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
                   echo APP_DEBUG="false" >> .env
                   echo AI_ENABLED="false" >> .env
-                  echo WP_USERNAME="wp-username" >> .env
-                  echo WP_PASSWORD="wp-password" >> .env
+                  echo WP_USERNAME=${{ secrets.WP_USERNAME }} >> .env
+                  echo WP_PASSWORD=${{ secrets.WP_PASSWORD }} >> .env
                   cat .env
 
             - name: Install dependencies
@@ -75,8 +75,8 @@ jobs:
                   echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
                   echo APP_DEBUG="false" >> .env
                   echo AI_ENABLED="false" >> .env
-                  echo WP_USERNAME="wp-username" >> .env
-                  echo WP_PASSWORD="wp-password" >> .env
+                  echo WP_USERNAME=${{ secrets.WP_USERNAME }} >> .env
+                  echo WP_PASSWORD=${{ secrets.WP_PASSWORD }} >> .env
                   cat .env
 
             - name: Cypress run
