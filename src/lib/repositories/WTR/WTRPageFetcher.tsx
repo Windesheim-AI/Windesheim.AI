@@ -1,5 +1,7 @@
 import { appConfig } from '../../../../app.config';
 import { fetchJsonData, useDataFetcher } from '../../fetcher/DataFetcher';
+import { getEnvValue } from '../../utility/env/env';
+import { EnvOptions } from '../../utility/env/env.values';
 
 interface PageData {
     content: {
@@ -9,7 +11,10 @@ interface PageData {
 
 export const useFetchWTRPage = (page: string) => {
     const { data, isLoading } = useDataFetcher<PageData[]>(fetchJsonData, {
-        url: appConfig.backendUrl + '/wp-json/wp/v2/pages?slug=' + page,
+        url:
+            getEnvValue(EnvOptions.WordPressURL) +
+            '/wp-json/wp/v2/pages?slug=' +
+            page,
     });
 
     let content = '';

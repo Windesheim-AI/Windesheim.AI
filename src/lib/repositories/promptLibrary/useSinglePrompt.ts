@@ -6,7 +6,10 @@ import { EnvOptions } from '../../utility/env/env.values';
 
 export default function useSinglePrompt(id: string) {
     return useDataFetcher<Prompt>(fetchJsonData, {
-        url: appConfig.backendUrl + '/wp-json/winpl/v1/prompts/' + id,
+        url:
+            getEnvValue(EnvOptions.WordPressPluginURL) +
+            '/wp-json/winpl/v1/prompts/' +
+            id,
         username: getEnvValue(EnvOptions.WordPressUsername),
         password: getEnvValue(EnvOptions.WordPressPassword),
     });
