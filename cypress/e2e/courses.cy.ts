@@ -2,9 +2,6 @@ import { Course } from '../../src/types/Course';
 
 describe('Courses page tests', () => {
     beforeEach(() => {
-        cy.visit('http://localhost:19006/');
-        cy.location('pathname', { timeout: 60000 }).should('include', '/');
-
         cy.visit('/settings');
         cy.get('[data-testid="tutorial-skip-button"]').click();
         cy.get('[data-testid="language-switcher"]').click();
