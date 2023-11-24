@@ -45,7 +45,7 @@ const FirstCollect = () => {
         useState<boolean>(false);
 
     const handleBackgroundInput = () => {
-        setShowBackgroundInput(false);
+        setShowBackgroundInput(true);
     };
 
     const handleToggleFirstTimeUser = () => {

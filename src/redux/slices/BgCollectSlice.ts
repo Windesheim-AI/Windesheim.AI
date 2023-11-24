@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface BackgroundState {
     position: string;
@@ -15,7 +15,7 @@ const initialState: BackgroundState = {
 };
 
 export const bgCollectSlice = createSlice({
-    name: 'background',
+    name: 'bgCollect',
     initialState,
     reducers: {
         setPosition: (state, action: PayloadAction<string>) => {
@@ -40,4 +40,4 @@ export const {
     setIsFirstTimeUser,
 } = bgCollectSlice.actions;
 
-export default bgCollectSlice.actions;
+export default bgCollectSlice.reducer;
