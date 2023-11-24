@@ -2,6 +2,7 @@ import { Course } from '../../src/types/Course';
 
 describe('Courses page tests', () => {
     beforeEach(() => {
+        cy.wait(30_000);
         cy.visit('/settings');
         cy.get('[data-testid="tutorial-skip-button"]').click();
         cy.get('[data-testid="language-switcher"]').click();
