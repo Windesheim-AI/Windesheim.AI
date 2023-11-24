@@ -6,6 +6,7 @@ import { getEnvValue } from '../../../lib/utility/env/env';
 import { EnvOptions } from '../../../lib/utility/env/env.values';
 import { AIOptions } from '../../../types/CourseStageBlock';
 import AIGeneratedOutput from '../AIGeneratedOutput';
+import { StyleSheet } from 'react-native';
 
 export default function AIRenderer({ options }: { options: AIOptions }) {
     const [text, setText] = useState(''); // set default value to an empty string
@@ -34,15 +35,21 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
             void main();
         } else {
             setText(
-                'Live AI has been disabled in the .env file. Showing prompt; ' +
-                    options.prompt,
+                `Live AI has been disabled in the .env file. Showing prompt; ${options.prompt}`,
             );
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [options.prompt]);
 
+    const styles = StyleSheet.create({
+        block: {
+            marginTop: 20,
+            marginBottom: 20,
+        },
+    });
+
     return (
-        <BlockWrapper>
+        <BlockWrapper style={styles.block}>
             <AIGeneratedOutput text={text} prompt={options.prompt} />
         </BlockWrapper>
     );

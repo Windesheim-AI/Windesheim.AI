@@ -10,7 +10,7 @@ export type AppConfigOptions = {
 };
 
 export const appConfig: AppConfigOptions = {
-    backendUrl: 'https://windesheim.tech',
+    backendUrl: 'https://www.windesheim.tech',
     splashScreenTime: 500,
     localStoragePrefixes: {
         translations: 'translations',

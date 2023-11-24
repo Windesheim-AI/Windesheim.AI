@@ -1,17 +1,12 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 
 export default function BlockWrapper({
     children,
+    style,
 }: {
     children: React.ReactNode;
+    style?: ViewStyle;
 }) {
-    const styles = StyleSheet.create({
-        block: {
-            marginTop: 20,
-            marginBottom: 20,
-        },
-    });
-
-    return <View style={styles.block}>{children}</View>;
+    return <View style={style}>{children}</View>;
 }
