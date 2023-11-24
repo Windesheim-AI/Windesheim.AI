@@ -11,7 +11,7 @@ interface PageData {
 export const useFetchWTRPage = (page: string) => {
     const { data, isLoading } = useDataFetcher<PageData[]>(fetchJsonData, {
         url:
-            getEnvValue(EnvOptions.WordPressURL) +
+            getEnvValue(EnvOptions.WordPressContentURL) +
             '/wp-json/wp/v2/pages?slug=' +
             page,
     });

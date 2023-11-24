@@ -6,7 +6,7 @@ import { EnvOptions } from '../../utility/env/env.values';
 export default function useAllCourses() {
     return useDataFetcher<Course[]>(fetchJsonData, {
         url:
-            getEnvValue(EnvOptions.WordPressPluginURL) +
+            getEnvValue(EnvOptions.WordPressDataURL) +
             '/wp-json/winai/v1/courses/',
         username: getEnvValue(EnvOptions.WordPressUsername),
         password: getEnvValue(EnvOptions.WordPressPassword),
