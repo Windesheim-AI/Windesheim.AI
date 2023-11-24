@@ -38,6 +38,7 @@ export const Layout = ({ children }: LayoutProps) => {
         },
         pos_r: {
             position: 'relative',
+            marginTop: 50,
         },
         wrapper: {
             width: '100%',
@@ -70,6 +71,7 @@ export const Layout = ({ children }: LayoutProps) => {
                     <View style={styles.innerContainer}>{children}</View>
                     <Tutorial />
                 </Animated.View>
+
                 <View style={styles.pos_r}>
                     <NavBar />
                 </View>

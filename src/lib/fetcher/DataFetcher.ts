@@ -3,6 +3,7 @@ import { Buffer } from 'buffer';
 import { BareFetcher, Fetcher, SWRConfiguration } from 'swr';
 
 import { HttpStatusCode } from '../../types/Response';
+import { handleError } from '../utility/errorHandler';
 
 interface FetcherOptions {
     input: RequestInfo | URL | string;
@@ -17,14 +18,11 @@ export const fetchData = async (options: FetcherOptions) => {
     }
 
     if (response.status !== HttpStatusCode.Ok.valueOf()) {
-        // eslint-disable-next-line no-console
-        console.error(
-            'An error occurred while fetching the data. Received status code: ' +
-                response.status,
-        );
-        throw new Error(
-            'An error occurred while fetching the data. Received status code: ' +
-                response.status,
+        handleError(
+            new Error(
+                'An error occurred while fetching the data. Received status code: ' +
+                    response.status,
+            ),
         );
     }
 

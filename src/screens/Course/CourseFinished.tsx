@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { StyleSheet, View, Animated } from 'react-native';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
@@ -9,6 +9,8 @@ import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
 import { stateColorSchemes, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { useAnimatedValue } from '../../lib/utility/animate';
+import { useAppSelector } from '../../redux/Hooks';
 import { Routes } from '../../routes/routes';
 import { Course } from '../../types/Course';
 
@@ -36,15 +38,27 @@ export default function CourseFinished() {
         },
     });
 
-    const spinValue = useRef(new Animated.Value(0)).current;
+    // Usage in your component
+    const [spinValue, _] = useAnimatedValue(0);
 
-    Animated.loop(
-        Animated.timing(spinValue, {
-            toValue: 1,
-            duration: 2500,
-            useNativeDriver: true,
-        }),
-    ).start();
+    const animationState = useAppSelector((state) => state.animation);
+    if (!animationState.isEnabled) {
+        Animated.loop(
+            Animated.timing(spinValue, {
+                toValue: 1,
+                duration: 0,
+                useNativeDriver: true,
+            }),
+        ).start();
+    } else {
+        Animated.loop(
+            Animated.timing(spinValue, {
+                toValue: 1,
+                duration: 2500,
+                useNativeDriver: true,
+            }),
+        ).start();
+    }
 
     const spin = spinValue.interpolate({
         inputRange: [0, 1],
@@ -79,13 +93,15 @@ export default function CourseFinished() {
                     testId="go-back-to-courses-button"
                 />
             </View>
-            <ConfettiCannon
-                count={40}
-                origin={{ x: -10, y: 50 }}
-                explosionSpeed={500}
-                fallSpeed={2000}
-                fadeOut
-            />
+            {animationState.isEnabled ? (
+                <ConfettiCannon
+                    count={40}
+                    origin={{ x: -10, y: 50 }}
+                    explosionSpeed={500}
+                    fallSpeed={2000}
+                    fadeOut
+                />
+            ) : null}
         </PageView>
     );
 }

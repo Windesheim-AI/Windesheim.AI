@@ -28,9 +28,10 @@ jobs:
             - name: 'Create & configure env file'
               run: |
                   touch .env
-                  echo EXPO_PUBLIC_GTR_API_KEY=${{ secrets.EXPO_PUBLIC_GTR_API_KEY }} >> .env
                   echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
                   echo AI_ENABLED="false" >> .env
+                  echo WP_USERNAME="wp-username" >> .env
+                  echo WP_PASSWORD="wp-password" >> .env
                   cat .env
 
             - name: Install dependencies
@@ -70,9 +71,10 @@ jobs:
             - name: 'Create & configure env file'
               run: |
                   touch .env
-                  echo EXPO_PUBLIC_GTR_API_KEY=${{ secrets.EXPO_PUBLIC_GTR_API_KEY }} >> .env
                   echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
                   echo AI_ENABLED="false" >> .env
+                  echo WP_USERNAME="wp-username" >> .env
+                  echo WP_PASSWORD="wp-password" >> .env
                   cat .env
 
             - name: Cypress run

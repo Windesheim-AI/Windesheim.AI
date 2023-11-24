@@ -2,13 +2,11 @@ import { appConfig } from '../../app.config';
 
 describe('Tests the splashscreen', () => {
     beforeEach(() => {
+        cy.visit('/settings');
+        cy.get('[data-testid="tutorial-skip-button"]').click();
+        cy.get('[data-testid="language-switcher"]').click();
+        cy.contains('English').click();
         cy.visit('/');
-        cy.window()
-            .its('store')
-            .invoke('dispatch', {
-                type: 'tutorial/setCompleted',
-                payload: { completed: true },
-            });
     });
 
     it('can see the logos on the splashscreen', () => {

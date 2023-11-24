@@ -12,12 +12,6 @@ import { RouteLinking } from './src/routes/routeLinking';
 import AppProviders from './src/screens/AppProviders';
 
 export default function App() {
-    // @ts-ignore
-    if (window.Cypress) {
-        // @ts-ignore
-        window.store = store;
-    }
-
     return (
         <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Provider store={store}>

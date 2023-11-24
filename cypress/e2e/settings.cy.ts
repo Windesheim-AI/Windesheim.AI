@@ -1,12 +1,10 @@
 describe('App settings test', () => {
     beforeEach(() => {
+        cy.visit('/settings');
+        cy.get('[data-testid="tutorial-skip-button"]').click();
+        cy.get('[data-testid="language-switcher"]').click();
+        cy.contains('English').click();
         cy.visit('/');
-        cy.window()
-            .its('store')
-            .invoke('dispatch', {
-                type: 'tutorial/setCompleted',
-                payload: { completed: true },
-            });
     });
 
     it('can change the theme', () => {
@@ -16,7 +14,6 @@ describe('App settings test', () => {
         cy.get('[data-testid="Theme switcher input"] > input').click();
     });
 
-    // Currently broken because of the unauthorized Google Cloud API.
     it('can change the language', () => {
         cy.visit('/settings');
         cy.contains('English');
@@ -24,7 +21,7 @@ describe('App settings test', () => {
         cy.contains('Enable dark mode');
         cy.contains('Language');
 
-        cy.get('[data-testid="language-switcher"]').click({ force: true });
+        cy.get('[data-testid="language-switcher"]').click();
         cy.contains('Nederlands').click();
         cy.contains('Instellingen');
         cy.contains('Activeer donkere modus');

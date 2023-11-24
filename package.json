@@ -1,5 +1,5 @@
 {
-    "name": "wingai",
+    "name": "windesheim.ai",
     "version": "1.0.0",
     "main": "node_modules/expo/AppEntry.js",
     "engines": {
@@ -43,7 +43,7 @@
         "@lottiefiles/react-lottie-player": "^3.5.3",
         "@mui/material": "^5.14.17",
         "@nandorojo/swr-react-native": "^1.2.0",
-        "@react-native-async-storage/async-storage": "1.19.5",
+        "@react-native-async-storage/async-storage": "1.18.2",
         "@react-native-community/eslint-config": "^3.2.0",
         "@react-native-community/netinfo": "9.3.10",
         "@react-native/metro-config": "^0.73.0",
@@ -56,7 +56,7 @@
         "expo-font": "~11.4.0",
         "expo-linking": "~5.0.2",
         "expo-router": "^2.0.11",
-        "expo-status-bar": "~1.7.1",
+        "expo-status-bar": "~1.6.0",
         "i18next": "^23.7.6",
         "lottie-react-native": "5.1.6",
         "openai": "^4.16.1",
@@ -100,7 +100,7 @@
         "@types/jest": "^29.5.5",
         "@types/node": "^20.8.9",
         "@types/react": "~18.2.31",
-        "@types/react-dom": "~18.2.15",
+        "@types/react-dom": "~18.0.10",
         "@types/react-native-vector-icons": "^6.4.15",
         "@types/react-test-renderer": "^18.0.3",
         "@types/redux-mock-store": "^1.0.4",
