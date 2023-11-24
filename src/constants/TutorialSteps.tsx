@@ -10,7 +10,7 @@ export const tutorialSteps: TutorialStep[] = [
     {
         Title: 'Welcome!',
         Subtext:
-            "Welcome to the WingAI app! This tutorial will explain all of the features in the app and where you can find certain elements. You can also skip this tutorial if you don't find it necessary.",
+            "Welcome to the Windesheim.AI app! This tutorial will explain all of the features in the app and where you can find certain elements. You can also skip this tutorial if you don't find it necessary.",
         NextPage: '',
     },
     {
