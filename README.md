@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/Windesheim-AI-App/Windesheim.AI/actions/workflows/app.build.yml/badge.svg)](https://github.com/Windesheim-AI-App/WindesheimAI/actions/workflows/app.build.yml)
 ![check-code-coverage](https://img.shields.io/badge/code--coverage-73.83%25-yellow)
 
-This is the repository for the Windesheim.AI app.
+This is the codebase for the Windesheim.AI app.
 
 ## Prerequisites
 
