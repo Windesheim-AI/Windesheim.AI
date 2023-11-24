@@ -45,6 +45,8 @@ export const RouteLinking = {
             },
             [Routes.Courses]: 'courses',
             [Routes.LoadingScreen]: 'LoadingScreen',
+            [Routes.FirstCollect]: 'FirstCollect',
+            [Routes.MyInfo]: 'MyInfo',
         },
     },
 };

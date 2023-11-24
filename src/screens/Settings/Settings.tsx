@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { BgcollectButton } from '../../components/Bgcollect/BgcollectButton';
 import { SettingCard } from '../../components/general/card/SettingCard';
 import { PageView } from '../../components/general/views/PageView';
 import { FontSwitcher } from '../../components/settings/FontSwitcher';
@@ -32,6 +33,14 @@ export const SettingsScreen = () => {
 
             <SettingCard icon="redo" title="Tutorial" testID="tutorial reset">
                 <TutorialRedoButton />
+            </SettingCard>
+
+            <SettingCard
+                icon="user-edit"
+                title="Background"
+                testID="Background"
+            >
+                <BgcollectButton />
             </SettingCard>
         </PageView>
     );

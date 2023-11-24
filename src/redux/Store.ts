@@ -3,6 +3,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import { PersistConfig } from 'redux-persist/es/types';
 
+import { bgCollectSlice } from './slices/BgCollectSlice';
 import { courseDataSlice } from './slices/CourseDataSlice';
 import { fontSlice } from './slices/FontSlice';
 import { languageSlice } from './slices/LanguageSlice';
@@ -25,6 +26,7 @@ const persistConfig: PersistConfig<PersistConfigDataType> = {
         fontSlice.name,
         courseDataSlice.name,
         tutorialSlice.name,
+        bgCollectSlice.name,
     ],
 };
 
@@ -38,6 +40,7 @@ export const rootReducer = combineReducers({
     fontSize: fontSlice.reducer,
     courseData: courseDataSlice.reducer,
     tutorial: tutorialSlice.reducer,
+    bgCollect: bgCollectSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

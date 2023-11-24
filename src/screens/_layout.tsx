@@ -8,13 +8,14 @@ import {
     StatusBar,
 } from 'react-native';
 
+import FirstCollect from './UserBg/FirstCollect';
 import { NotificationList } from '../components/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { Tutorial } from '../components/tutorial/Tutorial';
 import { useColorConfig, shadow } from '../constants/Colors';
 import { useAnimatedValue } from '../lib/utility/animate';
-import { useAppSelector } from '../redux/Hooks';
+import { RootState, useAppSelector } from '../redux/Hooks';
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -49,6 +50,10 @@ export const Layout = ({ children }: LayoutProps) => {
         },
     });
 
+    const isFirstTimeUser = useAppSelector<boolean>(
+        (state: RootState) => state.bgCollect.isFirstTimeUser,
+    );
+
     const [marginBottomAnimation, animateMarginBottomAnimation] =
         useAnimatedValue(20);
 
@@ -56,24 +61,46 @@ export const Layout = ({ children }: LayoutProps) => {
         animateMarginBottomAnimation(navigation.showNavBar ? 70 : 10, 200);
     }, [animateMarginBottomAnimation, navigation]);
 
-    return (
-        <>
-            <Background />
-            <SafeAreaView style={styles.wrapper}>
-                <NotificationList />
-                <Animated.View // Use Animated.View here
-                    style={{
-                        ...styles.contentContainer,
-                        marginBottom: marginBottomAnimation,
-                    }}
-                >
-                    <View style={styles.innerContainer}>{children}</View>
-                    <Tutorial />
-                </Animated.View>
-                <View style={styles.pos_r}>
-                    <NavBar />
-                </View>
-            </SafeAreaView>
-        </>
-    );
+    if (!isFirstTimeUser) {
+        return (
+            <>
+                <Background />
+                <SafeAreaView style={styles.wrapper}>
+                    <NotificationList />
+                    <Animated.View // Use Animated.View here
+                        style={{
+                            ...styles.contentContainer,
+                            marginBottom: marginBottomAnimation,
+                        }}
+                    >
+                        <FirstCollect />
+                    </Animated.View>
+                    <View style={styles.pos_r}>
+                        <NavBar />
+                    </View>
+                </SafeAreaView>
+            </>
+        );
+    } else {
+        return (
+            <>
+                <Background />
+                <SafeAreaView style={styles.wrapper}>
+                    <NotificationList />
+                    <Animated.View // Use Animated.View here
+                        style={{
+                            ...styles.contentContainer,
+                            marginBottom: marginBottomAnimation,
+                        }}
+                    >
+                        <View style={styles.innerContainer}>{children}</View>
+                        <Tutorial />
+                    </Animated.View>
+                    <View style={styles.pos_r}>
+                        <NavBar />
+                    </View>
+                </SafeAreaView>
+            </>
+        );
+    }
 };
