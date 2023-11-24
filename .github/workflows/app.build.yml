@@ -59,7 +59,7 @@ jobs:
         needs: build
         strategy:
             matrix:
-                test-platform: [firefox, chromium]
+                test-platform: [firefox, electron]
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
