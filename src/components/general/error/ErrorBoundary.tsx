@@ -6,15 +6,12 @@ import {
     View,
     TouchableOpacity,
     StyleSheet,
-    Animated,
     Dimensions,
     Platform,
 } from 'react-native';
 
 import { appConfig } from '../../../../app.config';
 import animationSource from '../../../assets/json/500_man.json';
-import { useAnimatedValue } from '../../../lib/utility/animate';
-import { useAppSelector } from '../../../redux/Hooks';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -68,49 +65,19 @@ const styles = StyleSheet.create({
     },
 });
 
-interface ErrorFallbackProps {
+interface Props {
     error: Error;
     resetError: () => void;
 }
 
-const ErrorFallback: React.FC<ErrorFallbackProps> = ({
-    error,
-    resetError,
-}: ErrorFallbackProps) => {
-    const [scaleValue, _] = useAnimatedValue(1);
-    const animationState = useAppSelector((state) => state.animation);
-
-    const handlePress = () => {
-        Animated.sequence([
-            Animated.timing(scaleValue, {
-                toValue: 1.2,
-                duration: 100,
-                useNativeDriver: true,
-            }),
-            Animated.timing(scaleValue, {
-                toValue: 1,
-                duration: 100,
-                useNativeDriver: true,
-            }),
-        ]).start(() => {
-            resetError();
-        });
-    };
-
+const ErrorFallback: React.FC<Props> = ({ error, resetError }: Props) => {
     return (
         <View style={styles.container} testID="error-fallback-container">
             <View style={styles.animationContainer}>
-                {Platform.OS !== 'web' && animationState.isEnabled ? (
+                {Platform.OS !== 'web' ? (
                     <LottieView
                         source={animationSource}
                         autoPlay
-                        loop={animationState.isEnabled} // Set loop based on animation state
-                        style={styles.animationContainer}
-                    />
-                ) : Platform.OS !== 'web' && !animationState.isEnabled ? (
-                    <LottieView
-                        source={animationSource}
-                        progress={1}
                         style={styles.animationContainer}
                     />
                 ) : null}
@@ -121,11 +88,10 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({
             </Text>
             <View style={styles.textContainer}>
                 <TouchableOpacity
-                    style={[
-                        styles.button,
-                        { transform: [{ scale: scaleValue }] },
-                    ]}
-                    onPress={handlePress}
+                    style={[styles.button, { transform: [{ scale: 1 }] }]}
+                    onPress={() => {
+                        resetError();
+                    }}
                 >
                     <Text style={styles.buttonText}>Try again</Text>
                 </TouchableOpacity>
