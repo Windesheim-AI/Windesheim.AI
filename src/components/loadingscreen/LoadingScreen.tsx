@@ -56,12 +56,8 @@ export const LoadingScreen = () => {
                 ) : (
                     <Image
                         testID="LogoBlack"
-                        source={
-                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                            theme === 'light'
-                                ? require('../../assets/images/Logo/Logo_light.png')
-                                : require('../../assets/images/Logo/Logo_dark.png')
-                        }
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        source={require('../../assets/images/Logo/Logo_black.png')}
                         style={styles.centerImage}
                     />
                 )}
