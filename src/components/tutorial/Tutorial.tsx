@@ -168,7 +168,8 @@ export const Tutorial = () => {
                                         <TextTranslated
                                             style={styles.buttonText}
                                             text="Next"
-                                        />{' '}
+                                        />
+                                        {'\n'}
                                         {tutorialStep + 1}
                                         {' / '}
                                         {tutorialSteps.length}
