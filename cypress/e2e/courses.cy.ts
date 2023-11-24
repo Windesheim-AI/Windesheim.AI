@@ -102,4 +102,30 @@ describe('Courses page tests', () => {
         // check if the course is displayed
         cy.contains(courses[0].title);
     });
+
+    it('does not crash when navigating to non-existing course overview', () => {
+        cy.intercept('GET', '/wp-json/winai/v1/courses/5', {
+            fixture: 'courses/test-course-empty.json',
+        }).as('getCourse');
+
+        cy.visit('/course/5/overview');
+        cy.wait(['@getCourse']);
+
+        cy.contains('Course not found');
+        cy.get('[data-testid="GoBackButton"]').click();
+        cy.contains('Courses');
+    });
+
+    it('does not crash when navigating to non-existing course stage', () => {
+        cy.intercept('GET', '/wp-json/winai/v1/courses/3', {
+            fixture: 'courses/test-course-empty.json',
+        }).as('getCourse');
+
+        cy.visit('/course/3/3');
+        cy.wait(['@getCourse']);
+
+        cy.contains('Course not found');
+        cy.get('[data-testid="GoBackButton"]').click();
+        cy.contains('Courses');
+    });
 });
