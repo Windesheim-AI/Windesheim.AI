@@ -1,5 +1,5 @@
 import { useRoute } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, Animated } from 'react-native';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
@@ -15,17 +15,19 @@ import { useAnimatedValue } from '../../lib/utility/animate';
 import { useAppSelector } from '../../redux/Hooks';
 import { Routes } from '../../routes/routes';
 
-type CourseFinishedProps = {
-    courseId: string;
+type CourseFinishedRouteParams = {
+    courseId: string | undefined;
 };
 
 export default function CourseFinished() {
     const colors = useColorConfig();
     const route = useRoute();
-    const params = route.params as CourseFinishedProps;
+    const fonts = useFonts();
+
+    const params = route.params as CourseFinishedRouteParams;
     const { data, error, isLoading } = useSingleCourse(params.courseId); //later replaced dby a fetch.
     const course = data;
-    const fonts = useFonts();
+
     const styles = StyleSheet.create({
         courseTitle: {
             ...fonts.h1,
@@ -47,16 +49,18 @@ export default function CourseFinished() {
     // Usage in your component
     const [spinValue, _] = useAnimatedValue(0);
 
+    const spin = spinValue.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg'],
+    });
+
     const animationState = useAppSelector((state) => state.animation);
-    if (!animationState.isEnabled) {
-        Animated.loop(
-            Animated.timing(spinValue, {
-                toValue: 1,
-                duration: 0,
-                useNativeDriver: true,
-            }),
-        ).start();
-    } else {
+    // Call startAnimation when the component mounts
+    useEffect(() => {
+        if (!animationState.isEnabled) {
+            return;
+        }
+
         Animated.loop(
             Animated.timing(spinValue, {
                 toValue: 1,
@@ -64,12 +68,7 @@ export default function CourseFinished() {
                 useNativeDriver: true,
             }),
         ).start();
-    }
-
-    const spin = spinValue.interpolate({
-        inputRange: [0, 1],
-        outputRange: ['0deg', '360deg'],
-    });
+    }, [animationState.isEnabled, spinValue]);
 
     return (
         <DataWrapper error={error} isLoading={isLoading}>

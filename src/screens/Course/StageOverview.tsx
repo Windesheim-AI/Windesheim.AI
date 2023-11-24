@@ -47,6 +47,20 @@ export default function StageOverview() {
         navigator.navigate(Routes.Courses.toString());
     }
 
+    if (!course?.stageData && !isLoading) {
+        return (
+            <PageView>
+                <View style={styles.container}>
+                    <TextTranslated style={fonts.h1} text="Course not found" />
+                    <GoBackButton
+                        buttonText="Courses"
+                        onPress={navigateBackToCourses}
+                    />
+                </View>
+            </PageView>
+        );
+    }
+
     return (
         <DataWrapper error={error} isLoading={isLoading}>
             <PageView>
