@@ -71,7 +71,10 @@ export function PromptLibrary() {
                     onPress={() => navigation.navigate(Routes.Study)}
                     buttonText="Study"
                 />
-                <TextTranslated text="Filter by tool and sector, hold long on a tag to select only that one." />
+                <TextTranslated
+                    style={fonts.description}
+                    text="Filter by tool and sector, hold long on a tag to select only that one."
+                />
                 <View style={styles.filterContainer}>
                     <ChipFilter
                         activeList={selectedTools}
