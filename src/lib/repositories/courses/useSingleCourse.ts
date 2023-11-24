@@ -6,7 +6,7 @@ import { EnvOptions } from '../../utility/env/env.values';
 
 export default function useSingleCourse(id: string) {
     return useDataFetcher<Course>(fetchJsonData, {
-        url: appConfig.backendUrl + '/wp-json/wingai/v1/courses/' + id,
+        url: appConfig.backendUrl + '/wp-json/winai/v1/courses/' + id,
         username: getEnvValue(EnvOptions.WordPressUsername),
         password: getEnvValue(EnvOptions.WordPressPassword),
     });
