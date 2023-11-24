@@ -38,7 +38,7 @@ export const Layout = ({ children }: LayoutProps) => {
         },
         pos_r: {
             position: 'relative',
-            marginTop: 50,
+            marginTop: navigation.showNavBar ? 50 : 0,
         },
         wrapper: {
             width: '100%',
