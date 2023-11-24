@@ -32,7 +32,7 @@ export const SettingsScreen = () => {
             </SettingCard>
 
             <SettingCard
-                icon="cogs"
+                icon="hand-sparkles"
                 title="Animation"
                 testID="Animation Toggle"
             >
