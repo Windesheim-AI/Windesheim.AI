@@ -32,6 +32,7 @@ export function PromptPage() {
     const promptId = params.promptId;
     const { data, isLoading, error } = useSinglePrompt(promptId);
     const prompt = data;
+
     const styles = StyleSheet.create({
         title: {
             ...fonts.h1,
@@ -122,13 +123,16 @@ export function PromptPage() {
                     </Chip>
                 </View>
                 <Card>
-                    <Text style={styles.subtitle}>Description</Text>
+                    <TextTranslated
+                        style={styles.subtitle}
+                        text="Description"
+                    />
                     <Text style={styles.cardDescription}>
                         {prompt?.description}
                     </Text>
                 </Card>
                 <Card>
-                    <Text style={styles.subtitle}>Prompt</Text>
+                    <TextTranslated style={styles.subtitle} text="Prompt" />
                     <Text style={styles.cardDescription}>{prompt?.prompt}</Text>
                 </Card>
 
