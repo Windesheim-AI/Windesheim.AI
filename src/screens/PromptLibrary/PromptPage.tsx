@@ -50,28 +50,36 @@ export function PromptPage() {
         tagContainer: {
             flexDirection: 'row',
             flexWrap: 'wrap',
+            marginTop: 10,
             marginBottom: 10,
         },
         sectorTag: {
             marginRight: 5,
             marginBottom: 5,
-            backgroundColor: colors.success,
-            borderColor: colors.success,
+            backgroundColor: stateColorSchemes.success[1],
+            borderColor: stateColorSchemes.success[1],
+            color: colors.white,
             ...shadow,
         },
         toolTag: {
             marginRight: 5,
             marginBottom: 5,
-            backgroundColor: colors.primary,
-            borderColor: colors.primary,
+            backgroundColor: stateColorSchemes.primary[1],
+            borderColor: stateColorSchemes.primary[1],
+            color: colors.white,
             ...shadow,
         },
         promptPatternTag: {
             marginRight: 5,
             marginBottom: 5,
-            backgroundColor: colors.danger,
-            borderColor: colors.danger,
+            backgroundColor: stateColorSchemes.danger[1],
+            borderColor: stateColorSchemes.danger[1],
+            color: colors.white,
             ...shadow,
+        },
+        chipText: {
+            color: colors.white,
+            ...fonts.description,
         },
     });
 
@@ -91,7 +99,8 @@ export function PromptPage() {
                     <Chip
                         style={styles.toolTag}
                         mode="outlined"
-                        textStyle={fonts.description}
+                        textStyle={styles.chipText}
+                        icon="wrench"
                     >
                         {prompt?.tool}
                     </Chip>
@@ -99,6 +108,7 @@ export function PromptPage() {
                         style={styles.sectorTag}
                         mode="outlined"
                         textStyle={fonts.description}
+                        icon="briefcase"
                     >
                         {prompt?.sector}
                     </Chip>
@@ -106,6 +116,7 @@ export function PromptPage() {
                         style={styles.promptPatternTag}
                         mode="outlined"
                         textStyle={fonts.description}
+                        icon="clipboard"
                     >
                         {prompt?.promptPattern}
                     </Chip>
