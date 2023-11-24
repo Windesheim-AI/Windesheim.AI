@@ -99,9 +99,9 @@ export default function Stage() {
     }
 
     return (
-        <DataWrapper error={error} isLoading={isLoading}>
-            <View style={styles.container}>
-                <PageScrollView>
+        <PageScrollView>
+            <DataWrapper error={error} isLoading={isLoading}>
+                <View style={styles.container}>
                     {stage ? (
                         <>
                             <CourseNavigation
@@ -142,8 +142,8 @@ export default function Stage() {
                             text="Course not found!"
                         />
                     )}
-                </PageScrollView>
-            </View>
-        </DataWrapper>
+                </View>
+            </DataWrapper>
+        </PageScrollView>
     );
 }
