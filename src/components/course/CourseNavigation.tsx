@@ -1,10 +1,10 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
 import { TextTranslated } from '../general/text/TextTranslated';
@@ -47,6 +47,8 @@ export function CourseNavigation({
         title: {
             ...fonts.courseTitle,
             flexDirection: 'row',
+            overflow: 'hidden',
+            width: '97%',
             marginBottom: 3,
         },
         icon: {
@@ -90,14 +92,12 @@ export function CourseNavigation({
     });
 
     function onDropdownPress(stageId: string) {
-        //@ts-ignore
-        navigation.navigate('Course', { courseId, stageId });
+        navigation.navigate(Routes.CourseStage, { courseId, stageId });
         setShowDropdown(false);
     }
 
     function onCourseOverviewPress() {
-        //@ts-ignore
-        navigation.navigate(Routes.CourseOverview, { courseId });
+        navigation.navigate(Routes.StageOverview, { courseId });
         setShowDropdown(false);
     }
 
@@ -106,6 +106,7 @@ export function CourseNavigation({
             <IntractableView
                 style={styles.topBar}
                 onPress={() => setShowDropdown(!showDropdown)}
+                testID="course-navigation"
             >
                 <View style={styles.block}>
                     <View style={styles.title}>
@@ -137,6 +138,7 @@ export function CourseNavigation({
                     <IntractableView
                         style={styles.courseOverview}
                         onPress={onCourseOverviewPress}
+                        testID="course-overview-button"
                     >
                         <TextTranslated
                             style={styles.courseOverview}
@@ -146,6 +148,7 @@ export function CourseNavigation({
                     {stages?.map((stage: Stage) => (
                         <IntractableView
                             key={stage.id}
+                            testID={`stage-${stage.id}`}
                             style={[
                                 styles.dropdownText,
                                 stage.id === currentStageId && {

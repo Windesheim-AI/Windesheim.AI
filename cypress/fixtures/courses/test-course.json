@@ -1,0 +1,51 @@
+{
+    "id": "1",
+    "title": "tset",
+    "description": "test",
+    "stages": [
+        {
+            "id": "1",
+            "title": "testfda",
+            "blocks": [
+                {
+                    "id": "2",
+                    "blockType": "button",
+                    "content": {
+                        "text": "test",
+                        "navigateToStageId": "poah",
+                        "colorOptions": "green"
+                    }
+                },
+                {
+                    "id": "1",
+                    "blockType": "text",
+                    "content": {
+                        "text": "tesfdsafadsfdsa"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "title": "testfda",
+            "blocks": [
+                {
+                    "id": "4",
+                    "blockType": "button",
+                    "content": {
+                        "text": "test",
+                        "navigateToStageId": "poah",
+                        "colorOptions": "green"
+                    }
+                },
+                {
+                    "id": "6",
+                    "blockType": "text",
+                    "content": {
+                        "text": "tesfdsafadsfdsa"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -13,7 +13,10 @@ import { navigationSlice } from './slices/NavigationSlice';
 import { notificationSlice } from './slices/NotificationSlice';
 import { themeSlice } from './slices/ThemeSlice';
 import { tutorialSlice } from './slices/TutorialSlice';
-const persistConfig: PersistConfig<unknown> = {
+
+type PersistConfigDataType = ReturnType<typeof rootReducer>;
+
+const persistConfig: PersistConfig<PersistConfigDataType> = {
     key: 'root',
     storage: AsyncStorage,
     version: 1,
@@ -39,7 +42,7 @@ export const rootReducer = combineReducers({
     tutorial: tutorialSlice.reducer,
     animation: animationSlice.reducer,
 });
-// @ts-ignore
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({

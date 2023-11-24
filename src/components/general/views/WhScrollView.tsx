@@ -23,12 +23,6 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
 
     const [showNav, setShowNav] = useState(true);
 
-    const styles = StyleSheet.create({
-        container: {
-            backgroundColor: colors.background,
-        },
-    });
-
     /* istanbul ignore next */
     const setNavState = (show: boolean) => {
         storeDispatcher(navigationActions.showNavBar(show));
@@ -79,6 +73,12 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
 
         setScrollPosition(position);
     };
+    const styles = StyleSheet.create({
+        container: {
+            minHeight: '100%',
+            backgroundColor: colors.background,
+        },
+    });
 
     //on firs load, show nav bar
     useEffect(() => {
@@ -88,10 +88,10 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
 
     return (
         <ScrollView
+            style={styles.container}
             scrollEventThrottle={100}
             testID="custom-scroll-view"
             onScroll={handleScroll}
-            style={styles.container}
         >
             {children}
         </ScrollView>

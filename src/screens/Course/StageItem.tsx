@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -7,6 +6,7 @@ import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { IntractableView } from '../../components/general/views/IntractableView';
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { StageDataMapped } from '../../types/Stage';
 
@@ -44,15 +44,18 @@ export const StageItem = ({
     });
 
     function handlePress() {
-        //@ts-ignore
-        navigation.navigate(Routes.Course.toString(), {
+        navigation.navigate(Routes.CourseStage, {
             courseId,
             stageId: id,
         });
     }
 
     return (
-        <IntractableView onPress={handlePress} style={styles.card}>
+        <IntractableView
+            onPress={handlePress}
+            style={styles.card}
+            testID={`stage-card-${id}`}
+        >
             <View style={styles.courseTitle}>
                 {isCompletedByUser ? (
                     <MaterialCommunityIcons

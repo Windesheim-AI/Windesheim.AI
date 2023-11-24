@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
     Platform,
@@ -39,6 +38,7 @@ import SalesForce from '../../assets/images/WTR/TechProviders/salesforce.svg';
 import Sap from '../../assets/images/WTR/TechProviders/sap.svg';
 import { useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 

@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import {
     Animated,
@@ -11,6 +10,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
 import { useAnimatedValueNav } from '../../lib/utility/animate';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { useAppSelector } from '../../redux/Hooks';
 import { navigationBarLinks } from '../../routes/navigation';
 
@@ -68,7 +68,6 @@ export const NavBar = () => {
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
                     onPress={() => {
-                        //@ts-ignore
                         navigation.navigate(link.route);
                     }}
                     style={styles.item}

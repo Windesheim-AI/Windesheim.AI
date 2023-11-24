@@ -38,7 +38,8 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
                     options.prompt,
             );
         }
-    }, [options.prompt, openai.chat.completions]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [options.prompt]);
 
     return (
         <BlockWrapper>

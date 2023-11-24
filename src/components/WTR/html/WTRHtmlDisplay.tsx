@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable react/no-multi-comp */
-// @ts-ignore eslint-disable
 
 import decimal from '@jsamr/counter-style/presets/decimal';
 import { DomVisitorCallbacks } from '@native-html/transient-render-engine';
@@ -20,6 +18,7 @@ import { CustomTagRendererRecord } from 'react-native-render-html/src/render/ren
 
 import { ColorSchemeType } from '../../../constants/Colors';
 import { useFonts } from '../../../constants/Fonts';
+import { handleError } from '../../../lib/utility/errorHandler';
 
 /* istanbul ignore next */
 function onElement(element: any) {
@@ -43,8 +42,7 @@ function onElement(element: any) {
             }
         });
     } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error(error);
+        handleError(error);
     }
 }
 
