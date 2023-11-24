@@ -40,7 +40,7 @@ npm install
 
 ## Deployment
 
-The deployment of the app is managed via: https://expo.dev/accounts/windesheim.ai/projects/windesheim.ai.
+The deployment of the app is managed via: https://expo.dev/accounts/windesheim.ai/projects/winsight.
 
 [TODO]: Define & configure further deployment steps
 
@@ -53,7 +53,7 @@ Read the instructions!
 
 ## Deployment
 
-The deployment of the app is managed via: https://expo.dev/accounts/windesheim.ai/projects/windesheim.ai.
+The deployment of the app is managed via: https://expo.dev/accounts/windesheim.ai/projects/winsight.
 
 [TODO]: Define & configure further deployment steps
 
