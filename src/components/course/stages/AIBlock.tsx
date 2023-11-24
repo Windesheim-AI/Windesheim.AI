@@ -34,8 +34,7 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
             void main();
         } else {
             setText(
-                'Live AI has been disabled in the .env file. Showing prompt; ' +
-                options.prompt,
+                `Live AI has been disabled in the .env file. Showing prompt; ${options.prompt}`,
             );
         }
     }, [openai.chat.completions, options.prompt]);
