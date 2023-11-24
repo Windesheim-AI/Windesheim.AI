@@ -3,6 +3,7 @@ import React from 'react';
 
 import { Routes } from './routes';
 import { LoadingScreen } from '../components/loadingscreen/LoadingScreen';
+import { useAppSelector } from '../redux/Hooks';
 import CourseFinished from '../screens/Course/CourseFinished';
 import { Courses } from '../screens/Course/Courses';
 import Stage from '../screens/Course/Stage';
@@ -33,11 +34,13 @@ const screens = [
 ];
 
 export const Router = () => {
+    const animationState = useAppSelector((state) => state.animation); // You need to add animation state to your redux store
     return (
         <Stack.Navigator
             initialRouteName={Routes.Home}
             screenOptions={{
                 headerShown: false,
+                animation: animationState.isEnabled ? 'default' : 'none',
             }}
         >
             {screens.map((screen) => (

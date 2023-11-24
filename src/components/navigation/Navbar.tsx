@@ -9,7 +9,7 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
-import { useAnimatedValue } from '../../lib/utility/animate';
+import { useAnimatedValueNav } from '../../lib/utility/animate';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { useAppSelector } from '../../redux/Hooks';
 import { navigationBarLinks } from '../../routes/navigation';
@@ -51,9 +51,9 @@ export const NavBar = () => {
         setShowNavBar(navigationState.showNavBar);
     }, [navigationState]);
 
-    const [opacity, animateOpacity] = useAnimatedValue(1);
-    const [bottom, animateBottom] = useAnimatedValue(screenWidth - 40);
-    const [width, animateWidth] = useAnimatedValue(screenWidth - 40);
+    const [opacity, animateOpacity] = useAnimatedValueNav(1);
+    const [bottom, animateBottom] = useAnimatedValueNav(screenWidth - 40);
+    const [width, animateWidth] = useAnimatedValueNav(screenWidth - 40);
 
     useEffect(() => {
         animateOpacity(showNavBar ? 1 : 0, 200);
