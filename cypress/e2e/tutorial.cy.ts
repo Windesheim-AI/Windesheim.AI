@@ -3,6 +3,8 @@
 describe('Tutorial', () => {
     beforeEach(() => {
         cy.visit('/');
+        cy.get('[data-testid="language-switcher"]').click();
+        cy.contains('English').click();
     });
 
     it('should display the tutorial prompt', () => {

@@ -2,6 +2,8 @@ describe('Home page tests', () => {
     beforeEach(() => {
         cy.visit('/');
         cy.get('[data-testid="tutorial-skip-button"]').click();
+        cy.get('[data-testid="language-switcher"]').click();
+        cy.contains('English').click();
     });
 
     it('can display the home page', () => {
