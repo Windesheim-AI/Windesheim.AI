@@ -1,4 +1,3 @@
-import { appConfig } from '../../../../app.config';
 import { Course } from '../../../types/Course';
 import { fetchJsonData, useDataFetcher } from '../../fetcher/DataFetcher';
 import { getEnvValue } from '../../utility/env/env';

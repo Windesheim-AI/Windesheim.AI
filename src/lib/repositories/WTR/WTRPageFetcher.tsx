@@ -1,4 +1,3 @@
-import { appConfig } from '../../../../app.config';
 import { fetchJsonData, useDataFetcher } from '../../fetcher/DataFetcher';
 import { getEnvValue } from '../../utility/env/env';
 import { EnvOptions } from '../../utility/env/env.values';

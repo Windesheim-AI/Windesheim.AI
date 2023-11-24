@@ -1,4 +1,3 @@
-import { appConfig } from '../../../../app.config';
 import { Prompt } from '../../../types/Prompt';
 import { useDataFetcher, fetchJsonData } from '../../fetcher/DataFetcher';
 import { getEnvValue } from '../../utility/env/env';
