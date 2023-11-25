@@ -17,7 +17,7 @@ jobs:
             matrix:
                 node-version: [16.x]
         steps:
-            - uses: ./.github/common-steps/prepare.build.yml@development
+            - uses: ./.github/common-steps/prepare/action.yml
 
             - name: Install dependencies
               run: npm install
@@ -34,7 +34,7 @@ jobs:
             - name: Run Unit & Component tests
               run: npm run test:jest-less-strict
 
-            - uses: ./.github/common-steps/cleanup.build.yml@development
+            - uses: ./.github/common-steps/cleanup/action.yml
 
     end-to-end-testing:
         runs-on: self-hosted
@@ -43,7 +43,7 @@ jobs:
             matrix:
                 test-platform: [firefox]
         steps:
-            - uses: ./.github/common-steps/prepare.build.yml@development
+            - uses: ./.github/common-steps/prepare/action.yml
 
             - name: Cypress run
               uses: cypress-io/github-action@v6
@@ -51,4 +51,4 @@ jobs:
                   start: npm run web
                   browser: ${{ matrix.test-platform }}
 
-            - uses: ./.github/common-steps/cleanup.build.yml@development
+            - uses: ./.github/common-steps/cleanup/action.yml
