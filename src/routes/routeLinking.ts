@@ -47,6 +47,8 @@ export const RouteLinking = {
             [Routes.LoadingScreen]: 'LoadingScreen',
             [Routes.FirstCollect]: 'FirstCollect',
             [Routes.MyInfo]: 'MyInfo',
+            [Routes.PromptLibrary]: 'PromptLibrary',
+            [Routes.Prompt]: 'Prompt',
         },
     },
 };

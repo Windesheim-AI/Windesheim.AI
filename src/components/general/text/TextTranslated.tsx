@@ -4,11 +4,12 @@ import { TextProps, Text } from 'react-native';
 import { useTextTranslate } from '../../../translations/hooks';
 
 type TextTranslatedProps = {
-    text: string;
+    text: string | undefined;
 } & TextProps;
 
 export const TextTranslated = (props: TextTranslatedProps) => {
-    const { text } = props;
+    let { text } = props;
+    if (!text) text = '';
 
     return <Text {...props}>{useTextTranslate(text)}</Text>;
 };

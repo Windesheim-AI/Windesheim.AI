@@ -13,4 +13,6 @@ export enum Routes {
     Courses = 'Courses',
     MyInfo = 'MyInfo',
     FirstCollect = 'FirstCollect',
+    PromptLibrary = 'PromptLibrary',
+    Prompt = 'Prompt',
 }

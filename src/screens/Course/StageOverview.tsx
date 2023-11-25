@@ -3,7 +3,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { StageItem } from './StageItem';
-import { DataWrapper } from '../../components/base/DataWrapper';
+import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
@@ -45,6 +45,20 @@ export default function StageOverview() {
 
     function navigateBackToCourses() {
         navigator.navigate(Routes.Courses.toString());
+    }
+
+    if (!course?.stageData && !isLoading) {
+        return (
+            <PageView>
+                <View style={styles.container}>
+                    <TextTranslated style={fonts.h1} text="Course not found" />
+                    <GoBackButton
+                        buttonText="Courses"
+                        onPress={navigateBackToCourses}
+                    />
+                </View>
+            </PageView>
+        );
     }
 
     return (

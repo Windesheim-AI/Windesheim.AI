@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import FirstCollect from './UserBg/FirstCollect';
-import { NotificationList } from '../components/alerts/NotificationList';
+import { NotificationList } from '../components/general/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { Tutorial } from '../components/tutorial/Tutorial';
@@ -39,6 +39,7 @@ export const Layout = ({ children }: LayoutProps) => {
         },
         pos_r: {
             position: 'relative',
+            marginTop: navigation.showNavBar ? 50 : 0,
         },
         wrapper: {
             width: '100%',

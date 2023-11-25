@@ -35,7 +35,11 @@ export const TutorialRedoButton = () => {
     };
 
     return (
-        <Pressable style={styles.button} onPress={handleReset}>
+        <Pressable
+            style={styles.button}
+            onPress={handleReset}
+            testID="redo-tutorial-button"
+        >
             <TextTranslated style={styles.buttonText} text="Redo" />
         </Pressable>
     );

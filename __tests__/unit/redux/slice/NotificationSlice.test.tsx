@@ -1,4 +1,4 @@
-import { NotificationType } from '../../../../src/components/alerts/Notification';
+import { NotificationType } from '../../../../src/components/general/alerts/Notification';
 import {
     NotificationActions,
     notificationSlice,

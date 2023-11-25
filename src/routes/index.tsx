@@ -3,11 +3,14 @@ import React from 'react';
 
 import { Routes } from './routes';
 import { LoadingScreen } from '../components/loadingscreen/LoadingScreen';
+import { useAppSelector } from '../redux/Hooks';
 import CourseFinished from '../screens/Course/CourseFinished';
 import { Courses } from '../screens/Course/Courses';
 import Stage from '../screens/Course/Stage';
 import StageOverview from '../screens/Course/StageOverview';
 import { HomeScreen } from '../screens/Home';
+import { PromptLibrary } from '../screens/PromptLibrary/PromptLibrary';
+import { PromptPage } from '../screens/PromptLibrary/PromptPage';
 import { SettingsScreen } from '../screens/Settings/Settings';
 import { StudyScreen } from '../screens/Study';
 import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
@@ -34,14 +37,18 @@ const screens = [
     { name: Routes.Courses, component: Courses },
     { name: Routes.MyInfo, component: MyInfo },
     { name: Routes.FirstCollect, component: FirstCollect },
+    { name: Routes.PromptLibrary, component: PromptLibrary },
+    { name: Routes.Prompt, component: PromptPage },
 ];
 
 export const Router = () => {
+    const animationState = useAppSelector((state) => state.animation); // You need to add animation state to your redux store
     return (
         <Stack.Navigator
             initialRouteName={Routes.Home}
             screenOptions={{
                 headerShown: false,
+                animation: animationState.isEnabled ? 'default' : 'none',
             }}
         >
             {screens.map((screen) => (

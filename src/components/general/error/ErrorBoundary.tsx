@@ -2,17 +2,17 @@ import Constants from 'expo-constants';
 import LottieView from 'lottie-react-native';
 import React from 'react';
 import {
-    Text,
-    View,
-    TouchableOpacity,
-    StyleSheet,
-    Animated,
     Dimensions,
     Platform,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from 'react-native';
 
-import { appConfig } from '../../../../app.config';
 import animationSource from '../../../assets/json/500_man.json';
+import { getEnvValue } from '../../../lib/utility/env/env';
+import { EnvOptions } from '../../../lib/utility/env/env.values';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -66,34 +66,12 @@ const styles = StyleSheet.create({
     },
 });
 
-interface ErrorFallbackProps {
+interface Props {
     error: Error;
     resetError: () => void;
 }
 
-const ErrorFallback: React.FC<ErrorFallbackProps> = ({
-    error,
-    resetError,
-}: ErrorFallbackProps) => {
-    const scaleValue = React.useRef(new Animated.Value(1)).current;
-
-    const handlePress = () => {
-        Animated.sequence([
-            Animated.timing(scaleValue, {
-                toValue: 1.2,
-                duration: 100,
-                useNativeDriver: true,
-            }),
-            Animated.timing(scaleValue, {
-                toValue: 1,
-                duration: 100,
-                useNativeDriver: true,
-            }),
-        ]).start(() => {
-            resetError();
-        });
-    };
-
+const ErrorFallback: React.FC<Props> = ({ error, resetError }: Props) => {
     return (
         <View style={styles.container} testID="error-fallback-container">
             <View style={styles.animationContainer}>
@@ -101,22 +79,22 @@ const ErrorFallback: React.FC<ErrorFallbackProps> = ({
                     <LottieView
                         source={animationSource}
                         autoPlay
-                        loop
                         style={styles.animationContainer}
                     />
                 ) : null}
             </View>
             <Text style={styles.title}>Something happened!</Text>
             <Text style={styles.text}>
-                {appConfig.debug ? error.toString() : ''}
+                {getEnvValue(EnvOptions.AppDebug) === 'true'
+                    ? error.toString()
+                    : ''}
             </Text>
             <View style={styles.textContainer}>
                 <TouchableOpacity
-                    style={[
-                        styles.button,
-                        { transform: [{ scale: scaleValue }] },
-                    ]}
-                    onPress={handlePress}
+                    style={[styles.button, { transform: [{ scale: 1 }] }]}
+                    onPress={() => {
+                        resetError();
+                    }}
                 >
                     <Text style={styles.buttonText}>Try again</Text>
                 </TouchableOpacity>

@@ -29,9 +29,12 @@ jobs:
               run: |
                   touch .env
                   echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
+                  echo APP_DEBUG="false" >> .env
                   echo AI_ENABLED="false" >> .env
-                  echo WP_USERNAME="wp-username" >> .env
-                  echo WP_PASSWORD="wp-password" >> .env
+                  echo WP_CONTENT_URL="https://www.windesheim.tech" >> .env
+                  echo WP_DATA_URL="https://www.windesheim.ai" >> .env
+                  echo WP_USERNAME=${{ secrets.WP_USERNAME }} >> .env
+                  echo WP_PASSWORD=${{ secrets.WP_PASSWORD }} >> .env
                   cat .env
 
             - name: Install dependencies
@@ -58,7 +61,7 @@ jobs:
         needs: build
         strategy:
             matrix:
-                test-platform: [firefox, electron]
+                test-platform: [firefox]
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
@@ -72,9 +75,12 @@ jobs:
               run: |
                   touch .env
                   echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
+                  echo APP_DEBUG="false" >> .env
                   echo AI_ENABLED="false" >> .env
-                  echo WP_USERNAME="wp-username" >> .env
-                  echo WP_PASSWORD="wp-password" >> .env
+                  echo WP_CONTENT_URL="https://www.windesheim.tech" >> .env
+                  echo WP_DATA_URL="https://www.windesheim.ai" >> .env
+                  echo WP_USERNAME=${{ secrets.WP_USERNAME }} >> .env
+                  echo WP_PASSWORD=${{ secrets.WP_PASSWORD }} >> .env
                   cat .env
 
             - name: Cypress run

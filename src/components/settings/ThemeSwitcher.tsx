@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useColorConfig } from '../../constants/Colors';
 import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
 import { themeActions } from '../../redux/slices/ThemeSlice';
-import { WhSwitch } from '../input/WhSwitch';
+import { WhSwitch } from '../general/input/WhSwitch';
 
 export const ThemeSwitcher = () => {
     const storeDispatcher = useAppDispatch();
