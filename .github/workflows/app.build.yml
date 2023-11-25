@@ -17,6 +17,9 @@ jobs:
             matrix:
                 node-version: [16.x]
         steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
             - uses: ./.github/common-steps/prepare/action.yml
 
             - name: Install dependencies
@@ -43,6 +46,9 @@ jobs:
             matrix:
                 test-platform: [firefox]
         steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
             - uses: ./.github/common-steps/prepare/action.yml
 
             - name: Cypress run
