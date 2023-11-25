@@ -24,6 +24,7 @@ runs:
       shell: bash
       run: |
         touch .env
+        cat INPUT
         echo OPENAI_API_KEY=${{ INPUT_OPENAI_API_KEY }} >> .env
         echo APP_DEBUG="false" >> .env
         echo AI_ENABLED="false" >> .env
