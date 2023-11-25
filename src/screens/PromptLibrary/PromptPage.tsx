@@ -84,6 +84,26 @@ export function PromptPage() {
         },
     });
 
+    if (
+        (!prompt || (Array.isArray(prompt) && prompt.length < 1)) &&
+        !isLoading
+    ) {
+        return (
+            <PageView>
+                <TextTranslated
+                    id="prompt-library"
+                    style={styles.title}
+                    text="No prompt found!"
+                />
+
+                <GoBackButton
+                    buttonText="Prompts"
+                    onPress={() => navigation.navigate(Routes.PromptLibrary)}
+                />
+            </PageView>
+        );
+    }
+
     return (
         <DataWrapper isLoading={isLoading} error={error}>
             <PageView>

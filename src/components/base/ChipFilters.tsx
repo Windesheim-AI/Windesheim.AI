@@ -61,6 +61,7 @@ export function ChipFilter<T extends ReactNode>({
                         icon={activeList.includes(filter) ? 'check' : 'close'}
                         onPress={() => toggleOption(filter)}
                         onLongPress={() => handleChipLongPress(filter)}
+                        testID={`chip-${filter?.toString()}`}
                     >
                         {filter}
                     </Chip>

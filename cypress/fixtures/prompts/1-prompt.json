@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "title": "Explore the Universe",
+  "prompt": "Write about the vastness of the universe and the mysteries it holds.",
+  "description": "This prompt encourages contemplation of space and its wonders.",
+  "tool": "Creative Writing Tool",
+  "toolLink": "https://creativewritingtool.com",
+  "promptPattern": "Freeform",
+  "sector": "Science"
+}

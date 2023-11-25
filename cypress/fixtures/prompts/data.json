@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Explore the Universe",
+    "prompt": "Write about the vastness of the universe and the mysteries it holds.",
+    "description": "This prompt encourages contemplation of space and its wonders.",
+    "tool": "Creative Writing Tool",
+    "toolLink": "https://creativewritingtool.com",
+    "promptPattern": "Freeform",
+    "sector": "Science"
+  },
+  {
+    "id": 2,
+    "title": "Express Gratitude",
+    "prompt": "Compose a letter expressing gratitude to someone who has positively impacted your life.",
+    "description": "Spread positivity and appreciation through a heartfelt thank-you letter.",
+    "tool": "Letter Writing Assistant",
+    "toolLink": "https://letterwritingassistant.com",
+    "promptPattern": "Structured",
+    "sector": "Personal Development"
+  },
+  {
+    "id": 3,
+    "title": "Invent a New Recipe",
+    "prompt": "Create a unique recipe using unexpected ingredients and describe the flavor profile.",
+    "description": "Challenge your culinary creativity with this inventive recipe prompt.",
+    "tool": "Recipe Generator",
+    "toolLink": "https://recipegenerator.com",
+    "promptPattern": "Step-by-Step",
+    "sector": "Culinary Arts"
+  }
+]
