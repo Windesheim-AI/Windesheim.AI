@@ -3,9 +3,9 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import * as Progress from 'react-native-progress';
 
-import { DataWrapper } from '../../components/base/DataWrapper';
 import { CourseNavigation } from '../../components/course/CourseNavigation';
 import StageRenderer from '../../components/course/StageRenderer';
+import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { Button } from '../../components/general/buttons/Button';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';

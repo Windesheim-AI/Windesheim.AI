@@ -2,8 +2,8 @@ import React, { ReactNode } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { Chip, shadow } from 'react-native-paper';
 
-import { ColorGradientScheme } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+import { ColorGradientScheme } from '../../../constants/Colors';
+import { useFonts } from '../../../constants/Fonts';
 
 export type ChipFilterProps<T extends ReactNode> = {
     activeList: T[];
@@ -61,6 +61,7 @@ export function ChipFilter<T extends ReactNode>({
                         icon={activeList.includes(filter) ? 'check' : 'close'}
                         onPress={() => toggleOption(filter)}
                         onLongPress={() => handleChipLongPress(filter)}
+                        testID={`chip-${filter?.toString()}`}
                     >
                         {filter}
                     </Chip>

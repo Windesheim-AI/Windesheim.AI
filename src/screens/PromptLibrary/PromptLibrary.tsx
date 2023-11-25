@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Pressable } from 'react-native';
 
-import { Card } from '../../components/base/Card';
-import { ChipFilter } from '../../components/base/ChipFilters';
-import { DataWrapper } from '../../components/base/DataWrapper';
+import { Card } from '../../components/general/base/Card';
+import { ChipFilter } from '../../components/general/base/ChipFilters';
+import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
@@ -71,27 +71,31 @@ export function PromptLibrary() {
                     onPress={() => navigation.navigate(Routes.Study)}
                     buttonText="Study"
                 />
-                <TextTranslated
-                    style={fonts.description}
-                    text="Filter by tool and sector, hold long on a tag to select only that one."
-                />
-                <View style={styles.filterContainer}>
-                    <ChipFilter
-                        activeList={selectedTools}
-                        filterList={usedTools}
-                        setActiveList={setSelectedTools}
-                        colorGradientScheme={stateColorSchemes.primary}
-                    />
+                {filteredPrompts && filteredPrompts.length > 0 ? (
+                    <>
+                        <TextTranslated
+                            style={fonts.description}
+                            text="Filter by tool and sector, hold long on a tag to select only that one."
+                        />
+                        <View style={styles.filterContainer}>
+                            <ChipFilter
+                                activeList={selectedTools}
+                                filterList={usedTools}
+                                setActiveList={setSelectedTools}
+                                colorGradientScheme={stateColorSchemes.primary}
+                            />
 
-                    <ChipFilter
-                        activeList={selectedSectors}
-                        filterList={usedSectors}
-                        setActiveList={setSelectedSectors}
-                        colorGradientScheme={stateColorSchemes.success}
-                    />
-                </View>
+                            <ChipFilter
+                                activeList={selectedSectors}
+                                filterList={usedSectors}
+                                setActiveList={setSelectedSectors}
+                                colorGradientScheme={stateColorSchemes.success}
+                            />
+                        </View>
+                    </>
+                ) : null}
                 {filteredPrompts?.map((prompt) => (
-                    <TouchableOpacity
+                    <Pressable
                         onPress={() => {
                             navigation.navigate(Routes.Prompt, {
                                 promptId: prompt.id,
@@ -110,8 +114,16 @@ export function PromptLibrary() {
                                 <Text style={fonts.h2}>{prompt.tool}</Text>
                             </View>
                         </Card>
-                    </TouchableOpacity>
+                    </Pressable>
                 ))}
+
+                {filteredPrompts?.length === 0 ? (
+                    <TextTranslated
+                        id="no-prompts-found"
+                        style={fonts.description}
+                        text="No prompts found!"
+                    />
+                ) : null}
             </PageScrollView>
         </DataWrapper>
     );

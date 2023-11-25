@@ -3,8 +3,8 @@ import React from 'react';
 import { Text, StyleSheet, View, Linking } from 'react-native';
 import { Chip } from 'react-native-paper';
 
-import { Card } from '../../components/base/Card';
-import { DataWrapper } from '../../components/base/DataWrapper';
+import { Card } from '../../components/general/base/Card';
+import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { Button } from '../../components/general/buttons/Button';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
@@ -83,6 +83,26 @@ export function PromptPage() {
             ...fonts.description,
         },
     });
+
+    if (
+        (!prompt || (Array.isArray(prompt) && prompt.length < 1)) &&
+        !isLoading
+    ) {
+        return (
+            <PageView>
+                <TextTranslated
+                    id="prompt-library"
+                    style={styles.title}
+                    text="No prompt found!"
+                />
+
+                <GoBackButton
+                    buttonText="Prompts"
+                    onPress={() => navigation.navigate(Routes.PromptLibrary)}
+                />
+            </PageView>
+        );
+    }
 
     return (
         <DataWrapper isLoading={isLoading} error={error}>

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Bar } from 'react-native-progress';
 
-import { DataWrapper } from '../../components/base/DataWrapper';
+import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { IntractableView } from '../../components/general/views/IntractableView';
 import { PageScrollView } from '../../components/general/views/PageScrollView';

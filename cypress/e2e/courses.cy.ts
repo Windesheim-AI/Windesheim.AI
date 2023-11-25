@@ -11,11 +11,11 @@ describe('Courses page tests', () => {
 
     it('can show the courses', () => {
         cy.intercept('GET', '/wp-json/winai/v1/courses/', {
-            fixture: 'courses/test-courses.json',
+            fixture: 'courses/data.json',
         }).as('getCourses');
 
         // get the fixture and put it in a const
-        const courses = require('../fixtures/courses/test-courses.json');
+        const courses = require('../fixtures/courses/data.json');
 
         cy.visit('/courses');
         cy.wait(['@getCourses']);
@@ -27,13 +27,13 @@ describe('Courses page tests', () => {
 
     it('can view a course', () => {
         // get the fixture and put it in a const
-        const courses: Course[] = require('../fixtures/courses/test-courses.json');
+        const courses: Course[] = require('../fixtures/courses/data.json');
         cy.intercept('GET', '/wp-json/winai/v1/courses/', {
-            fixture: 'courses/test-courses.json',
+            fixture: 'courses/data.json',
         }).as('getCourses');
 
         cy.intercept('GET', `/wp-json/winai/v1/courses/${courses[0].id}`, {
-            fixture: 'courses/test-course.json',
+            fixture: 'courses/1-course.json',
         }).as('getCourse');
 
         cy.visit('/courses');
@@ -65,13 +65,13 @@ describe('Courses page tests', () => {
 
     it('can navigate to overview using navigation', () => {
         // get the fixture and put it in a const
-        const courses: Course[] = require('../fixtures/courses/test-courses.json');
+        const courses: Course[] = require('../fixtures/courses/data.json');
         cy.intercept('GET', '/wp-json/winai/v1/courses/', {
-            fixture: 'courses/test-courses.json',
+            fixture: 'courses/data.json',
         }).as('getCourses');
 
         cy.intercept('GET', `/wp-json/winai/v1/courses/${courses[0].id}`, {
-            fixture: 'courses/test-course.json',
+            fixture: 'courses/1-course.json',
         }).as('getCourse');
 
         cy.visit('/courses');
@@ -105,7 +105,7 @@ describe('Courses page tests', () => {
 
     it('does not crash when navigating to non-existing course overview', () => {
         cy.intercept('GET', '/wp-json/winai/v1/courses/5', {
-            fixture: 'courses/test-course-empty.json',
+            fixture: 'courses/empty.json',
         }).as('getCourse');
 
         cy.visit('/course/5/overview');
@@ -118,7 +118,7 @@ describe('Courses page tests', () => {
 
     it('does not crash when navigating to non-existing course stage', () => {
         cy.intercept('GET', '/wp-json/winai/v1/courses/3', {
-            fixture: 'courses/test-course-empty.json',
+            fixture: 'courses/empty.json',
         }).as('getCourse');
 
         cy.visit('/course/3/3');

@@ -35,6 +35,9 @@
     "Page not found": "Seite nicht gefunden!",
     "Animations": "Animationen",
     "Prompt Library": "Prompt Bibliothek",
+    "No prompts found!": "Keine Prompts gefunden!",
+    "No prompt found!": "Keine Prompt gefunden!",
+    "An error occurred while loading the data": "Beim Laden der Daten ist ein Fehler aufgetreten",
     "Filter by tool and sector, hold long on a tag to select only that one.": "Filtern Sie nach Werkzeug und Sektor, halten Sie lange auf einem Tag, um nur diesen auszuwählen.",
     "We're sorry, but we couldn't find the page you were looking for.": "Es tut uns leid, aber wir konnten die von Ihnen gesuchte Seite nicht finden."
 }
