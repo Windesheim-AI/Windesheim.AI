@@ -54,6 +54,10 @@ jobs:
               uses: actions/checkout@v4
 
             - uses: ./.github/prepare-action
+              with:
+                openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+                wp-username: ${{ secrets.WP_USERNAME }}
+                wp-password: ${{ secrets.WP_PASSWORD }}
 
             - name: Cypress run
               uses: cypress-io/github-action@v6
