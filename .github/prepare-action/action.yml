@@ -27,13 +27,11 @@ runs:
           shell: bash
           run: |
               touch .env
-              cat ${{ inputs.app-debug }}
-              cat ${{ inputs.APP_DEBUG }}
               echo OPENAI_API_KEY=${{ inputs.openai-api-key }} >> .env
               echo APP_DEBUG=${{ inputs.app-debug }} >> .env
               echo AI_ENABLED="false" >> .env
               echo WP_CONTENT_URL="https://www.windesheim.tech" >> .env
               echo WP_DATA_URL="https://www.windesheim.ai" >> .env
-              echo WP_USERNAME=${{ inputs.WP_USERNAME }} >> .env
-              echo WP_PASSWORD=${{ inputs.WP_PASSWORD }} >> .env
+              echo WP_USERNAME=${{ inputs.wp-username }} >> .env
+              echo WP_PASSWORD=${{ inputs.wp-password }} >> .env
               cat .env
