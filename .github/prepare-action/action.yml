@@ -27,9 +27,10 @@ runs:
           shell: bash
           run: |
               touch .env
-              cat ${{ inputs }}
-              echo OPENAI_API_KEY=${{ inputs.OPENAI_API_KEY }} >> .env
-              echo APP_DEBUG=${{ inputs.APP_DEBUG }} >> .env
+              cat ${{ inputs.app-debug }}
+              cat ${{ inputs.APP_DEBUG }}
+              echo OPENAI_API_KEY=${{ inputs.openai-api-key }} >> .env
+              echo APP_DEBUG=${{ inputs.app-debug }} >> .env
               echo AI_ENABLED="false" >> .env
               echo WP_CONTENT_URL="https://www.windesheim.tech" >> .env
               echo WP_DATA_URL="https://www.windesheim.ai" >> .env
