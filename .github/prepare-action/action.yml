@@ -1,5 +1,17 @@
 name: prepare-action
 description: Prepare build
+
+inputs:
+  openai-api-key:
+    description: 'The OpenAI API key'
+    required: true
+  wp-username:
+    description: 'The WordPress username'
+    required: true
+  wp-password:
+    description: 'The WordPress password'
+    required: true
+
 runs:
   using: 'composite'
   steps:
@@ -12,11 +24,11 @@ runs:
       shell: bash
       run: |
         touch .env
-        echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
+        echo OPENAI_API_KEY=${{ openai-api-key }} >> .env
         echo APP_DEBUG="false" >> .env
         echo AI_ENABLED="false" >> .env
         echo WP_CONTENT_URL="https://www.windesheim.tech" >> .env
         echo WP_DATA_URL="https://www.windesheim.ai" >> .env
-        echo WP_USERNAME=${{ secrets.WP_USERNAME }} >> .env
-        echo WP_PASSWORD=${{ secrets.WP_PASSWORD }} >> .env
+        echo WP_USERNAME=${{ wp-username }} >> .env
+        echo WP_PASSWORD=${{ wp-password }} >> .env
         cat .env
