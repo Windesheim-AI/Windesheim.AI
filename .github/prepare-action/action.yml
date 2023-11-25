@@ -27,7 +27,7 @@ runs:
           shell: bash
           run: |
               touch .env
-              cat inputs
+              cat ${{ inputs }}
               echo OPENAI_API_KEY=${{ inputs.OPENAI_API_KEY }} >> .env
               echo APP_DEBUG=${{ inputs.APP_DEBUG }} >> .env
               echo AI_ENABLED="false" >> .env
