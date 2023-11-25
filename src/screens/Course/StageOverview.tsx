@@ -3,7 +3,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { StageItem } from './StageItem';
-import { DataWrapper } from '../../components/base/DataWrapper';
+import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Pressable } from 'react-native';
 
-import { Card } from '../../components/base/Card';
-import { ChipFilter } from '../../components/base/ChipFilters';
-import { DataWrapper } from '../../components/base/DataWrapper';
+import { Card } from '../../components/general/base/Card';
+import { ChipFilter } from '../../components/general/base/ChipFilters';
+import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageScrollView } from '../../components/general/views/PageScrollView';

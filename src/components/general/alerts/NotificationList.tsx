@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { NotificationType, Notification } from './Notification';
-import { useAppSelector } from '../../redux/Hooks';
+import { useAppSelector } from '../../../redux/Hooks';
 
 export const NotificationList = () => {
     const notifications = useAppSelector((state) => state.notification);

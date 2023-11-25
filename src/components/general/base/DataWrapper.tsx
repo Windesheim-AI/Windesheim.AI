@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LoadingScreen from '../loadingscreen/LoadingScreen';
+import LoadingScreen from '../../loadingscreen/LoadingScreen';
 
 export type DataWrapperProps = {
     error?: Error | undefined;

@@ -4,7 +4,7 @@ import { StyleSheet, View, Animated } from 'react-native';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
-import { DataWrapper } from '../../components/base/DataWrapper';
+import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { Button } from '../../components/general/buttons/Button';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';

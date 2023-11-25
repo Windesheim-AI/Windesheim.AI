@@ -3,8 +3,8 @@ import React from 'react';
 import { Text, StyleSheet, View, Linking } from 'react-native';
 import { Chip } from 'react-native-paper';
 
-import { Card } from '../../components/base/Card';
-import { DataWrapper } from '../../components/base/DataWrapper';
+import { Card } from '../../components/general/base/Card';
+import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { Button } from '../../components/general/buttons/Button';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';

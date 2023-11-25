@@ -8,7 +8,7 @@ import {
     StatusBar,
 } from 'react-native';
 
-import { NotificationList } from '../components/alerts/NotificationList';
+import { NotificationList } from '../components/general/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { Tutorial } from '../components/tutorial/Tutorial';

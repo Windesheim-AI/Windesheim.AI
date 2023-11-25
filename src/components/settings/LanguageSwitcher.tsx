@@ -9,7 +9,7 @@ import {
     languageLabels,
     languageOptions,
 } from '../../translations/languageOptions';
-import { WhSelectDropdown } from '../input/WhSelectDropdown';
+import { WhSelectDropdown } from '../general/input/WhSelectDropdown';
 
 export const LanguageSwitcher = () => {
     const storeDispatcher = useAppDispatch();
