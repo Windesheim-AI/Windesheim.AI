@@ -25,11 +25,11 @@ runs:
       run: |
         touch .env
         cat INPUT
-        echo OPENAI_API_KEY=${{ INPUT_OPENAI_API_KEY }} >> .env
+        echo OPENAI_API_KEY=${{ inputs.OPENAI_API_KEY }} >> .env
         echo APP_DEBUG="false" >> .env
         echo AI_ENABLED="false" >> .env
         echo WP_CONTENT_URL="https://www.windesheim.tech" >> .env
         echo WP_DATA_URL="https://www.windesheim.ai" >> .env
-        echo WP_USERNAME=${{ INPUT_WP_USERNAME }} >> .env
-        echo WP_PASSWORD=${{ INPUT_WP_PASSWORD }} >> .env
+        echo WP_USERNAME=${{ inputs.WP_USERNAME }} >> .env
+        echo WP_PASSWORD=${{ inputs.WP_PASSWORD }} >> .env
         cat .env
