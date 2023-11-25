@@ -15,7 +15,7 @@ jobs:
         runs-on: self-hosted
         strategy:
             matrix:
-                test-platform: [firefox]
+                test-platform: [firefox, electron]
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
