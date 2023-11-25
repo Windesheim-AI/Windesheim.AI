@@ -44,7 +44,6 @@ export const rootReducer = combineReducers({
     tutorial: tutorialSlice.reducer,
     animation: animationSlice.reducer,
     bgCollect: bgCollectSlice.reducer,
-
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
