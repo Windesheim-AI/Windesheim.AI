@@ -17,25 +17,7 @@ jobs:
             matrix:
                 node-version: [16.x]
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-
-            - name: Set up Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: ${{ matrix.node-version }}
-
-            - name: 'Create & configure env file'
-              run: |
-                  touch .env
-                  echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
-                  echo APP_DEBUG="false" >> .env
-                  echo AI_ENABLED="false" >> .env
-                  echo WP_CONTENT_URL="https://www.windesheim.tech" >> .env
-                  echo WP_DATA_URL="https://www.windesheim.ai" >> .env
-                  echo WP_USERNAME=${{ secrets.WP_USERNAME }} >> .env
-                  echo WP_PASSWORD=${{ secrets.WP_PASSWORD }} >> .env
-                  cat .env
+            - uses: ./.github/workflows/prepare.build.yml@development
 
             - name: Install dependencies
               run: npm install
@@ -52,9 +34,7 @@ jobs:
             - name: Run Unit & Component tests
               run: npm run test:jest-less-strict
 
-            - name: 'Remove env file'
-              run: |
-                  rm .env
+            - uses: ./.github/workflows/cleanup.build.yml@development
 
     end-to-end-testing:
         runs-on: self-hosted
@@ -63,25 +43,7 @@ jobs:
             matrix:
                 test-platform: [firefox]
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-
-            - name: Set up Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 16.x
-
-            - name: 'Create & configure env file'
-              run: |
-                  touch .env
-                  echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
-                  echo APP_DEBUG="false" >> .env
-                  echo AI_ENABLED="false" >> .env
-                  echo WP_CONTENT_URL="https://www.windesheim.tech" >> .env
-                  echo WP_DATA_URL="https://www.windesheim.ai" >> .env
-                  echo WP_USERNAME=${{ secrets.WP_USERNAME }} >> .env
-                  echo WP_PASSWORD=${{ secrets.WP_PASSWORD }} >> .env
-                  cat .env
+            - uses: ./.github/workflows/prepare.build.yml@development
 
             - name: Cypress run
               uses: cypress-io/github-action@v6
@@ -89,6 +51,4 @@ jobs:
                   start: npm run web
                   browser: ${{ matrix.test-platform }}
 
-            - name: 'Remove env file'
-              run: |
-                  rm .env
+            - uses: ./.github/workflows/cleanup.build.yml@development

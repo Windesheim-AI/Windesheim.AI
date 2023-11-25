@@ -1,0 +1,19 @@
+name: Cleanup Build
+
+on:
+  push:
+    branches:
+      - main
+      - development
+  pull_request:
+    branches:
+      - main
+      - development
+
+jobs:
+  cleanup-build:
+    runs-on: self-hosted
+    steps:
+      - name: 'Remove env file'
+        run: |
+          rm .env
