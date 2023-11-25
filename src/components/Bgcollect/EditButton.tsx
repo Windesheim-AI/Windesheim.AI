@@ -11,9 +11,10 @@ interface EditButtonProps {
     isEditing: boolean;
 }
 
-export const EditButton: React.FC<EditButtonProps> = ({
+export const EditButton: React.FC<EditButtonProps & { testID?: string }> = ({
     onPressEdit,
     isEditing,
+    testID,
 }) => {
     const [editMode, setEditMode] = useState(isEditing);
 
@@ -41,7 +42,11 @@ export const EditButton: React.FC<EditButtonProps> = ({
     });
 
     return (
-        <TouchableOpacity style={styles.button} onPress={handlePress}>
+        <TouchableOpacity
+            style={styles.button}
+            onPress={handlePress}
+            testID={testID}
+        >
             <Text style={styles.buttonText}>
                 <TextTranslated text={editMode ? 'Complete' : 'Edit'} />
             </Text>

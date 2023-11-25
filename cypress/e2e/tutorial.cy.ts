@@ -3,6 +3,7 @@
 describe('Tutorial', () => {
     beforeEach(() => {
         cy.visit('/');
+        cy.get('[data-testid="FirstCollect-skip-button"]').click();
     });
 
     it('should display the tutorial prompt', () => {

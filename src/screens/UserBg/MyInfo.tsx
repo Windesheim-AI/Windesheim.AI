@@ -28,7 +28,7 @@ import {
 } from '../../redux/slices/BgCollectSlice';
 
 export const MyInfo = () => {
-    const windowWidth = useWindowDimensions().width;
+    const windowDimensions = useWindowDimensions();
     const [showModal, setShowModal] = useState(false);
     const [selectedValue, setSelectedValue] = useState('');
     const [isEditing, setIsEditing] = useState(false);
@@ -86,35 +86,40 @@ export const MyInfo = () => {
     const styles = StyleSheet.create({
         container: {
             alignItems: 'center',
-            flex: 1,
-            paddingBottom: 20,
-            paddingHorizontal: 20,
+            justifyContent: 'center',
+            paddingTop: windowDimensions.height * 0.03,
         },
         box: {
             alignItems: 'center',
             borderRadius: 25,
             flexDirection: 'row',
-            paddingVertical: windowWidth * 0.1,
-            paddingHorizontal: windowWidth * 0.1,
             backgroundColor: colors.listItemBg,
-            marginTop: windowWidth * 0.1,
-            width: windowWidth * 0.8,
+            marginBottom: windowDimensions.width * 0.05,
+            width: windowDimensions.width * 0.8,
+            height: windowDimensions.height * 0.1,
         },
         infoText: {
             color: colors.text,
             ...fonts.h2,
             position: 'absolute',
-            paddingHorizontal: windowWidth * 0.05,
+            paddingHorizontal: windowDimensions.width * 0.05,
         },
         modalContent: {
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            marginTop: windowWidth * 0.25,
+            marginTop: windowDimensions.width * 0.25,
             backgroundColor: colors.listItemBg,
         },
         modalText: {
             ...fonts.h1,
+        },
+        editButtonContainer: {
+            width: windowDimensions.width,
+            position: 'absolute',
+            bottom: 0, // 화면 하단에 배치
+            paddingBottom: windowDimensions.height * 0.03, // 아래 여백
+            paddingRight: 60,
         },
     });
 
@@ -125,6 +130,7 @@ export const MyInfo = () => {
                     onPress={() => handlePress('position')}
                     style={styles.box}
                     disabled={!isEditing}
+                    testID="positionPressable"
                 >
                     <Text style={styles.infoText}>
                         Position: {selectedPosition}
@@ -149,9 +155,20 @@ export const MyInfo = () => {
                     </Text>
                 </Pressable>
             </View>
-            <EditButton onPressEdit={handleEditPress} isEditing={isEditing} />
+            {/* Edit Button */}
+            <View style={styles.editButtonContainer}>
+                <EditButton
+                    onPressEdit={handleEditPress}
+                    isEditing={isEditing}
+                    testID="editbutton"
+                />
+            </View>
             {/* Modal content */}
-            <Modal visible={showModal} animationType="slide">
+            <Modal
+                visible={showModal}
+                animationType="slide"
+                testID="modalContent"
+            >
                 <View style={styles.modalContent}>
                     <FlatList
                         data={modalData}

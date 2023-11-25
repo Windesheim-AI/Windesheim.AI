@@ -1,6 +1,6 @@
 describe('Home page tests', () => {
     beforeEach(() => {
-        cy.visit('/home');
+        cy.visit('/');
 
         cy.get('[data-testid="FirstCollect-skip-button"]').click();
         cy.get('[data-testid="tutorial-skip-button"]').click();
