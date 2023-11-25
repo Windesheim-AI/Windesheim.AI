@@ -12,6 +12,7 @@
         "web": "expo start --web",
         "eject": "expo eject",
         "cypress": "cypress open",
+        "expo:fix": "npx expo install --fix",
         "lint": "echo \"Running eslint check\" && eslint . --max-warnings=0",
         "test:eslint": "npm run lint",
         "lint:fix": "echo \"Running eslint check\" && eslint . --fix --max-warnings=0",
