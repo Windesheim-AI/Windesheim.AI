@@ -13,7 +13,6 @@ on:
 jobs:
     tests:
         runs-on: self-hosted
-        needs: build
         strategy:
             matrix:
                 test-platform: [firefox]
