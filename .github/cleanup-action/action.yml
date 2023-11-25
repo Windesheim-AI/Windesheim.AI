@@ -1,0 +1,9 @@
+name: cleanup-action
+description: test action
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Remove env file'
+      shell: bash
+      run: |
+          rm .env

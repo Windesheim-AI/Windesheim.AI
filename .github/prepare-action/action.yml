@@ -1,0 +1,22 @@
+name: prepare-action
+description: Prepare build
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+
+    - name: 'Create & configure env file'
+      shell: bash
+      run: |
+        touch .env
+        echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
+        echo APP_DEBUG="false" >> .env
+        echo AI_ENABLED="false" >> .env
+        echo WP_CONTENT_URL="https://www.windesheim.tech" >> .env
+        echo WP_DATA_URL="https://www.windesheim.ai" >> .env
+        echo WP_USERNAME=${{ secrets.WP_USERNAME }} >> .env
+        echo WP_PASSWORD=${{ secrets.WP_PASSWORD }} >> .env
+        cat .env
