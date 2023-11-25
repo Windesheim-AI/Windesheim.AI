@@ -22,9 +22,10 @@ jobs:
 
             - uses: ./.github/prepare-action
               with:
-                openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-                wp-username: ${{ secrets.WP_USERNAME }}
-                wp-password: ${{ secrets.WP_PASSWORD }}
+                  openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+                  app-debug: false
+                  wp-username: ${{ secrets.WP_USERNAME }}
+                  wp-password: ${{ secrets.WP_PASSWORD }}
 
             - name: Install dependencies
               run: npm install
@@ -55,9 +56,10 @@ jobs:
 
             - uses: ./.github/prepare-action
               with:
-                openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-                wp-username: ${{ secrets.WP_USERNAME }}
-                wp-password: ${{ secrets.WP_PASSWORD }}
+                  openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+                  app-debug: false
+                  wp-username: ${{ secrets.WP_USERNAME }}
+                  wp-password: ${{ secrets.WP_PASSWORD }}
 
             - name: Cypress run
               uses: cypress-io/github-action@v6
