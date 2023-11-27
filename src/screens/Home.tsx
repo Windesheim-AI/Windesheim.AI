@@ -5,6 +5,9 @@ import { TechProviders } from '../components/WTR/TechProviders';
 import { PageView } from '../components/general/views/PageView';
 import { WhScrollView } from '../components/general/views/WhScrollView';
 import { HomePrompts } from '../components/home/HomePrompts';
+import { Routes } from '../routes/routes';
+import { stateColorSchemes } from '../constants/Colors';
+import { Button } from '../components/general/buttons/Button';
 
 export const HomeScreen = () => {
     const description =
@@ -15,7 +18,18 @@ export const HomeScreen = () => {
             <PageView title="Home" description={description}>
                 <View>
                     <HomePrompts />
-                    <TechProviders limit={5} />
+                    <View>
+                        <TechProviders limit={5} />
+                        <Button
+                            buttonText="See all Tech Providers"
+                            screenName={Routes.PromptLibrary}
+                            colorGradientScheme={stateColorSchemes.success}
+                            testId="see-all-tech-providers-button"
+                            icon="arrow-right"
+                            height={40}
+                        />
+                    </View>
+
                     <TechProviders limit={5} />
                     <TechProviders limit={5} />
                     <TechProviders limit={5} />

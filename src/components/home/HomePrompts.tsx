@@ -46,6 +46,7 @@ export function HomePrompts() {
                 colorGradientScheme={stateColorSchemes.success}
                 testId="see-all-prompts-button"
                 icon="arrow-right"
+                height={40}
             />
         </View>
     );

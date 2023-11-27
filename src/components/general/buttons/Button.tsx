@@ -14,6 +14,7 @@ export type ButtonProps = {
     buttonText?: string;
     colorGradientScheme: ColorGradientScheme;
     width?: number;
+    height?: number;
     icon?: string;
     testId?: string;
 };
@@ -24,6 +25,7 @@ export const Button = ({
     colorGradientScheme,
     screenName,
     width,
+    height = 60,
     icon,
     testId,
 }: ButtonProps) => {
@@ -51,7 +53,6 @@ export const Button = ({
     const buttonWidth =
         checkedWidth > minWidth ? checkedWidth * 3 : minWidth * 3;
     const barHeight = 3 * checkedWidth;
-    const height = 60;
 
     const styles = StyleSheet.create({
         bg1: {
