@@ -4,7 +4,6 @@ import { getEnvValue } from '../../utility/env/env';
 import { EnvOptions } from '../../utility/env/env.values';
 
 export default function useAllCourses() {
-    console.log(appConfig.backendUrl);
     return useDataFetcher<Course[]>(fetchJsonData, {
         url:
             getEnvValue(EnvOptions.WordPressDataURL) +

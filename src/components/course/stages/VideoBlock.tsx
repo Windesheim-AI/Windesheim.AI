@@ -36,13 +36,6 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
                 useNativeControls
                 resizeMode={ResizeMode.COVER}
                 isLooping
-                onReadyForDisplay={() => {
-                    let elements = document.getElementsByTagName('video');
-                    for (var i = 0; i < elements.length; i++) {
-                        //  position to relative
-                        elements[i].style.position = 'relative';
-                    }
-                }}
                 onPlaybackStatusUpdate={status => setStatus(() => status)}
             />
             <Button
