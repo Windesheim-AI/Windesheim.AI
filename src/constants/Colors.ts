@@ -1,4 +1,4 @@
-import { StyleProp, ViewStyle } from 'react-native';
+import { ViewStyle } from 'react-native';
 
 import { hasKeyInMap } from '../lib/utility/data';
 import { useAppSelector } from '../redux/Hooks';

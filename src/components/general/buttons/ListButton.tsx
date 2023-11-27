@@ -16,6 +16,7 @@ export type ButtonProps = {
     testId?: string;
 };
 
+// eslint-disable-next-line complexity
 export const ListButton = ({
     onPress,
     buttonText,
