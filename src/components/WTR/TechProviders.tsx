@@ -132,7 +132,12 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
                                 fill={colors.text}
                             />
                         ) : null}
-                        <Text style={styles.itemText}>{provider.name}</Text>
+                        <Text
+                            testID={`tech-provider-text`}
+                            style={styles.itemText}
+                        >
+                            {provider.name}
+                        </Text>
                         {/* at the end of the button place an arrow */}
                         <FontAwesome5Icon
                             name="arrow-right"

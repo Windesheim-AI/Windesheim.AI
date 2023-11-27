@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { stateColorSchemes, useColorConfig } from '../../constants/Colors';
+import { useColorConfig, useColorStateConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import usePromptLibrary from '../../lib/repositories/promptLibrary/usePromptLibrary';
 import { Routes } from '../../routes/routes';
@@ -15,6 +15,7 @@ export function HomePrompts() {
     // It is used on the home screen
 
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const { data, isLoading, error } = usePromptLibrary();
 
@@ -43,7 +44,8 @@ export function HomePrompts() {
             <Button
                 buttonText="See all prompts"
                 screenName={Routes.PromptLibrary}
-                colorGradientScheme={stateColorSchemes.success}
+                colorGradientScheme={colorStateConfig.colors.success}
+                textColorScheme={colorStateConfig.text?.success}
                 testId="see-all-prompts-button"
                 icon="arrow-right"
                 height={40}

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { useColorStateConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { Prompt } from '../../types/Prompt';
 import { Card } from '../general/base/Card';
-import { useColorStateConfig } from '../../constants/Colors';
 
 export const PromptCard = ({ prompt }: { prompt: Prompt }) => {
     const fonts = useFonts();
@@ -36,6 +36,7 @@ export const PromptCard = ({ prompt }: { prompt: Prompt }) => {
                 });
             }}
             key={prompt.id}
+            testID="prompt-card"
         >
             <Card style={styles.card}>
                 <View style={styles.leftContent}>
