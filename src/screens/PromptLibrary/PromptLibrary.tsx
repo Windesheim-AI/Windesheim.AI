@@ -7,7 +7,7 @@ import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
-import { stateColorSchemes } from '../../constants/Colors';
+import { useCurrentStateColorScheme } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import usePromptLibrary from '../../lib/repositories/promptLibrary/usePromptLibrary';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -17,6 +17,8 @@ import { Sector } from '../../types/Prompt';
 export function PromptLibrary() {
     const fonts = useFonts();
     const navigation = useNavigation();
+    const stateColorSchemes = useCurrentStateColorScheme();
+
     const { data, isLoading, error } = usePromptLibrary();
     const [selectedTools, setSelectedTools] = useState<string[]>([]);
     const [selectedSectors, setSelectedSectors] = useState<Sector[]>([]);

@@ -11,8 +11,8 @@ import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
 import {
     shadow,
-    stateColorSchemes,
     useColorConfig,
+    useCurrentStateColorScheme,
 } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import useSinglePrompt from '../../lib/repositories/promptLibrary/useSinglePrompt';
@@ -27,9 +27,11 @@ export function PromptPage() {
     const colors = useColorConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
+    const stateColorSchemes = useCurrentStateColorScheme();
     const route = useRoute();
     const params = route.params as PromptPageProps;
     const promptId = params.promptId;
+
     const { data, isLoading, error } = useSinglePrompt(promptId);
     const prompt = data;
 
@@ -128,7 +130,7 @@ export function PromptPage() {
                     <Chip
                         style={styles.sectorTag}
                         mode="outlined"
-                        textStyle={fonts.description}
+                        textStyle={styles.chipText}
                         icon="briefcase"
                     >
                         {prompt?.sector}
@@ -136,7 +138,7 @@ export function PromptPage() {
                     <Chip
                         style={styles.promptPatternTag}
                         mode="outlined"
-                        textStyle={fonts.description}
+                        textStyle={styles.chipText}
                         icon="clipboard"
                     >
                         {prompt?.promptPattern}

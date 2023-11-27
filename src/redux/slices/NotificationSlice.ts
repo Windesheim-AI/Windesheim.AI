@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 
 import { NotificationType } from '../../components/general/alerts/Notification';
 import {
-    stateColorSchemes,
     ColorGradientScheme,
     ColorTypes,
     colorIconMapping,
+    useCurrentStateColorScheme,
 } from '../../constants/Colors';
 import { useAppDispatch } from '../Hooks';
 
@@ -79,6 +79,7 @@ export const useNotificationOnce = (
     colorType?: ColorTypes,
 ) => {
     const storeDispatcher = useAppDispatch();
+    const stateColorSchemes = useCurrentStateColorScheme();
 
     useEffect(() => {
         storeDispatcher(

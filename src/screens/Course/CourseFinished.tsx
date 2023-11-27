@@ -8,7 +8,10 @@ import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { Button } from '../../components/general/buttons/Button';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
-import { stateColorSchemes, useColorConfig } from '../../constants/Colors';
+import {
+    useColorConfig,
+    useCurrentStateColorScheme,
+} from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import useSingleCourse from '../../lib/repositories/courses/useSingleCourse';
 import { useAnimatedValue } from '../../lib/utility/animate';
@@ -21,6 +24,7 @@ type CourseFinishedRouteParams = {
 
 export default function CourseFinished() {
     const colors = useColorConfig();
+    const stateColorSchemes = useCurrentStateColorScheme();
     const route = useRoute();
     const fonts = useFonts();
 
