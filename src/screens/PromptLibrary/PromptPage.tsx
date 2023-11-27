@@ -160,7 +160,7 @@ export function PromptPage() {
 
                 {/* link to the tool open URL in app */}
                 <Button
-                    buttonText="Open Tool"
+                    buttonText="Try it yourself"
                     // eslint-disable-next-line @typescript-eslint/no-misused-promises
                     onPress={() => Linking.openURL(prompt?.toolLink ?? '')}
                     colorGradientScheme={stateColorSchemes.primary}
