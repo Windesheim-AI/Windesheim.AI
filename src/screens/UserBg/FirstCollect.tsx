@@ -37,9 +37,9 @@ import { Router } from '../../routes';
 const FirstCollect = () => {
     const storeDispatch = useAppDispatch();
 
-    const isFirstTimeUser = useAppSelector<boolean>(
-        (state: RootState) => state.bgCollect.isFirstTimeUser,
-    );
+    const isFirstTimeUser = useAppSelector(
+        (state) => state.bgCollect,
+    ).isFirstTimeUser;
 
     const [showBackgroundInput, setShowBackgroundInput] =
         useState<boolean>(false);
@@ -155,6 +155,7 @@ const FirstCollect = () => {
                                     colors.bg2,
                                     colors.bg3,
                                 ]}
+                                textColorScheme={colors.text}
                                 icon="check-circle"
                             />
                             <Button
@@ -167,6 +168,7 @@ const FirstCollect = () => {
                                     colors.bg2,
                                     colors.bg3,
                                 ]}
+                                textColorScheme={colors.text}
                                 icon="forward"
                             />
                         </View>
@@ -254,6 +256,7 @@ const FirstCollect = () => {
                                     colors.bg2,
                                     colors.bg3,
                                 ]}
+                                textColorScheme={colors.text}
                                 icon="check-circle"
                             />
                         </View>

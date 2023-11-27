@@ -130,4 +130,3 @@ describe('Courses page tests', () => {
         cy.contains('Courses');
     });
 });
-
