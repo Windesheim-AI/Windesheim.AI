@@ -3,6 +3,7 @@ describe('Home page tests', () => {
         cy.visit('/');
 
         cy.get('[data-testid="FirstCollect-skip-button"]').click();
+        cy.visit('/settings');
         cy.get('[data-testid="tutorial-skip-button"]').click();
     });
 
