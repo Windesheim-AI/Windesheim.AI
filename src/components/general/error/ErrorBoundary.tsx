@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
         height: windowHeight * 0.08,
         backgroundColor: colors.blue,
         borderRadius: 8,
+        transform: 'scale(1)',
     },
     buttonText: {
         fontSize: windowWidth * 0.05,
@@ -91,7 +92,7 @@ const ErrorFallback: React.FC<Props> = ({ error, resetError }: Props) => {
             </Text>
             <View style={styles.textContainer}>
                 <TouchableOpacity
-                    style={[styles.button, { transform: [{ scale: 1 }] }]}
+                    style={styles.button}
                     onPress={() => {
                         resetError();
                     }}
