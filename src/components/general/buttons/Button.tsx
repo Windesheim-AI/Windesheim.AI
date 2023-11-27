@@ -15,6 +15,7 @@ export type ButtonProps = {
     colorGradientScheme: ColorGradientScheme;
     textColorScheme: string | undefined;
     width?: number;
+    height?: number;
     icon?: string;
     testId?: string;
 };
@@ -27,6 +28,7 @@ export const Button = ({
     textColorScheme,
     screenName,
     width,
+    height = 60,
     icon,
     testId,
 }: ButtonProps) => {
@@ -54,7 +56,6 @@ export const Button = ({
     const buttonWidth =
         checkedWidth > minWidth ? checkedWidth * 3 : minWidth * 3;
     const barHeight = 3 * checkedWidth;
-    const height = 60;
 
     const styles = StyleSheet.create({
         bg1: {
@@ -82,7 +83,8 @@ export const Button = ({
             // from left to rigth items
             // shadow
             maxHeight: 90,
-            width: buttonWidth,
+            width: width ? buttonWidth : 'auto',
+            minWidth: buttonWidth,
             // center
             overflow: 'hidden',
         },
@@ -90,6 +92,7 @@ export const Button = ({
             left: 50,
             position: 'absolute',
             ...fonts.button,
+            width: buttonWidth - 30,
             color: textColorScheme ? textColorScheme : fonts.button.color,
         },
         text: {

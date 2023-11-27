@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Pressable } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
-import { Card } from '../../components/general/base/Card';
 import { ChipFilter } from '../../components/general/base/ChipFilters';
 import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
+import { PromptCard } from '../../components/promptLibary/PromptCard';
 import { useColorStateConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import usePromptLibrary from '../../lib/repositories/promptLibrary/usePromptLibrary';
@@ -24,19 +24,6 @@ export function PromptLibrary() {
     const [selectedSectors, setSelectedSectors] = useState<Sector[]>([]);
 
     const styles = StyleSheet.create({
-        card: {
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            ...colorStateConfig.highContrastBorder,
-        },
-        leftContent: {
-            flex: 1,
-        },
-        rightContent: {
-            flex: 1,
-            alignItems: 'flex-end',
-        },
         title: {
             ...fonts.h1,
             marginBottom: 10,
@@ -104,26 +91,7 @@ export function PromptLibrary() {
                     </>
                 ) : null}
                 {filteredPrompts?.map((prompt) => (
-                    <Pressable
-                        onPress={() => {
-                            navigation.navigate(Routes.Prompt, {
-                                promptId: prompt.id,
-                            });
-                        }}
-                        key={prompt.id}
-                    >
-                        <Card style={styles.card}>
-                            <View style={styles.leftContent}>
-                                <Text style={fonts.h3}>{prompt.title}</Text>
-                                <Text style={fonts.accent}>
-                                    {prompt.promptPattern}
-                                </Text>
-                            </View>
-                            <View style={styles.rightContent}>
-                                <Text style={fonts.h2}>{prompt.tool}</Text>
-                            </View>
-                        </Card>
-                    </Pressable>
+                    <PromptCard key={prompt.id} prompt={prompt} />
                 ))}
 
                 {filteredPrompts?.length === 0 ? (
