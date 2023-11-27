@@ -13,5 +13,5 @@
         "app.config.ts",
         "metro.config.js"
     ],
-    "exclude": ["cypress/*"]
+    "exclude": ["cypress/*", "node_modules/*"]
 }
