@@ -6,16 +6,19 @@ import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { Prompt } from '../../types/Prompt';
 import { Card } from '../general/base/Card';
+import { useColorStateConfig } from '../../constants/Colors';
 
 export const PromptCard = ({ prompt }: { prompt: Prompt }) => {
     const fonts = useFonts();
     const navigation = useNavigation();
+    const colorStateConfig = useColorStateConfig();
 
     const styles = StyleSheet.create({
         card: {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
+            ...colorStateConfig.highContrastBorder,
         },
         leftContent: {
             flex: 1,
