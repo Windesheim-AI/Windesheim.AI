@@ -1,6 +1,6 @@
 //Editbutton within "My background information"
 import React, { useState } from 'react';
-import { TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { shadow, useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
@@ -42,14 +42,10 @@ export const EditButton: React.FC<EditButtonProps & { testID?: string }> = ({
     });
 
     return (
-        <TouchableOpacity
-            style={styles.button}
-            onPress={handlePress}
-            testID={testID}
-        >
+        <Pressable style={styles.button} onPress={handlePress} testID={testID}>
             <Text style={styles.buttonText}>
                 <TextTranslated text={editMode ? 'Complete' : 'Edit'} />
             </Text>
-        </TouchableOpacity>
+        </Pressable>
     );
 };

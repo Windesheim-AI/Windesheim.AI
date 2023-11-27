@@ -1,10 +1,10 @@
 //Myinfo button in the settings page
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../general/text/TextTranslated';
 
 export const BgcollectButton = () => {
@@ -35,7 +35,7 @@ export const BgcollectButton = () => {
         <Pressable
             style={styles.button}
             onPress={() => {
-                navigation.navigate('MyInfo' as never);
+                navigation.navigate('MyInfo');
             }}
         >
             <Text style={styles.text}>

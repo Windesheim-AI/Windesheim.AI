@@ -6,7 +6,6 @@ import {
     Text,
     Pressable,
     Modal,
-    TouchableOpacity,
     FlatList,
     useWindowDimensions,
 } from 'react-native';
@@ -17,6 +16,8 @@ import {
     aiFamiliarity,
 } from '../../components/Bgcollect/DataList';
 import { EditButton } from '../../components/Bgcollect/EditButton';
+import { SettingCard } from '../../components/general/card/SettingCard';
+import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
 import { useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
@@ -31,23 +32,48 @@ export const MyInfo = () => {
     const windowDimensions = useWindowDimensions();
     const [showModal, setShowModal] = useState(false);
     const [selectedValue, setSelectedValue] = useState('');
-    const [isEditing, setIsEditing] = useState(false);
+    //const [isEditing, setIsEditing] = useState(false);
     const dispatch = useAppDispatch();
     const colors = useColorConfig();
+    const [isPositionEditing, setIsPositionEditing] = useState(false);
+    const [isKeywordsEditing, setIsKeywordsEditing] = useState(false);
+    const [isFamiliarityEditing, setIsFamiliarityEditing] = useState(false);
 
     const closeModal = () => {
-        setShowModal(false);
+        setIsPositionEditing(false);
+        setIsKeywordsEditing(false);
+        setIsFamiliarityEditing(false);
     };
 
-    const handlePress = (valueType: string) => {
-        if (!isEditing) return;
+    const phandlePress = (valueType: string) => {
+        if (!isPositionEditing) return;
+
+        setSelectedValue(valueType);
+        setShowModal(true);
+    };
+    const khandlePress = (valueType: string) => {
+        if (!isKeywordsEditing) return;
+
+        setSelectedValue(valueType);
+        setShowModal(true);
+    };
+    const fhandlePress = (valueType: string) => {
+        if (!isFamiliarityEditing) return;
 
         setSelectedValue(valueType);
         setShowModal(true);
     };
 
-    const handleEditPress = () => {
-        setIsEditing(!isEditing);
+    const handlePositionEditPress = () => {
+        setIsPositionEditing(!isPositionEditing);
+    };
+
+    const handleKeywordsEditPress = () => {
+        setIsKeywordsEditing(!isKeywordsEditing);
+    };
+
+    const handleFamiliarityEditPress = () => {
+        setIsFamiliarityEditing(!isFamiliarityEditing);
     };
 
     let modalData: { id: string; name: string }[] = [];
@@ -85,18 +111,7 @@ export const MyInfo = () => {
 
     const styles = StyleSheet.create({
         container: {
-            alignItems: 'center',
-            justifyContent: 'center',
             paddingTop: windowDimensions.height * 0.03,
-        },
-        box: {
-            alignItems: 'center',
-            borderRadius: 25,
-            flexDirection: 'row',
-            backgroundColor: colors.listItemBg,
-            marginBottom: windowDimensions.width * 0.05,
-            width: windowDimensions.width * 0.8,
-            height: windowDimensions.height * 0.1,
         },
         infoText: {
             color: colors.text,
@@ -114,54 +129,70 @@ export const MyInfo = () => {
         modalText: {
             ...fonts.h1,
         },
-        editButtonContainer: {
-            width: windowDimensions.width,
-            position: 'absolute',
-            bottom: 0, // 화면 하단에 배치
-            paddingBottom: windowDimensions.height * 0.03, // 아래 여백
-            paddingRight: 60,
-        },
     });
 
     return (
         <PageView title="My Background Information">
             <View style={styles.container}>
+                {/* position */}
                 <Pressable
-                    onPress={() => handlePress('position')}
-                    style={styles.box}
-                    disabled={!isEditing}
+                    onPress={() => {
+                        phandlePress('position');
+                        setSelectedValue('position');
+                        handlePositionEditPress();
+                    }}
+                    disabled={!isPositionEditing}
                     testID="positionPressable"
                 >
-                    <Text style={styles.infoText}>
-                        Position: {selectedPosition}
-                    </Text>
+                    <SettingCard icon="user" title="" testID="position">
+                        <Text style={styles.infoText}>{selectedPosition}</Text>
+                        <EditButton
+                            onPressEdit={handlePositionEditPress}
+                            isEditing={isPositionEditing}
+                            testID="editbutton"
+                        />
+                    </SettingCard>
                 </Pressable>
+                {/* keywords */}
                 <Pressable
-                    onPress={() => handlePress('keywords')}
-                    disabled={!isEditing}
-                    style={styles.box}
+                    onPress={() => {
+                        khandlePress('keywords');
+                        setSelectedValue('keywords');
+                        handleKeywordsEditPress();
+                    }}
+                    disabled={!isKeywordsEditing}
+                    testID="positionPressable"
                 >
-                    <Text style={styles.infoText}>
-                        Keyword: {inputKeywords}
-                    </Text>
+                    <SettingCard icon="user" title="" testID="keywords">
+                        <Text style={styles.infoText}>{inputKeywords}</Text>
+                        <EditButton
+                            onPressEdit={handleKeywordsEditPress}
+                            isEditing={isKeywordsEditing}
+                            testID="editbutton"
+                        />
+                    </SettingCard>
                 </Pressable>
+                {/* aiFamiliarity */}
                 <Pressable
-                    onPress={() => handlePress('aiFamiliarity')}
-                    disabled={!isEditing}
-                    style={styles.box}
+                    onPress={() => {
+                        fhandlePress('aiFamiliarity');
+                        setSelectedValue('aiFamiliarity');
+                        handleFamiliarityEditPress();
+                    }}
+                    disabled={!isFamiliarityEditing}
+                    testID="positionPressable"
                 >
-                    <Text style={styles.infoText}>
-                        Familiarity: {selectedFamiliarity}
-                    </Text>
+                    <SettingCard icon="user" title="" testID="aiFamiliarity">
+                        <Text style={styles.infoText}>
+                            {selectedFamiliarity}
+                        </Text>
+                        <EditButton
+                            onPressEdit={handleFamiliarityEditPress}
+                            isEditing={isFamiliarityEditing}
+                            testID="editbutton"
+                        />
+                    </SettingCard>
                 </Pressable>
-            </View>
-            {/* Edit Button */}
-            <View style={styles.editButtonContainer}>
-                <EditButton
-                    onPressEdit={handleEditPress}
-                    isEditing={isEditing}
-                    testID="editbutton"
-                />
             </View>
             {/* Modal content */}
             <Modal
@@ -173,7 +204,7 @@ export const MyInfo = () => {
                     <FlatList
                         data={modalData}
                         renderItem={({ item }) => (
-                            <TouchableOpacity
+                            <Pressable
                                 onPress={() =>
                                     handleValueSelection(item.name || item.id)
                                 }
@@ -181,13 +212,15 @@ export const MyInfo = () => {
                                 <Text style={styles.modalText}>
                                     {item.name || item.id}
                                 </Text>
-                            </TouchableOpacity>
+                            </Pressable>
                         )}
                         keyExtractor={(item) => item.id}
                     />
-                    <TouchableOpacity onPress={closeModal}>
-                        <Text>Close</Text>
-                    </TouchableOpacity>
+                    <Pressable onPress={closeModal}>
+                        <Text>
+                            <TextTranslated text="Close" />
+                        </Text>
+                    </Pressable>
                 </View>
             </Modal>
         </PageView>

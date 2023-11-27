@@ -76,9 +76,6 @@ export const Layout = ({ children }: LayoutProps) => {
                     >
                         <FirstCollect />
                     </Animated.View>
-                    <View style={styles.pos_r}>
-                        <NavBar />
-                    </View>
                 </SafeAreaView>
             </>
         );

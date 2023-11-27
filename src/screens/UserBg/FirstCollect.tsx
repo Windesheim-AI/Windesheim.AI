@@ -18,6 +18,7 @@ import {
 } from '../../components/Bgcollect/DataList';
 import { Button } from '../../components/general/buttons/Button';
 import { ListButton } from '../../components/general/buttons/ListButton';
+import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
 import {
     shadow,
@@ -128,7 +129,9 @@ const FirstCollect = () => {
             return (
                 <PageView title="">
                     <View style={styles.welcomeContainer}>
-                        <Text style={styles.title}>Welcome to WingAI!</Text>
+                        <Text style={styles.title}>
+                            <TextTranslated text="Welcome to Windesheim.AI!" />
+                        </Text>
                         <Image
                             testID="winglogo"
                             source={
@@ -140,10 +143,10 @@ const FirstCollect = () => {
                             style={styles.centerImage}
                         />
                         <Text style={styles.modalText}>
-                            Tell me your background!
+                            <TextTranslated text="Tell me your background!" />
                         </Text>
                         <Text style={styles.modalText}>
-                            We provide you with customized training.
+                            <TextTranslated text=" We provide you with customized training." />
                         </Text>
                         <View>
                             <Button
@@ -179,7 +182,9 @@ const FirstCollect = () => {
             return (
                 <PageView title="">
                     <View style={styles.welcomeContainer}>
-                        <Text style={styles.title}>Background Collect!!</Text>
+                        <Text style={styles.title}>
+                            <TextTranslated text="Background Collect!!" />
+                        </Text>
                         <Image
                             testID="winglogo"
                             source={
@@ -191,7 +196,7 @@ const FirstCollect = () => {
                             style={styles.centerImage}
                         />
                         <Text style={styles.modalText}>
-                            {questions[currentQuestion]}
+                            <TextTranslated text={questions[currentQuestion]} />
                         </Text>
 
                         <ScrollView style={styles.container}>
@@ -235,7 +240,9 @@ const FirstCollect = () => {
             return (
                 <PageView title="">
                     <View style={styles.welcomeContainer}>
-                        <Text style={styles.title}>Thank you!</Text>
+                        <Text style={styles.title}>
+                            <TextTranslated text="Thank you!" />
+                        </Text>
                         <Image
                             testID="winglogo"
                             source={
@@ -246,7 +253,9 @@ const FirstCollect = () => {
                             }
                             style={styles.centerImage}
                         />
-                        <Text style={styles.modalText}>Start the app</Text>
+                        <Text style={styles.modalText}>
+                            <TextTranslated text="Start the app" />
+                        </Text>
                         <View>
                             <Button
                                 buttonText="Start"
