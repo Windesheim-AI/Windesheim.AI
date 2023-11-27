@@ -34,9 +34,23 @@ export const Notification = ({
     const fonts = useFonts();
 
     const [slideAnim, _] = useAnimatedValue(-80);
+    let slideAnimValue = -80;
+    slideAnim.addListener(({ value }) => {
+        slideAnimValue = value;
+    });
+
     const [fadeAnim, animateFade] = useAnimatedValue(1);
     const [scaleYAnim, animateScaleY] = useAnimatedValue(1);
+    let scaleYAnimValue = 1;
+    scaleYAnim.addListener(({ value }) => {
+        scaleYAnimValue = value;
+    });
+
     const [translateYAnim, animateTranslateY] = useAnimatedValue(-50);
+    let translateYAnimValue = -50;
+    translateYAnim.addListener(({ value }) => {
+        translateYAnimValue = value;
+    });
 
     useEffect(() => {
         Animated.parallel([
@@ -69,7 +83,7 @@ export const Notification = ({
             height: barHeight,
             left: '-1.5%',
             position: 'absolute',
-            transform: [{ rotate: '15deg' }],
+            transform: 'rotate(15deg)',
             width: barWidth * 2,
         },
         bg2: {
@@ -77,7 +91,7 @@ export const Notification = ({
             height: barHeight,
             position: 'absolute',
             left: '1%',
-            transform: [{ rotate: '15deg' }],
+            transform: 'rotate(15deg)',
             width: barWidth,
         },
         bg3: {
@@ -85,7 +99,7 @@ export const Notification = ({
             height: barHeight,
             position: 'absolute',
             left: '3%',
-            transform: [{ rotate: '15deg' }],
+            transform: 'rotate(15deg)',
             width: barWidth * 0.85,
         },
         bg4: {
@@ -93,7 +107,7 @@ export const Notification = ({
             height: barHeight,
             position: 'absolute',
             right: '-1.5%',
-            transform: [{ rotate: '15deg' }],
+            transform: 'rotate(15deg)',
             width: barWidth * 2,
         },
         bg5: {
@@ -101,7 +115,7 @@ export const Notification = ({
             height: barHeight,
             position: 'absolute',
             right: '1%',
-            transform: [{ rotate: '15deg' }],
+            transform: 'rotate(15deg)',
             width: barWidth,
         },
         bg6: {
@@ -109,7 +123,7 @@ export const Notification = ({
             height: barHeight,
             position: 'absolute',
             right: '3%',
-            transform: [{ rotate: '15deg' }],
+            transform: 'rotate(15deg)',
             width: barWidth * 0.85,
         },
         alert: {
@@ -123,7 +137,7 @@ export const Notification = ({
             margin: 10,
             width: alertWidth,
             overflow: 'hidden',
-            transform: [{ translateY: slideAnim }],
+            transform: `translateY(${slideAnimValue})`,
             ...shadow,
         },
         textContainer: {
@@ -154,13 +168,16 @@ export const Notification = ({
         <Animated.View
             style={{
                 opacity: fadeAnim,
-                transform: [{ translateY: translateYAnim }],
+                transform: `translateY(${translateYAnimValue})`,
             }}
         >
             <Animated.View
                 style={[
                     styles.alert,
-                    { opacity: fadeAnim, transform: [{ scaleY: scaleYAnim }] },
+                    {
+                        opacity: fadeAnim,
+                        transform: `scaleY(${scaleYAnimValue})`,
+                    },
                 ]}
             >
                 <View style={styles.bg1} />

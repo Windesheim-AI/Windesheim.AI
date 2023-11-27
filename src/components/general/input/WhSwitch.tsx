@@ -21,6 +21,8 @@ export const WhSwitch = ({
             trackColor={{ false: colors.primary, true: colors.success }}
             thumbColor={isEnabled ? colors.success : colors.primary}
             ios_backgroundColor={colors.background}
+            // @ts-ignore
+            activeThumbColor={colors.success}
             onValueChange={onValueChange}
             value={isEnabled}
             testID={testID}

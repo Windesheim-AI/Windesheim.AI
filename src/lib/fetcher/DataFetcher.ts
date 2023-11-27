@@ -1,9 +1,9 @@
 import useSWRNative from '@nandorojo/swr-react-native';
-import { Buffer } from 'buffer';
 import { BareFetcher, Fetcher, SWRConfiguration } from 'swr';
 
 import { HttpStatusCode } from '../../types/Response';
 import { handleError } from '../utility/errorHandler';
+import { stringToBase64 } from '../utility/stringutils';
 
 interface FetcherOptions {
     input: RequestInfo | URL | string;
@@ -18,12 +18,8 @@ export const fetchData = async (options: FetcherOptions) => {
     }
 
     if (response.status !== HttpStatusCode.Ok.valueOf()) {
-        handleError(
-            new Error(
-                'An error occurred while fetching the data. Received status code: ' +
-                    response.status,
-            ),
-        );
+        const result: object = (await response.json()) as object;
+        handleError(new Error(JSON.stringify(result)));
     }
 
     return response;
@@ -73,9 +69,7 @@ export const useDataFetcher = <DataType>(
             Authorization: `Bearer ${bearerToken}`,
         }),
         ...(hasBasicAuthCredentials && {
-            Authorization: `Basic ${Buffer.from(
-                `${username}:${password}`,
-            ).toString('base64')}`,
+            Authorization: `Basic ${stringToBase64(`${username}:${password}`)}`,
         }),
     };
 

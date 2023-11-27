@@ -1,7 +1,5 @@
 describe('wait for server', () => {
-    it('waits for server', () => {
-        // Wait for the server to start up
-        cy.wait(30_000);
+    it('waits for server', { retries: 3 }, () => {
         cy.visit('/');
     });
 });

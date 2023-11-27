@@ -73,7 +73,7 @@ describe('Prompt Library tests', () => {
         cy.get(prompts[0].title).should('not.exist');
         cy.get(prompts[2].title).should('not.exist');
 
-        // Reset all fitlers
+        // Reset all filters
         cy.get('[data-testid="chip-Personal Development-container"]').click();
         cy.contains(prompts[0].title);
         cy.contains(prompts[1].title);
@@ -98,7 +98,7 @@ describe('Prompt Library tests', () => {
         cy.contains(prompt.tool);
         cy.contains(prompt.promptPattern);
         cy.contains(prompt.sector);
-        cy.contains('Open Tool');
+        cy.contains('Try it yourself');
     });
 
     it('can view a non-existing prompt', () => {

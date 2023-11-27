@@ -43,7 +43,10 @@ jest.mock('./src/redux/Hooks', () => ({
     useAppDispatch: jest.fn(),
 }));
 
-const mockedState: ThemeState = { theme: 'light' };
+const mockedState: ThemeState = {
+    theme: 'light',
+    isHighContrastEnabled: false,
+};
 (useAppSelector as jest.Mock).mockReturnValue(mockedState);
 
 jest.mock('react-i18next', () => ({

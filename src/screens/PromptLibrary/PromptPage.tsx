@@ -11,8 +11,8 @@ import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
 import {
     shadow,
-    stateColorSchemes,
     useColorConfig,
+    useColorStateConfig,
 } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import useSinglePrompt from '../../lib/repositories/promptLibrary/useSinglePrompt';
@@ -27,9 +27,11 @@ export function PromptPage() {
     const colors = useColorConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
+    const colorStateConfig = useColorStateConfig();
     const route = useRoute();
     const params = route.params as PromptPageProps;
     const promptId = params.promptId;
+
     const { data, isLoading, error } = useSinglePrompt(promptId);
     const prompt = data;
 
@@ -57,30 +59,29 @@ export function PromptPage() {
         sectorTag: {
             marginRight: 5,
             marginBottom: 5,
-            backgroundColor: stateColorSchemes.success[1],
-            borderColor: stateColorSchemes.success[1],
-            color: colors.white,
+            backgroundColor: colorStateConfig.colors.success[1],
+            borderColor: colorStateConfig.colors.success[1],
+            color: colorStateConfig.text?.success ?? colors.white,
             ...shadow,
         },
         toolTag: {
             marginRight: 5,
             marginBottom: 5,
-            backgroundColor: stateColorSchemes.primary[1],
-            borderColor: stateColorSchemes.primary[1],
-            color: colors.white,
+            backgroundColor: colorStateConfig.colors.primary[1],
+            borderColor: colorStateConfig.colors.primary[1],
+            color: colorStateConfig.text?.primary ?? colors.white,
             ...shadow,
         },
         promptPatternTag: {
             marginRight: 5,
             marginBottom: 5,
-            backgroundColor: stateColorSchemes.danger[1],
-            borderColor: stateColorSchemes.danger[1],
-            color: colors.white,
+            backgroundColor: colorStateConfig.colors.danger[1],
+            borderColor: colorStateConfig.colors.danger[1],
+            color: colorStateConfig.text?.danger ?? colors.white,
             ...shadow,
         },
         chipText: {
-            color: colors.white,
-            ...fonts.description,
+            ...fonts.chipText,
         },
     });
 
@@ -120,7 +121,10 @@ export function PromptPage() {
                     <Chip
                         style={styles.toolTag}
                         mode="outlined"
-                        textStyle={styles.chipText}
+                        textStyle={{
+                            ...styles.chipText,
+                            color: colorStateConfig.text?.primary,
+                        }}
                         icon="wrench"
                     >
                         {prompt?.tool}
@@ -128,7 +132,10 @@ export function PromptPage() {
                     <Chip
                         style={styles.sectorTag}
                         mode="outlined"
-                        textStyle={fonts.description}
+                        textStyle={{
+                            ...styles.chipText,
+                            color: colorStateConfig.text?.success,
+                        }}
                         icon="briefcase"
                     >
                         {prompt?.sector}
@@ -136,13 +143,16 @@ export function PromptPage() {
                     <Chip
                         style={styles.promptPatternTag}
                         mode="outlined"
-                        textStyle={fonts.description}
+                        textStyle={{
+                            ...styles.chipText,
+                            color: colorStateConfig.text?.danger,
+                        }}
                         icon="clipboard"
                     >
                         {prompt?.promptPattern}
                     </Chip>
                 </View>
-                <Card>
+                <Card style={{ ...colorStateConfig.highContrastBorder }}>
                     <TextTranslated
                         style={styles.subtitle}
                         text="Description"
@@ -151,17 +161,18 @@ export function PromptPage() {
                         {prompt?.description}
                     </Text>
                 </Card>
-                <Card>
+                <Card style={{ ...colorStateConfig.highContrastBorder }}>
                     <TextTranslated style={styles.subtitle} text="Prompt" />
                     <Text style={styles.cardDescription}>{prompt?.prompt}</Text>
                 </Card>
 
                 {/* link to the tool open URL in app */}
                 <Button
-                    buttonText="Open Tool"
+                    buttonText="Try it yourself"
                     // eslint-disable-next-line @typescript-eslint/no-misused-promises
                     onPress={() => Linking.openURL(prompt?.toolLink ?? '')}
-                    colorGradientScheme={stateColorSchemes.primary}
+                    colorGradientScheme={colorStateConfig.colors.primary}
+                    textColorScheme={colorStateConfig.text?.primary}
                 />
             </PageView>
         </DataWrapper>

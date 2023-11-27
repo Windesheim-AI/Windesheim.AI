@@ -2,16 +2,17 @@ import React from 'react';
 
 import { BgcollectButton } from '../../components/Bgcollect/BgcollectButton';
 import { SettingCard } from '../../components/general/card/SettingCard';
-import { PageView } from '../../components/general/views/PageView';
+import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { AnimationToggle } from '../../components/settings/AnimationToggle';
 import { FontSwitcher } from '../../components/settings/FontSwitcher';
+import { HighContrastSwitcher } from '../../components/settings/HighContrastSwitcher';
 import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../../components/settings/ThemeSwitcher';
 import { TutorialRedoButton } from '../../components/tutorial/TutorialRedoButton';
 
 export const SettingsScreen = () => {
     return (
-        <PageView title="Settings">
+        <PageScrollView title="Settings">
             <SettingCard
                 icon="moon"
                 title="Enable dark mode"
@@ -40,6 +41,14 @@ export const SettingsScreen = () => {
                 <AnimationToggle />
             </SettingCard>
 
+            <SettingCard
+                icon="eye"
+                title="Enable high contrast"
+                testID="High contrast mode switcher"
+            >
+                <HighContrastSwitcher />
+            </SettingCard>
+
             <SettingCard icon="redo" title="Tutorial" testID="tutorial reset">
                 <TutorialRedoButton />
             </SettingCard>
@@ -51,6 +60,6 @@ export const SettingsScreen = () => {
             >
                 <BgcollectButton />
             </SettingCard>
-        </PageView>
+        </PageScrollView>
     );
 };
