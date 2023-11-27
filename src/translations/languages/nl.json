@@ -12,7 +12,7 @@
     "Search...": "Zoeken...",
     "Welcome!": "Welkom!",
     "Description": "Beschrijving",
-    "Open Tool": "Open Tool",
+    "Try it yourself": "Probeer het zelf",
     "Skip": "Overslaan",
     "Next": "Volgende",
     "Home Screen": "Startscherm",
@@ -42,5 +42,6 @@
     "We're sorry, but we couldn't find the page you were looking for.": "Het spijt ons, maar we konden de pagina die u zocht niet vinden.",
     "Useful Prompts": "Handige prompts",
     "See all prompts": "Bekijk alle prompts",
-    "See all Tech Providers": "Bekijk alle Tech Providers"
+    "See all Tech Providers": "Bekijk alle Tech Providers",
+    "Enable high contrast": "Activeer hoog contrast"
 }

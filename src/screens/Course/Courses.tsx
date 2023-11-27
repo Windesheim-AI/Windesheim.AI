@@ -3,10 +3,15 @@ import { View, StyleSheet } from 'react-native';
 import { Bar } from 'react-native-progress';
 
 import { DataWrapper } from '../../components/general/base/DataWrapper';
+import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { IntractableView } from '../../components/general/views/IntractableView';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
-import { shadow, useColorConfig } from '../../constants/Colors';
+import {
+    shadow,
+    useColorConfig,
+    useColorStateConfig,
+} from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useMapMultipleCoursesToData } from '../../lib/repositories/courses/mapMultipleCourseToData';
 import useAllCourses from '../../lib/repositories/courses/useAllCourses';
@@ -31,6 +36,7 @@ function getProgressPercentage(course: CourseDataMapped) {
 export function Courses() {
     const fonts = useFonts();
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const { data, isLoading, error } = useAllCourses();
     const courses = useMapMultipleCoursesToData(data);
     const navigator = useNavigation();
@@ -43,6 +49,7 @@ export function Courses() {
             marginBottom: 16,
             ...shadow,
             elevation: 5,
+            ...colorStateConfig.highContrastBorder,
         },
         title: {
             ...fonts.courseTitle,
@@ -70,6 +77,11 @@ export function Courses() {
         <DataWrapper error={error} isLoading={isLoading}>
             <PageScrollView>
                 <TextTranslated style={fonts.h1} text="Courses" />
+
+                <GoBackButton
+                    onPress={() => navigator.navigate(Routes.Study)}
+                    buttonText="Study"
+                />
 
                 {/* map the courses */}
                 <View style={styles.cardContainer} testID="test-container">

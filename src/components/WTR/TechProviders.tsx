@@ -36,7 +36,7 @@ import Oracle from '../../assets/images/WTR/TechProviders/oracle.svg';
 import SalesForce from '../../assets/images/WTR/TechProviders/salesforce.svg';
 //@ts-ignore
 import Sap from '../../assets/images/WTR/TechProviders/sap.svg';
-import { useColorConfig } from '../../constants/Colors';
+import { useColorConfig, useColorStateConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
@@ -61,6 +61,7 @@ let techProviderItems = [
 export const TechProviders = ({ limit }: { limit?: number }) => {
     const navigation = useNavigation();
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
 
     const styles = StyleSheet.create({
@@ -74,9 +75,9 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
             maxHeight: 90,
             overflow: 'hidden',
             backgroundColor: colors.listItemBg,
+            ...colorStateConfig.highContrastBorder,
         },
         itemText: {
-            color: colors.text,
             fontSize: 14,
             fontWeight: 'bold',
             textAlign: 'center',

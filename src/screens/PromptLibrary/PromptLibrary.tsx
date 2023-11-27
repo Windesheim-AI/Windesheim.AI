@@ -7,7 +7,7 @@ import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { PromptCard } from '../../components/promptLibary/PromptCard';
-import { stateColorSchemes } from '../../constants/Colors';
+import { useColorStateConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import usePromptLibrary from '../../lib/repositories/promptLibrary/usePromptLibrary';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -17,6 +17,8 @@ import { Sector } from '../../types/Prompt';
 export function PromptLibrary() {
     const fonts = useFonts();
     const navigation = useNavigation();
+    const colorStateConfig = useColorStateConfig();
+
     const { data, isLoading, error } = usePromptLibrary();
     const [selectedTools, setSelectedTools] = useState<string[]>([]);
     const [selectedSectors, setSelectedSectors] = useState<Sector[]>([]);
@@ -70,14 +72,20 @@ export function PromptLibrary() {
                                 activeList={selectedTools}
                                 filterList={usedTools}
                                 setActiveList={setSelectedTools}
-                                colorGradientScheme={stateColorSchemes.primary}
+                                colorGradientScheme={
+                                    colorStateConfig.colors.primary
+                                }
+                                textColorScheme={colorStateConfig.text?.primary}
                             />
 
                             <ChipFilter
                                 activeList={selectedSectors}
                                 filterList={usedSectors}
                                 setActiveList={setSelectedSectors}
-                                colorGradientScheme={stateColorSchemes.success}
+                                colorGradientScheme={
+                                    colorStateConfig.colors.success
+                                }
+                                textColorScheme={colorStateConfig.text?.success}
                             />
                         </View>
                     </>

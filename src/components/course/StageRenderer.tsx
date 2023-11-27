@@ -3,6 +3,7 @@ import React from 'react';
 import AIRenderer from './stages/AIBlock';
 import ButtonBlock from './stages/ButtonBlock';
 import TextRenderer from './stages/TextBlock';
+import { useFonts } from '../../constants/Fonts';
 import {
     CourseStageBlock,
     CourseStageBlockType,
@@ -23,6 +24,8 @@ export default function StageRenderer({
     stage: Stage;
     courseId: string;
 }) {
+    const fonts = useFonts();
+
     return (
         <>
             {stage.blocks.map((block: CourseStageBlock) => {
@@ -33,7 +36,11 @@ export default function StageRenderer({
 
                 if (!renderer) {
                     return (
-                        <TextTranslated key={key} text="Unknown block type" />
+                        <TextTranslated
+                            style={fonts.default}
+                            key={key}
+                            text="Unknown block type"
+                        />
                     );
                 }
 
