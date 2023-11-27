@@ -41,8 +41,8 @@ export const SettingsScreen = () => {
             </SettingCard>
 
             <SettingCard
-                icon="moon"
-                title="Enable high contrast mode"
+                icon="eye"
+                title="Enable high contrast"
                 testID="High contrast mode switcher"
             >
                 <HighContrastSwitcher />
