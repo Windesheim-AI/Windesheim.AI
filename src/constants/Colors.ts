@@ -135,9 +135,9 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         tabIconSelected: tintColorLight,
         titleDefault: '#000',
         descriptionDefault: '#666666',
-        bg1: '#ffdb58',
-        bg2: '#ffcc33',
-        bg3: '#ff9933',
+        bg1: '#fff377',
+        bg2: '#ffd949',
+        bg3: '#ffcb05',
         settingButtonBG: '#ffffff',
         modalBackground: 'rgba(0, 0, 0, 0.5)',
         subtext: '#808080',
@@ -244,12 +244,12 @@ const stateColorSchemes: StateColorGradientSchemes = {
 };
 
 const highContrastStateColorSchemes: StateColorGradientSchemes = {
-    primary: ['#1a75ff', '#0066cc', '#4d94ff'],
-    info: ['#1a75ff', '#0066cc', '#4d94ff'],
-    secondary: ['#ffcc33', '#ffbf00', '#ffdb58'],
-    success: ['#3baf4f', '#2f993d', '#6ebf6e'],
-    warning: ['#ff5500', '#e64d00', '#ff9933'],
-    danger: ['#cc0000', '#b30000', '#e60000'],
+    primary: ['#4695D3', '#22BDC6', '#86D2D9'],
+    info: ['#4695D3', '#22BDC6', '#86D2D9'],
+    secondary: ['#FFCB05', '#FFD949', '#FFF377'],
+    success: ['#45B97C', '#B1D249', '#c6d428'],
+    warning: ['#ff7300', '#f59e56', '#ffcc66'],
+    danger: ['#EE3135', '#F16682', '#F287B7'],
 };
 
 export function useCurrentTheme(): 'dark' | 'light' {
