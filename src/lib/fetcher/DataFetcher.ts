@@ -18,12 +18,8 @@ export const fetchData = async (options: FetcherOptions) => {
     }
 
     if (response.status !== HttpStatusCode.Ok.valueOf()) {
-        handleError(
-            new Error(
-                'An error occurred while fetching the data. Received status code: ' +
-                    response.status,
-            ),
-        );
+        const result: object = (await response.json()) as object;
+        handleError(new Error(JSON.stringify(result)));
     }
 
     return response;
