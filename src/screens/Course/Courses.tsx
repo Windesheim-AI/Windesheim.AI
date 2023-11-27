@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { Bar } from 'react-native-progress';
 
 import { DataWrapper } from '../../components/general/base/DataWrapper';
+import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { IntractableView } from '../../components/general/views/IntractableView';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
@@ -70,6 +71,11 @@ export function Courses() {
         <DataWrapper error={error} isLoading={isLoading}>
             <PageScrollView>
                 <TextTranslated style={fonts.h1} text="Courses" />
+
+                <GoBackButton
+                    onPress={() => navigator.navigate(Routes.Study)}
+                    buttonText="Study"
+                />
 
                 {/* map the courses */}
                 <View style={styles.cardContainer} testID="test-container">
