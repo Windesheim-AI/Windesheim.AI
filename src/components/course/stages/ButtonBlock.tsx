@@ -1,16 +1,18 @@
 import React from 'react';
 
 import BlockWrapper from './block';
-import { stateColorSchemes } from '../../../constants/Colors';
+import { useColorStateConfig } from '../../../constants/Colors';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../../routes/routes';
 import { ButtonOptions } from '../../../types/CourseStageBlock';
 import { Button } from '../../general/buttons/Button';
 
 export default function ButtonBlock({ options }: { options: ButtonOptions }) {
-    // ToDo: use the configured color scheme of the options.
-    const colorGradientScheme = stateColorSchemes.primary;
+    const colorStateConfig = useColorStateConfig();
+    const colorGradientScheme = colorStateConfig.colors.primary;
+    const textColorScheme = colorStateConfig.text?.primary;
     const navigator = useNavigation();
+
     function onPress() {
         navigator.navigate(Routes.CourseStage, {
             stageId: options.navigateToStageId,
@@ -22,6 +24,7 @@ export default function ButtonBlock({ options }: { options: ButtonOptions }) {
             <Button
                 buttonText={options.text}
                 colorGradientScheme={colorGradientScheme}
+                textColorScheme={textColorScheme}
                 onPress={onPress}
             />
         </BlockWrapper>

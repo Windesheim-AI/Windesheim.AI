@@ -29,6 +29,7 @@ This is important, because we've on a regular basis issues with the app on mobil
 -   [ ] Everything works as expected
 -   [ ] No weird usability bugs
 -   [ ] No errors or warnings during the tests
+-   [ ] The browser console does not show any new errors or warnings (e.g. TouchableOpacity is deprecated)
 
 ---
 
