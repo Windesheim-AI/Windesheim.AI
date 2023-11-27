@@ -41,7 +41,7 @@ export type ColorSchemeType = {
     opacityLayer: string;
 };
 
-const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
+export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
         primary: '#4695D3',
         secondary: '#fff377',
