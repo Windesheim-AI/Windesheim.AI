@@ -6,11 +6,7 @@ type Props = {
 } & ViewProps;
 
 export function IntractableView({ onPress, ...props }: Props) {
-    return Platform.OS !== 'web' ? (
-        <View {...props} onTouchEnd={onPress}>
-            {props.children}
-        </View>
-    ) : (
+    return (
         <Pressable onPress={onPress}>
             <View {...props}>{props.children}</View>
         </Pressable>
