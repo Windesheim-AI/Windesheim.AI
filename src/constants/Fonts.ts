@@ -37,6 +37,7 @@ type TextStyling = {
     buttonLarger: TextStyle;
     courseTitle: TextStyle;
     courseSubTitle: TextStyle;
+    chipText: TextStyle;
 };
 
 // eslint-disable-next-line complexity
@@ -149,6 +150,10 @@ export function useFonts() {
             fontSize: 12,
             fontStyle: 'italic',
             color: colors.subTitle,
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
+        },
+        chipText: {
+            fontSize: 14,
             fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
     };

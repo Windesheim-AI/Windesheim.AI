@@ -10,6 +10,7 @@ export type ChipFilterProps<T extends ReactNode> = {
     filterList: T[];
     setActiveList: (list: T[]) => void;
     colorGradientScheme: ColorGradientScheme;
+    textColorScheme?: string;
 };
 
 export function ChipFilter<T extends ReactNode>({
@@ -17,6 +18,7 @@ export function ChipFilter<T extends ReactNode>({
     filterList,
     setActiveList,
     colorGradientScheme,
+    textColorScheme,
 }: ChipFilterProps<T>) {
     const fonts = useFonts();
     const styles = StyleSheet.create({
@@ -35,6 +37,17 @@ export function ChipFilter<T extends ReactNode>({
                 : colorGradientScheme[0], // Use colors.secondary instead of randomColor()
             ...shadow,
         };
+    }
+
+    function getStyleForChipText() {
+        if (textColorScheme) {
+            return {
+                ...fonts.chipText,
+                color: textColorScheme,
+            };
+        }
+
+        return fonts.chipText;
     }
 
     function handleChipLongPress(filter: T) {
@@ -57,7 +70,7 @@ export function ChipFilter<T extends ReactNode>({
                     <Chip
                         key={filter?.toString()}
                         style={getStyleForChip(activeList.includes(filter))}
-                        textStyle={fonts.description}
+                        textStyle={getStyleForChipText()}
                         icon={activeList.includes(filter) ? 'check' : 'close'}
                         onPress={() => toggleOption(filter)}
                         onLongPress={() => handleChipLongPress(filter)}

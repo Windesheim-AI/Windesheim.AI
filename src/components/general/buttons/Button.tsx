@@ -13,15 +13,18 @@ export type ButtonProps = {
     screenName?: string;
     buttonText?: string;
     colorGradientScheme: ColorGradientScheme;
+    textColorScheme: string | undefined;
     width?: number;
     icon?: string;
     testId?: string;
 };
 
+// eslint-disable-next-line complexity
 export const Button = ({
     onPress,
     buttonText,
     colorGradientScheme,
+    textColorScheme,
     screenName,
     width,
     icon,
@@ -87,13 +90,15 @@ export const Button = ({
             left: 50,
             position: 'absolute',
             ...fonts.button,
+            color: textColorScheme ? textColorScheme : fonts.button.color,
         },
         text: {
             ...fonts.button,
+            color: textColorScheme ? textColorScheme : fonts.button.color,
         },
         icon: {
-            color: colors.buttonText,
             ...fonts.icon,
+            color: textColorScheme ? textColorScheme : colors.buttonText,
             fontWeight: 'bold',
         },
     });

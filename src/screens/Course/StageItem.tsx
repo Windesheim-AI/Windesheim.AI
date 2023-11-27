@@ -4,7 +4,11 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { IntractableView } from '../../components/general/views/IntractableView';
-import { shadow, useColorConfig } from '../../constants/Colors';
+import {
+    shadow,
+    useColorConfig,
+    useColorStateConfig,
+} from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
@@ -18,6 +22,7 @@ export const StageItem = ({
 }: StageDataMapped & { courseId: string }) => {
     const fonts = useFonts();
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const navigation = useNavigation();
 
     const styles = StyleSheet.create({
@@ -40,6 +45,7 @@ export const StageItem = ({
             paddingLeft: 10,
             ...shadow,
             elevation: 5,
+            ...colorStateConfig.highContrastBorder,
         },
     });
 

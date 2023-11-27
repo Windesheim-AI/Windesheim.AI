@@ -6,7 +6,7 @@ import {
     ColorGradientScheme,
     ColorTypes,
     colorIconMapping,
-    useCurrentStateColorScheme,
+    useColorStateConfig,
 } from '../../constants/Colors';
 import { useAppDispatch } from '../Hooks';
 
@@ -79,7 +79,7 @@ export const useNotificationOnce = (
     colorType?: ColorTypes,
 ) => {
     const storeDispatcher = useAppDispatch();
-    const stateColorSchemes = useCurrentStateColorScheme();
+    const colorStateConfig = useColorStateConfig();
 
     useEffect(() => {
         storeDispatcher(
@@ -87,8 +87,8 @@ export const useNotificationOnce = (
                 id,
                 message,
                 colorGradientScheme: colorType
-                    ? stateColorSchemes[colorType]
-                    : stateColorSchemes.primary,
+                    ? colorStateConfig.colors[colorType]
+                    : colorStateConfig.colors.primary,
                 icon: colorType ? colorIconMapping[colorType] : 'info',
             } as AddNotificationAction),
         );
