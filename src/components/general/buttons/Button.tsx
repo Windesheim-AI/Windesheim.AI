@@ -19,6 +19,7 @@ export type ButtonProps = {
     testId?: string;
 };
 
+// eslint-disable-next-line complexity
 export const Button = ({
     onPress,
     buttonText,
@@ -80,7 +81,8 @@ export const Button = ({
             // from left to rigth items
             // shadow
             maxHeight: 90,
-            width: buttonWidth,
+            width: width ? buttonWidth : 'auto',
+            minWidth: buttonWidth,
             // center
             overflow: 'hidden',
         },
@@ -88,6 +90,7 @@ export const Button = ({
             left: 50,
             position: 'absolute',
             ...fonts.button,
+            width: buttonWidth - 30,
         },
         text: {
             ...fonts.button,

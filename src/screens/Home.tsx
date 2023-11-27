@@ -29,10 +29,6 @@ export const HomeScreen = () => {
                             height={40}
                         />
                     </View>
-
-                    <TechProviders limit={5} />
-                    <TechProviders limit={5} />
-                    <TechProviders limit={5} />
                 </View>
             </PageView>
         </WhScrollView>

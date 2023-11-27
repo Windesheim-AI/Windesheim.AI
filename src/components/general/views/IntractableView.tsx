@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, Pressable, View, ViewProps } from 'react-native';
+import { Pressable, View, ViewProps } from 'react-native';
 
 type Props = {
     onPress: () => void;
