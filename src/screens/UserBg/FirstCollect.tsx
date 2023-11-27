@@ -25,7 +25,7 @@ import {
     useCurrentTheme,
 } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { RootState, useAppDispatch, useAppSelector } from '../../redux/Hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
 import {
     setPosition,
     setInterestedKeyword,
