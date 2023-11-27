@@ -38,8 +38,7 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
                 `Live AI has been disabled in the .env file. Showing prompt; ${options.prompt}`,
             );
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [options.prompt]);
+    }, [openai.chat.completions, options.prompt]);
 
     const styles = StyleSheet.create({
         block: {

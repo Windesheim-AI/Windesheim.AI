@@ -48,6 +48,7 @@ coverage-jest/
 .nyc_output/
 instrumented/
 *.snap
+.eslintcache
 
 %ProgramData%/**/.*
 /%ProgramData%/Microsoft/Windows/UUS/State/_active.uusver

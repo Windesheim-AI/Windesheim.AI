@@ -14,4 +14,4 @@ instrument/
 *.md
 package-lock.json
 
-./fonts.js
+fonts.js

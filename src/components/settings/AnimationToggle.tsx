@@ -3,7 +3,7 @@ import React from 'react';
 import { useColorConfig } from '../../constants/Colors';
 import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
 import { toggleAnimation } from '../../redux/slices/AnimationSlice'; // You need to create this slice
-import { WhSwitch } from '../input/WhSwitch';
+import { WhSwitch } from '../general/input/WhSwitch';
 
 export const AnimationToggle = () => {
     const storeDispatcher = useAppDispatch();

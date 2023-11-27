@@ -1,7 +1,8 @@
-import { appConfig } from '../../../app.config';
+import { getEnvValue } from './env/env';
+import { EnvOptions } from './env/env.values';
 
 export function handleError(error: any) {
-    if (!appConfig.debug) {
+    if (getEnvValue(EnvOptions.AppDebug) !== 'true') {
         return;
     }
 

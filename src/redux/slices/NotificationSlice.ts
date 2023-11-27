@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { useEffect } from 'react';
 
-import { NotificationType } from '../../components/alerts/Notification';
+import { NotificationType } from '../../components/general/alerts/Notification';
 import {
     stateColorSchemes,
     ColorGradientScheme,

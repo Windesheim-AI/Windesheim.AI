@@ -3,12 +3,14 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import * as Progress from 'react-native-progress';
 
-import { DataWrapper } from '../../components/base/DataWrapper';
 import { CourseNavigation } from '../../components/course/CourseNavigation';
 import StageRenderer from '../../components/course/StageRenderer';
+import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { Button } from '../../components/general/buttons/Button';
+import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
+import { PageView } from '../../components/general/views/PageView';
 import {
     shadow,
     stateColorSchemes,
@@ -60,14 +62,25 @@ export default function Stage() {
         },
     });
 
+    function navigateBackToCourses() {
+        navigator.navigate(Routes.Courses.toString());
+    }
+
     // this meaning there is not data, while loading has finished.
     if ((!data && !isLoading) || !course.stageData) {
         return (
-            <View style={styles.container}>
-                <PageScrollView>
-                    <TextTranslated text="Course not found!" />
-                </PageScrollView>
-            </View>
+            <PageView>
+                <View style={styles.container}>
+                    <TextTranslated
+                        style={styles.courseTitle}
+                        text="Course not found!"
+                    />
+                    <GoBackButton
+                        buttonText="Courses"
+                        onPress={navigateBackToCourses}
+                    />
+                </View>
+            </PageView>
         );
     }
 
@@ -100,9 +113,9 @@ export default function Stage() {
     }
 
     return (
-        <DataWrapper error={error} isLoading={isLoading}>
-            <View style={styles.container}>
-                <PageScrollView>
+        <PageScrollView>
+            <DataWrapper error={error} isLoading={isLoading}>
+                <View style={styles.container}>
                     {stage ? (
                         <>
                             <CourseNavigation
@@ -140,11 +153,11 @@ export default function Stage() {
                     ) : (
                         <TextTranslated
                             style={styles.courseTitle}
-                            text="Course not found!"
+                            text="Course step not found!"
                         />
                     )}
-                </PageScrollView>
-            </View>
-        </DataWrapper>
+                </View>
+            </DataWrapper>
+        </PageScrollView>
     );
 }
