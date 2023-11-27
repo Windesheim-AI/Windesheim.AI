@@ -2,12 +2,12 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { TechProviders } from '../components/WTR/TechProviders';
+import { Button } from '../components/general/buttons/Button';
 import { PageView } from '../components/general/views/PageView';
 import { WhScrollView } from '../components/general/views/WhScrollView';
 import { HomePrompts } from '../components/home/HomePrompts';
-import { Routes } from '../routes/routes';
 import { stateColorSchemes } from '../constants/Colors';
-import { Button } from '../components/general/buttons/Button';
+import { Routes } from '../routes/routes';
 
 export const HomeScreen = () => {
     const description =
