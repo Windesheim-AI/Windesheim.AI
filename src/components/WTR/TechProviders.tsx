@@ -42,7 +42,7 @@ import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 
-const techProviderItems = [
+let techProviderItems = [
     { name: 'Apple', slug: 'apple', logo: Apple },
     { name: 'Amazon', slug: 'aws', logo: Amazon },
     { name: 'Cisco', slug: 'cisco-systems', logo: Cisco },
@@ -58,7 +58,7 @@ const techProviderItems = [
     { name: 'SAP', slug: 'sap', logo: Sap },
 ];
 
-export const TechProviders = () => {
+export const TechProviders = ({ limit }: { limit?: number }) => {
     const navigation = useNavigation();
     const colors = useColorConfig();
     const fonts = useFonts();
@@ -95,7 +95,7 @@ export const TechProviders = () => {
         },
         container: {
             backgroundColor: colors.background,
-            maxHeight: 200,
+            maxHeight: limit ? 'auto' : 200,
         },
     });
 
@@ -105,6 +105,13 @@ export const TechProviders = () => {
             page: provider,
         });
     };
+
+    if (limit) {
+        //shuffles the array and then slices it to the limit
+        techProviderItems.sort(() => Math.random() - Math.random());
+        techProviderItems = techProviderItems.slice(0, limit);
+    }
+
     return (
         <View>
             <TextTranslated style={styles.heading} text="Tech Providers" />
