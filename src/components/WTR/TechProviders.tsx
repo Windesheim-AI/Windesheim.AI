@@ -133,7 +133,7 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
                             />
                         ) : null}
                         <Text
-                            testID={`tech-provider-text`}
+                            testID="tech-provider-text"
                             style={styles.itemText}
                         >
                             {provider.name}
