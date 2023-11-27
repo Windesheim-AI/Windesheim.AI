@@ -86,6 +86,7 @@ export const ListButton = ({
             width: buttonWidth,
             // center
             overflow: 'hidden',
+            ...colorStateConfig.highContrastBorder,
         },
         icon: {
             fontSize: 15,
