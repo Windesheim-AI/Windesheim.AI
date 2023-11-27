@@ -7,5 +7,6 @@
         "noEmit": true
     },
     // only compile the production TS files
-    "exclude": ["__tests__/*", "cypress/*"]
+    "exclude": ["__tests__/*", "cypress/*"],
+    "include": ["cypress/**/*.ts"]
 }
