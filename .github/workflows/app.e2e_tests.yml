@@ -28,6 +28,6 @@ jobs:
                   wp-password: ${{ secrets.WP_PASSWORD }}
 
             - name: Cypress run
-              run: cypress run ${{ matrix.test-platform }}
+              run: npx cypress run ${{ matrix.test-platform }}
 
             - uses: ./.github/cleanup-action
