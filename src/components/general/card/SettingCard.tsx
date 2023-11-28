@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { useColorConfig } from '../../../constants/Colors';
+import { useColorConfig, useColorStateConfig } from '../../../constants/Colors';
 import { useFonts } from '../../../constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';
 
@@ -24,6 +24,7 @@ export const SettingCard = ({
     isFlexEnabled = true,
 }: SettingCardProps) => {
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const styles = StyleSheet.create({
         cardContainer: {
@@ -32,6 +33,7 @@ export const SettingCard = ({
             padding: 10,
             borderRadius: 10,
             marginBottom: 20,
+            ...colorStateConfig.highContrastBorder,
         },
         buttonContainer: {
             flexDirection: 'row',
@@ -45,6 +47,7 @@ export const SettingCard = ({
             padding: 10,
             borderRadius: 10,
             marginBottom: 20,
+            ...colorStateConfig.highContrastBorder,
         },
         iconContainer: {
             marginRight: 10,

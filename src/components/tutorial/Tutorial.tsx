@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Text, Pressable, View, StyleSheet } from 'react-native';
 
-import { useColorConfig } from '../../constants/Colors';
+import { useColorConfig, useColorStateConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { tutorialSteps } from '../../constants/TutorialSteps';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -12,6 +12,7 @@ import { TextTranslated } from '../general/text/TextTranslated';
 export const Tutorial = () => {
     const storeDispatcher = useAppDispatch();
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
 
@@ -66,6 +67,7 @@ export const Tutorial = () => {
             justifyContent: 'center',
             maxWidth: '80%', // Set a maximum width for the modal content
             height: 'auto',
+            ...colorStateConfig.highContrastBorder,
         },
         modalText: {
             ...fonts.h1,
@@ -89,6 +91,7 @@ export const Tutorial = () => {
             padding: 10,
             borderRadius: 5,
             width: '48%',
+            ...colorStateConfig.highContrastBorder,
         },
         skipButton: {
             backgroundColor: colors.warning,
