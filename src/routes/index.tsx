@@ -15,8 +15,8 @@ import { SettingsScreen } from '../screens/Settings/Settings';
 import { StudyScreen } from '../screens/Study';
 import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
 import { UsecaseScreen } from '../screens/Usecase/Usecase';
-import BackgroundCollectForm from '../screens/UserBg/BackgroundCollectForm';
-import { BackgroundInfo } from '../screens/UserBg/BackgroundInfo';
+import BackgroundCollectForm from '../screens/UserBackground/BackgroundCollectForm';
+import { BackgroundInfo } from '../screens/UserBackground/BackgroundInfo';
 import { WTRScreen } from '../screens/WTR/WTR';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
 

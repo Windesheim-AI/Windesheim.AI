@@ -14,7 +14,7 @@ import {
     position,
     keywords,
     aiFamiliarity,
-} from '../../components/Bgcollect/DataList';
+} from '../../components/BackgroundCollect/DataList';
 import { Button } from '../../components/general/buttons/Button';
 import { ListButton } from '../../components/general/buttons/ListButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';

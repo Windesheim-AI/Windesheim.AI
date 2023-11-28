@@ -14,8 +14,8 @@ import {
     position,
     keywords,
     aiFamiliarity,
-} from '../../components/Bgcollect/DataList';
-import { EditButton } from '../../components/Bgcollect/EditButton';
+} from '../../components/BackgroundCollect/DataList';
+import { EditButton } from '../../components/BackgroundCollect/EditButton';
 import { SettingCard } from '../../components/general/card/SettingCard';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';

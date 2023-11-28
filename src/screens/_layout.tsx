@@ -8,7 +8,7 @@ import {
     StatusBar,
 } from 'react-native';
 
-import BackgroundCollectForm from './UserBg/BackgroundCollectForm';
+import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
 import { NotificationList } from '../components/general/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';

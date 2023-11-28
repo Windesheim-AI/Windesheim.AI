@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BackgroundCollectButton } from '../../components/Bgcollect/BackgroundCollectButton';
+import { BackgroundCollectButton } from '../../components/BackgroundCollect/BackgroundCollectButton';
 import { SettingCard } from '../../components/general/card/SettingCard';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { AnimationToggle } from '../../components/settings/AnimationToggle';
