@@ -83,7 +83,6 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
                     <YoutubePlayer
                         height={Dimensions.get('window').height / 3}
                         width={Dimensions.get('window').width - 90}
-                        play
                         videoId={getYTId(options.videoURL) || ''}
                     />
                 </View>
