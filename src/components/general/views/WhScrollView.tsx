@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Dimensions, ScrollView, StyleSheet } from 'react-native';
 
-import { useColorConfig } from '../../../constants/Colors';
-import { useAppDispatch } from '../../../redux/Hooks';
-import { navigationActions } from '../../../redux/slices/NavigationSlice';
+import { useColorConfig } from '../../../lib/constants/Colors';
+import { useAppDispatch } from '../../../lib/redux/Hooks';
+import { navigationActions } from '../../../lib/redux/slices/NavigationSlice';
 
 type WhScrollViewProps = {
     children: React.ReactNode;

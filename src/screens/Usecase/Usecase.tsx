@@ -5,7 +5,7 @@ import CaseStudyList from '../../components/caseStudies/CaseStudyList';
 import { UseCaseButton } from '../../components/general/buttons/UseCaseButton';
 import HorizontalScroll from '../../components/general/views/HorizontalScroll';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
-import { useStyles } from '../../constants/_styles';
+import { useStyles } from '../../lib/constants/_styles';
 import { Routes } from '../../routes/routes';
 
 export const UsecaseScreen = () => {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { useColorStateConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+import { useColorStateConfig } from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { Prompt } from '../../types/Prompt';

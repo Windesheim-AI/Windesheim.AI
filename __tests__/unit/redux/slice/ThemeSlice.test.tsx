@@ -2,7 +2,7 @@ import {
     themeActions,
     themeSlice,
     ThemeState,
-} from '../../../../src/redux/slices/ThemeSlice';
+} from '../../../../src/lib/redux/slices/ThemeSlice';
 
 const { changeTheme, setHighContrastEnabled } = themeActions;
 

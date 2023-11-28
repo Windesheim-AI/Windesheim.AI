@@ -1,7 +1,7 @@
 import {
     navigationActions,
     navigationSlice,
-} from '../../../../src/redux/slices/NavigationSlice';
+} from '../../../../src/lib/redux/slices/NavigationSlice';
 
 const { showNavBar } = navigationActions;
 

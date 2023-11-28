@@ -8,10 +8,10 @@ import {
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { useColorConfig } from '../../constants/Colors';
+import { useColorConfig } from '../../lib/constants/Colors';
+import { useAppSelector } from '../../lib/redux/Hooks';
 import { useAnimatedValueNav } from '../../lib/utility/animate';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
-import { useAppSelector } from '../../redux/Hooks';
 import { navigationBarLinks } from '../../routes/navigation';
 
 export const NavBar = () => {

@@ -6,10 +6,10 @@ import { appConfig } from '../../../app.config';
 import LogoBlack from '../../assets/images/Logo/Logo_black.svg';
 //@ts-ignore
 import LogoWin from '../../assets/images/Logo/Logo_windesheim.svg';
-import { useCurrentTheme } from '../../constants/Colors';
+import { useCurrentTheme } from '../../lib/constants/Colors';
+import { useAppDispatch } from '../../lib/redux/Hooks';
+import { hideSplashScreen } from '../../lib/redux/slices/LayoutSlice';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
-import { useAppDispatch } from '../../redux/Hooks';
-import { hideSplashScreen } from '../../redux/slices/LayoutSlice';
 import { Routes } from '../../routes/routes';
 import { Background } from '../general/background/Background';
 

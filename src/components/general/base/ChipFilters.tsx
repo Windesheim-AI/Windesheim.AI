@@ -5,8 +5,8 @@ import { Chip, shadow } from 'react-native-paper';
 import {
     ColorGradientScheme,
     useColorStateConfig,
-} from '../../../constants/Colors';
-import { useFonts } from '../../../constants/Fonts';
+} from '../../../lib/constants/Colors';
+import { useFonts } from '../../../lib/constants/Fonts';
 
 export type ChipFilterProps<T extends ReactNode> = {
     activeList: T[];

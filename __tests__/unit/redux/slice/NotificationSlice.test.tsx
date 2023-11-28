@@ -2,7 +2,7 @@ import { NotificationType } from '../../../../src/components/general/alerts/Noti
 import {
     NotificationActions,
     notificationSlice,
-} from '../../../../src/redux/slices/NotificationSlice';
+} from '../../../../src/lib/redux/slices/NotificationSlice';
 
 describe('NotificationSlice', () => {
     it('should have the correct initial state', () => {

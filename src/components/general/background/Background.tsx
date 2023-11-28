@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { useColorConfig } from '../../../constants/Colors';
+import { useColorConfig } from '../../../lib/constants/Colors';
 
 export const Background = () => {
     const colors = useColorConfig();

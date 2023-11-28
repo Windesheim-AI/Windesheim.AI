@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { WhSelectDropdown } from './WhSelectDropdown';
-import { useTextTranslate } from '../../../translations/hooks';
+import { useTextTranslate } from '../../../lib/translations/hooks';
 
 type Props = {
     label: string;

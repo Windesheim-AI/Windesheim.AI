@@ -8,11 +8,14 @@ import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { Button } from '../../components/general/buttons/Button';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
-import { useColorConfig, useColorStateConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+import {
+    useColorConfig,
+    useColorStateConfig,
+} from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
+import { useAppSelector } from '../../lib/redux/Hooks';
 import useSingleCourse from '../../lib/repositories/courses/useSingleCourse';
 import { useAnimatedValue } from '../../lib/utility/animate';
-import { useAppSelector } from '../../redux/Hooks';
 import { Routes } from '../../routes/routes';
 
 type CourseFinishedRouteParams = {

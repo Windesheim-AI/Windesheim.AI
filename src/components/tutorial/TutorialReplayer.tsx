@@ -2,9 +2,9 @@
 import React from 'react';
 import { Pressable } from 'react-native';
 
+import { useAppDispatch } from '../../lib/redux/Hooks';
+import { setCompleted } from '../../lib/redux/slices/TutorialSlice';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
-import { useAppDispatch } from '../../redux/Hooks';
-import { setCompleted } from '../../redux/slices/TutorialSlice';
 import { Routes } from '../../routes/routes';
 
 export const TutorialResetButton = () => {
