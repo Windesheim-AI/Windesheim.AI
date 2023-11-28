@@ -2,7 +2,7 @@
 const position = [
     { id: '1', name: 'Student' },
     { id: '2', name: 'Teacher' },
-    { id: '3', name: 'TechProvider' },
+    { id: '3', name: 'Researcher' },
     { id: '4', name: 'Other' },
 ];
 
@@ -18,12 +18,12 @@ const keywords = [
 ];
 
 const aiFamiliarity = [
-    { id: '1', name: '1' },
-    { id: '2', name: '2' },
-    { id: '3', name: '3' },
-    { id: '4', name: '4' },
-    { id: '5', name: '5' },
-    { id: '6', name: '10' },
+    { id: '1', name: 'Unfamiliar' },
+    { id: '2', name: 'Slightly Familiar' },
+    { id: '3', name: 'Moderately Familiar' },
+    { id: '4', name: 'Familiar' },
+    { id: '5', name: 'Very Familiar' },
+    { id: '6', name: 'Extremely Familiar' },
 ];
 
 export { position, keywords, aiFamiliarity };

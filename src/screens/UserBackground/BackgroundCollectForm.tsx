@@ -61,8 +61,8 @@ const BackgroundCollectForm = () => {
 
     const questions = [
         'What is your position?',
-        'What is your interested keyword?',
-        'How much do you familiar for AI?',
+        'What area of AI are you interested in?',
+        'How familiar are you with AI?',
     ];
 
     const handleNextQuestion = () => {
@@ -110,6 +110,7 @@ const BackgroundCollectForm = () => {
         modalText: {
             ...fonts.h3,
             color: colors.text,
+            textAlign: 'center',
         },
         centerImage: {
             width: windowDimensions.width * 0.6,
@@ -157,7 +158,7 @@ const BackgroundCollectForm = () => {
                     />
                     <TextTranslated
                         style={styles.modalText}
-                        text=" We provide you with customized training."
+                        text="We provide you with customized training."
                     />
 
                     <View>
@@ -196,7 +197,7 @@ const BackgroundCollectForm = () => {
                 <View style={styles.welcomeContainer}>
                     <TextTranslated
                         style={styles.title}
-                        text="Background Collect!"
+                        text="Background information Collect!"
                     />
 
                     <Image
@@ -209,9 +210,11 @@ const BackgroundCollectForm = () => {
                         }
                         style={styles.centerImage}
                     />
-                    <Text style={styles.modalText}>
-                        <TextTranslated text={questions[currentQuestion]} />
-                    </Text>
+
+                    <TextTranslated
+                        style={styles.modalText}
+                        text={questions[currentQuestion]}
+                    />
 
                     <ScrollView style={styles.container}>
                         <FlatList
@@ -252,11 +255,10 @@ const BackgroundCollectForm = () => {
         );
     } else {
         return (
-            <PageView title="">
+            <PageView>
                 <View style={styles.welcomeContainer}>
-                    <Text style={styles.title}>
-                        <TextTranslated text="Thank you!" />
-                    </Text>
+                    <TextTranslated style={styles.title} text="Thank you!" />
+
                     <Image
                         testID="winglogo"
                         source={
@@ -267,9 +269,11 @@ const BackgroundCollectForm = () => {
                         }
                         style={styles.centerImage}
                     />
-                    <Text style={styles.modalText}>
-                        <TextTranslated text="Start the app" />
-                    </Text>
+                    <TextTranslated
+                        style={styles.modalText}
+                        text="Start the app"
+                    />
+
                     <View>
                         <Button
                             buttonText="Start"

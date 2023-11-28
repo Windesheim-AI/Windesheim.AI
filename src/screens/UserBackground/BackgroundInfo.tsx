@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -21,14 +22,18 @@ import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
 import { useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { RootState, useAppDispatch, useAppSelector } from '../../redux/Hooks';
+import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
 import {
     setPosition,
     setInterestedKeyword,
     setHowMuchFamiliar,
 } from '../../redux/slices/BgCollectSlice';
+import { translateText } from '../../translations/hooks';
 
 export const BackgroundInfo = () => {
+    const language = useAppSelector((state) => state.language.langCode);
+    const { t } = useTranslation();
+
     const windowDimensions = useWindowDimensions();
     const [showModal, setShowModal] = useState(false);
     const [selectedValue, setSelectedValue] = useState('');
@@ -44,19 +49,19 @@ export const BackgroundInfo = () => {
         setIsFamiliarityEditing(false);
     };
 
-    const phandlePress = (valueType: string) => {
+    const handleEditPositionClick = (valueType: string) => {
         if (!isPositionEditing) return;
 
         setSelectedValue(valueType);
         setShowModal(true);
     };
-    const khandlePress = (valueType: string) => {
+    const handleEditKeywordClick = (valueType: string) => {
         if (!isKeywordsEditing) return;
 
         setSelectedValue(valueType);
         setShowModal(true);
     };
-    const fhandlePress = (valueType: string) => {
+    const handleEditFamiliarityClick = (valueType: string) => {
         if (!isFamiliarityEditing) return;
 
         setSelectedValue(valueType);
@@ -78,11 +83,26 @@ export const BackgroundInfo = () => {
     let modalData: { id: string; name: string }[] = [];
 
     if (selectedValue === 'position') {
-        modalData = position;
+        modalData = position.map((item) => {
+            return {
+                id: item.id,
+                name: translateText(t, item.name, language),
+            };
+        });
     } else if (selectedValue === 'keywords') {
-        modalData = keywords;
+        modalData = keywords.map((item) => {
+            return {
+                id: item.id,
+                name: translateText(t, item.name, language),
+            };
+        });
     } else if (selectedValue === 'aiFamiliarity') {
-        modalData = aiFamiliarity;
+        modalData = aiFamiliarity.map((item) => {
+            return {
+                id: item.id,
+                name: translateText(t, item.name, language),
+            };
+        });
     }
 
     const handleValueSelection = (value: string | number) => {
@@ -97,15 +117,10 @@ export const BackgroundInfo = () => {
         }
     };
 
-    const selectedPosition = useAppSelector<string>(
-        (state: RootState) => state.bgCollect.position,
-    );
-    const inputKeywords = useAppSelector<string>(
-        (state: RootState) => state.bgCollect.interestedKeyword,
-    );
-    const selectedFamiliarity = useAppSelector<string>(
-        (state: RootState) => state.bgCollect.howMuchFamiliar,
-    );
+    const backgroundInformation = useAppSelector((state) => state.bgCollect);
+    const selectedPosition = backgroundInformation.position;
+    const inputKeywords = backgroundInformation.interestedKeyword;
+    const selectedFamiliarity = backgroundInformation.howMuchFamiliar;
     const fonts = useFonts();
 
     const styles = StyleSheet.create({
@@ -131,12 +146,12 @@ export const BackgroundInfo = () => {
     });
 
     return (
-        <PageView title="My Background Information">
+        <PageView title="Background Information">
             <View style={styles.container}>
                 {/* position */}
                 <Pressable
                     onPress={() => {
-                        phandlePress('position');
+                        handleEditPositionClick('position');
                         setSelectedValue('position');
                         handlePositionEditPress();
                     }}
@@ -144,7 +159,10 @@ export const BackgroundInfo = () => {
                     testID="positionPressable"
                 >
                     <SettingCard icon="user" title="" testID="position">
-                        <Text style={styles.infoText}>{selectedPosition}</Text>
+                        <TextTranslated
+                            style={styles.infoText}
+                            text={selectedPosition}
+                        />
                         <EditButton
                             onPressEdit={handlePositionEditPress}
                             isEditing={isPositionEditing}
@@ -155,7 +173,7 @@ export const BackgroundInfo = () => {
                 {/* keywords */}
                 <Pressable
                     onPress={() => {
-                        khandlePress('keywords');
+                        handleEditKeywordClick('keywords');
                         setSelectedValue('keywords');
                         handleKeywordsEditPress();
                     }}
@@ -163,7 +181,10 @@ export const BackgroundInfo = () => {
                     testID="positionPressable"
                 >
                     <SettingCard icon="user" title="" testID="keywords">
-                        <Text style={styles.infoText}>{inputKeywords}</Text>
+                        <TextTranslated
+                            style={styles.infoText}
+                            text={inputKeywords}
+                        />
                         <EditButton
                             onPressEdit={handleKeywordsEditPress}
                             isEditing={isKeywordsEditing}
@@ -174,7 +195,7 @@ export const BackgroundInfo = () => {
                 {/* aiFamiliarity */}
                 <Pressable
                     onPress={() => {
-                        fhandlePress('aiFamiliarity');
+                        handleEditFamiliarityClick('aiFamiliarity');
                         setSelectedValue('aiFamiliarity');
                         handleFamiliarityEditPress();
                     }}
@@ -182,9 +203,10 @@ export const BackgroundInfo = () => {
                     testID="positionPressable"
                 >
                     <SettingCard icon="user" title="" testID="aiFamiliarity">
-                        <Text style={styles.infoText}>
-                            {selectedFamiliarity}
-                        </Text>
+                        <TextTranslated
+                            style={styles.infoText}
+                            text={selectedFamiliarity}
+                        />
                         <EditButton
                             onPressEdit={handleFamiliarityEditPress}
                             isEditing={isFamiliarityEditing}
@@ -216,9 +238,7 @@ export const BackgroundInfo = () => {
                         keyExtractor={(item) => item.id}
                     />
                     <Pressable onPress={closeModal}>
-                        <Text>
-                            <TextTranslated text="Close" />
-                        </Text>
+                        <TextTranslated text="Close" />
                     </Pressable>
                 </View>
             </Modal>
