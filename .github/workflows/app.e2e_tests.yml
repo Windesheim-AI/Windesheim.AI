@@ -41,8 +41,6 @@ jobs:
             fail-fast: false
             matrix:
                 test-platform: [firefox, electron]
-                # run copies of the current job in parallel
-                containers: [1, 2]
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
