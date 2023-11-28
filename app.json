@@ -16,11 +16,11 @@
         "ios": {
             "supportsTablet": true,
             "bundleIdentifier": "com.windesheim.ai",
-            "buildNumber": "1.0.1"
+            "buildNumber": "1"
         },
         "android": {
             "package": "com.windesheim.ai",
-            "versionCode": 2,
+            "versionCode": 1,
             "adaptiveIcon": {
                 "foregroundImage": "./src/assets/images/Icon/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
