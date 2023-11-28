@@ -13,9 +13,19 @@ on:
 jobs:
     install:
         runs-on: self-hosted
+        strategy:
+          matrix:
+            node-version: [ 18.x ]
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
+
+            - uses: ./.github/prepare-action
+              with:
+                openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+                app-debug: false
+                wp-username: ${{ secrets.WP_USERNAME }}
+                wp-password: ${{ secrets.WP_PASSWORD }}
 
             - name: Cypress install
               uses: cypress-io/github-action@v6
@@ -23,6 +33,9 @@ jobs:
                   # Disable running of tests within install job
                   runTests: false
                   build: npm install
+
+            - uses: ./.github/cleanup-action
+
 
     tests:
         runs-on: self-hosted
