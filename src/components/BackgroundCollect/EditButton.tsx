@@ -43,9 +43,10 @@ export const EditButton: React.FC<EditButtonProps & { testID?: string }> = ({
 
     return (
         <Pressable style={styles.button} onPress={handlePress} testID={testID}>
-            <Text style={styles.buttonText}>
-                <TextTranslated text={editMode ? 'Complete' : 'Edit'} />
-            </Text>
+            <TextTranslated
+                style={styles.buttonText}
+                text={editMode ? 'Complete' : 'Edit'}
+            />
         </Pressable>
     );
 };
