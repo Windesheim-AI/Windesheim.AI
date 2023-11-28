@@ -15,7 +15,9 @@ export default function ButtonBlock({ options }: { options: ButtonOptions }) {
     // check if colorOptions exists on options and if so, use that instead of the default colorGradientScheme.
     if (colorStateConfig.colors[options.colorOptions]) {
         colorGradientScheme = colorStateConfig.colors[options.colorOptions];
-        textColorScheme = colorStateConfig.text[options.colorOptions];
+        textColorScheme = colorStateConfig.text
+            ? colorStateConfig.text[options.colorOptions]
+            : undefined;
     } else {
         colorGradientScheme = colorStateConfig.colors.primary;
         textColorScheme = colorStateConfig.text?.primary;
