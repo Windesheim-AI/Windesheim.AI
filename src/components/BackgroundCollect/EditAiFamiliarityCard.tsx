@@ -42,6 +42,7 @@ export const EditAiFamiliarityCard = () => {
                     );
                 }}
                 width="100%"
+                testId="ai-familiarity-select"
             />
         </SettingCard>
     );

@@ -36,6 +36,7 @@ export const EditInterestedKeywordCard = () => {
                     storeDispatcher(setInterestedKeyword(keywords[index].name));
                 }}
                 width="100%"
+                testId="edit-interested-keyword-select"
             />
         </SettingCard>
     );

@@ -36,6 +36,7 @@ export const EditPositionCard = () => {
                     storeDispatcher(setPosition(positions[index].name));
                 }}
                 width="100%"
+                testId="position-select"
             />
         </SettingCard>
     );
