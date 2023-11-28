@@ -32,5 +32,14 @@ jobs:
               with:
                   start: npm run web
                   browser: ${{ matrix.test-platform }}
+                  parallel: true
+
+            - name: Upload screenshots of failed tests
+              uses: actions/upload-artifact@v3
+              if: failure()
+              with:
+                  name: cypress-screenshots
+                  path: cypress/screenshots
+                  retention-days: 1
 
             - uses: ./.github/cleanup-action
