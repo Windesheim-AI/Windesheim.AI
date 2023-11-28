@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-    Text,
     View,
     FlatList,
     StyleSheet,
@@ -71,11 +70,11 @@ const BackgroundCollectForm = () => {
 
     const handleValueSelection = (value: string) => {
         if (currentQuestion === 0) {
-            storeDispatch(setPosition(String(value)));
+            storeDispatch(setPosition(value));
         } else if (currentQuestion === 1) {
-            storeDispatch(setInterestedKeyword(String(value)));
+            storeDispatch(setInterestedKeyword(value));
         } else if (currentQuestion === 2) {
-            storeDispatch(setHowMuchFamiliar(String(value)));
+            storeDispatch(setHowMuchFamiliar(value));
         }
 
         if (currentQuestion < questions.length - 1) {
