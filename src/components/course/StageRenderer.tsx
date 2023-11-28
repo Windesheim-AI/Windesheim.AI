@@ -4,8 +4,8 @@ import AIRenderer from './stages/AIBlock';
 import ButtonBlock from './stages/ButtonBlock';
 import { ImageBlock } from './stages/ImageBlock';
 import TextRenderer from './stages/TextBlock';
-import { useFonts } from '../../constants/Fonts';
 import { VideoBlock } from './stages/VideoBlock';
+import { useFonts } from '../../constants/Fonts';
 import {
     CourseStageBlock,
     CourseStageBlockType,
