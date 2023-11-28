@@ -20,6 +20,9 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
+            - name: Copy local node modules
+              run: lp -s /usr/local/lib/node_modules ./node_modules
+
             - uses: ./.github/prepare-action
               with:
                   openai-api-key: ${{ secrets.OPENAI_API_KEY }}
