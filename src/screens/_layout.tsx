@@ -52,7 +52,7 @@ export const Layout = ({ children }: LayoutProps) => {
     });
 
     const isFirstTimeUser = useAppSelector(
-        (state) => state.bgCollect,
+        (state) => state.backgroundInformation,
     ).isFirstTimeUser;
 
     const [marginBottomAnimation, animateMarginBottomAnimation] =

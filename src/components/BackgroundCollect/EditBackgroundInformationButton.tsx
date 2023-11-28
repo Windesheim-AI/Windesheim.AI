@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 
-import { useColorConfig, useColorStateConfig } from '../../constants/Colors';
+import { useColorStateConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';

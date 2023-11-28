@@ -10,7 +10,7 @@ import {
 import { Bar } from 'react-native-progress';
 
 import {
-    position,
+    positions,
     keywords,
     aiFamiliarity,
 } from '../../components/BackgroundCollect/DataList';
@@ -28,17 +28,18 @@ import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
 import {
     setPosition,
     setInterestedKeyword,
-    setHowMuchFamiliar,
+    setAiFamiliarity,
     setIsFirstTimeUser,
-} from '../../redux/slices/BgCollectSlice';
+} from '../../redux/slices/BackgroundInformationSlice';
 import { navigationActions } from '../../redux/slices/NavigationSlice';
 
 const BackgroundCollectForm = () => {
     const storeDispatch = useAppDispatch();
 
-    const isFirstTimeUser = useAppSelector(
-        (state) => state.bgCollect,
-    ).isFirstTimeUser;
+    const backgroundInformationState = useAppSelector(
+        (state) => state.backgroundInformation,
+    );
+    const isFirstTimeUser = backgroundInformationState.isFirstTimeUser;
 
     useEffect(() => {
         if (!isFirstTimeUser) return;
@@ -74,7 +75,7 @@ const BackgroundCollectForm = () => {
         } else if (currentQuestion === 1) {
             storeDispatch(setInterestedKeyword(value));
         } else if (currentQuestion === 2) {
-            storeDispatch(setHowMuchFamiliar(value));
+            storeDispatch(setAiFamiliarity(value));
         }
 
         if (currentQuestion < questions.length - 1) {
@@ -219,7 +220,7 @@ const BackgroundCollectForm = () => {
                         <FlatList
                             data={
                                 currentQuestion === 0
-                                    ? position
+                                    ? positions
                                     : currentQuestion === 1
                                     ? keywords
                                     : aiFamiliarity

@@ -1,5 +1,5 @@
 // Background Data List
-const position = [
+const positions = [
     { id: '1', name: 'Student' },
     { id: '2', name: 'Teacher' },
     { id: '3', name: 'Researcher' },
@@ -26,4 +26,4 @@ const aiFamiliarity = [
     { id: '6', name: 'Extremely Familiar' },
 ];
 
-export { position, keywords, aiFamiliarity };
+export { positions, keywords, aiFamiliarity };

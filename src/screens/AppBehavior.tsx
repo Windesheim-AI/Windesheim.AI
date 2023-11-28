@@ -12,7 +12,7 @@ export default function AppBehavior({ children }: AppProvidersProps) {
     const storeDispatcher = useAppDispatch();
     const navigationState = useAppSelector((state) => state.navigation);
     const isFirstTimeUser = useAppSelector(
-        (state) => state.bgCollect,
+        (state) => state.backgroundInformation,
     ).isFirstTimeUser;
     const navigation = useNavigation();
 
