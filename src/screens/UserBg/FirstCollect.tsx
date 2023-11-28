@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Text,
     View,
@@ -33,6 +33,7 @@ import {
     setHowMuchFamiliar,
     setIsFirstTimeUser,
 } from '../../redux/slices/BgCollectSlice';
+import { navigationActions } from '../../redux/slices/NavigationSlice';
 import { Router } from '../../routes';
 
 const FirstCollect = () => {
@@ -41,6 +42,12 @@ const FirstCollect = () => {
     const isFirstTimeUser = useAppSelector(
         (state) => state.bgCollect,
     ).isFirstTimeUser;
+
+    useEffect(() => {
+        if (!isFirstTimeUser) return;
+
+        storeDispatch(navigationActions.showNavBar(false));
+    }, [isFirstTimeUser, storeDispatch]);
 
     const [showBackgroundInput, setShowBackgroundInput] =
         useState<boolean>(false);
