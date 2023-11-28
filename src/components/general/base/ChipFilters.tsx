@@ -23,6 +23,7 @@ export function ChipFilter<T extends ReactNode>({
     colorGradientScheme,
     textColorScheme,
 }: ChipFilterProps<T>) {
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const styles = StyleSheet.create({
         tagContainer: {
@@ -32,8 +33,6 @@ export function ChipFilter<T extends ReactNode>({
     });
 
     function getStyleForChip(isToolSelected: boolean) {
-        const colorStateConfig = useColorStateConfig();
-
         return {
             marginRight: 5,
             marginBottom: 5,
