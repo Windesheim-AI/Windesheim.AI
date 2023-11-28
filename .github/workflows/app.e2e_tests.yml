@@ -16,13 +16,19 @@ jobs:
         strategy:
             matrix:
                 test-platform: [firefox, electron]
+
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: Setup Cypress locally (install)
-              run: npm i -g cypress && npm i -g ts-node && npm i -g @percy/cypress
-
+            - name: Cache Cypress dependencies
+              uses: actions/cache@v2
+              with:
+                  path: |
+                      ~/.cache/Cypress
+                  key: cypress-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+             restore-keys: |
+                  cypress-${{ runner.os }}-
 
             - uses: ./.github/prepare-action
               with:
@@ -32,6 +38,9 @@ jobs:
                   wp-password: ${{ secrets.WP_PASSWORD }}
 
             - name: Cypress run
-              run: cypress run ${{ matrix.test-platform }}
+              uses: cypress-io/github-action@v6
+              with:
+                  start: npm run web
+                  browser: ${{ matrix.test-platform }}
 
             - uses: ./.github/cleanup-action
