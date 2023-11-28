@@ -32,8 +32,8 @@ export const EditInterestedKeywordCard = () => {
                 label="AI interest"
                 selectableValues={selectableKeywords}
                 defaultValueIndex={selectedKeywordIndex}
-                onSelect={(selectedItem) => {
-                    storeDispatcher(setInterestedKeyword(selectedItem));
+                onSelect={(_, index) => {
+                    storeDispatcher(setInterestedKeyword(keywords[index].name));
                 }}
                 width="100%"
             />

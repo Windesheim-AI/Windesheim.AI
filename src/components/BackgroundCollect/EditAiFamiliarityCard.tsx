@@ -36,8 +36,10 @@ export const EditAiFamiliarityCard = () => {
                 label="AI familiarity"
                 selectableValues={selectableOptions}
                 defaultValueIndex={selectedValueIndex}
-                onSelect={(selectedItem) => {
-                    storeDispatcher(setAiFamiliarity(selectedItem));
+                onSelect={(_, index) => {
+                    storeDispatcher(
+                        setAiFamiliarity(aiFamiliarity[index].name),
+                    );
                 }}
                 width="100%"
             />

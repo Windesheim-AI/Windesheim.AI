@@ -32,8 +32,8 @@ export const EditPositionCard = () => {
                 label="Position"
                 selectableValues={selectablePositions}
                 defaultValueIndex={selectedPositionIndex}
-                onSelect={(selectedItem) => {
-                    storeDispatcher(setPosition(selectedItem));
+                onSelect={(_, index) => {
+                    storeDispatcher(setPosition(positions[index].name));
                 }}
                 width="100%"
             />

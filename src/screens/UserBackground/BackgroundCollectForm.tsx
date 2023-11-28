@@ -13,6 +13,7 @@ import {
     positions,
     keywords,
     aiFamiliarity,
+    BackgroundDataItem,
 } from '../../components/BackgroundCollect/DataList';
 import { Button } from '../../components/general/buttons/Button';
 import { ListButton } from '../../components/general/buttons/ListButton';
@@ -130,6 +131,11 @@ const BackgroundCollectForm = () => {
         },
     });
 
+    let selectableOptions: BackgroundDataItem[] = [];
+    if (currentQuestion === 0) selectableOptions = positions;
+    else if (currentQuestion === 1) selectableOptions = keywords;
+    else if (currentQuestion === 2) selectableOptions = aiFamiliarity;
+
     if (!isFirstTimeUser) {
         return null;
     }
@@ -218,13 +224,7 @@ const BackgroundCollectForm = () => {
 
                     <ScrollView style={styles.container}>
                         <FlatList
-                            data={
-                                currentQuestion === 0
-                                    ? positions
-                                    : currentQuestion === 1
-                                    ? keywords
-                                    : aiFamiliarity
-                            }
+                            data={selectableOptions}
                             renderItem={({ item }) => (
                                 <ListButton
                                     onPress={() =>

@@ -1,12 +1,13 @@
-// Background Data List
-const positions = [
+export type BackgroundDataItem = { id: string; name: string };
+
+const positions: BackgroundDataItem[] = [
     { id: '1', name: 'Student' },
     { id: '2', name: 'Teacher' },
     { id: '3', name: 'Researcher' },
     { id: '4', name: 'Other' },
 ];
 
-const keywords = [
+const keywords: BackgroundDataItem[] = [
     { id: '1', name: 'Machine Learning' },
     { id: '2', name: 'Deep Learning' },
     { id: '3', name: 'Artificial Intelligence' },
@@ -17,7 +18,7 @@ const keywords = [
     { id: '8', name: 'Neural Networks' },
 ];
 
-const aiFamiliarity = [
+const aiFamiliarity: BackgroundDataItem[] = [
     { id: '1', name: 'Unfamiliar' },
     { id: '2', name: 'Slightly Familiar' },
     { id: '3', name: 'Moderately Familiar' },
