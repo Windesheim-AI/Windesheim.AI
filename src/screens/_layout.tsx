@@ -8,14 +8,14 @@ import {
     StatusBar,
 } from 'react-native';
 
-import FirstCollect from './UserBg/FirstCollect';
+import BackgroundCollectForm from './UserBg/BackgroundCollectForm';
 import { NotificationList } from '../components/general/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { Tutorial } from '../components/tutorial/Tutorial';
 import { useColorConfig, shadow } from '../constants/Colors';
 import { useAnimatedValue } from '../lib/utility/animate';
-import { RootState, useAppSelector } from '../redux/Hooks';
+import { useAppSelector } from '../redux/Hooks';
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -73,7 +73,7 @@ export const Layout = ({ children }: LayoutProps) => {
                         marginBottom: marginBottomAnimation,
                     }}
                 >
-                    {isFirstTimeUser ? <FirstCollect /> : null}
+                    {isFirstTimeUser ? <BackgroundCollectForm /> : null}
                     {!isFirstTimeUser ? (
                         <>
                             <View style={styles.innerContainer}>

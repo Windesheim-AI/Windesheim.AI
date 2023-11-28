@@ -1,4 +1,3 @@
-//Myinfo button in the settings page
 import React from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
@@ -7,7 +6,7 @@ import { useFonts } from '../../constants/Fonts';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../general/text/TextTranslated';
 
-export const BgcollectButton = () => {
+export const BackgroundCollectButton = () => {
     const colors = useColorConfig();
     const navigation = useNavigation();
 

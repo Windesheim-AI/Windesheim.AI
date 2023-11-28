@@ -28,11 +28,10 @@ import {
     setHowMuchFamiliar,
 } from '../../redux/slices/BgCollectSlice';
 
-export const MyInfo = () => {
+export const BackgroundInfo = () => {
     const windowDimensions = useWindowDimensions();
     const [showModal, setShowModal] = useState(false);
     const [selectedValue, setSelectedValue] = useState('');
-    //const [isEditing, setIsEditing] = useState(false);
     const dispatch = useAppDispatch();
     const colors = useColorConfig();
     const [isPositionEditing, setIsPositionEditing] = useState(false);
