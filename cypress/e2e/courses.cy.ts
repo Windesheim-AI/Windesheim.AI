@@ -12,6 +12,7 @@ describe('Courses page tests', () => {
     });
 
     it('can show the courses', () => {
+        cy.contains('tstesfdadas');
         cy.intercept('GET', '/wp-json/winai/v1/courses/', {
             fixture: 'courses/data.json',
         }).as('getCourses');
