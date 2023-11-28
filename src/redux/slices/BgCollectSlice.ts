@@ -11,7 +11,7 @@ const initialState: BackgroundState = {
     position: '',
     interestedKeyword: '',
     howMuchFamiliar: '',
-    isFirstTimeUser: false,
+    isFirstTimeUser: true,
 };
 
 export const bgCollectSlice = createSlice({

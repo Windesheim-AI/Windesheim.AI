@@ -124,7 +124,7 @@ const FirstCollect = () => {
         },
     });
 
-    if (!isFirstTimeUser) {
+    if (isFirstTimeUser) {
         if (!showBackgroundInput) {
             return (
                 <PageView title="">

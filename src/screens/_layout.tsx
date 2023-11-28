@@ -51,9 +51,9 @@ export const Layout = ({ children }: LayoutProps) => {
         },
     });
 
-    const isFirstTimeUser = useAppSelector<boolean>(
-        (state: RootState) => state.bgCollect.isFirstTimeUser,
-    );
+    const isFirstTimeUser = useAppSelector(
+        (state) => state.bgCollect,
+    ).isFirstTimeUser;
 
     const [marginBottomAnimation, animateMarginBottomAnimation] =
         useAnimatedValue(20);
@@ -62,43 +62,31 @@ export const Layout = ({ children }: LayoutProps) => {
         animateMarginBottomAnimation(navigation.showNavBar ? 70 : 10, 200);
     }, [animateMarginBottomAnimation, navigation]);
 
-    if (!isFirstTimeUser) {
-        return (
-            <>
-                <Background />
-                <SafeAreaView style={styles.wrapper}>
-                    <NotificationList />
-                    <Animated.View // Use Animated.View here
-                        style={{
-                            ...styles.contentContainer,
-                            marginBottom: marginBottomAnimation,
-                        }}
-                    >
-                        <FirstCollect />
-                    </Animated.View>
-                </SafeAreaView>
-            </>
-        );
-    } else {
-        return (
-            <>
-                <Background />
-                <SafeAreaView style={styles.wrapper}>
-                    <NotificationList />
-                    <Animated.View // Use Animated.View here
-                        style={{
-                            ...styles.contentContainer,
-                            marginBottom: marginBottomAnimation,
-                        }}
-                    >
-                        <View style={styles.innerContainer}>{children}</View>
-                        <Tutorial />
-                    </Animated.View>
-                    <View style={styles.pos_r}>
-                        <NavBar />
-                    </View>
-                </SafeAreaView>
-            </>
-        );
-    }
+    return (
+        <>
+            <Background />
+            <SafeAreaView style={styles.wrapper}>
+                <NotificationList />
+                <Animated.View // Use Animated.View here
+                    style={{
+                        ...styles.contentContainer,
+                        marginBottom: marginBottomAnimation,
+                    }}
+                >
+                    {isFirstTimeUser ? <FirstCollect /> : null}
+                    {!isFirstTimeUser ? (
+                        <>
+                            <View style={styles.innerContainer}>
+                                {children}
+                            </View>
+                            <Tutorial />
+                        </>
+                    ) : null}
+                </Animated.View>
+                <View style={styles.pos_r}>
+                    <NavBar />
+                </View>
+            </SafeAreaView>
+        </>
+    );
 };
