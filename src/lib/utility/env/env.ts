@@ -5,6 +5,7 @@ export function getEnvValue(key: EnvOptions, mock = false): string {
     if (value === undefined) {
         let str = '';
         for (const envKey in EnvValues) {
+            //@ts-ignore
             str += `\n${envKey}: ${EnvValues[envKey]}`;
         }
         throw new Error(

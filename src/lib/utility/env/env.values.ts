@@ -11,6 +11,8 @@ import {
     // @ts-ignore
 } from '@env';
 
+console.log(APP_DEBUG);
+
 export enum EnvOptions {
     OpenAIApiKey = 'OpenAIApiKey',
     AppDebug = 'AppDebug',
