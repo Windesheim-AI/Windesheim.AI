@@ -63,6 +63,7 @@ export function PromptPage() {
             borderColor: colorStateConfig.colors.success[1],
             color: colorStateConfig.text?.success ?? colors.white,
             ...shadow,
+            ...colorStateConfig.highContrastBorder,
         },
         toolTag: {
             marginRight: 5,
@@ -71,6 +72,7 @@ export function PromptPage() {
             borderColor: colorStateConfig.colors.primary[1],
             color: colorStateConfig.text?.primary ?? colors.white,
             ...shadow,
+            ...colorStateConfig.highContrastBorder,
         },
         promptPatternTag: {
             marginRight: 5,
@@ -79,6 +81,7 @@ export function PromptPage() {
             borderColor: colorStateConfig.colors.danger[1],
             color: colorStateConfig.text?.danger ?? colors.white,
             ...shadow,
+            ...colorStateConfig.highContrastBorder,
         },
         chipText: {
             ...fonts.chipText,

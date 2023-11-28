@@ -2,7 +2,11 @@ import React from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { ColorGradientScheme, useColorConfig } from '../../../constants/Colors';
+import {
+    ColorGradientScheme,
+    useColorConfig,
+    useColorStateConfig,
+} from '../../../constants/Colors';
 import { useFonts } from '../../../constants/Fonts';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
@@ -33,6 +37,7 @@ export const Button = ({
     testId,
 }: ButtonProps) => {
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
 
@@ -87,6 +92,7 @@ export const Button = ({
             minWidth: buttonWidth,
             // center
             overflow: 'hidden',
+            ...colorStateConfig.highContrastBorder,
         },
         textContainer: {
             left: 50,
