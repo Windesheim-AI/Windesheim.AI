@@ -24,13 +24,6 @@ jobs:
                   runTests: false
                   build: npm install
 
-            - name: Save build folder
-              uses: actions/upload-artifact@v3
-              with:
-                  name: build
-                  if-no-files-found: error
-                  path: build
-
     tests:
         runs-on: self-hosted
         needs: install
@@ -40,12 +33,6 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
-
-            - name: Download the build folder
-              uses: actions/download-artifact@v3
-              with:
-                  name: build
-                  path: build
 
             - uses: ./.github/prepare-action
               with:
