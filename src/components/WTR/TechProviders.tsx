@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Platform,
     Pressable,
@@ -42,7 +42,12 @@ import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 
-let techProviderItems = [
+type TechProvider = {
+    name: string;
+    slug: string;
+    logo: React.FC<{ width: string; height: string; fill: string }>;
+};
+const techProviderItems: TechProvider[] = [
     { name: 'Apple', slug: 'apple', logo: Apple },
     { name: 'Amazon', slug: 'aws', logo: Amazon },
     { name: 'Cisco', slug: 'cisco-systems', logo: Cisco },
@@ -63,6 +68,7 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
     const colors = useColorConfig();
     const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
+    const [displayItems, setDisplayItems] = useState<TechProvider[]>([]);
 
     const styles = StyleSheet.create({
         button: {
@@ -107,18 +113,26 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
         });
     };
 
-    if (limit && limit > 0) {
+    useEffect(() => {
+        let resultItems = [...techProviderItems];
+        if (!limit || limit < 1) {
+            setDisplayItems(resultItems);
+            return;
+        }
+
         //shuffles the array and then slices it to the limit
-        techProviderItems.sort(() => Math.random() - Math.random());
-        techProviderItems = techProviderItems.slice(0, limit);
-    }
+        resultItems.sort(() => Math.random() - Math.random());
+        resultItems = resultItems.slice(0, limit);
+
+        setDisplayItems(resultItems);
+    }, [limit]);
 
     return (
         <View>
             <TextTranslated style={styles.heading} text="Tech Providers" />
 
             <ScrollView style={styles.container}>
-                {techProviderItems.map((provider) => (
+                {displayItems.map((provider) => (
                     <Pressable
                         style={styles.button}
                         onPress={navigate(provider.slug)}
