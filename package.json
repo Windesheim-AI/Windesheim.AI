@@ -11,6 +11,7 @@
         "android": "expo start --android",
         "ios": "expo start --ios",
         "web": "expo start --web",
+        "web:no-cache": "expo start --web -c",
         "eject": "expo eject",
         "cypress": "cypress open",
         "expo:fix": "npx expo install --fix",
