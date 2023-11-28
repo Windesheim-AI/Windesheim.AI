@@ -23,7 +23,7 @@ export const HomeScreen = () => {
                         <TechProviders limit={5} />
                         <Button
                             buttonText="See all Tech Providers"
-                            screenName={Routes.PromptLibrary}
+                            screenName={Routes.WindesheimTechRadar}
                             colorGradientScheme={
                                 colorStateConfig.colors.success
                             }
