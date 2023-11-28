@@ -29,7 +29,7 @@ export const EditBackgroundInformationButton = () => {
     return (
         <Pressable
             style={styles.button}
-            onPress={() => navigator.navigate(Routes.MyInfo)}
+            onPress={() => navigator.navigate(Routes.EditBackgroundInformation)}
             testID="edit-background-information-button"
         >
             <TextTranslated style={styles.buttonText} text="Edit" />

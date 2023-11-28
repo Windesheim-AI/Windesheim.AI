@@ -45,10 +45,11 @@ export const RouteLinking = {
             },
             [Routes.Courses]: 'courses',
             [Routes.LoadingScreen]: 'LoadingScreen',
-            [Routes.FirstCollect]: 'FirstCollect',
-            [Routes.MyInfo]: 'MyInfo',
-            [Routes.PromptLibrary]: 'PromptLibrary',
-            [Routes.Prompt]: 'Prompt',
+            [Routes.FirstTimeUser]: 'first-time-user',
+            [Routes.EditBackgroundInformation]:
+                'settings/edit-background-information',
+            [Routes.PromptLibrary]: 'prompt-library',
+            [Routes.Prompt]: 'prompt-library/prompt',
         },
     },
 };

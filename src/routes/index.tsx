@@ -35,8 +35,8 @@ const screens = [
     { name: Routes.CourseFinished, component: CourseFinished },
     { name: Routes.StageOverview, component: StageOverview },
     { name: Routes.Courses, component: Courses },
-    { name: Routes.MyInfo, component: BackgroundInfo },
-    { name: Routes.FirstCollect, component: BackgroundCollectForm },
+    { name: Routes.EditBackgroundInformation, component: BackgroundInfo },
+    { name: Routes.FirstTimeUser, component: BackgroundCollectForm },
     { name: Routes.PromptLibrary, component: PromptLibrary },
     { name: Routes.Prompt, component: PromptPage },
 ];
