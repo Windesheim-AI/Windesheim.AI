@@ -2,22 +2,27 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 
 import BlockWrapper from './block';
-import { stateColorSchemes } from '../../../constants/Colors';
+import { useColorStateConfig } from '../../../constants/Colors';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../../routes/routes';
 import { ButtonOptions } from '../../../types/CourseStageBlock';
 import { Button } from '../../general/buttons/Button';
 
 export default function ButtonBlock({ options }: { options: ButtonOptions }) {
-    // ToDo: use the configured color scheme of the options.
+    const colorStateConfig = useColorStateConfig();
     let colorGradientScheme;
+    let textColorScheme;
     // check if colorOptions exists on options and if so, use that instead of the default colorGradientScheme.
-    if (stateColorSchemes[options.colorOptions]) {
-        colorGradientScheme = stateColorSchemes[options.colorOptions];
+    if (colorStateConfig.colors[options.colorOptions]) {
+        colorGradientScheme = colorStateConfig.colors[options.colorOptions];
+        textColorScheme = colorStateConfig.text[options.colorOptions];
     } else {
-        colorGradientScheme = stateColorSchemes.primary;
+        colorGradientScheme = colorStateConfig.colors.primary;
+        textColorScheme = colorStateConfig.text?.primary;
     }
+
     const navigator = useNavigation();
+
     function onPress() {
         navigator.navigate(Routes.CourseStage, {
             courseId: options.courseId,
@@ -37,6 +42,7 @@ export default function ButtonBlock({ options }: { options: ButtonOptions }) {
             <Button
                 buttonText={options.text}
                 colorGradientScheme={colorGradientScheme}
+                textColorScheme={textColorScheme}
                 onPress={onPress}
             />
         </BlockWrapper>

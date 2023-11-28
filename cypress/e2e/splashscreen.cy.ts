@@ -2,6 +2,8 @@ import { appConfig } from '../../app.config';
 
 describe('Tests the splashscreen', () => {
     beforeEach(() => {
+        cy.visit('/');
+        cy.get('[data-testid="FirstCollect-skip-button"]').click();
         cy.visit('/settings');
         cy.get('[data-testid="tutorial-skip-button"]').click();
         cy.get('[data-testid="language-switcher"]').click();

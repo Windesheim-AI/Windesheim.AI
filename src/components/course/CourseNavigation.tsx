@@ -2,7 +2,11 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
-import { shadow, useColorConfig } from '../../constants/Colors';
+import {
+    shadow,
+    useColorConfig,
+    useColorStateConfig,
+} from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
@@ -24,6 +28,7 @@ export function CourseNavigation({
     stages: Stage[];
 }) {
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
 
@@ -43,6 +48,7 @@ export function CourseNavigation({
             borderTopEndRadius: 15,
             flexDirection: 'row',
             alignItems: 'center',
+            ...colorStateConfig.highContrastBorder,
         },
         title: {
             ...fonts.courseTitle,
@@ -73,6 +79,7 @@ export function CourseNavigation({
             left: 0,
             right: 0,
             zIndex: 10,
+            ...colorStateConfig.highContrastBorder,
         },
         dropdownText: {
             ...fonts.h4,

@@ -8,7 +8,7 @@ import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { Button } from '../../components/general/buttons/Button';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
-import { stateColorSchemes, useColorConfig } from '../../constants/Colors';
+import { useColorConfig, useColorStateConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import useSingleCourse from '../../lib/repositories/courses/useSingleCourse';
 import { useAnimatedValue } from '../../lib/utility/animate';
@@ -21,6 +21,7 @@ type CourseFinishedRouteParams = {
 
 export default function CourseFinished() {
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const route = useRoute();
     const fonts = useFonts();
 
@@ -95,7 +96,8 @@ export default function CourseFinished() {
                     <Button
                         buttonText="Go back to courses"
                         screenName={Routes.Courses}
-                        colorGradientScheme={stateColorSchemes.success}
+                        colorGradientScheme={colorStateConfig.colors.success}
+                        textColorScheme={colorStateConfig.text?.success}
                         testId="go-back-to-courses-button"
                     />
                 </View>

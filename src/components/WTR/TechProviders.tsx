@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Platform,
     Pressable,
@@ -36,13 +36,18 @@ import Oracle from '../../assets/images/WTR/TechProviders/oracle.svg';
 import SalesForce from '../../assets/images/WTR/TechProviders/salesforce.svg';
 //@ts-ignore
 import Sap from '../../assets/images/WTR/TechProviders/sap.svg';
-import { useColorConfig } from '../../constants/Colors';
+import { useColorConfig, useColorStateConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 
-const techProviderItems = [
+type TechProvider = {
+    name: string;
+    slug: string;
+    logo: React.FC<{ width: string; height: string; fill: string }>;
+};
+const techProviderItems: TechProvider[] = [
     { name: 'Apple', slug: 'apple', logo: Apple },
     { name: 'Amazon', slug: 'aws', logo: Amazon },
     { name: 'Cisco', slug: 'cisco-systems', logo: Cisco },
@@ -58,10 +63,12 @@ const techProviderItems = [
     { name: 'SAP', slug: 'sap', logo: Sap },
 ];
 
-export const TechProviders = () => {
+export const TechProviders = ({ limit }: { limit?: number }) => {
     const navigation = useNavigation();
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
+    const [displayItems, setDisplayItems] = useState<TechProvider[]>([]);
 
     const styles = StyleSheet.create({
         button: {
@@ -74,9 +81,9 @@ export const TechProviders = () => {
             maxHeight: 90,
             overflow: 'hidden',
             backgroundColor: colors.listItemBg,
+            ...colorStateConfig.highContrastBorder,
         },
         itemText: {
-            color: colors.text,
             fontSize: 14,
             fontWeight: 'bold',
             textAlign: 'center',
@@ -95,7 +102,7 @@ export const TechProviders = () => {
         },
         container: {
             backgroundColor: colors.background,
-            maxHeight: 200,
+            maxHeight: limit ? 'auto' : 200,
         },
     });
 
@@ -105,12 +112,27 @@ export const TechProviders = () => {
             page: provider,
         });
     };
+
+    useEffect(() => {
+        let resultItems = [...techProviderItems];
+        if (!limit || limit < 1) {
+            setDisplayItems(resultItems);
+            return;
+        }
+
+        //shuffles the array and then slices it to the limit
+        resultItems.sort(() => Math.random() - Math.random());
+        resultItems = resultItems.slice(0, limit);
+
+        setDisplayItems(resultItems);
+    }, [limit]);
+
     return (
         <View>
             <TextTranslated style={styles.heading} text="Tech Providers" />
 
             <ScrollView style={styles.container}>
-                {techProviderItems.map((provider) => (
+                {displayItems.map((provider) => (
                     <Pressable
                         style={styles.button}
                         onPress={navigate(provider.slug)}
@@ -124,7 +146,12 @@ export const TechProviders = () => {
                                 fill={colors.text}
                             />
                         ) : null}
-                        <Text style={styles.itemText}>{provider.name}</Text>
+                        <Text
+                            testID="tech-provider-text"
+                            style={styles.itemText}
+                        >
+                            {provider.name}
+                        </Text>
                         {/* at the end of the button place an arrow */}
                         <FontAwesome5Icon
                             name="arrow-right"

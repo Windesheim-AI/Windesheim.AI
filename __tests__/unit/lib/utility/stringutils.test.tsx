@@ -1,4 +1,7 @@
-import { truncate } from '../../../../src/lib/utility/stringutils';
+import {
+    stringToBase64,
+    truncate,
+} from '../../../../src/lib/utility/stringutils';
 
 describe('truncate utility function', () => {
     it('should truncate a string longer than the specified length', () => {
@@ -23,5 +26,13 @@ describe('truncate utility function', () => {
         const text = 'ExactlyFive';
         const truncatedText: string = truncate(text, 6); // Truncate to a shorter length
         expect(truncatedText).toBe('Exact...'); // The expected truncated result
+    });
+});
+
+describe('base64Encode utility function', () => {
+    it('can encode a string', () => {
+        const text = 'ExactlyFive';
+        const encodedText: string = stringToBase64(text);
+        expect(encodedText).toBe('RXhhY3RseUZpdmU=');
     });
 });

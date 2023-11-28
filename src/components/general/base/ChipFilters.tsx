@@ -2,7 +2,10 @@ import React, { ReactNode } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { Chip, shadow } from 'react-native-paper';
 
-import { ColorGradientScheme } from '../../../constants/Colors';
+import {
+    ColorGradientScheme,
+    useColorStateConfig,
+} from '../../../constants/Colors';
 import { useFonts } from '../../../constants/Fonts';
 
 export type ChipFilterProps<T extends ReactNode> = {
@@ -10,6 +13,7 @@ export type ChipFilterProps<T extends ReactNode> = {
     filterList: T[];
     setActiveList: (list: T[]) => void;
     colorGradientScheme: ColorGradientScheme;
+    textColorScheme?: string;
 };
 
 export function ChipFilter<T extends ReactNode>({
@@ -17,7 +21,9 @@ export function ChipFilter<T extends ReactNode>({
     filterList,
     setActiveList,
     colorGradientScheme,
+    textColorScheme,
 }: ChipFilterProps<T>) {
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const styles = StyleSheet.create({
         tagContainer: {
@@ -34,7 +40,19 @@ export function ChipFilter<T extends ReactNode>({
                 ? colorGradientScheme[1]
                 : colorGradientScheme[0], // Use colors.secondary instead of randomColor()
             ...shadow,
+            ...colorStateConfig.highContrastBorder,
         };
+    }
+
+    function getStyleForChipText() {
+        if (textColorScheme) {
+            return {
+                ...fonts.chipText,
+                color: textColorScheme,
+            };
+        }
+
+        return fonts.chipText;
     }
 
     function handleChipLongPress(filter: T) {
@@ -57,7 +75,7 @@ export function ChipFilter<T extends ReactNode>({
                     <Chip
                         key={filter?.toString()}
                         style={getStyleForChip(activeList.includes(filter))}
-                        textStyle={fonts.description}
+                        textStyle={getStyleForChipText()}
                         icon={activeList.includes(filter) ? 'check' : 'close'}
                         onPress={() => toggleOption(filter)}
                         onLongPress={() => handleChipLongPress(filter)}

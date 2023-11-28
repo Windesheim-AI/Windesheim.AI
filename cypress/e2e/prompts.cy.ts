@@ -1,5 +1,7 @@
 describe('Prompt Library tests', () => {
     beforeEach(() => {
+        cy.visit('/');
+        cy.get('[data-testid="FirstCollect-skip-button"]').click();
         cy.visit('/settings');
         cy.get('[data-testid="tutorial-skip-button"]').click();
         cy.get('[data-testid="language-switcher"]').click();
@@ -15,7 +17,7 @@ describe('Prompt Library tests', () => {
         // get the fixture and put it in a const
         const prompts = require('../fixtures/prompts/data.json');
 
-        cy.visit('/PromptLibrary');
+        cy.visit('/prompt-library');
         cy.wait(['@getData']);
 
         cy.contains('Prompt Library');
@@ -40,7 +42,7 @@ describe('Prompt Library tests', () => {
             fixture: 'prompts/empty.json',
         }).as('getData');
 
-        cy.visit('/PromptLibrary');
+        cy.visit('/prompt-library');
         cy.wait(['@getData']);
 
         cy.contains('Prompt Library');
@@ -55,7 +57,7 @@ describe('Prompt Library tests', () => {
         // get the fixture and put it in a const
         const prompts = require('../fixtures/prompts/data.json');
 
-        cy.visit('/PromptLibrary');
+        cy.visit('/prompt-library');
         cy.wait(['@getData']);
 
         cy.contains('Prompt Library');
@@ -73,7 +75,7 @@ describe('Prompt Library tests', () => {
         cy.get(prompts[0].title).should('not.exist');
         cy.get(prompts[2].title).should('not.exist');
 
-        // Reset all fitlers
+        // Reset all filters
         cy.get('[data-testid="chip-Personal Development-container"]').click();
         cy.contains(prompts[0].title);
         cy.contains(prompts[1].title);
@@ -88,7 +90,7 @@ describe('Prompt Library tests', () => {
         // get the fixture and put it in a const
         const prompt = require('../fixtures/prompts/1-prompt.json');
 
-        cy.visit('/Prompt?promptId=1');
+        cy.visit('/prompt-library/prompt?promptId=1');
         cy.wait(['@getData']);
 
         cy.contains('Prompt Library');
@@ -98,7 +100,7 @@ describe('Prompt Library tests', () => {
         cy.contains(prompt.tool);
         cy.contains(prompt.promptPattern);
         cy.contains(prompt.sector);
-        cy.contains('Open Tool');
+        cy.contains('Try it yourself');
     });
 
     it('can view a non-existing prompt', () => {
@@ -106,7 +108,7 @@ describe('Prompt Library tests', () => {
             fixture: 'prompts/empty.json',
         }).as('getData');
 
-        cy.visit('/Prompt?promptId=1');
+        cy.visit('/prompt-library/prompt?promptId=1');
         cy.wait(['@getData']);
 
         cy.contains('No prompt found!');

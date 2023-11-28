@@ -13,8 +13,8 @@ import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { PageView } from '../../components/general/views/PageView';
 import {
     shadow,
-    stateColorSchemes,
     useColorConfig,
+    useColorStateConfig,
 } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
 import { useMapSingleCourseToData } from '../../lib/repositories/courses/mapSingleCourseToData';
@@ -34,6 +34,7 @@ export default function Stage() {
     const navigator = useNavigation();
     const fonts = useFonts();
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const params = route.params as CoursePageProps;
     const storeDispatcher = useAppDispatch();
 
@@ -146,7 +147,10 @@ export default function Stage() {
                             <Button
                                 buttonText="Next"
                                 onPress={onPress}
-                                colorGradientScheme={stateColorSchemes.primary}
+                                colorGradientScheme={
+                                    colorStateConfig.colors.primary
+                                }
+                                textColorScheme={colorStateConfig.text?.primary}
                                 testId={`next-stage-${stage.id}-button`}
                             />
                         </>
