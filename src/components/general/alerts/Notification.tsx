@@ -6,11 +6,11 @@ import {
     ColorGradientScheme,
     shadow,
     useColorConfig,
-} from '../../../constants/Colors';
-import { useFonts } from '../../../constants/Fonts';
+} from '../../../lib/constants/Colors';
+import { useFonts } from '../../../lib/constants/Fonts';
+import { useAppDispatch } from '../../../lib/redux/Hooks';
+import { NotificationActions } from '../../../lib/redux/slices/NotificationSlice';
 import { useAnimatedValue } from '../../../lib/utility/animate';
-import { useAppDispatch } from '../../../redux/Hooks';
-import { NotificationActions } from '../../../redux/slices/NotificationSlice';
 
 export type NotificationType = {
     id: number;

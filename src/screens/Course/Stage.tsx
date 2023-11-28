@@ -15,13 +15,13 @@ import {
     shadow,
     useColorConfig,
     useColorStateConfig,
-} from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+} from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
+import { useAppDispatch } from '../../lib/redux/Hooks';
+import { courseDataActions } from '../../lib/redux/slices/CourseDataSlice';
 import { useMapSingleCourseToData } from '../../lib/repositories/courses/mapSingleCourseToData';
 import useSingleCourse from '../../lib/repositories/courses/useSingleCourse';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
-import { useAppDispatch } from '../../redux/Hooks';
-import { courseDataActions } from '../../redux/slices/CourseDataSlice';
 import { Routes } from '../../routes/routes';
 
 type CoursePageProps = {

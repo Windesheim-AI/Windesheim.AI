@@ -1,9 +1,9 @@
 // Mock the Redux and useSelector
-import { colorMap, useColorConfig } from '../../../src/constants/Colors';
-import { useAppSelector } from '../../../src/redux/Hooks';
-import { ThemeState } from '../../../src/redux/slices/ThemeSlice';
+import { colorMap, useColorConfig } from '../../../src/lib/constants/Colors';
+import { useAppSelector } from '../../../src/lib/redux/Hooks';
+import { ThemeState } from '../../../src/lib/redux/slices/ThemeSlice';
 
-jest.mock('../../../src/redux/Store', () => ({
+jest.mock('../../../src/lib/redux/Store', () => ({
     useAppSelector: jest.fn(),
 }));
 

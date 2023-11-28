@@ -1,11 +1,11 @@
 import React from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 
-import { useColorConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+import { useColorConfig } from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
+import { useAppDispatch } from '../../lib/redux/Hooks';
+import { setCompleted } from '../../lib/redux/slices/TutorialSlice';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
-import { useAppDispatch } from '../../redux/Hooks';
-import { setCompleted } from '../../redux/slices/TutorialSlice';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 

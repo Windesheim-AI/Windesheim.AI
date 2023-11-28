@@ -3,7 +3,7 @@ import {
     LanguageCode,
     getLanguageCodeByTranslation,
     languageLabels,
-} from '../../../src/translations/languageOptions';
+} from '../../../src/lib/translations/languageOptions';
 
 describe('Languages', () => {
     it('should return language labels', () => {

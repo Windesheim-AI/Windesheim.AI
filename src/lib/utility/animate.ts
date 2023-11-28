@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { Animated } from 'react-native';
 
-import { useAppSelector } from '../../redux/Hooks';
+import { useAppSelector } from '../redux/Hooks';
 
 export const useAnimatedValueNav = (initialValue: number) => {
     const animatedValue = useRef(new Animated.Value(initialValue)).current;

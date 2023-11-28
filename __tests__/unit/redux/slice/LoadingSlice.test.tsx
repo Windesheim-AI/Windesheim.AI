@@ -1,4 +1,4 @@
-import { loadingSlice } from '../../../../src/redux/slices/LoadingSlice';
+import { loadingSlice } from '../../../../src/lib/redux/slices/LoadingSlice';
 
 const { setLoading } = loadingSlice.actions;
 

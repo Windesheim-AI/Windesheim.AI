@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { useColorConfig } from '../../../constants/Colors';
+import { useColorConfig } from '../../../lib/constants/Colors';
 import { handleError } from '../../../lib/utility/errorHandler';
 
 export type WhSelectDropdownProps<T> = {

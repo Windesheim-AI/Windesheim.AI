@@ -11,8 +11,8 @@ import {
     shadow,
     useColorConfig,
     useColorStateConfig,
-} from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+} from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
 import { useMapMultipleCoursesToData } from '../../lib/repositories/courses/mapMultipleCourseToData';
 import useAllCourses from '../../lib/repositories/courses/useAllCourses';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';

@@ -14,8 +14,8 @@ import {
     shadow,
     useColorConfig,
     useColorStateConfig,
-} from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+} from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
 import useSinglePrompt from '../../lib/repositories/promptLibrary/useSinglePrompt';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';

@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { useColorConfig } from '../../../constants/Colors';
-import { useFonts } from '../../../constants/Fonts';
+import { useColorConfig } from '../../../lib/constants/Colors';
+import { useFonts } from '../../../lib/constants/Fonts';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { truncate } from '../../../lib/utility/stringutils';
 import { TextTranslated } from '../text/TextTranslated';

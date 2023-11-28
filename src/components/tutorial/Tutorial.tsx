@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, Text, Pressable, View, StyleSheet } from 'react-native';
 
-import { useColorConfig, useColorStateConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
-import { tutorialSteps } from '../../constants/TutorialSteps';
+import {
+    useColorConfig,
+    useColorStateConfig,
+} from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
+import { tutorialSteps } from '../../lib/constants/TutorialSteps';
+import { useAppSelector, useAppDispatch } from '../../lib/redux/Hooks';
+import { nextStep, setCompleted } from '../../lib/redux/slices/TutorialSlice';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
-import { useAppSelector, useAppDispatch } from '../../redux/Hooks';
-import { nextStep, setCompleted } from '../../redux/slices/TutorialSlice';
 import { TextTranslated } from '../general/text/TextTranslated';
 
 export const Tutorial = () => {

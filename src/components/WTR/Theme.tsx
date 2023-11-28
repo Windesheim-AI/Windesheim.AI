@@ -20,8 +20,11 @@ import Quantum from '../../assets/images/WTR/Themes/quantum.jpg';
 import Trust from '../../assets/images/WTR/Themes/trust.jpg';
 //@ts-ignore
 import Work from '../../assets/images/WTR/Themes/work.jpeg';
-import { useColorConfig, useColorStateConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+import {
+    useColorConfig,
+    useColorStateConfig,
+} from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
