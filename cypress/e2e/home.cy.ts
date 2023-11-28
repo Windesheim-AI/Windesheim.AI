@@ -13,7 +13,7 @@ describe('Home page tests', () => {
         cy.visit('/');
 
         cy.contains('Home');
-
+        cy.contains('Useful Prompts');
         cy.contains('Tech Providers');
         //there should be 5 tech providers
         cy.get('[data-testid="tech-provider-text"]').should('have.length', 5);

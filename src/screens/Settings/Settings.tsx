@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BgcollectButton } from '../../components/Bgcollect/BgcollectButton';
+import { EditBackgroundInformationButton } from '../../components/BackgroundCollect/EditBackgroundInformationButton';
 import { SettingCard } from '../../components/general/card/SettingCard';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { AnimationToggle } from '../../components/settings/AnimationToggle';
@@ -58,7 +58,7 @@ export const SettingsScreen = () => {
                 title="Background"
                 testID="Background"
             >
-                <BgcollectButton />
+                <EditBackgroundInformationButton />
             </SettingCard>
         </PageScrollView>
     );

@@ -15,8 +15,8 @@ import { SettingsScreen } from '../screens/Settings/Settings';
 import { StudyScreen } from '../screens/Study';
 import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
 import { UsecaseScreen } from '../screens/Usecase/Usecase';
-import FirstCollect from '../screens/UserBg/FirstCollect';
-import { MyInfo } from '../screens/UserBg/MyInfo';
+import BackgroundCollectForm from '../screens/UserBackground/BackgroundCollectForm';
+import { BackgroundInfo } from '../screens/UserBackground/BackgroundInfo';
 import { WTRScreen } from '../screens/WTR/WTR';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
 
@@ -35,8 +35,8 @@ const screens = [
     { name: Routes.CourseFinished, component: CourseFinished },
     { name: Routes.StageOverview, component: StageOverview },
     { name: Routes.Courses, component: Courses },
-    { name: Routes.MyInfo, component: MyInfo },
-    { name: Routes.FirstCollect, component: FirstCollect },
+    { name: Routes.EditBackgroundInformation, component: BackgroundInfo },
+    { name: Routes.FirstTimeUser, component: BackgroundCollectForm },
     { name: Routes.PromptLibrary, component: PromptLibrary },
     { name: Routes.Prompt, component: PromptPage },
 ];

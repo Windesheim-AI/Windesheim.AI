@@ -3,19 +3,19 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 interface BackgroundState {
     position: string;
     interestedKeyword: string;
-    howMuchFamiliar: string;
+    familiarity: string;
     isFirstTimeUser: boolean;
 }
 
 const initialState: BackgroundState = {
     position: '',
     interestedKeyword: '',
-    howMuchFamiliar: '',
-    isFirstTimeUser: false,
+    familiarity: '',
+    isFirstTimeUser: true,
 };
 
-export const bgCollectSlice = createSlice({
-    name: 'bgCollect',
+export const backgroundInformationSlice = createSlice({
+    name: 'backgroundInformation',
     initialState,
     reducers: {
         setPosition: (state, action: PayloadAction<string>) => {
@@ -24,8 +24,8 @@ export const bgCollectSlice = createSlice({
         setInterestedKeyword: (state, action: PayloadAction<string>) => {
             state.interestedKeyword = action.payload;
         },
-        setHowMuchFamiliar: (state, action: PayloadAction<string>) => {
-            state.howMuchFamiliar = action.payload;
+        setAiFamiliarity: (state, action: PayloadAction<string>) => {
+            state.familiarity = action.payload;
         },
         setIsFirstTimeUser: (state, action: PayloadAction<boolean>) => {
             state.isFirstTimeUser = action.payload;
@@ -36,8 +36,8 @@ export const bgCollectSlice = createSlice({
 export const {
     setPosition,
     setInterestedKeyword,
-    setHowMuchFamiliar,
+    setAiFamiliarity,
     setIsFirstTimeUser,
-} = bgCollectSlice.actions;
+} = backgroundInformationSlice.actions;
 
-export default bgCollectSlice.reducer;
+export default backgroundInformationSlice.reducer;

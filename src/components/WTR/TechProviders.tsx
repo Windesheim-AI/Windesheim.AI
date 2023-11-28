@@ -107,7 +107,7 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
         });
     };
 
-    if (limit) {
+    if (limit && limit > 0) {
         //shuffles the array and then slices it to the limit
         techProviderItems.sort(() => Math.random() - Math.random());
         techProviderItems = techProviderItems.slice(0, limit);

@@ -11,6 +11,9 @@ import {
     // @ts-ignore
 } from '@env';
 
+// eslint-disable-next-line no-console
+console.log(APP_DEBUG);
+
 export enum EnvOptions {
     OpenAIApiKey = 'OpenAIApiKey',
     AppDebug = 'AppDebug',

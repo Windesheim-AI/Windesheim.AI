@@ -39,6 +39,14 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
         const screenHeight = Dimensions.get('window').height;
         const maxScroll = event.nativeEvent.contentSize.height - screenHeight;
 
+        //if content is smaller than screen plus some padding, always show nav bar
+        if (event.nativeEvent.contentSize.height < screenHeight + 100) {
+            setNavState(true);
+            setLastHiddenNavBar(0);
+            setLastShownNavBar(0);
+            return;
+        }
+
         //if scrolling dow
         if (position > scrollPosition) {
             if (

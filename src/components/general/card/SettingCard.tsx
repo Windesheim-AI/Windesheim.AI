@@ -12,6 +12,7 @@ export type SettingCardProps = {
     icon: string;
     children: React.ReactNode;
     testID?: string;
+    isFlexEnabled?: boolean;
 };
 
 export const SettingCard = ({
@@ -20,11 +21,23 @@ export const SettingCard = ({
     icon,
     children,
     testID,
+    isFlexEnabled = true,
 }: SettingCardProps) => {
     const colors = useColorConfig();
     const fonts = useFonts();
     const styles = StyleSheet.create({
+        cardContainer: {
+            borderColor: colors.gray,
+            borderWidth: 1,
+            padding: 10,
+            borderRadius: 10,
+            marginBottom: 20,
+        },
         buttonContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+        },
+        buttonCardContainer: {
             flexDirection: 'row',
             alignItems: 'center',
             borderColor: colors.gray,
@@ -54,19 +67,41 @@ export const SettingCard = ({
         },
     });
 
+    if (isFlexEnabled) {
+        return (
+            <View style={styles.buttonCardContainer} testID={testID}>
+                <View style={styles.iconContainer}>
+                    <FontAwesome5 style={styles.icon} name={icon} size={24} />
+                </View>
+                <View style={styles.titleContainer}>
+                    <TextTranslated style={styles.title} text={title} />
+                    <TextTranslated
+                        style={styles.description}
+                        text={description ?? ''}
+                    />
+                </View>
+
+                {children}
+            </View>
+        );
+    }
+
     return (
-        <View style={styles.buttonContainer} testID={testID}>
-            <View style={styles.iconContainer}>
-                <FontAwesome5 style={styles.icon} name={icon} size={24} />
+        <View style={styles.cardContainer}>
+            <View style={styles.buttonContainer} testID={testID}>
+                <View style={styles.iconContainer}>
+                    <FontAwesome5 style={styles.icon} name={icon} size={24} />
+                </View>
+                <View style={styles.titleContainer}>
+                    <TextTranslated style={styles.title} text={title} />
+                    <TextTranslated
+                        style={styles.description}
+                        text={description ?? ''}
+                    />
+                </View>
             </View>
-            <View style={styles.titleContainer}>
-                <TextTranslated style={styles.title} text={title} />
-                <TextTranslated
-                    style={styles.description}
-                    text={description ?? ''}
-                />
-            </View>
-            {children}
+
+            <View>{children}</View>
         </View>
     );
 };
