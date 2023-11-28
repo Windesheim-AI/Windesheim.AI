@@ -20,8 +20,9 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: Copy local node modules
-              run: mkdir -p node_modules && cp -r /usr/local/lib/node_modules/* node_modules
+            - name: Setup Cypress locally (install)
+              run: npm i -g cypress && npm i -g ts-node && npm i -g @percy/cypress
+
 
             - uses: ./.github/prepare-action
               with:
