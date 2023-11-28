@@ -1,13 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import './src/translations/i18n'; // Required import to enable translations
+import './src/lib/translations/i18n'; // Required import to enable translations
 import ErrorBoundary from 'react-native-error-boundary';
 import { Provider } from 'react-redux';
 
 import ErrorFallback from './src/components/general/error/ErrorBoundary';
 import AppLoader from './src/components/loadingscreen/AppLoader';
 import SplashScreenOrApp from './src/components/splashscreen/SplashScreenOrApp';
-import { store } from './src/redux/Store';
+import { store } from './src/lib/redux/Store';
 import { RouteLinking } from './src/routes/routeLinking';
 import AppProviders from './src/screens/AppProviders';
 

@@ -1,7 +1,7 @@
 import { ViewStyle } from 'react-native';
 
-import { hasKeyInMap } from '../lib/utility/data';
 import { useAppSelector } from '../redux/Hooks';
+import { hasKeyInMap } from '../utility/data';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';

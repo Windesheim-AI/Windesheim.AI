@@ -36,8 +36,11 @@ import Oracle from '../../assets/images/WTR/TechProviders/oracle.svg';
 import SalesForce from '../../assets/images/WTR/TechProviders/salesforce.svg';
 //@ts-ignore
 import Sap from '../../assets/images/WTR/TechProviders/sap.svg';
-import { useColorConfig, useColorStateConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+import {
+    useColorConfig,
+    useColorStateConfig,
+} from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';

@@ -7,7 +7,7 @@ import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
-import { useFonts } from '../../constants/Fonts';
+import { useFonts } from '../../lib/constants/Fonts';
 import { useMapSingleCourseToData } from '../../lib/repositories/courses/mapSingleCourseToData';
 import useSingleCourse from '../../lib/repositories/courses/useSingleCourse';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';

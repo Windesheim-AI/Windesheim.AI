@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { useColorConfig } from '../../constants/Colors';
-import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
-import { themeActions } from '../../redux/slices/ThemeSlice';
+import { useColorConfig } from '../../lib/constants/Colors';
+import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
+import { themeActions } from '../../lib/redux/slices/ThemeSlice';
 import { WhSwitch } from '../general/input/WhSwitch';
 
 export const HighContrastSwitcher = () => {

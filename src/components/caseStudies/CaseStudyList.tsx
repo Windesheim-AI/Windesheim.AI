@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 
-import { useColorConfig } from '../../constants/Colors';
+import { useColorConfig } from '../../lib/constants/Colors';
 
 interface CaseStudyItem {
     id: number;

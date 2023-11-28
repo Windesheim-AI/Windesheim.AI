@@ -1,6 +1,6 @@
-import { CourseDataState } from '../../../redux/slices/CourseDataSlice';
 import { Course, CourseDataMapped } from '../../../types/Course';
 import { StageDataMapped } from '../../../types/Stage';
+import { CourseDataState } from '../../redux/slices/CourseDataSlice';
 
 export function mapCourseToData(
     course: Course,

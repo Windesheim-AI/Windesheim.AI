@@ -6,8 +6,8 @@ import {
     ColorGradientScheme,
     useColorConfig,
     useColorStateConfig,
-} from '../../../constants/Colors';
-import { useFonts } from '../../../constants/Fonts';
+} from '../../../lib/constants/Colors';
+import { useFonts } from '../../../lib/constants/Fonts';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
 import { IntractableView } from '../views/IntractableView';

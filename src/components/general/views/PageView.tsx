@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { useColorConfig } from '../../../constants/Colors';
-import { useFonts } from '../../../constants/Fonts';
+import { useColorConfig } from '../../../lib/constants/Colors';
+import { useFonts } from '../../../lib/constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';
 
 type PageViewProps = {

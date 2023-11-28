@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ViewStyle } from 'react-native';
 
-import { shadow, useColorConfig } from '../../../constants/Colors';
+import { shadow, useColorConfig } from '../../../lib/constants/Colors';
 
 export type CardProps = {
     children: React.ReactNode;

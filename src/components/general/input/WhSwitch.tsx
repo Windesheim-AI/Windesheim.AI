@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-native';
 
-import { ColorSchemeType } from '../../../constants/Colors';
+import { ColorSchemeType } from '../../../lib/constants/Colors';
 
 export type SwitchProps = {
     onValueChange?: () => void;

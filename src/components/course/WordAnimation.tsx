@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { useFonts } from '../../constants/Fonts';
+import { useFonts } from '../../lib/constants/Fonts';
 import { TextTranslated } from '../general/text/TextTranslated';
 
 interface Props {

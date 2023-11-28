@@ -6,7 +6,7 @@ import { Button } from '../components/general/buttons/Button';
 import { PageView } from '../components/general/views/PageView';
 import { WhScrollView } from '../components/general/views/WhScrollView';
 import { HomePrompts } from '../components/home/HomePrompts';
-import { useColorStateConfig } from '../constants/Colors';
+import { useColorStateConfig } from '../lib/constants/Colors';
 import { Routes } from '../routes/routes';
 
 export const HomeScreen = () => {

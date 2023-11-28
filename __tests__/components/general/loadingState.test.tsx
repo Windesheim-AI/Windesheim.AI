@@ -1,17 +1,17 @@
 import { act, renderHook } from '@testing-library/react-native';
 
+import { useAppDispatch, useAppSelector } from '../../../src/lib/redux/Hooks'; // Import your module
+import { setLoading } from '../../../src/lib/redux/slices/LoadingSlice';
 import {
     useDynamicLoading,
     useStaticLoading,
 } from '../../../src/lib/utility/loaderFunctions'; // Import your module
-import { useAppDispatch, useAppSelector } from '../../../src/redux/Hooks'; // Import your module
-import { setLoading } from '../../../src/redux/slices/LoadingSlice';
 
 // Mock the setLoading Redux action
 const setLoadingMock = jest.fn();
 jest.useFakeTimers(); // Mock timers
 // Mock dependencies
-jest.mock('../../../src/redux/Hooks', () => ({
+jest.mock('../../../src/lib/redux/Hooks', () => ({
     useAppDispatch: jest.fn(),
     useAppSelector: jest.fn(),
 }));

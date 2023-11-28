@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 
 import BlockWrapper from './block';
-import { useColorStateConfig } from '../../../constants/Colors';
+import { useColorStateConfig } from '../../../lib/constants/Colors';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../../routes/routes';
 import { ButtonOptions } from '../../../types/CourseStageBlock';

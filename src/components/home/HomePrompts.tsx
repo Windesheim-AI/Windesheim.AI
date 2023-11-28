@@ -1,8 +1,11 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { useColorConfig, useColorStateConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+import {
+    useColorConfig,
+    useColorStateConfig,
+} from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
 import usePromptLibrary from '../../lib/repositories/promptLibrary/usePromptLibrary';
 import { Routes } from '../../routes/routes';
 import { DataWrapper } from '../general/base/DataWrapper';

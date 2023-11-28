@@ -16,8 +16,8 @@ import {
 import { InternalRendererProps } from 'react-native-render-html/lib/typescript/shared-types';
 import { CustomTagRendererRecord } from 'react-native-render-html/src/render/render-types';
 
-import { ColorSchemeType } from '../../../constants/Colors';
-import { useFonts } from '../../../constants/Fonts';
+import { ColorSchemeType } from '../../../lib/constants/Colors';
+import { useFonts } from '../../../lib/constants/Fonts';
 import { handleError } from '../../../lib/utility/errorHandler';
 
 /* istanbul ignore next */

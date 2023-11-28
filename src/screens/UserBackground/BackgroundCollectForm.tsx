@@ -23,16 +23,16 @@ import {
     shadow,
     useColorConfig,
     useCurrentTheme,
-} from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
-import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
+} from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
+import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
 import {
     setPosition,
     setInterestedKeyword,
     setAiFamiliarity,
     setIsFirstTimeUser,
-} from '../../redux/slices/BackgroundInformationSlice';
-import { navigationActions } from '../../redux/slices/NavigationSlice';
+} from '../../lib/redux/slices/BackgroundInformationSlice';
+import { navigationActions } from '../../lib/redux/slices/NavigationSlice';
 
 const BackgroundCollectForm = () => {
     const storeDispatch = useAppDispatch();
