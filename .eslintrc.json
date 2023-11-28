@@ -139,6 +139,10 @@
             {
                 "selector": "enumMember",
                 "format": ["PascalCase", "UPPER_CASE"]
+            },
+            {
+                "selector": "import",
+                "format": null
             }
         ],
         "@typescript-eslint/no-explicit-any": "off",

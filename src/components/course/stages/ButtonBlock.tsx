@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 
 import BlockWrapper from './block';
 import { stateColorSchemes } from '../../../constants/Colors';
@@ -6,7 +7,6 @@ import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../../routes/routes';
 import { ButtonOptions } from '../../../types/CourseStageBlock';
 import { Button } from '../../general/buttons/Button';
-import { StyleSheet } from 'react-native';
 
 export default function ButtonBlock({ options }: { options: ButtonOptions }) {
     // ToDo: use the configured color scheme of the options.

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, View, Dimensions } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 import BlockWrapper from './block';
 import { ImageOptions } from '../../../types/CourseStageBlock';
@@ -15,6 +15,7 @@ export function ImageBlock({ options }: { options: ImageOptions }) {
             height: 300,
         },
     });
+
     return (
         <BlockWrapper style={styles.container}>
             <View style={styles.container}>

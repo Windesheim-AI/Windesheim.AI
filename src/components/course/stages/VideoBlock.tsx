@@ -1,10 +1,10 @@
 import { Audio, ResizeMode, Video } from 'expo-av';
 import React from 'react';
 import { Button, Dimensions, StyleSheet, View } from 'react-native';
+import YoutubePlayer from 'react-native-youtube-iframe';
 
 import BlockWrapper from './block';
 import { VideoOptions } from '../../../types/CourseStageBlock';
-import YoutubePlayer from "react-native-youtube-iframe";
 
 export function VideoBlock({ options }: { options: VideoOptions }) {
     const video = React.useRef(null);
@@ -27,11 +27,12 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
         ytContainer: {
             marginRight: 10,
             marginLeft: 10,
-        }
+        },
     });
 
     // enable ios audio when in silent mode
-    Audio.setAudioModeAsync({
+    // eslint-disable-next-line no-void
+    void Audio.setAudioModeAsync({
         playsInSilentModeIOS: true,
     });
 
@@ -40,8 +41,9 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
         const regex = /(?:\?v=|&v=|youtu\.be\/)(.*?)(?:\?|&|$)/;
         const match = url.match(regex);
         return match && match[1].length === 11 ? match[1] : false;
-    }
+    };
 
+    // @ts-ignore
     return (
         <BlockWrapper style={styles.container}>
             {!options.videoURL.includes('youtube' || 'yt') ? (
@@ -54,24 +56,34 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
                         }}
                         resizeMode={ResizeMode.COVER}
                         isLooping
-                        onPlaybackStatusUpdate={status => setStatus(() => status)}
+                        onPlaybackStatusUpdate={(newStatus) =>
+                            setStatus(() => newStatus)
+                        }
                     />
                     <Button
                         //@ts-ignore
                         title={status.isPlaying ? 'Pause' : 'Play'}
-                        onPress={() =>
+                        onPress={() => {
                             //@ts-ignore
-                            status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
-                        }
+                            if (status.isPlaying) {
+                                //@ts-ignore
+                                // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+                                video.current.pauseAsync();
+                                return;
+                            }
+
+                            //@ts-ignore
+                            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+                            video.current.playAsync();
+                        }}
                     />
                 </>
             ) : (
-
                 <View style={styles.ytContainer}>
                     <YoutubePlayer
                         height={Dimensions.get('window').height / 3}
                         width={Dimensions.get('window').width - 90}
-                        play={true}
+                        play
                         videoId={getYTId(options.videoURL) || ''}
                     />
                 </View>

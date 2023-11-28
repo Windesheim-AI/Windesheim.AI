@@ -4,10 +4,10 @@ export type CourseStageBlock = {
     blockType: CourseStageBlockType;
     id: string;
     content: TextOptions &
-    AIOptions &
-    ButtonOptions &
-    ImageOptions &
-    VideoOptions; //json string or AIOptions
+        AIOptions &
+        ButtonOptions &
+        ImageOptions &
+        VideoOptions; //json string or AIOptions
 };
 
 export type CourseStageBlockOptions = {

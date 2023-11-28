@@ -1,12 +1,12 @@
 import OpenAI, { ClientOptions } from 'openai';
 import React, { useEffect, useState } from 'react';
+import { StyleSheet } from 'react-native';
 
 import BlockWrapper from './block';
 import { getEnvValue } from '../../../lib/utility/env/env';
 import { EnvOptions } from '../../../lib/utility/env/env.values';
 import { AIOptions } from '../../../types/CourseStageBlock';
 import AIGeneratedOutput from '../AIGeneratedOutput';
-import { StyleSheet } from 'react-native';
 
 export default function AIRenderer({ options }: { options: AIOptions }) {
     const [text, setText] = useState(''); // set default value to an empty string
