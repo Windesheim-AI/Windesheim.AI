@@ -36,10 +36,6 @@ export function HomePrompts() {
         },
     });
 
-    useEffect(() => {
-        storeDispatcher(setLoading(isLoading));
-    }, [isLoading, storeDispatcher]);
-
     return (
         <View>
             <TextTranslated style={styles.heading} text="Useful Prompts" />
