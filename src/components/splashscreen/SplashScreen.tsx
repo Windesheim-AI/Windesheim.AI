@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { Platform, Image, View, StyleSheet } from 'react-native';
 
@@ -8,6 +7,7 @@ import LogoBlack from '../../assets/images/Logo/Logo_black.svg';
 //@ts-ignore
 import LogoWin from '../../assets/images/Logo/Logo_windesheim.svg';
 import { useCurrentTheme } from '../../constants/Colors';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { useAppDispatch } from '../../redux/Hooks';
 import { hideSplashScreen } from '../../redux/slices/LayoutSlice';
 import { Routes } from '../../routes/routes';
@@ -24,7 +24,7 @@ export const SplashScreen = () => {
             // Dispatch the action to hide the splash screen and change the state
             storeDispatcher(hideSplashScreen());
             // Navigate to the main app screen
-            navigation.navigate(Routes.Home as never);
+            navigation.navigate(Routes.Home);
         }, appConfig.splashScreenTime);
     }, [storeDispatcher, navigation]); // Include dispatch and navigation in the dependencies array
 
@@ -55,12 +55,8 @@ export const SplashScreen = () => {
                 ) : (
                     <Image
                         testID="LogoBlack"
-                        source={
-                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                            theme === 'light'
-                                ? require('../../assets/images/Logo/Logo_light.png')
-                                : require('../../assets/images/Logo/Logo_dark.png')
-                        }
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        source={require('../../assets/images/Logo/Logo_black.png')}
                         style={styles.centerImage}
                     />
                 )}

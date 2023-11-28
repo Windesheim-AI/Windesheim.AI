@@ -1,12 +1,12 @@
 describe('WTR page tests', () => {
     beforeEach(() => {
         cy.visit('/');
-        cy.window()
-            .its('store')
-            .invoke('dispatch', {
-                type: 'tutorial/setCompleted',
-                payload: { completed: true },
-            });
+        cy.get('[data-testid="FirstCollect-skip-button"]').click();
+        cy.visit('/settings');
+        cy.get('[data-testid="tutorial-skip-button"]').click();
+        cy.get('[data-testid="language-switcher"]').click();
+        cy.contains('English').click();
+        cy.visit('/');
     });
 
     it('can display the WTR page', () => {

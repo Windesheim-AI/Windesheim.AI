@@ -1,5 +1,7 @@
+import { ViewStyle } from 'react-native';
+
 import { hasKeyInMap } from '../lib/utility/data';
-import { RootState, useAppSelector } from '../redux/Hooks';
+import { useAppSelector } from '../redux/Hooks';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
@@ -10,6 +12,7 @@ export type ColorSchemeType = {
     success: string;
     warning: string;
     danger: string;
+    link: string;
     text: string;
     textLight: string;
     background: string;
@@ -39,6 +42,7 @@ export type ColorSchemeType = {
     listItemBg: string;
     opacityLayer: string;
 };
+
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
         primary: '#4695D3',
@@ -47,6 +51,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         warning: '#ff7300',
         danger: '#EE3135',
         buttonText: '#3F3f3f',
+        link: '#ffcb05',
         text: '#000',
         textLight: '#fff',
         background: '#fff',
@@ -81,9 +86,10 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#45B97C',
         warning: '#ff7300',
         danger: '#EE3135',
+        link: '#ffcb05',
         text: '#fff',
         textLight: '#fff',
-        buttonText: '#3F3f3f',
+        buttonText: '#fff',
         background: '#2a2a2a',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorDark,
@@ -112,11 +118,86 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     },
 };
 
+const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
+    light: {
+        primary: '#0000FF',
+        secondary: '#FFFF00',
+        success: '#00FF00',
+        warning: '#FFA500',
+        danger: '#FF0000',
+        buttonText: '#000000',
+        link: '#FFFF00',
+        text: '#000000',
+        textLight: '#FFFFFF',
+        background: '#FFFFFF',
+        backgroundModal: 'rgba(0, 0, 0, 0.4)',
+        tint: '#0000FF',
+        gray: '#000000',
+        tabIconDefault: '#000000',
+        tabIconSelected: '#0000FF',
+        titleDefault: '#000000',
+        descriptionDefault: '#000',
+        bg1: '#fff377',
+        bg2: '#ffd949',
+        bg3: '#ffcb05',
+        settingButtonBG: '#FFFFFF',
+        modalBackground: 'rgba(0, 0, 0, 0.4)',
+        subtext: '#000000',
+        navBar: {
+            backgroundColor: '#FFFFFF',
+            color: '#000000',
+        },
+        borderColor: '#000000',
+        subTitle: '#000000',
+        listItemBg: '#FFFFFF',
+        white: '#FFFFFF',
+        black: '#000000',
+        blue: '#0000FF',
+        opacityLayer: 'rgba(255,255,255,0.9)',
+    },
+    dark: {
+        primary: '#0000FF',
+        secondary: '#FFFF00',
+        success: '#00FF00',
+        warning: '#FFA500',
+        danger: '#FF0000',
+        link: '#FFFF00',
+        text: '#FFFFFF',
+        textLight: '#FFFFFF',
+        buttonText: '#FFFFFF',
+        background: '#000000',
+        backgroundModal: 'rgba(0,0,0,0.4)',
+        tint: '#FFFFFF',
+        gray: '#6e6e6e',
+        tabIconDefault: '#FFFFFF',
+        tabIconSelected: '#FFFFFF',
+        titleDefault: '#FFFFFF',
+        modalBackground: 'rgba(0,0,0,0.4)',
+        descriptionDefault: '#fff',
+        bg1: '#86d2d9',
+        bg2: '#22bdc6',
+        bg3: '#4695d3',
+        settingButtonBG: '#000000',
+        subtext: '#fff',
+        navBar: {
+            backgroundColor: '#000000',
+            color: '#FFFFFF',
+        },
+        subTitle: '#FFFFFF',
+        borderColor: '#FFFFFF',
+        listItemBg: '#000000',
+        white: '#FFFFFF',
+        black: '#000000',
+        blue: '#0000FF',
+        opacityLayer: 'rgba(0,0,0,0.6)',
+    },
+};
+
 export const shadow = {
     shadowColor: '#000',
     shadowOffset: {
-        width: 5,
-        height: 5,
+        width: 3,
+        height: 3,
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
@@ -146,8 +227,6 @@ export const colorIconMapping: ColorIconMapping = {
     warning: 'exclamation-triangle',
 };
 
-export type ColorGradientSchemes = Record<ColorTypes, ColorGradientScheme>;
-
 export type StateColorGradientSchemes = {
     primary: ColorGradientScheme;
     info: ColorGradientScheme;
@@ -157,7 +236,7 @@ export type StateColorGradientSchemes = {
     danger: ColorGradientScheme;
 };
 
-export const stateColorSchemes: StateColorGradientSchemes = {
+const stateColorSchemes: StateColorGradientSchemes = {
     primary: ['#4695D3', '#22BDC6', '#86D2D9'],
     info: ['#4695D3', '#22BDC6', '#86D2D9'],
     secondary: ['#FFCB05', '#FFD949', '#FFF377'],
@@ -166,12 +245,98 @@ export const stateColorSchemes: StateColorGradientSchemes = {
     danger: ['#EE3135', '#F16682', '#F287B7'],
 };
 
+const highContrastStateColorSchemes: StateColorGradientSchemes = {
+    primary: ['#0000FF', '#0000FF', '#0000FF'],
+    info: ['#0000FF', '#0000FF', '#0000FF'],
+    secondary: ['#FFFF00', '#FFFF00', '#FFFF00'],
+    success: ['#00FF00', '#00FF00', '#00FF00'],
+    warning: ['#FFA500', '#FFA500', '#FFA500'],
+    danger: ['#FF0000', '#FF0000', '#FF0000'],
+};
+
+export type StateTextColorSchemes = {
+    primary: string;
+    info: string;
+    secondary: string;
+    success: string;
+    warning: string;
+    danger: string;
+};
+
+const highContrastStateTextColorSchemes: StateTextColorSchemes = {
+    primary: '#FFFFFF',
+    info: '#FFFFFF',
+    secondary: '#000000',
+    success: '#000000',
+    warning: '#000000',
+    danger: '#FFFFFF',
+};
+
 export function useCurrentTheme(): 'dark' | 'light' {
-    return useAppSelector((state: RootState) => state.theme).theme;
+    return useAppSelector((state) => state.theme).theme;
+}
+
+export function useCurrentHighContrastMode(): boolean {
+    return useAppSelector((state) => state.theme).isHighContrastEnabled;
+}
+
+function useCurrentStateTextColorScheme(): StateTextColorSchemes | null {
+    const isHighContrastEnabled = useCurrentHighContrastMode();
+    if (isHighContrastEnabled) {
+        return highContrastStateTextColorSchemes;
+    }
+
+    return null;
+}
+
+function useHighContrastBorderIfNecessary(): ViewStyle {
+    const isHighContrastEnabled = useCurrentHighContrastMode();
+    const theme = useCurrentTheme();
+    if (isHighContrastEnabled) {
+        return {
+            borderColor:
+                theme === 'dark' ? colorMap.dark.white : colorMap.light.black,
+            borderWidth: 3,
+            borderStyle: 'solid',
+        };
+    }
+
+    return {};
+}
+
+function useCurrentStateColorScheme(): StateColorGradientSchemes {
+    const isHighContrastEnabled = useCurrentHighContrastMode();
+    if (isHighContrastEnabled) {
+        return highContrastStateColorSchemes;
+    }
+
+    return stateColorSchemes;
+}
+
+type ColorStateConfig = {
+    colors: ReturnType<typeof useCurrentStateColorScheme>;
+    text: ReturnType<typeof useCurrentStateTextColorScheme>;
+    highContrastBorder: ReturnType<typeof useHighContrastBorderIfNecessary>;
+    isHighContrastEnabled: ReturnType<typeof useCurrentHighContrastMode>;
+};
+
+export function useColorStateConfig(): ColorStateConfig {
+    return {
+        colors: useCurrentStateColorScheme(),
+        text: useCurrentStateTextColorScheme(),
+        highContrastBorder: useHighContrastBorderIfNecessary(),
+        isHighContrastEnabled: useCurrentHighContrastMode(),
+    };
 }
 
 export function useColorConfig(): ColorSchemeType {
     const theme = useCurrentTheme();
+    const isHighContrastEnabled = useCurrentHighContrastMode();
+    if (isHighContrastEnabled) {
+        return hasKeyInMap(highContrastColorMap, theme)
+            ? highContrastColorMap[theme]
+            : highContrastColorMap.dark;
+    }
 
     return hasKeyInMap(colorMap, theme) ? colorMap[theme] : colorMap.dark;
 }

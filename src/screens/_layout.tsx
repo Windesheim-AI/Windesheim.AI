@@ -8,7 +8,8 @@ import {
     StatusBar,
 } from 'react-native';
 
-import { NotificationList } from '../components/alerts/NotificationList';
+import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
+import { NotificationList } from '../components/general/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { Tutorial } from '../components/tutorial/Tutorial';
@@ -38,6 +39,7 @@ export const Layout = ({ children }: LayoutProps) => {
         },
         pos_r: {
             position: 'relative',
+            marginTop: navigation.showNavBar ? 50 : 0,
         },
         wrapper: {
             width: '100%',
@@ -48,6 +50,10 @@ export const Layout = ({ children }: LayoutProps) => {
             paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         },
     });
+
+    const isFirstTimeUser = useAppSelector(
+        (state) => state.backgroundInformation,
+    ).isFirstTimeUser;
 
     const [marginBottomAnimation, animateMarginBottomAnimation] =
         useAnimatedValue(20);
@@ -67,8 +73,15 @@ export const Layout = ({ children }: LayoutProps) => {
                         marginBottom: marginBottomAnimation,
                     }}
                 >
-                    <View style={styles.innerContainer}>{children}</View>
-                    <Tutorial />
+                    {isFirstTimeUser ? <BackgroundCollectForm /> : null}
+                    {!isFirstTimeUser ? (
+                        <>
+                            <View style={styles.innerContainer}>
+                                {children}
+                            </View>
+                            <Tutorial />
+                        </>
+                    ) : null}
                 </Animated.View>
                 <View style={styles.pos_r}>
                     <NavBar />

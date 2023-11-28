@@ -1,10 +1,10 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { Modal, Text, Pressable, View, StyleSheet } from 'react-native';
 
-import { useColorConfig } from '../../constants/Colors';
+import { useColorConfig, useColorStateConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
-import { tutorialData } from '../../constants/TutorialData';
+import { tutorialSteps } from '../../constants/TutorialSteps';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { useAppSelector, useAppDispatch } from '../../redux/Hooks';
 import { nextStep, setCompleted } from '../../redux/slices/TutorialSlice';
 import { TextTranslated } from '../general/text/TextTranslated';
@@ -12,6 +12,7 @@ import { TextTranslated } from '../general/text/TextTranslated';
 export const Tutorial = () => {
     const storeDispatcher = useAppDispatch();
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
 
@@ -39,7 +40,7 @@ export const Tutorial = () => {
 
     const handleNext = () => {
         storeDispatcher(nextStep());
-        const nextStepRoute = tutorialData[tutorialStep]?.NextPage;
+        const nextStepRoute = tutorialSteps[tutorialStep]?.NextPage;
         if (nextStepRoute) {
             navigation.navigate(nextStepRoute as never);
         }
@@ -66,11 +67,11 @@ export const Tutorial = () => {
             justifyContent: 'center',
             maxWidth: '80%', // Set a maximum width for the modal content
             height: 'auto',
+            ...colorStateConfig.highContrastBorder,
         },
         modalText: {
-            ...fonts.description,
+            ...fonts.h1,
             color: colors.text,
-            fontSize: 18,
             fontWeight: 'bold',
             marginBottom: 10,
             textAlign: 'center',
@@ -78,7 +79,6 @@ export const Tutorial = () => {
         subText: {
             ...fonts.description,
             color: colors.text,
-            fontSize: 14,
             marginBottom: 20,
             textAlign: 'center',
         },
@@ -91,6 +91,7 @@ export const Tutorial = () => {
             padding: 10,
             borderRadius: 5,
             width: '48%',
+            ...colorStateConfig.highContrastBorder,
         },
         skipButton: {
             backgroundColor: colors.warning,
@@ -104,7 +105,6 @@ export const Tutorial = () => {
         buttonText: {
             ...fonts.button,
             color: colors.textLight,
-            fontSize: 16,
             fontWeight: 'bold',
             textAlign: 'center',
         },
@@ -124,11 +124,11 @@ export const Tutorial = () => {
                     <View style={styles.modalContent}>
                         <TextTranslated
                             style={styles.modalText}
-                            text={tutorialData[tutorialStep].Title}
+                            text={tutorialSteps[tutorialStep].Title}
                         />
                         <TextTranslated
                             style={styles.subText}
-                            text={tutorialData[tutorialStep].Subtext}
+                            text={tutorialSteps[tutorialStep].Subtext}
                         />
                         <View style={styles.buttonContainer}>
                             <Pressable
@@ -144,7 +144,7 @@ export const Tutorial = () => {
                                     text="Skip"
                                 />
                             </Pressable>
-                            {tutorialStep === tutorialData.length - 1 ? (
+                            {tutorialStep === tutorialSteps.length - 1 ? (
                                 <Pressable
                                     testID="tutorial-finish-button"
                                     style={[styles.button, styles.finishButton]}
@@ -171,10 +171,11 @@ export const Tutorial = () => {
                                         <TextTranslated
                                             style={styles.buttonText}
                                             text="Next"
-                                        />{' '}
+                                        />
+                                        {'\n'}
                                         {tutorialStep + 1}
                                         {' / '}
-                                        {tutorialData.length}
+                                        {tutorialSteps.length}
                                     </Text>
                                 </Pressable>
                             )}

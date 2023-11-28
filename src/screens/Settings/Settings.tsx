@@ -1,15 +1,18 @@
 import React from 'react';
 
+import { EditBackgroundInformationButton } from '../../components/BackgroundCollect/EditBackgroundInformationButton';
 import { SettingCard } from '../../components/general/card/SettingCard';
-import { PageView } from '../../components/general/views/PageView';
+import { PageScrollView } from '../../components/general/views/PageScrollView';
+import { AnimationToggle } from '../../components/settings/AnimationToggle';
 import { FontSwitcher } from '../../components/settings/FontSwitcher';
+import { HighContrastSwitcher } from '../../components/settings/HighContrastSwitcher';
 import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../../components/settings/ThemeSwitcher';
 import { TutorialRedoButton } from '../../components/tutorial/TutorialRedoButton';
 
 export const SettingsScreen = () => {
     return (
-        <PageView title="Settings">
+        <PageScrollView title="Settings">
             <SettingCard
                 icon="moon"
                 title="Enable dark mode"
@@ -31,12 +34,32 @@ export const SettingsScreen = () => {
             </SettingCard>
 
             <SettingCard
-                icon="redo"
-                title="Redo tutorial"
-                testID="tutorial reset"
+                icon="hand-sparkles"
+                title="Animations"
+                testID="Animation Toggle"
             >
+                <AnimationToggle />
+            </SettingCard>
+
+            <SettingCard
+                icon="eye"
+                title="Enable high contrast"
+                testID="High contrast mode switcher"
+            >
+                <HighContrastSwitcher />
+            </SettingCard>
+
+            <SettingCard icon="redo" title="Tutorial" testID="tutorial reset">
                 <TutorialRedoButton />
             </SettingCard>
-        </PageView>
+
+            <SettingCard
+                icon="user-edit"
+                title="Background"
+                testID="Background"
+            >
+                <EditBackgroundInformationButton />
+            </SettingCard>
+        </PageScrollView>
     );
 };

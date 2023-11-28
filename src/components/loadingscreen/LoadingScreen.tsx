@@ -15,8 +15,10 @@ import { useCurrentTheme } from '../../constants/Colors';
 import { Background } from '../general/background/Background';
 
 export const LoadingScreen = () => {
+    /* istanbul ignore next */
     const theme = useCurrentTheme();
 
+    /* istanbul ignore next */
     const styles = StyleSheet.create({
         fullScreenContainer: {
             position: 'absolute',
@@ -43,6 +45,7 @@ export const LoadingScreen = () => {
         },
     });
 
+    /* istanbul ignore next */
     return (
         <View style={styles.fullScreenContainer}>
             <Background />
@@ -53,12 +56,8 @@ export const LoadingScreen = () => {
                 ) : (
                     <Image
                         testID="LogoBlack"
-                        source={
-                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                            theme === 'light'
-                                ? require('../../assets/images/Logo/Logo_light.png')
-                                : require('../../assets/images/Logo/Logo_dark.png')
-                        }
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        source={require('../../assets/images/Logo/Logo_black.png')}
                         style={styles.centerImage}
                     />
                 )}

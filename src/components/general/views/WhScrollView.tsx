@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../../constants/Colors';
 import { useAppDispatch } from '../../../redux/Hooks';
@@ -11,7 +11,6 @@ type WhScrollViewProps = {
 
 const scrollHideShowThreshold = 50;
 const topThreshold = 50;
-const bottomThreshold = 300;
 
 export const WhScrollView = ({ children }: WhScrollViewProps) => {
     const storeDispatcher = useAppDispatch();
@@ -22,12 +21,6 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
     const [lastHiddenNavBar, setLastHiddenNavBar] = useState(0);
 
     const [showNav, setShowNav] = useState(true);
-
-    const styles = StyleSheet.create({
-        container: {
-            backgroundColor: colors.background,
-        },
-    });
 
     /* istanbul ignore next */
     const setNavState = (show: boolean) => {
@@ -43,6 +36,16 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
         };
     }) => {
         const position = event.nativeEvent.contentOffset.y;
+        const screenHeight = Dimensions.get('window').height;
+        const maxScroll = event.nativeEvent.contentSize.height - screenHeight;
+
+        //if content is smaller than screen plus some padding, always show nav bar
+        if (event.nativeEvent.contentSize.height < screenHeight + 100) {
+            setNavState(true);
+            setLastHiddenNavBar(0);
+            setLastShownNavBar(0);
+            return;
+        }
 
         //if scrolling dow
         if (position > scrollPosition) {
@@ -63,9 +66,6 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
             setLastShownNavBar(position);
         }
 
-        const maxScroll =
-            event.nativeEvent.contentSize.height - bottomThreshold;
-
         // if at the top of the page or at the bottom
         if (position < topThreshold) {
             setNavState(true);
@@ -79,6 +79,12 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
 
         setScrollPosition(position);
     };
+    const styles = StyleSheet.create({
+        container: {
+            minHeight: '100%',
+            backgroundColor: colors.background,
+        },
+    });
 
     //on firs load, show nav bar
     useEffect(() => {
@@ -88,10 +94,10 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
 
     return (
         <ScrollView
+            style={styles.container}
             scrollEventThrottle={100}
             testID="custom-scroll-view"
             onScroll={handleScroll}
-            style={styles.container}
         >
             {children}
         </ScrollView>

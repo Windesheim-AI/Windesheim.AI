@@ -13,3 +13,5 @@ instrument/
 # Ignore specific files
 *.md
 package-lock.json
+
+fonts.js

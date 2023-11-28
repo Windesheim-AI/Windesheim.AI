@@ -1,0 +1,37 @@
+name: prepare-action
+description: Prepare build
+
+inputs:
+    openai-api-key:
+        description: 'The OpenAI API key'
+        required: true
+    app-debug:
+        description: 'If the debug mode is enabled'
+        required: true
+    wp-username:
+        description: 'The WordPress username'
+        required: true
+    wp-password:
+        description: 'The WordPress password'
+        required: true
+
+runs:
+    using: 'composite'
+    steps:
+        - name: Set up Node.js
+          uses: actions/setup-node@v3
+          with:
+              node-version: 16.x
+
+        - name: 'Create & configure env file'
+          shell: bash
+          run: |
+              touch .env
+              echo OPENAI_API_KEY=${{ inputs.openai-api-key }} >> .env
+              echo APP_DEBUG=${{ inputs.app-debug }} >> .env
+              echo AI_ENABLED="false" >> .env
+              echo WP_CONTENT_URL="https://www.windesheim.tech" >> .env
+              echo WP_DATA_URL="https://www.windesheim.ai" >> .env
+              echo WP_USERNAME=${{ inputs.wp-username }} >> .env
+              echo WP_PASSWORD=${{ inputs.wp-password }} >> .env
+              cat .env

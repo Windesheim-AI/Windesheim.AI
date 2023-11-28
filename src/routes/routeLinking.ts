@@ -30,13 +30,13 @@ export const RouteLinking = {
                     courseId: (courseId: string) => courseId,
                 },
             },
-            [Routes.CourseOverview]: {
+            [Routes.StageOverview]: {
                 path: 'course/:courseId/overview',
                 parse: {
                     courseId: (courseId: string) => courseId,
                 },
             },
-            [Routes.Course]: {
+            [Routes.CourseStage]: {
                 path: 'course/:courseId/:stageId',
                 parse: {
                     courseId: (courseId: string) => courseId,
@@ -45,6 +45,11 @@ export const RouteLinking = {
             },
             [Routes.Courses]: 'courses',
             [Routes.LoadingScreen]: 'LoadingScreen',
+            [Routes.FirstTimeUser]: 'first-time-user',
+            [Routes.EditBackgroundInformation]:
+                'settings/edit-background-information',
+            [Routes.PromptLibrary]: 'prompt-library',
+            [Routes.Prompt]: 'prompt-library/prompt',
         },
     },
 };

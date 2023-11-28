@@ -1,9 +1,9 @@
-# WinGAI
+# Windesheim.AI
 
-[![Build Status](https://github.com/Windesheim-AI-App/WingAI/actions/workflows/app.build.yml/badge.svg)](https://github.com/Windesheim-AI-App/WingAI/actions/workflows/app.build.yml)
+[![Build Status](https://github.com/Windesheim-AI-App/Windesheim.AI/actions/workflows/app.build.yml/badge.svg)](https://github.com/Windesheim-AI-App/Windesheim.AI/actions/workflows/app.build.yml)
 ![check-code-coverage](https://img.shields.io/badge/code--coverage-73.83%25-yellow)
 
-This is the repository for the WinGAI-app.
+This is the codebase for the Windesheim.AI app.
 
 ## Prerequisites
 
@@ -28,9 +28,9 @@ cp .env.example .env
 
 The table below shows the required values for the .env file.
 
-| Name                      | Description                                 | Link                                                               |
-| ------------------------- | ------------------------------------------- | ------------------------------------------------------------------ |
-| `EXPO_PUBLIC_GTR_API_KEY` | The key to access the Google Translate API. | https://console.cloud.google.com/apis/api/translate.googleapis.com |
+| Name             | Description                       | Link                                 |
+| ---------------- | --------------------------------- | ------------------------------------ |
+| `OPENAI_API_KEY` | The key to access the OpenAI API. | https://platform.openai.com/api-keys |
 
 ### Install dependencies
 
@@ -40,7 +40,7 @@ npm install
 
 ## Deployment
 
-The deployment of the app is managed via: https://expo.dev/accounts/wingai/projects/wingai.
+The deployment of the app is managed via: https://expo.dev/accounts/windesheim.ai/projects/winsight.
 
 [TODO]: Define & configure further deployment steps
 
@@ -53,7 +53,7 @@ Read the instructions!
 
 ## Deployment
 
-The deployment of the app is managed via: https://expo.dev/accounts/wingai/projects/wingai.
+The deployment of the app is managed via: https://expo.dev/accounts/windesheim.ai/projects/winsight.
 
 [TODO]: Define & configure further deployment steps
 

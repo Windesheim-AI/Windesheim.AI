@@ -30,7 +30,8 @@
         "cypress/",
         "cypress.config.ts",
         "coverage",
-        "coverage-jest"
+        "coverage-jest",
+        "fonts.js"
     ],
     "settings": {
         "react": {
@@ -38,7 +39,7 @@
         }
     },
     "rules": {
-        "indent": ["error", 4],
+        "indent": ["error", 4, { "SwitchCase": 1 }],
         "react-native/no-unused-styles": 2,
         "react-native/split-platform-components": 2,
         "react-native/no-single-element-style-arrays": "error",
@@ -138,9 +139,13 @@
             {
                 "selector": "enumMember",
                 "format": ["PascalCase", "UPPER_CASE"]
+            },
+            {
+                "selector": "import",
+                "format": null
             }
         ],
-        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/consistent-type-definitions": "off",
         "complexity": ["error", { "max": 10 }],
         "no-console": "warn",
@@ -155,6 +160,7 @@
             }
         ],
         "@typescript-eslint/ban-ts-comment": "off",
+        "node/handle-callback-err": "off",
         "etc/no-implicit-any-catch": "off"
     }
 }

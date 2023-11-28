@@ -15,6 +15,7 @@ describe('Button Component', () => {
             <Button
                 buttonText={buttonText}
                 colorGradientScheme={['#FFF', '#CCC', '#333']}
+                textColorScheme="#FFF"
                 onPress={onPressHandler}
             />,
         );
@@ -30,6 +31,7 @@ describe('Button Component', () => {
                 buttonText="Click Me"
                 onPress={mockOnPress}
                 colorGradientScheme={['#FFF', '#CCC', '#333']}
+                textColorScheme="#FFF"
             />,
         );
 

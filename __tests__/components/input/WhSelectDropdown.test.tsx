@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react-native';
 import React from 'react';
 
-import { WhSelectDropdown } from '../../../src/components/input/WhSelectDropdown';
+import { WhSelectDropdown } from '../../../src/components/general/input/WhSelectDropdown';
 
 // Mock a sample data array for testing
 const sampleData = ['Option 1', 'Option 2', 'Option 3'];

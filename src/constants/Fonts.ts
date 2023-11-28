@@ -1,13 +1,11 @@
-import {
-    useFonts as useExpoFonts,
-    Inter_600SemiBold,
-    Inter_400Regular,
-    Inter_300Light,
-} from '@expo-google-fonts/inter';
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { useFonts as useExpoFonts } from '@expo-google-fonts/inter';
 import { TextStyle } from 'react-native';
 
 import { useColorConfig } from './Colors';
-import { RootState, useAppSelector } from '../redux/Hooks';
+import { useAppSelector } from '../redux/Hooks';
+
+// import the font files from the assets folder
 
 export const MaxSize = 40;
 export const MinSize = 12;
@@ -27,22 +25,35 @@ type TextStyling = {
     h6: TextStyle;
     icon: TextStyle;
     info: TextStyle;
+    default: TextStyle;
     p: TextStyle;
-    small: TextStyle;
     description: TextStyle;
+    link: TextStyle;
+    small: TextStyle;
+    quote: TextStyle;
     accent: TextStyle;
+    alert: TextStyle;
     button: TextStyle;
+    buttonLarger: TextStyle;
     courseTitle: TextStyle;
     courseSubTitle: TextStyle;
+    chipText: TextStyle;
 };
 
+// eslint-disable-next-line complexity
 export function useFonts() {
     const colors = useColorConfig();
 
     const [areFontsLoaded] = useExpoFonts({
-        Inter_600SemiBold,
-        Inter_400Regular,
-        Inter_300Light,
+        Inter_100Thin: require('../assets/fonts/Inter-Thin.ttf'),
+        Inter_200ExtraLight: require('../assets/fonts/Inter-ExtraLight.ttf'),
+        Inter_300Light: require('../assets/fonts/Inter-Light.ttf'),
+        Inter_400Regular: require('../assets/fonts/Inter-Regular.ttf'),
+        Inter_500Medium: require('../assets/fonts/Inter-Medium.ttf'),
+        Inter_600SemiBold: require('../assets/fonts/Inter-SemiBold.ttf'),
+        Inter_700Bold: require('../assets/fonts/Inter-Bold.ttf'),
+        Inter_800ExtraBold: require('../assets/fonts/Inter-ExtraBold.ttf'),
+        Inter_900Black: require('../assets/fonts/Inter-Black.ttf'),
     });
 
     const fontMap: TextStyling = {
@@ -50,9 +61,7 @@ export function useFonts() {
             fontSize: 24,
             fontWeight: 'bold',
             color: colors.titleDefault,
-            fontFamily: areFontsLoaded
-                ? 'Inter_600SemiBold'
-                : 'sans-serif-medium',
+            fontFamily: areFontsLoaded ? 'Inter_600SemiBold' : 'System',
         },
         h2: {
             fontSize: 18,
@@ -65,9 +74,12 @@ export function useFonts() {
         h4: {
             fontSize: 14,
             color: colors.text,
-            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'sans-serif',
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
         h5: {
+            fontSize: 13,
+        },
+        h6: {
             fontSize: 12,
         },
         icon: {
@@ -76,13 +88,30 @@ export function useFonts() {
         info: {
             fontSize: 15,
         },
+        default: {
+            fontSize: 16,
+            color: colors.text,
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
+        },
         description: {
             color: colors.text,
             fontSize: 14,
-            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'sans-serif',
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
-        h6: {
-            fontSize: 10,
+        quote: {
+            color: colors.text,
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
+            fontSize: 16,
+            fontStyle: 'italic',
+        },
+        link: {
+            fontSize: 16,
+            lineHeight: 24,
+            marginBottom: 10,
+            color: colors.text,
+            textDecorationLine: 'underline',
+            textDecorationStyle: 'solid',
+            textDecorationColor: colors.link,
         },
         p: {
             fontSize: 12,
@@ -95,8 +124,19 @@ export function useFonts() {
             fontSize: 12,
             color: colors.descriptionDefault,
         },
+        alert: {
+            color: colors.text,
+            fontFamily: areFontsLoaded ? 'Inter_500Medium' : 'System',
+            fontSize: 16,
+            fontWeight: 'bold',
+        },
         button: {
             fontSize: 16,
+            fontWeight: 'bold',
+            color: colors.buttonText,
+        },
+        buttonLarger: {
+            fontSize: 18,
             fontWeight: 'bold',
             color: colors.buttonText,
         },
@@ -104,19 +144,21 @@ export function useFonts() {
             fontSize: 18,
             fontWeight: 'bold',
             color: colors.text,
-            fontFamily: areFontsLoaded
-                ? 'Inter_600SemiBold'
-                : 'sans-serif-medium',
+            fontFamily: areFontsLoaded ? 'Inter_600SemiBold' : 'System',
         },
         courseSubTitle: {
             fontSize: 12,
             fontStyle: 'italic',
             color: colors.subTitle,
-            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'sans-serif',
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
+        },
+        chipText: {
+            fontSize: 14,
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
     };
 
-    const fontState = useAppSelector((state: RootState) => state.fontSize);
+    const fontState = useAppSelector((state) => state.fontSize);
     // normal size * (font size / default size)
     // for all font map
     const keys = Object.keys(fontMap) as (keyof typeof fontMap)[];

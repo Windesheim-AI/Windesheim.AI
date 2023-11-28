@@ -6,12 +6,18 @@ import { Routes } from '../routes/routes';
 
 export const StudyScreen = () => {
     return (
-        <PageView title="Welcome to WIN game">
+        <PageView title="Welcome to study">
             <ListButton
                 buttonText="Courses"
                 screenName={Routes.Courses}
                 width={100}
                 testId="courses-button"
+            />
+            <ListButton
+                buttonText="Prompt Library"
+                screenName={Routes.PromptLibrary}
+                width={100}
+                testId="prompt-library-button"
             />
         </PageView>
     );

@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { useEffect } from 'react';
 
-import { NotificationType } from '../../components/alerts/Notification';
+import { NotificationType } from '../../components/general/alerts/Notification';
 import {
-    stateColorSchemes,
     ColorGradientScheme,
     ColorTypes,
     colorIconMapping,
+    useColorStateConfig,
 } from '../../constants/Colors';
 import { useAppDispatch } from '../Hooks';
 
@@ -79,6 +79,7 @@ export const useNotificationOnce = (
     colorType?: ColorTypes,
 ) => {
     const storeDispatcher = useAppDispatch();
+    const colorStateConfig = useColorStateConfig();
 
     useEffect(() => {
         storeDispatcher(
@@ -86,8 +87,8 @@ export const useNotificationOnce = (
                 id,
                 message,
                 colorGradientScheme: colorType
-                    ? stateColorSchemes[colorType]
-                    : stateColorSchemes.primary,
+                    ? colorStateConfig.colors[colorType]
+                    : colorStateConfig.colors.primary,
                 icon: colorType ? colorIconMapping[colorType] : 'info',
             } as AddNotificationAction),
         );

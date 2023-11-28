@@ -1,4 +1,4 @@
-name: Build & test
+name: Build
 
 on:
     push:
@@ -20,19 +20,14 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: Set up Node.js
-              uses: actions/setup-node@v3
+            - uses: ./.github/prepare-action
               with:
-                  node-version: ${{ matrix.node-version }}
+                  openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+                  app-debug: false
+                  wp-username: ${{ secrets.WP_USERNAME }}
+                  wp-password: ${{ secrets.WP_PASSWORD }}
 
-            - name: 'Create & configure env file'
-              run: |
-                  touch .env
-                  echo EXPO_PUBLIC_GTR_API_KEY=${{ secrets.EXPO_PUBLIC_GTR_API_KEY }} >> .env
-                  echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
-                  cat .env
-
-            - name: Install dependencies
+            - name: Install NPM dependencies
               run: npm install
 
             - name: Run ESLint
@@ -47,38 +42,4 @@ jobs:
             - name: Run Unit & Component tests
               run: npm run test:jest-less-strict
 
-            - name: 'Remove env file'
-              run: |
-                  rm .env
-
-    end-to-end-testing:
-        runs-on: self-hosted
-        needs: build
-        strategy:
-            matrix:
-                test-platform: [firefox, electron]
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-
-            - name: Set up Node.js
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 16.x
-
-            - name: 'Create & configure env file'
-              run: |
-                  touch .env
-                  echo EXPO_PUBLIC_GTR_API_KEY=${{ secrets.EXPO_PUBLIC_GTR_API_KEY }} >> .env
-                  echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
-                  cat .env
-
-            - name: Cypress run
-              uses: cypress-io/github-action@v6
-              with:
-                  start: npm run web
-                  browser: ${{ matrix.test-platform }}
-
-            - name: 'Remove env file'
-              run: |
-                  rm .env
+            - uses: ./.github/cleanup-action

@@ -1,10 +1,10 @@
-import { useFonts, Inter_500Medium } from '@expo-google-fonts/inter';
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, View, Pressable } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { useColorConfig } from '../../../constants/Colors';
+import { useColorConfig, useColorStateConfig } from '../../../constants/Colors';
+import { useFonts } from '../../../constants/Fonts';
+import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
 
 export type ButtonProps = {
@@ -16,6 +16,7 @@ export type ButtonProps = {
     testId?: string;
 };
 
+// eslint-disable-next-line complexity
 export const ListButton = ({
     onPress,
     buttonText,
@@ -24,11 +25,9 @@ export const ListButton = ({
     icon,
     testId,
 }: ButtonProps) => {
-    const [fontsLoaded, fontError] = useFonts({
-        Inter_500Medium,
-    });
-
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
+    const fonts = useFonts();
     const navigation = useNavigation();
 
     if (!onPress) {
@@ -38,13 +37,8 @@ export const ListButton = ({
             );
         }
         onPress = () => {
-            //@ts-ignore
             navigation.navigate(screenName);
         };
-    }
-
-    if (!fontsLoaded && !fontError) {
-        return null;
     }
 
     const minWidth = 70;
@@ -58,14 +52,14 @@ export const ListButton = ({
 
     const styles = StyleSheet.create({
         bg1: {
-            backgroundColor: colors.bg1,
+            backgroundColor: colorStateConfig.colors.secondary[2],
             height: barHeight,
             top: -30,
             transform: 'rotate(20deg)',
             width: bgWidth,
         },
         bg2: {
-            backgroundColor: colors.bg2,
+            backgroundColor: colorStateConfig.colors.secondary[1],
             height: barHeight,
 
             top: -30,
@@ -73,7 +67,7 @@ export const ListButton = ({
             width: bgWidth,
         },
         bg3: {
-            backgroundColor: colors.bg3,
+            backgroundColor: colorStateConfig.colors.secondary[0],
             height: barHeight,
 
             top: -30,
@@ -82,7 +76,9 @@ export const ListButton = ({
         },
         button: {
             alignItems: 'center',
-            backgroundColor: colors.listItemBg,
+            backgroundColor: colorStateConfig.isHighContrastEnabled
+                ? colorStateConfig.colors.secondary[0]
+                : colors.listItemBg,
             borderRadius: 40,
             flexDirection: 'row',
             height,
@@ -91,19 +87,22 @@ export const ListButton = ({
             width: buttonWidth,
             // center
             overflow: 'hidden',
+            ...colorStateConfig.highContrastBorder,
         },
         icon: {
-            color: colors.text,
             fontSize: 15,
             fontWeight: 'bold',
             position: 'absolute',
+            color: colorStateConfig.isHighContrastEnabled
+                ? colorStateConfig.text?.secondary
+                : colors.text,
         },
         text: {
-            color: colors.text,
-            fontFamily: 'Inter_500Medium',
-            fontSize: 18,
-            fontWeight: 'bold',
+            ...fonts.buttonLarger,
             position: 'absolute',
+            color: colorStateConfig.isHighContrastEnabled
+                ? colorStateConfig.text?.secondary
+                : fonts.buttonLarger.color,
         },
         textStyle: {
             flexDirection: 'row',

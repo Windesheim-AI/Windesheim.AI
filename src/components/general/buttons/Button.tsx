@@ -1,11 +1,14 @@
-import { useFonts as useFont, Inter_500Medium } from '@expo-google-fonts/inter';
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { ColorGradientScheme, useColorConfig } from '../../../constants/Colors';
+import {
+    ColorGradientScheme,
+    useColorConfig,
+    useColorStateConfig,
+} from '../../../constants/Colors';
 import { useFonts } from '../../../constants/Fonts';
+import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
 import { IntractableView } from '../views/IntractableView';
 
@@ -14,7 +17,9 @@ export type ButtonProps = {
     screenName?: string;
     buttonText?: string;
     colorGradientScheme: ColorGradientScheme;
+    textColorScheme: string | undefined;
     width?: number;
+    height?: number;
     icon?: string;
     testId?: string;
 };
@@ -24,16 +29,15 @@ export const Button = ({
     onPress,
     buttonText,
     colorGradientScheme,
+    textColorScheme,
     screenName,
     width,
+    height = 60,
     icon,
     testId,
 }: ButtonProps) => {
-    const [fontsLoaded, fontError] = useFont({
-        Inter_500Medium,
-    });
-
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
 
@@ -47,14 +51,8 @@ export const Button = ({
 
         /* istanbul ignore next */
         onPress = () => {
-            //@ts-ignore
             navigation.navigate(screenName);
         };
-    }
-
-    /* istanbul ignore next */
-    if (!fontsLoaded && !fontError) {
-        return null;
     }
 
     const minWidth = 80;
@@ -63,7 +61,6 @@ export const Button = ({
     const buttonWidth =
         checkedWidth > minWidth ? checkedWidth * 3 : minWidth * 3;
     const barHeight = 3 * checkedWidth;
-    const height = 60;
 
     const styles = StyleSheet.create({
         bg1: {
@@ -91,27 +88,26 @@ export const Button = ({
             // from left to rigth items
             // shadow
             maxHeight: 90,
-            width: buttonWidth,
+            width: width ? buttonWidth : 'auto',
+            minWidth: buttonWidth,
             // center
             overflow: 'hidden',
+            ...colorStateConfig.highContrastBorder,
         },
         textContainer: {
-            color: colors.buttonText,
-            fontFamily: 'Inter_500Medium',
-            fontWeight: 'bold',
             left: 50,
             position: 'absolute',
             ...fonts.button,
+            width: buttonWidth - 30,
+            color: textColorScheme ? textColorScheme : fonts.button.color,
         },
         text: {
-            color: colors.buttonText,
-            fontFamily: 'Inter_500Medium',
-            fontWeight: 'bold',
             ...fonts.button,
+            color: textColorScheme ? textColorScheme : fonts.button.color,
         },
         icon: {
-            color: colors.buttonText,
             ...fonts.icon,
+            color: textColorScheme ? textColorScheme : colors.buttonText,
             fontWeight: 'bold',
         },
     });

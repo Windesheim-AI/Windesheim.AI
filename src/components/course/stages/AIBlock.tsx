@@ -1,16 +1,17 @@
-//@ts-ignore
-import { OPENAI_API_KEY, AI_ENABLED } from '@env';
 import OpenAI, { ClientOptions } from 'openai';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet } from 'react-native';
 
 import BlockWrapper from './block';
+import { getEnvValue } from '../../../lib/utility/env/env';
+import { EnvOptions } from '../../../lib/utility/env/env.values';
 import { AIOptions } from '../../../types/CourseStageBlock';
 import AIGeneratedOutput from '../AIGeneratedOutput';
 
 export default function AIRenderer({ options }: { options: AIOptions }) {
     const [text, setText] = useState(''); // set default value to an empty string
     const openai = new OpenAI({
-        apiKey: OPENAI_API_KEY as string, // defaults to process.env["OPENAI_API_KEY"]
+        apiKey: getEnvValue(EnvOptions.OpenAIApiKey),
         dangerouslyAllowBrowser: true,
     } as ClientOptions);
 
@@ -29,19 +30,25 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
             setText(chatCompletion.choices[0].message.content);
         }
 
-        if (AI_ENABLED === 'true') {
+        if (getEnvValue(EnvOptions.AiEnabled) === 'true') {
             // eslint-disable-next-line no-void
             void main();
         } else {
             setText(
-                'Live AI has been disabled in the .env file. Showing prompt; ' +
-                    options.prompt,
+                `Live AI has been disabled in the .env file. Showing prompt; ${options.prompt}`,
             );
         }
-    }, [options.prompt, openai.chat.completions]);
+    }, [openai.chat.completions, options.prompt]);
+
+    const styles = StyleSheet.create({
+        block: {
+            marginTop: 20,
+            marginBottom: 20,
+        },
+    });
 
     return (
-        <BlockWrapper>
+        <BlockWrapper style={styles.block}>
             <AIGeneratedOutput text={text} prompt={options.prompt} />
         </BlockWrapper>
     );

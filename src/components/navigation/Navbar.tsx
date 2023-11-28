@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import {
     Animated,
@@ -10,17 +9,16 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../constants/Colors';
-import { useAnimatedValue } from '../../lib/utility/animate';
-import { RootState, useAppSelector } from '../../redux/Hooks';
+import { useAnimatedValueNav } from '../../lib/utility/animate';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
+import { useAppSelector } from '../../redux/Hooks';
 import { navigationBarLinks } from '../../routes/navigation';
 
 export const NavBar = () => {
     const [showNavBar, setShowNavBar] = useState(true);
     const navigation = useNavigation();
 
-    const navigationState = useAppSelector(
-        (state: RootState) => state.navigation,
-    );
+    const navigationState = useAppSelector((state) => state.navigation);
 
     const colors = useColorConfig();
     const screenWidth = Dimensions.get('window').width;
@@ -53,9 +51,9 @@ export const NavBar = () => {
         setShowNavBar(navigationState.showNavBar);
     }, [navigationState]);
 
-    const [opacity, animateOpacity] = useAnimatedValue(1);
-    const [bottom, animateBottom] = useAnimatedValue(screenWidth - 40);
-    const [width, animateWidth] = useAnimatedValue(screenWidth - 40);
+    const [opacity, animateOpacity] = useAnimatedValueNav(1);
+    const [bottom, animateBottom] = useAnimatedValueNav(screenWidth - 40);
+    const [width, animateWidth] = useAnimatedValueNav(screenWidth - 40);
 
     useEffect(() => {
         animateOpacity(showNavBar ? 1 : 0, 200);
@@ -70,7 +68,6 @@ export const NavBar = () => {
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
                     onPress={() => {
-                        //@ts-ignore
                         navigation.navigate(link.route);
                     }}
                     style={styles.item}

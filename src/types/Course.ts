@@ -1,6 +1,6 @@
 import { Stage, StageDataMapped } from './Stage';
 
-//saved in wordpress
+//saved in WordPress
 export type Course = {
     title: string;
     id: string;
@@ -11,7 +11,7 @@ export type Course = {
 //brought to UI
 export type CourseDataMapped = {
     courseId: string;
-    title: string;
-    description: string;
+    title: string | undefined;
+    description: string | undefined;
     stageData: StageDataMapped[];
 };

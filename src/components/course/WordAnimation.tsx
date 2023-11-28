@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet } from 'react-native';
 
 import { useFonts } from '../../constants/Fonts';
 import { TextTranslated } from '../general/text/TextTranslated';
@@ -49,15 +48,7 @@ const WordAnimation = ({ text, speed = 1 }: Props) => {
         return () => clearInterval(intervalId);
     }, [text, speed]);
 
-    const styles = StyleSheet.create({
-        description: {
-            ...fonts.description,
-            fontSize: 16,
-            fontStyle: 'italic',
-        },
-    });
-
-    return <TextTranslated style={styles.description} text={displayText} />;
+    return <TextTranslated style={fonts.quote} text={displayText} />;
 };
 
 export default WordAnimation;

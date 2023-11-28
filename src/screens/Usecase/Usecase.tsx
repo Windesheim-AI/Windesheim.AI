@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 
 import CaseStudyList from '../../components/caseStudies/CaseStudyList';
-import { Usecase } from '../../components/general/buttons/UsecaseButton';
+import { UseCaseButton } from '../../components/general/buttons/UseCaseButton';
 import HorizontalScroll from '../../components/general/views/HorizontalScroll';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { useStyles } from '../../constants/_styles';
@@ -34,9 +34,17 @@ export const UsecaseScreen = () => {
             <Text style={styles.HeaderText}>Information</Text>
 
             {/* "Button" */}
-            <Usecase buttonText="EX" screenName={Routes.Usecase} width={100} />
+            <UseCaseButton
+                buttonText="EX"
+                screenName={Routes.Usecase}
+                width={100}
+            />
             {/* "Button" */}
-            <Usecase buttonText="EX" screenName={Routes.Usecase} width={100} />
+            <UseCaseButton
+                buttonText="EX"
+                screenName={Routes.Usecase}
+                width={100}
+            />
         </PageScrollView>
     );
 };

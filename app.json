@@ -1,8 +1,8 @@
 {
     "expo": {
-        "name": "WingAI",
+        "name": "Windesheim.AI",
         "slug": "winsight",
-        "scheme": "wingai",
+        "scheme": "windesheim.ai",
         "version": "1.0.0",
         "orientation": "portrait",
         "icon": "./src/assets/images/Icon/icon.png",
@@ -15,12 +15,12 @@
         "assetBundlePatterns": ["*/"],
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "com.windesheim.wingai",
-            "buildNumber": "1.0.1"
+            "bundleIdentifier": "com.windesheim.ai",
+            "buildNumber": "1"
         },
         "android": {
-            "package": "com.windesheim.wingai",
-            "versionCode": 2,
+            "package": "com.windesheim.ai",
+            "versionCode": 1,
             "adaptiveIcon": {
                 "foregroundImage": "./src/assets/images/Icon/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
@@ -40,6 +40,10 @@
         "updates": {
             "url": "https://u.expo.dev/0f525e57-fad9-45bd-9085-714b0d610d6d"
         },
-        "owner": "wingai"
+        "owner": "windesheim.ai",
+        "androidStatusBar": {
+            "backgroundColor": "#fff377",
+            "translucent": true
+        }
     }
 }

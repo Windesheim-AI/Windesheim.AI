@@ -1,9 +1,9 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { useAppDispatch } from '../../redux/Hooks';
 import { setCompleted } from '../../redux/slices/TutorialSlice';
 import { Routes } from '../../routes/routes';
@@ -35,8 +35,12 @@ export const TutorialRedoButton = () => {
     };
 
     return (
-        <Pressable style={styles.button} onPress={handleReset}>
-            <TextTranslated style={styles.buttonText} text="Redo Tutorial" />
+        <Pressable
+            style={styles.button}
+            onPress={handleReset}
+            testID="redo-tutorial-button"
+        >
+            <TextTranslated style={styles.buttonText} text="Redo" />
         </Pressable>
     );
 };

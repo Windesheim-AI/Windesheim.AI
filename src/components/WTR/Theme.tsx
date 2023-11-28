@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { ImageBackground, Pressable, StyleSheet, View } from 'react-native';
 
@@ -21,8 +20,9 @@ import Quantum from '../../assets/images/WTR/Themes/quantum.jpg';
 import Trust from '../../assets/images/WTR/Themes/trust.jpg';
 //@ts-ignore
 import Work from '../../assets/images/WTR/Themes/work.jpeg';
-import { useColorConfig } from '../../constants/Colors';
+import { useColorConfig, useColorStateConfig } from '../../constants/Colors';
 import { useFonts } from '../../constants/Fonts';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 import HorizontalScroll from '../general/views/HorizontalScroll';
@@ -57,14 +57,12 @@ export const themeItems = [
 
 export const Themes = () => {
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const navigation = useNavigation();
     const fonts = useFonts();
 
     const styles = StyleSheet.create({
         heading: {
-            color: colors.text,
-            fontSize: 24,
-            fontWeight: 'bold',
             margin: 10,
             ...fonts.h1,
         },
@@ -76,6 +74,7 @@ export const Themes = () => {
             borderRadius: 20,
             marginRight: 10,
             overflow: 'hidden',
+            ...colorStateConfig.highContrastBorder,
         },
         themeItemText: {
             color: colors.text,

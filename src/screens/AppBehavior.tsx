@@ -1,6 +1,6 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 
+import { useNavigation } from '../lib/utility/navigation/useNavigation';
 import { useAppDispatch, useAppSelector } from '../redux/Hooks';
 import { navigationActions } from '../redux/slices/NavigationSlice';
 
@@ -11,11 +11,14 @@ type AppProvidersProps = {
 export default function AppBehavior({ children }: AppProvidersProps) {
     const storeDispatcher = useAppDispatch();
     const navigationState = useAppSelector((state) => state.navigation);
+    const isFirstTimeUser = useAppSelector(
+        (state) => state.backgroundInformation,
+    ).isFirstTimeUser;
     const navigation = useNavigation();
 
     useEffect(() => {
-        const unsubscribe = navigation.addListener('state', () => {
-            if (navigationState.showNavBar) {
+        const unsubscribe = navigation.addEventListener('state', () => {
+            if (navigationState.showNavBar || isFirstTimeUser) {
                 return;
             }
 
@@ -25,7 +28,12 @@ export default function AppBehavior({ children }: AppProvidersProps) {
         return () => {
             unsubscribe();
         };
-    }, [navigation, navigationState.showNavBar, storeDispatcher]);
+    }, [
+        navigation,
+        navigationState.showNavBar,
+        storeDispatcher,
+        isFirstTimeUser,
+    ]);
 
     return children;
 }
