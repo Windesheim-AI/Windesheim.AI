@@ -5,7 +5,7 @@ describe('getEnvValue when undefined', () => {
     it('should throw error for missing or invalid environment variable', () => {
         expect(() =>
             getEnvValue('ThisDoesNotExist' as EnvOptions, true),
-        ).toThrowError(
+        ).toThrow(
             "Couldn't find or invalid environment variable: " +
                 'ThisDoesNotExist',
         );

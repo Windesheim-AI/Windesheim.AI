@@ -2,7 +2,9 @@ import React from 'react';
 
 import AIRenderer from './stages/AIBlock';
 import ButtonBlock from './stages/ButtonBlock';
+import { ImageBlock } from './stages/ImageBlock';
 import TextRenderer from './stages/TextBlock';
+import { VideoBlock } from './stages/VideoBlock';
 import { useFonts } from '../../constants/Fonts';
 import {
     CourseStageBlock,
@@ -15,6 +17,8 @@ const blockRenderers = [
     { blockType: CourseStageBlockType.AIGenerated, component: AIRenderer },
     { blockType: CourseStageBlockType.Text, component: TextRenderer },
     { blockType: CourseStageBlockType.Button, component: ButtonBlock },
+    { blockType: CourseStageBlockType.Image, component: ImageBlock },
+    { blockType: CourseStageBlockType.Video, component: VideoBlock },
 ];
 
 export default function StageRenderer({

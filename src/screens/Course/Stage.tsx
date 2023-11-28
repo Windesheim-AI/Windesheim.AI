@@ -58,6 +58,7 @@ export default function Stage() {
         },
         container: {
             paddingBottom: 30,
+            height: '100%',
             backgroundColor: colors.background,
         },
     });

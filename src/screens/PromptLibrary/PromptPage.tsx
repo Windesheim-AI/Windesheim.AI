@@ -8,6 +8,7 @@ import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { Button } from '../../components/general/buttons/Button';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
+import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { PageView } from '../../components/general/views/PageView';
 import {
     shadow,
@@ -110,7 +111,7 @@ export function PromptPage() {
 
     return (
         <DataWrapper isLoading={isLoading} error={error}>
-            <PageView>
+            <PageScrollView>
                 <TextTranslated
                     id="prompt-library"
                     style={styles.title}
@@ -177,7 +178,7 @@ export function PromptPage() {
                     colorGradientScheme={colorStateConfig.colors.primary}
                     textColorScheme={colorStateConfig.text?.primary}
                 />
-            </PageView>
+            </PageScrollView>
         </DataWrapper>
     );
 }

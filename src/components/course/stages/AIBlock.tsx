@@ -1,5 +1,6 @@
 import OpenAI, { ClientOptions } from 'openai';
 import React, { useEffect, useState } from 'react';
+import { StyleSheet } from 'react-native';
 
 import BlockWrapper from './block';
 import { getEnvValue } from '../../../lib/utility/env/env';
@@ -39,8 +40,15 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
         }
     }, [openai.chat.completions, options.prompt]);
 
+    const styles = StyleSheet.create({
+        block: {
+            marginTop: 20,
+            marginBottom: 20,
+        },
+    });
+
     return (
-        <BlockWrapper>
+        <BlockWrapper style={styles.block}>
             <AIGeneratedOutput text={text} prompt={options.prompt} />
         </BlockWrapper>
     );

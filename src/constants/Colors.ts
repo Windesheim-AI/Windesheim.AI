@@ -313,7 +313,14 @@ function useCurrentStateColorScheme(): StateColorGradientSchemes {
     return stateColorSchemes;
 }
 
-export function useColorStateConfig() {
+type ColorStateConfig = {
+    colors: ReturnType<typeof useCurrentStateColorScheme>;
+    text: ReturnType<typeof useCurrentStateTextColorScheme>;
+    highContrastBorder: ReturnType<typeof useHighContrastBorderIfNecessary>;
+    isHighContrastEnabled: ReturnType<typeof useCurrentHighContrastMode>;
+};
+
+export function useColorStateConfig(): ColorStateConfig {
     return {
         colors: useCurrentStateColorScheme(),
         text: useCurrentStateTextColorScheme(),
