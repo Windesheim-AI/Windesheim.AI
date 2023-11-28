@@ -28,7 +28,7 @@ jobs:
                   wp-password: ${{ secrets.WP_PASSWORD }}
 
             - name: Install NPM dependencies
-              run: npm install
+              run: npm ci
 
             - name: Run ESLint
               run: npm run test:eslint
