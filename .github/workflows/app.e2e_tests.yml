@@ -21,7 +21,7 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Copy local node modules
-              run: lp -s /usr/local/lib/node_modules ./node_modules
+              run: mkdir -p node_modules && cp -r /usr/local/lib/node_modules/* node_modules
 
             - uses: ./.github/prepare-action
               with:
