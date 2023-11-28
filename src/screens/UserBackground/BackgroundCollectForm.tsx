@@ -143,12 +143,12 @@ const BackgroundCollectForm = () => {
                         text="Welcome to Windesheim.AI!"
                     />
                     <Image
-                        testID="winglogo"
+                        testID="userLogo"
                         source={
                             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                             theme === 'light'
-                                ? require('../../assets/images/Icon/wing_yellow.png')
-                                : require('../../assets/images/Icon/wing_blue.png')
+                                ? require('../../assets/images/BackgroundInformation/user_yellow.png')
+                                : require('../../assets/images/BackgroundInformation/user_blue.png')
                         }
                         style={styles.centerImage}
                     />
@@ -201,12 +201,12 @@ const BackgroundCollectForm = () => {
                     />
 
                     <Image
-                        testID="winglogo"
+                        testID="userLogo"
                         source={
                             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                             theme === 'light'
-                                ? require('../../assets/images/Icon/wing_yellow.png')
-                                : require('../../assets/images/Icon/wing_blue.png')
+                                ? require('../../assets/images/BackgroundInformation/user_yellow.png')
+                                : require('../../assets/images/BackgroundInformation/user_blue.png')
                         }
                         style={styles.centerImage}
                     />
@@ -260,12 +260,12 @@ const BackgroundCollectForm = () => {
                     <TextTranslated style={styles.title} text="Thank you!" />
 
                     <Image
-                        testID="winglogo"
+                        testID="userLogo"
                         source={
                             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                             theme === 'light'
-                                ? require('../../assets/images/Icon/wing_yellow.png')
-                                : require('../../assets/images/Icon/wing_blue.png')
+                                ? require('../../assets/images/BackgroundInformation/user_yellow.png')
+                                : require('../../assets/images/BackgroundInformation/user_blue.png')
                         }
                         style={styles.centerImage}
                     />
