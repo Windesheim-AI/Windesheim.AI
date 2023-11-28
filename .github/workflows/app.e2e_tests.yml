@@ -26,8 +26,8 @@ jobs:
                 path: |
                   ~/.cache/Cypress
                 key: cypress-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-               restore-keys: |
-                cypress-${{ runner.os }}-
+                restore-keys: |
+                  cypress-${{ runner.os }}-
       
 
             - uses: ./.github/prepare-action
