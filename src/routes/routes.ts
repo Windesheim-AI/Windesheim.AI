@@ -11,6 +11,8 @@ export enum Routes {
     CourseFinished = 'CourseFinished',
     StageOverview = 'StageOverview',
     Courses = 'Courses',
+    EditBackgroundInformation = 'EditBackgroundInformation',
+    FirstTimeUser = 'FirstTimeUser',
     PromptLibrary = 'PromptLibrary',
     Prompt = 'Prompt',
 }

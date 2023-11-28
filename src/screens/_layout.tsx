@@ -8,6 +8,7 @@ import {
     StatusBar,
 } from 'react-native';
 
+import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
 import { NotificationList } from '../components/general/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';
@@ -50,6 +51,10 @@ export const Layout = ({ children }: LayoutProps) => {
         },
     });
 
+    const isFirstTimeUser = useAppSelector(
+        (state) => state.backgroundInformation,
+    ).isFirstTimeUser;
+
     const [marginBottomAnimation, animateMarginBottomAnimation] =
         useAnimatedValue(20);
 
@@ -68,10 +73,16 @@ export const Layout = ({ children }: LayoutProps) => {
                         marginBottom: marginBottomAnimation,
                     }}
                 >
-                    <View style={styles.innerContainer}>{children}</View>
-                    <Tutorial />
+                    {isFirstTimeUser ? <BackgroundCollectForm /> : null}
+                    {!isFirstTimeUser ? (
+                        <>
+                            <View style={styles.innerContainer}>
+                                {children}
+                            </View>
+                            <Tutorial />
+                        </>
+                    ) : null}
                 </Animated.View>
-
                 <View style={styles.pos_r}>
                     <NavBar />
                 </View>

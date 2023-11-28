@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { EditBackgroundInformationButton } from '../../components/BackgroundCollect/EditBackgroundInformationButton';
 import { SettingCard } from '../../components/general/card/SettingCard';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { AnimationToggle } from '../../components/settings/AnimationToggle';
@@ -50,6 +51,14 @@ export const SettingsScreen = () => {
 
             <SettingCard icon="redo" title="Tutorial" testID="tutorial reset">
                 <TutorialRedoButton />
+            </SettingCard>
+
+            <SettingCard
+                icon="user-edit"
+                title="Background"
+                testID="Background"
+            >
+                <EditBackgroundInformationButton />
             </SettingCard>
         </PageScrollView>
     );

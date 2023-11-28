@@ -2,7 +2,10 @@ import React, { ReactNode } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { Chip, shadow } from 'react-native-paper';
 
-import { ColorGradientScheme } from '../../../constants/Colors';
+import {
+    ColorGradientScheme,
+    useColorStateConfig,
+} from '../../../constants/Colors';
 import { useFonts } from '../../../constants/Fonts';
 
 export type ChipFilterProps<T extends ReactNode> = {
@@ -20,6 +23,7 @@ export function ChipFilter<T extends ReactNode>({
     colorGradientScheme,
     textColorScheme,
 }: ChipFilterProps<T>) {
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const styles = StyleSheet.create({
         tagContainer: {
@@ -36,6 +40,7 @@ export function ChipFilter<T extends ReactNode>({
                 ? colorGradientScheme[1]
                 : colorGradientScheme[0], // Use colors.secondary instead of randomColor()
             ...shadow,
+            ...colorStateConfig.highContrastBorder,
         };
     }
 

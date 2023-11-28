@@ -1,5 +1,7 @@
 describe('Home page tests', () => {
     beforeEach(() => {
+        cy.visit('/');
+        cy.get('[data-testid="FirstCollect-skip-button"]').click();
         cy.visit('/settings');
         cy.get('[data-testid="tutorial-skip-button"]').click();
         cy.get('[data-testid="language-switcher"]').click();
@@ -11,7 +13,7 @@ describe('Home page tests', () => {
         cy.visit('/');
 
         cy.contains('Home');
-
+        cy.contains('Useful Prompts');
         cy.contains('Tech Providers');
         //there should be 5 tech providers
         cy.get('[data-testid="tech-provider-text"]').should('have.length', 5);

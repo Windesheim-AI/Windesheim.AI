@@ -11,7 +11,7 @@ export type WhSelectDropdownProps<T> = {
     onSelect?: (selectedItem: T, index: number) => void;
     label: string;
     searchText: string;
-    width?: number;
+    width?: string;
     defaultValueByIndex?: number;
     defaultValue?: string;
     testID?: string;
@@ -31,6 +31,7 @@ export function WhSelectDropdown<T>({
 
     const styles = StyleSheet.create({
         container: {
+            // @ts-ignore
             width: width ?? '50%',
         },
         dropdown2BtnStyle: {

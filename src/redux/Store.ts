@@ -4,6 +4,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import { PersistConfig } from 'redux-persist/es/types';
 
 import { animationSlice } from './slices/AnimationSlice';
+import { backgroundInformationSlice } from './slices/BackgroundInformationSlice';
 import { courseDataSlice } from './slices/CourseDataSlice';
 import { fontSlice } from './slices/FontSlice';
 import { languageSlice } from './slices/LanguageSlice';
@@ -27,6 +28,7 @@ const persistConfig: PersistConfig<PersistConfigDataType> = {
         courseDataSlice.name,
         tutorialSlice.name,
         animationSlice.name,
+        backgroundInformationSlice.name,
     ],
 };
 
@@ -41,6 +43,7 @@ export const rootReducer = combineReducers({
     courseData: courseDataSlice.reducer,
     tutorial: tutorialSlice.reducer,
     animation: animationSlice.reducer,
+    backgroundInformation: backgroundInformationSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
