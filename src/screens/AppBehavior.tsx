@@ -11,11 +11,14 @@ type AppProvidersProps = {
 export default function AppBehavior({ children }: AppProvidersProps) {
     const storeDispatcher = useAppDispatch();
     const navigationState = useAppSelector((state) => state.navigation);
+    const isFirstTimeUser = useAppSelector(
+        (state) => state.bgCollect,
+    ).isFirstTimeUser;
     const navigation = useNavigation();
 
     useEffect(() => {
         const unsubscribe = navigation.addEventListener('state', () => {
-            if (navigationState.showNavBar) {
+            if (navigationState.showNavBar || isFirstTimeUser) {
                 return;
             }
 
@@ -25,7 +28,12 @@ export default function AppBehavior({ children }: AppProvidersProps) {
         return () => {
             unsubscribe();
         };
-    }, [navigation, navigationState.showNavBar, storeDispatcher]);
+    }, [
+        navigation,
+        navigationState.showNavBar,
+        storeDispatcher,
+        isFirstTimeUser,
+    ]);
 
     return children;
 }
