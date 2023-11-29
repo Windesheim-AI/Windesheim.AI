@@ -12,6 +12,8 @@ runs:
               REPO: ${{ github.event.repository.name }}
           shell: bash
           run: |
+              echo ${{ toJSON(github.event.workflow_run) }}
+              
               PREVIOUS_JOB_ID=$(jq -r '.id' <<< "$WORKFLOW_RUN_EVENT_OBJ")
               echo "Previous Job ID: $PREVIOUS_JOB_ID"
               echo "PREVIOUS_JOB_ID=$PREVIOUS_JOB_ID" >> "$GITHUB_ENV"
