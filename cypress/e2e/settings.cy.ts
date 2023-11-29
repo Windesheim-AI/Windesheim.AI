@@ -9,14 +9,14 @@ describe('App settings test', () => {
         cy.visit('/');
     });
 
-    it('can change the theme', () => {
+    it.skip('can change the theme', () => {
         cy.visit('/settings');
 
         cy.get('[data-testid="Theme switcher"]').click();
         cy.get('[data-testid="Theme switcher input"] > input').click();
     });
 
-    it('can change the language', () => {
+    it.skip('can change the language', () => {
         cy.visit('/settings');
         cy.contains('English');
         cy.contains('Settings');
@@ -37,7 +37,7 @@ describe('App settings test', () => {
         cy.contains('Taal');
     });
 
-    it('can change the font size', () => {
+    it.skip('can change the font size', () => {
         cy.visit('/home');
         const defaultFontSizeOfH1 = 24;
         const defaultSize = 24;

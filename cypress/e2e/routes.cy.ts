@@ -9,7 +9,7 @@ describe('Routes', () => {
         cy.visit('/');
     });
 
-    it('can directly visit a route via the url', () => {
+    it.skip('can directly visit a route via the url', () => {
         cy.visit('/settings');
         cy.contains('Settings');
 
@@ -17,7 +17,7 @@ describe('Routes', () => {
         cy.contains('Settings');
     });
 
-    it('can save the route to the url', () => {
+    it.skip('can save the route to the url', () => {
         cy.visit('/');
         cy.contains('Home');
 

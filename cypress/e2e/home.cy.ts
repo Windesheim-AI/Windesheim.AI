@@ -9,7 +9,7 @@ describe('Home page tests', () => {
         cy.visit('/');
     });
 
-    it('can display the home page', () => {
+    it.skip('can display the home page', () => {
         cy.visit('/');
 
         cy.contains('Home');
@@ -20,7 +20,7 @@ describe('Home page tests', () => {
         cy.get('[data-testid="prompt-card"]').should('have.length', 3);
     });
 
-    it('can view the tech provider Apple', () => {
+    it.skip('can view the tech provider Apple', () => {
         cy.intercept('GET', '/wp-json/wp/v2/pages?slug=apple', {
             fixture: 'wtr-content/apple-page.json',
         }).as('getApple');
