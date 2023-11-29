@@ -1,18 +1,32 @@
 name: pr-comment-action
 description: Prepare build
 
+input:
+    github-token:
+        description: 'The GitHub token'
+        required: true
+    workflow-run-event-object:
+        description: 'The workflow run event object'
+        required: true
+    owner:
+        description: 'The owner of the repository'
+        required: true
+    repository:
+        description: 'The repository name'
+        required: true
+
 runs:
     using: 'composite'
     steps:
         - name: Get Artifact and Pull request info
           env:
-              GITHUB_TOKEN: ${{ github.token }}
-              WORKFLOW_RUN_EVENT_OBJ: ${{ toJSON(github.event.workflow_run) }}
-              OWNER: ${{ github.repository_owner }}
-              REPO: ${{ github.event.repository.name }}
+              GITHUB_TOKEN: ${{ inputs.github-token }}
+              WORKFLOW_RUN_EVENT_OBJ: ${{ toJSON(inputs.workflow-run-event-object) }}
+              OWNER: ${{ inputs.owner }}
+              REPO: ${{ inputs.repository }}
           shell: bash
           run: |
-              echo ${{ toJSON(github.event.workflow_run) }}
+              echo ${{ toJSON(inputs) }}
               
               PREVIOUS_JOB_ID=$(jq -r '.id' <<< "$WORKFLOW_RUN_EVENT_OBJ")
               echo "Previous Job ID: $PREVIOUS_JOB_ID"

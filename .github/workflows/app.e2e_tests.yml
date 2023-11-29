@@ -46,6 +46,11 @@ jobs:
 
             - uses: ./.github/pr-comment-action
               if: failure()
+              with:
+                github-token: ${{ github.token }}
+                workflow-run-event-object: ${{ toJSON(github.event.workflow_run) }}
+                owner: ${{ github.repository_owner }}
+                repository: ${{ github.event.repository.name }}
 
             - uses: ./.github/cleanup-action
               if: always()
