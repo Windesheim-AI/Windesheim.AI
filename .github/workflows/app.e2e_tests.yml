@@ -17,7 +17,7 @@ jobs:
             # don't fail the entire matrix on failure
             fail-fast: false
             matrix:
-                test-platform: [firefox]
+                test-platform: [firefox, electron]
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
