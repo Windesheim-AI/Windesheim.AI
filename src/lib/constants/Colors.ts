@@ -11,6 +11,7 @@ export type ColorSchemeType = {
     secondary: string;
     success: string;
     warning: string;
+    enabled: string;
     danger: string;
     disabled: string;
     link: string;
@@ -51,6 +52,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#45B97C',
         warning: '#ff7300',
         danger: '#EE3135',
+        enabled: '#45B97C',
         disabled: '#999',
         buttonText: '#3F3f3f',
         link: '#ffcb05',
@@ -88,6 +90,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#45B97C',
         warning: '#ff7300',
         danger: '#EE3135',
+        enabled: '#45B97C',
         disabled: '#999',
         link: '#ffcb05',
         text: '#fff',
@@ -128,6 +131,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#00FF00',
         warning: '#FFA500',
         danger: '#FF0000',
+        enabled: '#00FF00',
         disabled: '#000000',
         buttonText: '#000000',
         link: '#FFFF00',
@@ -165,6 +169,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#00FF00',
         warning: '#FFA500',
         danger: '#FF0000',
+        enabled: '#00FF00',
         disabled: '#FFFFFF',
         link: '#FFFF00',
         text: '#FFFFFF',
