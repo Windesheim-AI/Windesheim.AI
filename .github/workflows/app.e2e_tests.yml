@@ -46,6 +46,7 @@ jobs:
 
             - name: Download the screenshots artifact
               uses: actions/download-artifact@v2
+              if: always()
               with:
                   name: cypress-screenshots
                   path: cypress/screenshots
