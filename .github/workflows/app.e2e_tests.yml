@@ -45,13 +45,13 @@ jobs:
                   retention-days: 1
 
             - name: Zip cypress screenshots artifact for upload to PR
-              if: always()
+              if: failure()
               run: zip cypress-screenshots.zip ./cypress/screenshots/* -r
 
               # See: https://github.com/marketplace/actions/pull-request-artifact
             - name: Add artifacts to current pull request
               uses: gavv/pull-request-artifacts@v2
-              if: always()
+              if: failure()
               with:
                   # Commit hash that triggered PR
                   commit: ${{ github.event.pull_request.head.sha }}
