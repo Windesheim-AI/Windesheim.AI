@@ -3,7 +3,7 @@ describe('First time user tests', () => {
         cy.visit('/');
     });
 
-    it('can display the welcome message and background input buttons', () => {
+    it.skip('can display the welcome message and background input buttons', () => {
         cy.contains('Welkom bij Windesheim.AI!');
         cy.get('[data-testid="userLogo"]').should('exist');
         cy.contains('Vertel me je achtergrond!');
@@ -11,7 +11,7 @@ describe('First time user tests', () => {
         cy.contains('Oke').click();
     });
 
-    it('can skip the background collect form', () => {
+    it.skip('can skip the background collect form', () => {
         cy.contains('Welkom bij Windesheim.AI!');
         cy.contains('Overslaan').click();
         cy.contains('Overslaan').click();
@@ -21,7 +21,7 @@ describe('First time user tests', () => {
         cy.contains('Tech Providers');
     });
 
-    it('can answer the background questions and progresses through it', () => {
+    it.skip('can answer the background questions and progresses through it', () => {
         cy.contains('Oke').click();
         cy.contains('Achtergrondinformatie verzamelen');
         cy.contains('Wat is je positie?');

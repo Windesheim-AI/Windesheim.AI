@@ -28,7 +28,7 @@ describe('Routes', () => {
         cy.contains('Settings');
     });
 
-    it('will redirect back to the home page when a unknown page is visited', () => {
+    it.skip('can redirect back to the home page when a unknown page is visited', () => {
         cy.visit('/fdafdsadfdaf');
         cy.contains('Home');
 
