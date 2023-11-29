@@ -44,12 +44,8 @@ jobs:
                   path: cypress/screenshots
                   retention-days: 1
 
-            - name: Download the screenshots artifact
-              uses: actions/download-artifact@v2
-              if: always()
-              with:
-                  name: cypress-screenshots
-                  path: cypress/screenshots
+            - name: Zip cypress screenshots artifact for upload to PR
+              run: zip cypress-screenshots.zip ./cypress/screenshots/* -r
 
               # See: https://github.com/marketplace/actions/pull-request-artifact
             - name: Add artifacts to current pull request
@@ -68,7 +64,7 @@ jobs:
 
                   # Whitespace-separated list of files to upload
                   artifacts: |
-                      cypress-screenshots
+                      cypress-screenshots.zip
 
             - uses: ./.github/cleanup-action
               if: always()
