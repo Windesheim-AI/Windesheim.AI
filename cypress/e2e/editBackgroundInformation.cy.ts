@@ -9,7 +9,7 @@ describe('Edit background information page tests', () => {
         cy.visit('/');
     });
 
-    it.skip('can update the position option', () => {
+    it('can update the position option', () => {
         cy.visit('/settings/edit-background-information');
 
         cy.contains('Position');
@@ -20,7 +20,7 @@ describe('Edit background information page tests', () => {
         cy.contains('Teacher');
     });
 
-    it.skip('can update the interest in option', () => {
+    it('can update the interest in option', () => {
         cy.visit('/settings/edit-background-information');
 
         cy.contains('Interest in');
@@ -32,7 +32,7 @@ describe('Edit background information page tests', () => {
         cy.contains('Deep Learning');
     });
 
-    it.skip('can update the Familiarity with AI option', () => {
+    it('can update the Familiarity with AI option', () => {
         cy.visit('/settings/edit-background-information');
 
         cy.contains('Familiarity with AI');

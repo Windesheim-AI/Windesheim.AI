@@ -9,7 +9,7 @@ describe('Study page tests', () => {
         cy.visit('/');
     });
 
-    it.skip('can display the study page', () => {
+    it('can display the study page', () => {
         cy.visit('/Study');
 
         cy.contains('Welcome to study');

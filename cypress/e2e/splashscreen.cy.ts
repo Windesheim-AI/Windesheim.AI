@@ -11,13 +11,13 @@ describe('Tests the splashscreen', () => {
         cy.visit('/');
     });
 
-    it.skip('can see the logos on the splashscreen', () => {
+    it('can see the logos on the splashscreen', () => {
         cy.visit('/');
         cy.get('[data-testid="LogoBlack"]');
         cy.get('[data-testid="LogoWin"]');
     });
 
-    it.skip('can hide the splashscreen after a configured time', () => {
+    it('can hide the splashscreen after a configured time', () => {
         cy.visit('/');
         cy.wait(appConfig.splashScreenTime + 100);
 

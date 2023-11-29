@@ -9,7 +9,7 @@ describe('WTR page tests', () => {
         cy.visit('/');
     });
 
-    it.skip('can display the WTR page', () => {
+    it('can display the WTR page', () => {
         cy.visit('/wtr-content');
 
         cy.contains('Windesheim Tech Radar');
@@ -41,7 +41,7 @@ describe('WTR page tests', () => {
         cy.contains('Quantum computing');
     });
 
-    it.skip('can view the tech provider Apple', () => {
+    it('can view the tech provider Apple', () => {
         cy.intercept('GET', '/wp-json/wp/v2/pages?slug=apple', {
             fixture: 'wtr-content/apple-page.json',
         }).as('getApple');
@@ -69,7 +69,7 @@ describe('WTR page tests', () => {
         cy.get('Apple newsroom').should('not.exist');
     });
 
-    it.skip('can view the tech provider Google', () => {
+    it('can view the tech provider Google', () => {
         cy.intercept('GET', '/wp-json/wp/v2/pages?slug=google', {
             fixture: 'wtr-content/google-page.json',
         }).as('getPage');
@@ -94,7 +94,7 @@ describe('WTR page tests', () => {
         cy.get('Google Cloud Nieuws').should('not.exist');
     });
 
-    it.skip('can view the theme Building Trust', () => {
+    it('can view the theme Building Trust', () => {
         cy.intercept('GET', '/wp-json/wp/v2/pages?slug=building-trust', {
             fixture: 'wtr-content/building-trust-page.json',
         }).as('getPage');
@@ -116,7 +116,7 @@ describe('WTR page tests', () => {
         cy.get('Artikelen en Blogs').should('not.exist');
     });
 
-    it.skip('can view the theme Future of programming', () => {
+    it('can view the theme Future of programming', () => {
         cy.intercept('GET', '/wp-json/wp/v2/pages?slug=future-of-programming', {
             fixture: 'wtr-content/future-of-programming-page.json',
         }).as('getPage');
@@ -138,7 +138,7 @@ describe('WTR page tests', () => {
         cy.contains('Internet of Things');
     });
 
-    it.skip('can view an empty page', () => {
+    it('can view an empty page', () => {
         cy.intercept('GET', '/wp-json/wp/v2/pages?slug=empty-page', {
             fixture: 'wtr-content/empty-page.json',
         }).as('getPage');

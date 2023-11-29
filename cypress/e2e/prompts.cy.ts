@@ -9,7 +9,7 @@ describe('Prompt Library tests', () => {
         cy.visit('/');
     });
 
-    it.skip('can display the overview', () => {
+    it('can display the overview', () => {
         cy.intercept('GET', '/wp-json/winpl/v1/prompts/', {
             fixture: 'prompts/data.json',
         }).as('getData');
@@ -37,7 +37,7 @@ describe('Prompt Library tests', () => {
         cy.contains(prompts[2].tool);
     });
 
-    it.skip('can display the overview when there are no prompts available', () => {
+    it('can display the overview when there are no prompts available', () => {
         cy.intercept('GET', '/wp-json/winpl/v1/prompts/', {
             fixture: 'prompts/empty.json',
         }).as('getData');
@@ -49,7 +49,7 @@ describe('Prompt Library tests', () => {
         cy.contains('No prompts found!');
     });
 
-    it.skip('can filter the overview', () => {
+    it('can filter the overview', () => {
         cy.intercept('GET', '/wp-json/winpl/v1/prompts/', {
             fixture: 'prompts/data.json',
         }).as('getData');
@@ -82,7 +82,7 @@ describe('Prompt Library tests', () => {
         cy.contains(prompts[2].title);
     });
 
-    it.skip('can view a prompt', () => {
+    it('can view a prompt', () => {
         cy.intercept('GET', '/wp-json/winpl/v1/prompts/1', {
             fixture: 'prompts/1-prompt.json',
         }).as('getData');
@@ -103,7 +103,7 @@ describe('Prompt Library tests', () => {
         cy.contains('Try it yourself');
     });
 
-    it.skip('can view a non-existing prompt', () => {
+    it('can view a non-existing prompt', () => {
         cy.intercept('GET', '/wp-json/winpl/v1/prompts/1', {
             fixture: 'prompts/empty.json',
         }).as('getData');

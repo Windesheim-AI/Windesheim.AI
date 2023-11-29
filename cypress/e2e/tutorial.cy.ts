@@ -12,21 +12,21 @@ describe('Tutorial', () => {
         cy.visit('/');
     });
 
-    it.skip('can display the tutorial prompt', () => {
+    it('can display the tutorial prompt', () => {
         cy.get('[data-testid="tutorial-next-button"]').contains('Next 1 /');
     });
 
-    it.skip('can navigate to the next step when clicking the "Next" button', () => {
+    it('can navigate to the next step when clicking the "Next" button', () => {
         cy.get('[data-testid="tutorial-next-button"]').click();
         cy.get('[data-testid="tutorial-next-button"]').contains('Next 2 /');
     });
 
-    it.skip('can finish the tutorial if the user clicks on skip', () => {
+    it('can finish the tutorial if the user clicks on skip', () => {
         cy.get('[data-testid="tutorial-skip-button"]').click();
         cy.get('[data-testid="tutorial-next-button"]').should('not.exist');
     });
 
-    it.skip('can reset the tutorial if the tutorial is finished', () => {
+    it('can reset the tutorial if the tutorial is finished', () => {
         cy.get('[data-testid="tutorial-skip-button"]').click();
         cy.visit('/Settings');
     });

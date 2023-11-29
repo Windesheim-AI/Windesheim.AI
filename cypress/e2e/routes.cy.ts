@@ -9,7 +9,7 @@ describe('Routes', () => {
         cy.visit('/');
     });
 
-    it.skip('can directly visit a route via the url', () => {
+    it('can directly visit a route via the url', () => {
         cy.visit('/settings');
         cy.contains('Settings');
 
@@ -17,7 +17,7 @@ describe('Routes', () => {
         cy.contains('Settings');
     });
 
-    it.skip('can save the route to the url', () => {
+    it('can save the route to the url', () => {
         cy.visit('/');
         cy.contains('Home');
 
@@ -28,7 +28,7 @@ describe('Routes', () => {
         cy.contains('Settings');
     });
 
-    it.skip('can redirect back to the home page when a unknown page is visited', () => {
+    it('can redirect back to the home page when a unknown page is visited', () => {
         cy.visit('/fdafdsadfdaf');
         cy.contains('Home');
 
