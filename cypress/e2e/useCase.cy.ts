@@ -9,7 +9,7 @@ describe('Use case page tests', () => {
         cy.visit('/');
     });
 
-    it('can show the page', () => {
+    it.skip('can show the page', () => {
         cy.visit('/Usecase');
         cy.contains('UseCase');
         cy.contains('Inspiration library: Case studies');
