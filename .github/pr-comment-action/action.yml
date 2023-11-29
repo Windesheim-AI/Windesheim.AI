@@ -61,7 +61,7 @@ runs:
               body: |-
                   ![badge]
 
-                  Tests are executed! You can find a link to the downloadable artifacts below.
+                  All E2E tests are executed! You can find a link to the downloadable artifacts below.
 
                   | Name     | Link                    |
                   | -------- | ----------------------- |
