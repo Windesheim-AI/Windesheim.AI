@@ -47,27 +47,27 @@ jobs:
             - name: Download the screenshots artifact
               uses: actions/download-artifact@v2
               with:
-                name: cypress-screenshots
-                path: cypress/screenshots
+                  name: cypress-screenshots
+                  path: cypress/screenshots
 
               # See: https://github.com/marketplace/actions/pull-request-artifact
             - name: Add artifacts to current pull request
               uses: gavv/pull-request-artifacts@v2
               if: always()
               with:
-                # Commit hash that triggered PR
-                commit: ${{ github.event.pull_request.head.sha }}
+                  # Commit hash that triggered PR
+                  commit: ${{ github.event.pull_request.head.sha }}
 
-                # Token for current repo (used to post PR comment)
-                repo-token: ${{ secrets.GITHUB_TOKEN }}
+                  # Token for current repo (used to post PR comment)
+                  repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-                # Optional, uncomment to use non-default title and style.
-                comment-title: "Cypress screenshot artifacts"
-                comment-style: list
+                  # Optional, uncomment to use non-default title and style.
+                  comment-title: 'Cypress screenshot artifacts'
+                  comment-style: list
 
-                # Whitespace-separated list of files to upload
-                artifacts: |
-                  cypress-screenshots
+                  # Whitespace-separated list of files to upload
+                  artifacts: |
+                      cypress-screenshots
 
             - uses: ./.github/cleanup-action
               if: always()
