@@ -61,7 +61,7 @@ runs:
               body: |-
                   ![badge]
 
-                  Build Successful! You can find a link to the downloadable artifact below.
+                  Tests are executed! You can find a link to the downloadable artifacts below.
 
                   | Name     | Link                    |
                   | -------- | ----------------------- |
