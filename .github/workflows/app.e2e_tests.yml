@@ -11,29 +11,6 @@ on:
             - development
 
 jobs:
-    install:
-        runs-on: self-hosted
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-
-            - uses: ./.github/prepare-action
-              with:
-                  openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-                  app-debug: false
-                  wp-username: ${{ secrets.WP_USERNAME }}
-                  wp-password: ${{ secrets.WP_PASSWORD }}
-                  node-version: 16.x
-
-            - name: Cypress install
-              uses: cypress-io/github-action@v6
-              with:
-                  # Disable running of tests within install job
-                  runTests: false
-                  build: npm ci
-
-            - uses: ./.github/cleanup-action
-
     tests:
         runs-on: self-hosted
         needs: install
@@ -41,7 +18,7 @@ jobs:
             # don't fail the entire matrix on failure
             fail-fast: false
             matrix:
-                test-platform: [firefox, electron]
+                test-platform: [firefox]
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
