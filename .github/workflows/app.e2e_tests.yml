@@ -68,4 +68,13 @@ jobs:
                   path: cypress/screenshots
                   retention-days: 1
 
+            - uses: actions/download-artifact@v3
+              with:
+                  name: cypress-screenshots
+                  path: cypress/screenshots
+
+            - name: Display structure of downloaded files
+              run: ls -R
+              working-directory: cypress/screenshots
+
             - uses: ./.github/cleanup-action
