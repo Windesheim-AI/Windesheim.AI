@@ -13,7 +13,6 @@ on:
 jobs:
     tests:
         runs-on: self-hosted
-        needs: install
         strategy:
             # don't fail the entire matrix on failure
             fail-fast: false
