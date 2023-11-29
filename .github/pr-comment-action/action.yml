@@ -10,6 +10,7 @@ runs:
               WORKFLOW_RUN_EVENT_OBJ: ${{ toJSON(github.event.workflow_run) }}
               OWNER: ${{ github.repository_owner }}
               REPO: ${{ github.event.repository.name }}
+          shell: bash
           run: |
               PREVIOUS_JOB_ID=$(jq -r '.id' <<< "$WORKFLOW_RUN_EVENT_OBJ")
               echo "Previous Job ID: $PREVIOUS_JOB_ID"
@@ -39,12 +40,14 @@ runs:
 
               echo "Head SHA: $HEAD_SHA"
               echo "HEAD_SHA=$HEAD_SHA" >> "$GITHUB_ENV"
+
         - name: Find Comment
           uses: peter-evans/find-comment@v2
           id: find-comment
           with:
               issue-number: ${{ env.PR_NUMBER }}
               comment-author: 'github-actions[bot]'
+
         - name: Update Comment
           env:
               JOB_PATH: '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ env.PREVIOUS_JOB_ID }}'
