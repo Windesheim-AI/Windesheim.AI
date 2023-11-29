@@ -44,4 +44,6 @@ jobs:
                   path: cypress/screenshots
                   retention-days: 1
 
+            - uses: ./.github/pr-comment-action
+
             - uses: ./.github/cleanup-action
