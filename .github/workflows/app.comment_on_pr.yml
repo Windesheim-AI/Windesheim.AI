@@ -3,8 +3,6 @@ name: Comment on Pull request
 on:
     workflow_run:
         workflows: ['End to end tests'] # This is the name of the workflow that runs the tests.
-        types:
-            - completed
 
 jobs:
     comment:
