@@ -31,6 +31,9 @@ jobs:
                   runTests: false
                   build: npm install
 
+            - name: Display structure of files
+              run: ls -R
+
             - uses: ./.github/cleanup-action
 
     tests:
