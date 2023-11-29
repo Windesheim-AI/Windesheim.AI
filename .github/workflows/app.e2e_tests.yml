@@ -45,5 +45,7 @@ jobs:
                   retention-days: 1
 
             - uses: ./.github/pr-comment-action
+              if: failure()
 
             - uses: ./.github/cleanup-action
+              if: always()

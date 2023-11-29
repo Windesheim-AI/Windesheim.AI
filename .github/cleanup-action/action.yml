@@ -5,6 +5,5 @@ runs:
     steps:
         - name: 'Remove env file'
           shell: bash
-          if: always()
           run: |
               rm .env
