@@ -45,6 +45,7 @@ jobs:
                   retention-days: 1
 
             - name: Zip cypress screenshots artifact for upload to PR
+              if: always()
               run: zip cypress-screenshots.zip ./cypress/screenshots/* -r
 
               # See: https://github.com/marketplace/actions/pull-request-artifact
