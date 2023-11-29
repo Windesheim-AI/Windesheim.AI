@@ -44,6 +44,12 @@ jobs:
                   path: cypress/screenshots
                   retention-days: 1
 
+            - name: Download the screenshots artifact
+              uses: actions/download-artifact@v2
+              with:
+                name: cypress-screenshots
+                path: cypress/screenshots
+
               # See: https://github.com/marketplace/actions/pull-request-artifact
             - name: Add artifacts to current pull request
               uses: gavv/pull-request-artifacts@v2
