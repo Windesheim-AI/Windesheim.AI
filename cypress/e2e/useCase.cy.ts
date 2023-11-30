@@ -1,4 +1,4 @@
-describe('Usecase page tests', () => {
+describe('Use case page tests', () => {
     beforeEach(() => {
         cy.visit('/');
         cy.get('[data-testid="FirstCollect-skip-button"]').click();
@@ -9,7 +9,7 @@ describe('Usecase page tests', () => {
         cy.visit('/');
     });
 
-    it('Usecase page works', () => {
+    it('can show the page', () => {
         cy.visit('/Usecase');
         cy.contains('UseCase');
         cy.contains('Inspiration library: Case studies');

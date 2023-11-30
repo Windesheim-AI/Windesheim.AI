@@ -14,6 +14,8 @@ jobs:
     tests:
         runs-on: self-hosted
         strategy:
+            # don't fail the entire matrix on failure
+            fail-fast: false
             matrix:
                 test-platform: [firefox, electron]
         steps:
@@ -26,6 +28,7 @@ jobs:
                   app-debug: false
                   wp-username: ${{ secrets.WP_USERNAME }}
                   wp-password: ${{ secrets.WP_PASSWORD }}
+                  node-version: 16.x
 
             - name: Cypress run
               uses: cypress-io/github-action@v6
@@ -33,4 +36,36 @@ jobs:
                   start: npm run web
                   browser: ${{ matrix.test-platform }}
 
+            - name: Upload screenshots of failed tests
+              uses: actions/upload-artifact@v3
+              if: failure()
+              with:
+                  name: cypress-screenshots
+                  path: cypress/screenshots
+                  retention-days: 1
+
+            - name: Zip cypress screenshots artifact for upload to PR
+              if: failure()
+              run: zip cypress-screenshots.zip ./cypress/screenshots/* -r
+
+              # See: https://github.com/marketplace/actions/pull-request-artifact
+            - name: Add artifacts to current pull request
+              uses: gavv/pull-request-artifacts@v2
+              if: failure()
+              with:
+                  # Commit hash that triggered PR
+                  commit: ${{ github.event.pull_request.head.sha }}
+
+                  # Token for current repo (used to post PR comment)
+                  repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+                  # Optional, uncomment to use non-default title and style.
+                  comment-title: 'Cypress screenshot artifacts'
+                  comment-style: list
+
+                  # Whitespace-separated list of files to upload
+                  artifacts: |
+                      cypress-screenshots.zip
+
             - uses: ./.github/cleanup-action
+              if: always()
