@@ -17,7 +17,7 @@ export function DataWrapper({ error, isLoading, children }: Props) {
     const fonts = useFonts();
 
     if (isLoading) {
-        return <LoadingScreen />;
+        return <TextTranslated style={fonts.default} text="Loading..." />;
     }
 
     if (error) {
