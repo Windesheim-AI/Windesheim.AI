@@ -39,6 +39,9 @@ jobs:
                   node-version: 18.x
 
             - name: Cypress run
-              run: cypress run ${{ matrix.test-platform }}
+              uses: cypress-io/github-action@v6
+              with:
+                  start: npm run web
+                  browser: ${{ matrix.test-platform }}
 
             - uses: ./.github/cleanup-action
