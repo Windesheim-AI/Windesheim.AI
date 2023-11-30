@@ -23,11 +23,11 @@ jobs:
             - name: Cache Cypress dependencies
               uses: actions/cache@v2
               with:
-                path: |
-                  ~/.cache/Cypress
-                key: cypress-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-                restore-keys: |
-                  cypress-${{ runner.os }}-
+                  path: |
+                      ~/.cache/Cypress
+                  key: cypress-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      cypress-${{ runner.os }}-
 
             - uses: ./.github/prepare-action
               with:
