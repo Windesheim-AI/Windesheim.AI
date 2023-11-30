@@ -21,15 +21,6 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: Cache Cypress and npm dependencies
-              uses: actions/cache@v2
-              with:
-                  path: |
-                      ~/.cache/Cypress
-                  key: cypress-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: |
-                      cypress-${{ runner.os }}-
-
             - uses: ./.github/prepare-action
               with:
                   openai-api-key: ${{ secrets.OPENAI_API_KEY }}
