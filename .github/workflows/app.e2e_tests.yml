@@ -14,13 +14,21 @@ jobs:
     tests:
         runs-on: self-hosted
         strategy:
-            # don't fail the entire matrix on failure
-            fail-fast: false
             matrix:
                 test-platform: [firefox, electron]
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
+
+            - name: Cache Cypress dependencies
+              uses: actions/cache@v2
+              with:
+                path: |
+                  ~/.cache/Cypress
+                key: cypress-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+                restore-keys: |
+                  cypress-${{ runner.os }}-
+      
 
             - uses: ./.github/prepare-action
               with:
@@ -28,21 +36,8 @@ jobs:
                   app-debug: false
                   wp-username: ${{ secrets.WP_USERNAME }}
                   wp-password: ${{ secrets.WP_PASSWORD }}
-                  node-version: 16.x
 
             - name: Cypress run
-              uses: cypress-io/github-action@v6
-              with:
-                  start: npm run web
-                  browser: ${{ matrix.test-platform }}
-
-            - name: Upload screenshots of failed tests
-              uses: actions/upload-artifact@v3
-              if: failure()
-              with:
-                  name: cypress-screenshots
-                  path: cypress/screenshots
-                  retention-days: 1
+              run: cypress run ${{ matrix.test-platform }}
 
             - uses: ./.github/cleanup-action
-              if: always()
