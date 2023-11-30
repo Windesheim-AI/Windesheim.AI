@@ -20,7 +20,7 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: Cache Cypress dependencies
+            - name: Cache Cypress and npm dependencies
               uses: actions/cache@v2
               with:
                   path: |
