@@ -15,6 +15,7 @@
         "eject": "expo eject",
         "cypress": "cypress open",
         "expo:fix": "npx expo install --fix",
+        "expo:doctor": "npx expo-doctor",
         "lint": "echo \"Running eslint check\" && eslint . --max-warnings=0 --cache **/*.ts",
         "test:eslint": "npm run lint",
         "lint:fix": "echo \"Running eslint check\" && eslint . --fix --max-warnings=0 --cache **/*.ts",
