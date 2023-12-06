@@ -14,6 +14,8 @@
         "web:no-cache": "expo start --web -c",
         "eject": "expo eject",
         "cypress:open": "cypress open",
+        "expo:fix": "npx expo install --fix",
+        "expo:doctor": "npx expo-doctor",
         "lint:run": "echo \"Running eslint check\" && eslint . --max-warnings=0 --cache **/*.ts",
         "lint:fix": "echo \"Running eslint check\" && eslint . --fix --max-warnings=0 --cache **/*.ts",
         "prettier:run": "echo \"Running prettier check\" && prettier . --check",
