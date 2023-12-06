@@ -32,16 +32,16 @@ jobs:
               run: npm run expo:doctor
 
             - name: Run ESLint
-              run: npm run test:eslint
+              run: npm run lint:run
 
             - name: Run Prettier
-              run: npm run test:prettier
+              run: npm run prettier:run
 
             - name: Run TypeScript check
-              run: npm run test:tsc
+              run: npm run tsc:run
 
             - name: Run Unit & Component tests
-              run: npm run test:jest-less-strict
+              run: npm run jest-less-strict:run
 
             - uses: ./.github/cleanup-action
               if: always()
