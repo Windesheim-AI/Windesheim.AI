@@ -8,7 +8,11 @@ import {
 import { useFonts } from '../../lib/constants/Fonts';
 import { tutorialSteps } from '../../lib/constants/TutorialSteps';
 import { useAppSelector, useAppDispatch } from '../../lib/redux/Hooks';
-import { nextStep, setCompleted } from '../../lib/redux/slices/TutorialSlice';
+import {
+    nextStep,
+    setCompleted,
+    previousStep,
+} from '../../lib/redux/slices/TutorialSlice';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../general/text/TextTranslated';
 
@@ -46,6 +50,14 @@ export const Tutorial = () => {
         const nextStepRoute = tutorialSteps[tutorialStep]?.NextPage;
         if (nextStepRoute) {
             navigation.navigate(nextStepRoute as never);
+        }
+    };
+
+    const handlePrevious = () => {
+        storeDispatcher(previousStep());
+        const previousStepRoute = tutorialSteps[tutorialStep]?.PreviousPage;
+        if (previousStepRoute) {
+            navigation.navigate(previousStepRoute as never);
         }
     };
 
@@ -102,6 +114,9 @@ export const Tutorial = () => {
         nextButton: {
             backgroundColor: colors.primary,
         },
+        previousButton: {
+            backgroundColor: colors.secondary,
+        },
         finishButton: {
             backgroundColor: colors.danger,
         },
@@ -134,19 +149,33 @@ export const Tutorial = () => {
                             text={tutorialSteps[tutorialStep].Subtext}
                         />
                         <View style={styles.buttonContainer}>
-                            <Pressable
-                                testID="tutorial-skip-button"
-                                style={[styles.button, styles.skipButton]}
-                                onPress={() => {
-                                    setModalVisible(false);
-                                    storeDispatcher(setCompleted(true));
-                                }}
-                            >
-                                <TextTranslated
-                                    style={styles.buttonText}
-                                    text="Skip"
-                                />
-                            </Pressable>
+                            {tutorialStep === 0 ? (
+                                <Pressable
+                                    testID="tutorial-skip-button"
+                                    style={[styles.button, styles.skipButton]}
+                                    onPress={() => {
+                                        setModalVisible(false);
+                                        storeDispatcher(setCompleted(true));
+                                    }}
+                                >
+                                    <TextTranslated
+                                        style={styles.buttonText}
+                                        text="Skip"
+                                    />
+                                </Pressable>
+                            ) : (
+                                <Pressable
+                                    testID="tutorial-previous-button"
+                                    style={styles.previousButton}
+                                    onPress={() => {
+                                        handlePrevious();
+                                    }}
+                                >
+                                    <Text style={styles.buttonText}>
+                                        Previous
+                                    </Text>
+                                </Pressable>
+                            )}
                             {tutorialStep === tutorialSteps.length - 1 ? (
                                 <Pressable
                                     testID="tutorial-finish-button"
