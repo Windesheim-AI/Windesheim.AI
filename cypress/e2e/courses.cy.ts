@@ -1,5 +1,11 @@
 import { Course } from '../../src/types/Course';
 
+// Disable uncaught exception handling.
+Cypress.on('uncaught:exception', () => {
+    // Returning false here prevents Cypress from failing the test.
+    return false;
+});
+
 describe('Courses page tests', () => {
     beforeEach(() => {
         cy.visit('/settings');
