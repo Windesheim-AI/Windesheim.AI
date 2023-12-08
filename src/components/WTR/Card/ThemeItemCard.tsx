@@ -1,30 +1,30 @@
 import React from 'react';
-import { StyleSheet, View, ViewStyle, Image, Pressable } from 'react-native';
+import { StyleSheet, View, ViewStyle, Image } from 'react-native';
 
 import { useColorConfig, shadow } from '../../../lib/constants/Colors';
-
-import { techProviderItems, TechProviders } from '../../WTR/TechProviders';
-import { TextTranslated } from '../text/TextTranslated';
 import { useFonts } from '../../../lib/constants/Fonts';
-import { GoBackButton } from '../buttons/GoBackButton';
-import { ReadMoreButton } from '../buttons/ReadMoreButton';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { Routes } from '../../../routes/routes';
+import { ReadMoreButton } from '../../general/buttons/ReadMoreButton';
+import { TextTranslated } from '../../general/text/TextTranslated';
 
-
-export type ThemeItemCardProps = {
+type Props = {
     title: string;
     description: string;
     style?: ViewStyle;
-    // add links to theme
+    navigateToRoute: Routes;
+    navigationParams?: Record<string, string>;
 };
 
 export function ThemeItemCard({
     title,
     description,
     style,
-}: ThemeItemCardProps) {
+    navigateToRoute,
+    navigationParams,
+}: Props) {
     const colors = useColorConfig();
     const fonts = useFonts();
+
     const styles = StyleSheet.create({
         card: {
             backgroundColor: colors.listItemBg,
@@ -52,10 +52,10 @@ export function ThemeItemCard({
             flexShrink: 1,
         },
         button: {
-            marginLeft: 'auto',
-            marginTop: 'auto',
+            borderRadius: 8,
             padding: 0,
-            ...fonts.smallLink,
+            flexDirection: 'row',
+            alignItems: 'center',
         },
         image: {
             borderRadius: 15,
@@ -64,10 +64,10 @@ export function ThemeItemCard({
             resizeMode: 'cover',
         },
         buttonContainer: {
-            borderRadius: 8,
+            marginLeft: 'auto',
+            marginTop: 'auto',
             padding: 0,
-            flexDirection: 'row',
-            alignItems: 'center',
+            ...fonts.smallLink,
         },
         buttonText: {
             color: colors.text,
@@ -75,11 +75,6 @@ export function ThemeItemCard({
             marginRight: 8,
         },
     });
-
-    function onPress() {
-        // TODO; add navigation
-        console.log('pressed');
-    }
 
     return (
         <View style={[styles.card, style]}>
@@ -96,22 +91,15 @@ export function ThemeItemCard({
                         style={styles.description}
                         text={description}
                     />
-                    <View style={styles.button}>
-                        <Pressable
-                            testID="GoBackButton"
-                            style={styles.buttonContainer}
-                            onPress={onPress}
-                        >
-                            <TextTranslated
-                                style={styles.buttonText}
-                                text="View more"
-                            />
-                            <FontAwesome5
-                                name="arrow-right"
-                                size={16}
-                                color={colors.text}
-                            />
-                        </Pressable>
+
+                    <View style={styles.buttonContainer}>
+                        <ReadMoreButton
+                            buttonStyle={styles.button}
+                            buttonTextStyle={styles.buttonText}
+                            navigateToRoute={navigateToRoute}
+                            navigationParams={navigationParams}
+                            testID={`theme-${title}-button`}
+                        />
                     </View>
                 </View>
             </View>

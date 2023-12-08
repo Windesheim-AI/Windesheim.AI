@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react-native';
 import React from 'react';
 
-import { themeItems, Themes } from '../../../src/components/WTR/Theme';
+import { themeItems, Themes } from '../../../src/components/WTR/Themes';
 
 test('renders Themes component without crashing', () => {
     render(<Themes />);

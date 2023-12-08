@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useEffect, useState } from 'react';
 import {
     Platform,
@@ -10,32 +9,7 @@ import {
 } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
-//@ts-ignore
-import Amazon from '../../assets/images/WTR/TechProviders/amazon.svg';
-//@ts-ignore
-import Apple from '../../assets/images/WTR/TechProviders/apple.svg';
-//@ts-ignore
-import Cisco from '../../assets/images/WTR/TechProviders/cisco.svg';
-//@ts-ignore
-import Google from '../../assets/images/WTR/TechProviders/google.svg';
-//@ts-ignore
-import Hp from '../../assets/images/WTR/TechProviders/hp.svg';
-//@ts-ignore
-import Ibm from '../../assets/images/WTR/TechProviders/ibm.svg';
-//@ts-ignore
-import Intel from '../../assets/images/WTR/TechProviders/intel.svg';
-//@ts-ignore
-import Meta from '../../assets/images/WTR/TechProviders/meta.svg';
-//@ts-ignore
-import Microsoft from '../../assets/images/WTR/TechProviders/microsoft.svg';
-//@ts-ignore
-import OpenAI from '../../assets/images/WTR/TechProviders/openai.svg';
-//@ts-ignore
-import Oracle from '../../assets/images/WTR/TechProviders/oracle.svg';
-//@ts-ignore
-import SalesForce from '../../assets/images/WTR/TechProviders/salesforce.svg';
-//@ts-ignore
-import Sap from '../../assets/images/WTR/TechProviders/sap.svg';
+import { TechProvider, techProviderItems } from './TechProviderItems';
 import {
     useColorConfig,
     useColorStateConfig,
@@ -45,27 +19,6 @@ import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 import { TitleWithSeeAll } from '../general/text/TitleWithSeeAll';
-
-export type TechProvider = {
-    name: string;
-    slug: string;
-    logo: React.FC<{ width: string; height: string; fill: string }>;
-};
-export const techProviderItems: TechProvider[] = [
-    { name: 'Apple', slug: 'apple', logo: Apple },
-    { name: 'Amazon', slug: 'aws', logo: Amazon },
-    { name: 'Cisco', slug: 'cisco-systems', logo: Cisco },
-    { name: 'Google', slug: 'google', logo: Google },
-    { name: 'HP', slug: 'hp', logo: Hp },
-    { name: 'IBM', slug: 'ibm', logo: Ibm },
-    { name: 'Intel', slug: 'intel', logo: Intel },
-    { name: 'Meta', slug: 'meta', logo: Meta },
-    { name: 'Microsoft', slug: 'microsoft', logo: Microsoft },
-    { name: 'OpenAI', slug: 'openai', logo: OpenAI },
-    { name: 'Oracle', slug: 'oracle', logo: Oracle },
-    { name: 'SalesForce', slug: 'salesforce', logo: SalesForce },
-    { name: 'SAP', slug: 'sap', logo: Sap },
-];
 
 export const TechProviders = ({ limit }: { limit?: number }) => {
     const navigation = useNavigation();
@@ -112,7 +65,6 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
     });
 
     const navigate = (provider: string) => () => {
-        //@ts-ignore
         navigation.navigate(Routes.WindesheimTechRadar, {
             page: provider,
         });

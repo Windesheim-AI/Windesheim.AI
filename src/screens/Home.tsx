@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { ThemeItemCard } from '../components/WTR/Card/ThemeItemCard';
+import { TechProviderSlug } from '../components/WTR/TechProviderItems';
 import { TechProviders } from '../components/WTR/TechProviders';
-import { ThemeItemCard } from '../components/general/base/ThemeItemCard';
 import { PageView } from '../components/general/views/PageView';
 import { WhScrollView } from '../components/general/views/WhScrollView';
 import { HomePrompts } from '../components/home/HomePrompts';
+import { Routes } from '../routes/routes';
 
 export const HomeScreen = () => {
     const description =
@@ -13,10 +15,6 @@ export const HomeScreen = () => {
     return (
         <WhScrollView>
             <PageView title="Home" description={description}>
-                <ThemeItemCard
-                    title="Artificial Intelligence"
-                    description="Artificial intelligence is the key to innovating the future and transforming our lives"
-                />
                 <HomePrompts />
                 <TechProviders limit={5} />
             </PageView>
