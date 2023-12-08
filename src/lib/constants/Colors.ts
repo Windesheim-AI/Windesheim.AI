@@ -174,6 +174,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         opacityLayer: 'rgba(255,255,255,0.8)',
         accentTitle: '#757575',
         progressbarBg: '#373737',
+        seeAllText: '#1C1C1C',
     },
     dark: {
         primary: '#4695D3',
@@ -214,6 +215,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         opacityLayer: 'rgba(0,0,0,0.6)',
         accentTitle: '#757575',
         progressbarBg: '#373737',
+        seeAllText: '#FFFFFF',
     },
 };
 const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -254,7 +256,9 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.9)',
-        seeAllText: '#1C1C1C',
+        seeAllText: '#000000',
+        progressbarBg: '#00FF00',
+        accentTitle: '#000000',
     },
     dark: {
         primary: '#0000FF',
@@ -294,6 +298,8 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
         seeAllText: '#FFFFFF',
+        accentTitle: '#757575',
+        progressbarBg: '#00FF00',
     },
 };
 

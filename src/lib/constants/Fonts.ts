@@ -43,6 +43,7 @@ type TextStyling = {
     stageTime: TextStyle;
     cardStageTitle: TextStyle;
     level: TextStyle;
+    levelText: TextStyle;
 };
 
 // eslint-disable-next-line complexity
@@ -189,6 +190,18 @@ export function useFonts() {
         smallLink: {
             fontSize: 13,
             fontFamily: areFontsLoaded ? 'OpenSans_400Regular' : 'System',
+        },
+        stageTime: {
+            fontSize: 12,
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
+        },
+        level: {
+            fontSize: 12,
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
+        },
+        levelText: {
+            fontSize: 12,
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
     };
 

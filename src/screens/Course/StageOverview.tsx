@@ -194,18 +194,6 @@ export default function StageOverview() {
                                         />
                                     );
                                 })}
-                                {course?.stageData?.map((stage, count) => {
-                                    return (
-                                        <StageCard
-                                            key={stage.id}
-                                            stageTitle={stage.title}
-                                            stageIndex={count}
-                                            stageDescription={stage.blocks}
-                                            courseId={course.courseId}
-                                            stageId={stage.id}
-                                        />
-                                    );
-                                })}
                             </ScrollView>
                         </View>
                     </View>

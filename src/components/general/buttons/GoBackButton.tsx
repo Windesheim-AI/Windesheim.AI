@@ -5,7 +5,6 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
-import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
 
 export type GoBackButtonProps = {
@@ -21,12 +20,11 @@ export const GoBackButton = ({
 }: GoBackButtonProps) => {
     const colors = useColorConfig();
     const fonts = useFonts();
-    const navigation = useNavigation();
 
     if (!onPress) {
         /* istanbul ignore next */
         onPress = () => {
-            navigation.goBack();
+            handlePress();
         };
     }
     const handlePress = () => {

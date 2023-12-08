@@ -100,7 +100,11 @@ export function StageCard({
 
     return (
         <View style={styles.topComponent}>
-            <IntractableView style={[styles.card, style]} onPress={handlePress}>
+            <IntractableView
+                style={[styles.card, style]}
+                onPress={handlePress}
+                testID={`stage-card-${stageId}`}
+            >
                 <View style={styles.container}>
                     <Image
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
