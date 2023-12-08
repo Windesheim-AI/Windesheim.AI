@@ -117,7 +117,11 @@ export function CourseNavigation({
         <View style={styles.x}>
             <IntractableView
                 style={styles.topBar}
-                onPress={() => setShowDropdown(!showDropdown)}
+                onPress={() => {
+                    // eslint-disable-next-line no-void
+                    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                    setShowDropdown(!showDropdown);
+                }}
                 testID="course-navigation"
             >
                 <View style={styles.block}>

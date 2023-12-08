@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -50,6 +51,8 @@ export const StageItem = ({
     });
 
     function handlePress() {
+        // eslint-disable-next-line no-void
+        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         navigation.navigate(Routes.CourseStage, {
             courseId,
             stageId: id,
