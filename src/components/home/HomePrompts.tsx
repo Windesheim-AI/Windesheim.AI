@@ -1,19 +1,17 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { useColorStateConfig } from '../../lib/constants/Colors';
 import usePromptLibrary from '../../lib/repositories/promptLibrary/usePromptLibrary';
 import { Routes } from '../../routes/routes';
 import { DataWrapper } from '../general/base/DataWrapper';
-import { Button } from '../general/buttons/Button';
 import { TitleWithSeeAll } from '../general/text/TitleWithSeeAll';
 import { PromptCard } from '../promptLibary/PromptCard';
 
+/**
+ * This is a component that displays 5 random prompts from the prompt library
+ * It is used on the home screen
+ */
 export function HomePrompts() {
-    // This is a component that displays 5 random prompts from the prompt library
-    // It is used on the home screen
-
-    const colorStateConfig = useColorStateConfig();
     const { data, isLoading, error } = usePromptLibrary();
 
     const selectedPrompts = data
