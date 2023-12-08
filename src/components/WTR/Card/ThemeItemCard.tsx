@@ -5,7 +5,6 @@ import {
     StyleSheet,
     View,
     ViewStyle,
-    Dimensions,
 } from 'react-native';
 
 import { shadow, useColorConfig } from '../../../lib/constants/Colors';
@@ -16,8 +15,6 @@ import { Routes } from '../../../routes/routes';
 import { ReadMoreButton } from '../../general/buttons/ReadMoreButton';
 import { TextTranslated } from '../../general/text/TextTranslated';
 import { IntractableView } from '../../general/views/IntractableView';
-
-const { width: screenWidth } = Dimensions.get('window');
 
 type Props = {
     title: string;
