@@ -45,6 +45,7 @@ export type ColorSchemeType = {
     borderColor: string;
     listItemBg: string;
     opacityLayer: string;
+    seeAllText: string;
 };
 
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -85,6 +86,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.8)',
+        seeAllText: '#1C1C1C',
     },
     dark: {
         primary: '#4695D3',
@@ -123,6 +125,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
+        seeAllText: '#FFFFFF',
     },
 };
 
@@ -164,6 +167,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.8)',
+        seeAllText: '#1C1C1C',
     },
     dark: {
         primary: '#4695D3',
@@ -202,6 +206,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
+        seeAllText: '#FFFFFF',
     },
 };
 const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -242,6 +247,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.9)',
+        seeAllText: '#1C1C1C',
     },
     dark: {
         primary: '#0000FF',
@@ -280,6 +286,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
+        seeAllText: '#FFFFFF',
     },
 };
 

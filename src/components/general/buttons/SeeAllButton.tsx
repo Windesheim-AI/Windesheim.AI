@@ -25,8 +25,7 @@ export const SeeAllButton = ({ navigateToRoute }: Props) => {
             alignItems: 'center',
         },
         buttonText: {
-            color: colors.text,
-            ...fonts.button,
+            ...fonts.seeAll,
             marginRight: 8,
         },
     });
@@ -38,7 +37,11 @@ export const SeeAllButton = ({ navigateToRoute }: Props) => {
             onPress={() => navigation.navigate(navigateToRoute)}
         >
             <TextTranslated style={styles.buttonText} text="See All" />
-            <FontAwesome5 name="arrow-right" size={17} color={colors.text} />
+            <FontAwesome5
+                name="arrow-right"
+                size={14}
+                color={colors.seeAllText}
+            />
         </Pressable>
     );
 };

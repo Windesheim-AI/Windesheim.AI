@@ -35,6 +35,7 @@ type TextStyling = {
     alert: TextStyle;
     button: TextStyle;
     buttonLarger: TextStyle;
+    seeAll: TextStyle;
     courseTitle: TextStyle;
     courseSubTitle: TextStyle;
     chipText: TextStyle;
@@ -62,6 +63,10 @@ export function useFonts() {
         OpenSans_600SemiBold: require('../../assets/fonts/OpenSans/OpenSans-SemiBold.ttf'),
         OpenSans_700Bold: require('../../assets/fonts/OpenSans/OpenSans-Bold.ttf'),
         OpenSans_800ExtraBold: require('../../assets/fonts/OpenSans/OpenSans-ExtraBold.ttf'),
+
+        // NUNITO
+        Nunito_Regular: require('../../assets/fonts/Nunito/Nunito-Regular.ttf'),
+        Nunito_Bold: require('../../assets/fonts/Nunito/Nunito-Bold.ttf'),
     });
 
     const fontMap: TextStyling = {
@@ -151,6 +156,12 @@ export function useFonts() {
             fontSize: 18,
             fontWeight: 'bold',
             color: colors.buttonText,
+        },
+        seeAll: {
+            fontSize: 14,
+            fontWeight: 'bold',
+            color: colors.seeAllText,
+            fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',
         },
         courseTitle: {
             fontSize: 18,
