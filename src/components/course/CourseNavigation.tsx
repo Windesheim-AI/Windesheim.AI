@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
@@ -117,8 +116,7 @@ export function CourseNavigation({
             <IntractableView
                 style={styles.topBar}
                 onPress={() => {
-                    // eslint-disable-next-line no-void
-                    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                    HapticFeedback(HapticForces.Light);
                     setShowDropdown(!showDropdown);
                 }}
                 testID="course-navigation"
