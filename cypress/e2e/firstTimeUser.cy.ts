@@ -18,7 +18,7 @@ describe('First time user tests', () => {
 
         cy.contains('Home');
         cy.contains('Handige prompts');
-        cy.contains('Tech Providers');
+        cy.contains('Themes');
     });
 
     it('can answer the background questions and progresses through it', () => {
@@ -33,6 +33,6 @@ describe('First time user tests', () => {
         cy.contains('Overslaan').click();
         cy.contains('Home');
         cy.contains('Handige prompts');
-        cy.contains('Tech Providers');
+        cy.contains('Themes');
     });
 });
