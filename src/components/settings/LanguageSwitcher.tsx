@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
 import { languageActions } from '../../lib/redux/slices/LanguageSlice';
 import { useTextTranslate } from '../../lib/translations/hooks';
 import {
-    getLanguageCodeByTranslation,
     LanguageCode,
+    getLanguageCodeByTranslation,
     languageLabels,
     languageOptions,
 } from '../../lib/translations/languageOptions';
