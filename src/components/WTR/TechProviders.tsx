@@ -136,7 +136,7 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
         <View>
             {isLimited ? (
                 <TitleWithSeeAll
-                    title="Tech providers"
+                    title="Tech Providers"
                     navigateToRoute={Routes.WindesheimTechRadar}
                 />
             ) : (
