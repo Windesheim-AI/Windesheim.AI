@@ -38,7 +38,7 @@ export function StageCard({
         card: {
             backgroundColor: colors.listItemBg,
             borderRadius: 10,
-            padding: 16,
+            padding: 12,
             marginBottom: 16,
             ...shadow,
         },
@@ -66,17 +66,22 @@ export function StageCard({
             width: 64,
             resizeMode: 'cover',
         },
-        checkmark: {
+        checkmarkContainer: {
             position: 'absolute',
             right: 30,
             top: 0,
             padding: 5,
-            borderBottomEndRadius: 10,
-            borderBottomStartRadius: 10,
+            borderBottomRightRadius: 10,
+            borderBottomLeftRadius: 10,
             borderTopStartRadius: 2,
             borderTopEndRadius: 2,
             paddingTop: 15,
             backgroundColor: colors.success,
+            color: colors.white,
+            fontSize: 20,
+            ...shadow,
+        },
+        checkmark: {
             color: colors.white,
             fontSize: 20,
             ...shadow,
@@ -115,7 +120,13 @@ export function StageCard({
                 </View>
             </IntractableView>
             {!isCompleted ? (
-                <FontAwesome5 name="check" style={styles.checkmark} size={5} />
+                <View style={styles.checkmarkContainer}>
+                    <FontAwesome5
+                        name="check"
+                        style={styles.checkmark}
+                        size={5}
+                    />
+                </View>
             ) : null}
         </View>
     );

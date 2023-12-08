@@ -4,6 +4,11 @@ import {
 } from '../../types/CourseStageBlock';
 
 export function estimateTimeToRead(blocks: CourseStageBlock[]) {
+    const totalReadTime = estimateTime(blocks);
+    return `${totalReadTime} min`;
+}
+
+export function estimateTime(blocks: CourseStageBlock[]): number {
     let text = '';
     blocks.forEach((block) => {
         if (block.blockType === CourseStageBlockType.Text) {
@@ -21,5 +26,5 @@ export function estimateTimeToRead(blocks: CourseStageBlock[]) {
     const thinkingTime = numberOfWords * thinkingTimePerWord;
     const totalReadTime = readTime + thinkingTime;
 
-    return `${totalReadTime} min`;
+    return totalReadTime;
 }

@@ -335,7 +335,7 @@ export type StateColorGradientSchemes = {
     danger: ColorGradientScheme;
 };
 
-const stateColorSchemes: StateColorGradientSchemes = {
+export const stateColorSchemes: StateColorGradientSchemes = {
     primary: ['#4695D3', '#22BDC6', '#86D2D9'],
     info: ['#4695D3', '#22BDC6', '#86D2D9'],
     secondary: ['#FFCB05', '#FFD949', '#FFF377'],

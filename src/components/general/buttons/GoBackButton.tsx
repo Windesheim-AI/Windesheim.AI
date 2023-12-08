@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Pressable } from 'react-native';
+import { StyleSheet, Pressable, TextStyle } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../../lib/constants/Colors';
@@ -10,11 +10,13 @@ import { TextTranslated } from '../text/TextTranslated';
 export type GoBackButtonProps = {
     onPress?: () => void;
     buttonText?: string;
+    style?: TextStyle;
 };
 
 export const GoBackButton = ({
     onPress,
     buttonText = 'Go Back',
+    style,
 }: GoBackButtonProps) => {
     const colors = useColorConfig();
     const fonts = useFonts();
@@ -45,7 +47,7 @@ export const GoBackButton = ({
     return (
         <Pressable
             testID="GoBackButton"
-            style={styles.buttonContainer}
+            style={[styles.buttonContainer, style]}
             onPress={onPress}
         >
             <FontAwesome5 name="arrow-left" size={20} color={colors.text} />
