@@ -5,8 +5,7 @@ import { WTRSContentScreenProps } from './WTR/WTRContent';
 import { TechProviders } from '../components/WTR/TechProviders';
 import { Themes } from '../components/WTR/Themes';
 import { WTRContentDisplay } from '../components/WTR/WTRContentDisplay';
-import { PageView } from '../components/general/views/PageView';
-import { WhScrollView } from '../components/general/views/WhScrollView';
+import { PageScrollView } from '../components/general/views/PageScrollView';
 
 export const WTRScreen = () => {
     const route = useRoute();
@@ -19,11 +18,9 @@ export const WTRScreen = () => {
     }
 
     return (
-        <WhScrollView>
-            <PageView title="Windesheim Tech Radar">
-                <TechProviders />
-                <Themes />
-            </PageView>
-        </WhScrollView>
+        <PageScrollView title="Windesheim Tech Radar">
+            <TechProviders />
+            <Themes />
+        </PageScrollView>
     );
 };
