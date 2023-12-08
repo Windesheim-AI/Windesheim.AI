@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Pressable, ViewStyle } from 'react-native';
+import { Pressable, StyleSheet, ViewStyle } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../../routes/routes';
 import { TextTranslated } from '../text/TextTranslated';
@@ -50,6 +51,7 @@ export const ReadMoreButton = ({
             testID={testID}
             style={styles.buttonContainer}
             onPress={() => {
+                HapticFeedback(HapticForces.Light);
                 navigation.navigate(navigateToRoute, navigationParams);
             }}
         >
