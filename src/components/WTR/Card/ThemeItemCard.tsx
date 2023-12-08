@@ -1,17 +1,23 @@
 import React from 'react';
 import {
+    Image,
+    ImageSourcePropType,
     StyleSheet,
     View,
     ViewStyle,
-    Image,
-    ImageSourcePropType,
+    Dimensions,
 } from 'react-native';
 
-import { useColorConfig, shadow } from '../../../lib/constants/Colors';
+import { shadow, useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
+import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../../routes/routes';
 import { ReadMoreButton } from '../../general/buttons/ReadMoreButton';
 import { TextTranslated } from '../../general/text/TextTranslated';
+import { IntractableView } from '../../general/views/IntractableView';
+
+const { width: screenWidth } = Dimensions.get('window');
 
 type Props = {
     title: string;
@@ -30,6 +36,7 @@ export function ThemeItemCard({
 }: Props) {
     const colors = useColorConfig();
     const fonts = useFonts();
+    const navigation = useNavigation();
 
     const styles = StyleSheet.create({
         card: {
@@ -48,7 +55,6 @@ export function ThemeItemCard({
         },
         contentContainer: {
             marginLeft: 16,
-            flexWrap: 'wrap',
             flex: 1,
         },
         description: {
@@ -83,7 +89,16 @@ export function ThemeItemCard({
     });
 
     return (
-        <View style={[styles.card, style]} testID="theme-card">
+        <IntractableView
+            style={[styles.card, style]}
+            testID="theme-card"
+            onPress={() => {
+                HapticFeedback(HapticForces.Light);
+                navigation.navigate(Routes.WindesheimTechRadar, {
+                    page: themeSlug,
+                });
+            }}
+        >
             <View style={styles.container}>
                 <Image source={themeImage} style={styles.image} />
                 <View style={styles.contentContainer}>
@@ -104,6 +119,6 @@ export function ThemeItemCard({
                     </View>
                 </View>
             </View>
-        </View>
+        </IntractableView>
     );
 }
