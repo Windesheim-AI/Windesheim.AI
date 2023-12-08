@@ -4,7 +4,6 @@ import { StyleSheet, View } from 'react-native';
 import { ThemeItemCard } from './Card/ThemeItemCard';
 import { themeItems } from './ThemeItems';
 import { useFonts } from '../../lib/constants/Fonts';
-import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 
 export const Themes = () => {
@@ -27,8 +26,7 @@ export const Themes = () => {
                         title={theme.name}
                         description={theme.description}
                         themeImage={theme.image}
-                        navigateToRoute={Routes.WindesheimTechRadar}
-                        navigationParams={{ page: theme.slug }}
+                        themeSlug={theme.slug}
                     />
                 </View>
             ))}

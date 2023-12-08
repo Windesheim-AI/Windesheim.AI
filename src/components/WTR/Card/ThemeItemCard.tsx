@@ -17,18 +17,16 @@ type Props = {
     title: string;
     description: string;
     themeImage: ImageSourcePropType;
+    themeSlug: string;
     style?: ViewStyle;
-    navigateToRoute: Routes;
-    navigationParams?: Record<string, string>;
 };
 
 export function ThemeItemCard({
     title,
     description,
     themeImage,
+    themeSlug,
     style,
-    navigateToRoute,
-    navigationParams,
 }: Props) {
     const colors = useColorConfig();
     const fonts = useFonts();
@@ -99,9 +97,9 @@ export function ThemeItemCard({
                         <ReadMoreButton
                             buttonStyle={styles.button}
                             buttonTextStyle={styles.buttonText}
-                            navigateToRoute={navigateToRoute}
-                            navigationParams={navigationParams}
-                            testID={`theme-${title}-button`}
+                            navigateToRoute={Routes.WindesheimTechRadar}
+                            navigationParams={{ page: themeSlug }}
+                            testID={`theme-${themeSlug}-button`}
                         />
                     </View>
                 </View>
