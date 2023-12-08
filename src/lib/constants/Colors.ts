@@ -2,7 +2,7 @@ import { ViewStyle } from 'react-native';
 
 import { useAppSelector } from '../redux/Hooks';
 import { hasKeyInMap } from '../utility/data';
-import { getEnvValue } from '../utility/env/env';
+import { isEnvSettingEnabled } from '../utility/env/env';
 import { EnvOptions } from '../utility/env/env.values';
 
 const tintColorLight = '#2f95dc';
@@ -435,10 +435,9 @@ export function useColorConfig(): ColorSchemeType {
             : highContrastColorMap.dark;
     }
 
-    const map =
-        getEnvValue(EnvOptions.UseExperimentalColors) === 'true'
-            ? experimentalColorMap
-            : colorMap;
+    const map = isEnvSettingEnabled(EnvOptions.UseExperimentalColors)
+        ? experimentalColorMap
+        : colorMap;
 
     return hasKeyInMap(map, theme) ? map[theme] : map.dark;
 }
