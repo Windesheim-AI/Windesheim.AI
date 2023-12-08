@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import React, { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -14,6 +15,8 @@ export const FontSwitcher = () => {
     const colors = useColorConfig();
     const decreaseFontSize = () => {
         if (fontSize <= MinSize) return;
+        // eslint-disable-next-line no-void
+        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         setFontSize((prevFontSize) => prevFontSize - 1);
     };
 
@@ -23,6 +26,8 @@ export const FontSwitcher = () => {
 
     const increaseFontSize = () => {
         if (fontSize >= MaxSize) return;
+        // eslint-disable-next-line no-void
+        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         setFontSize((prevFontSize) => prevFontSize + 1);
     };
 

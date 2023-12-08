@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import React from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 
@@ -30,6 +31,8 @@ export const TutorialRedoButton = () => {
     });
 
     const handleReset = () => {
+        // eslint-disable-next-line no-void
+        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         storeDispatcher(setCompleted(false));
         navigation.navigate(Routes.Home as never);
     };

@@ -1,5 +1,6 @@
+import * as Haptics from 'expo-haptics';
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import {
@@ -51,6 +52,8 @@ export const Button = ({
 
         /* istanbul ignore next */
         onPress = () => {
+            // eslint-disable-next-line no-void
+            void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
             navigation.navigate(screenName);
         };
     }

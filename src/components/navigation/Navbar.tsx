@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import React, { useEffect, useState } from 'react';
 import {
     Animated,
@@ -68,6 +69,10 @@ export const NavBar = () => {
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
                     onPress={() => {
+                        // eslint-disable-next-line no-void
+                        void Haptics.impactAsync(
+                            Haptics.ImpactFeedbackStyle.Light,
+                        );
                         navigation.navigate(link.route);
                     }}
                     style={styles.item}

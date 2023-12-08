@@ -1,5 +1,6 @@
+import * as Haptics from 'expo-haptics';
 import React, { useEffect, useState } from 'react';
-import { Modal, Text, Pressable, View, StyleSheet } from 'react-native';
+import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import {
     useColorConfig,
@@ -7,7 +8,7 @@ import {
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import { tutorialSteps } from '../../lib/constants/TutorialSteps';
-import { useAppSelector, useAppDispatch } from '../../lib/redux/Hooks';
+import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
 import { nextStep, setCompleted } from '../../lib/redux/slices/TutorialSlice';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../general/text/TextTranslated';
@@ -44,6 +45,8 @@ export const Tutorial = () => {
     const handleNext = () => {
         storeDispatcher(nextStep());
         const nextStepRoute = tutorialSteps[tutorialStep]?.NextPage;
+        // eslint-disable-next-line no-void
+        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         if (nextStepRoute) {
             navigation.navigate(nextStepRoute as never);
         }
@@ -138,6 +141,10 @@ export const Tutorial = () => {
                                 testID="tutorial-skip-button"
                                 style={[styles.button, styles.skipButton]}
                                 onPress={() => {
+                                    // eslint-disable-next-line no-void
+                                    void Haptics.impactAsync(
+                                        Haptics.ImpactFeedbackStyle.Heavy,
+                                    );
                                     setModalVisible(false);
                                     storeDispatcher(setCompleted(true));
                                 }}

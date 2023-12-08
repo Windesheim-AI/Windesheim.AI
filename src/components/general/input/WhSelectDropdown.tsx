@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
@@ -28,6 +29,7 @@ export function WhSelectDropdown<T>({
     testID,
 }: WhSelectDropdownProps<T>) {
     const colors = useColorConfig();
+    const [isopen, setIsopen] = React.useState(false);
 
     const styles = StyleSheet.create({
         container: {
@@ -70,29 +72,44 @@ export function WhSelectDropdown<T>({
         },
     });
 
+    const handleOnSelect = (selectedItem: T, index: number) => {
+        // eslint-disable-next-line no-void
+        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        if (onSelect) {
+            onSelect(selectedItem, index);
+        } else {
+            handleError('WhSelectDropdown onSelect is not implemented');
+        }
+    };
+
     return (
         <View testID={testID} style={styles.container}>
             <SelectDropdown
                 data={data}
                 defaultValueByIndex={defaultValueByIndex}
                 defaultValue={defaultValue}
-                onSelect={
-                    onSelect ??
-                    (() =>
-                        handleError(
-                            'WhSelectDropdown onSelect is not implemented',
-                        ))
-                }
+                onSelect={handleOnSelect}
                 defaultButtonText={label}
                 buttonStyle={styles.dropdown2BtnStyle}
                 buttonTextStyle={styles.dropdown2BtnTxtStyle}
-                renderDropdownIcon={(isOpened) => (
-                    <FontAwesome5
-                        name={isOpened ? 'chevron-up' : 'chevron-down'}
-                        color={colors.text}
-                        size={14}
-                    />
-                )}
+                renderDropdownIcon={(isOpened) => {
+                    if (isOpened && !isopen) {
+                        setIsopen(true);
+                        // eslint-disable-next-line no-void
+                        void Haptics.impactAsync(
+                            Haptics.ImpactFeedbackStyle.Light,
+                        );
+                    } else if (!isOpened && isopen) {
+                        setIsopen(false);
+                    }
+                    return (
+                        <FontAwesome5
+                            name={isOpened ? 'chevron-up' : 'chevron-down'}
+                            color={colors.text}
+                            size={14}
+                        />
+                    );
+                }}
                 dropdownIconPosition="right"
                 dropdownStyle={styles.dropdown2DropdownStyle}
                 rowStyle={styles.dropdown2RowStyle}

@@ -1,3 +1,4 @@
+import * as Haptics from 'expo-haptics';
 import React from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 
@@ -29,7 +30,11 @@ export const EditBackgroundInformationButton = () => {
     return (
         <Pressable
             style={styles.button}
-            onPress={() => navigator.navigate(Routes.EditBackgroundInformation)}
+            onPress={() => {
+                // eslint-disable-next-line no-void
+                void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                navigator.navigate(Routes.EditBackgroundInformation);
+            }}
             testID="edit-background-information-button"
         >
             <TextTranslated style={styles.buttonText} text="Edit" />

@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import * as Haptics from 'expo-haptics';
 import React, { useEffect, useState } from 'react';
 import {
     Platform,
@@ -110,6 +111,8 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
     });
 
     const navigate = (provider: string) => () => {
+        // eslint-disable-next-line no-void
+        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
         //@ts-ignore
         navigation.navigate(Routes.WindesheimTechRadar, {
             page: provider,
