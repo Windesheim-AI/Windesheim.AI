@@ -89,6 +89,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.8)',
         seeAllText: '#1C1C1C',
+        accentTitle: '#FFFFFF',
         progressbarBg: '#373737',
     },
     dark: {
