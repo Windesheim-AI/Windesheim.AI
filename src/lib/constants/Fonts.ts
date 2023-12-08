@@ -75,21 +75,24 @@ export function useFonts() {
             fontSize: 18,
             fontWeight: 'bold',
             fontFamily: areFontsLoaded ? 'OpenSans_700Bold' : 'System',
-            color: colors.text,
+            color: colors.titleDefault,
         },
         h3: {
             fontSize: 16,
+            color: colors.titleDefault,
         },
         h4: {
             fontSize: 14,
-            color: colors.text,
+            color: colors.titleDefault,
             fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
         h5: {
             fontSize: 13,
+            color: colors.titleDefault,
         },
         h6: {
             fontSize: 12,
+            color: colors.titleDefault,
         },
         icon: {
             fontSize: 15,
