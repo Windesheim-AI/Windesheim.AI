@@ -11,13 +11,13 @@ import StageOverview from '../screens/Course/StageOverview';
 import { HomeScreen } from '../screens/Home';
 import { PromptLibrary } from '../screens/PromptLibrary/PromptLibrary';
 import { PromptPage } from '../screens/PromptLibrary/PromptPage';
-import { SettingsScreen } from '../screens/Settings/Settings';
+import { SettingsScreen } from '../screens/Settings';
 import { StudyScreen } from '../screens/Study';
 import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
 import { UsecaseScreen } from '../screens/Usecase/Usecase';
 import BackgroundCollectForm from '../screens/UserBackground/BackgroundCollectForm';
 import { BackgroundInfo } from '../screens/UserBackground/BackgroundInfo';
-import { WTRScreen } from '../screens/WTR/WTR';
+import { WTRScreen } from '../screens/WTR';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
 
 const Stack = createNativeStackNavigator();

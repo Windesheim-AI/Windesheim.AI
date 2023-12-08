@@ -2,8 +2,8 @@ import { ViewStyle } from 'react-native';
 
 import { useAppSelector } from '../redux/Hooks';
 import { hasKeyInMap } from '../utility/data';
-import { getEnvValue } from '../utility/env/env';
-import { EnvOptions, EnvValues } from '../utility/env/env.values';
+import { isEnvSettingEnabled } from '../utility/env/env';
+import { EnvOptions } from '../utility/env/env.values';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
@@ -47,6 +47,7 @@ export type ColorSchemeType = {
     opacityLayer: string;
     accentTitle: string;
     progressbarBg: string;
+    seeAllText: string;
 };
 
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -87,6 +88,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.8)',
+        seeAllText: '#1C1C1C',
         progressbarBg: '#373737',
     },
     dark: {
@@ -126,6 +128,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
+        seeAllText: '#FFFFFF',
         accentTitle: '#757575',
         progressbarBg: '#373737',
     },
@@ -251,6 +254,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.9)',
+        seeAllText: '#1C1C1C',
     },
     dark: {
         primary: '#0000FF',
@@ -289,6 +293,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
+        seeAllText: '#FFFFFF',
     },
 };
 
@@ -437,7 +442,7 @@ export function useColorConfig(): ColorSchemeType {
             : highContrastColorMap.dark;
     }
 
-    const map = getEnvValue(EnvOptions.UseExperimentalColors)
+    const map = isEnvSettingEnabled(EnvOptions.UseExperimentalColors)
         ? experimentalColorMap
         : colorMap;
 

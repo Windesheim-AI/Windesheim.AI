@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { ChipFilter } from '../../components/general/base/ChipFilters';
 import { DataWrapper } from '../../components/general/base/DataWrapper';

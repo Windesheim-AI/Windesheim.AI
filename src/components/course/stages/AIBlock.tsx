@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
 import BlockWrapper from './block';
-import { getEnvValue } from '../../../lib/utility/env/env';
+import { getEnvValue, isEnvSettingEnabled } from '../../../lib/utility/env/env';
 import { EnvOptions } from '../../../lib/utility/env/env.values';
 import { AIOptions } from '../../../types/CourseStageBlock';
 import AIGeneratedOutput from '../AIGeneratedOutput';
@@ -30,7 +30,7 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
             setText(chatCompletion.choices[0].message.content);
         }
 
-        if (getEnvValue(EnvOptions.AiEnabled) === 'true') {
+        if (isEnvSettingEnabled(EnvOptions.AiEnabled)) {
             // eslint-disable-next-line no-void
             void main();
         } else {

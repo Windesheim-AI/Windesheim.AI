@@ -8,8 +8,8 @@ import ErrorFallback from './src/components/general/error/ErrorBoundary';
 import AppLoader from './src/components/loadingscreen/AppLoader';
 import SplashScreenOrApp from './src/components/splashscreen/SplashScreenOrApp';
 import { store } from './src/lib/redux/Store';
+import AppProviders from './src/providers/AppProviders';
 import { RouteLinking } from './src/routes/routeLinking';
-import AppProviders from './src/screens/AppProviders';
 
 export default function App() {
     return (
