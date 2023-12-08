@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, ViewStyle, Image } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    ViewStyle,
+    Image,
+    ImageSourcePropType,
+} from 'react-native';
 
 import { useColorConfig, shadow } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
@@ -10,6 +16,7 @@ import { TextTranslated } from '../../general/text/TextTranslated';
 type Props = {
     title: string;
     description: string;
+    themeImage: ImageSourcePropType;
     style?: ViewStyle;
     navigateToRoute: Routes;
     navigationParams?: Record<string, string>;
@@ -18,6 +25,7 @@ type Props = {
 export function ThemeItemCard({
     title,
     description,
+    themeImage,
     style,
     navigateToRoute,
     navigationParams,
@@ -59,8 +67,8 @@ export function ThemeItemCard({
         },
         image: {
             borderRadius: 15,
-            height: 100,
-            width: 100,
+            height: 75,
+            width: 75,
             resizeMode: 'cover',
         },
         buttonContainer: {
@@ -79,12 +87,7 @@ export function ThemeItemCard({
     return (
         <View style={[styles.card, style]}>
             <View style={styles.container}>
-                <Image
-                    source={{
-                        uri: 'https://www.windesheim.tech/wp-content/uploads/2021/12/blg_inline_build_your_own_technology_radar_01.png',
-                    }}
-                    style={styles.image}
-                />
+                <Image source={themeImage} style={styles.image} />
                 <View style={styles.contentContainer}>
                     <TextTranslated style={styles.title} text={title} />
                     <TextTranslated

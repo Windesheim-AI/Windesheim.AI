@@ -26,6 +26,7 @@ export const Themes = () => {
                     <ThemeItemCard
                         title={theme.name}
                         description={theme.description}
+                        themeImage={theme.image}
                         navigateToRoute={Routes.WindesheimTechRadar}
                         navigationParams={{ page: theme.slug }}
                     />
