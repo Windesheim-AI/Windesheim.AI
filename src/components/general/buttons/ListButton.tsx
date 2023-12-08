@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -10,6 +9,7 @@ import {
 import { useFonts } from '../../../lib/constants/Fonts';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 
 export type ButtonProps = {
     onPress?: () => void;
@@ -41,8 +41,7 @@ export const ListButton = ({
             );
         }
         onPress = () => {
-            // eslint-disable-next-line no-void
-            void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+            HapticFeedback(HapticForces.Light);
             navigation.navigate(screenName);
         };
     }

@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import React from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 
@@ -9,6 +8,7 @@ import { setCompleted } from '../../lib/redux/slices/TutorialSlice';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 
 export const TutorialRedoButton = () => {
     const storeDispatcher = useAppDispatch();
@@ -31,8 +31,7 @@ export const TutorialRedoButton = () => {
     });
 
     const handleReset = () => {
-        // eslint-disable-next-line no-void
-        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        HapticFeedback(HapticForces.Light);
         storeDispatcher(setCompleted(false));
         navigation.navigate(Routes.Home as never);
     };

@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import React from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -7,6 +6,7 @@ import { useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 
 export type GoBackButtonProps = {
     onPress?: () => void;
@@ -28,8 +28,7 @@ export const GoBackButton = ({
         };
     }
     const handlePress = () => {
-        // eslint-disable-next-line no-void
-        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        HapticFeedback(HapticForces.Light);
         onPress?.();
     };
 

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import * as Haptics from 'expo-haptics';
 import React from 'react';
 import { ImageBackground, Pressable, StyleSheet, View } from 'react-native';
 
@@ -30,6 +29,7 @@ import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 import HorizontalScroll from '../general/views/HorizontalScroll';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 
 export const themeItems = [
     {
@@ -98,8 +98,7 @@ export const Themes = () => {
     });
 
     const navigate = (provider: string) => () => {
-        // eslint-disable-next-line no-void
-        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        HapticFeedback(HapticForces.Light);
         //@ts-ignore
         navigation.navigate(Routes.WindesheimTechRadar, {
             page: provider,

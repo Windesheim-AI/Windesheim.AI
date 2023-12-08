@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
@@ -6,6 +5,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../../lib/constants/Colors';
 import { handleError } from '../../../lib/utility/errorHandler';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 
 export type WhSelectDropdownProps<T> = {
     data: T[];
@@ -73,8 +73,7 @@ export function WhSelectDropdown<T>({
     });
 
     const handleOnSelect = (selectedItem: T, index: number) => {
-        // eslint-disable-next-line no-void
-        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        HapticFeedback(HapticForces.Light);
         if (onSelect) {
             onSelect(selectedItem, index);
         } else {
@@ -95,10 +94,7 @@ export function WhSelectDropdown<T>({
                 renderDropdownIcon={(isOpened) => {
                     if (isOpened && !isOpen) {
                         setIsOpen(true);
-                        // eslint-disable-next-line no-void
-                        void Haptics.impactAsync(
-                            Haptics.ImpactFeedbackStyle.Light,
-                        );
+                        HapticFeedback(HapticForces.Light);
                     } else if (!isOpened && isOpen) {
                         setIsOpen(false);
                     }

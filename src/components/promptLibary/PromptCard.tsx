@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -8,6 +7,7 @@ import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { Prompt } from '../../types/Prompt';
 import { Card } from '../general/base/Card';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 
 export const PromptCard = ({ prompt }: { prompt: Prompt }) => {
     const fonts = useFonts();
@@ -32,8 +32,7 @@ export const PromptCard = ({ prompt }: { prompt: Prompt }) => {
     return (
         <Pressable
             onPress={() => {
-                // eslint-disable-next-line no-void
-                void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                HapticFeedback(HapticForces.Light);
                 navigation.navigate(Routes.Prompt, {
                     promptId: prompt.id,
                 });

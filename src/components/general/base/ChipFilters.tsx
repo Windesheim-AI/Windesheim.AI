@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import React, { ReactNode } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { Chip, shadow } from 'react-native-paper';
@@ -8,6 +7,7 @@ import {
     useColorStateConfig,
 } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 
 export type ChipFilterProps<T extends ReactNode> = {
     activeList: T[];
@@ -79,17 +79,11 @@ export function ChipFilter<T extends ReactNode>({
                         textStyle={getStyleForChipText()}
                         icon={activeList.includes(filter) ? 'check' : 'close'}
                         onPress={() => {
-                            // eslint-disable-next-line no-void
-                            void Haptics.impactAsync(
-                                Haptics.ImpactFeedbackStyle.Light,
-                            );
+                            HapticFeedback(HapticForces.Light);
                             toggleOption(filter);
                         }}
                         onLongPress={() => {
-                            // eslint-disable-next-line no-void
-                            void Haptics.impactAsync(
-                                Haptics.ImpactFeedbackStyle.Heavy,
-                            );
+                            HapticFeedback(HapticForces.Heavy);
                             handleChipLongPress(filter);
                         }}
                         testID={`chip-${filter?.toString()}`}

@@ -9,6 +9,7 @@ import {
     useColorStateConfig,
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
@@ -100,15 +101,13 @@ export function CourseNavigation({
     });
 
     function onDropdownPress(stageId: string) {
-        // eslint-disable-next-line no-void
-        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        HapticFeedback(HapticForces.Light);
         navigation.navigate(Routes.CourseStage, { courseId, stageId });
         setShowDropdown(false);
     }
 
     function onCourseOverviewPress() {
-        // eslint-disable-next-line no-void
-        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+        HapticFeedback(HapticForces.Light);
         navigation.navigate(Routes.StageOverview, { courseId });
         setShowDropdown(false);
     }

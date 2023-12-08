@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import React, { useEffect, useState } from 'react';
 import {
     Animated,
@@ -14,6 +13,7 @@ import { useAppSelector } from '../../lib/redux/Hooks';
 import { useAnimatedValueNav } from '../../lib/utility/animate';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { navigationBarLinks } from '../../routes/navigation';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 
 export const NavBar = () => {
     const [showNavBar, setShowNavBar] = useState(true);
@@ -69,10 +69,7 @@ export const NavBar = () => {
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
                     onPress={() => {
-                        // eslint-disable-next-line no-void
-                        void Haptics.impactAsync(
-                            Haptics.ImpactFeedbackStyle.Light,
-                        );
+                        HapticFeedback(HapticForces.Light);
                         navigation.navigate(link.route);
                     }}
                     style={styles.item}

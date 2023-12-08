@@ -1,10 +1,10 @@
-import * as Haptics from 'expo-haptics';
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { truncate } from '../../../lib/utility/stringutils';
 import { TextTranslated } from '../text/TextTranslated';
@@ -38,8 +38,7 @@ export const SettingButton = ({
 
         /* istanbul ignore next */
         onPress = () => {
-            // eslint-disable-next-line no-void
-            void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+            HapticFeedback(HapticForces.Light);
             navigation.navigate(screenName);
         };
     }
