@@ -435,9 +435,10 @@ export function useColorConfig(): ColorSchemeType {
             : highContrastColorMap.dark;
     }
 
-    const map = getEnvValue(EnvOptions.UseExperimentalColors)
-        ? experimentalColorMap
-        : colorMap;
+    const map =
+        getEnvValue(EnvOptions.UseExperimentalColors) === 'true'
+            ? experimentalColorMap
+            : colorMap;
 
     return hasKeyInMap(map, theme) ? map[theme] : map.dark;
 }
