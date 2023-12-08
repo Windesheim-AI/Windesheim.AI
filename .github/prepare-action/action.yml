@@ -38,4 +38,5 @@ runs:
               echo WP_DATA_URL="https://www.windesheim.ai" >> .env
               echo WP_USERNAME=${{ inputs.wp-username }} >> .env
               echo WP_PASSWORD=${{ inputs.wp-password }} >> .env
+              echo UseExperimentalColors="false" >> .env
               cat .env
