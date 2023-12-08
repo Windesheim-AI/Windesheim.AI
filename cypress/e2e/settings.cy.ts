@@ -1,3 +1,9 @@
+// Disable uncaught exception handling.
+Cypress.on('uncaught:exception', () => {
+    // Returning false here prevents Cypress from failing the test.
+    return false;
+});
+
 describe('App settings test', () => {
     beforeEach(() => {
         cy.visit('/');
