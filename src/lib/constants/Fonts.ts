@@ -35,9 +35,11 @@ type TextStyling = {
     alert: TextStyle;
     button: TextStyle;
     buttonLarger: TextStyle;
+    seeAll: TextStyle;
     courseTitle: TextStyle;
     courseSubTitle: TextStyle;
     chipText: TextStyle;
+    smallLink: TextStyle;
 };
 
 // eslint-disable-next-line complexity
@@ -45,15 +47,26 @@ export function useFonts() {
     const colors = useColorConfig();
 
     const [areFontsLoaded] = useExpoFonts({
-        Inter_100Thin: require('../../assets/fonts/Inter-Thin.ttf'),
-        Inter_200ExtraLight: require('../../assets/fonts/Inter-ExtraLight.ttf'),
-        Inter_300Light: require('../../assets/fonts/Inter-Light.ttf'),
-        Inter_400Regular: require('../../assets/fonts/Inter-Regular.ttf'),
-        Inter_500Medium: require('../../assets/fonts/Inter-Medium.ttf'),
-        Inter_600SemiBold: require('../../assets/fonts/Inter-SemiBold.ttf'),
-        Inter_700Bold: require('../../assets/fonts/Inter-Bold.ttf'),
-        Inter_800ExtraBold: require('../../assets/fonts/Inter-ExtraBold.ttf'),
-        Inter_900Black: require('../../assets/fonts/Inter-Black.ttf'),
+        Inter_100Thin: require('../../assets/fonts/Inter/Inter-Thin.ttf'),
+        Inter_200ExtraLight: require('../../assets/fonts/Inter/Inter-ExtraLight.ttf'),
+        Inter_300Light: require('../../assets/fonts/Inter/Inter-Light.ttf'),
+        Inter_400Regular: require('../../assets/fonts/Inter/Inter-Regular.ttf'),
+        Inter_500Medium: require('../../assets/fonts/Inter/Inter-Medium.ttf'),
+        Inter_600SemiBold: require('../../assets/fonts/Inter/Inter-SemiBold.ttf'),
+        Inter_700Bold: require('../../assets/fonts/Inter/Inter-Bold.ttf'),
+        Inter_800ExtraBold: require('../../assets/fonts/Inter/Inter-ExtraBold.ttf'),
+        Inter_900Black: require('../../assets/fonts/Inter/Inter-Black.ttf'),
+
+        // OPEN SANS
+        OpenSans_300Light: require('../../assets/fonts/OpenSans/OpenSans-Light.ttf'),
+        OpenSans_400Regular: require('../../assets/fonts/OpenSans/OpenSans-Regular.ttf'),
+        OpenSans_600SemiBold: require('../../assets/fonts/OpenSans/OpenSans-SemiBold.ttf'),
+        OpenSans_700Bold: require('../../assets/fonts/OpenSans/OpenSans-Bold.ttf'),
+        OpenSans_800ExtraBold: require('../../assets/fonts/OpenSans/OpenSans-ExtraBold.ttf'),
+
+        // NUNITO
+        Nunito_Regular: require('../../assets/fonts/Nunito/Nunito-Regular.ttf'),
+        Nunito_Bold: require('../../assets/fonts/Nunito/Nunito-Bold.ttf'),
     });
 
     const fontMap: TextStyling = {
@@ -66,21 +79,25 @@ export function useFonts() {
         h2: {
             fontSize: 18,
             fontWeight: 'bold',
-            color: colors.text,
+            fontFamily: areFontsLoaded ? 'OpenSans_700Bold' : 'System',
+            color: colors.titleDefault,
         },
         h3: {
             fontSize: 16,
+            color: colors.titleDefault,
         },
         h4: {
             fontSize: 14,
-            color: colors.text,
+            color: colors.titleDefault,
             fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
         h5: {
             fontSize: 13,
+            color: colors.titleDefault,
         },
         h6: {
             fontSize: 12,
+            color: colors.titleDefault,
         },
         icon: {
             fontSize: 15,
@@ -96,7 +113,7 @@ export function useFonts() {
         description: {
             color: colors.text,
             fontSize: 14,
-            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
+            fontFamily: areFontsLoaded ? 'OpenSans_400Regular' : 'System',
         },
         quote: {
             color: colors.text,
@@ -140,6 +157,12 @@ export function useFonts() {
             fontWeight: 'bold',
             color: colors.buttonText,
         },
+        seeAll: {
+            fontSize: 14,
+            fontWeight: 'bold',
+            color: colors.seeAllText,
+            fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',
+        },
         courseTitle: {
             fontSize: 18,
             fontWeight: 'bold',
@@ -155,6 +178,10 @@ export function useFonts() {
         chipText: {
             fontSize: 14,
             fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
+        },
+        smallLink: {
+            fontSize: 13,
+            fontFamily: areFontsLoaded ? 'OpenSans_400Regular' : 'System',
         },
     };
 
