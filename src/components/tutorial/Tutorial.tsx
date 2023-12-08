@@ -156,8 +156,8 @@ export const Tutorial = () => {
                                     testID="tutorial-skip-button"
                                     style={[styles.button, styles.skipButton]}
                                     onPress={() => {
-                                      HapticFeedback(HapticForces.Light);
-                                      setModalVisible(false);
+                                        HapticFeedback(HapticForces.Light);
+                                        setModalVisible(false);
                                         storeDispatcher(setCompleted(true));
                                     }}
                                 >
