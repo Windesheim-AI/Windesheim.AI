@@ -58,14 +58,14 @@
     "Researcher": "Forscher",
     "Other": "Andere",
     "What area of AI are you interested in?": "In welchem Bereich der KI sind Sie interessiert?",
-    "Machine Learning": "Maschinelles Lernen",
+    "Machine Learning": "Machine learning",
     "Deep Learning": "Deep Learning",
-    "Artificial Intelligence": "Künstliche Intelligenz",
-    "Natural Language Processing": "Natürliche Sprachverarbeitung",
-    "Reinforcement Learning": "Verstärkendes Lernen",
+    "Artificial Intelligence": "Artificial Intelligence",
+    "Natural Language Processing": "Natural Language Processing",
+    "Reinforcement Learning": "Reinforcement Learning",
     "Computer Vision": "Computer Vision",
     "AI Ethics": "KI-Ethik",
-    "Neural Networks": "Neuronale Netzwerke",
+    "Neural Networks": "Neural networks",
     "Unfamiliar": "Unbekannt",
     "Slightly Familiar": "Ein wenig bekannt",
     "Moderately Familiar": "Mäßig bekannt",
@@ -81,5 +81,6 @@
     "Business IT": "Business IT",
     "Business management": "Betriebswirtschaftslehre",
     "Government": "Regierung",
-    "Ethicist/policy maker": "Ethiker/Politiker"
+    "Ethicist/policy maker": "Ethiker/Politiker",
+    "See All": "Bekijk alles"
 }
