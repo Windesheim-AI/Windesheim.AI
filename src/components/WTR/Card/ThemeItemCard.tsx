@@ -83,7 +83,7 @@ export function ThemeItemCard({
     });
 
     return (
-        <View style={[styles.card, style]}>
+        <View style={[styles.card, style]} testID="theme-card">
             <View style={styles.container}>
                 <Image source={themeImage} style={styles.image} />
                 <View style={styles.contentContainer}>

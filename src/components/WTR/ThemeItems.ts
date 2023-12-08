@@ -20,7 +20,7 @@ import TrustImage from '../../assets/images/WTR/Themes/trust.jpg';
 //@ts-ignore
 import WorkImage from '../../assets/images/WTR/Themes/work.jpeg';
 
-type ThemeItem = {
+export type ThemeItem = {
     name: string;
     slug: ThemeItemSlug;
     image: ImageSourcePropType;
