@@ -3,6 +3,7 @@ import { Pressable, StyleSheet } from 'react-native';
 
 import { useColorStateConfig } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
@@ -26,10 +27,15 @@ export const EditBackgroundInformationButton = () => {
         },
     });
 
+    const handlePress = () => {
+        HapticFeedback(HapticForces.Light);
+        navigator.navigate(Routes.EditBackgroundInformation);
+    };
+
     return (
         <Pressable
             style={styles.button}
-            onPress={() => navigator.navigate(Routes.EditBackgroundInformation)}
+            onPress={handlePress}
             testID="edit-background-information-button"
         >
             <TextTranslated style={styles.buttonText} text="Edit" />

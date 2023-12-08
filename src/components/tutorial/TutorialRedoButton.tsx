@@ -3,6 +3,7 @@ import { Pressable, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useAppDispatch } from '../../lib/redux/Hooks';
 import { setCompleted } from '../../lib/redux/slices/TutorialSlice';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -30,6 +31,7 @@ export const TutorialRedoButton = () => {
     });
 
     const handleReset = () => {
+        HapticFeedback(HapticForces.Light);
         storeDispatcher(setCompleted(false));
         navigation.navigate(Routes.Home as never);
     };

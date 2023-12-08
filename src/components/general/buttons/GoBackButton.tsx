@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Pressable } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
 
@@ -26,6 +27,10 @@ export const GoBackButton = ({
             navigation.goBack();
         };
     }
+    const handlePress = () => {
+        HapticFeedback(HapticForces.Light);
+        onPress?.();
+    };
 
     const styles = StyleSheet.create({
         buttonContainer: {
@@ -46,7 +51,7 @@ export const GoBackButton = ({
         <Pressable
             testID="GoBackButton"
             style={styles.buttonContainer}
-            onPress={onPress}
+            onPress={handlePress}
         >
             <FontAwesome5 name="arrow-left" size={20} color={colors.text} />
             <TextTranslated style={styles.buttonText} text={buttonText} />

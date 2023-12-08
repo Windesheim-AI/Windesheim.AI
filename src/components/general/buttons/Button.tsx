@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import {
@@ -8,6 +8,7 @@ import {
     useColorStateConfig,
 } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
 import { IntractableView } from '../views/IntractableView';
@@ -51,6 +52,7 @@ export const Button = ({
 
         /* istanbul ignore next */
         onPress = () => {
+            HapticFeedback(HapticForces.Light);
             navigation.navigate(screenName);
         };
     }

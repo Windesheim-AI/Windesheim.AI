@@ -25,6 +25,7 @@ import {
     useColorStateConfig,
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
@@ -97,6 +98,7 @@ export const Themes = () => {
     });
 
     const navigate = (provider: string) => () => {
+        HapticFeedback(HapticForces.Light);
         //@ts-ignore
         navigation.navigate(Routes.WindesheimTechRadar, {
             page: provider,
