@@ -7,7 +7,11 @@ import {
     ViewStyle,
 } from 'react-native';
 
-import { shadow, useColorConfig } from '../../../lib/constants/Colors';
+import {
+    shadow,
+    useColorConfig,
+    useColorStateConfig,
+} from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
@@ -32,6 +36,7 @@ export function ThemeItemCard({
     style,
 }: Props) {
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
 
@@ -42,6 +47,7 @@ export function ThemeItemCard({
             padding: 16,
             marginBottom: 16,
             ...shadow,
+            ...colorStateConfig.highContrastBorder,
         },
         container: {
             flexDirection: 'row',
