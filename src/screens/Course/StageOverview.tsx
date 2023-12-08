@@ -1,11 +1,11 @@
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
 import {
-    View,
-    StyleSheet,
+    Dimensions,
     ImageBackground,
     ScrollView,
-    Dimensions,
+    StyleSheet,
+    View,
 } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -19,6 +19,7 @@ import {
     useColorStateConfig,
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useMapSingleCourseToData } from '../../lib/repositories/courses/mapSingleCourseToData';
 import useSingleCourse from '../../lib/repositories/courses/useSingleCourse';
 import { estimateTime } from '../../lib/utility/estimateTime';
@@ -70,6 +71,7 @@ export default function StageOverview() {
             height: 100,
         },
         courseCardContainer: {
+            margin: 4,
             marginBottom: 50,
         },
         // eslint-disable-next-line react-native/no-color-literals
@@ -97,6 +99,7 @@ export default function StageOverview() {
     });
 
     function navigateBackToCourses() {
+        HapticFeedback(HapticForces.Light);
         navigator.navigate(Routes.Courses.toString());
     }
 

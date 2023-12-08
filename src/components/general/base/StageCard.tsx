@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, ViewStyle, Image } from 'react-native';
+import { Image, StyleSheet, View, ViewStyle } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { IntractableView } from '../../../components/general/views/IntractableView';
-import { useColorConfig, shadow } from '../../../lib/constants/Colors';
+import { shadow, useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { estimateTimeToRead } from '../../../lib/utility/estimateTime';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../../routes/routes';
@@ -91,6 +92,7 @@ export function StageCard({
     });
 
     function handlePress() {
+        HapticFeedback(HapticForces.Light);
         navigation.navigate(Routes.CourseStage, {
             courseId,
             stageId,
