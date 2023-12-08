@@ -45,12 +45,12 @@ import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 
-type TechProvider = {
+export type TechProvider = {
     name: string;
     slug: string;
     logo: React.FC<{ width: string; height: string; fill: string }>;
 };
-const techProviderItems: TechProvider[] = [
+export const techProviderItems: TechProvider[] = [
     { name: 'Apple', slug: 'apple', logo: Apple },
     { name: 'Amazon', slug: 'aws', logo: Amazon },
     { name: 'Cisco', slug: 'cisco-systems', logo: Cisco },
