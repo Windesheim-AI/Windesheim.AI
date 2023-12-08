@@ -3,7 +3,7 @@ import { ViewStyle } from 'react-native';
 import { useAppSelector } from '../redux/Hooks';
 import { hasKeyInMap } from '../utility/data';
 import { getEnvValue } from '../utility/env/env';
-import { EnvOptions, EnvValues } from '../utility/env/env.values';
+import { EnvOptions } from '../utility/env/env.values';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
