@@ -44,6 +44,7 @@ import { useFonts } from '../../lib/constants/Fonts';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
+import { TitleWithSeeAll } from '../general/text/TitleWithSeeAll';
 
 type TechProvider = {
     name: string;
@@ -72,6 +73,7 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
     const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const [displayItems, setDisplayItems] = useState<TechProvider[]>([]);
+    const isLimited = limit && limit > 0;
 
     const styles = StyleSheet.create({
         button: {
@@ -132,7 +134,14 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
 
     return (
         <View>
-            <TextTranslated style={styles.heading} text="Tech Providers" />
+            {isLimited ? (
+                <TitleWithSeeAll
+                    title="Tech Providers"
+                    navigateToRoute={Routes.WindesheimTechRadar}
+                />
+            ) : (
+                <TextTranslated style={styles.heading} text="Tech Providers" />
+            )}
 
             <ScrollView style={styles.container}>
                 {displayItems.map((provider) => (
