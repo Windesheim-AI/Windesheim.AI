@@ -45,6 +45,8 @@ export type ColorSchemeType = {
     borderColor: string;
     listItemBg: string;
     opacityLayer: string;
+    accentTitle: string;
+    progressbarBg: string;
 };
 
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -85,6 +87,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.8)',
+        progressbarBg: '#373737',
     },
     dark: {
         primary: '#4695D3',
@@ -123,6 +126,8 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
+        accentTitle: '#757575',
+        progressbarBg: '#373737',
     },
 };
 
@@ -164,6 +169,8 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.8)',
+        accentTitle: '#757575',
+        progressbarBg: '#373737',
     },
     dark: {
         primary: '#4695D3',
@@ -202,6 +209,8 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
+        accentTitle: '#757575',
+        progressbarBg: '#373737',
     },
 };
 const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {

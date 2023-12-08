@@ -2,8 +2,8 @@ import { useRoute } from '@react-navigation/native';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { StageItem } from './StageItem';
 import { DataWrapper } from '../../components/general/base/DataWrapper';
+import { StageCard } from '../../components/general/base/StageCard';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
@@ -73,15 +73,15 @@ export default function StageOverview() {
 
                     {/* map the stages of the course */}
                     <View style={styles.courseStageContainer}>
-                        {course?.stageData?.map((stage) => {
+                        {course?.stageData?.map((stage, count) => {
                             return (
-                                <StageItem
+                                <StageCard
                                     key={stage.id}
-                                    title={stage.title}
-                                    id={stage.id}
-                                    blocks={stage.blocks}
-                                    isCompletedByUser={stage.isCompletedByUser}
+                                    stageTitle={stage.title}
+                                    stageIndex={count}
+                                    stageDescription={stage.blocks}
                                     courseId={course.courseId}
+                                    stageId={stage.id}
                                 />
                             );
                         })}

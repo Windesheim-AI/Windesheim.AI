@@ -9,6 +9,7 @@ import { HomePrompts } from '../components/home/HomePrompts';
 import { useColorStateConfig } from '../lib/constants/Colors';
 import { Routes } from '../routes/routes';
 import { ThemeItemCard } from '../components/general/base/ThemeItemCard';
+import { StageCard } from '../components/general/base/StageCard';
 
 export const HomeScreen = () => {
     const colorStateConfig = useColorStateConfig();
@@ -20,8 +21,8 @@ export const HomeScreen = () => {
             <PageView title="Home" description={description}>
                 <View>
                     <ThemeItemCard
-                        title='Artificial Intelligence'
-                        description='Artificial intelligence is the key to innovating the future and transforming our lives'
+                        title="Artificial Intelligence"
+                        description="Artificial intelligence is the key to innovating the future and transforming our lives"
                     />
                     <HomePrompts />
                     <View>
