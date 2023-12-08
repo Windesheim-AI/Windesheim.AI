@@ -8,6 +8,7 @@ import {
     useColorStateConfig,
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
@@ -99,11 +100,13 @@ export function CourseNavigation({
     });
 
     function onDropdownPress(stageId: string) {
+        HapticFeedback(HapticForces.Light);
         navigation.navigate(Routes.CourseStage, { courseId, stageId });
         setShowDropdown(false);
     }
 
     function onCourseOverviewPress() {
+        HapticFeedback(HapticForces.Light);
         navigation.navigate(Routes.StageOverview, { courseId });
         setShowDropdown(false);
     }
@@ -112,7 +115,10 @@ export function CourseNavigation({
         <View style={styles.x}>
             <IntractableView
                 style={styles.topBar}
-                onPress={() => setShowDropdown(!showDropdown)}
+                onPress={() => {
+                    HapticFeedback(HapticForces.Light);
+                    setShowDropdown(!showDropdown);
+                }}
                 testID="course-navigation"
             >
                 <View style={styles.block}>

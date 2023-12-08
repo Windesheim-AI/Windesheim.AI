@@ -9,6 +9,7 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../lib/constants/Colors';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useAppSelector } from '../../lib/redux/Hooks';
 import { useAnimatedValueNav } from '../../lib/utility/animate';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -68,6 +69,7 @@ export const NavBar = () => {
                     // eslint-disable-next-line react/no-array-index-key
                     key={index}
                     onPress={() => {
+                        HapticFeedback(HapticForces.Light);
                         navigation.navigate(link.route);
                     }}
                     style={styles.item}

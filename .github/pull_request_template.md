@@ -13,6 +13,7 @@ Description of your PR.
 -   [ ] The implemented User Story complies with its acceptance criteria.
 -   [ ] The new functionality is reviewed by at least two other team members.
 -   [ ] The new functionality is compliant with the rules of chapter 6.2 Quality in the project plan.
+-   [ ] The translations have been updated. Both the German and Dutch translations are up-to-date.
 
 ### Unit, component & E2E testing
 

@@ -33,12 +33,12 @@ describe('WTR page tests', () => {
         cy.contains('Artificial Intelligence');
         cy.contains('Next UI');
         cy.contains('Green IT');
-        cy.contains('Transaction to interaction');
+        cy.contains('Transaction to Interaction');
         cy.contains('Future of Work');
         cy.contains('Cloud Everywhere');
-        cy.contains('Future of programming');
+        cy.contains('Future of Programming');
         cy.contains('Building Trust');
-        cy.contains('Quantum computing');
+        cy.contains('Quantum Computing');
     });
 
     it('can view the tech provider Apple', () => {
