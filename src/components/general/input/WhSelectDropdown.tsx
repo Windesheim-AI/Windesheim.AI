@@ -29,7 +29,7 @@ export function WhSelectDropdown<T>({
     testID,
 }: WhSelectDropdownProps<T>) {
     const colors = useColorConfig();
-    const [isopen, setIsopen] = React.useState(false);
+    const [isOpen, setIsOpen] = React.useState(false);
 
     const styles = StyleSheet.create({
         container: {
@@ -93,14 +93,14 @@ export function WhSelectDropdown<T>({
                 buttonStyle={styles.dropdown2BtnStyle}
                 buttonTextStyle={styles.dropdown2BtnTxtStyle}
                 renderDropdownIcon={(isOpened) => {
-                    if (isOpened && !isopen) {
-                        setIsopen(true);
+                    if (isOpened && !isOpen) {
+                        setIsOpen(true);
                         // eslint-disable-next-line no-void
                         void Haptics.impactAsync(
                             Haptics.ImpactFeedbackStyle.Light,
                         );
-                    } else if (!isOpened && isopen) {
-                        setIsopen(false);
+                    } else if (!isOpened && isOpen) {
+                        setIsOpen(false);
                     }
                     return (
                         <FontAwesome5
