@@ -58,6 +58,7 @@ export const Tutorial = () => {
     const handlePrevious = () => {
         storeDispatcher(previousStep());
         const previousStepRoute = tutorialSteps[tutorialStep]?.PreviousPage;
+        HapticFeedback(HapticForces.Light);
         if (previousStepRoute) {
             navigation.navigate(previousStepRoute as never);
         }
@@ -117,7 +118,7 @@ export const Tutorial = () => {
             backgroundColor: colors.primary,
         },
         previousButton: {
-            backgroundColor: colors.secondary,
+            backgroundColor: colors.warning,
         },
         finishButton: {
             backgroundColor: colors.danger,
@@ -177,9 +178,10 @@ export const Tutorial = () => {
                                         handlePrevious();
                                     }}
                                 >
-                                    <Text style={styles.buttonText}>
-                                        Previous
-                                    </Text>
+                                    <TextTranslated
+                                        style={styles.buttonText}
+                                        text="Previous"
+                                    />
                                 </Pressable>
                             )}
                             {tutorialStep === tutorialSteps.length - 1 ? (
