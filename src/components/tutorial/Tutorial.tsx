@@ -166,7 +166,10 @@ export const Tutorial = () => {
                             ) : (
                                 <Pressable
                                     testID="tutorial-previous-button"
-                                    style={styles.previousButton}
+                                    style={[
+                                        styles.button,
+                                        styles.previousButton,
+                                    ]}
                                     onPress={() => {
                                         handlePrevious();
                                     }}
