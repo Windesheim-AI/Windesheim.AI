@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import {
     ColorGradientScheme,
@@ -10,9 +10,13 @@ import {
 
 export type AmazingCardProps = {
     colorGradientScheme: ColorGradientScheme;
+    children?: React.ReactNode;
 };
 
-export const AmazingCard = ({ colorGradientScheme }: AmazingCardProps) => {
+export const AmazingCard = ({
+    colorGradientScheme,
+    children,
+}: AmazingCardProps) => {
     const colorStateConfig = useColorStateConfig();
     const colors = useColorConfig();
 
@@ -29,8 +33,8 @@ export const AmazingCard = ({ colorGradientScheme }: AmazingCardProps) => {
             overflow: 'hidden',
             position: 'relative',
         },
-        text: {
-            color: colors.text,
+        childrenBox: {
+            padding: 10,
         },
         colorBox: {
             width: 100,
@@ -69,7 +73,7 @@ export const AmazingCard = ({ colorGradientScheme }: AmazingCardProps) => {
                 <View style={styles.colorRow2} />
                 <View style={styles.colorRow3} />
             </View>
-            <Text style={styles.text}>AmazingCard</Text>
+            <View style={styles.childrenBox}>{children}</View>
         </View>
     );
 };
