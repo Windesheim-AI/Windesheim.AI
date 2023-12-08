@@ -84,7 +84,6 @@ export function StageCard({
         checkmark: {
             color: colors.white,
             fontSize: 20,
-            ...shadow,
         },
         topComponent: {
             paddingTop: 2,

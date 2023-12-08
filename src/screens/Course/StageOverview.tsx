@@ -1,6 +1,12 @@
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
-import { View, StyleSheet, ImageBackground, ScrollView } from 'react-native';
+import {
+    View,
+    StyleSheet,
+    ImageBackground,
+    ScrollView,
+    Dimensions,
+} from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { DataWrapper } from '../../components/general/base/DataWrapper';
@@ -42,13 +48,14 @@ export default function StageOverview() {
     const { data, isLoading, error } = useSingleCourse(courseId);
     const course = useMapSingleCourseToData(data);
 
+    const containerHeight = Dimensions.get('window').height * 0.54;
     const styles = StyleSheet.create({
         container: {
             margin: -20,
         },
         courseStageContainer: {
             marginTop: 10,
-            height: '54.5%',
+            height: containerHeight,
         },
         content: {
             margin: 20,
@@ -61,6 +68,9 @@ export default function StageOverview() {
         courseBackground: {
             padding: -20,
             height: 100,
+        },
+        courseCardContainer: {
+            marginBottom: 50,
         },
         // eslint-disable-next-line react-native/no-color-literals
         backButton: {
@@ -182,18 +192,20 @@ export default function StageOverview() {
                         {/* map the stages of the course */}
                         <View style={styles.courseStageContainer}>
                             <ScrollView>
-                                {course?.stageData?.map((stage, count) => {
-                                    return (
-                                        <StageCard
-                                            key={stage.id}
-                                            stageTitle={stage.title}
-                                            stageIndex={count}
-                                            stageDescription={stage.blocks}
-                                            courseId={course.courseId}
-                                            stageId={stage.id}
-                                        />
-                                    );
-                                })}
+                                <View style={styles.courseCardContainer}>
+                                    {course?.stageData?.map((stage, count) => {
+                                        return (
+                                            <StageCard
+                                                key={stage.id}
+                                                stageTitle={stage.title}
+                                                stageIndex={count}
+                                                stageDescription={stage.blocks}
+                                                courseId={course.courseId}
+                                                stageId={stage.id}
+                                            />
+                                        );
+                                    })}
+                                </View>
                             </ScrollView>
                         </View>
                     </View>
