@@ -41,11 +41,11 @@ import {
     useColorStateConfig,
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 import { TitleWithSeeAll } from '../general/text/TitleWithSeeAll';
-import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 
 type TechProvider = {
     name: string;

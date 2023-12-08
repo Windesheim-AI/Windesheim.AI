@@ -4,9 +4,9 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
-import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 
 export type GoBackButtonProps = {
     onPress?: () => void;

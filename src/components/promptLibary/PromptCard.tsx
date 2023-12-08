@@ -3,11 +3,11 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { useColorStateConfig } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { Prompt } from '../../types/Prompt';
 import { Card } from '../general/base/Card';
-import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 
 export const PromptCard = ({ prompt }: { prompt: Prompt }) => {
     const fonts = useFonts();

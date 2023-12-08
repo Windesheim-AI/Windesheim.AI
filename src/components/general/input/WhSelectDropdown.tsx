@@ -4,8 +4,8 @@ import SelectDropdown from 'react-native-select-dropdown';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../../lib/constants/Colors';
-import { handleError } from '../../../lib/utility/errorHandler';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
+import { handleError } from '../../../lib/utility/errorHandler';
 
 export type WhSelectDropdownProps<T> = {
     data: T[];

@@ -8,10 +8,10 @@ import {
     useColorStateConfig,
 } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
 import { IntractableView } from '../views/IntractableView';
-import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 
 export type ButtonProps = {
     onPress?: () => void;

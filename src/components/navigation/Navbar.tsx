@@ -9,11 +9,11 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../lib/constants/Colors';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useAppSelector } from '../../lib/redux/Hooks';
 import { useAnimatedValueNav } from '../../lib/utility/animate';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { navigationBarLinks } from '../../routes/navigation';
-import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 
 export const NavBar = () => {
     const [showNavBar, setShowNavBar] = useState(true);

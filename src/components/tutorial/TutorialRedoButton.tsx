@@ -3,12 +3,12 @@ import { Pressable, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useAppDispatch } from '../../lib/redux/Hooks';
 import { setCompleted } from '../../lib/redux/slices/TutorialSlice';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
-import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 
 export const TutorialRedoButton = () => {
     const storeDispatcher = useAppDispatch();

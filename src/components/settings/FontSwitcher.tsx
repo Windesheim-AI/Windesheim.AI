@@ -3,9 +3,9 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { useColorConfig } from '../../lib/constants/Colors';
 import { MaxSize, MinSize } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
 import { fontActions } from '../../lib/redux/slices/FontSlice';
-import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 
 export const FontSwitcher = () => {
     const storeDispatcher = useAppDispatch();
