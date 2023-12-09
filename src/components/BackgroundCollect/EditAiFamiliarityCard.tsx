@@ -1,21 +1,19 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { aiFamiliarity } from './DataList';
 import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
 import { setAiFamiliarity } from '../../lib/redux/slices/BackgroundInformationSlice';
-import { translateText } from '../../lib/translations/hooks';
+import { usePreparedTranslator } from '../../lib/translations/hooks';
 import { SettingCard } from '../general/card/SettingCard';
 import { SelectValuesInput } from '../general/input/SelectValuesInput';
 
 export const EditAiFamiliarityCard = () => {
-    const language = useAppSelector((state) => state.language.langCode);
-    const { t } = useTranslation();
+    const t = usePreparedTranslator();
 
     const storeDispatcher = useAppDispatch();
 
     const selectableOptions = aiFamiliarity.map((item) => {
-        return translateText(t, item.name, language);
+        return t(item.name);
     });
 
     const backgroundInformation = useAppSelector(

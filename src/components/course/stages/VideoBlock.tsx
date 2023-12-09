@@ -10,16 +10,14 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
 
-    // Moved StyleSheet out of the component so it's not recreated on each render
     const styles = StyleSheet.create({
         container: {
-            flex: 1, // You might want to adjust this flex value or set fixed width/height
+            flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
             marginBottom: 20,
         },
         video: {
-            // If you know the aspect ratio of your video, set it here
             aspectRatio: 16 / 9, // Assuming a 16:9 aspect ratio
             width: '100%', // Make the video width stretch to the container width
             maxHeight: '100%', // Optional: if you want to set a max height
@@ -43,7 +41,6 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
         return match && match[1].length === 11 ? match[1] : false;
     };
 
-    // @ts-ignore
     return (
         <BlockWrapper style={styles.container}>
             {!options.videoURL.includes('youtube' || 'yt') ? (

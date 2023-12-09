@@ -13,6 +13,7 @@ import {
     useColorStateConfig,
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useMapMultipleCoursesToData } from '../../lib/repositories/courses/mapMultipleCourseToData';
 import useAllCourses from '../../lib/repositories/courses/useAllCourses';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -68,6 +69,7 @@ export function Courses() {
     });
 
     function onPress(courseId: string) {
+        HapticFeedback(HapticForces.Light);
         navigator.navigate(Routes.StageOverview.toString(), {
             courseId,
         });

@@ -45,6 +45,8 @@ export type ColorSchemeType = {
     borderColor: string;
     listItemBg: string;
     opacityLayer: string;
+    accentTitle: string;
+    progressbarBg: string;
     seeAllText: string;
 };
 
@@ -87,6 +89,8 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.8)',
         seeAllText: '#1C1C1C',
+        accentTitle: '#FFFFFF',
+        progressbarBg: '#373737',
     },
     dark: {
         primary: '#4695D3',
@@ -126,6 +130,8 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
         seeAllText: '#FFFFFF',
+        accentTitle: '#757575',
+        progressbarBg: '#373737',
     },
 };
 
@@ -167,6 +173,8 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.8)',
+        accentTitle: '#757575',
+        progressbarBg: '#373737',
         seeAllText: '#1C1C1C',
     },
     dark: {
@@ -206,6 +214,8 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
+        accentTitle: '#757575',
+        progressbarBg: '#373737',
         seeAllText: '#FFFFFF',
     },
 };
@@ -247,7 +257,9 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.9)',
-        seeAllText: '#1C1C1C',
+        seeAllText: '#000000',
+        progressbarBg: '#00FF00',
+        accentTitle: '#000000',
     },
     dark: {
         primary: '#0000FF',
@@ -287,6 +299,8 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
         seeAllText: '#FFFFFF',
+        accentTitle: '#757575',
+        progressbarBg: '#00FF00',
     },
 };
 
@@ -333,7 +347,7 @@ export type StateColorGradientSchemes = {
     danger: ColorGradientScheme;
 };
 
-const stateColorSchemes: StateColorGradientSchemes = {
+export const stateColorSchemes: StateColorGradientSchemes = {
     primary: ['#4695D3', '#22BDC6', '#86D2D9'],
     info: ['#4695D3', '#22BDC6', '#86D2D9'],
     secondary: ['#FFCB05', '#FFD949', '#FFF377'],

@@ -40,6 +40,10 @@ type TextStyling = {
     courseSubTitle: TextStyle;
     chipText: TextStyle;
     smallLink: TextStyle;
+    stageTime: TextStyle;
+    cardStageTitle: TextStyle;
+    level: TextStyle;
+    levelText: TextStyle;
 };
 
 // eslint-disable-next-line complexity
@@ -121,6 +125,10 @@ export function useFonts() {
             fontSize: 16,
             fontStyle: 'italic',
         },
+        cardStageTitle: {
+            fontSize: 15,
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
+        },
         link: {
             fontSize: 16,
             lineHeight: 24,
@@ -182,6 +190,18 @@ export function useFonts() {
         smallLink: {
             fontSize: 13,
             fontFamily: areFontsLoaded ? 'OpenSans_400Regular' : 'System',
+        },
+        stageTime: {
+            fontSize: 12,
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
+        },
+        level: {
+            fontSize: 12,
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
+        },
+        levelText: {
+            fontSize: 12,
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
     };
 
