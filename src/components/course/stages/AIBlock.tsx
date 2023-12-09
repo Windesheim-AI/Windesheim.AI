@@ -8,7 +8,6 @@ import { EnvOptions } from '../../../lib/utility/env/env.values';
 import { AIOptions } from '../../../types/CourseStageBlock';
 import AIGeneratedOutput from '../AIGeneratedOutput';
 
-// @ts-ignore
 export default function AIRenderer({ options }: { options: AIOptions }) {
     const [text, setText] = useState(''); // set default value to an empty string
     const openai = new OpenAI({

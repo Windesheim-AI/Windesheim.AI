@@ -20,6 +20,7 @@ describe('estimateTime', () => {
             {
                 id: 'block-id-1',
                 blockType: CourseStageBlockType.Text,
+                // @ts-ignore
                 content: {
                     courseId: 'course-id',
                     stageId: 'stage-id',
@@ -29,6 +30,7 @@ describe('estimateTime', () => {
             {
                 id: 'block-id',
                 blockType: CourseStageBlockType.Text,
+                // @ts-ignore
                 content: {
                     courseId: 'course-id',
                     stageId: 'stage-id',
@@ -49,6 +51,7 @@ describe('estimateTimeToRead', () => {
             {
                 id: 'block-id-1',
                 blockType: CourseStageBlockType.Text,
+                // @ts-ignore
                 content: {
                     courseId: 'course-id',
                     stageId: 'stage-id',
@@ -58,6 +61,7 @@ describe('estimateTimeToRead', () => {
             {
                 id: 'block-id',
                 blockType: CourseStageBlockType.Text,
+                // @ts-ignore
                 content: {
                     courseId: 'course-id',
                     stageId: 'stage-id',

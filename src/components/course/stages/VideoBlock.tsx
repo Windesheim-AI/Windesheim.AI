@@ -43,7 +43,6 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
         return match && match[1].length === 11 ? match[1] : false;
     };
 
-    // @ts-ignore
     return (
         <BlockWrapper style={styles.container}>
             {!options.videoURL.includes('youtube' || 'yt') ? (

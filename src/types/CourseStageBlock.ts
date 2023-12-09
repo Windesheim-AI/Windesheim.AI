@@ -3,12 +3,11 @@ import { ColorTypes } from '../lib/constants/Colors';
 export type CourseStageBlock = {
     blockType: CourseStageBlockType;
     id: string;
-    content:
-        | TextOptions
-        | AIOptions
-        | ButtonOptions
-        | ImageOptions
-        | VideoOptions; //json string or AIOptions
+    content: TextOptions &
+        AIOptions &
+        ButtonOptions &
+        ImageOptions &
+        VideoOptions;
 };
 
 export type CourseStageBlockOptions = {
