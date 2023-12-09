@@ -22,6 +22,7 @@ import { useFonts } from '../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useMapSingleCourseToData } from '../../lib/repositories/courses/mapSingleCourseToData';
 import useSingleCourse from '../../lib/repositories/courses/useSingleCourse';
+import { usePreparedTranslator } from '../../lib/translations/hooks';
 import { estimateTime } from '../../lib/utility/estimateTime';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
@@ -38,7 +39,7 @@ export type StageItemProps = {
 
 export default function StageOverview() {
     const fonts = useFonts();
-
+    const t = usePreparedTranslator();
     const stateColors = useColorStateConfig();
     const colors = useColorConfig();
     const route = useRoute();
@@ -177,7 +178,9 @@ export default function StageOverview() {
                         <View style={styles.stageBar}>
                             <TextTranslated
                                 style={fonts.courseTitle}
-                                text={`${course?.stageData?.length} Stages`}
+                                text={`${course?.stageData?.length} ${t(
+                                    'Stages',
+                                )}`}
                             />
                             <View style={styles.timeBar}>
                                 <FontAwesome5Icon
