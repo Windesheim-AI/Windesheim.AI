@@ -44,3 +44,4 @@ jobs:
                   retention-days: 1
 
             - uses: ./.github/cleanup-action
+              if: always()
