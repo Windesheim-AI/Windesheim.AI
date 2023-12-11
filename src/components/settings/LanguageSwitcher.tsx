@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
 import { languageActions } from '../../lib/redux/slices/LanguageSlice';
-import { useTextTranslate } from '../../lib/translations/hooks';
 import {
     LanguageCode,
     getLanguageCodeByTranslation,
     languageLabels,
     languageOptions,
 } from '../../lib/translations/languageOptions';
-import { WhSelectDropdown } from '../general/input/WhSelectDropdown';
+import { SelectValuesInput } from '../general/input/SelectValuesInput';
 
 export const LanguageSwitcher = () => {
     const storeDispatcher = useAppDispatch();
@@ -19,14 +18,15 @@ export const LanguageSwitcher = () => {
     );
 
     const selectableLanguages = languageLabels();
-    const selectedLanguageTranslation = languageOptions[selectedLanguage];
+    const selectedLanguageIndex = selectableLanguages.findIndex((language) => {
+        return language === languageOptions[selectedLanguage];
+    });
 
     return (
-        <WhSelectDropdown<string>
-            data={selectableLanguages}
-            label={useTextTranslate('Select language')}
-            searchText={useTextTranslate('Search...')}
-            defaultValue={selectedLanguageTranslation}
+        <SelectValuesInput
+            label="Select language"
+            selectableValues={selectableLanguages}
+            defaultValueIndex={selectedLanguageIndex}
             onSelect={(selectedItem) => {
                 const newSelectedLanguage: LanguageCode | undefined =
                     getLanguageCodeByTranslation(selectedItem);
@@ -41,7 +41,7 @@ export const LanguageSwitcher = () => {
                     }),
                 );
             }}
-            testID="language-switcher"
+            testId="language-switcher"
         />
     );
 };

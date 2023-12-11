@@ -38,7 +38,6 @@ export function WhSelectDropdown<T>({
         },
         dropdown2BtnStyle: {
             width: '100%',
-            height: 50,
             backgroundColor: colors.background,
             borderRadius: 8,
             borderStyle: 'solid',
