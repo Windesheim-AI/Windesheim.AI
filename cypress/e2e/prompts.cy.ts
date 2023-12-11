@@ -17,7 +17,7 @@ describe('Prompt Library tests', () => {
         // get the fixture and put it in a const
         const prompts = require('../fixtures/prompts/data.json');
 
-        cy.visit('/prompt-library');
+        cy.visit('/study/prompt-library');
         cy.wait(['@getData']);
 
         cy.contains('Prompt Library');
@@ -42,7 +42,7 @@ describe('Prompt Library tests', () => {
             fixture: 'prompts/empty.json',
         }).as('getData');
 
-        cy.visit('/prompt-library');
+        cy.visit('/study/prompt-library');
         cy.wait(['@getData']);
 
         cy.contains('Prompt Library');
@@ -57,7 +57,7 @@ describe('Prompt Library tests', () => {
         // get the fixture and put it in a const
         const prompts = require('../fixtures/prompts/data.json');
 
-        cy.visit('/prompt-library');
+        cy.visit('/study/prompt-library');
         cy.wait(['@getData']);
 
         cy.contains('Prompt Library');
@@ -90,7 +90,7 @@ describe('Prompt Library tests', () => {
         // get the fixture and put it in a const
         const prompt = require('../fixtures/prompts/1-prompt.json');
 
-        cy.visit('/prompt-library/prompt?promptId=1');
+        cy.visit('/study/prompt-library/prompt?promptId=1');
         cy.wait(['@getData']);
 
         cy.contains('Prompt Library');
@@ -108,7 +108,7 @@ describe('Prompt Library tests', () => {
             fixture: 'prompts/empty.json',
         }).as('getData');
 
-        cy.visit('/prompt-library/prompt?promptId=1');
+        cy.visit('/study/prompt-library/prompt?promptId=1');
         cy.wait(['@getData']);
 
         cy.contains('No prompt found!');
