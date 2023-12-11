@@ -8,14 +8,9 @@ export const RouteLinking = {
     config: {
         screens: {
             [Routes.Home]: 'home',
-            [Routes.WindesheimTechRadar]: {
-                path: 'wtr-content/:page?',
-                parse: {
-                    page: (page: string) => page,
-                },
-            },
+            [Routes.WindesheimTechRadar]: 'wtr-content',
             [Routes.WindesheimTechRadarContent]: {
-                path: 'wtr-content-content/:page',
+                path: 'wtr-content/:page',
                 parse: {
                     page: (page: string) => page,
                 },
