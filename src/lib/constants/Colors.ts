@@ -40,6 +40,7 @@ export type ColorSchemeType = {
     navBar: {
         backgroundColor: string;
         color: string;
+        activeColor: string;
     };
     subTitle: string;
     borderColor: string;
@@ -80,6 +81,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         navBar: {
             backgroundColor: '#FAFAFA',
             color: '#2B2A2A',
+            activeColor: '#FFFFFF',
         },
         borderColor: '#ccc',
         subTitle: '#2B2A2A',
@@ -121,6 +123,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         navBar: {
             backgroundColor: '#090A0A',
             color: '#c4c4c4',
+            activeColor: '#FFFFFF',
         },
         subTitle: '#c4c4c4',
         borderColor: '#ccc',
@@ -164,7 +167,8 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         subtext: '#a8a7a7',
         navBar: {
             backgroundColor: '#FAFAFA',
-            color: '#2B2A2A',
+            color: '#999',
+            activeColor: '#2B2A2A',
         },
         borderColor: '#ccc',
         subTitle: '#2B2A2A',
@@ -206,6 +210,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         navBar: {
             backgroundColor: '#090A0A',
             color: '#c4c4c4',
+            activeColor: '#FFFFFF',
         },
         subTitle: '#c4c4c4',
         borderColor: '#ccc',
@@ -249,6 +254,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         navBar: {
             backgroundColor: '#FFFFFF',
             color: '#000000',
+            activeColor: '#0000FF',
         },
         borderColor: '#000000',
         subTitle: '#000000',
@@ -290,6 +296,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         navBar: {
             backgroundColor: '#000000',
             color: '#FFFFFF',
+            activeColor: '#FFFF00',
         },
         subTitle: '#FFFFFF',
         borderColor: '#FFFFFF',
