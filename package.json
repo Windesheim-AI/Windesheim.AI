@@ -95,7 +95,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.23.2",
-        "@cypress/code-coverage": "^3.12.6",
+        "@cypress/code-coverage": "^3.12.13",
         "@testing-library/jest-native": "^5.4.3",
         "@testing-library/react-native": "^12.4.0",
         "@types/css-modules": "^1.0.4",
