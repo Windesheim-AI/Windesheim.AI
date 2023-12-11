@@ -115,7 +115,7 @@ export function ThemeItemCard({
                         <ReadMoreButton
                             buttonStyle={styles.button}
                             buttonTextStyle={styles.buttonText}
-                            navigateToRoute={Routes.WindesheimTechRadar}
+                            navigateToRoute={Routes.WindesheimTechRadarContent}
                             navigationParams={{ page: themeSlug }}
                             testID={`theme-${themeSlug}-button`}
                         />
