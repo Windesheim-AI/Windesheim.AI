@@ -10,7 +10,7 @@ describe('Study page tests', () => {
     });
 
     it('can display the study page', () => {
-        cy.visit('/Study');
+        cy.visit('/study');
 
         cy.contains('Welcome to study');
         cy.get('[data-testid="courses-button"]');

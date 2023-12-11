@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
-import { Routes } from './routes';
+import { DefaultRoute, Routes } from './routes';
 import { LoadingScreen } from '../components/loadingscreen/LoadingScreen';
 import { useAppSelector } from '../lib/redux/Hooks';
 import CourseFinished from '../screens/Course/CourseFinished';
@@ -45,7 +45,7 @@ export const Router = () => {
     const animationState = useAppSelector((state) => state.animation); // You need to add animation state to your redux store
     return (
         <Stack.Navigator
-            initialRouteName={Routes.Home}
+            initialRouteName={DefaultRoute}
             screenOptions={{
                 headerShown: false,
                 animation: animationState.isEnabled ? 'default' : 'none',

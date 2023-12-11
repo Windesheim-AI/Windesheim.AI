@@ -1,16 +1,7 @@
 import Constants from 'expo-constants';
-import LottieView from 'lottie-react-native';
 import React from 'react';
-import {
-    Dimensions,
-    Platform,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import { Dimensions, Pressable, StyleSheet, Text, View } from 'react-native';
 
-import animationSource from '../../../assets/json/500_man.json';
 import { isEnvSettingEnabled } from '../../../lib/utility/env/env';
 import { EnvOptions } from '../../../lib/utility/env/env.values';
 
@@ -61,10 +52,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
     },
-    animationContainer: {
-        width: windowWidth * 0.8,
-        height: windowWidth * 0.8,
-    },
 });
 
 interface Props {
@@ -75,15 +62,6 @@ interface Props {
 const ErrorFallback: React.FC<Props> = ({ error, resetError }: Props) => {
     return (
         <View style={styles.container} testID="error-fallback-container">
-            <View style={styles.animationContainer}>
-                {Platform.OS !== 'web' ? (
-                    <LottieView
-                        source={animationSource}
-                        autoPlay
-                        style={styles.animationContainer}
-                    />
-                ) : null}
-            </View>
             <Text style={styles.title}>Something happened!</Text>
             <Text style={styles.text}>
                 {isEnvSettingEnabled(EnvOptions.AppDebug)
@@ -91,14 +69,9 @@ const ErrorFallback: React.FC<Props> = ({ error, resetError }: Props) => {
                     : ''}
             </Text>
             <View style={styles.textContainer}>
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => {
-                        resetError();
-                    }}
-                >
+                <Pressable style={styles.button} onPress={() => resetError()}>
                     <Text style={styles.buttonText}>Try again</Text>
-                </TouchableOpacity>
+                </Pressable>
             </View>
         </View>
     );
