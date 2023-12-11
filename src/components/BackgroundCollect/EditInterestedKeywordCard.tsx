@@ -5,36 +5,37 @@ import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
 import { setInterestedKeyword } from '../../lib/redux/slices/BackgroundInformationSlice';
 import { usePreparedTranslator } from '../../lib/translations/hooks';
 import { SettingCard } from '../general/card/SettingCard';
-import { SelectValuesInput } from '../general/input/SelectValuesInput';
+import {
+    SelectableItem,
+    SelectDropdown,
+} from '../general/input/SelectDropdown';
 
 export const EditInterestedKeywordCard = () => {
     const t = usePreparedTranslator();
 
     const storeDispatcher = useAppDispatch();
-
-    const selectableKeywords = keywords.map((item) => {
-        return t(item.name);
-    });
-
     const backgroundInformation = useAppSelector(
         (state) => state.backgroundInformation,
     );
-    const selectedKeyword = backgroundInformation.interestedKeyword;
-    const selectedKeywordIndex = keywords.findIndex((item) => {
-        return item.name === selectedKeyword;
+
+    const selectableKeywords: SelectableItem[] = keywords.map((item) => {
+        return {
+            label: t(item.name),
+            value: item.name,
+        };
     });
 
     return (
         <SettingCard title="Interest in" icon="lightbulb" isFlexEnabled={false}>
-            <SelectValuesInput
+            <SelectDropdown
                 label="AI interest"
-                selectableValues={selectableKeywords}
-                defaultValueIndex={selectedKeywordIndex}
-                onSelect={(_, index) => {
-                    storeDispatcher(setInterestedKeyword(keywords[index].name));
+                data={selectableKeywords}
+                defaultValue={backgroundInformation.interestedKeyword}
+                onSelect={(selectedItem) => {
+                    storeDispatcher(setInterestedKeyword(selectedItem.label));
                 }}
                 width="100%"
-                testId="edit-interested-keyword-select"
+                testID="edit-interested-keyword-select"
             />
         </SettingCard>
     );

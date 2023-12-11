@@ -19,7 +19,9 @@ export type ColorSchemeType = {
     link: string;
     text: string;
     textLight: string;
+    textHighlight: string;
     background: string;
+    backgroundHighlight: string;
     backgroundModal: string;
     tint: string;
     gray: string;
@@ -64,7 +66,9 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         link: '#ffcb05',
         text: '#000',
         textLight: '#fff',
+        textHighlight: '#fff',
         background: '#fff',
+        backgroundHighlight: '#4695D3',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorLight,
         gray: '#919191',
@@ -105,8 +109,10 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         link: '#ffcb05',
         text: '#fff',
         textLight: '#fff',
+        textHighlight: '#fff',
         buttonText: '#fff',
         background: '#2a2a2a',
+        backgroundHighlight: '#4695D3',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorDark,
         gray: '#919191',
@@ -151,7 +157,9 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         link: '#ffcb05',
         text: '#5F5F5F',
         textLight: '#fff',
+        textHighlight: '#fff',
         background: '#fafafa',
+        backgroundHighlight: '#4695D3',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorLight,
         gray: '#919191',
@@ -192,8 +200,10 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         link: '#ffcb05',
         text: '#fff',
         textLight: '#fff',
+        textHighlight: '#fff',
         buttonText: '#fff',
         background: '#2a2a2a',
+        backgroundHighlight: '#4695D3',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorDark,
         gray: '#919191',
@@ -237,7 +247,9 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         link: '#FFFF00',
         text: '#000000',
         textLight: '#FFFFFF',
+        textHighlight: '#FFFFFF',
         background: '#FFFFFF',
+        backgroundHighlight: '#0000FF',
         backgroundModal: 'rgba(0, 0, 0, 0.4)',
         tint: '#0000FF',
         gray: '#000000',
@@ -278,8 +290,10 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         link: '#FFFF00',
         text: '#FFFFFF',
         textLight: '#FFFFFF',
+        textHighlight: '#FFFFFF',
         buttonText: '#FFFFFF',
         background: '#000000',
+        backgroundHighlight: '#0000FF',
         backgroundModal: 'rgba(0,0,0,0.4)',
         tint: '#FFFFFF',
         gray: '#6e6e6e',
