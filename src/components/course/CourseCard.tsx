@@ -8,12 +8,12 @@ import {
     useColorStateConfig,
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { usePreparedTranslator } from '../../lib/translations/hooks';
 import { Card } from '../general/base/Card';
 import { IconLine } from '../general/base/IconLine';
 import { CheckMarkFlag } from '../general/base/checkFlagMark';
 import { TextTranslated } from '../general/text/TextTranslated';
 import { IntractableView } from '../general/views/IntractableView';
-import { usePreparedTranslator } from '../../lib/translations/hooks';
 
 type Props = {
     title: string | undefined;
@@ -139,16 +139,16 @@ export function CourseCard({
                             iconName="star"
                             iconColor={stateColors.colors.secondary[1]}
                             textStyle={{ color: colors.text }}
-                            leftorRight="left"
+                            iconPosition="left"
                             size={20}
                             style={styles.iconLines}
                         />
                         <IconLine
-                            text={`${likes}`}
+                            text={likes.toString()}
                             iconName="heart"
                             iconColor={stateColors.colors.danger[0]}
                             textStyle={{ color: colors.text }}
-                            leftorRight="left"
+                            iconPosition="left"
                             size={20}
                             style={styles.iconLines}
                         />
@@ -158,7 +158,7 @@ export function CourseCard({
                                 iconName="play"
                                 iconColor={colors.white}
                                 textStyle={{ color: colors.white }}
-                                leftorRight="left"
+                                iconPosition="left"
                                 size={20}
                             />
                         </View>

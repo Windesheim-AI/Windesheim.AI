@@ -11,7 +11,7 @@ type Props = {
     iconName: string;
     iconColor?: string;
     textStyle?: TextStyle;
-    leftorRight?: 'left' | 'right';
+    iconPosition?: 'left' | 'right';
     size: number;
     style?: ViewStyle;
 };
@@ -21,7 +21,7 @@ export function IconLine({
     iconColor,
     iconName,
     textStyle,
-    leftorRight,
+    iconPosition,
     size,
     style,
 }: Props) {
@@ -47,7 +47,7 @@ export function IconLine({
 
     return (
         <View style={[style, styles.container]}>
-            {leftorRight === 'left' ? (
+            {iconPosition === 'left' ? (
                 <FontAwesome5Icon
                     name={iconName}
                     size={15}
@@ -56,7 +56,7 @@ export function IconLine({
                 />
             ) : null}
             <TextTranslated style={styles.text} text={text} />
-            {leftorRight === 'right' ? (
+            {iconPosition === 'right' ? (
                 <FontAwesome5Icon
                     name={iconName}
                     size={size}
