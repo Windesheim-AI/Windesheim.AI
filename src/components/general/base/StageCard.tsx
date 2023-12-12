@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, StyleSheet, View, ViewStyle } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
+import { CheckMarkFlag } from './checkFlagMark';
 import { IntractableView } from '../../../components/general/views/IntractableView';
 import { shadow, useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
@@ -67,25 +67,6 @@ export function StageCard({
             width: 64,
             resizeMode: 'cover',
         },
-        checkmarkContainer: {
-            position: 'absolute',
-            right: 30,
-            top: 0,
-            padding: 5,
-            borderBottomRightRadius: 10,
-            borderBottomLeftRadius: 10,
-            borderTopStartRadius: 2,
-            borderTopEndRadius: 2,
-            paddingTop: 15,
-            backgroundColor: colors.success,
-            color: colors.white,
-            fontSize: 20,
-            ...shadow,
-        },
-        checkmark: {
-            color: colors.white,
-            fontSize: 20,
-        },
         topComponent: {
             paddingTop: 2,
         },
@@ -124,15 +105,7 @@ export function StageCard({
                     </View>
                 </View>
             </IntractableView>
-            {!isCompleted ? (
-                <View style={styles.checkmarkContainer}>
-                    <FontAwesome5
-                        name="check"
-                        style={styles.checkmark}
-                        size={5}
-                    />
-                </View>
-            ) : null}
+            {!isCompleted ? <CheckMarkFlag /> : null}
         </View>
     );
 }

@@ -49,6 +49,7 @@ export type ColorSchemeType = {
     accentTitle: string;
     progressbarBg: string;
     seeAllText: string;
+    subCard: string;
 };
 
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -93,6 +94,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#1C1C1C',
         accentTitle: '#FFFFFF',
         progressbarBg: '#373737',
+        subCard: '#f4f3fd',
     },
     dark: {
         primary: '#4695D3',
@@ -135,6 +137,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#FFFFFF',
         accentTitle: '#757575',
         progressbarBg: '#373737',
+        subCard: '#373737',
     },
 };
 
@@ -180,6 +183,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         accentTitle: '#757575',
         progressbarBg: '#373737',
         seeAllText: '#1C1C1C',
+        subCard: '#f4f3fd',
     },
     dark: {
         primary: '#4695D3',
@@ -222,6 +226,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         accentTitle: '#757575',
         progressbarBg: '#373737',
         seeAllText: '#FFFFFF',
+        subCard: '#252525',
     },
 };
 const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -266,6 +271,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#000000',
         progressbarBg: '#00FF00',
         accentTitle: '#000000',
+        subCard: '#f4f3fd',
     },
     dark: {
         primary: '#0000FF',
@@ -308,6 +314,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#FFFFFF',
         accentTitle: '#757575',
         progressbarBg: '#00FF00',
+        subCard: '#1C1C1C',
     },
 };
 
