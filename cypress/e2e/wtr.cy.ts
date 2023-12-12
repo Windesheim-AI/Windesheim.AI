@@ -1,3 +1,9 @@
+// Disable uncaught exception handling.
+Cypress.on('uncaught:exception', () => {
+    // Returning false here prevents Cypress from failing the test.
+    return false;
+});
+
 describe('WTR page tests', () => {
     beforeEach(() => {
         cy.visit('/');

@@ -1,43 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
 import { languageActions } from '../../lib/redux/slices/LanguageSlice';
-import { useTextTranslate } from '../../lib/translations/hooks';
+import { languageOptions } from '../../lib/translations/languageOptions';
 import {
-    LanguageCode,
-    getLanguageCodeByTranslation,
-    languageLabels,
-    languageOptions,
-} from '../../lib/translations/languageOptions';
-import { WhSelectDropdown } from '../general/input/WhSelectDropdown';
+    SelectableItem,
+    SelectDropdown,
+} from '../general/input/SelectDropdown';
 
 export const LanguageSwitcher = () => {
     const storeDispatcher = useAppDispatch();
     const languageState = useAppSelector((state) => state.language);
-    const [selectedLanguage, setSelectedLanguage] = useState<LanguageCode>(
-        languageState.langCode,
-    );
 
-    const selectableLanguages = languageLabels();
-    const selectedLanguageTranslation = languageOptions[selectedLanguage];
+    const selectableLanguages: SelectableItem[] = Object.keys(
+        languageOptions,
+    ).map((key) => ({
+        label: languageOptions[key],
+        value: key,
+    }));
 
     return (
-        <WhSelectDropdown<string>
+        <SelectDropdown
+            label="Select language"
             data={selectableLanguages}
-            label={useTextTranslate('Select language')}
-            searchText={useTextTranslate('Search...')}
-            defaultValue={selectedLanguageTranslation}
+            defaultValue={languageState.langCode}
             onSelect={(selectedItem) => {
-                const newSelectedLanguage: LanguageCode | undefined =
-                    getLanguageCodeByTranslation(selectedItem);
-                if (!newSelectedLanguage) {
-                    return;
-                }
-
-                setSelectedLanguage(newSelectedLanguage);
                 storeDispatcher(
                     languageActions.changeLanguage({
-                        langCode: newSelectedLanguage,
+                        langCode: selectedItem.value,
                     }),
                 );
             }}
