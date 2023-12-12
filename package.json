@@ -6,6 +6,7 @@
         "node": "=18"
     },
     "scripts": {
+        "postinstall": "npx patch-package --patch-dir ./patches",
         "start": "expo start",
         "start:no-cache": "expo start -c",
         "android": "expo start --android",
