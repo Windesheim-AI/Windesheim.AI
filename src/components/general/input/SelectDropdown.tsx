@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 
 import { useColorConfig } from '../../../lib/constants/Colors';
@@ -22,6 +22,8 @@ export type Props = {
     testID?: string;
 };
 
+const screenWidth = Dimensions.get('window').width;
+
 export function SelectDropdown({
     data,
     onSelect,
@@ -35,13 +37,27 @@ export function SelectDropdown({
     const t = usePreparedTranslator();
     const [value, setValue] = useState(defaultValue);
 
+    const dropdownWidth = 300;
+    const dropdownLeft = (screenWidth - dropdownWidth) / 2;
+    const dropdownRight = (screenWidth - dropdownWidth) / 2;
+
     const styles = StyleSheet.create({
         container: {
             // @ts-ignore
             width: width ?? '50%',
         },
         dropdownContainer: {
-            width: 350,
+            borderRadius: 8,
+            borderColor: colors.text,
+            borderWidth: 1,
+            left: dropdownLeft,
+            right: dropdownRight,
+            width: dropdownWidth,
+            backgroundColor: colors.background,
+            shadowColor: colors.black,
+            shadowOpacity: 1,
+            shadowRadius: 100,
+            elevation: 100,
         },
         dropdown: {
             height: 50,
