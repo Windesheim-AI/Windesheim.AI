@@ -10,6 +10,10 @@ describe('Home page tests', () => {
     });
 
     it('can display the home page', () => {
+        cy.intercept('GET', '/wp-json/winpl/v1/prompts/', {
+            fixture: 'prompts/data.json',
+        }).as('getData');
+
         cy.visit('/');
 
         cy.contains('Home');
