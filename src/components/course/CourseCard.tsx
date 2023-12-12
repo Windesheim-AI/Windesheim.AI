@@ -13,6 +13,7 @@ import { IconLine } from '../general/base/IconLine';
 import { CheckMarkFlag } from '../general/base/checkFlagMark';
 import { TextTranslated } from '../general/text/TextTranslated';
 import { IntractableView } from '../general/views/IntractableView';
+import { usePreparedTranslator } from '../../lib/translations/hooks';
 
 type Props = {
     title: string | undefined;
@@ -104,6 +105,8 @@ export function CourseCard({
         },
     });
 
+    const t = usePreparedTranslator();
+
     return (
         <IntractableView onPress={onPress}>
             <Card style={styles.card}>
@@ -132,7 +135,7 @@ export function CourseCard({
                     {/* star icon */}
                     <View style={styles.infoMarginContainer}>
                         <IconLine
-                            text={`Level ${level}`}
+                            text={`${t('Level')} ${level}`}
                             iconName="star"
                             iconColor={stateColors.colors.secondary[1]}
                             textStyle={{ color: colors.text }}
