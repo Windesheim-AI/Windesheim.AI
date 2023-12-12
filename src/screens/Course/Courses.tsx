@@ -51,15 +51,20 @@ export function Courses() {
                 {/* map the courses */}
                 <View style={styles.cardContainer} testID="test-container">
                     {courses?.map((course: CourseDataMapped) => (
-                        <CourseCard
+                        <View
+                            testID={`course-card-${course.courseId}`}
                             key={course.courseId}
-                            title={course.title}
-                            completedTasks={getAmountCompletedTask(course)}
-                            totalTasks={course.stageData?.length ?? 0}
-                            level="0"
-                            likes={0}
-                            onPress={() => onPress(course.courseId)}
-                        />
+                        >
+                            <CourseCard
+                                key={course.courseId}
+                                title={course.title}
+                                completedTasks={getAmountCompletedTask(course)}
+                                totalTasks={course.stageData?.length ?? 0}
+                                level="0"
+                                likes={0}
+                                onPress={() => onPress(course.courseId)}
+                            />
+                        </View>
                     ))}
                 </View>
             </PageScrollView>
