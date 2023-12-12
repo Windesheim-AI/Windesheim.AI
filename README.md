@@ -29,7 +29,7 @@ cp .env.example .env
 The table below shows the values for the .env file.
 
 | Name             | Description                                                                             | Link                                 |
-|------------------|-----------------------------------------------------------------------------------------|--------------------------------------|
+| ---------------- | --------------------------------------------------------------------------------------- | ------------------------------------ |
 | `OPENAI_API_KEY` | The key to access the OpenAI API.                                                       | https://platform.openai.com/api-keys |
 | `APP_DEBUG`      | Shows errors when enabled.                                                              | -                                    |
 | `AI_ENABLED`     | Turns on the AI API. Recommended to turn this off in development, because of the costs. | -                                    |
@@ -47,7 +47,7 @@ npm run postinstall
 
 ## Scripts
 
-The package.json file contains several scripts for development and testing:  
+The package.json file contains several scripts for development and testing:
 
 `npm run start`: Starts the expo server.
 `npm run android`: Starts the expo server and opens the app in an Android emulator.
