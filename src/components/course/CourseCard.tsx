@@ -83,20 +83,21 @@ export function CourseCard({
         },
         infoMarginContainer: {
             marginTop: 'auto',
-            marginBottom: 'auto',
             alignItems: 'flex-start',
-            paddingTop: 40,
+            marginBottom: 10,
+            marginRight: 10,
         },
         iconLines: {
             marginBottom: 10,
+            display: 'none',
         },
         button: {
             backgroundColor: colors.bg3,
             borderRadius: 10,
-            paddingTop: 10,
-            paddingBottom: 10,
-            paddingLeft: 20,
-            paddingRight: 20,
+            paddingTop: 7,
+            paddingBottom: 7,
+            paddingLeft: 14,
+            paddingRight: 14,
             marginTop: 10,
             ...shadow,
             ...fonts.stageTime,
@@ -146,6 +147,7 @@ export function CourseCard({
                             textStyle={{ color: colors.text }}
                             leftorRight="left"
                             size={20}
+                            style={styles.iconLines}
                         />
                         <View style={styles.button}>
                             <IconLine
