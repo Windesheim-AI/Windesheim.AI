@@ -59,11 +59,9 @@ export default function Stage() {
         },
         container: {
             paddingBottom: 30,
-            height: '100%',
-            minHeight: '100%',
-            // center
         },
         buttonContainer: {
+            marginTop: 30,
             flexDirection: 'row',
             marginLeft: 'auto',
             marginRight: 'auto',
