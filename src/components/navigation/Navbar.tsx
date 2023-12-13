@@ -20,7 +20,7 @@ export const NavBar = () => {
 
     const styles = StyleSheet.create({
         container: {
-            flexDirection: 'row', // Horizontal arrangement
+            flexDirection: 'row',
             alignItems: 'center',
             alignSelf: 'center',
             justifyContent: 'space-around',
@@ -32,14 +32,28 @@ export const NavBar = () => {
             position: 'absolute',
             width: screenWidth - 40,
             zIndex: 1,
-            padding: 10,
+            padding: 0,
         },
         itemContainer: {
             width: 55,
-            height: 35,
-            flex: 1, // Make the icons equally distribute horizontally
+            height: '100%',
+            flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
+            margin: 0,
+            padding: 0,
+            borderRadius: 50,
+        },
+        itemSelectedContainer: {
+            margin: 0,
+            padding: 0,
+            width: 55,
+            height: '100%',
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 50,
+            backgroundColor: colors.navBar.activeItemBackgroundColor,
         },
     });
 
@@ -63,28 +77,36 @@ export const NavBar = () => {
 
     return (
         <Animated.View style={{ ...styles.container, opacity, bottom, width }}>
-            {navigationBarLinks.map((link, index) => (
-                <Pressable
-                    // eslint-disable-next-line react/no-array-index-key
-                    key={index}
-                    onPress={() => {
-                        HapticFeedback(HapticForces.Light);
-                        navigation.navigate(link.route);
-                    }}
-                    style={styles.itemContainer}
-                    testID={link.route + '-navbar-button'}
-                >
-                    <FontAwesome5
-                        color={
-                            isRouteActive(link.route)
-                                ? colors.navBar.activeColor
-                                : colors.navBar.color
+            {navigationBarLinks.map((link, index) => {
+                const routeActive = isRouteActive(link.route);
+
+                return (
+                    <Pressable
+                        // eslint-disable-next-line react/no-array-index-key
+                        key={index}
+                        onPress={() => {
+                            HapticFeedback(HapticForces.Light);
+                            navigation.navigate(link.route);
+                        }}
+                        style={
+                            routeActive
+                                ? styles.itemSelectedContainer
+                                : styles.itemContainer
                         }
-                        name={link.icon}
-                        size={20}
-                    />
-                </Pressable>
-            ))}
+                        testID={link.route + '-navbar-button'}
+                    >
+                        <FontAwesome5
+                            color={
+                                routeActive
+                                    ? colors.navBar.activeColor
+                                    : colors.navBar.color
+                            }
+                            name={link.icon}
+                            size={20}
+                        />
+                    </Pressable>
+                );
+            })}
         </Animated.View>
     );
 };

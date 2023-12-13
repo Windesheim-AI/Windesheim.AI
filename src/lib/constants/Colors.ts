@@ -41,6 +41,8 @@ export type ColorSchemeType = {
     subtext: string;
     navBar: {
         backgroundColor: string;
+        itemBackgroundColor: string;
+        activeItemBackgroundColor: string;
         color: string;
         activeColor: string;
     };
@@ -85,7 +87,9 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         subtext: '#a8a7a7',
         navBar: {
             backgroundColor: '#FAFAFA',
-            color: '#2B2A2A',
+            itemBackgroundColor: '#FFFFFF',
+            activeItemBackgroundColor: '#000000',
+            color: '#000000',
             activeColor: '#FFFFFF',
         },
         borderColor: '#ccc',
@@ -129,8 +133,10 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         settingButtonBG: '#373737',
         subtext: '#a8a7a7',
         navBar: {
-            backgroundColor: '#090A0A',
-            color: '#c4c4c4',
+            backgroundColor: '#FAFAFA',
+            itemBackgroundColor: '#FFFFFF',
+            activeItemBackgroundColor: '#000000',
+            color: '#000000',
             activeColor: '#FFFFFF',
         },
         subTitle: '#c4c4c4',
@@ -178,8 +184,10 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         subtext: '#a8a7a7',
         navBar: {
             backgroundColor: '#FAFAFA',
-            color: '#999',
-            activeColor: '#2B2A2A',
+            itemBackgroundColor: '#FAFAFA',
+            activeItemBackgroundColor: '#ccc',
+            color: '#000000',
+            activeColor: '#000000',
         },
         borderColor: '#ccc',
         subTitle: '#2B2A2A',
@@ -222,8 +230,10 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         settingButtonBG: '#373737',
         subtext: '#a8a7a7',
         navBar: {
-            backgroundColor: '#090A0A',
-            color: '#c4c4c4',
+            backgroundColor: '#FAFAFA',
+            itemBackgroundColor: '#FFFFFF',
+            activeItemBackgroundColor: '#000000',
+            color: '#000000',
             activeColor: '#FFFFFF',
         },
         subTitle: '#c4c4c4',
@@ -269,9 +279,11 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         modalBackground: 'rgba(0, 0, 0, 0.4)',
         subtext: '#000000',
         navBar: {
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#FAFAFA',
+            itemBackgroundColor: '#FFFFFF',
+            activeItemBackgroundColor: '#000000',
             color: '#000000',
-            activeColor: '#0000FF',
+            activeColor: '#FFFFFF',
         },
         borderColor: '#000000',
         subTitle: '#000000',
@@ -314,9 +326,11 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         settingButtonBG: '#000000',
         subtext: '#fff',
         navBar: {
-            backgroundColor: '#000000',
-            color: '#FFFFFF',
-            activeColor: '#FFFF00',
+            backgroundColor: '#FAFAFA',
+            itemBackgroundColor: '#FFFFFF',
+            activeItemBackgroundColor: '#000000',
+            color: '#000000',
+            activeColor: '#FFFFFF',
         },
         subTitle: '#FFFFFF',
         borderColor: '#FFFFFF',
