@@ -18,8 +18,12 @@ describe('Home page tests', () => {
 
         cy.contains('Home');
         cy.contains('Useful Prompts');
+        cy.contains('Tech Providers');
         cy.contains('Themes');
         cy.contains('See All');
+
+        // There should be 3 Tech Providers.
+        cy.get('[data-testid="tech-provider-card"]').should('have.length', 3);
 
         // There should be 3 themes.
         cy.get('[data-testid="theme-card"]').should('have.length', 3);

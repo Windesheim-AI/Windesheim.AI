@@ -51,6 +51,7 @@ export type ColorSchemeType = {
     accentTitle: string;
     progressbarBg: string;
     seeAllText: string;
+    techProviderGradient: string[];
     subCard: string;
 };
 
@@ -98,6 +99,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#1C1C1C',
         accentTitle: '#FFFFFF',
         progressbarBg: '#373737',
+        techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd',
     },
     dark: {
@@ -143,6 +145,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#FFFFFF',
         accentTitle: '#757575',
         progressbarBg: '#373737',
+        techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#373737',
     },
 };
@@ -191,6 +194,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         accentTitle: '#757575',
         progressbarBg: '#f3f3f5',
         seeAllText: '#1C1C1C',
+        techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd',
     },
     dark: {
@@ -236,6 +240,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         accentTitle: '#757575',
         progressbarBg: '#373737',
         seeAllText: '#FFFFFF',
+        techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#252525',
     },
 };
@@ -283,6 +288,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#000000',
         progressbarBg: '#00FF00',
         accentTitle: '#000000',
+        techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd',
     },
     dark: {
@@ -328,6 +334,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#FFFFFF',
         accentTitle: '#757575',
         progressbarBg: '#00FF00',
+        techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#1C1C1C',
     },
 };
