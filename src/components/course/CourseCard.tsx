@@ -13,7 +13,7 @@ import { Card } from '../general/base/Card';
 import { IconLine } from '../general/base/IconLine';
 import { CheckMarkFlag } from '../general/base/checkFlagMark';
 import { TextTranslated } from '../general/text/TextTranslated';
-import { IntractableView } from '../general/views/InteractableView';
+import { InteractiveView } from '../general/views/InteractiveView';
 
 type Props = {
     title: string | undefined;
@@ -108,7 +108,7 @@ export function CourseCard({
     const t = usePreparedTranslator();
 
     return (
-        <IntractableView onPress={onPress}>
+        <InteractiveView onPress={onPress}>
             <Card style={styles.card}>
                 <View style={styles.titleSide}>
                     <Image
@@ -167,6 +167,6 @@ export function CourseCard({
 
                 {true ? <CheckMarkFlag /> : null}
             </Card>
-        </IntractableView>
+        </InteractiveView>
     );
 }

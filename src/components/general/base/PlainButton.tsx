@@ -1,11 +1,12 @@
-import { StyleSheet, ViewStyle } from "react-native";
-import { shadow, useColorConfig, useColorStateConfig } from "../../../lib/constants/Colors";
-import { IntractableView } from "../views/InteractableView";
-import { IconLine } from "./IconLine";
-import React from "react";
-import { TextTranslated } from "../text/TextTranslated";
-import { useFonts } from "../../../lib/constants/Fonts";
-import { HapticFeedback, HapticForces } from "../../../lib/haptic/Hooks";
+import React from 'react';
+import { StyleSheet, ViewStyle } from 'react-native';
+
+import { IconLine } from './IconLine';
+import { shadow } from '../../../lib/constants/Colors';
+import { useFonts } from '../../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
+import { TextTranslated } from '../text/TextTranslated';
+import { InteractiveView } from '../views/InteractiveView';
 
 type PlainButtonProps = {
     text: string;
@@ -43,12 +44,12 @@ export function PlainButton({
     }
 
     return (
-        <IntractableView style={[style, styles.button]} onPress={press}>
+        <InteractiveView style={[style, styles.button]} onPress={press}>
             {icon ? (
                 <IconLine iconName={icon} text={text} size={15} />
             ) : (
                 <TextTranslated text={text} style={fonts.button} />
             )}
-        </IntractableView>
+        </InteractiveView>
     );
 }

@@ -18,7 +18,7 @@ import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../../routes/routes';
 import { TextTranslated } from '../../general/text/TextTranslated';
-import { IntractableView } from '../../general/views/IntractableView';
+import { InteractiveView } from '../../general/views/InteractiveView';
 
 type Props = {
     name: string;
@@ -76,7 +76,7 @@ export function TechProviderCard({
     });
 
     return (
-        <IntractableView
+        <InteractiveView
             style={[styles.card, style]}
             testID="tech-provider-card"
             onPress={() => {
@@ -101,6 +101,6 @@ export function TechProviderCard({
                     <TextTranslated style={styles.title} text={name} />
                 </View>
             </View>
-        </IntractableView>
+        </InteractiveView>
     );
 }
