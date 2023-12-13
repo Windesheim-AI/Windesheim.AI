@@ -79,10 +79,10 @@ export function TechProviderCard({
     return (
         <IntractableView
             style={[styles.card, style]}
-            testID="theme-card"
+            testID="tech-provider-card"
             onPress={() => {
                 HapticFeedback(HapticForces.Light);
-                navigation.navigate(Routes.WindesheimTechRadar, {
+                navigation.navigate(Routes.WindesheimTechRadarContent, {
                     page: techProviderSlug,
                 });
             }}
