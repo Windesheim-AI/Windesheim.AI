@@ -27,6 +27,13 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
         },
     });
 
+    const navigate = (provider: string) => () => {
+        HapticFeedback(HapticForces.Light);
+        navigation.navigate(Routes.WindesheimTechRadar, {
+            page: provider,
+        });
+    };
+
     useEffect(() => {
         let resultItems = [...techProviderItems];
         if (!limit || limit < 1) {
