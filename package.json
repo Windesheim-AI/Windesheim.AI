@@ -52,12 +52,11 @@
         "expo-av": "~13.4.1",
         "expo-font": "~11.4.0",
         "expo-haptics": "~12.4.0",
+        "expo-linear-gradient": "~12.3.0",
         "expo-linking": "~5.0.2",
         "expo-router": "^2.0.11",
         "expo-status-bar": "~1.6.0",
-        "i": "^0.3.7",
         "i18next": "^23.7.6",
-        "npm": "^10.2.5",
         "openai": "^4.16.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
@@ -86,8 +85,7 @@
         "react-numeric-input": "^2.2.3",
         "react-redux": "^8.1.3",
         "redux-persist": "^6.0.0",
-        "swr": "^2.2.4",
-        "expo-linear-gradient": "~12.3.0"
+        "swr": "^2.2.4"
     },
     "devDependencies": {
         "@babel/core": "^7.23.2",
