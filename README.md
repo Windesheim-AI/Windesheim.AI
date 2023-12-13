@@ -49,14 +49,14 @@ npm run postinstall
 
 The package.json file contains several scripts for development and testing:
 
-- `npm run start`: Starts the expo server.
-- `npm run android`: Starts the expo server and opens the app in an Android emulator.
-- `npm run ios`: Starts the expo server and opens the app in an iOS simulator.
-- `npm run web`: Starts the expo server and opens the app in a web browser.
-- `npm run tests`: Runs all tests.
-- `npm run lint:run`: Runs the eslint check.
-- `npm run prettier:run`: Runs the prettier check.
-- `npm run tsc:run`: Runs the typescript check.
+-   `npm run start`: Starts the expo server.
+-   `npm run android`: Starts the expo server and opens the app in an Android emulator.
+-   `npm run ios`: Starts the expo server and opens the app in an iOS simulator.
+-   `npm run web`: Starts the expo server and opens the app in a web browser.
+-   `npm run tests`: Runs all tests.
+-   `npm run lint:run`: Runs the eslint check.
+-   `npm run prettier:run`: Runs the prettier check.
+-   `npm run tsc:run`: Runs the typescript check.
 
 ## Deployment
 
