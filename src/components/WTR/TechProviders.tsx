@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { TechProviderCard } from './Card/TechProviderCard';
 import { TechProvider, techProviderItems } from './TechProviderItems';
@@ -8,7 +8,9 @@ import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 import { TitleWithSeeAll } from '../general/text/TitleWithSeeAll';
 
-export const TechProviders = ({ limit }: { limit?: number }) => {
+type Props = { limit?: number };
+
+export const TechProviders = ({ limit }: Props) => {
     const fonts = useFonts();
     const [displayItems, setDisplayItems] = useState<TechProvider[]>([]);
     const isLimited = limit && limit > 0;
@@ -22,8 +24,6 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
-            width: '100%',
-            height: 120,
         },
     });
 
@@ -52,19 +52,18 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
                 <TextTranslated style={styles.heading} text="Tech Providers" />
             )}
 
-            <ScrollView>
-                <View style={styles.container}>
-                    {displayItems.map((provider) => (
-                        <View key={provider.slug}>
-                            <TechProviderCard
-                                name={provider.name}
-                                techProviderImage={provider.logo}
-                                techProviderSlug={provider.slug}
-                            />
-                        </View>
-                    ))}
-                </View>
-            </ScrollView>
+            <View style={styles.container}>
+                {displayItems.map((provider) => (
+                    <View key={provider.slug}>
+                        <TechProviderCard
+                            name={provider.name}
+                            // @ts-ignore
+                            techProviderImage={provider.logo}
+                            techProviderSlug={provider.slug}
+                        />
+                    </View>
+                ))}
+            </View>
         </View>
     );
 };
