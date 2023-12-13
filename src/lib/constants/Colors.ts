@@ -51,7 +51,7 @@ export type ColorSchemeType = {
     accentTitle: string;
     progressbarBg: string;
     seeAllText: string;
-   techProviderGradient: string[];
+    techProviderGradient: string[];
     subCard: string;
 };
 
