@@ -86,7 +86,10 @@ export function TechProviderCard({
                 });
             }}
         >
-            <View style={styles.container}>
+            <View
+                style={styles.container}
+                testID={`tech-provider-${techProviderSlug}-button`}
+            >
                 <LinearGradient
                     colors={colors.techProviderGradient}
                     style={styles.circle}
