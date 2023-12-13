@@ -18,7 +18,7 @@ import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../../routes/routes';
 import { ReadMoreButton } from '../../general/buttons/ReadMoreButton';
 import { TextTranslated } from '../../general/text/TextTranslated';
-import { IntractableView } from '../../general/views/IntractableView';
+import { InteractiveView } from '../../general/views/InteractiveView';
 
 type Props = {
     title: string;
@@ -92,7 +92,7 @@ export function ThemeItemCard({
     });
 
     return (
-        <IntractableView
+        <InteractiveView
             style={[styles.card, style]}
             testID="theme-card"
             onPress={() => {
@@ -122,6 +122,6 @@ export function ThemeItemCard({
                     </View>
                 </View>
             </View>
-        </IntractableView>
+        </InteractiveView>
     );
 }

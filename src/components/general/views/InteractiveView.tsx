@@ -5,7 +5,7 @@ type Props = {
     onPress: () => void;
 } & ViewProps;
 
-export function IntractableView({ onPress, ...props }: Props) {
+export function InteractiveView({ onPress, ...props }: Props) {
     return (
         <Pressable onPress={onPress}>
             <View {...props}>{props.children}</View>

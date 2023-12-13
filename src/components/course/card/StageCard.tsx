@@ -1,8 +1,6 @@
 import React from 'react';
 import { Image, StyleSheet, View, ViewStyle } from 'react-native';
 
-import { CheckMarkFlag } from './checkFlagMark';
-import { IntractableView } from '../../../components/general/views/IntractableView';
 import { shadow, useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
@@ -10,7 +8,9 @@ import { estimateTimeToRead } from '../../../lib/utility/estimateTime';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../../routes/routes';
 import { CourseStageBlock } from '../../../types/CourseStageBlock';
-import { TextTranslated } from '../text/TextTranslated';
+import { CheckMarkFlag } from '../../general/base/checkFlagMark';
+import { TextTranslated } from '../../general/text/TextTranslated';
+import { InteractiveView } from '../../general/views/InteractiveView';
 
 export type StageCardProps = {
     stageTitle: string;
@@ -20,7 +20,6 @@ export type StageCardProps = {
     isCompleted?: boolean;
     courseId: string;
     stageId: string;
-    // add links to theme
 };
 
 export function StageCard({
@@ -82,7 +81,7 @@ export function StageCard({
 
     return (
         <View style={styles.topComponent}>
-            <IntractableView
+            <InteractiveView
                 style={[styles.card, style]}
                 onPress={handlePress}
                 testID={`stage-card-${stageId}`}
@@ -104,7 +103,7 @@ export function StageCard({
                         />
                     </View>
                 </View>
-            </IntractableView>
+            </InteractiveView>
             {!isCompleted ? <CheckMarkFlag /> : null}
         </View>
     );

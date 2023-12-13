@@ -1,9 +1,10 @@
 import { Audio, ResizeMode, Video } from 'expo-av';
 import React from 'react';
-import { Button, Dimensions, StyleSheet, View } from 'react-native';
+import { Button, Dimensions, StyleSheet } from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 import BlockWrapper from './block';
+import { shadow } from '../../../lib/constants/Colors';
 import { VideoOptions } from '../../../types/CourseStageBlock';
 
 export function VideoBlock({ options }: { options: VideoOptions }) {
@@ -15,7 +16,10 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            marginBottom: 20,
+            borderRadius: 10,
+            marginTop: 10,
+            marginBottom: 10,
+            ...shadow,
         },
         video: {
             aspectRatio: 16 / 9, // Assuming a 16:9 aspect ratio
@@ -23,8 +27,7 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
             maxHeight: '100%', // Optional: if you want to set a max height
         },
         ytContainer: {
-            marginRight: 10,
-            marginLeft: 10,
+            borderRadius: 10,
         },
     });
 
@@ -76,13 +79,12 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
                     />
                 </>
             ) : (
-                <View style={styles.ytContainer}>
-                    <YoutubePlayer
-                        height={Dimensions.get('window').height / 3}
-                        width={Dimensions.get('window').width - 90}
-                        videoId={getYTId(options.videoURL) || ''}
-                    />
-                </View>
+                <YoutubePlayer
+                    webViewStyle={styles.ytContainer}
+                    height={Dimensions.get('window').height / 4.55}
+                    width={Dimensions.get('window').width - 60}
+                    videoId={getYTId(options.videoURL) || ''}
+                />
             )}
         </BlockWrapper>
     );

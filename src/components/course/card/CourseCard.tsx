@@ -6,14 +6,14 @@ import {
     shadow,
     useColorConfig,
     useColorStateConfig,
-} from '../../lib/constants/Colors';
-import { useFonts } from '../../lib/constants/Fonts';
-import { usePreparedTranslator } from '../../lib/translations/hooks';
-import { Card } from '../general/base/Card';
-import { IconLine } from '../general/base/IconLine';
-import { CheckMarkFlag } from '../general/base/checkFlagMark';
-import { TextTranslated } from '../general/text/TextTranslated';
-import { IntractableView } from '../general/views/IntractableView';
+} from '../../../lib/constants/Colors';
+import { useFonts } from '../../../lib/constants/Fonts';
+import { usePreparedTranslator } from '../../../lib/translations/hooks';
+import { Card } from '../../general/base/Card';
+import { IconLine } from '../../general/base/IconLine';
+import { CheckMarkFlag } from '../../general/base/checkFlagMark';
+import { TextTranslated } from '../../general/text/TextTranslated';
+import { InteractiveView } from '../../general/views/InteractiveView';
 
 type Props = {
     title: string | undefined;
@@ -108,12 +108,12 @@ export function CourseCard({
     const t = usePreparedTranslator();
 
     return (
-        <IntractableView onPress={onPress}>
+        <InteractiveView onPress={onPress}>
             <Card style={styles.card}>
                 <View style={styles.titleSide}>
                     <Image
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                        source={require('../../assets/images/bgImages/robot.png')}
+                        source={require('../../../assets/images/bgImages/robot.png')}
                         style={styles.image}
                     />
                     <View style={styles.titleContainer}>
@@ -167,6 +167,6 @@ export function CourseCard({
 
                 {true ? <CheckMarkFlag /> : null}
             </Card>
-        </IntractableView>
+        </InteractiveView>
     );
 }

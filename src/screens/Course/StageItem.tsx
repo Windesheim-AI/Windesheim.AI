@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { TextTranslated } from '../../components/general/text/TextTranslated';
-import { IntractableView } from '../../components/general/views/IntractableView';
+import { InteractiveView } from '../../components/general/views/InteractiveView';
 import {
     shadow,
     useColorConfig,
@@ -59,7 +59,7 @@ export const StageItem = ({
     }
 
     return (
-        <IntractableView
+        <InteractiveView
             onPress={handlePress}
             style={styles.card}
             testID={`stage-card-${id}`}
@@ -80,6 +80,6 @@ export const StageItem = ({
                 )}
                 <TextTranslated style={styles.title} text={title} />
             </View>
-        </IntractableView>
+        </InteractiveView>
     );
 };

@@ -11,7 +11,7 @@ import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
-import { IntractableView } from '../views/IntractableView';
+import { InteractiveView } from '../views/InteractiveView';
 
 export type ButtonProps = {
     onPress?: () => void;
@@ -115,7 +115,7 @@ export const Button = ({
     });
 
     return (
-        <IntractableView
+        <InteractiveView
             style={styles.button}
             onPress={onPress}
             testID={testId}
@@ -127,6 +127,6 @@ export const Button = ({
                 {icon ? ' ' : ''}
                 <TextTranslated style={styles.text} text={buttonText ?? ''} />
             </Text>
-        </IntractableView>
+        </InteractiveView>
     );
 };
