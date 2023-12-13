@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { TechProviders } from '../components/WTR/TechProviders';
 import { Themes } from '../components/WTR/Themes';
 import { PageScrollView } from '../components/general/views/PageScrollView';
 import { HomePrompts } from '../components/home/HomePrompts';
@@ -12,6 +13,7 @@ export const HomeScreen = () => {
         <PageScrollView title="Home" description={description}>
             <HomePrompts />
             <Themes limit={3} />
+            <TechProviders limit={3} />
         </PageScrollView>
     );
 };
