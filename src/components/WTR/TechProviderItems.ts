@@ -2,31 +2,31 @@
 import React from 'react';
 
 //@ts-ignore
-import AmazonLogo from '../../assets/images/WTR/TechProviders/amazon.svg';
+import AmazonLogo from '../../assets/images/WTR/TechProviders/amazon.png';
 //@ts-ignore
-import AppleLogo from '../../assets/images/WTR/TechProviders/apple.svg';
+import AppleLogo from '../../assets/images/WTR/TechProviders/apple.png';
 //@ts-ignore
-import CiscoLogo from '../../assets/images/WTR/TechProviders/cisco.svg';
+import CiscoLogo from '../../assets/images/WTR/TechProviders/cisco.png';
 //@ts-ignore
-import GoogleLogo from '../../assets/images/WTR/TechProviders/google.svg';
+import GoogleLogo from '../../assets/images/WTR/TechProviders/google.png';
 //@ts-ignore
-import HpLogo from '../../assets/images/WTR/TechProviders/hp.svg';
+import HpLogo from '../../assets/images/WTR/TechProviders/hp.png';
 //@ts-ignore
-import IbmLogo from '../../assets/images/WTR/TechProviders/ibm.svg';
+import IbmLogo from '../../assets/images/WTR/TechProviders/ibm.png';
 //@ts-ignore
-import IntelLogo from '../../assets/images/WTR/TechProviders/intel.svg';
+import IntelLogo from '../../assets/images/WTR/TechProviders/intel.png';
 //@ts-ignore
-import MetaLogo from '../../assets/images/WTR/TechProviders/meta.svg';
+import MetaLogo from '../../assets/images/WTR/TechProviders/meta.png';
 //@ts-ignore
-import MicrosoftLogo from '../../assets/images/WTR/TechProviders/microsoft.svg';
+import MicrosoftLogo from '../../assets/images/WTR/TechProviders/microsoft.png';
 //@ts-ignore
-import OpenAILogo from '../../assets/images/WTR/TechProviders/openai.svg';
+import OpenAILogo from '../../assets/images/WTR/TechProviders/openai.png';
 //@ts-ignore
-import OracleLogo from '../../assets/images/WTR/TechProviders/oracle.svg';
+import OracleLogo from '../../assets/images/WTR/TechProviders/oracle.png';
 //@ts-ignore
-import SalesForceLogo from '../../assets/images/WTR/TechProviders/salesforce.svg';
+import SalesForceLogo from '../../assets/images/WTR/TechProviders/salesforce.png';
 //@ts-ignore
-import SapLogo from '../../assets/images/WTR/TechProviders/sap.svg';
+import SapLogo from '../../assets/images/WTR/TechProviders/sap.png';
 
 export type TechProvider = {
     name: string;
