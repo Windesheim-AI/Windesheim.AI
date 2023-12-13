@@ -188,9 +188,9 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         navBar: {
             backgroundColor: '#FAFAFA',
             itemBackgroundColor: '#FAFAFA',
-            activeItemBackgroundColor: '#ccc',
+            activeItemBackgroundColor: '#000000',
             color: '#000000',
-            activeColor: '#000000',
+            activeColor: '#FFFFFF',
         },
         borderColor: '#ccc',
         subTitle: '#2B2A2A',
