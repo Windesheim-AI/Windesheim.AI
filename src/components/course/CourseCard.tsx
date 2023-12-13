@@ -13,7 +13,7 @@ import { Card } from '../general/base/Card';
 import { IconLine } from '../general/base/IconLine';
 import { CheckMarkFlag } from '../general/base/checkFlagMark';
 import { TextTranslated } from '../general/text/TextTranslated';
-import { IntractableView } from '../general/views/IntractableView';
+import { IntractableView } from '../general/views/InteractableView';
 
 type Props = {
     title: string | undefined;

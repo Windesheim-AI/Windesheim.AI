@@ -19,6 +19,7 @@ export const PageView = ({ children, title, description }: PageViewProps) => {
         container: {
             backgroundColor: colors.background,
             flex: 1,
+            minHeight: '100%',
             padding: 20,
         },
         header: {

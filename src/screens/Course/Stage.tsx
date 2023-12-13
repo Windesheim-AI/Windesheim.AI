@@ -6,7 +6,7 @@ import * as Progress from 'react-native-progress';
 import { CourseNavigation } from '../../components/course/CourseNavigation';
 import StageRenderer from '../../components/course/StageRenderer';
 import { DataWrapper } from '../../components/general/base/DataWrapper';
-import { Button } from '../../components/general/buttons/Button';
+import { PlainButton } from '../../components/general/base/PlainButton';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
@@ -46,10 +46,11 @@ export default function Stage() {
 
     const styles = StyleSheet.create({
         progressBar: {
-            marginTop: 15,
+            marginBottom: 15,
             ...shadow,
             borderColor: colors.listItemBg,
-            color: colors.primary,
+            borderWidth: 0,
+            backgroundColor: colors.progressbarBg,
         },
         courseTitle: {
             ...fonts.h1,
@@ -59,7 +60,16 @@ export default function Stage() {
         container: {
             paddingBottom: 30,
             height: '100%',
-            backgroundColor: colors.background,
+            minHeight: '100%',
+            // center
+        },
+        buttonContainer: {
+            flexDirection: 'row',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+        },
+        button: {
+            marginRight: 10,
         },
     });
 
@@ -113,12 +123,36 @@ export default function Stage() {
         });
     }
 
+    function goPrevious() {
+        const previousStage =
+            course.stageData[activeStageCount - 1] ?? undefined;
+
+        if (!previousStage) {
+            navigator.navigate(Routes.Courses.toString());
+            return;
+        }
+
+        navigator.navigate(Routes.CourseStage, {
+            courseId: course.courseId,
+            stageId: previousStage.id,
+        });
+    }
+
     return (
         <PageScrollView>
             <DataWrapper error={error} isLoading={isLoading}>
                 <View style={styles.container}>
                     {stage ? (
                         <>
+                            <Progress.Bar
+                                progress={
+                                    (activeStageCount + 1) /
+                                    course.stageData.length
+                                }
+                                width={null}
+                                color={colorStateConfig.colors.secondary[1]}
+                                style={styles.progressBar}
+                            />
                             <CourseNavigation
                                 title={course.title ?? ''}
                                 subTitle={stage.title}
@@ -126,33 +160,27 @@ export default function Stage() {
                                 courseId={course.courseId}
                                 currentStageId={stageId}
                             />
-                            <Progress.Bar
-                                progress={
-                                    (activeStageCount + 1) /
-                                    course.stageData.length
-                                }
-                                width={null}
-                                style={styles.progressBar}
-                            />
-                            <TextTranslated
-                                style={styles.courseTitle}
-                                text={course.title ?? ''}
-                            />
-
                             <StageRenderer
                                 key={stage.id}
                                 courseId={course.courseId}
                                 stage={stage}
                             />
-                            <Button
-                                buttonText="Next"
-                                onPress={onPress}
-                                colorGradientScheme={
-                                    colorStateConfig.colors.primary
-                                }
-                                textColorScheme={colorStateConfig.text?.primary}
-                                testId={`next-stage-${stage.id}-button`}
-                            />
+                            <View style={styles.buttonContainer}>
+                                <PlainButton
+                                    text="Previous"
+                                    onPress={goPrevious}
+                                    style={styles.button}
+                                    backgroundColor={colors.background}
+                                />
+                                <PlainButton
+                                    text="Next"
+                                    backgroundColor={
+                                        colorStateConfig.colors.secondary[1]
+                                    }
+                                    onPress={onPress}
+                                    style={styles.button}
+                                />
+                            </View>
                         </>
                     ) : (
                         <TextTranslated

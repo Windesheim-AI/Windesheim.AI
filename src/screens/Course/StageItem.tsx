@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { TextTranslated } from '../../components/general/text/TextTranslated';
-import { IntractableView } from '../../components/general/views/IntractableView';
+import { IntractableView } from '../../components/general/views/InteractableView';
 import {
     shadow,
     useColorConfig,

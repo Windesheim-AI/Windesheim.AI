@@ -13,7 +13,7 @@ import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
 import { TextTranslated } from '../general/text/TextTranslated';
-import { IntractableView } from '../general/views/IntractableView';
+import { IntractableView } from '../general/views/InteractableView';
 
 export function CourseNavigation({
     title,

@@ -5,14 +5,20 @@ import BlockWrapper from './block';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { TextOptions } from '../../../types/CourseStageBlock';
 import { TextTranslated } from '../../general/text/TextTranslated';
+import { shadow, useColorConfig } from '../../../lib/constants/Colors';
 
 export default function TextRenderer({ options }: { options: TextOptions }) {
     const fonts = useFonts();
+    const colors = useColorConfig();
 
     const styles = StyleSheet.create({
         block: {
-            marginTop: 20,
-            marginBottom: 20,
+            ...shadow,
+            backgroundColor: colors.listItemBg,
+            padding: 10,
+            marginTop: 10,
+            marginBottom: 10,
+            borderRadius: 10,
         },
     });
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, StyleSheet, View, ViewStyle } from 'react-native';
 
 import { CheckMarkFlag } from './checkFlagMark';
-import { IntractableView } from '../../../components/general/views/IntractableView';
+import { IntractableView } from '../views/InteractableView';
 import { shadow, useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';

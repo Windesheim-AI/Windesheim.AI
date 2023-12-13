@@ -1,29 +1,50 @@
-import React from 'react';
-import { Image, StyleSheet, View } from 'react-native';
+import React, { useState } from 'react';
+import { Image, StyleSheet } from 'react-native';
+import ImageView from 'react-native-image-viewing';
 
 import BlockWrapper from './block';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { ImageOptions } from '../../../types/CourseStageBlock';
+import { IntractableView } from '../../general/views/InteractableView';
 
 export function ImageBlock({ options }: { options: ImageOptions }) {
+    const [visible, setVisible] = useState(false);
     const styles = StyleSheet.create({
         container: {
             flex: 1,
         },
         image: {
-            flex: 1,
-            resizeMode: 'contain',
-            height: 300,
+            height: 200,
         },
     });
 
+    function onPress() {
+        HapticFeedback(HapticForces.Light);
+        setVisible(true);
+    }
+
     return (
         <BlockWrapper style={styles.container}>
-            <View style={styles.container}>
+            <IntractableView onPress={onPress}>
                 <Image
-                    source={{ uri: options.imageURL }}
                     style={styles.image}
+                    source={{
+                        uri: options.imageURL,
+                    }}
                 />
-            </View>
+            </IntractableView>
+            <ImageView
+                images={[
+                    {
+                        uri: options.imageURL,
+                    },
+                ]}
+                imageIndex={0}
+                visible={visible}
+                swipeToCloseEnabled
+                doubleTapToZoomEnabled
+                onRequestClose={() => setVisible(false)}
+            />
         </BlockWrapper>
     );
 }

@@ -117,7 +117,7 @@ export function useFonts() {
         description: {
             color: colors.text,
             fontSize: 14,
-            fontFamily: areFontsLoaded ? 'OpenSans_400Regular' : 'System',
+            fontFamily: areFontsLoaded ? 'Inter_500Medium' : 'System',
         },
         quote: {
             color: colors.text,
@@ -157,7 +157,7 @@ export function useFonts() {
         },
         button: {
             fontSize: 16,
-            fontWeight: 'bold',
+            fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',
             color: colors.buttonText,
         },
         buttonLarger: {
@@ -172,10 +172,10 @@ export function useFonts() {
             fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',
         },
         courseTitle: {
-            fontSize: 16,
+            fontSize: 20,
             fontWeight: 'bold',
-            color: colors.buttonText,
-            fontFamily: areFontsLoaded ? 'Inter_300Light' : 'System',
+            color: colors.text,
+            fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',
         },
         courseSubTitle: {
             fontSize: 12,
