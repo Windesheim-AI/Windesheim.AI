@@ -1,11 +1,11 @@
 import { Audio, ResizeMode, Video } from 'expo-av';
 import React from 'react';
-import { Button, Dimensions, StyleSheet, View } from 'react-native';
+import { Button, Dimensions, StyleSheet } from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 import BlockWrapper from './block';
-import { VideoOptions } from '../../../types/CourseStageBlock';
 import { shadow } from '../../../lib/constants/Colors';
+import { VideoOptions } from '../../../types/CourseStageBlock';
 
 export function VideoBlock({ options }: { options: VideoOptions }) {
     const video = React.useRef(null);
@@ -80,7 +80,6 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
                 </>
             ) : (
                 <YoutubePlayer
-                    // eslint-disable-next-line react-native/no-inline-styles
                     webViewStyle={styles.ytContainer}
                     height={Dimensions.get('window').height / 4.55}
                     width={Dimensions.get('window').width - 60}

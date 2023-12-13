@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
+import { StageCard } from '../../components/course/Card/StageCard';
 import { DataWrapper } from '../../components/general/base/DataWrapper';
-import { StageCard } from '../../components/general/base/StageCard';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';

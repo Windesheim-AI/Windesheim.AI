@@ -1,7 +1,6 @@
 import React from 'react';
 import { Image, StyleSheet, View, ViewStyle } from 'react-native';
 
-import { CheckMarkFlag } from './checkFlagMark';
 import { shadow, useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
@@ -9,8 +8,9 @@ import { estimateTimeToRead } from '../../../lib/utility/estimateTime';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../../routes/routes';
 import { CourseStageBlock } from '../../../types/CourseStageBlock';
-import { TextTranslated } from '../text/TextTranslated';
-import { InteractiveView } from '../views/InteractiveView';
+import { CheckMarkFlag } from '../../general/base/checkFlagMark';
+import { TextTranslated } from '../../general/text/TextTranslated';
+import { InteractiveView } from '../../general/views/InteractiveView';
 
 export type StageCardProps = {
     stageTitle: string;
