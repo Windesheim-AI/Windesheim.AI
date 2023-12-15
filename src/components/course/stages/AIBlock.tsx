@@ -30,14 +30,15 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
             setText(chatCompletion.choices[0].message.content);
         }
 
-        if (isEnvSettingEnabled(EnvOptions.AiEnabled)) {
-            // eslint-disable-next-line no-void
-            void main();
-        } else {
+        if (!isEnvSettingEnabled(EnvOptions.AiEnabled)) {
             setText(
                 `Live AI has been disabled in the .env file. Showing prompt; ${options.prompt}`,
             );
+            return;
         }
+
+        // eslint-disable-next-line no-void
+        void main();
     }, [openai.chat.completions, options.prompt]);
 
     const styles = StyleSheet.create({

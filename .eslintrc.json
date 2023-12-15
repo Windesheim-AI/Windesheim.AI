@@ -30,7 +30,8 @@
         "react-native",
         "@typescript-eslint",
         "etc",
-        "no-dimensions"
+        "no-dimensions",
+        "no-else"
     ],
     "ignorePatterns": [
         "cypress/",
@@ -47,6 +48,7 @@
     },
     "rules": {
         "no-dimensions/no-dimensions": "error",
+        "no-else/no-else": 2,
         "indent": ["error", 4, { "SwitchCase": 1 }],
         "react-native/no-unused-styles": 2,
         "react-native/split-platform-components": 2,

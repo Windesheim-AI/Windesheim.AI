@@ -10,20 +10,17 @@ import { Button } from '../../general/buttons/Button';
 
 export default function ButtonBlock({ options }: { options: ButtonOptions }) {
     const colorStateConfig = useColorStateConfig();
-    let colorGradientScheme;
-    let textColorScheme;
+    const navigator = useNavigation();
+
+    let colorGradientScheme = colorStateConfig.colors.primary;
+    let textColorScheme = colorStateConfig.text?.primary;
     // check if colorOptions exists on options and if so, use that instead of the default colorGradientScheme.
     if (colorStateConfig.colors[options.colorOptions]) {
         colorGradientScheme = colorStateConfig.colors[options.colorOptions];
         textColorScheme = colorStateConfig.text
             ? colorStateConfig.text[options.colorOptions]
             : undefined;
-    } else {
-        colorGradientScheme = colorStateConfig.colors.primary;
-        textColorScheme = colorStateConfig.text?.primary;
     }
-
-    const navigator = useNavigation();
 
     function onPress() {
         navigator.navigate(Routes.CourseStage, {
