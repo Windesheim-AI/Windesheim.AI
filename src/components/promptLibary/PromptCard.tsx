@@ -45,7 +45,6 @@ export function PromptCard({ prompt }: Props) {
         },
         imageContainer: {
             alignItems: 'center',
-            marginRight: 16,
         },
         toolText: {
             ...fonts.h3,
