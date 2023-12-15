@@ -6,6 +6,7 @@ import { useFonts } from '../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useMapMultipleCoursesToData } from '../../lib/repositories/courses/mapMultipleCourseToData';
 import useAllCourses from '../../lib/repositories/courses/useAllCourses';
+import { getRandomLimitedItemsFromArray } from '../../lib/utility/data';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { CourseDataMapped } from '../../types/Course';
@@ -27,6 +28,10 @@ export function CoursesOverview({ marginTop, limit }: Props) {
     const courses = useMapMultipleCoursesToData(data);
     const navigator = useNavigation();
     const isLimited = limit !== undefined && limit > 0;
+
+    const selectedCourses = isLimited
+        ? getRandomLimitedItemsFromArray(courses, limit)
+        : courses;
 
     const styles = StyleSheet.create({
         cardContainer: {
@@ -56,7 +61,7 @@ export function CoursesOverview({ marginTop, limit }: Props) {
 
     return (
         <View style={styles.cardContainer} testID="test-container">
-            {courses?.map((course: CourseDataMapped) => (
+            {selectedCourses?.map((course: CourseDataMapped) => (
                 <View
                     testID={`course-card-${course.courseId}`}
                     key={course.courseId}

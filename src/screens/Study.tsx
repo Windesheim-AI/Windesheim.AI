@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { CoursesOverview } from '../components/course/CoursesOverview';
 import { TitleWithSeeAll } from '../components/general/text/TitleWithSeeAll';
 import { PageScrollView } from '../components/general/views/PageScrollView';
-import { PromptsOverview } from '../components/promptLibary/PromptsOverview';
+import { PromptsLimitedView } from '../components/promptLibary/PromptsLimitedView';
 import { Routes } from '../routes/routes';
 
 export const StudyScreen = () => {
@@ -18,7 +18,7 @@ export const StudyScreen = () => {
                     title="Courses"
                     navigateToRoute={Routes.Courses}
                 />
-                <CoursesOverview marginTop={0} />
+                <CoursesOverview marginTop={0} limit={3} />
             </View>
 
             <View>
@@ -26,7 +26,7 @@ export const StudyScreen = () => {
                     title="Prompts"
                     navigateToRoute={Routes.PromptLibrary}
                 />
-                <PromptsOverview />
+                <PromptsLimitedView limit={3} />
             </View>
         </PageScrollView>
     );
