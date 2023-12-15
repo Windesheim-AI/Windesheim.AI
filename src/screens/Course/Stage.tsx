@@ -91,9 +91,9 @@ export default function Stage() {
         );
     }
 
-    if (data === undefined || data === null) {
+    if (!data || !course?.stageData) {
         return (
-            <PageView title="Course step not found!">
+            <PageView title="Course not found!">
                 <GoBackButton
                     buttonText="Go back"
                     onPress={() => navigateBackToCourses()}

@@ -43,6 +43,14 @@ export function PromptCard({ prompt }: Props) {
             ...fonts.h2,
             color: colors.titleDefault,
         },
+        imageContainer: {
+            alignItems: 'center',
+            marginRight: 16,
+        },
+        toolText: {
+            ...fonts.h3,
+            marginTop: 5,
+        },
         contentContainer: {
             marginLeft: 16,
             flex: 1,
@@ -102,7 +110,13 @@ export function PromptCard({ prompt }: Props) {
             }}
         >
             <View style={styles.container}>
-                <Image source={promptImageSource} style={styles.image} />
+                <View style={styles.imageContainer}>
+                    <Image source={promptImageSource} style={styles.image} />
+                    <TextTranslated
+                        style={styles.toolText}
+                        text={prompt.tool}
+                    />
+                </View>
                 <View style={styles.contentContainer}>
                     <TextTranslated style={styles.title} text={prompt.title} />
                     <TextTranslated

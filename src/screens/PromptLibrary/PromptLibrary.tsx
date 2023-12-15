@@ -10,7 +10,7 @@ export function PromptLibrary() {
     const navigation = useNavigation();
 
     return (
-        <PageScrollView title="Prompt library">
+        <PageScrollView title="Prompt Library">
             <GoBackButton
                 onPress={() => navigation.navigate(Routes.Study)}
                 buttonText="Study"

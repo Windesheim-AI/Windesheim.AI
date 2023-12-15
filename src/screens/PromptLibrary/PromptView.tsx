@@ -109,7 +109,7 @@ export function PromptView() {
         );
     }
 
-    if (prompt === undefined || prompt === null) {
+    if (!prompt?.title) {
         return (
             <PageView>
                 <TextTranslated

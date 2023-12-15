@@ -23,7 +23,7 @@ export const StudyScreen = () => {
 
             <View>
                 <TitleWithSeeAll
-                    title="Prompts"
+                    title="Prompt Library"
                     navigateToRoute={Routes.PromptLibrary}
                 />
                 <PromptsLimitedView limit={3} />

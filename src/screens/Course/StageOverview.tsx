@@ -105,20 +105,6 @@ export default function StageOverview() {
         navigator.navigate(Routes.Courses.toString());
     }
 
-    if (!course?.stageData && !isLoading) {
-        return (
-            <PageView>
-                <View style={styles.container}>
-                    <TextTranslated style={fonts.h1} text="Course not found" />
-                    <GoBackButton
-                        buttonText="Courses"
-                        onPress={navigateBackToCourses}
-                    />
-                </View>
-            </PageView>
-        );
-    }
-
     function calculateTotalTime() {
         let totalTime = 0;
         course?.stageData?.forEach((stage) => {
@@ -142,13 +128,16 @@ export default function StageOverview() {
         );
     }
 
-    if (data === undefined || data === null) {
+    if (!data || !course?.stageData) {
         return (
-            <PageView title="Course not found!">
-                <GoBackButton
-                    buttonText="Go back"
-                    onPress={() => navigator.goBack()}
-                />
+            <PageView>
+                <View style={styles.container}>
+                    <TextTranslated style={fonts.h1} text="Course not found" />
+                    <GoBackButton
+                        buttonText="Courses"
+                        onPress={navigateBackToCourses}
+                    />
+                </View>
             </PageView>
         );
     }
