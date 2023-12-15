@@ -9,11 +9,7 @@ import { Sector } from '../../types/Prompt';
 import { ChipFilter } from '../general/base/ChipFilters';
 import { TextTranslated } from '../general/text/TextTranslated';
 
-type Props = {
-    limit?: number;
-};
-
-export function PromptsOverview({ limit }: Props) {
+export function PromptsOverview() {
     const { data, isLoading, error } = usePromptLibrary();
     const fonts = useFonts();
     const colorStateConfig = useColorStateConfig();
