@@ -1,10 +1,10 @@
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
 import {
-    Dimensions,
     ImageBackground,
     ScrollView,
     StyleSheet,
+    useWindowDimensions,
     View,
 } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
@@ -39,6 +39,7 @@ export type StageItemProps = {
 
 export default function StageOverview() {
     const fonts = useFonts();
+    const windowDimensions = useWindowDimensions();
     const t = usePreparedTranslator();
     const stateColors = useColorStateConfig();
     const colors = useColorConfig();
@@ -50,7 +51,7 @@ export default function StageOverview() {
     const { data, isLoading, error } = useSingleCourse(courseId);
     const course = useMapSingleCourseToData(data);
 
-    const containerHeight = Dimensions.get('window').height * 0.54;
+    const containerHeight = windowDimensions.height * 0.54;
     const styles = StyleSheet.create({
         container: {
             margin: -20,
