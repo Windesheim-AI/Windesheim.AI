@@ -33,7 +33,7 @@ export const PromptCard = ({ prompt }: { prompt: Prompt }) => {
         <Pressable
             onPress={() => {
                 HapticFeedback(HapticForces.Light);
-                navigation.navigate(Routes.Prompt, {
+                navigation.navigate(Routes.PromptView, {
                     promptId: prompt.id,
                 });
             }}

@@ -24,7 +24,7 @@ export type PromptPageProps = {
     promptId: string;
 };
 
-export function PromptPage() {
+export function PromptView() {
     const colors = useColorConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
