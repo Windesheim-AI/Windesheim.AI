@@ -64,9 +64,10 @@ export function ChipFilter<T extends ReactNode>({
     function toggleOption(filter: T) {
         if (activeList.includes(filter)) {
             setActiveList(activeList.filter((item) => item !== filter));
-        } else {
-            setActiveList([...activeList, filter]);
+            return;
         }
+
+        setActiveList([...activeList, filter]);
     }
 
     return (
