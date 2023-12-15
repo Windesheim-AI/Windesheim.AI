@@ -218,6 +218,7 @@ export default function StageOverview() {
                                             stageDescription={stage.blocks}
                                             courseId={course.courseId}
                                             stageId={stage.id}
+                                            isCompleted={stage.isCompletedByUser}
                                         />
                                     );
                                 })}
