@@ -6,7 +6,10 @@ import { Routes } from '../routes/routes';
 
 export const StudyScreen = () => {
     return (
-        <PageView title="Welcome to study">
+        <PageView
+            title="Welcome to study"
+            description="Knowing is like turning on a light on the way trying to go."
+        >
             <ListButton
                 buttonText="Courses"
                 screenName={Routes.Courses}
