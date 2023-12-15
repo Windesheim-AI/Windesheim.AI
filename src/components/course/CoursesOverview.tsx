@@ -18,13 +18,15 @@ function getAmountCompletedTask(course: CourseDataMapped) {
 
 type Props = {
     marginTop?: number;
+    limit?: number;
 };
 
-export function CoursesOverview({ marginTop }: Props) {
+export function CoursesOverview({ marginTop, limit }: Props) {
     const fonts = useFonts();
     const { data, isLoading, error } = useAllCourses();
     const courses = useMapMultipleCoursesToData(data);
     const navigator = useNavigation();
+    const isLimited = limit !== undefined && limit > 0;
 
     const styles = StyleSheet.create({
         cardContainer: {
