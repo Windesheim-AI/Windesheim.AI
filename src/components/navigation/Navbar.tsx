@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { useColorConfig } from '../../lib/constants/Colors';
+import { shadow, useColorConfig } from '../../lib/constants/Colors';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useAppSelector } from '../../lib/redux/Hooks';
 import { useAnimatedValueNav } from '../../lib/utility/animate';
@@ -58,6 +58,7 @@ export const NavBar = () => {
             justifyContent: 'center',
             borderRadius: 50,
             backgroundColor: colors.navBar.activeItemBackgroundColor,
+            ...shadow,
         },
     });
 
