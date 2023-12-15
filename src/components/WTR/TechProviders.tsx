@@ -24,6 +24,11 @@ export const TechProviders = ({ limit }: Props) => {
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
+            justifyContent: 'space-between', // Adjusted justify content
+        },
+        providerCard: {
+            flexBasis: '30%', // Adjusted flex basis for the cards
+            marginBottom: 10, // Initial margin between elements
         },
     });
 
@@ -34,7 +39,7 @@ export const TechProviders = ({ limit }: Props) => {
             return;
         }
 
-        //shuffles the array and then slices it to the limit
+        // shuffles the array and then slices it to the limit
         resultItems.sort(() => Math.random() - Math.random());
         resultItems = resultItems.slice(0, limit);
 
@@ -54,7 +59,7 @@ export const TechProviders = ({ limit }: Props) => {
 
             <View style={styles.container}>
                 {displayItems.map((provider) => (
-                    <View key={provider.slug}>
+                    <View key={provider.slug} style={styles.providerCard}>
                         <TechProviderCard
                             name={provider.name}
                             // @ts-ignore

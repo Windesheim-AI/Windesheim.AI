@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, useWindowDimensions } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 
 import { useColorConfig } from '../../../lib/constants/Colors';
@@ -22,8 +22,6 @@ export type Props = {
     testID?: string;
 };
 
-const screenWidth = Dimensions.get('window').width;
-
 export function SelectDropdown({
     data,
     onSelect,
@@ -32,6 +30,8 @@ export function SelectDropdown({
     width,
     testID,
 }: Props) {
+    const windowDimensions = useWindowDimensions();
+    const screenWidth = windowDimensions.width;
     const colors = useColorConfig();
     const fonts = useFonts();
     const t = usePreparedTranslator();

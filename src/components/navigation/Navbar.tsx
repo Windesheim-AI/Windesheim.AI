@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Animated, Dimensions, Pressable, StyleSheet } from 'react-native';
+import {
+    Animated,
+    Pressable,
+    StyleSheet,
+    useWindowDimensions,
+} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../lib/constants/Colors';
@@ -9,11 +14,10 @@ import { useAnimatedValueNav } from '../../lib/utility/animate';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { navigationBarLinks } from '../../routes/navigation';
 
-const screenWidth = Dimensions.get('window').width;
-
 export const NavBar = () => {
     const navigation = useNavigation();
     const colors = useColorConfig();
+    const windowDimensions = useWindowDimensions();
 
     const navigationState = useAppSelector((state) => state.navigation);
     const [showNavBar, setShowNavBar] = useState(true);
@@ -30,7 +34,7 @@ export const NavBar = () => {
             height: 50,
             marginBottom: 10,
             position: 'absolute',
-            width: screenWidth - 40,
+            width: windowDimensions.width - 40,
             zIndex: 1,
             padding: 0,
         },
@@ -62,14 +66,24 @@ export const NavBar = () => {
     }, [navigationState]);
 
     const [opacity, animateOpacity] = useAnimatedValueNav(1);
-    const [bottom, animateBottom] = useAnimatedValueNav(screenWidth - 40);
-    const [width, animateWidth] = useAnimatedValueNav(screenWidth - 40);
+    const [bottom, animateBottom] = useAnimatedValueNav(
+        windowDimensions.width - 40,
+    );
+    const [width, animateWidth] = useAnimatedValueNav(
+        windowDimensions.width - 40,
+    );
 
     useEffect(() => {
         animateOpacity(showNavBar ? 1 : 0, 200);
         animateBottom(showNavBar ? 0 : -100, 200);
-        animateWidth(showNavBar ? screenWidth - 40 : 0, 200);
-    }, [showNavBar, animateOpacity, animateBottom, animateWidth]);
+        animateWidth(showNavBar ? windowDimensions.width - 40 : 0, 200);
+    }, [
+        showNavBar,
+        animateOpacity,
+        animateBottom,
+        animateWidth,
+        windowDimensions.width,
+    ]);
 
     function isRouteActive(route: string) {
         return navigationState.selectedNavBarRoute === route;
