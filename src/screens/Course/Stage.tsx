@@ -85,7 +85,7 @@ export default function Stage() {
             <PageView title="An error occurred while loading the data">
                 <GoBackButton
                     buttonText="Go back"
-                    onPress={() => navigator.goBack()}
+                    onPress={() => navigateBackToCourses()}
                 />
             </PageView>
         );
@@ -96,7 +96,7 @@ export default function Stage() {
             <PageView title="Course step not found!">
                 <GoBackButton
                     buttonText="Go back"
-                    onPress={() => navigator.goBack()}
+                    onPress={() => navigateBackToCourses()}
                 />
             </PageView>
         );

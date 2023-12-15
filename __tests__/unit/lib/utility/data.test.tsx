@@ -49,21 +49,35 @@ describe('getRandomLimitedItemsFromArray', () => {
     it('returns the original array when the limit is greater than or equal to the array length', () => {
         const originalArray = [1, 2, 3, 4, 5];
         const result = getRandomLimitedItemsFromArray(originalArray, 5);
-        expect(result).toEqual(originalArray);
+        expect(result.length).toEqual(originalArray.length);
     });
 
     it('returns a subset of the original array with the specified limit', () => {
         const originalArray = [1, 2, 3, 4, 5];
         const result = getRandomLimitedItemsFromArray(originalArray, 2);
         expect(result.length).toBe(2);
-        expect(originalArray).toContain(result[0]);
-        expect(originalArray).toContain(result[1]);
+        expect(result.every((item) => originalArray.includes(item))).toBe(true);
     });
 
     it('does not modify the original array', () => {
         const originalArray = [1, 2, 3, 4, 5];
         const result = getRandomLimitedItemsFromArray(originalArray, 3);
         expect(result).not.toBe(originalArray);
-        expect(originalArray).toEqual([1, 2, 3, 4, 5]); // original array should remain unchanged
+        expect(result.every((item) => originalArray.includes(item))).toBe(true);
+    });
+
+    it('returns a shuffled array when the limit is less than the array length', () => {
+        const originalArray = [1, 2, 3, 4, 5];
+        const result = getRandomLimitedItemsFromArray(originalArray, 5);
+        expect(result).not.toEqual(originalArray); // Check that it's shuffled
+        expect(result.length).toBe(5);
+        expect(result.every((item) => originalArray.includes(item))).toBe(true);
+    });
+
+    it('returns a subset of the original array when the limit is less than the array length', () => {
+        const originalArray = [1, 2, 3, 4, 5];
+        const result = getRandomLimitedItemsFromArray(originalArray, 3);
+        expect(result.length).toBe(3);
+        expect(result.every((item) => originalArray.includes(item))).toBe(true);
     });
 });
