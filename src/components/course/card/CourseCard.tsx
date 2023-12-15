@@ -112,7 +112,7 @@ export function CourseCard({
     const t = usePreparedTranslator();
 
     return (
-        <InteractiveView onPress={onPress}>
+        <InteractiveView onPress={onPress} testID="course-card">
             <Card style={styles.card}>
                 <View style={styles.titleSide}>
                     <Image
