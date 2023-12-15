@@ -41,6 +41,7 @@ export function CourseCard({
         card: {
             padding: 0,
             flexDirection: 'row',
+            ...stateColors.highContrastBorder,
         },
         titleSide: {
             width: '70%',
@@ -78,6 +79,7 @@ export function CourseCard({
         progressBarContainer: {
             flexDirection: 'row',
             marginRight: 30,
+            ...stateColors.highContrastBorder,
         },
         courseNIndiciator: {
             ...fonts.description,
@@ -103,6 +105,7 @@ export function CourseCard({
             marginTop: 10,
             ...shadow,
             ...fonts.stageTime,
+            ...stateColors.highContrastBorder,
         },
     });
 
@@ -122,7 +125,7 @@ export function CourseCard({
                         <View style={styles.progressBarContainer}>
                             <Bar
                                 progress={completedTasks / totalTasks}
-                                color={stateColors.colors.secondary[1]}
+                                color={colors.completedProgressBar}
                                 style={styles.progressBar}
                             />
                             <TextTranslated

@@ -51,6 +51,7 @@ export default function Stage() {
             borderColor: colors.listItemBg,
             borderWidth: 0,
             backgroundColor: colors.progressbarBg,
+            ...colorStateConfig.highContrastBorder,
         },
         courseTitle: {
             ...fonts.h1,
@@ -148,7 +149,7 @@ export default function Stage() {
                                     course.stageData.length
                                 }
                                 width={null}
-                                color={colorStateConfig.colors.secondary[1]}
+                                color={colors.completedProgressBar}
                                 style={styles.progressBar}
                             />
                             <CourseNavigation
@@ -174,6 +175,9 @@ export default function Stage() {
                                     text="Next"
                                     backgroundColor={
                                         colorStateConfig.colors.secondary[1]
+                                    }
+                                    textColor={
+                                        colorStateConfig.text?.secondary[1]
                                     }
                                     onPress={onPress}
                                     style={styles.button}

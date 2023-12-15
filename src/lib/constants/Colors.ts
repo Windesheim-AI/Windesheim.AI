@@ -52,6 +52,7 @@ export type ColorSchemeType = {
     opacityLayer: string;
     accentTitle: string;
     progressbarBg: string;
+    completedProgressBar: string;
     seeAllText: string;
     techProviderGradient: string[];
     subCard: string;
@@ -102,7 +103,8 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         opacityLayer: 'rgba(255,255,255,0.8)',
         seeAllText: '#1C1C1C',
         accentTitle: '#FFFFFF',
-        progressbarBg: '#373737',
+        progressbarBg: '#FFFFFF',
+        completedProgressBar: '#FFD949',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd',
     },
@@ -151,6 +153,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#FFFFFF',
         accentTitle: '#757575',
         progressbarBg: '#373737',
+        completedProgressBar: '#FFD949',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#373737',
     },
@@ -201,6 +204,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         opacityLayer: 'rgba(255,255,255,0.8)',
         accentTitle: '#757575',
         progressbarBg: '#f3f3f5',
+        completedProgressBar: '#FFD949',
         seeAllText: '#1C1C1C',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd',
@@ -249,6 +253,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         opacityLayer: 'rgba(0,0,0,0.6)',
         accentTitle: '#757575',
         progressbarBg: '#373737',
+        completedProgressBar: '#FFD949',
         seeAllText: '#FFFFFF',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#252525',
@@ -298,7 +303,8 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.9)',
         seeAllText: '#000000',
-        progressbarBg: '#00FF00',
+        progressbarBg: '#FFFFFF',
+        completedProgressBar: '#00FF00',
         accentTitle: '#000000',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd',
@@ -346,8 +352,9 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
         seeAllText: '#FFFFFF',
-        accentTitle: '#757575',
-        progressbarBg: '#00FF00',
+        accentTitle: '#FFFFFF',
+        progressbarBg: '#FFFFFF',
+        completedProgressBar: '#0000FF',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#1C1C1C',
     },
