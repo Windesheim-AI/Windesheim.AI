@@ -10,10 +10,10 @@ import {
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { StageCard } from '../../components/course/card/StageCard';
-import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
+import LoadingScreen from '../../components/loadingscreen/LoadingScreen';
 import {
     useColorConfig,
     useColorStateConfig,
@@ -127,97 +127,116 @@ export default function StageOverview() {
         return totalTime;
     }
 
+    if (isLoading) {
+        return <LoadingScreen />;
+    }
+
+    if (error) {
+        return (
+            <PageView title="An error occurred while loading the data">
+                <GoBackButton
+                    buttonText="Go back"
+                    onPress={() => navigator.goBack()}
+                />
+            </PageView>
+        );
+    }
+
+    if (data === undefined || data === null) {
+        return (
+            <PageView title="Course not found!">
+                <GoBackButton
+                    buttonText="Go back"
+                    onPress={() => navigator.goBack()}
+                />
+            </PageView>
+        );
+    }
+
     return (
-        <DataWrapper error={error} isLoading={isLoading}>
-            <PageView>
-                <View style={styles.container}>
-                    <View style={styles.courseBackground}>
-                        <ImageBackground
-                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                            source={require('../../assets/images/bgImages/generative-intelligence-01-1.png')}
-                            style={styles.courseBackground}
-                        >
-                            <GoBackButton
-                                style={styles.backButton}
-                                buttonText="Back"
-                                onPress={navigateBackToCourses}
-                            />
-                        </ImageBackground>
+        <PageView>
+            <View style={styles.container}>
+                <View style={styles.courseBackground}>
+                    <ImageBackground
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        source={require('../../assets/images/bgImages/generative-intelligence-01-1.png')}
+                        style={styles.courseBackground}
+                    >
+                        <GoBackButton
+                            style={styles.backButton}
+                            buttonText="Back"
+                            onPress={navigateBackToCourses}
+                        />
+                    </ImageBackground>
+                </View>
+                <View style={styles.content}>
+                    <TextTranslated style={styles.title} text={course?.title} />
+                    <View style={styles.infoBar}>
+                        <FontAwesome5Icon
+                            name="star"
+                            size={20}
+                            color={stateColors.colors.secondary[1]}
+                        />
+                        <TextTranslated
+                            style={[fonts.level, styles.icons]}
+                            text="Level 1"
+                        />
+                        <FontAwesome5Icon
+                            name="heart"
+                            size={20}
+                            style={styles.icons}
+                            color={stateColors.colors.danger[1]}
+                        />
+                        <TextTranslated
+                            style={[fonts.level, styles.icons]}
+                            text="Popularity: 1"
+                        />
                     </View>
-                    <View style={styles.content}>
-                        <TextTranslated
-                            style={styles.title}
-                            text={course?.title}
-                        />
-                        <View style={styles.infoBar}>
-                            <FontAwesome5Icon
-                                name="star"
-                                size={20}
-                                color={stateColors.colors.secondary[1]}
-                            />
-                            <TextTranslated
-                                style={[fonts.level, styles.icons]}
-                                text="Level 1"
-                            />
-                            <FontAwesome5Icon
-                                name="heart"
-                                size={20}
-                                style={styles.icons}
-                                color={stateColors.colors.danger[1]}
-                            />
-                            <TextTranslated
-                                style={[fonts.level, styles.icons]}
-                                text="Popularity: 1"
-                            />
-                        </View>
 
-                        <TextTranslated
-                            style={fonts.description}
-                            text={course?.description}
-                        />
+                    <TextTranslated
+                        style={fonts.description}
+                        text={course?.description}
+                    />
 
-                        <View style={styles.stageBar}>
+                    <View style={styles.stageBar}>
+                        <TextTranslated
+                            style={fonts.courseTitle}
+                            text={`${course?.stageData?.length} ${t('Stages')}`}
+                        />
+                        <View style={styles.timeBar}>
+                            <FontAwesome5Icon
+                                name="clock"
+                                size={20}
+                                color={colors.gray}
+                            />
                             <TextTranslated
                                 style={fonts.courseTitle}
-                                text={`${course?.stageData?.length} ${t(
-                                    'Stages',
-                                )}`}
+                                text={` ${calculateTotalTime()} min`}
                             />
-                            <View style={styles.timeBar}>
-                                <FontAwesome5Icon
-                                    name="clock"
-                                    size={20}
-                                    color={colors.gray}
-                                />
-                                <TextTranslated
-                                    style={fonts.courseTitle}
-                                    text={` ${calculateTotalTime()} min`}
-                                />
-                            </View>
-                        </View>
-
-                        {/* map the stages of the course */}
-                        <View style={styles.courseStageContainer}>
-                            <ScrollView>
-                                <View style={styles.courseCardContainer}>
-                                    {course?.stageData?.map((stage, count) => {
-                                        return (
-                                            <StageCard
-                                                key={stage.id}
-                                                stageTitle={stage.title}
-                                                stageIndex={count}
-                                                stageDescription={stage.blocks}
-                                                courseId={course.courseId}
-                                                stageId={stage.id}
-                                            />
-                                        );
-                                    })}
-                                </View>
-                            </ScrollView>
                         </View>
                     </View>
+
+                    {/* map the stages of the course */}
+                    <View style={styles.courseStageContainer}>
+                        <ScrollView>
+                            <View style={styles.courseCardContainer}>
+                                {course?.stageData?.map((stage, count) => {
+                                    return (
+                                        <StageCard
+                                            key={stage.id}
+                                            stageTitle={stage.title}
+                                            stageIndex={count}
+                                            stageDescription={stage.blocks}
+                                            courseId={course.courseId}
+                                            stageId={stage.id}
+                                        />
+                                    );
+                                })}
+                            </View>
+                        </ScrollView>
+                    </View>
                 </View>
-            </PageView>
-        </DataWrapper>
+            </View>
+        </PageView>
     );
 }
