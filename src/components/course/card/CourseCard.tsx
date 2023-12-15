@@ -35,6 +35,7 @@ export function CourseCard({
     const colors = useColorConfig();
     const fonts = useFonts();
     const stateColors = useColorStateConfig();
+    const isCompleted = completedTasks === totalTasks;
 
     const styles = StyleSheet.create({
         card: {
@@ -165,7 +166,7 @@ export function CourseCard({
                     </View>
                 </View>
 
-                {true ? <CheckMarkFlag /> : null}
+                {isCompleted ? <CheckMarkFlag /> : null}
             </Card>
         </InteractiveView>
     );

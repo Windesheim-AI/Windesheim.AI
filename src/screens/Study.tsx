@@ -1,27 +1,33 @@
 import React from 'react';
+import { View } from 'react-native';
 
-import { ListButton } from '../components/general/buttons/ListButton';
-import { PageView } from '../components/general/views/PageView';
+import { CoursesOverview } from '../components/course/CoursesOverview';
+import { TitleWithSeeAll } from '../components/general/text/TitleWithSeeAll';
+import { PageScrollView } from '../components/general/views/PageScrollView';
+import { PromptsOverview } from '../components/promptLibary/PromptsOverview';
 import { Routes } from '../routes/routes';
 
 export const StudyScreen = () => {
     return (
-        <PageView
-            title="Welcome to study"
+        <PageScrollView
+            title="Study"
             description="Knowing is like turning on a light on the way trying to go."
         >
-            <ListButton
-                buttonText="Courses"
-                screenName={Routes.Courses}
-                width={100}
-                testId="courses-button"
-            />
-            <ListButton
-                buttonText="Prompt Library"
-                screenName={Routes.PromptLibrary}
-                width={100}
-                testId="prompt-library-button"
-            />
-        </PageView>
+            <View>
+                <TitleWithSeeAll
+                    title="Courses"
+                    navigateToRoute={Routes.Courses}
+                />
+                <CoursesOverview marginTop={0} />
+            </View>
+
+            <View>
+                <TitleWithSeeAll
+                    title="Prompts"
+                    navigateToRoute={Routes.PromptLibrary}
+                />
+                <PromptsOverview />
+            </View>
+        </PageScrollView>
     );
 };
