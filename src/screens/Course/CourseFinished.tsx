@@ -4,10 +4,11 @@ import { StyleSheet, View, Animated } from 'react-native';
 import ConfettiCannon from 'react-native-confetti-cannon';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
-import { DataWrapper } from '../../components/general/base/DataWrapper';
 import { Button } from '../../components/general/buttons/Button';
+import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
+import LoadingScreen from '../../components/loadingscreen/LoadingScreen';
 import {
     useColorConfig,
     useColorStateConfig,
@@ -16,6 +17,7 @@ import { useFonts } from '../../lib/constants/Fonts';
 import { useAppSelector } from '../../lib/redux/Hooks';
 import useSingleCourse from '../../lib/repositories/courses/useSingleCourse';
 import { useAnimatedValue } from '../../lib/utility/animate';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 
 type CourseFinishedRouteParams = {
@@ -26,6 +28,7 @@ export default function CourseFinished() {
     const colors = useColorConfig();
     const colorStateConfig = useColorStateConfig();
     const route = useRoute();
+    const navigator = useNavigation();
     const fonts = useFonts();
 
     const params = route.params as CourseFinishedRouteParams;
@@ -74,46 +77,70 @@ export default function CourseFinished() {
         ).start();
     }, [animationState.isEnabled, spinValue]);
 
-    return (
-        <DataWrapper error={error} isLoading={isLoading}>
-            <PageView>
-                <View style={styles.container}>
-                    <Animated.View style={{ transform: [{ rotate: spin }] }}>
-                        <FontAwesome5Icon
-                            name="react"
-                            style={styles.icon}
-                            size={200}
-                            color={colors.text}
-                        />
-                    </Animated.View>
+    if (isLoading) {
+        return <LoadingScreen />;
+    }
 
-                    <TextTranslated
-                        style={styles.courseTitle}
-                        text="Course finished!"
-                    />
-                    <TextTranslated
-                        style={styles.courseSubTitle}
-                        text={course?.title}
-                    />
-
-                    <Button
-                        buttonText="Go back to courses"
-                        screenName={Routes.Courses}
-                        colorGradientScheme={colorStateConfig.colors.success}
-                        textColorScheme={colorStateConfig.text?.success}
-                        testId="go-back-to-courses-button"
-                    />
-                </View>
-                {animationState.isEnabled ? (
-                    <ConfettiCannon
-                        count={40}
-                        origin={{ x: -10, y: 50 }}
-                        explosionSpeed={500}
-                        fallSpeed={2000}
-                        fadeOut
-                    />
-                ) : null}
+    if (error) {
+        return (
+            <PageView title="An error occurred while loading the data">
+                <GoBackButton
+                    buttonText="Go back"
+                    onPress={() => navigator.goBack()}
+                />
             </PageView>
-        </DataWrapper>
+        );
+    }
+
+    if (data === undefined || data === null) {
+        return (
+            <PageView title="Course not found!">
+                <GoBackButton
+                    buttonText="Go back"
+                    onPress={() => navigator.goBack()}
+                />
+            </PageView>
+        );
+    }
+
+    return (
+        <PageView>
+            <View style={styles.container}>
+                <Animated.View style={{ transform: [{ rotate: spin }] }}>
+                    <FontAwesome5Icon
+                        name="react"
+                        style={styles.icon}
+                        size={200}
+                        color={colors.text}
+                    />
+                </Animated.View>
+
+                <TextTranslated
+                    style={styles.courseTitle}
+                    text="Course finished!"
+                />
+                <TextTranslated
+                    style={styles.courseSubTitle}
+                    text={course?.title}
+                />
+
+                <Button
+                    buttonText="Go back to courses"
+                    screenName={Routes.Courses}
+                    colorGradientScheme={colorStateConfig.colors.success}
+                    textColorScheme={colorStateConfig.text?.success}
+                    testId="go-back-to-courses-button"
+                />
+            </View>
+            {animationState.isEnabled ? (
+                <ConfettiCannon
+                    count={40}
+                    origin={{ x: -10, y: 50 }}
+                    explosionSpeed={500}
+                    fallSpeed={2000}
+                    fadeOut
+                />
+            ) : null}
+        </PageView>
     );
 }

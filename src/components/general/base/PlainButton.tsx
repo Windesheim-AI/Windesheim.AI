@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, ViewStyle } from 'react-native';
 
 import { IconLine } from './IconLine';
-import { shadow } from '../../../lib/constants/Colors';
+import { shadow, useColorStateConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { TextTranslated } from '../text/TextTranslated';
@@ -14,6 +14,7 @@ type PlainButtonProps = {
     icon?: string;
     style?: ViewStyle;
     backgroundColor: string;
+    textColor?: string;
 };
 
 export function PlainButton({
@@ -22,8 +23,10 @@ export function PlainButton({
     icon,
     style,
     backgroundColor,
+    textColor,
 }: PlainButtonProps) {
     const fonts = useFonts();
+    const colorStateConfig = useColorStateConfig();
 
     const styles = StyleSheet.create({
         button: {
@@ -35,6 +38,11 @@ export function PlainButton({
             paddingRight: 16,
             marginBottom: 16,
             ...shadow,
+            ...colorStateConfig.highContrastBorder,
+        },
+        nextButton: {
+            ...fonts.button,
+            color: textColor ?? fonts.button.color,
         },
     });
 
@@ -48,7 +56,7 @@ export function PlainButton({
             {icon ? (
                 <IconLine iconName={icon} text={text} size={15} />
             ) : (
-                <TextTranslated text={text} style={fonts.button} />
+                <TextTranslated text={text} style={styles.nextButton} />
             )}
         </InteractiveView>
     );

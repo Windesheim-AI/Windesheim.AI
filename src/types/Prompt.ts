@@ -7,6 +7,7 @@ export type Prompt = {
     toolLink?: string;
     promptPattern: PromptPattern;
     sector: Sector;
+    imageLink?: string;
 };
 
 export enum PromptPattern {
