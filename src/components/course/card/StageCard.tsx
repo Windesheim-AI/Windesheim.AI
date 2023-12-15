@@ -21,7 +21,7 @@ export type StageCardProps = {
     stageIndex: number;
     stageDescription: CourseStageBlock[];
     style?: ViewStyle;
-    isCompleted?: boolean;
+    isCompleted: boolean;
     courseId: string;
     stageId: string;
 };
@@ -111,7 +111,7 @@ export function StageCard({
                     </View>
                 </View>
             </InteractiveView>
-            {!isCompleted ? <CheckMarkFlag /> : null}
+            {isCompleted ? <CheckMarkFlag /> : null}
         </View>
     );
 }

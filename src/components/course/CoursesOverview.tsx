@@ -14,7 +14,7 @@ import { TextTranslated } from '../general/text/TextTranslated';
 
 function getAmountCompletedTask(course: CourseDataMapped) {
     if (!course.stageData) return 0;
-    return course.stageData?.map((stage) => stage.isCompletedByUser).length;
+    return course.stageData.filter((stage) => stage.isCompletedByUser).length;
 }
 
 type Props = {
