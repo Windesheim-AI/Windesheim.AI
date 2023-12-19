@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, StyleSheet, View } from 'react-native';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { tutorialSteps } from './TutorialSteps';
 import {
@@ -19,7 +20,6 @@ import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import ProgressBar from '../general/base/ProgressBar';
 import { StepButton } from '../general/buttons/StepButton';
 import { TextTranslated } from '../general/text/TextTranslated';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 export const Tutorial = () => {
     const storeDispatcher = useAppDispatch();
@@ -154,10 +154,10 @@ export const Tutorial = () => {
                             onNextPress={() => {
                                 if (tutorialStep < tutorialSteps.length - 1) {
                                     handleNext();
-                                } else {
-                                    // Handle logic for finishing the tutorial
-                                    storeDispatcher(setCompleted(true));
+                                    return;
                                 }
+                                // Handle logic for finishing the tutorial
+                                storeDispatcher(setCompleted(true));
                             }}
                         />
                         {/* progressBar */}
