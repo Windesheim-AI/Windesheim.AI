@@ -35,11 +35,13 @@ export function CourseCard({
     const colors = useColorConfig();
     const fonts = useFonts();
     const stateColors = useColorStateConfig();
+    const isCompleted = completedTasks === totalTasks;
 
     const styles = StyleSheet.create({
         card: {
             padding: 0,
             flexDirection: 'row',
+            ...stateColors.highContrastBorder,
         },
         titleSide: {
             width: '70%',
@@ -77,6 +79,7 @@ export function CourseCard({
         progressBarContainer: {
             flexDirection: 'row',
             marginRight: 30,
+            ...stateColors.highContrastBorder,
         },
         courseNIndiciator: {
             ...fonts.description,
@@ -102,13 +105,14 @@ export function CourseCard({
             marginTop: 10,
             ...shadow,
             ...fonts.stageTime,
+            ...stateColors.highContrastBorder,
         },
     });
 
     const t = usePreparedTranslator();
 
     return (
-        <InteractiveView onPress={onPress}>
+        <InteractiveView onPress={onPress} testID="course-card">
             <Card style={styles.card}>
                 <View style={styles.titleSide}>
                     <Image
@@ -121,7 +125,7 @@ export function CourseCard({
                         <View style={styles.progressBarContainer}>
                             <Bar
                                 progress={completedTasks / totalTasks}
-                                color={stateColors.colors.secondary[1]}
+                                color={colors.completedProgressBar}
                                 style={styles.progressBar}
                             />
                             <TextTranslated
@@ -165,7 +169,7 @@ export function CourseCard({
                     </View>
                 </View>
 
-                {true ? <CheckMarkFlag /> : null}
+                {isCompleted ? <CheckMarkFlag /> : null}
             </Card>
         </InteractiveView>
     );

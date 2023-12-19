@@ -1,6 +1,6 @@
 import { Audio, ResizeMode, Video } from 'expo-av';
 import React from 'react';
-import { Button, Dimensions, StyleSheet } from 'react-native';
+import { Button, StyleSheet, useWindowDimensions } from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 import BlockWrapper from './block';
@@ -8,6 +8,7 @@ import { shadow } from '../../../lib/constants/Colors';
 import { VideoOptions } from '../../../types/CourseStageBlock';
 
 export function VideoBlock({ options }: { options: VideoOptions }) {
+    const windowDimensions = useWindowDimensions();
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
 
@@ -81,8 +82,8 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
             ) : (
                 <YoutubePlayer
                     webViewStyle={styles.ytContainer}
-                    height={Dimensions.get('window').height / 4.55}
-                    width={Dimensions.get('window').width - 60}
+                    height={windowDimensions.height / 4.55}
+                    width={windowDimensions.width - 60}
                     videoId={getYTId(options.videoURL) || ''}
                 />
             )}

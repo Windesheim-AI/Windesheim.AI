@@ -43,7 +43,7 @@ export const RouteLinking = {
             [Routes.EditBackgroundInformation]:
                 'settings/edit-background-information',
             [Routes.PromptLibrary]: 'study/prompt-library',
-            [Routes.Prompt]: 'study/prompt-library/prompt',
+            [Routes.PromptView]: 'study/prompt-library/prompt',
         },
     },
 };

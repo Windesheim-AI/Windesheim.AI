@@ -10,7 +10,7 @@ import Stage from '../screens/Course/Stage';
 import StageOverview from '../screens/Course/StageOverview';
 import { HomeScreen } from '../screens/Home';
 import { PromptLibrary } from '../screens/PromptLibrary/PromptLibrary';
-import { PromptPage } from '../screens/PromptLibrary/PromptPage';
+import { PromptView } from '../screens/PromptLibrary/PromptView';
 import { SettingsScreen } from '../screens/Settings';
 import { StudyScreen } from '../screens/Study';
 import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
@@ -38,7 +38,7 @@ const screens = [
     { name: Routes.EditBackgroundInformation, component: BackgroundInfo },
     { name: Routes.FirstTimeUser, component: BackgroundCollectForm },
     { name: Routes.PromptLibrary, component: PromptLibrary },
-    { name: Routes.Prompt, component: PromptPage },
+    { name: Routes.PromptView, component: PromptView },
 ];
 
 export const Router = () => {

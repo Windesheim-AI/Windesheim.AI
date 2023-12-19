@@ -27,7 +27,7 @@ export const PageView = ({ children, title, description }: PageViewProps) => {
             marginBottom: 10,
         },
         description: {
-            ...fonts.accent,
+            ...fonts.description,
             textAlign: 'center',
         },
     });

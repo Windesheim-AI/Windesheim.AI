@@ -14,7 +14,7 @@ export type Props = {
     buttonStyle?: ViewStyle;
     buttonTextStyle?: ViewStyle;
     navigateToRoute: Routes;
-    navigationParams?: Record<string, string>;
+    navigationParams?: Record<string, string | number>;
     testID?: string;
 };
 

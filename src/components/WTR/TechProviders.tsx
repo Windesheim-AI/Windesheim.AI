@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { TechProviderCard } from './Card/TechProviderCard';
 import { TechProvider, techProviderItems } from './TechProviderItems';
 import { useFonts } from '../../lib/constants/Fonts';
+import { getRandomLimitedItemsFromArray } from '../../lib/utility/data';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 import { TitleWithSeeAll } from '../general/text/TitleWithSeeAll';
@@ -24,22 +25,24 @@ export const TechProviders = ({ limit }: Props) => {
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
+            justifyContent: 'space-between',
+        },
+        providerCard: {
+            flexBasis: '30%',
+            marginBottom: 10,
         },
     });
 
     useEffect(() => {
-        let resultItems = [...techProviderItems];
-        if (!limit || limit < 1) {
-            setDisplayItems(resultItems);
+        if (!isLimited) {
+            setDisplayItems(techProviderItems);
             return;
         }
 
-        //shuffles the array and then slices it to the limit
-        resultItems.sort(() => Math.random() - Math.random());
-        resultItems = resultItems.slice(0, limit);
-
-        setDisplayItems(resultItems);
-    }, [limit]);
+        setDisplayItems(
+            getRandomLimitedItemsFromArray(techProviderItems, limit),
+        );
+    }, [isLimited, limit]);
 
     return (
         <View>
@@ -54,7 +57,7 @@ export const TechProviders = ({ limit }: Props) => {
 
             <View style={styles.container}>
                 {displayItems.map((provider) => (
-                    <View key={provider.slug}>
+                    <View key={provider.slug} style={styles.providerCard}>
                         <TechProviderCard
                             name={provider.name}
                             // @ts-ignore
