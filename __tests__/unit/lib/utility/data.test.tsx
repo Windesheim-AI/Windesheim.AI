@@ -68,9 +68,9 @@ describe('getRandomLimitedItemsFromArray', () => {
 
     it('returns a shuffled array when the limit is less than the array length', () => {
         const originalArray = [1, 2, 3, 4, 5];
-        const result = getRandomLimitedItemsFromArray(originalArray, 5);
+        const result = getRandomLimitedItemsFromArray(originalArray, 3);
         expect(result).not.toEqual(originalArray); // Check that it's shuffled
-        expect(result.length).toBe(5);
+        expect(result.length).toBe(3);
         expect(result.every((item) => originalArray.includes(item))).toBe(true);
     });
 
