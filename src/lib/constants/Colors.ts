@@ -56,6 +56,7 @@ export type ColorSchemeType = {
     seeAllText: string;
     techProviderGradient: string[];
     subCard: string;
+    phoneframe: string;
 };
 
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -107,6 +108,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         completedProgressBar: '#FFD949',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd',
+        phoneframe: '#193E6D',
     },
     dark: {
         primary: '#4695D3',
@@ -156,6 +158,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         completedProgressBar: '#FFD949',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#373737',
+        phoneframe: '#193E6D',
     },
 };
 
@@ -208,6 +211,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#1C1C1C',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd',
+        phoneframe: '#193E6D',
     },
     dark: {
         primary: '#4695D3',
@@ -257,6 +261,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#FFFFFF',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#252525',
+        phoneframe: '#193E6D',
     },
 };
 const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -308,6 +313,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         accentTitle: '#000000',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd',
+        phoneframe: '#193E6D',
     },
     dark: {
         primary: '#0000FF',
@@ -357,6 +363,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         completedProgressBar: '#0000FF',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#1C1C1C',
+        phoneframe: '#193E6D',
     },
 };
 
@@ -368,6 +375,17 @@ export const shadow = {
         height: 4,
     },
     shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+};
+
+export const uppershadow = {
+    shadowColor: '#000',
+    shadowOffset: {
+        width: 0,
+        height: -4,
+    },
+    shadowOpacity: 0.45,
     shadowRadius: 4,
     elevation: 5,
 };

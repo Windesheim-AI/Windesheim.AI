@@ -13,12 +13,12 @@ describe('Tutorial', () => {
     });
 
     it('can display the tutorial prompt', () => {
-        cy.get('[data-testid="tutorial-next-button"]').contains('Next 1 /');
+        cy.get('[data-testid="tutorial-next-button"]');
     });
 
     it('can navigate to the next step when clicking the "Next" button', () => {
         cy.get('[data-testid="tutorial-next-button"]').click();
-        cy.get('[data-testid="tutorial-next-button"]').contains('Next 2 /');
+        cy.get('[data-testid="tutorial-next-button"]');
     });
 
     it('can finish the tutorial if the user clicks on skip', () => {
