@@ -81,10 +81,11 @@ const BackgroundCollectForm = () => {
 
         if (currentQuestion < questions.length - 1) {
             handleNextQuestion();
-        } else {
-            storeDispatch(setIsFirstTimeUser(false));
-            setCurrentQuestion(questions.length);
+            return;
         }
+
+        storeDispatch(setIsFirstTimeUser(false));
+        setCurrentQuestion(questions.length);
     };
     const totalQuestions = questions.length;
     const progress = currentQuestion / totalQuestions;
@@ -253,44 +254,41 @@ const BackgroundCollectForm = () => {
                 </View>
             </PageView>
         );
-    } else {
-        return (
-            <PageView>
-                <View style={styles.welcomeContainer}>
-                    <TextTranslated style={styles.title} text="Thank you!" />
-
-                    <Image
-                        testID="userLogo"
-                        source={
-                            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                            theme === 'light'
-                                ? require('../../assets/images/BackgroundInformation/user_yellow.png')
-                                : require('../../assets/images/BackgroundInformation/user_blue.png')
-                        }
-                        style={styles.centerImage}
-                    />
-                    <TextTranslated
-                        style={styles.modalText}
-                        text="Start the app"
-                    />
-
-                    <View>
-                        <Button
-                            buttonText="Start"
-                            onPress={handleToggleFirstTimeUser}
-                            colorGradientScheme={[
-                                colors.bg1,
-                                colors.bg2,
-                                colors.bg3,
-                            ]}
-                            textColorScheme={colors.text}
-                            icon="check-circle"
-                        />
-                    </View>
-                </View>
-            </PageView>
-        );
     }
+
+    return (
+        <PageView>
+            <View style={styles.welcomeContainer}>
+                <TextTranslated style={styles.title} text="Thank you!" />
+
+                <Image
+                    testID="userLogo"
+                    source={
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        theme === 'light'
+                            ? require('../../assets/images/BackgroundInformation/user_yellow.png')
+                            : require('../../assets/images/BackgroundInformation/user_blue.png')
+                    }
+                    style={styles.centerImage}
+                />
+                <TextTranslated style={styles.modalText} text="Start the app" />
+
+                <View>
+                    <Button
+                        buttonText="Start"
+                        onPress={handleToggleFirstTimeUser}
+                        colorGradientScheme={[
+                            colors.bg1,
+                            colors.bg2,
+                            colors.bg3,
+                        ]}
+                        textColorScheme={colors.text}
+                        icon="check-circle"
+                    />
+                </View>
+            </View>
+        </PageView>
+    );
 };
 
 export default BackgroundCollectForm;

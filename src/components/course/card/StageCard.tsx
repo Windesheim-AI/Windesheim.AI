@@ -1,7 +1,11 @@
 import React from 'react';
 import { Image, StyleSheet, View, ViewStyle } from 'react-native';
 
-import { shadow, useColorConfig } from '../../../lib/constants/Colors';
+import {
+    shadow,
+    useColorConfig,
+    useColorStateConfig,
+} from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { estimateTimeToRead } from '../../../lib/utility/estimateTime';
@@ -17,7 +21,7 @@ export type StageCardProps = {
     stageIndex: number;
     stageDescription: CourseStageBlock[];
     style?: ViewStyle;
-    isCompleted?: boolean;
+    isCompleted: boolean;
     courseId: string;
     stageId: string;
 };
@@ -32,8 +36,10 @@ export function StageCard({
     stageId,
 }: StageCardProps) {
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
+
     const styles = StyleSheet.create({
         card: {
             backgroundColor: colors.listItemBg,
@@ -41,6 +47,7 @@ export function StageCard({
             padding: 12,
             marginBottom: 16,
             ...shadow,
+            ...colorStateConfig.highContrastBorder,
         },
         container: {
             flexDirection: 'row',
@@ -104,7 +111,7 @@ export function StageCard({
                     </View>
                 </View>
             </InteractiveView>
-            {!isCompleted ? <CheckMarkFlag /> : null}
+            {isCompleted ? <CheckMarkFlag /> : null}
         </View>
     );
 }

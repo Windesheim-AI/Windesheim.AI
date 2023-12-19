@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { ThemeItemCard } from './Card/ThemeItemCard';
 import { ThemeItem, themeItems } from './ThemeItems';
 import { useFonts } from '../../lib/constants/Fonts';
+import { getRandomLimitedItemsFromArray } from '../../lib/utility/data';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
 import { TitleWithSeeAll } from '../general/text/TitleWithSeeAll';
@@ -25,18 +26,13 @@ export const Themes = ({ limit }: Props) => {
     });
 
     useEffect(() => {
-        let resultItems = [...themeItems];
-        if (!limit || limit < 1) {
-            setDisplayItems(resultItems);
+        if (!isLimited) {
+            setDisplayItems(themeItems);
             return;
         }
 
-        //shuffles the array and then slices it to the limit
-        resultItems.sort(() => Math.random() - Math.random());
-        resultItems = resultItems.slice(0, limit);
-
-        setDisplayItems(resultItems);
-    }, [limit]);
+        setDisplayItems(getRandomLimitedItemsFromArray(themeItems, limit));
+    }, [isLimited, limit]);
 
     return (
         <View>
