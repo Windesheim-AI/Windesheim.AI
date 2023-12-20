@@ -7,9 +7,7 @@ import {
     StyleSheet,
     View,
 } from 'react-native';
-import Snowfall from 'react-snowfall';
 
-import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
 import { NotificationList } from '../components/general/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';
@@ -17,6 +15,7 @@ import { Tutorial } from '../components/tutorial/Tutorial';
 import { shadow, useColorConfig } from '../lib/constants/Colors';
 import { useAppSelector } from '../lib/redux/Hooks';
 import { useAnimatedValue } from '../lib/utility/animate';
+import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
 
 //@ts-ignore
 
@@ -52,21 +51,7 @@ export const Layout = ({ children }: LayoutProps) => {
             flex: 1,
             paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         },
-        snow: {
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            zIndex: 1000,
-        },
     });
-    //24-26 december
-    const isChristmas = () => {
-        const date = new Date();
-        const month = date.getMonth();
-        const day = date.getDate();
-
-        return month === 11 && day >= 24 && day <= 26;
-    };
 
     const isFirstTimeUser = useAppSelector(
         (state) => state.backgroundInformation,
@@ -81,13 +66,6 @@ export const Layout = ({ children }: LayoutProps) => {
 
     return (
         <>
-            {isChristmas() ? (
-                <Snowfall
-                    //
-                    style={styles.snow}
-                    wind={[1, 2]}
-                />
-            ) : null}
             <Background />
             <SafeAreaView style={styles.wrapper}>
                 <NotificationList />
