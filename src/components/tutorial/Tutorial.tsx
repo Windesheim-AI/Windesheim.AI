@@ -109,6 +109,7 @@ export const Tutorial = () => {
         },
         progressBar: {
             margin: 20,
+            ...colorStateConfig.highContrastBorder,
         },
     });
 

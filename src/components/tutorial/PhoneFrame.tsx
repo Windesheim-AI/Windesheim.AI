@@ -19,7 +19,7 @@ export const PhoneFrame = ({ children }: PhoneFrameProps) => {
         phone: {
             position: 'relative',
             height: '100%',
-            borderColor: colors.phoneframe,
+            borderColor: colors.continueButtonColor,
         },
         notchContainer: {
             position: 'absolute',
@@ -37,7 +37,7 @@ export const PhoneFrame = ({ children }: PhoneFrameProps) => {
             width: 20,
             height: 20,
             borderRadius: 10,
-            backgroundColor: colors.phoneframe,
+            backgroundColor: colors.continueButtonColor,
             position: 'absolute',
             top: 18,
             left: '75%',

@@ -56,7 +56,8 @@ export type ColorSchemeType = {
     seeAllText: string;
     techProviderGradient: string[];
     subCard: string;
-    phoneframe: string;
+    previousButtonColor: string;
+    continueButtonColor: string;
 };
 
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -108,7 +109,8 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         completedProgressBar: '#FFD949',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd',
-        phoneframe: '#193E6D',
+        previousButtonColor: '#000000',
+        continueButtonColor: '#ffcb05',
     },
     dark: {
         primary: '#4695D3',
@@ -158,7 +160,8 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         completedProgressBar: '#FFD949',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#373737',
-        phoneframe: '#193E6D',
+        previousButtonColor: '#FFFFFF',
+        continueButtonColor: '#4695d3',
     },
 };
 
@@ -211,7 +214,8 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#1C1C1C',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd',
-        phoneframe: '#193E6D',
+        previousButtonColor: '#000000',
+        continueButtonColor: '#ffcb05',
     },
     dark: {
         primary: '#4695D3',
@@ -261,7 +265,8 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#FFFFFF',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#252525',
-        phoneframe: '#193E6D',
+        previousButtonColor: '#FFFFFF',
+        continueButtonColor: '#4695d3',
     },
 };
 const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -313,7 +318,8 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         accentTitle: '#000000',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd',
-        phoneframe: '#193E6D',
+        previousButtonColor: '#000000',
+        continueButtonColor: '#00FF00',
     },
     dark: {
         primary: '#0000FF',
@@ -363,7 +369,8 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         completedProgressBar: '#0000FF',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#1C1C1C',
-        phoneframe: '#193E6D',
+        previousButtonColor: '#FFFFFF',
+        continueButtonColor: '#0000FF',
     },
 };
 
