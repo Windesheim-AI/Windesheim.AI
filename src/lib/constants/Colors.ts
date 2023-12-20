@@ -433,7 +433,7 @@ export function useColorConfig(): ColorSchemeType {
 
     //check festive
     const currentDate = new Date();
-    const isChristmas = currentDate.getMonth() === 11 && currentDate.getDate() >= 19 && currentDate.getDate() <= 28;
+    const isChristmas = currentDate.getMonth() === 11 && currentDate.getDate() >= 24 && currentDate.getDate() <= 26;
     if (isChristmas) {
         const map = festive();
         return hasKeyInMap(map, theme) ? map[theme] : map.dark; // Assuming you have a `festiveColorMap` defined

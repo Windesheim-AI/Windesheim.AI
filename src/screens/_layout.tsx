@@ -54,13 +54,13 @@ export const Layout = ({ children }: LayoutProps) => {
             paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         },
     });
-    //25-28 decemer
+    //24-26 december
     const isChristmas = () => {
         const date = new Date();
         const month = date.getMonth();
         const day = date.getDate();
 
-        return month === 11 && day >= 20 && day <= 28;
+        return month === 11 && day >= 24 && day <= 26;
     }
 
     const isFirstTimeUser = useAppSelector(
@@ -74,35 +74,17 @@ export const Layout = ({ children }: LayoutProps) => {
         animateMarginBottomAnimation(navigation.showNavBar ? 70 : 10, 200);
     }, [animateMarginBottomAnimation, navigation]);
 
-    const rob = document.createElement('img');
-    rob.src = 'https://www.windesheim.tech/wp-content/uploads/2023/12/Rob.png'
-
-    const wim = document.createElement('img');
-    wim.src = 'https://www.windesheim.tech/wp-content/uploads/2022/06/image-6.png'
-
-    const bertand = document.createElement('img');
-    bertand.src = 'https://www.windesheim.tech/wp-content/uploads/2022/06/1516180868356.jpeg'
-
-    const bigJan = document.createElement('img');
-    bigJan.src = 'https://www.windesheim.tech/wp-content/uploads/2022/06/image-4.png'
-
-
-
-
     return (
         <>
-            <Snowfall
-                style={{
-                    position: 'fixed',
-                    width: '100vw',
-                    height: '100vh',
-                    zIndex: 1000,
-                }}
-                wind={[1, 2]}
-                radius={[50, 75]}
-                rotationSpeed={[0.1, 0.5]}
-                changeFrequency={150}
-                images={[rob]} />
+            {isChristmas() ?
+                <Snowfall
+                    style={{
+                        position: 'fixed',
+                        width: '100vw',
+                        height: '100vh',
+                        zIndex: 1000,
+                    }}
+                    wind={[1, 2]} /> : null}
             <Background />
             <SafeAreaView style={styles.wrapper}>
                 <NotificationList />
