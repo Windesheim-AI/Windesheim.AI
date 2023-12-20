@@ -23,7 +23,6 @@ export enum EnvOptions {
     WordPressDataURL = 'WordPressPluginURL',
     WordPressUsername = 'WordPressUsername',
     WordPressPassword = 'WordPressPassword',
-    UseExperimentalColors = 'UseExperimentalColors',
 }
 
 export type Env = Record<EnvOptions, string | undefined>;
@@ -36,7 +35,6 @@ export const mockEnvValues: Env = {
     [EnvOptions.WordPressDataURL]: 'https://www.windesheim.ai',
     [EnvOptions.WordPressUsername]: 'mockUsername',
     [EnvOptions.WordPressPassword]: 'mockPassword',
-    [EnvOptions.UseExperimentalColors]: 'false',
 };
 
 export const EnvValues: Env = {
@@ -47,5 +45,4 @@ export const EnvValues: Env = {
     [EnvOptions.WordPressDataURL]: WP_DATA_URL,
     [EnvOptions.WordPressUsername]: WP_USERNAME,
     [EnvOptions.WordPressPassword]: WP_PASSWORD,
-    [EnvOptions.UseExperimentalColors]: USE_EXPERIMENTAL_COLORS,
 };
