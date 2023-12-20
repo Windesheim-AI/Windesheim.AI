@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import {
     Animated,
-    View,
-    StyleSheet,
-    SafeAreaView,
     Platform,
+    SafeAreaView,
     StatusBar,
+    StyleSheet,
+    View,
 } from 'react-native';
 
 import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
@@ -13,9 +13,11 @@ import { NotificationList } from '../components/general/alerts/NotificationList'
 import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { Tutorial } from '../components/tutorial/Tutorial';
-import { useColorConfig, shadow } from '../lib/constants/Colors';
+import { shadow, useColorConfig } from '../lib/constants/Colors';
 import { useAppSelector } from '../lib/redux/Hooks';
 import { useAnimatedValue } from '../lib/utility/animate';
+
+//@ts-ignore
 
 type LayoutProps = {
     children: React.ReactNode;
