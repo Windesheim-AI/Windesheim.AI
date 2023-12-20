@@ -415,9 +415,30 @@ export function useColorStateConfig(): ColorStateConfig {
     };
 }
 
+//mystery function
+export function festive() {
+    const newMap = colorMap;
+    newMap.dark.bg1 = '#ff0000';
+    newMap.dark.bg2 = '#228b22'; // Forest Green
+    newMap.dark.bg3 = '#ff0000';
+    newMap.light.bg1 = '#ff0000';
+    newMap.light.bg2 = '#228b22'; // Forest Green
+    newMap.light.bg3 = '#ff0000';
+    return newMap;
+}
+
 export function useColorConfig(): ColorSchemeType {
     const theme = useCurrentTheme();
     const isHighContrastEnabled = useCurrentHighContrastMode();
+
+    //check festive
+    const currentDate = new Date();
+    const isChristmas = currentDate.getMonth() === 11 && currentDate.getDate() >= 19 && currentDate.getDate() <= 28;
+    if (isChristmas) {
+        const map = festive();
+        return hasKeyInMap(map, theme) ? map[theme] : map.dark; // Assuming you have a `festiveColorMap` defined
+    }
+
     if (isHighContrastEnabled) {
         return hasKeyInMap(highContrastColorMap, theme)
             ? highContrastColorMap[theme]

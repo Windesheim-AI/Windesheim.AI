@@ -5,6 +5,7 @@ import SplashScreen from './SplashScreen';
 import { useAppSelector } from '../../lib/redux/Hooks';
 import { Router } from '../../routes';
 import { Layout } from '../../screens/_layout';
+import Snowfall from 'react-snowfall';
 
 export default function SplashScreenOrApp() {
     const layoutState = useAppSelector((state) => state.layout);

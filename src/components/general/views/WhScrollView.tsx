@@ -4,6 +4,7 @@ import { ScrollView, StyleSheet, useWindowDimensions } from 'react-native';
 import { useColorConfig } from '../../../lib/constants/Colors';
 import { useAppDispatch } from '../../../lib/redux/Hooks';
 import { navigationActions } from '../../../lib/redux/slices/NavigationSlice';
+import Snowfall from 'react-snowfall';
 
 type WhScrollViewProps = {
     children: React.ReactNode;

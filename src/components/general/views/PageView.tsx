@@ -4,6 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';
+import Snowfall from 'react-snowfall'
 
 type PageViewProps = {
     children: React.ReactNode;
