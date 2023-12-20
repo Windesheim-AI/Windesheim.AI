@@ -59,6 +59,7 @@ export const NavBar = () => {
             borderRadius: 50,
             backgroundColor: colors.navBar.activeItemBackgroundColor,
             ...shadow,
+            elevation: 0,
         },
     });
 
