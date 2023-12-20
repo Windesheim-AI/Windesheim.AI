@@ -1,25 +1,24 @@
 import React, { useEffect } from 'react';
 import {
     Animated,
-    View,
-    StyleSheet,
-    SafeAreaView,
     Platform,
+    SafeAreaView,
     StatusBar,
+    StyleSheet,
+    View,
 } from 'react-native';
+import Snowfall from 'react-snowfall';
 
 import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
 import { NotificationList } from '../components/general/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { Tutorial } from '../components/tutorial/Tutorial';
-import { useColorConfig, shadow } from '../lib/constants/Colors';
+import { shadow, useColorConfig } from '../lib/constants/Colors';
 import { useAppSelector } from '../lib/redux/Hooks';
 import { useAnimatedValue } from '../lib/utility/animate';
-import Snowfall from 'react-snowfall';
 
 //@ts-ignore
-import SapLogo from '../assets/images/WTR/TechProviders/sap.png';
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -53,6 +52,12 @@ export const Layout = ({ children }: LayoutProps) => {
             flex: 1,
             paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         },
+        snow: {
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            zIndex: 1000,
+        },
     });
     //24-26 december
     const isChristmas = () => {
@@ -61,7 +66,7 @@ export const Layout = ({ children }: LayoutProps) => {
         const day = date.getDate();
 
         return month === 11 && day >= 24 && day <= 26;
-    }
+    };
 
     const isFirstTimeUser = useAppSelector(
         (state) => state.backgroundInformation,
@@ -76,15 +81,13 @@ export const Layout = ({ children }: LayoutProps) => {
 
     return (
         <>
-            {isChristmas() ?
+            {isChristmas() ? (
                 <Snowfall
-                    style={{
-                        position: 'fixed',
-                        width: '100vw',
-                        height: '100vh',
-                        zIndex: 1000,
-                    }}
-                    wind={[1, 2]} /> : null}
+                    //
+                    style={styles.snow}
+                    wind={[1, 2]}
+                />
+            ) : null}
             <Background />
             <SafeAreaView style={styles.wrapper}>
                 <NotificationList />
