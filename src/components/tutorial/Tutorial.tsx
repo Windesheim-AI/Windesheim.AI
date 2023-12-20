@@ -30,6 +30,7 @@ export const Tutorial = () => {
 
     const [modalVisible, setModalVisible] = useState(false);
     const layoutState = useAppSelector((state) => state.layout);
+    const animationState = useAppSelector((state) => state.animation);
     const loadingState = useAppSelector((state) => state.loading);
     const tutorialStep = useAppSelector((state) => state.tutorial.currentStep);
     const tutorialCompleted = useAppSelector(
@@ -116,7 +117,7 @@ export const Tutorial = () => {
     return (
         <View style={styles.container}>
             <Modal
-                animationType="fade"
+                animationType={animationState.isEnabled ? 'slide' : 'none'}
                 transparent
                 visible={modalVisible}
                 onRequestClose={() => {
