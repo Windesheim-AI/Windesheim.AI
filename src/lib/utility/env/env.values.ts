@@ -8,7 +8,6 @@ import {
     WP_DATA_URL,
     WP_USERNAME,
     WP_PASSWORD,
-    USE_EXPERIMENTAL_COLORS,
     // @ts-ignore
 } from '@env';
 
