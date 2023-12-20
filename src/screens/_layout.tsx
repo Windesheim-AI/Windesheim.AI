@@ -8,6 +8,7 @@ import {
     View,
 } from 'react-native';
 
+import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
 import { NotificationList } from '../components/general/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';
@@ -15,7 +16,6 @@ import { Tutorial } from '../components/tutorial/Tutorial';
 import { shadow, useColorConfig } from '../lib/constants/Colors';
 import { useAppSelector } from '../lib/redux/Hooks';
 import { useAnimatedValue } from '../lib/utility/animate';
-import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
 
 //@ts-ignore
 
