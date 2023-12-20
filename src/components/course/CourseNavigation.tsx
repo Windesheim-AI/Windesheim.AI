@@ -8,11 +8,12 @@ import {
     useColorStateConfig,
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { Stage } from '../../types/Stage';
 import { TextTranslated } from '../general/text/TextTranslated';
-import { IntractableView } from '../general/views/IntractableView';
+import { InteractiveView } from '../general/views/InteractiveView';
 
 export function CourseNavigation({
     title,
@@ -99,20 +100,25 @@ export function CourseNavigation({
     });
 
     function onDropdownPress(stageId: string) {
+        HapticFeedback(HapticForces.Light);
         navigation.navigate(Routes.CourseStage, { courseId, stageId });
         setShowDropdown(false);
     }
 
     function onCourseOverviewPress() {
+        HapticFeedback(HapticForces.Light);
         navigation.navigate(Routes.StageOverview, { courseId });
         setShowDropdown(false);
     }
 
     return (
         <View style={styles.x}>
-            <IntractableView
+            <InteractiveView
                 style={styles.topBar}
-                onPress={() => setShowDropdown(!showDropdown)}
+                onPress={() => {
+                    HapticFeedback(HapticForces.Light);
+                    setShowDropdown(!showDropdown);
+                }}
                 testID="course-navigation"
             >
                 <View style={styles.block}>
@@ -137,12 +143,12 @@ export function CourseNavigation({
                     style={styles.chevronIcon}
                     color={colors.text}
                 />
-            </IntractableView>
+            </InteractiveView>
 
             {showDropdown ? (
                 <View style={styles.courseDropdown}>
                     {/* course overview button */}
-                    <IntractableView
+                    <InteractiveView
                         style={styles.courseOverview}
                         onPress={onCourseOverviewPress}
                         testID="course-overview-button"
@@ -151,9 +157,9 @@ export function CourseNavigation({
                             style={styles.courseOverview}
                             text="Course Overview"
                         />
-                    </IntractableView>
+                    </InteractiveView>
                     {stages?.map((stage: Stage) => (
-                        <IntractableView
+                        <InteractiveView
                             key={stage.id}
                             testID={`stage-${stage.id}`}
                             style={[
@@ -175,7 +181,7 @@ export function CourseNavigation({
                                 ]}
                                 text={stage.title}
                             />
-                        </IntractableView>
+                        </InteractiveView>
                     ))}
                 </View>
             ) : null}

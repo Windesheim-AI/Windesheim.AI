@@ -19,15 +19,15 @@ export const PageView = ({ children, title, description }: PageViewProps) => {
         container: {
             backgroundColor: colors.background,
             flex: 1,
+            minHeight: '100%',
             padding: 20,
-            overflow: 'scroll',
         },
         header: {
             ...fonts.h1,
             marginBottom: 10,
         },
         description: {
-            ...fonts.accent,
+            ...fonts.description,
             textAlign: 'center',
         },
     });

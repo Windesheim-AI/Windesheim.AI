@@ -10,13 +10,25 @@ describe('Home page tests', () => {
     });
 
     it('can display the home page', () => {
+        cy.intercept('GET', '/wp-json/winpl/v1/prompts/', {
+            fixture: 'prompts/data.json',
+        }).as('getData');
+
         cy.visit('/');
 
         cy.contains('Home');
         cy.contains('Useful Prompts');
         cy.contains('Tech Providers');
-        //there should be 5 tech providers
-        cy.get('[data-testid="tech-provider-text"]').should('have.length', 5);
+        cy.contains('Themes');
+        cy.contains('See All');
+
+        // There should be 3 Tech Providers.
+        cy.get('[data-testid="tech-provider-card"]').should('have.length', 3);
+
+        // There should be 3 themes.
+        cy.get('[data-testid="theme-card"]').should('have.length', 3);
+
+        // There should be 3 prompts.
         cy.get('[data-testid="prompt-card"]').should('have.length', 3);
     });
 

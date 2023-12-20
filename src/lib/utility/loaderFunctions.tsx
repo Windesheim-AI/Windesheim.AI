@@ -66,15 +66,16 @@ export function useDynamicLoading<T>(callback: () => T) {
                         setIsLoadingCompleted(true);
                         throw error;
                     });
-            } else {
-                // For synchronous callbacks, update loading state immediately
-                /* istanbul ignore next */
-                storeDispatch(setLoading(false));
-                /* istanbul ignore next */
-                setIsLoading(false);
-                /* istanbul ignore next */
-                setIsLoadingCompleted(true);
+                return;
             }
+
+            // For synchronous callbacks, update loading state immediately
+            /* istanbul ignore next */
+            storeDispatch(setLoading(false));
+            /* istanbul ignore next */
+            setIsLoading(false);
+            /* istanbul ignore next */
+            setIsLoadingCompleted(true);
         } catch (error) {
             // Handle synchronous errors here
             /* istanbul ignore next */

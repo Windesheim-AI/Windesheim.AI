@@ -21,9 +21,12 @@ export const tutorialSlice = createSlice({
             state.tutorialCompleted = action.payload;
             state.currentStep = 0;
         },
+        previousStep: (state) => {
+            state.currentStep -= 1;
+        },
     },
 });
 
-export const { nextStep, setCompleted } = tutorialSlice.actions;
+export const { nextStep, setCompleted, previousStep } = tutorialSlice.actions;
 
 export default tutorialSlice.reducer;

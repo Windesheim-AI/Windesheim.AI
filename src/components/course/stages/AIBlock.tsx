@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 
 import BlockWrapper from './block';
-import { getEnvValue } from '../../../lib/utility/env/env';
+import { getEnvValue, isEnvSettingEnabled } from '../../../lib/utility/env/env';
 import { EnvOptions } from '../../../lib/utility/env/env.values';
 import { AIOptions } from '../../../types/CourseStageBlock';
 import AIGeneratedOutput from '../AIGeneratedOutput';
@@ -30,14 +30,15 @@ export default function AIRenderer({ options }: { options: AIOptions }) {
             setText(chatCompletion.choices[0].message.content);
         }
 
-        if (getEnvValue(EnvOptions.AiEnabled) === 'true') {
-            // eslint-disable-next-line no-void
-            void main();
-        } else {
+        if (!isEnvSettingEnabled(EnvOptions.AiEnabled)) {
             setText(
                 `Live AI has been disabled in the .env file. Showing prompt; ${options.prompt}`,
             );
+            return;
         }
+
+        // eslint-disable-next-line no-void
+        void main();
     }, [openai.chat.completions, options.prompt]);
 
     const styles = StyleSheet.create({

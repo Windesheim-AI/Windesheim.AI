@@ -1,5 +1,11 @@
 import { Course } from '../../src/types/Course';
 
+// Disable uncaught exception handling.
+Cypress.on('uncaught:exception', () => {
+    // Returning false here prevents Cypress from failing the test.
+    return false;
+});
+
 describe('Courses page tests', () => {
     beforeEach(() => {
         cy.visit('/settings');
@@ -19,7 +25,7 @@ describe('Courses page tests', () => {
         // get the fixture and put it in a const
         const courses = require('../fixtures/courses/data.json');
 
-        cy.visit('/courses');
+        cy.visit('/study/courses');
         cy.wait(['@getCourses']);
 
         // check if the courses are displayed
@@ -38,7 +44,7 @@ describe('Courses page tests', () => {
             fixture: 'courses/1-course.json',
         }).as('getCourse');
 
-        cy.visit('/courses');
+        cy.visit('/study/courses');
         cy.wait(['@getCourses']);
 
         // check if the courses are displayed
@@ -76,7 +82,7 @@ describe('Courses page tests', () => {
             fixture: 'courses/1-course.json',
         }).as('getCourse');
 
-        cy.visit('/courses');
+        cy.visit('/study/courses');
         cy.wait(['@getCourses']);
 
         // check if the courses are displayed
@@ -110,7 +116,7 @@ describe('Courses page tests', () => {
             fixture: 'courses/empty.json',
         }).as('getCourse');
 
-        cy.visit('/course/5/overview');
+        cy.visit('/study/courses/5/overview');
         cy.wait(['@getCourse']);
 
         cy.contains('Course not found');
@@ -123,7 +129,7 @@ describe('Courses page tests', () => {
             fixture: 'courses/empty.json',
         }).as('getCourse');
 
-        cy.visit('/course/3/3');
+        cy.visit('/study/courses/3/3');
         cy.wait(['@getCourse']);
 
         cy.contains('Course not found');

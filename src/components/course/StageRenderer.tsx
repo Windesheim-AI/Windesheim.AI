@@ -54,6 +54,7 @@ export default function StageRenderer({
                     courseId,
                     stageId: stage.id,
                 };
+
                 return <Component key={key} options={options} />;
             })}
         </>

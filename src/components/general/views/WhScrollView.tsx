@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, useWindowDimensions } from 'react-native';
 
 import { useColorConfig } from '../../../lib/constants/Colors';
 import { useAppDispatch } from '../../../lib/redux/Hooks';
@@ -14,6 +14,7 @@ const topThreshold = 50;
 
 export const WhScrollView = ({ children }: WhScrollViewProps) => {
     const storeDispatcher = useAppDispatch();
+    const windowDimensions = useWindowDimensions();
     const colors = useColorConfig();
 
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -36,7 +37,7 @@ export const WhScrollView = ({ children }: WhScrollViewProps) => {
         };
     }) => {
         const position = event.nativeEvent.contentOffset.y;
-        const screenHeight = Dimensions.get('window').height;
+        const screenHeight = windowDimensions.height;
         const maxScroll = event.nativeEvent.contentSize.height - screenHeight;
 
         //if content is smaller than screen plus some padding, always show nav bar

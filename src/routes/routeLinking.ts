@@ -3,53 +3,47 @@ import * as Linking from 'expo-linking';
 import { Routes } from './routes';
 
 export const RouteLinking = {
-    // eslint-disable-next-line,@typescript-eslint/no-unsafe-member-access
-    prefixes: [Linking.createURL('/')], // Use your custom URL scheme here
+    prefixes: [Linking.createURL('/')],
     config: {
         screens: {
             [Routes.Home]: 'home',
-            [Routes.WindesheimTechRadar]: {
-                path: 'wtr-content/:page?',
-                parse: {
-                    page: (page: string) => page,
-                },
-            },
+            [Routes.WindesheimTechRadar]: 'wtr-content',
             [Routes.WindesheimTechRadarContent]: {
-                path: 'wtr-content-content/:page',
+                path: 'wtr-content/:page',
                 parse: {
                     page: (page: string) => page,
                 },
             },
-            [Routes.Study]: 'Study',
+            [Routes.Study]: 'study',
             [Routes.Settings]: 'settings',
-            [Routes.Usecase]: 'Usecase',
-            [Routes.CaseStudyInfo]: 'CaseStudyInfo',
+            [Routes.Usecase]: 'use-cases',
+            [Routes.CaseStudyInfo]: 'case-studies',
             [Routes.CourseFinished]: {
-                path: 'course/:courseId/finished',
+                path: 'study/courses/:courseId/finished',
                 parse: {
                     courseId: (courseId: string) => courseId,
                 },
             },
             [Routes.StageOverview]: {
-                path: 'course/:courseId/overview',
+                path: 'study/courses/:courseId/overview',
                 parse: {
                     courseId: (courseId: string) => courseId,
                 },
             },
             [Routes.CourseStage]: {
-                path: 'course/:courseId/:stageId',
+                path: 'study/courses/:courseId/:stageId',
                 parse: {
                     courseId: (courseId: string) => courseId,
                     stageId: (stageId: string) => stageId,
                 },
             },
-            [Routes.Courses]: 'courses',
-            [Routes.LoadingScreen]: 'LoadingScreen',
-            [Routes.FirstTimeUser]: 'first-time-user',
+            [Routes.Courses]: 'study/courses',
+            [Routes.LoadingScreen]: 'app/loading-screen',
+            [Routes.FirstTimeUser]: 'app/first-time-user',
             [Routes.EditBackgroundInformation]:
                 'settings/edit-background-information',
-            [Routes.PromptLibrary]: 'prompt-library',
-            [Routes.Prompt]: 'prompt-library/prompt',
+            [Routes.PromptLibrary]: 'study/prompt-library',
+            [Routes.PromptView]: 'study/prompt-library/prompt',
         },
     },
 };

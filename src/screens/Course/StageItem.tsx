@@ -3,13 +3,14 @@ import { StyleSheet, View } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { TextTranslated } from '../../components/general/text/TextTranslated';
-import { IntractableView } from '../../components/general/views/IntractableView';
+import { InteractiveView } from '../../components/general/views/InteractiveView';
 import {
     shadow,
     useColorConfig,
     useColorStateConfig,
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { StageDataMapped } from '../../types/Stage';
@@ -50,6 +51,7 @@ export const StageItem = ({
     });
 
     function handlePress() {
+        HapticFeedback(HapticForces.Light);
         navigation.navigate(Routes.CourseStage, {
             courseId,
             stageId: id,
@@ -57,7 +59,7 @@ export const StageItem = ({
     }
 
     return (
-        <IntractableView
+        <InteractiveView
             onPress={handlePress}
             style={styles.card}
             testID={`stage-card-${id}`}
@@ -78,6 +80,6 @@ export const StageItem = ({
                 )}
                 <TextTranslated style={styles.title} text={title} />
             </View>
-        </IntractableView>
+        </InteractiveView>
     );
 };

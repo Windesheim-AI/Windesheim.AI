@@ -5,12 +5,12 @@ import * as Progress from 'react-native-progress';
 
 import { CourseNavigation } from '../../components/course/CourseNavigation';
 import StageRenderer from '../../components/course/StageRenderer';
-import { DataWrapper } from '../../components/general/base/DataWrapper';
-import { Button } from '../../components/general/buttons/Button';
+import { PlainButton } from '../../components/general/base/PlainButton';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { PageView } from '../../components/general/views/PageView';
+import LoadingScreen from '../../components/loadingscreen/LoadingScreen';
 import {
     shadow,
     useColorConfig,
@@ -46,10 +46,12 @@ export default function Stage() {
 
     const styles = StyleSheet.create({
         progressBar: {
-            marginTop: 15,
+            marginBottom: 15,
             ...shadow,
             borderColor: colors.listItemBg,
-            color: colors.primary,
+            borderWidth: 0,
+            backgroundColor: colors.progressbarBg,
+            ...colorStateConfig.highContrastBorder,
         },
         courseTitle: {
             ...fonts.h1,
@@ -58,8 +60,15 @@ export default function Stage() {
         },
         container: {
             paddingBottom: 30,
-            height: '100%',
-            backgroundColor: colors.background,
+        },
+        buttonContainer: {
+            marginTop: 30,
+            flexDirection: 'row',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+        },
+        button: {
+            marginRight: 10,
         },
     });
 
@@ -67,20 +76,28 @@ export default function Stage() {
         navigator.navigate(Routes.Courses.toString());
     }
 
-    // this meaning there is not data, while loading has finished.
-    if ((!data && !isLoading) || !course.stageData) {
+    if (isLoading) {
+        return <LoadingScreen />;
+    }
+
+    if (error) {
         return (
-            <PageView>
-                <View style={styles.container}>
-                    <TextTranslated
-                        style={styles.courseTitle}
-                        text="Course not found!"
-                    />
-                    <GoBackButton
-                        buttonText="Courses"
-                        onPress={navigateBackToCourses}
-                    />
-                </View>
+            <PageView title="An error occurred while loading the data">
+                <GoBackButton
+                    buttonText="Go back"
+                    onPress={() => navigateBackToCourses()}
+                />
+            </PageView>
+        );
+    }
+
+    if (!data || !course?.stageData) {
+        return (
+            <PageView title="Course not found!">
+                <GoBackButton
+                    buttonText="Go back"
+                    onPress={() => navigateBackToCourses()}
+                />
             </PageView>
         );
     }
@@ -113,55 +130,71 @@ export default function Stage() {
         });
     }
 
+    function goPrevious() {
+        const previousStage =
+            course.stageData[activeStageCount - 1] ?? undefined;
+
+        if (!previousStage) {
+            navigator.navigate(Routes.Courses.toString());
+            return;
+        }
+
+        navigator.navigate(Routes.CourseStage, {
+            courseId: course.courseId,
+            stageId: previousStage.id,
+        });
+    }
+
     return (
         <PageScrollView>
-            <DataWrapper error={error} isLoading={isLoading}>
-                <View style={styles.container}>
-                    {stage ? (
-                        <>
-                            <CourseNavigation
-                                title={course.title ?? ''}
-                                subTitle={stage.title}
-                                stages={course.stageData}
-                                courseId={course.courseId}
-                                currentStageId={stageId}
-                            />
-                            <Progress.Bar
-                                progress={
-                                    (activeStageCount + 1) /
-                                    course.stageData.length
-                                }
-                                width={null}
-                                style={styles.progressBar}
-                            />
-                            <TextTranslated
-                                style={styles.courseTitle}
-                                text={course.title ?? ''}
-                            />
-
-                            <StageRenderer
-                                key={stage.id}
-                                courseId={course.courseId}
-                                stage={stage}
-                            />
-                            <Button
-                                buttonText="Next"
-                                onPress={onPress}
-                                colorGradientScheme={
-                                    colorStateConfig.colors.primary
-                                }
-                                textColorScheme={colorStateConfig.text?.primary}
-                                testId={`next-stage-${stage.id}-button`}
-                            />
-                        </>
-                    ) : (
-                        <TextTranslated
-                            style={styles.courseTitle}
-                            text="Course step not found!"
+            <View style={styles.container}>
+                {stage ? (
+                    <>
+                        <Progress.Bar
+                            progress={
+                                (activeStageCount + 1) / course.stageData.length
+                            }
+                            width={null}
+                            color={colors.completedProgressBar}
+                            style={styles.progressBar}
                         />
-                    )}
-                </View>
-            </DataWrapper>
+                        <CourseNavigation
+                            title={course.title ?? ''}
+                            subTitle={stage.title}
+                            stages={course.stageData}
+                            courseId={course.courseId}
+                            currentStageId={stageId}
+                        />
+                        <StageRenderer
+                            key={stage.id}
+                            courseId={course.courseId}
+                            stage={stage}
+                        />
+                        <View style={styles.buttonContainer}>
+                            <PlainButton
+                                text="Previous"
+                                onPress={goPrevious}
+                                style={styles.button}
+                                backgroundColor={colors.background}
+                            />
+                            <PlainButton
+                                text="Next"
+                                backgroundColor={
+                                    colorStateConfig.colors.secondary[1]
+                                }
+                                textColor={colorStateConfig.text?.secondary[1]}
+                                onPress={onPress}
+                                style={styles.button}
+                            />
+                        </View>
+                    </>
+                ) : (
+                    <TextTranslated
+                        style={styles.courseTitle}
+                        text="Course step not found!"
+                    />
+                )}
+            </View>
         </PageScrollView>
     );
 }

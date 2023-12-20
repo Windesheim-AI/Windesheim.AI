@@ -24,6 +24,7 @@ export const PageScrollView = ({
         container: {
             backgroundColor: colors.background,
             flex: 1,
+            minHeight: '100%',
             padding: 20,
         },
         header: {
@@ -40,7 +41,11 @@ export const PageScrollView = ({
         <WhScrollView>
             <View style={styles.container}>
                 {title ? (
-                    <TextTranslated style={styles.header} text={title} />
+                    <TextTranslated
+                        style={styles.header}
+                        text={title}
+                        testID={`${title}-description`}
+                    />
                 ) : null}
                 {description ? (
                     <TextTranslated

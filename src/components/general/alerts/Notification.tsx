@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-import { Animated, Text, StyleSheet, Dimensions, View } from 'react-native';
+import {
+    Animated,
+    Text,
+    StyleSheet,
+    View,
+    useWindowDimensions,
+} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import {
@@ -30,6 +36,7 @@ export const Notification = ({
     icon,
 }: NotificationType) => {
     const dispatch = useAppDispatch();
+    const windowDimensions = useWindowDimensions();
     const colors = useColorConfig();
     const fonts = useFonts();
 
@@ -70,7 +77,7 @@ export const Notification = ({
         return () => clearTimeout(timer);
     }, [dispatch, animateFade, animateScaleY, animateTranslateY, id]);
 
-    const defaultWidth = Dimensions.get('window').width;
+    const defaultWidth = windowDimensions.width;
     const alertWidth = width ? width : defaultWidth * 0.97;
     const defaultHeight = 60;
     const alertHeight = height ? height : defaultHeight;

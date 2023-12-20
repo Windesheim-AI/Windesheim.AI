@@ -14,3 +14,9 @@ export function getEnvValue(key: EnvOptions, mock = false): string {
     }
     return value;
 }
+
+export function isEnvSettingEnabled(key: EnvOptions, mock = false): boolean {
+    const value = mock ? mockEnvValues[key] : EnvValues[key];
+
+    return value === 'true';
+}

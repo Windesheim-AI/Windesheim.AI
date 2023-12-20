@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import {
@@ -8,9 +8,10 @@ import {
     useColorStateConfig,
 } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
-import { IntractableView } from '../views/IntractableView';
+import { InteractiveView } from '../views/InteractiveView';
 
 export type ButtonProps = {
     onPress?: () => void;
@@ -51,6 +52,7 @@ export const Button = ({
 
         /* istanbul ignore next */
         onPress = () => {
+            HapticFeedback(HapticForces.Light);
             navigation.navigate(screenName);
         };
     }
@@ -113,7 +115,7 @@ export const Button = ({
     });
 
     return (
-        <IntractableView
+        <InteractiveView
             style={styles.button}
             onPress={onPress}
             testID={testId}
@@ -125,6 +127,6 @@ export const Button = ({
                 {icon ? ' ' : ''}
                 <TextTranslated style={styles.text} text={buttonText ?? ''} />
             </Text>
-        </IntractableView>
+        </InteractiveView>
     );
 };

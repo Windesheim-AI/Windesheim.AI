@@ -1,8 +1,8 @@
-import { getEnvValue } from './env/env';
+import { isEnvSettingEnabled } from './env/env';
 import { EnvOptions } from './env/env.values';
 
 export function handleError(error: any) {
-    if (getEnvValue(EnvOptions.AppDebug) !== 'true') {
+    if (isEnvSettingEnabled(EnvOptions.AppDebug)) {
         return;
     }
 

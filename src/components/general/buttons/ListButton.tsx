@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Pressable } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import {
@@ -7,6 +7,7 @@ import {
     useColorStateConfig,
 } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
 
@@ -40,6 +41,7 @@ export const ListButton = ({
             );
         }
         onPress = () => {
+            HapticFeedback(HapticForces.Light);
             navigation.navigate(screenName);
         };
     }

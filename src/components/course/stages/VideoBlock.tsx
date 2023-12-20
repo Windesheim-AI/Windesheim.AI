@@ -1,32 +1,34 @@
 import { Audio, ResizeMode, Video } from 'expo-av';
 import React from 'react';
-import { Button, Dimensions, StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, useWindowDimensions } from 'react-native';
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 import BlockWrapper from './block';
+import { shadow } from '../../../lib/constants/Colors';
 import { VideoOptions } from '../../../types/CourseStageBlock';
 
 export function VideoBlock({ options }: { options: VideoOptions }) {
+    const windowDimensions = useWindowDimensions();
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
 
-    // Moved StyleSheet out of the component so it's not recreated on each render
     const styles = StyleSheet.create({
         container: {
-            flex: 1, // You might want to adjust this flex value or set fixed width/height
+            flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            marginBottom: 20,
+            borderRadius: 10,
+            marginTop: 10,
+            marginBottom: 10,
+            ...shadow,
         },
         video: {
-            // If you know the aspect ratio of your video, set it here
             aspectRatio: 16 / 9, // Assuming a 16:9 aspect ratio
             width: '100%', // Make the video width stretch to the container width
             maxHeight: '100%', // Optional: if you want to set a max height
         },
         ytContainer: {
-            marginRight: 10,
-            marginLeft: 10,
+            borderRadius: 10,
         },
     });
 
@@ -43,7 +45,6 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
         return match && match[1].length === 11 ? match[1] : false;
     };
 
-    // @ts-ignore
     return (
         <BlockWrapper style={styles.container}>
             {!options.videoURL.includes('youtube' || 'yt') ? (
@@ -79,13 +80,12 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
                     />
                 </>
             ) : (
-                <View style={styles.ytContainer}>
-                    <YoutubePlayer
-                        height={Dimensions.get('window').height / 3}
-                        width={Dimensions.get('window').width - 90}
-                        videoId={getYTId(options.videoURL) || ''}
-                    />
-                </View>
+                <YoutubePlayer
+                    webViewStyle={styles.ytContainer}
+                    height={windowDimensions.height / 4.55}
+                    width={windowDimensions.width - 60}
+                    videoId={getYTId(options.videoURL) || ''}
+                />
             )}
         </BlockWrapper>
     );

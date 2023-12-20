@@ -4,7 +4,11 @@ const positions: BackgroundDataItem[] = [
     { id: '1', name: 'Student' },
     { id: '2', name: 'Teacher' },
     { id: '3', name: 'Researcher' },
-    { id: '4', name: 'Other' },
+    { id: '4', name: 'Business IT' },
+    { id: '5', name: 'Business management' },
+    { id: '6', name: 'Government' },
+    { id: '7', name: 'Ethicist/policy maker' },
+    { id: '8', name: 'Other' },
 ];
 
 const keywords: BackgroundDataItem[] = [

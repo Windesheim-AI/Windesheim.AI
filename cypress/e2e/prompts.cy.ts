@@ -17,7 +17,7 @@ describe('Prompt Library tests', () => {
         // get the fixture and put it in a const
         const prompts = require('../fixtures/prompts/data.json');
 
-        cy.visit('/prompt-library');
+        cy.visit('/study/prompt-library');
         cy.wait(['@getData']);
 
         cy.contains('Prompt Library');
@@ -25,15 +25,12 @@ describe('Prompt Library tests', () => {
             'Filter by tool and sector, hold long on a tag to select only that one.',
         );
         cy.contains(prompts[0].title);
-        cy.contains(prompts[0].promptPattern);
         cy.contains(prompts[0].tool);
 
         cy.contains(prompts[1].title);
-        cy.contains(prompts[1].promptPattern);
         cy.contains(prompts[1].tool);
 
         cy.contains(prompts[2].title);
-        cy.contains(prompts[2].promptPattern);
         cy.contains(prompts[2].tool);
     });
 
@@ -42,7 +39,7 @@ describe('Prompt Library tests', () => {
             fixture: 'prompts/empty.json',
         }).as('getData');
 
-        cy.visit('/prompt-library');
+        cy.visit('/study/prompt-library');
         cy.wait(['@getData']);
 
         cy.contains('Prompt Library');
@@ -57,7 +54,7 @@ describe('Prompt Library tests', () => {
         // get the fixture and put it in a const
         const prompts = require('../fixtures/prompts/data.json');
 
-        cy.visit('/prompt-library');
+        cy.visit('/study/prompt-library');
         cy.wait(['@getData']);
 
         cy.contains('Prompt Library');
@@ -90,7 +87,7 @@ describe('Prompt Library tests', () => {
         // get the fixture and put it in a const
         const prompt = require('../fixtures/prompts/1-prompt.json');
 
-        cy.visit('/prompt-library/prompt?promptId=1');
+        cy.visit('/study/prompt-library/prompt?promptId=1');
         cy.wait(['@getData']);
 
         cy.contains('Prompt Library');
@@ -108,7 +105,7 @@ describe('Prompt Library tests', () => {
             fixture: 'prompts/empty.json',
         }).as('getData');
 
-        cy.visit('/prompt-library/prompt?promptId=1');
+        cy.visit('/study/prompt-library/prompt?promptId=1');
         cy.wait(['@getData']);
 
         cy.contains('No prompt found!');

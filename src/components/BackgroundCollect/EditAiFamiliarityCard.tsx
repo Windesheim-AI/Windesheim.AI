@@ -1,29 +1,28 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { aiFamiliarity } from './DataList';
 import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
 import { setAiFamiliarity } from '../../lib/redux/slices/BackgroundInformationSlice';
-import { translateText } from '../../lib/translations/hooks';
+import { usePreparedTranslator } from '../../lib/translations/hooks';
 import { SettingCard } from '../general/card/SettingCard';
-import { SelectValuesInput } from '../general/input/SelectValuesInput';
+import {
+    SelectableItem,
+    SelectDropdown,
+} from '../general/input/SelectDropdown';
 
 export const EditAiFamiliarityCard = () => {
-    const language = useAppSelector((state) => state.language.langCode);
-    const { t } = useTranslation();
+    const t = usePreparedTranslator();
 
     const storeDispatcher = useAppDispatch();
-
-    const selectableOptions = aiFamiliarity.map((item) => {
-        return translateText(t, item.name, language);
-    });
-
     const backgroundInformation = useAppSelector(
         (state) => state.backgroundInformation,
     );
-    const selectedValue = backgroundInformation.familiarity;
-    const selectedValueIndex = aiFamiliarity.findIndex((item) => {
-        return item.name === selectedValue;
+
+    const selectableOptions: SelectableItem[] = aiFamiliarity.map((item) => {
+        return {
+            label: t(item.name),
+            value: item.name,
+        };
     });
 
     return (
@@ -32,17 +31,15 @@ export const EditAiFamiliarityCard = () => {
             icon="briefcase"
             isFlexEnabled={false}
         >
-            <SelectValuesInput
+            <SelectDropdown
                 label="AI familiarity"
-                selectableValues={selectableOptions}
-                defaultValueIndex={selectedValueIndex}
-                onSelect={(_, index) => {
-                    storeDispatcher(
-                        setAiFamiliarity(aiFamiliarity[index].name),
-                    );
+                data={selectableOptions}
+                defaultValue={backgroundInformation.familiarity}
+                onSelect={(selectedItem) => {
+                    storeDispatcher(setAiFamiliarity(selectedItem.label));
                 }}
                 width="100%"
-                testId="ai-familiarity-select"
+                testID="ai-familiarity-select"
             />
         </SettingCard>
     );
