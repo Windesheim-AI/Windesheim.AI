@@ -2,8 +2,6 @@ import { ViewStyle } from 'react-native';
 
 import { useAppSelector } from '../redux/Hooks';
 import { hasKeyInMap } from '../utility/data';
-import { isEnvSettingEnabled } from '../utility/env/env';
-import { EnvOptions } from '../utility/env/env.values';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
@@ -56,113 +54,11 @@ export type ColorSchemeType = {
     seeAllText: string;
     techProviderGradient: string[];
     subCard: string;
-    phoneframe: string;
+    previousButtonColor: string;
+    continueButtonColor: string;
 };
 
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
-    light: {
-        primary: '#4695D3',
-        secondary: '#fff377',
-        success: '#45B97C',
-        warning: '#ff7300',
-        danger: '#EE3135',
-        enabled: '#45B97C',
-        disabled: '#999',
-        buttonText: '#3F3f3f',
-        link: '#ffcb05',
-        text: '#000',
-        textLight: '#fff',
-        textHighlight: '#fff',
-        background: '#fff',
-        backgroundHighlight: '#4695D3',
-        backgroundModal: 'rgba(0, 0, 0, 0.8)',
-        tint: tintColorLight,
-        gray: '#919191',
-        tabIconDefault: '#ccc',
-        tabIconSelected: tintColorLight,
-        titleDefault: '#000',
-        descriptionDefault: 'gray',
-        bg1: '#fff377',
-        bg2: '#ffd949',
-        bg3: '#ffcb05',
-        settingButtonBG: '#fffffff',
-        modalBackground: 'rgba(0,0,0,0.5)',
-        subtext: '#a8a7a7',
-        navBar: {
-            backgroundColor: '#FAFAFA',
-            itemBackgroundColor: '#FFFFFF',
-            activeItemBackgroundColor: '#000000',
-            color: '#000000',
-            activeColor: '#FFFFFF',
-        },
-        borderColor: '#ccc',
-        subTitle: '#2B2A2A',
-        listItemBg: '#DCDCDC',
-        white: '#FFFFFF',
-        black: '#000000',
-        blue: '#0000FF',
-        opacityLayer: 'rgba(255,255,255,0.8)',
-        seeAllText: '#1C1C1C',
-        accentTitle: '#FFFFFF',
-        progressbarBg: '#FFFFFF',
-        completedProgressBar: '#FFD949',
-        techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
-        subCard: '#f4f3fd',
-        phoneframe: '#193E6D',
-    },
-    dark: {
-        primary: '#4695D3',
-        secondary: '#fff377',
-        success: '#45B97C',
-        warning: '#ff7300',
-        danger: '#EE3135',
-        enabled: '#45B97C',
-        disabled: '#999',
-        link: '#ffcb05',
-        text: '#fff',
-        textLight: '#fff',
-        textHighlight: '#fff',
-        buttonText: '#fff',
-        background: '#2a2a2a',
-        backgroundHighlight: '#4695D3',
-        backgroundModal: 'rgba(0, 0, 0, 0.8)',
-        tint: tintColorDark,
-        gray: '#919191',
-        tabIconDefault: '#ccc',
-        tabIconSelected: tintColorDark,
-        titleDefault: '#fff',
-        modalBackground: 'rgba(0,0,0,0.5)',
-        descriptionDefault: 'gray',
-        bg1: '#86d2d9',
-        bg2: '#22bdc6',
-        bg3: '#4695d3',
-        settingButtonBG: '#373737',
-        subtext: '#a8a7a7',
-        navBar: {
-            backgroundColor: '#373737',
-            itemBackgroundColor: '#373737',
-            activeItemBackgroundColor: '#000000',
-            color: '#000000',
-            activeColor: '#373737',
-        },
-        subTitle: '#c4c4c4',
-        borderColor: '#ccc',
-        listItemBg: '#373737',
-        white: '#FFFFFF',
-        black: '#000000',
-        blue: '#0000FF',
-        opacityLayer: 'rgba(0,0,0,0.6)',
-        seeAllText: '#FFFFFF',
-        accentTitle: '#757575',
-        progressbarBg: '#373737',
-        completedProgressBar: '#FFD949',
-        techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
-        subCard: '#373737',
-        phoneframe: '#193E6D',
-    },
-};
-
-export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
         primary: '#4695D3',
         secondary: '#fff377',
@@ -211,7 +107,8 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#1C1C1C',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd',
-        phoneframe: '#193E6D',
+        previousButtonColor: '#000000',
+        continueButtonColor: '#ffcb05',
     },
     dark: {
         primary: '#4695D3',
@@ -261,9 +158,11 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#FFFFFF',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#252525',
-        phoneframe: '#193E6D',
+        previousButtonColor: '#FFFFFF',
+        continueButtonColor: '#4695d3',
     },
 };
+
 const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
         primary: '#0000FF',
@@ -313,7 +212,8 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         accentTitle: '#000000',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd',
-        phoneframe: '#193E6D',
+        previousButtonColor: '#000000',
+        continueButtonColor: '#00FF00',
     },
     dark: {
         primary: '#0000FF',
@@ -363,7 +263,8 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         completedProgressBar: '#0000FF',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#1C1C1C',
-        phoneframe: '#193E6D',
+        previousButtonColor: '#FFFFFF',
+        continueButtonColor: '#0000FF',
     },
 };
 
@@ -523,9 +424,5 @@ export function useColorConfig(): ColorSchemeType {
             : highContrastColorMap.dark;
     }
 
-    const map = isEnvSettingEnabled(EnvOptions.UseExperimentalColors)
-        ? experimentalColorMap
-        : colorMap;
-
-    return hasKeyInMap(map, theme) ? map[theme] : map.dark;
+    return hasKeyInMap(colorMap, theme) ? colorMap[theme] : colorMap.dark;
 }

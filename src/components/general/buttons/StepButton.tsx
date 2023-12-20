@@ -1,18 +1,20 @@
 import React from 'react';
-import { Pressable, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { useColorConfig } from '../../../lib/constants/Colors';
+import {
+    useColorConfig,
+    useColorStateConfig,
+} from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';
 
-export type StepButtonProps = {
-    onPreviousPress?: () => void;
-    onSkipPress?: () => void;
-    onNextPress?: () => void;
+export type Props = {
+    onPreviousPress: () => void;
+    onSkipPress: () => void;
+    onNextPress: () => void;
     buttonText?: string;
     size?: number;
-    margin?: number;
 };
 
 export const StepButton = ({
@@ -21,21 +23,27 @@ export const StepButton = ({
     onNextPress,
     buttonText = 'Skip',
     size = 30,
-    margin = 0.3,
-}: StepButtonProps) => {
+}: Props) => {
     const colors = useColorConfig();
-    const windowDimensions = useWindowDimensions();
-    const marginwidth = windowDimensions.width * margin;
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
 
     const styles = StyleSheet.create({
         container: {
             flexDirection: 'row',
+            justifyContent: 'space-between',
+        },
+        continueButton: {
+            flex: 1,
             alignItems: 'center',
+            padding: 5,
+            ...colorStateConfig.highContrastBorder,
         },
         skipButton: {
-            marginLeft: marginwidth,
-            marginRight: marginwidth,
+            flex: 1,
+            alignItems: 'center',
+            padding: 5,
+            ...colorStateConfig.highContrastBorder,
         },
         buttonText: {
             color: colors.text,
@@ -47,13 +55,14 @@ export const StepButton = ({
         <View style={styles.container}>
             {/* Previous step <- */}
             <Pressable
+                style={styles.continueButton}
                 testID="tutorial-previous-button"
                 onPress={onPreviousPress}
             >
                 <FontAwesome5
                     name="arrow-left"
                     size={size}
-                    color={colors.text}
+                    color={colors.previousButtonColor}
                 />
             </Pressable>
             {/* Skip Button */}
@@ -65,11 +74,15 @@ export const StepButton = ({
                 <TextTranslated style={styles.buttonText} text={buttonText} />
             </Pressable>
             {/* Next step -> */}
-            <Pressable testID="tutorial-next-button" onPress={onNextPress}>
+            <Pressable
+                testID="tutorial-next-button"
+                onPress={onNextPress}
+                style={styles.continueButton}
+            >
                 <FontAwesome5
                     name="arrow-right"
                     size={size}
-                    color={colors.bg3}
+                    color={colors.continueButtonColor}
                 />
             </Pressable>
         </View>
