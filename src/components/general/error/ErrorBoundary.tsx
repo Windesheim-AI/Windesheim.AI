@@ -70,12 +70,10 @@ const ErrorFallback: React.FC<Props> = ({ error, resetError }: Props) => {
 
     return (
         <View style={styles.container} testID="error-fallback-container">
-            <Text style={styles.title}>Something happened!</Text>
-            <Text style={styles.text}>
-                {isEnvSettingEnabled(EnvOptions.AppDebug)
-                    ? error.toString()
-                    : ''}
-            </Text>
+            <Text style={styles.title}>Whoops an error occurred!</Text>
+            {isEnvSettingEnabled(EnvOptions.AppDebug) ? (
+                <Text style={styles.text}>{error.toString()}</Text>
+            ) : null}
             <View style={styles.textContainer}>
                 <Pressable style={styles.button} onPress={() => resetError()}>
                     <Text style={styles.buttonText}>Try again</Text>
