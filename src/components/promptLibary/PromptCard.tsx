@@ -90,7 +90,11 @@ export function PromptCard({ prompt }: Props) {
     if (
         prompt.imageLink !== undefined &&
         prompt.imageLink !== null &&
-        prompt.imageLink.length > 0
+        prompt.imageLink.length > 0 &&
+        prompt.imageLink !== '' &&
+        prompt.imageLink !== ' ' &&
+        prompt.imageLink !== 'null' &&
+        prompt.imageLink !== '0'
     ) {
         promptImageSource = {
             uri: prompt.imageLink,
