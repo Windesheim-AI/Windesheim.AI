@@ -7,8 +7,8 @@ import { PageScrollView } from '../components/general/views/PageScrollView';
 export const WTRScreen = () => {
     return (
         <PageScrollView title="Windesheim Tech Radar">
-            <TechProviders />
             <Themes />
+            <TechProviders />
         </PageScrollView>
     );
 };
