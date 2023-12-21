@@ -18,6 +18,7 @@ import {
 import { useFonts } from '../../lib/constants/Fonts';
 import useSinglePrompt from '../../lib/repositories/promptLibrary/useSinglePrompt';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
+import { removeSlashes } from '../../lib/utility/stringutils';
 import { Routes } from '../../routes/routes';
 
 export type PromptPageProps = {
@@ -127,7 +128,7 @@ export function PromptView() {
     }
 
     return (
-        <PageScrollView title={prompt.title}>
+        <PageScrollView title={removeSlashes(prompt.title)}>
             <GoBackButton
                 onPress={() => navigation.navigate(Routes.PromptLibrary)}
                 buttonText="Prompt Library"
@@ -169,11 +170,15 @@ export function PromptView() {
             </View>
             <Card style={{ ...colorStateConfig.highContrastBorder }}>
                 <TextTranslated style={styles.subtitle} text="Description" />
-                <Text style={styles.cardDescription}>{prompt.description}</Text>
+                <Text style={styles.cardDescription}>
+                    {removeSlashes(prompt.description)}
+                </Text>
             </Card>
             <Card style={{ ...colorStateConfig.highContrastBorder }}>
                 <TextTranslated style={styles.subtitle} text="Prompt" />
-                <Text style={styles.cardDescription}>{prompt.prompt}</Text>
+                <Text style={styles.cardDescription}>
+                    {removeSlashes(prompt.prompt)}
+                </Text>
             </Card>
 
             {/* link to the tool open URL in app */}
