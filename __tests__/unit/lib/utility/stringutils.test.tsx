@@ -58,14 +58,20 @@ describe('removeConsecutiveSlashes', () => {
     });
 
     it('should handle a string with a single slash', () => {
-        const input = 'single/slash';
+        const input = 'singleslash';
         const result = removeConsecutiveSlashes(input);
-        expect(result).toBe('single/slash');
+        expect(result).toBe('singleslash');
     });
 
     it('should handle a string with a single backslash', () => {
         const input = 'single\\slash';
         const result = removeConsecutiveSlashes(input);
-        expect(result).toBe('single\\slash');
+        expect(result).toBe('singleslash');
+    });
+
+    it('should handle a string with a single slash directly followed with a quote', () => {
+        const input = 'single \\"slash"\\';
+        const result = removeConsecutiveSlashes(input);
+        expect(result).toBe('single "slash"');
     });
 });

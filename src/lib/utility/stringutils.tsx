@@ -10,5 +10,5 @@ export const stringToBase64 = (input: string): string => {
 };
 
 export function removeConsecutiveSlashes(input: string) {
-    return input.replace(/\/{2,}|\\{2,}/g, '');
+    return input.replace(/\/{1,}|\\{1,}/g, '');
 }
