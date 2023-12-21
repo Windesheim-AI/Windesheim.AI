@@ -1,4 +1,4 @@
 {
-  "ignores": ["expo-updates", "cypress-cucumber-preprocessor"],
-  "skip-missing": false
+    "ignores": ["expo-updates", "cypress-cucumber-preprocessor"],
+    "skip-missing": false
 }
