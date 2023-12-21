@@ -1,5 +1,5 @@
 import {
-    removeConsecutiveSlashes,
+    removeSlashes,
     stringToBase64,
     truncate,
 } from '../../../../src/lib/utility/stringutils';
@@ -38,40 +38,40 @@ describe('base64Encode utility function', () => {
     });
 });
 
-describe('removeConsecutiveSlashes', () => {
+describe('removeSlashes', () => {
     it('should remove all slashes when more then 2 in a row used', () => {
         const input = 'some//path///with////consecutive////slashes';
-        const result = removeConsecutiveSlashes(input);
+        const result = removeSlashes(input);
         expect(result).toBe('somepathwithconsecutiveslashes');
     });
 
     it('should handle empty string', () => {
         const input = '';
-        const result = removeConsecutiveSlashes(input);
+        const result = removeSlashes(input);
         expect(result).toBe('');
     });
 
     it('should handle a string without consecutive slashes', () => {
         const input = 'no_consecutive_slashes';
-        const result = removeConsecutiveSlashes(input);
+        const result = removeSlashes(input);
         expect(result).toBe('no_consecutive_slashes');
     });
 
     it('should handle a string with a single slash', () => {
         const input = 'singleslash';
-        const result = removeConsecutiveSlashes(input);
+        const result = removeSlashes(input);
         expect(result).toBe('singleslash');
     });
 
     it('should handle a string with a single backslash', () => {
         const input = 'single\\slash';
-        const result = removeConsecutiveSlashes(input);
+        const result = removeSlashes(input);
         expect(result).toBe('singleslash');
     });
 
     it('should handle a string with a single slash directly followed with a quote', () => {
         const input = 'single \\"slash"\\';
-        const result = removeConsecutiveSlashes(input);
+        const result = removeSlashes(input);
         expect(result).toBe('single "slash"');
     });
 });

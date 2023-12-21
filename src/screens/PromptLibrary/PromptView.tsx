@@ -18,7 +18,7 @@ import {
 import { useFonts } from '../../lib/constants/Fonts';
 import useSinglePrompt from '../../lib/repositories/promptLibrary/useSinglePrompt';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
-import { removeConsecutiveSlashes } from '../../lib/utility/stringutils';
+import { removeSlashes } from '../../lib/utility/stringutils';
 import { Routes } from '../../routes/routes';
 
 export type PromptPageProps = {
@@ -128,7 +128,7 @@ export function PromptView() {
     }
 
     return (
-        <PageScrollView title={removeConsecutiveSlashes(prompt.title)}>
+        <PageScrollView title={removeSlashes(prompt.title)}>
             <GoBackButton
                 onPress={() => navigation.navigate(Routes.PromptLibrary)}
                 buttonText="Prompt Library"
@@ -171,13 +171,13 @@ export function PromptView() {
             <Card style={{ ...colorStateConfig.highContrastBorder }}>
                 <TextTranslated style={styles.subtitle} text="Description" />
                 <Text style={styles.cardDescription}>
-                    {removeConsecutiveSlashes(prompt.description)}
+                    {removeSlashes(prompt.description)}
                 </Text>
             </Card>
             <Card style={{ ...colorStateConfig.highContrastBorder }}>
                 <TextTranslated style={styles.subtitle} text="Prompt" />
                 <Text style={styles.cardDescription}>
-                    {removeConsecutiveSlashes(prompt.prompt)}
+                    {removeSlashes(prompt.prompt)}
                 </Text>
             </Card>
 

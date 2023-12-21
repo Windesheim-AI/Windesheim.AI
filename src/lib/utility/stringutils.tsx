@@ -9,6 +9,6 @@ export const stringToBase64 = (input: string): string => {
     return buffer.toString('base64');
 };
 
-export function removeConsecutiveSlashes(input: string) {
-    return input.replace(/\/{1,}|\\{1,}/g, '');
+export function removeSlashes(input: string) {
+    return input.replace(/[/\\]+/g, '');
 }

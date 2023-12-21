@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import BlockWrapper from './block';
 import { shadow, useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
-import { removeConsecutiveSlashes } from '../../../lib/utility/stringutils';
+import { removeSlashes } from '../../../lib/utility/stringutils';
 import { TextOptions } from '../../../types/CourseStageBlock';
 import { TextTranslated } from '../../general/text/TextTranslated';
 
@@ -28,7 +28,7 @@ export default function TextRenderer({ options }: { options: TextOptions }) {
             <TextTranslated
                 style={fonts.description}
                 key={options.courseId}
-                text={removeConsecutiveSlashes(options.text)}
+                text={removeSlashes(options.text)}
             />
         </BlockWrapper>
     );
