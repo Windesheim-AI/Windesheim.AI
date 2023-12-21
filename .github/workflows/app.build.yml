@@ -40,6 +40,9 @@ jobs:
             - name: Run TypeScript check
               run: npm run tsc:run
 
+            - name: Run Dependencies usage check
+              run: npm run depcheck:run
+
             - name: Run Unit & Component tests
               run: npm run jest-less-strict:run
 
