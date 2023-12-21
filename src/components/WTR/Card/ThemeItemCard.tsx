@@ -103,7 +103,13 @@ export function ThemeItemCard({
             }}
         >
             <View style={styles.container}>
-                <Image source={themeImage} style={styles.image} />
+                <Image
+                    source={
+                        themeImage ??
+                        require('../../../assets/images/bgImages/robot.png')
+                    }
+                    style={styles.image}
+                />
                 <View style={styles.contentContainer}>
                     <TextTranslated style={styles.title} text={title} />
                     <TextTranslated
