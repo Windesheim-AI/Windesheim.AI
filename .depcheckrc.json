@@ -1,4 +1,23 @@
 {
-    "ignores": ["expo-updates", "cypress-cucumber-preprocessor"],
+    "ignores": [
+        "eslint-plugin-react",
+        "@react-native-community/netinfo",
+        "@react-native/metro-config",
+        "@react-navigation/stack",
+        "@types/react-numeric-input",
+        "@expo/config",
+        "@expo/metro-config",
+        "expo-constants",
+        "expo-font",
+        "expo-router",
+        "expo-status-bar",
+        "expo-updates",
+        "cypress-cucumber-preprocessor",
+        "react-error-boundary",
+        "react-native-dotenv",
+        "react-native-fs",
+        "react-navigation",
+        "react-numeric-input"
+    ],
     "skip-missing": false
 }
