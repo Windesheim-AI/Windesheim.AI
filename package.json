@@ -60,7 +60,7 @@
         "expo-linking": "~5.0.2",
         "expo-router": "^2.0.11",
         "expo-status-bar": "~1.6.0",
-        "i18next": "^23.7.6",
+        "i18next": "^23.7.11",
         "openai": "^4.16.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
