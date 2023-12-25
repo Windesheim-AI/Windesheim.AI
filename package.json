@@ -70,7 +70,7 @@
         "react-native-confetti-cannon": "^1.5.2",
         "react-native-dotenv": "^3.4.9",
         "react-native-element-dropdown": "^2.10.1",
-        "react-native-error-boundary": "^1.2.3",
+        "react-native-error-boundary": "^1.2.4",
         "react-native-fs": "^2.20.0",
         "react-native-paper": "^5.11.4",
         "react-native-progress": "^5.0.1",
