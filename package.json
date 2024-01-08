@@ -12,6 +12,7 @@
         "android": "expo start --android",
         "ios": "expo start --ios",
         "web": "npm uninstall @sentry/react-native && copy metro.config.no_sentry.js metro.config.js && copy App.no_sentry.tsx App.tsx && expo start --web",
+        "web:ci": "expo start --web",
         "web:no-cache": "expo start --web -c",
         "eject": "expo eject",
         "cypress:open": "cypress open",

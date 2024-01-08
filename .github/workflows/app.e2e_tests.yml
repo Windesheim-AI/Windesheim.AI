@@ -32,7 +32,7 @@ jobs:
             - name: Cypress run
               uses: cypress-io/github-action@v6
               with:
-                  start: npm run web
+                  start: npm run web:ci
                   browser: ${{ matrix.test-platform }}
 
             - name: Upload screenshots of failed tests
