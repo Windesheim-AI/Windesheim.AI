@@ -62,7 +62,7 @@ The package.json file contains several scripts for development and testing:
 
 The deployment of the app is managed via: https://expo.dev/accounts/windesheim.ai/projects/winsight.
 
-# Emulator Plugin
+## Emulator Plugin
 
 VSCode; https://marketplace.visualstudio.com/items?itemName=DiemasMichiels.emulate
 Read the instructions!
