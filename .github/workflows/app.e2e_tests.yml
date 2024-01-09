@@ -33,10 +33,10 @@ jobs:
               uses: cypress-io/github-action@v6
               with:
                   start: |
-                    npm uninstall @sentry/react-native
-                    cp App.no_sentry.tsx App.tsx
-                    cp metro.config.no_sentry.js metro.config.js
-                    expo start --web
+                      npm uninstall @sentry/react-native
+                      cp App.no_sentry.tsx App.tsx
+                      cp metro.config.no_sentry.js metro.config.js
+                      npm run web:ci
                   browser: ${{ matrix.test-platform }}
 
             - name: Upload screenshots of failed tests

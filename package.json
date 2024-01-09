@@ -14,6 +14,7 @@
         "android": "expo start --android",
         "ios": "expo start --ios",
         "web": "npm run remove:sentry && expo start --web",
+        "web:ci": "expo start --web",
         "web:no-cache": "npm run remove:sentry && expo start --web -c",
         "eject": "expo eject",
         "cypress:open": "cypress open",
