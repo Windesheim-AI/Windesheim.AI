@@ -17,7 +17,8 @@
         "react-native-dotenv",
         "react-native-fs",
         "react-navigation",
-        "react-numeric-input"
+        "react-numeric-input",
+        "@sentry/react-native"
     ],
     "skip-missing": false
 }

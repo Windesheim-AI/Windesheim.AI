@@ -5,10 +5,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 const { getDefaultConfig } = require('@expo/metro-config');
 
-const {
-    createSentryMetroSerializer
-} = require("@sentry/react-native/dist/js/tools/sentryMetroSerializer");
-
 const defaultConfig = getDefaultConfig(__dirname);
 const { assetExts, sourceExts } = defaultConfig.resolver;
 
@@ -27,10 +23,6 @@ const config = {
         assetExts: assetExts.filter((ext) => ext !== 'svg'),
         sourceExts: [...sourceExts, 'svg'],
     },
-
-    serializer: {
-        customSerializer: createSentryMetroSerializer()
-    }
 };
 
 // eslint-disable-next-line no-shadow
