@@ -26,7 +26,7 @@ First, you need to create a `.env` file in the root directory of the project and
 cp .env.example .env
 ```
 
-#### Required values
+#### Env configuration
 
 The table below shows the values for the .env file.
 
@@ -184,11 +184,15 @@ Unit and component tests are written using Jest and the React Testing Library. T
 
 ### End-to-End Tests
 
-End-to-end tests are written using Cypress. These tests simulate user interactions and ensure that the whole system works correctly together. The tests are run on every push to the `main` and `development` branches, and on every pull request to these branches. The tests are run on self-hosted runners, and the test platform is either Firefox or Electron. The test results, including screenshots of failed tests, are uploaded as artifacts. You can run these tests locally using the `npm run e2e:run` command.
+End-to-end tests are written using Cypress. These tests simulate user interactions and ensure that the whole system works correctly together. The tests are run on every push to the `main` and `development` branches, and on every pull request to these branches.
+
+The tests are run on self-hosted runners, and the test platform is either Firefox or Electron. The test results, including screenshots of failed tests, are uploaded as artifacts. You can run these tests locally using the `npm run e2e:run` command.
 
 ### ESLint and Prettier
 
-We use ESLint and Prettier to ensure that our code follows a consistent style and to catch potential errors and bad patterns early. ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code, while Prettier is an opinionated code formatter. You can check for linting errors using the `npm run lint:run` command and format your code using the `npm run prettier:run` command. To automatically fix linting and formatting errors, you can use the `npm run lint:fix` and `npm run prettier:fix` commands respectively.
+We use ESLint and Prettier to ensure that our code follows a consistent style and to catch potential errors and bad patterns early. ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code, while Prettier is an opinionated code formatter.
+
+You can check for linting errors using the `npm run lint:run` command and format your code using the `npm run prettier:run` command. To automatically fix linting and formatting errors, you can use the `npm run lint:fix` and `npm run prettier:fix` commands respectively.
 
 ### Depcheck
 
