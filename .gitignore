@@ -56,6 +56,3 @@ instrumented/
 # Environment configuration
 /.env
 eas.json
-
-App.tsx
-metro.config.js

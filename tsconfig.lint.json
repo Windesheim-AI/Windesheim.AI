@@ -18,8 +18,6 @@
     "exclude": [
         "cypress/*",
         "node_modules/*",
-        "webpack.config.js",
-        "App.sentry.tsx",
-        "metro.config.sentry.js"
+        "webpack.config.js"
     ]
 }
