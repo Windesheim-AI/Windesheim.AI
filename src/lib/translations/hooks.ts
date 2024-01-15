@@ -12,6 +12,13 @@ export function useTextTranslate(text: string): string {
     return language !== defaultLanguageCode ? t(text, { lng: language }) : text;
 }
 
+export const usePreparedTranslator = () => {
+    const language = useAppSelector((state) => state.language.langCode);
+    const { t } = useTranslation();
+
+    return (text: string) => translateText(t, text, language);
+};
+
 export function translateText(
     t: TFunction,
     text: string,

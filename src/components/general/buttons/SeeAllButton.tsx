@@ -2,7 +2,10 @@ import React from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-import { useColorConfig } from '../../../lib/constants/Colors';
+import {
+    useColorConfig,
+    useColorStateConfig,
+} from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
@@ -14,6 +17,7 @@ export type Props = {
 
 export const SeeAllButton = ({ navigateToRoute }: Props) => {
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
 
@@ -24,10 +28,10 @@ export const SeeAllButton = ({ navigateToRoute }: Props) => {
             padding: 12,
             flexDirection: 'row',
             alignItems: 'center',
+            ...colorStateConfig.highContrastBorder,
         },
         buttonText: {
-            color: colors.text,
-            ...fonts.button,
+            ...fonts.seeAll,
             marginRight: 8,
         },
     });
@@ -42,7 +46,11 @@ export const SeeAllButton = ({ navigateToRoute }: Props) => {
             }}
         >
             <TextTranslated style={styles.buttonText} text="See All" />
-            <FontAwesome5 name="arrow-right" size={17} color={colors.text} />
+            <FontAwesome5
+                name="arrow-right"
+                size={14}
+                color={colors.seeAllText}
+            />
         </Pressable>
     );
 };

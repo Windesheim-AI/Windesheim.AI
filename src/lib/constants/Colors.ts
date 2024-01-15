@@ -2,6 +2,8 @@ import { ViewStyle } from 'react-native';
 
 import { useAppSelector } from '../redux/Hooks';
 import { hasKeyInMap } from '../utility/data';
+import { isEnvSettingEnabled } from '../utility/env/env';
+import { EnvOptions } from '../utility/env/env.values';
 
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
@@ -43,6 +45,9 @@ export type ColorSchemeType = {
     borderColor: string;
     listItemBg: string;
     opacityLayer: string;
+    accentTitle: string;
+    progressbarBg: string;
+    seeAllText: string;
 };
 
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -83,6 +88,9 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.8)',
+        seeAllText: '#1C1C1C',
+        accentTitle: '#FFFFFF',
+        progressbarBg: '#373737',
     },
     dark: {
         primary: '#4695D3',
@@ -121,9 +129,96 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
+        seeAllText: '#FFFFFF',
+        accentTitle: '#757575',
+        progressbarBg: '#373737',
     },
 };
 
+export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
+    light: {
+        primary: '#4695D3',
+        secondary: '#fff377',
+        success: '#45B97C',
+        warning: '#ff7300',
+        danger: '#EE3135',
+        enabled: '#45B97C',
+        disabled: '#999',
+        buttonText: '#3F3f3f',
+        link: '#ffcb05',
+        text: '#5F5F5F',
+        textLight: '#fff',
+        background: '#fafafa',
+        backgroundModal: 'rgba(0, 0, 0, 0.8)',
+        tint: tintColorLight,
+        gray: '#919191',
+        tabIconDefault: '#ccc',
+        tabIconSelected: tintColorLight,
+        titleDefault: '#000',
+        descriptionDefault: 'gray',
+        bg1: '#fff377',
+        bg2: '#ffd949',
+        bg3: '#ffcb05',
+        settingButtonBG: '#fffffff',
+        modalBackground: 'rgba(0,0,0,0.5)',
+        subtext: '#a8a7a7',
+        navBar: {
+            backgroundColor: '#FAFAFA',
+            color: '#2B2A2A',
+        },
+        borderColor: '#ccc',
+        subTitle: '#2B2A2A',
+        listItemBg: '#FFFFFF',
+        white: '#FFFFFF',
+        black: '#000000',
+        blue: '#0000FF',
+        opacityLayer: 'rgba(255,255,255,0.8)',
+        accentTitle: '#757575',
+        progressbarBg: '#373737',
+        seeAllText: '#1C1C1C',
+    },
+    dark: {
+        primary: '#4695D3',
+        secondary: '#fff377',
+        success: '#45B97C',
+        warning: '#ff7300',
+        danger: '#EE3135',
+        enabled: '#45B97C',
+        disabled: '#999',
+        link: '#ffcb05',
+        text: '#fff',
+        textLight: '#fff',
+        buttonText: '#fff',
+        background: '#2a2a2a',
+        backgroundModal: 'rgba(0, 0, 0, 0.8)',
+        tint: tintColorDark,
+        gray: '#919191',
+        tabIconDefault: '#ccc',
+        tabIconSelected: tintColorDark,
+        titleDefault: '#fff',
+        modalBackground: 'rgba(0,0,0,0.5)',
+        descriptionDefault: 'gray',
+        bg1: '#86d2d9',
+        bg2: '#22bdc6',
+        bg3: '#4695d3',
+        settingButtonBG: '#373737',
+        subtext: '#a8a7a7',
+        navBar: {
+            backgroundColor: '#090A0A',
+            color: '#c4c4c4',
+        },
+        subTitle: '#c4c4c4',
+        borderColor: '#ccc',
+        listItemBg: '#373737',
+        white: '#FFFFFF',
+        black: '#000000',
+        blue: '#0000FF',
+        opacityLayer: 'rgba(0,0,0,0.6)',
+        accentTitle: '#757575',
+        progressbarBg: '#373737',
+        seeAllText: '#FFFFFF',
+    },
+};
 const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
         primary: '#0000FF',
@@ -162,6 +257,9 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(255,255,255,0.9)',
+        seeAllText: '#000000',
+        progressbarBg: '#00FF00',
+        accentTitle: '#000000',
     },
     dark: {
         primary: '#0000FF',
@@ -200,19 +298,22 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         black: '#000000',
         blue: '#0000FF',
         opacityLayer: 'rgba(0,0,0,0.6)',
+        seeAllText: '#FFFFFF',
+        accentTitle: '#757575',
+        progressbarBg: '#00FF00',
     },
 };
 
+// box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 export const shadow = {
     shadowColor: '#000',
     shadowOffset: {
-        width: 3,
-        height: 3,
+        width: 0,
+        height: 4,
     },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-
-    elevation: 3,
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
 };
 
 export type ColorGradientScheme = [string, string, string];
@@ -246,7 +347,7 @@ export type StateColorGradientSchemes = {
     danger: ColorGradientScheme;
 };
 
-const stateColorSchemes: StateColorGradientSchemes = {
+export const stateColorSchemes: StateColorGradientSchemes = {
     primary: ['#4695D3', '#22BDC6', '#86D2D9'],
     info: ['#4695D3', '#22BDC6', '#86D2D9'],
     secondary: ['#FFCB05', '#FFD949', '#FFF377'],
@@ -348,5 +449,9 @@ export function useColorConfig(): ColorSchemeType {
             : highContrastColorMap.dark;
     }
 
-    return hasKeyInMap(colorMap, theme) ? colorMap[theme] : colorMap.dark;
+    const map = isEnvSettingEnabled(EnvOptions.UseExperimentalColors)
+        ? experimentalColorMap
+        : colorMap;
+
+    return hasKeyInMap(map, theme) ? map[theme] : map.dark;
 }

@@ -7,7 +7,7 @@ export type CourseStageBlock = {
         AIOptions &
         ButtonOptions &
         ImageOptions &
-        VideoOptions; //json string or AIOptions
+        VideoOptions;
 };
 
 export type CourseStageBlockOptions = {
