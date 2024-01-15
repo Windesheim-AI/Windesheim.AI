@@ -36,9 +36,9 @@ This is important, because we've on a regular basis issues with the app on mobil
 
 To prevent issues with the app deployment, it is highly recommended to test the app deployment at least once a day.
 
--  [ ] The app is deployed to the test environment
--  [ ] The build and deployment is successful
--  [ ] The app is fully working on the test environment
+-   [ ] The app is deployed to the test environment
+-   [ ] The build and deployment is successful
+-   [ ] The app is fully working on the test environment
 
 ---
 
