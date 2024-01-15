@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Routes } from './routes';
 import { LoadingScreen } from '../components/loadingscreen/LoadingScreen';
-import { useAppSelector } from '../redux/Hooks';
+import { useAppSelector } from '../lib/redux/Hooks';
 import CourseFinished from '../screens/Course/CourseFinished';
 import { Courses } from '../screens/Course/Courses';
 import Stage from '../screens/Course/Stage';

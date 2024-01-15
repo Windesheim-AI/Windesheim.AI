@@ -45,15 +45,15 @@ export function useFonts() {
     const colors = useColorConfig();
 
     const [areFontsLoaded] = useExpoFonts({
-        Inter_100Thin: require('../assets/fonts/Inter-Thin.ttf'),
-        Inter_200ExtraLight: require('../assets/fonts/Inter-ExtraLight.ttf'),
-        Inter_300Light: require('../assets/fonts/Inter-Light.ttf'),
-        Inter_400Regular: require('../assets/fonts/Inter-Regular.ttf'),
-        Inter_500Medium: require('../assets/fonts/Inter-Medium.ttf'),
-        Inter_600SemiBold: require('../assets/fonts/Inter-SemiBold.ttf'),
-        Inter_700Bold: require('../assets/fonts/Inter-Bold.ttf'),
-        Inter_800ExtraBold: require('../assets/fonts/Inter-ExtraBold.ttf'),
-        Inter_900Black: require('../assets/fonts/Inter-Black.ttf'),
+        Inter_100Thin: require('../../assets/fonts/Inter-Thin.ttf'),
+        Inter_200ExtraLight: require('../../assets/fonts/Inter-ExtraLight.ttf'),
+        Inter_300Light: require('../../assets/fonts/Inter-Light.ttf'),
+        Inter_400Regular: require('../../assets/fonts/Inter-Regular.ttf'),
+        Inter_500Medium: require('../../assets/fonts/Inter-Medium.ttf'),
+        Inter_600SemiBold: require('../../assets/fonts/Inter-SemiBold.ttf'),
+        Inter_700Bold: require('../../assets/fonts/Inter-Bold.ttf'),
+        Inter_800ExtraBold: require('../../assets/fonts/Inter-ExtraBold.ttf'),
+        Inter_900Black: require('../../assets/fonts/Inter-Black.ttf'),
     });
 
     const fontMap: TextStyling = {

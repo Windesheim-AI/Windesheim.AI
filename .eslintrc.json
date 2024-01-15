@@ -31,7 +31,8 @@
         "cypress.config.ts",
         "coverage",
         "coverage-jest",
-        "fonts.js"
+        "fonts.js",
+        "webpack.config.js"
     ],
     "settings": {
         "react": {

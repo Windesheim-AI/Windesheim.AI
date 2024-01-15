@@ -1,6 +1,6 @@
 import { mapCourseToData } from './mapCourse';
-import { useAppSelector } from '../../../redux/Hooks';
 import { Course, CourseDataMapped } from '../../../types/Course';
+import { useAppSelector } from '../../redux/Hooks';
 
 export function useMapSingleCourseToData(
     course: Course | undefined,

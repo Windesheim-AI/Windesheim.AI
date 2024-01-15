@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-native';
 
-import { ColorSchemeType } from '../../../constants/Colors';
+import { ColorSchemeType } from '../../../lib/constants/Colors';
 
 export type SwitchProps = {
     onValueChange?: () => void;
@@ -18,8 +18,8 @@ export const WhSwitch = ({
 }: SwitchProps) => {
     return (
         <Switch
-            trackColor={{ false: colors.primary, true: colors.success }}
-            thumbColor={isEnabled ? colors.success : colors.primary}
+            trackColor={{ false: colors.disabled, true: colors.success }}
+            thumbColor={isEnabled ? colors.success : colors.disabled}
             ios_backgroundColor={colors.background}
             // @ts-ignore
             activeThumbColor={colors.success}

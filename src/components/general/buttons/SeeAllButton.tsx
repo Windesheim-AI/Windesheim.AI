@@ -8,29 +8,14 @@ import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
 
-export type GoBackButtonProps = {
-    onPress?: () => void;
-    buttonText?: string;
+export type Props = {
+    navigateToRoute: string;
 };
 
-export const GoBackButton = ({
-    onPress,
-    buttonText = 'Go Back',
-}: GoBackButtonProps) => {
+export const SeeAllButton = ({ navigateToRoute }: Props) => {
     const colors = useColorConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
-
-    if (!onPress) {
-        /* istanbul ignore next */
-        onPress = () => {
-            navigation.goBack();
-        };
-    }
-    const handlePress = () => {
-        HapticFeedback(HapticForces.Light);
-        onPress?.();
-    };
 
     const styles = StyleSheet.create({
         buttonContainer: {
@@ -43,18 +28,21 @@ export const GoBackButton = ({
         buttonText: {
             color: colors.text,
             ...fonts.button,
-            marginLeft: 8,
+            marginRight: 8,
         },
     });
 
     return (
         <Pressable
-            testID="GoBackButton"
+            testID="SeeAllButton"
             style={styles.buttonContainer}
-            onPress={handlePress}
+            onPress={() => {
+                HapticFeedback(HapticForces.Light);
+                navigation.navigate(navigateToRoute);
+            }}
         >
-            <FontAwesome5 name="arrow-left" size={20} color={colors.text} />
-            <TextTranslated style={styles.buttonText} text={buttonText} />
+            <TextTranslated style={styles.buttonText} text="See All" />
+            <FontAwesome5 name="arrow-right" size={17} color={colors.text} />
         </Pressable>
     );
 };

@@ -13,9 +13,9 @@ import { NotificationList } from '../components/general/alerts/NotificationList'
 import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { Tutorial } from '../components/tutorial/Tutorial';
-import { useColorConfig, shadow } from '../constants/Colors';
+import { useColorConfig, shadow } from '../lib/constants/Colors';
+import { useAppSelector } from '../lib/redux/Hooks';
 import { useAnimatedValue } from '../lib/utility/animate';
-import { useAppSelector } from '../redux/Hooks';
 
 type LayoutProps = {
     children: React.ReactNode;

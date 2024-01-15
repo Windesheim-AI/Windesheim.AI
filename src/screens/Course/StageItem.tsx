@@ -8,8 +8,9 @@ import {
     shadow,
     useColorConfig,
     useColorStateConfig,
-} from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+} from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { StageDataMapped } from '../../types/Stage';
@@ -50,6 +51,7 @@ export const StageItem = ({
     });
 
     function handlePress() {
+        HapticFeedback(HapticForces.Light);
         navigation.navigate(Routes.CourseStage, {
             courseId,
             stageId: id,

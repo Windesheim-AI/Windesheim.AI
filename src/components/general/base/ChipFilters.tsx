@@ -5,8 +5,9 @@ import { Chip, shadow } from 'react-native-paper';
 import {
     ColorGradientScheme,
     useColorStateConfig,
-} from '../../../constants/Colors';
-import { useFonts } from '../../../constants/Fonts';
+} from '../../../lib/constants/Colors';
+import { useFonts } from '../../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 
 export type ChipFilterProps<T extends ReactNode> = {
     activeList: T[];
@@ -77,8 +78,14 @@ export function ChipFilter<T extends ReactNode>({
                         style={getStyleForChip(activeList.includes(filter))}
                         textStyle={getStyleForChipText()}
                         icon={activeList.includes(filter) ? 'check' : 'close'}
-                        onPress={() => toggleOption(filter)}
-                        onLongPress={() => handleChipLongPress(filter)}
+                        onPress={() => {
+                            HapticFeedback(HapticForces.Light);
+                            toggleOption(filter);
+                        }}
+                        onLongPress={() => {
+                            HapticFeedback(HapticForces.Heavy);
+                            handleChipLongPress(filter);
+                        }}
                         testID={`chip-${filter?.toString()}`}
                     >
                         {filter}

@@ -2,7 +2,7 @@ import { render, waitFor } from '@testing-library/react-native';
 import React from 'react';
 
 import WTRHtmlDisplay from '../../../src/components/WTR/html/WTRHtmlDisplay';
-import { colorMap } from '../../../src/constants/Colors';
+import { colorMap } from '../../../src/lib/constants/Colors';
 
 test('renders WTRHtmlDisplay component without crashing', () => {
     const html = '<div>Hello, World!</div>';

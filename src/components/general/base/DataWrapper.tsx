@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { useFonts } from '../../../constants/Fonts';
-import LoadingScreen from '../../loadingscreen/LoadingScreen';
+import { useFonts } from '../../../lib/constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';
 import { PageView } from '../views/PageView';
 
@@ -17,7 +16,7 @@ export function DataWrapper({ error, isLoading, children }: Props) {
     const fonts = useFonts();
 
     if (isLoading) {
-        return <LoadingScreen />;
+        return <TextTranslated style={fonts.default} text="Loading..." />;
     }
 
     if (error) {

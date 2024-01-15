@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { useColorConfig } from '../../constants/Colors';
-import { MaxSize, MinSize } from '../../constants/Fonts';
-import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
-import { fontActions } from '../../redux/slices/FontSlice';
+import { useColorConfig } from '../../lib/constants/Colors';
+import { MaxSize, MinSize } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
+import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
+import { fontActions } from '../../lib/redux/slices/FontSlice';
 
 export const FontSwitcher = () => {
     const storeDispatcher = useAppDispatch();
@@ -14,6 +15,7 @@ export const FontSwitcher = () => {
     const colors = useColorConfig();
     const decreaseFontSize = () => {
         if (fontSize <= MinSize) return;
+        HapticFeedback(HapticForces.Light);
         setFontSize((prevFontSize) => prevFontSize - 1);
     };
 
@@ -23,6 +25,7 @@ export const FontSwitcher = () => {
 
     const increaseFontSize = () => {
         if (fontSize >= MaxSize) return;
+        HapticFeedback(HapticForces.Light);
         setFontSize((prevFontSize) => prevFontSize + 1);
     };
 

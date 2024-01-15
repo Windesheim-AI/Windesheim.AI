@@ -2,9 +2,9 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { positions } from './DataList';
-import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
-import { setPosition } from '../../redux/slices/BackgroundInformationSlice';
-import { translateText } from '../../translations/hooks';
+import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
+import { setPosition } from '../../lib/redux/slices/BackgroundInformationSlice';
+import { translateText } from '../../lib/translations/hooks';
 import { SettingCard } from '../general/card/SettingCard';
 import { SelectValuesInput } from '../general/input/SelectValuesInput';
 

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../redux/Hooks';
-import { languageActions } from '../../redux/slices/LanguageSlice';
-import { useTextTranslate } from '../../translations/hooks';
+import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
+import { languageActions } from '../../lib/redux/slices/LanguageSlice';
+import { useTextTranslate } from '../../lib/translations/hooks';
 import {
-    getLanguageCodeByTranslation,
     LanguageCode,
+    getLanguageCodeByTranslation,
     languageLabels,
     languageOptions,
-} from '../../translations/languageOptions';
+} from '../../lib/translations/languageOptions';
 import { WhSelectDropdown } from '../general/input/WhSelectDropdown';
 
 export const LanguageSwitcher = () => {

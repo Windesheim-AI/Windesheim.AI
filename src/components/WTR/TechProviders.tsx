@@ -36,11 +36,16 @@ import Oracle from '../../assets/images/WTR/TechProviders/oracle.svg';
 import SalesForce from '../../assets/images/WTR/TechProviders/salesforce.svg';
 //@ts-ignore
 import Sap from '../../assets/images/WTR/TechProviders/sap.svg';
-import { useColorConfig, useColorStateConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+import {
+    useColorConfig,
+    useColorStateConfig,
+} from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 import { TextTranslated } from '../general/text/TextTranslated';
+import { TitleWithSeeAll } from '../general/text/TitleWithSeeAll';
 
 type TechProvider = {
     name: string;
@@ -69,6 +74,7 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
     const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const [displayItems, setDisplayItems] = useState<TechProvider[]>([]);
+    const isLimited = limit && limit > 0;
 
     const styles = StyleSheet.create({
         button: {
@@ -107,6 +113,7 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
     });
 
     const navigate = (provider: string) => () => {
+        HapticFeedback(HapticForces.Light);
         //@ts-ignore
         navigation.navigate(Routes.WindesheimTechRadar, {
             page: provider,
@@ -129,7 +136,14 @@ export const TechProviders = ({ limit }: { limit?: number }) => {
 
     return (
         <View>
-            <TextTranslated style={styles.heading} text="Tech Providers" />
+            {isLimited ? (
+                <TitleWithSeeAll
+                    title="Tech Providers"
+                    navigateToRoute={Routes.WindesheimTechRadar}
+                />
+            ) : (
+                <TextTranslated style={styles.heading} text="Tech Providers" />
+            )}
 
             <ScrollView style={styles.container}>
                 {displayItems.map((provider) => (

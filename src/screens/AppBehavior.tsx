@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 
+import { useAppDispatch, useAppSelector } from '../lib/redux/Hooks';
+import { navigationActions } from '../lib/redux/slices/NavigationSlice';
 import { useNavigation } from '../lib/utility/navigation/useNavigation';
-import { useAppDispatch, useAppSelector } from '../redux/Hooks';
-import { navigationActions } from '../redux/slices/NavigationSlice';
 
 type AppProvidersProps = {
     children: React.ReactNode;

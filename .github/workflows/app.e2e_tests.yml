@@ -5,15 +5,18 @@ on:
         branches:
             - main
             - development
+            - development-fix
     pull_request:
         branches:
             - main
             - development
+            - development-fix
 
 jobs:
     tests:
         runs-on: self-hosted
         strategy:
+            fail-fast: false
             matrix:
                 test-platform: [firefox, electron]
         steps:
@@ -26,11 +29,20 @@ jobs:
                   app-debug: false
                   wp-username: ${{ secrets.WP_USERNAME }}
                   wp-password: ${{ secrets.WP_PASSWORD }}
+                  node-version: 18.x
 
             - name: Cypress run
               uses: cypress-io/github-action@v6
               with:
                   start: npm run web
                   browser: ${{ matrix.test-platform }}
+
+            - name: Upload screenshots of failed tests
+              uses: actions/upload-artifact@v3
+              if: failure()
+              with:
+                  name: cypress-screenshots
+                  path: cypress/screenshots
+                  retention-days: 1
 
             - uses: ./.github/cleanup-action

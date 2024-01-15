@@ -1,4 +1,4 @@
-import { ColorTypes } from '../constants/Colors';
+import { ColorTypes } from '../lib/constants/Colors';
 
 export type CourseStageBlock = {
     blockType: CourseStageBlockType;

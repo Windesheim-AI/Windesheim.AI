@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextProps, Text } from 'react-native';
 
-import { useTextTranslate } from '../../../translations/hooks';
+import { useTextTranslate } from '../../../lib/translations/hooks';
 
 type TextTranslatedProps = {
     text: string | undefined;

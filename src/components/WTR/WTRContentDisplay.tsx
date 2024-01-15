@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import WTRHtmlDisplay from '../../components/WTR/html/WTRHtmlDisplay';
-import { useColorConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+import { useColorConfig } from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
+import { useAppDispatch } from '../../lib/redux/Hooks';
+import { setLoading } from '../../lib/redux/slices/LoadingSlice';
 import { useFetchWTRPage } from '../../lib/repositories/WTR/WTRPageFetcher';
-import { useAppDispatch } from '../../redux/Hooks';
-import { setLoading } from '../../redux/slices/LoadingSlice';
 import { TextTranslated } from '../general/text/TextTranslated';
 import { PageView } from '../general/views/PageView';
 import { WhScrollView } from '../general/views/WhScrollView';

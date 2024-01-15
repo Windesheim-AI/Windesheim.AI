@@ -5,6 +5,7 @@ export default defineConfig({
 
     e2e: {
         baseUrl: 'http://localhost:19006',
+        projectId: 'cypress',
 
         setupNodeEvents(on, config) {
             // implement node event listeners here

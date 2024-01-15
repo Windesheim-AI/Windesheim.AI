@@ -3,8 +3,8 @@ import { View, StyleSheet, Modal, Pressable, Text } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 import WordAnimation from './WordAnimation';
-import { shadow, useColorConfig } from '../../constants/Colors';
-import { useFonts } from '../../constants/Fonts';
+import { shadow, useColorConfig } from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
 import { TextTranslated } from '../general/text/TextTranslated';
 
 interface Props {
