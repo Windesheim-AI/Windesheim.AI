@@ -15,9 +15,5 @@
         "App.no_sentry.tsx",
         "metro.config.no_sentry.js"
     ],
-    "exclude": [
-        "cypress/*",
-        "node_modules/*",
-        "webpack.config.js"
-    ]
+    "exclude": ["cypress/*", "node_modules/*", "webpack.config.js"]
 }
