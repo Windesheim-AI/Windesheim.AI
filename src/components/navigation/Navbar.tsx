@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-    Animated,
-    Dimensions,
-    Pressable,
-    StyleSheet,
-    View,
-} from 'react-native';
+import { Animated, Dimensions, Pressable, StyleSheet } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { useColorConfig } from '../../lib/constants/Colors';
@@ -15,20 +9,21 @@ import { useAnimatedValueNav } from '../../lib/utility/animate';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { navigationBarLinks } from '../../routes/navigation';
 
+const screenWidth = Dimensions.get('window').width;
+
 export const NavBar = () => {
-    const [showNavBar, setShowNavBar] = useState(true);
     const navigation = useNavigation();
+    const colors = useColorConfig();
 
     const navigationState = useAppSelector((state) => state.navigation);
+    const [showNavBar, setShowNavBar] = useState(true);
 
-    const colors = useColorConfig();
-    const screenWidth = Dimensions.get('window').width;
     const styles = StyleSheet.create({
         container: {
             flexDirection: 'row', // Horizontal arrangement
             alignItems: 'center',
             alignSelf: 'center',
-            justifyContent: 'space-around', // Spread icons horizontally
+            justifyContent: 'space-around',
             backgroundColor: colors.navBar.backgroundColor,
             borderRadius: 50,
             bottom: 0,
@@ -37,14 +32,14 @@ export const NavBar = () => {
             position: 'absolute',
             width: screenWidth - 40,
             zIndex: 1,
-            padding: 10, // Add some padding to space out the icons
+            padding: 10,
         },
-        item: {
+        itemContainer: {
             width: 55,
             height: 35,
             flex: 1, // Make the icons equally distribute horizontally
-            alignItems: 'center', // Center horizontally
-            justifyContent: 'center', // Center vertically
+            alignItems: 'center',
+            justifyContent: 'center',
         },
     });
 
@@ -60,7 +55,11 @@ export const NavBar = () => {
         animateOpacity(showNavBar ? 1 : 0, 200);
         animateBottom(showNavBar ? 0 : -100, 200);
         animateWidth(showNavBar ? screenWidth - 40 : 0, 200);
-    }, [showNavBar, animateOpacity, animateBottom, animateWidth, screenWidth]);
+    }, [showNavBar, animateOpacity, animateBottom, animateWidth]);
+
+    function isRouteActive(route: string) {
+        return navigationState.selectedNavBarRoute === route;
+    }
 
     return (
         <Animated.View style={{ ...styles.container, opacity, bottom, width }}>
@@ -72,16 +71,18 @@ export const NavBar = () => {
                         HapticFeedback(HapticForces.Light);
                         navigation.navigate(link.route);
                     }}
-                    style={styles.item}
+                    style={styles.itemContainer}
                     testID={link.route + '-navbar-button'}
                 >
-                    <View>
-                        <FontAwesome5
-                            color={colors.navBar.color}
-                            name={link.icon}
-                            size={20}
-                        />
-                    </View>
+                    <FontAwesome5
+                        color={
+                            isRouteActive(link.route)
+                                ? colors.navBar.activeColor
+                                : colors.navBar.color
+                        }
+                        name={link.icon}
+                        size={20}
+                    />
                 </Pressable>
             ))}
         </Animated.View>

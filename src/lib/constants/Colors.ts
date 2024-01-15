@@ -40,6 +40,7 @@ export type ColorSchemeType = {
     navBar: {
         backgroundColor: string;
         color: string;
+        activeColor: string;
     };
     subTitle: string;
     borderColor: string;
@@ -48,6 +49,7 @@ export type ColorSchemeType = {
     accentTitle: string;
     progressbarBg: string;
     seeAllText: string;
+    subCard: string;
 };
 
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -80,6 +82,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         navBar: {
             backgroundColor: '#FAFAFA',
             color: '#2B2A2A',
+            activeColor: '#FFFFFF',
         },
         borderColor: '#ccc',
         subTitle: '#2B2A2A',
@@ -91,6 +94,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#1C1C1C',
         accentTitle: '#FFFFFF',
         progressbarBg: '#373737',
+        subCard: '#f4f3fd',
     },
     dark: {
         primary: '#4695D3',
@@ -121,6 +125,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         navBar: {
             backgroundColor: '#090A0A',
             color: '#c4c4c4',
+            activeColor: '#FFFFFF',
         },
         subTitle: '#c4c4c4',
         borderColor: '#ccc',
@@ -132,6 +137,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#FFFFFF',
         accentTitle: '#757575',
         progressbarBg: '#373737',
+        subCard: '#373737',
     },
 };
 
@@ -164,7 +170,8 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         subtext: '#a8a7a7',
         navBar: {
             backgroundColor: '#FAFAFA',
-            color: '#2B2A2A',
+            color: '#999',
+            activeColor: '#2B2A2A',
         },
         borderColor: '#ccc',
         subTitle: '#2B2A2A',
@@ -176,6 +183,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         accentTitle: '#757575',
         progressbarBg: '#373737',
         seeAllText: '#1C1C1C',
+        subCard: '#f4f3fd',
     },
     dark: {
         primary: '#4695D3',
@@ -206,6 +214,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         navBar: {
             backgroundColor: '#090A0A',
             color: '#c4c4c4',
+            activeColor: '#FFFFFF',
         },
         subTitle: '#c4c4c4',
         borderColor: '#ccc',
@@ -217,6 +226,7 @@ export const experimentalColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         accentTitle: '#757575',
         progressbarBg: '#373737',
         seeAllText: '#FFFFFF',
+        subCard: '#252525',
     },
 };
 const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
@@ -249,6 +259,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         navBar: {
             backgroundColor: '#FFFFFF',
             color: '#000000',
+            activeColor: '#0000FF',
         },
         borderColor: '#000000',
         subTitle: '#000000',
@@ -260,6 +271,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#000000',
         progressbarBg: '#00FF00',
         accentTitle: '#000000',
+        subCard: '#f4f3fd',
     },
     dark: {
         primary: '#0000FF',
@@ -290,6 +302,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         navBar: {
             backgroundColor: '#000000',
             color: '#FFFFFF',
+            activeColor: '#FFFF00',
         },
         subTitle: '#FFFFFF',
         borderColor: '#FFFFFF',
@@ -301,6 +314,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#FFFFFF',
         accentTitle: '#757575',
         progressbarBg: '#00FF00',
+        subCard: '#1C1C1C',
     },
 };
 

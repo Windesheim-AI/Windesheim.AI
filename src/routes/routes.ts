@@ -16,3 +16,5 @@ export enum Routes {
     PromptLibrary = 'PromptLibrary',
     Prompt = 'Prompt',
 }
+
+export const DefaultRoute = Routes.Home;

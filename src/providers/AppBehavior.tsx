@@ -17,7 +17,7 @@ export default function AppBehavior({ children }: AppProvidersProps) {
     const navigation = useNavigation();
 
     useEffect(() => {
-        const unsubscribe = navigation.addEventListener('state', () => {
+        const stateEventListener = navigation.addEventListener('state', () => {
             if (navigationState.showNavBar || isFirstTimeUser) {
                 return;
             }
@@ -26,7 +26,7 @@ export default function AppBehavior({ children }: AppProvidersProps) {
         });
 
         return () => {
-            unsubscribe();
+            stateEventListener();
         };
     }, [
         navigation,
