@@ -5,10 +5,12 @@ on:
         branches:
             - main
             - development
+            - development-fix
     pull_request:
         branches:
             - main
             - development
+            - development-fix
 
 jobs:
     build:
