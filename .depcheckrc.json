@@ -18,9 +18,7 @@
         "react-native-fs",
         "react-navigation",
         "react-numeric-input",
-        "react-native-web",
-        "@types/css-modules",
-        "purgecss"
+        "react-native-web"
     ],
     "skip-missing": false
 }
