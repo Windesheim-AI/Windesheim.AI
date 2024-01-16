@@ -27,9 +27,13 @@
     },
     "plugins": [
         "react",
+        "react-refresh",
         "react-native",
         "@typescript-eslint",
+        "cyclomatic-complexity",
         "etc",
+        "import",
+        "jest",
         "no-dimensions",
         "no-else"
     ],

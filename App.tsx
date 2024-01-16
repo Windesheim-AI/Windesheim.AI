@@ -1,7 +1,7 @@
 import React from 'react';
-import './src/lib/translations/i18n'; // Required import to enable translations
 import ErrorBoundary from 'react-native-error-boundary';
 import { Provider } from 'react-redux';
+import './src/lib/translations/i18n'; // Required import to enable translations
 
 import ErrorFallback from './src/components/general/error/ErrorBoundary';
 import AppLoader from './src/components/loadingscreen/AppLoader';
