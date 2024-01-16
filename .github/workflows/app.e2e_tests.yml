@@ -12,7 +12,7 @@ on:
 
 jobs:
     tests:
-        runs-on: self-hosted
+        runs-on: ubuntu-latest
         strategy:
             fail-fast: false
             matrix:
@@ -32,11 +32,7 @@ jobs:
             - name: Cypress run
               uses: cypress-io/github-action@v6
               with:
-                  start: |
-                      npm uninstall @sentry/react-native
-                      cp App.no_sentry.tsx App.tsx
-                      cp metro.config.no_sentry.js metro.config.js
-                      npm run web:ci
+                  start: npm run web
                   browser: ${{ matrix.test-platform }}
 
             - name: Upload screenshots of failed tests

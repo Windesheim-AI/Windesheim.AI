@@ -32,6 +32,14 @@ This is important, because we've on a regular basis issues with the app on mobil
 -   [ ] No errors or warnings during the tests
 -   [ ] The browser console does not show any new errors or warnings (e.g. TouchableOpacity is deprecated)
 
+### Test app deployment
+
+To prevent issues with the app deployment, it is highly recommended to test the app deployment at least once a day.
+
+-   [ ] The app is deployed to the test environment
+-   [ ] The build and deployment is successful
+-   [ ] The app is fully working on the test environment
+
 ---
 
 Please ensure that all the checkboxes are ticked before submitting the pull request.

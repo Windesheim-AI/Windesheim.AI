@@ -18,7 +18,9 @@
         "react-native-fs",
         "react-navigation",
         "react-numeric-input",
-        "@sentry/react-native"
+        "react-native-web",
+        "@types/css-modules",
+        "purgecss"
     ],
     "skip-missing": false
 }

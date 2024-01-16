@@ -86,30 +86,6 @@ The `package.json` file contains several scripts for development, testing, and d
 
 These scripts help automate and streamline the development, testing, and deployment processes.
 
-## Configuration for Sentry and Web
-
-In our project, we use Sentry for error tracking and reporting. However, Sentry does not work on the web platform. To handle this, we have set up different configurations and entry points based on the platform.
-
-### Sentry Configuration
-
-Sentry is initialized in the `App.sentry.tsx` file. This file is used as the entry point for platforms where Sentry is supported. In this file, we import Sentry and initialize it with the DSN from our environment variables. We also capture a message to indicate that the mobile app has started.
-
-### Web Configuration
-
-For the web platform, we use a different entry point, `App.no_sentry.tsx`. This file is similar to `App.sentry.tsx`, but it does not include any Sentry-related code.
-
-### Switching Between Configurations
-
-The switching between Sentry and non-Sentry configurations is handled in the `package.json` file. We have different scripts for starting the app on different platforms. For example, the `start` script sets up the Sentry configuration and starts the app, while the `web` script sets up the non-Sentry configuration and starts the app in a web browser.
-
-### Metro Configuration
-
-We also have different Metro configurations for Sentry and non-Sentry setups. The `metro.config.sentry.js` file includes a custom serializer for Sentry, while the `metro.config.no_sentry.js` file does not.
-
-By having separate configurations and entry points for Sentry and non-Sentry setups, we can ensure that our app works correctly on all platforms.
-
-Sure, here's a draft for the README chapter explaining the test strategy and GitHub Actions:
-
 ## Development
 
 The Windesheim.AI app is developed using a combination of TypeScript and JavaScript, with React Native as the primary framework for building the mobile application. This allows the application to be cross-platform, supporting both Android and iOS devices.
