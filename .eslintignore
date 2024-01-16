@@ -15,6 +15,3 @@ instrument/
 package-lock.json
 
 fonts.js
-
-App.sentry.tsx
-metro.config.sentry.js
