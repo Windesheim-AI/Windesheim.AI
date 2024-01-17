@@ -11,7 +11,6 @@ Before proceeding with the installation, make sure you have the following prereq
 
 -   Node.js (>=16)
 -   NPM (Node Package Manager)
--   An account on [Sentry](https://sentry.io/welcome/) for error logging (optional)
 -   Android Studio or Xcode for running the app on an emulator (optional)
 
 ## Installation
