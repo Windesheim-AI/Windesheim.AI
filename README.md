@@ -39,7 +39,6 @@ The table below shows the values for the .env file.
 | `WP_DATA_URL`    | The site to be used for fetching the custom data (e.g. prompt library & courses).       | -                                    |
 | `WP_USERNAME`    | The username to gain access to the WordPress Data API.                                  | -                                    |
 | `WP_PASSWORD`    | The password to gain access to the WordPress Data API.                                  | -                                    |
-| `SENTRY_DSN`     | The DSN of Sentry.                                                                      | https://windesheim-ae.sentry.io/     |
 
 ### Install dependencies
 
