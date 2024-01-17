@@ -11,7 +11,6 @@ Before proceeding with the installation, make sure you have the following prereq
 
 -   Node.js (>=16)
 -   NPM (Node Package Manager)
--   An account on [Sentry](https://sentry.io/welcome/) for error logging (optional)
 -   Android Studio or Xcode for running the app on an emulator (optional)
 
 ## Installation
@@ -54,13 +53,12 @@ This will install all the necessary dependencies listed in the `package.json` fi
 
 The `package.json` file contains several scripts for development, testing, and deployment:
 
--   `npm run start`: Starts the expo server with Sentry configuration.
--   `npm run start:no-cache`: Starts the expo server with Sentry configuration and clears the cache.
+-   `npm run start`: Starts the expo server.
+-   `npm run start:no-cache`: Starts the expo server and clears the cache.
 -   `npm run android`: Starts the expo server and opens the app in an Android emulator.
 -   `npm run ios`: Starts the expo server and opens the app in an iOS simulator.
--   `npm run web`: Starts the expo server with non-Sentry configuration and opens the app in a web browser.
--   `npm run web:ci`: Starts the expo server with non-Sentry configuration for continuous integration.
--   `npm run web:no-cache`: Starts the expo server with non-Sentry configuration and clears the cache.
+-   `npm run web`: Starts the expo server and opens the app in a web browser.
+-   `npm run web:no-cache`: Starts the expo server and clears the cache.
 -   `npm run eject`: Ejects the app from the Expo build service.
 -   `npm run cypress:open`: Opens the Cypress Test Runner.
 -   `npm run expo:fix`: Fixes common issues with the Expo installation.
@@ -97,10 +95,10 @@ To set up the project locally for development, follow the steps in the "Prerequi
 
 You can run the app locally using one of the scripts provided in the `package.json` file:
 
--   `npm run start`: Starts the expo server with Sentry configuration.
+-   `npm run start`: Starts the expo server.
 -   `npm run android`: Starts the expo server and opens the app in an Android emulator.
 -   `npm run ios`: Starts the expo server and opens the app in an iOS simulator.
--   `npm run web`: Starts the expo server with non-Sentry configuration and opens the app in a web browser.
+-   `npm run web`: Starts the expo server and opens the app in a web browser.
 
 ### Project Overview
 
