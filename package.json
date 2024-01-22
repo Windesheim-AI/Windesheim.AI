@@ -91,7 +91,7 @@
         "swr": "^2.2.4"
     },
     "devDependencies": {
-        "@babel/core": "^7.23.2",
+        "@babel/core": "^7.23.7",
         "@cypress/code-coverage": "^3.12.6",
         "@testing-library/jest-native": "^5.4.3",
         "@testing-library/react-native": "^12.4.0",
