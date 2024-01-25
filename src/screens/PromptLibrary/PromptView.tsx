@@ -17,6 +17,8 @@ import {
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import useSinglePrompt from '../../lib/repositories/promptLibrary/useSinglePrompt';
+import { getEnvValue } from '../../lib/utility/env/env';
+import { EnvOptions } from '../../lib/utility/env/env.values';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { removeSlashes } from '../../lib/utility/stringutils';
 import { Routes } from '../../routes/routes';
@@ -36,6 +38,7 @@ export function PromptView() {
 
     const { data, isLoading, error } = useSinglePrompt(promptId);
     const prompt = data;
+    const wordPressContentUrl = getEnvValue(EnvOptions.WordPressContentURL);
 
     const styles = StyleSheet.create({
         title: {
@@ -184,8 +187,12 @@ export function PromptView() {
             {/* link to the tool open URL in app */}
             <Button
                 buttonText="Try it yourself"
-                // eslint-disable-next-line @typescript-eslint/no-misused-promises
-                onPress={() => Linking.openURL(prompt.toolLink ?? '')}
+                onPress={() => {
+                    // eslint-disable-next-line no-void
+                    void Linking.openURL(
+                        `${wordPressContentUrl}/prompts?id=${prompt.id}`,
+                    );
+                }}
                 colorGradientScheme={colorStateConfig.colors.primary}
                 textColorScheme={colorStateConfig.text?.primary}
             />
