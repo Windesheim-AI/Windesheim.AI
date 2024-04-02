@@ -63,6 +63,7 @@ export const TechProviders = ({ limit }: Props) => {
                             // @ts-ignore
                             techProviderImage={provider.logo}
                             techProviderSlug={provider.slug}
+                            techProviderLink={provider.link}
                         />
                     </View>
                 ))}
