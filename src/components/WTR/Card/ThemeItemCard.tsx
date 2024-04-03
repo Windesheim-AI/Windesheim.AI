@@ -14,9 +14,7 @@ import {
 } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
-import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
-import { Routes } from '../../../routes/routes';
-import { ReadMoreButton } from '../../general/buttons/ReadMoreButton';
+import { openBrowserPopup } from '../../../lib/utility/browserPopup';
 import { TextTranslated } from '../../general/text/TextTranslated';
 import { InteractiveView } from '../../general/views/InteractiveView';
 
@@ -38,7 +36,6 @@ export function ThemeItemCard({
     const colors = useColorConfig();
     const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
-    const navigation = useNavigation();
 
     const styles = StyleSheet.create({
         card: {
@@ -66,28 +63,11 @@ export function ThemeItemCard({
             fontSize: 10,
             flexShrink: 1,
         },
-        button: {
-            borderRadius: 8,
-            padding: 0,
-            flexDirection: 'row',
-            alignItems: 'center',
-        },
         image: {
             borderRadius: 15,
             height: 75,
             width: 75,
             resizeMode: 'cover',
-        },
-        buttonContainer: {
-            marginLeft: 'auto',
-            marginTop: 'auto',
-            padding: 0,
-            ...fonts.smallLink,
-        },
-        buttonText: {
-            color: colors.text,
-            ...fonts.description,
-            marginRight: 8,
         },
     });
 
@@ -97,9 +77,10 @@ export function ThemeItemCard({
             testID="theme-card"
             onPress={() => {
                 HapticFeedback(HapticForces.Light);
-                navigation.navigate(Routes.WindesheimTechRadarContent, {
-                    page: themeSlug,
-                });
+                openBrowserPopup(
+                    'https://www.windesheim.tech/technologie-trends/' +
+                        themeSlug,
+                );
             }}
         >
             <View style={styles.container}>
@@ -116,16 +97,6 @@ export function ThemeItemCard({
                         style={styles.description}
                         text={description}
                     />
-
-                    <View style={styles.buttonContainer}>
-                        <ReadMoreButton
-                            buttonStyle={styles.button}
-                            buttonTextStyle={styles.buttonText}
-                            navigateToRoute={Routes.WindesheimTechRadarContent}
-                            navigationParams={{ page: themeSlug }}
-                            testID={`theme-${themeSlug}-button`}
-                        />
-                    </View>
                 </View>
             </View>
         </InteractiveView>

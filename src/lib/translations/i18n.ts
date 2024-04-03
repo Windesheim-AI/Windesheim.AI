@@ -3,6 +3,7 @@ import { initReactI18next } from 'react-i18next';
 
 import { defaultLanguageCode } from './languageOptions';
 import * as deTranslations from './languages/de.json';
+import * as frTranslations from './languages/fr.json';
 import * as nlTranslations from './languages/nl.json';
 import { handleError } from '../utility/errorHandler';
 
@@ -18,6 +19,9 @@ i18n.use(initReactI18next) // passes i18n down to react-i18next
             },
             de: {
                 translation: deTranslations,
+            },
+            fr: {
+                translation: frTranslations,
             },
         },
         fallbackLng: defaultLanguageCode,

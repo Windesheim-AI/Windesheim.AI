@@ -15,8 +15,7 @@ import {
 } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
-import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
-import { Routes } from '../../../routes/routes';
+import { openBrowserPopup } from '../../../lib/utility/browserPopup';
 import { TextTranslated } from '../../general/text/TextTranslated';
 import { InteractiveView } from '../../general/views/InteractiveView';
 
@@ -36,7 +35,6 @@ export function TechProviderCard({
     const colors = useColorConfig();
     const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
-    const navigation = useNavigation();
 
     const styles = StyleSheet.create({
         card: {
@@ -81,9 +79,10 @@ export function TechProviderCard({
             testID="tech-provider-card"
             onPress={() => {
                 HapticFeedback(HapticForces.Light);
-                navigation.navigate(Routes.WindesheimTechRadarContent, {
-                    page: techProviderSlug,
-                });
+                openBrowserPopup(
+                    'https://www.windesheim.tech/technology-providers/' +
+                        techProviderSlug,
+                );
             }}
         >
             <View
