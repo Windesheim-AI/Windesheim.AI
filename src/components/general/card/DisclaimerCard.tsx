@@ -1,26 +1,22 @@
 import React from 'react';
-import {
-    Text,
-    View,
-    StyleSheet,
-    Image,
-    ImageSourcePropType,
-} from 'react-native';
+import { View, StyleSheet, Image, ImageSourcePropType } from 'react-native';
 
 import { useColorConfig } from '../../../lib/constants/Colors';
+import { useFonts } from '../../../lib/constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';
 
 export const DisclaimerCard = () => {
     const colors = useColorConfig();
+    const fonts = useFonts();
     const disclaimerText =
         "The Windesheim AI App is an educational tool developed by students at Windesheim University of Applied Sciences. While efforts are made to ensure accuracy, users should verify information independently. The app is for educational purposes only and should not substitute professional advice. Windesheim University does not guarantee the app's content, functionality and third-party links.";
     const styles = StyleSheet.create({
         container: {
-            marginTop: 100,
+            marginTop: 20,
             padding: 15,
             backgroundColor: colors.attentionYellow,
             borderRadius: 15,
-            borderColor: colors.lightGrey,
+            borderColor: colors.borderColor,
             borderWidth: 1,
             /* shadow properties for Android only */
             shadowColor: colors.black,
@@ -35,12 +31,13 @@ export const DisclaimerCard = () => {
         },
         title: {
             marginBottom: 3,
-            fontSize: 23,
-            fontWeight: 'bold',
+            ...fonts.h1,
+            color: colors.disclaimerText,
         },
         text: {
-            color: colors.black,
+            ...fonts.small,
             textAlign: 'justify',
+            color: colors.disclaimerText,
         },
         textRow: {
             display: 'flex',
@@ -48,10 +45,10 @@ export const DisclaimerCard = () => {
             width: '85%',
         },
         exclamationMark: {
-            marginLeft: 20,
-            marginTop: 15,
-            height: '85%',
-            width: '10%',
+            marginLeft: 23,
+            marginTop: 'auto',
+            marginBottom: 'auto',
+            width: 25,
         },
     });
 
