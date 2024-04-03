@@ -8,9 +8,12 @@ import {
 } from 'react-native';
 
 import { useColorConfig } from '../../../lib/constants/Colors';
+import { TextTranslated } from '../text/TextTranslated';
 
 export const DisclaimerCard = () => {
     const colors = useColorConfig();
+    const disclaimerText =
+        "The Windesheim AI App is an educational tool developed by students at Windesheim University of Applied Sciences. While efforts are made to ensure accuracy, users should verify information independently. The app is for educational purposes only and should not substitute professional advice. Windesheim University does not guarantee the app's content, functionality and third-party links.";
     const styles = StyleSheet.create({
         container: {
             marginTop: 100,
@@ -36,7 +39,6 @@ export const DisclaimerCard = () => {
             fontWeight: 'bold',
         },
         text: {
-            fontSize: 10,
             color: colors.black,
             textAlign: 'justify',
         },
@@ -47,8 +49,8 @@ export const DisclaimerCard = () => {
         },
         exclamationMark: {
             marginLeft: 20,
-            marginTop: 40,
-            height: '65%',
+            marginTop: 15,
+            height: '85%',
             width: '10%',
         },
     });
@@ -57,20 +59,8 @@ export const DisclaimerCard = () => {
         <View style={styles.container}>
             <View style={styles.textRow}>
                 <View>
-                    <Text style={styles.title}>Disclaimer</Text>
-                    <Text style={styles.text}>
-                        The Windesheim AI App is an educational tool developed
-                        by students at Windesheim University of Applied
-                        Sciences. While efforts are made to ensure accuracy,
-                        users should verify information independently. The app
-                        is for educational purposes only and should not
-                        substitute professional advice. Windesheim University
-                        does not guarantee the app's content, functionality and
-                        third-party links. Users' privacy and data security is
-                        prioritized. Windesheim University reserves the right to
-                        modify or discontinue the app. Users agree to these
-                        terms by using the app.
-                    </Text>
+                    <TextTranslated style={styles.title} text="Disclaimer" />
+                    <TextTranslated style={styles.text} text={disclaimerText} />
                 </View>
                 <Image
                     style={styles.exclamationMark}
