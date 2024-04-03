@@ -19,7 +19,7 @@ describe('Routes', () => {
 
     it('can save the route to the url', () => {
         cy.visit('/');
-        cy.contains('Home');
+        cy.contains('Why Windesheim AI');
 
         cy.get('[data-testid="Settings-navbar-button"]').click({ force: true });
         cy.contains('Settings');
@@ -30,9 +30,9 @@ describe('Routes', () => {
 
     it('can redirect back to the home page when a unknown page is visited', () => {
         cy.visit('/fdafdsadfdaf');
-        cy.contains('Home');
+        cy.contains('Why Windesheim AI');
 
         cy.reload();
-        cy.contains('Home');
+        cy.contains('Why Windesheim AI');
     });
 });

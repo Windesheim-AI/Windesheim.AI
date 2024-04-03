@@ -53,11 +53,11 @@ describe('App settings test', () => {
             return defaultFontSizeOfH1 * ratio;
         }
         // check fontsize in css
-        cy.get('[data-testid="Home-description"]').then(($el) => {
+        cy.get('[data-testid="disclaimerText"]').then(($el) => {
             const fontSize = window
                 .getComputedStyle($el[0])
                 .getPropertyValue('font-size');
-            cy.log(`The font size of #Home-description is ${fontSize}`);
+            cy.log(`The font size of #disclaimerText is ${fontSize}`);
             // check if its
             expect(fontSize).to.equal(`${defaultSize}px`);
         });
