@@ -8,7 +8,7 @@ export const HomeScreen = () => {
     return (
         <PageScrollView>
             <Introduction />
-            <DisclaimerCard data-testid="disclaimerText" />
+            <DisclaimerCard />
         </PageScrollView>
     );
 };
