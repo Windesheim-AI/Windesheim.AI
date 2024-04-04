@@ -66,7 +66,7 @@
         "react-dom": "18.2.0",
         "react-error-boundary": "^4.0.11",
         "react-i18next": "^13.5.0",
-        "react-native": "0.72.6",
+        "react-native": "0.72.10",
         "react-native-confetti-cannon": "^1.5.2",
         "react-native-dotenv": "^3.4.9",
         "react-native-element-dropdown": "^2.10.1",
