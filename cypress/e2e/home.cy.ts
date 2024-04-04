@@ -10,25 +10,9 @@ describe('Home page tests', () => {
     });
 
     it('can display the home page', () => {
-        cy.intercept('GET', '/wp-json/winpl/v1/prompts/', {
-            fixture: 'prompts/data.json',
-        }).as('getData');
-
         cy.visit('/');
 
-        cy.contains('Home');
-        cy.contains('Useful Prompts');
-        cy.contains('Tech Providers');
-        cy.contains('Themes');
-        cy.contains('See All');
-
-        // There should be 3 Tech Providers.
-        cy.get('[data-testid="tech-provider-card"]').should('have.length', 3);
-
-        // There should be 3 themes.
-        cy.get('[data-testid="theme-card"]').should('have.length', 3);
-
-        // There should be 3 prompts.
-        cy.get('[data-testid="prompt-card"]').should('have.length', 3);
+        cy.contains('Why Windesheim AI');
+        cy.contains('Disclaimer');
     });
 });
