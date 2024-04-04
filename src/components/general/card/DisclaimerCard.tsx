@@ -56,11 +56,7 @@ export const DisclaimerCard = () => {
         <View style={styles.container}>
             <View style={styles.textRow}>
                 <View>
-                    <TextTranslated
-                        style={styles.title}
-                        text="Disclaimer"
-                        data-testid="disclaimerText"
-                    />
+                    <TextTranslated style={styles.title} text="Disclaimer" />
                     <TextTranslated style={styles.text} text={disclaimerText} />
                 </View>
                 <Image

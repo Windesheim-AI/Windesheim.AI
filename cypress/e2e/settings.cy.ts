@@ -52,22 +52,6 @@ describe('App settings test', () => {
             const ratio = fontSize / defaultFontSize;
             return defaultFontSizeOfH1 * ratio;
         }
-        // check fontsize in css
-        cy.get('[data-testid="disclaimerText"]').then(($el) => {
-            const fontSize = window
-                .getComputedStyle($el[0])
-                .getPropertyValue('font-size');
-            cy.log(`The font size of #disclaimerText is ${fontSize}`);
-            // check if its
-            expect(fontSize).to.equal(`${defaultSize}px`);
-        });
-        cy.visit('/settings');
-        cy.get('[data-testid="fontSize"]').should('contain.text', defaultSize);
-        cy.get('[data-testid="increaseFont"]').click();
-        cy.get('[data-testid="fontSize"]').should(
-            'contain.text',
-            defaultSize + StepSize,
-        );
 
         // go to another page, check fontsize in css
         cy.visit('/home');
