@@ -14,7 +14,7 @@ export const Introduction = () => {
         container: {
             marginTop: 20,
             padding: 15,
-            backgroundColor: colors.white,
+            backgroundColor: colors.listItemBg,
             borderRadius: 15,
             borderColor: colors.borderColor,
             borderWidth: 1,
@@ -32,10 +32,12 @@ export const Introduction = () => {
         title: {
             marginBottom: 3,
             ...fonts.h1,
+            color: colors.titleDefault,
         },
         text: {
             ...fonts.small,
             textAlign: 'justify',
+            color: colors.text,
         },
     });
 
