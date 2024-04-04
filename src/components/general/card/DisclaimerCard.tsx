@@ -62,6 +62,7 @@ export const DisclaimerCard = () => {
                 <Image
                     style={styles.exclamationMark}
                     source={
+                        // eslint-disable-next-line @typescript-eslint/no-var-requires
                         require('../../../assets/images/Icon/exclamation-mark.png') as ImageSourcePropType
                     }
                 />
