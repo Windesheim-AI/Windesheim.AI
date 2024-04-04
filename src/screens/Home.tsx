@@ -1,29 +1,61 @@
-import React from 'react';
-import { View } from 'react-native';
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import React, { useRef } from 'react';
+import {
+    FlatList,
+    TouchableOpacity,
+    StyleSheet,
+    Text,
+    SafeAreaView,
+} from 'react-native';
 
-import { TechProviders } from '../components/WTR/TechProviders';
-import { Themes } from '../components/WTR/Themes';
-import { TitleWithSeeAll } from '../components/general/text/TitleWithSeeAll';
 import { PageScrollView } from '../components/general/views/PageScrollView';
-import { PromptsLimitedView } from '../components/promptLibary/PromptsLimitedView';
-import { Routes } from '../routes/routes';
+
+const cards = [
+    { id: '1', title: 'Card 1', color: 'red' },
+    { id: '2', title: 'Card 2', color: 'blue' },
+    { id: '3', title: 'Card 3', color: 'green' },
+    { id: '4', title: 'Card 4', color: 'yellow' },
+];
 
 export const HomeScreen = () => {
-    const description =
-        'Artificial intelligence is the key to innovating the future and transforming our lives';
+    const flatListRef = useRef<FlatList | null>(null);
+    const renderItem = ({ item: { title, color }, index: number }) => {
+        return (
+            <TouchableOpacity
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+                style={{ ...styles.card, backgroundColor: color }}
+            >
+                <Text>{title}</Text>
+            </TouchableOpacity>
+        );
+    };
 
     return (
-        <PageScrollView title="Home" description={description}>
-            <View>
-                <TitleWithSeeAll
-                    title="Useful Prompts"
-                    navigateToRoute={Routes.PromptLibrary}
+        <SafeAreaView style={styles.container}>
+            <PageScrollView>
+                <FlatList
+                    ref={flatListRef}
+                    horizontal
+                    pagingEnabled
+                    data={cards}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={renderItem}
                 />
-                <PromptsLimitedView limit={3} />
-            </View>
-
-            <Themes limit={3} />
-            <TechProviders limit={3} />
-        </PageScrollView>
+            </PageScrollView>
+        </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    card: {
+        width: 300,
+        height: 300,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginHorizontal: 10,
+    },
+});
