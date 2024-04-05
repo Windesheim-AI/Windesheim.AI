@@ -88,7 +88,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         modalBackground: 'rgba(0,0,0,0.5)',
         subtext: '#a8a7a7',
         navBar: {
-            backgroundColor: '#FFF',
+            backgroundColor: '#FFFFF0',
             itemBackgroundColor: '#FAFAFA',
             activeItemBackgroundColor: '#EEEEEE',
             color: '#2a2a2a',
