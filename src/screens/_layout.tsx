@@ -24,10 +24,17 @@ export const Layout = ({ children }: LayoutProps) => {
             margin: 10,
             overflow: 'hidden',
             ...shadow,
+            paddingBottom: navigation.showNavBar ? 50 : 0, 
         },
         innerContainer: {
             backgroundColor: colors.background,
             height: '100%',
+        },
+        navBarContainer: {
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 0,
         },
         wrapper: {
             width: '100%',
@@ -35,16 +42,7 @@ export const Layout = ({ children }: LayoutProps) => {
             position: 'relative',
             overflow: 'hidden',
             flex: 1,
-        },
-        navbarContainer: {
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            zIndex: 1, // Navbar'ın içeriğinin diğer bileşenlerin üzerine çıkmasını sağlar
-        },
-        navbarPlaceholder: {
-            height: 50, // Navbar'ın yüksekliğiyle aynı olmalıdır
+            paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
         },
     });
 
@@ -68,12 +66,9 @@ export const Layout = ({ children }: LayoutProps) => {
                         </>
                     ) : null}
                 </View>
-                {/* Navbar'ı alt kısıma yapışık hale getirme */}
-                <View style={styles.navbarContainer}>
+                <View style={styles.navBarContainer}>
                     <NavBar />
                 </View>
-                {/* Navbar'ın altındaki boşluğu kaplayacak View */}
-                <View style={styles.navbarPlaceholder} />
             </SafeAreaView>
         </>
     );

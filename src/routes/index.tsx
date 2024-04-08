@@ -39,6 +39,7 @@ const screens = [
     { name: Routes.FirstTimeUser, component: BackgroundCollectForm },
     { name: Routes.PromptLibrary, component: PromptLibrary },
     { name: Routes.PromptView, component: PromptView },
+    { name: Routes.WTR, component: WTRScreen },
 ];
 
 export const Router = () => {

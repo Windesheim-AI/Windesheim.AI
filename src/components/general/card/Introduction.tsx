@@ -17,7 +17,7 @@ export const Introduction = () => {
             backgroundColor: colors.listItemBg,
             borderRadius: 15,
             borderColor: colors.borderColor,
-            borderWidth: 1,
+            borderWidth: 3,
             /* shadow properties for Android only */
             shadowColor: colors.black,
             shadowOffset: {
