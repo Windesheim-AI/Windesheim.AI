@@ -2,7 +2,7 @@ import React from 'react';
 import { Pressable, StyleSheet, View, Image } from 'react-native';
 import Svg, { Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 
-import { useColorConfig, useCurrentHighContrastMode, useCurrentTheme} from '../../lib/constants/Colors';
+import { uppershadow, useColorConfig, useCurrentHighContrastMode, useCurrentTheme} from '../../lib/constants/Colors';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useAppSelector } from '../../lib/redux/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -16,8 +16,9 @@ export const NavBar = () => {
 
     const navigationState = useAppSelector((state) => state.navigation);
     const theme = useCurrentTheme();
-    const startColor = (theme === 'light' && isHighContrastEnabled) ? '#FFD700' : (theme === 'light' ? '#FFF377' : '#86d2d9');
-    const endColor = (theme === 'light' && isHighContrastEnabled) ? '#FFD700' : (theme === 'light' ? '#FFCB05' : '#4695d3');
+    const startColor = (theme === 'light' && isHighContrastEnabled) ? '#FFD700' : (theme === 'light' ? '#FFF377' : (theme === 'dark' && isHighContrastEnabled ? '#4695d3' : '#86d2d9'));
+    const endColor = (theme === 'light' && isHighContrastEnabled) ? '#FFD700' : (theme === 'light' ? '#FFF377' : (theme === 'dark' && isHighContrastEnabled ? '#4695d3' : '#86d2d9'));
+    
     
     
     const styles = StyleSheet.create({
@@ -37,6 +38,7 @@ export const NavBar = () => {
             borderTopRightRadius: 15,
             overflow: 'hidden',
             paddingTop: 5,
+            ...uppershadow,
         },
         itemContainer: {
             flex: 1,
@@ -46,7 +48,6 @@ export const NavBar = () => {
             paddingVertical: 10,
             position: 'relative',
             overflow: 'hidden',  
-                 
         },
         selectedIcon: {
             position: 'absolute',
@@ -111,10 +112,10 @@ export const NavBar = () => {
                                     : require('../../assets/images/navbarIcons/Intelligence.png')
                             }
                             style={[
-                                styles.icon,
-                                routeActive && { 
-                                    tintColor: (theme === 'dark' && isHighContrastEnabled) ? '#FFFFFF' : colors.navBar.activeColor 
-                                }, 
+        styles.icon,
+        !routeActive && theme === 'dark' &&{ 
+            tintColor: '#FFFFFF' // Beyaz renk
+        }, 
                             ]}
                         />
                     </Pressable>

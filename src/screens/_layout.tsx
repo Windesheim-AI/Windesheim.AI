@@ -23,7 +23,7 @@ export const Layout = ({ children }: LayoutProps) => {
             flex: 1,
             margin: 10,
             overflow: 'hidden',
-            ...shadow,
+            //...shadow,
             paddingBottom: navigation.showNavBar ? 50 : 0, 
         },
         innerContainer: {
