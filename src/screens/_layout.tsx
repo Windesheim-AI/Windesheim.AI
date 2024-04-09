@@ -43,6 +43,7 @@ export const Layout = ({ children }: LayoutProps) => {
             overflow: 'hidden',
             flex: 1,
             paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+            paddingBottom: navigation.showNavBar ? 50 : Platform.OS === 'android' ? 50 : 0,
         },
     });
 
