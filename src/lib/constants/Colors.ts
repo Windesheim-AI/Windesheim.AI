@@ -26,6 +26,10 @@ export type ColorSchemeType = {
     black: string;
     white: string;
     blue: string;
+    attentionYellow: string;
+    disclaimerText: string;
+    yellowCards: string;
+    lightGrey: string;
     tabIconDefault: string;
     tabIconSelected: string;
     titleDefault: string;
@@ -100,6 +104,10 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         white: '#FFFFFF',
         black: '#000000',
         blue: '#0000FF',
+        attentionYellow: '#FFF377',
+        disclaimerText: '#000000',
+        yellowCards: 'FFFFF0',
+        lightGrey: '#D3D3D3',
         opacityLayer: 'rgba(255,255,255,0.8)',
         accentTitle: '#757575',
         progressbarBg: '#f3f3f5',
@@ -151,6 +159,10 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         white: '#FFFFFF',
         black: '#000000',
         blue: '#0000FF',
+        attentionYellow: '#86D2D9',
+        disclaimerText: '#000000',
+        yellowCards: 'FFFFF0',
+        lightGrey: '#D3D3D3',
         opacityLayer: 'rgba(0,0,0,0.6)',
         accentTitle: '#757575',
         progressbarBg: '#373737',
@@ -205,6 +217,10 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         white: '#FFFFFF',
         black: '#000000',
         blue: '#0000FF',
+        attentionYellow: '#D9C300',
+        disclaimerText: '#000000',
+        yellowCards: 'FFFFF0',
+        lightGrey: '#D3D3D3',
         opacityLayer: 'rgba(255,255,255,0.9)',
         seeAllText: '#000000',
         progressbarBg: '#FFFFFF',
@@ -256,6 +272,10 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         white: '#FFFFFF',
         black: '#000000',
         blue: '#0000FF',
+        attentionYellow: '#008B8B',
+        disclaimerText: '#FFFFFF',
+        yellowCards: 'FFFFF0',
+        lightGrey: '#D3D3D3',
         opacityLayer: 'rgba(0,0,0,0.6)',
         seeAllText: '#FFFFFF',
         accentTitle: '#FFFFFF',

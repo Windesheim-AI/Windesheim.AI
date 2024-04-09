@@ -8,6 +8,7 @@ export const languageOptions: LanguageTranslations = {
     nl: 'Nederlands', // Dutch
     en: 'English',
     de: 'Deutsch', // German
+    fr: 'Français', // French
 };
 
 export function getLanguageCodeByTranslation(
