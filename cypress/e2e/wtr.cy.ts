@@ -35,6 +35,7 @@ describe('WTR page tests', () => {
         cy.contains('SalesForce');
         cy.contains('SAP');
 
+        cy.contains('Themes');
         cy.contains('Artificial Intelligence');
         cy.contains('Next UI');
         cy.contains('Green IT');
