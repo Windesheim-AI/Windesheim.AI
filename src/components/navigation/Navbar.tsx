@@ -1,8 +1,8 @@
 import React from 'react';
-import { Pressable, StyleSheet, View, Image } from 'react-native';
+import { Pressable, StyleSheet, View, Image, StatusBar } from 'react-native';
 import Svg, { Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 
-import { uppershadow, useColorConfig, useCurrentHighContrastMode, useCurrentTheme} from '../../lib/constants/Colors';
+import { uppershadow, useColorConfig, useCurrentHighContrastMode, useCurrentTheme } from '../../lib/constants/Colors';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useAppSelector } from '../../lib/redux/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -13,20 +13,24 @@ export const NavBar = () => {
     const colors = useColorConfig();
     const isHighContrastEnabled = useCurrentHighContrastMode();
 
-
     const navigationState = useAppSelector((state) => state.navigation);
     const theme = useCurrentTheme();
     const startColor = (theme === 'light' && isHighContrastEnabled) ? '#FFD700' : (theme === 'light' ? '#FFF377' : (theme === 'dark' && isHighContrastEnabled ? '#4695d3' : '#86d2d9'));
     const endColor = (theme === 'light' && isHighContrastEnabled) ? '#FFD700' : (theme === 'light' ? '#FFF377' : (theme === 'dark' && isHighContrastEnabled ? '#4695d3' : '#86d2d9'));
-    
-    
-    
+    const statusBarColor = () => {
+        if (theme === 'light') {
+            return isHighContrastEnabled ? '#FFFFFF' : '#FFFFF0';
+        } else {
+            return isHighContrastEnabled ? '#000000' : '#2A2A2A';
+        }
+    };
+
     const styles = StyleSheet.create({
         container: {
             flexDirection: 'row',
             alignItems: 'flex-start',
             justifyContent: 'space-around',
-            backgroundColor: colors.navBar.backgroundColor, 
+            backgroundColor: colors.navBar.backgroundColor,
             height: 80,
             zIndex: 1,
             left: 0,
@@ -34,15 +38,13 @@ export const NavBar = () => {
             top: 0,
             padding: 0,
             paddingHorizontal: 20,
-            //borderTopLeftRadius: 15,
-            //borderTopRightRadius: 15,
             overflow: 'hidden',
             paddingTop: 5,
             borderTopWidth: 2,
             borderTopColor: (theme === 'light' && isHighContrastEnabled) ? '#000000' :
-                            (theme === 'light' ? '#C0C0C0' :
-                            (theme === 'dark' && isHighContrastEnabled ? '#FFFFFF' :
-                            '#C0C0C0')),
+                (theme === 'light' ? '#C0C0C0' :
+                    (theme === 'dark' && isHighContrastEnabled ? '#FFFFFF' :
+                        '#C0C0C0')),
         },
         itemContainer: {
             flex: 1,
@@ -51,7 +53,7 @@ export const NavBar = () => {
             borderRadius: 20,
             paddingVertical: 10,
             position: 'relative',
-            overflow: 'hidden',  
+            overflow: 'hidden',
         },
         selectedIcon: {
             position: 'absolute',
@@ -77,9 +79,10 @@ export const NavBar = () => {
 
     return (
         <View style={styles.container}>
+            <StatusBar backgroundColor={statusBarColor()} translucent={true} />
             {navigationBarLinks.map((link, index) => {
                 const routeActive = isRouteActive(link.route);
-    
+
                 return (
                     <Pressable
                         key={index}
@@ -108,18 +111,18 @@ export const NavBar = () => {
                                 link.icon === 'home'
                                     ? require('../../assets/images/navbarIcons/Exterior.png')
                                     : link.icon === 'newspaper'
-                                    ? require('../../assets/images/navbarIcons/Morale.png')
-                                    : link.icon === 'graduation-cap'
-                                    ? require('../../assets/images/navbarIcons/Auction.png')
-                                    : link.icon === 'cog'
-                                    ? require('../../assets/images/navbarIcons/GroupTask.png')
-                                    : require('../../assets/images/navbarIcons/Intelligence.png')
+                                        ? require('../../assets/images/navbarIcons/Morale.png')
+                                        : link.icon === 'graduation-cap'
+                                            ? require('../../assets/images/navbarIcons/Auction.png')
+                                            : link.icon === 'cog'
+                                                ? require('../../assets/images/navbarIcons/GroupTask.png')
+                                                : require('../../assets/images/navbarIcons/Intelligence.png')
                             }
                             style={[
-        styles.icon,
-        !routeActive && theme === 'dark' &&{ 
-            tintColor: '#FFFFFF' // Beyaz renk
-        }, 
+                                styles.icon,
+                                !routeActive && theme === 'dark' && {
+                                    tintColor: '#FFFFFF' 
+                                },
                             ]}
                         />
                     </Pressable>
@@ -127,4 +130,5 @@ export const NavBar = () => {
             })}
         </View>
     );
+
 }
