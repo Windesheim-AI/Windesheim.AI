@@ -34,11 +34,15 @@ export const NavBar = () => {
             top: 0,
             padding: 0,
             paddingHorizontal: 20,
-            borderTopLeftRadius: 15,
-            borderTopRightRadius: 15,
+            //borderTopLeftRadius: 15,
+            //borderTopRightRadius: 15,
             overflow: 'hidden',
             paddingTop: 5,
-            ...uppershadow,
+            borderTopWidth: 2,
+            borderTopColor: (theme === 'light' && isHighContrastEnabled) ? '#000000' :
+                            (theme === 'light' ? '#C0C0C0' :
+                            (theme === 'dark' && isHighContrastEnabled ? '#FFFFFF' :
+                            '#C0C0C0')),
         },
         itemContainer: {
             flex: 1,
