@@ -16,9 +16,8 @@ describe('First time user tests', () => {
         cy.contains('Overslaan').click();
         cy.contains('Overslaan').click();
 
-        cy.contains('Home');
-        cy.contains('Handige prompts');
-        cy.contains("Thema's");
+        cy.contains('Windesheim AI');
+        cy.contains('Disclaimer');
     });
 
     it('can answer the background questions and progresses through it', () => {
@@ -31,8 +30,7 @@ describe('First time user tests', () => {
         cy.contains('Hoe bekend bent u met AI?');
         cy.get('[data-testid="listButton"]').first().click();
         cy.contains('Overslaan').click();
-        cy.contains('Home');
-        cy.contains('Handige prompts');
-        cy.contains("Thema's");
+        cy.contains('Windesheim AI');
+        cy.contains('Disclaimer');
     });
 });
