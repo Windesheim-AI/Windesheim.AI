@@ -16,7 +16,7 @@ describe('First time user tests', () => {
         cy.contains('Overslaan').click();
         cy.contains('Overslaan').click();
 
-        cy.contains('Why Windesheim AI');
+        cy.contains('Windesheim AI');
         cy.contains('Disclaimer');
     });
 
@@ -30,7 +30,7 @@ describe('First time user tests', () => {
         cy.contains('Hoe bekend bent u met AI?');
         cy.get('[data-testid="listButton"]').first().click();
         cy.contains('Overslaan').click();
-        cy.contains('Why Windesheim AI');
+        cy.contains('Windesheim AI');
         cy.contains('Disclaimer');
     });
 });
