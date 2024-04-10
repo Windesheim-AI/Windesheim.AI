@@ -227,7 +227,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         completedProgressBar: '#00FF00',
         accentTitle: '#000000',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
-        subCard: '#f4f3fd',//CONTEXT CONTAINER
+        subCard: '#f4f3fd', //CONTEXT CONTAINER
         previousButtonColor: '#000000',
         continueButtonColor: '#00FF00',
     },

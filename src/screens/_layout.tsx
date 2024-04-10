@@ -1,12 +1,18 @@
 import React from 'react';
-import { Platform, SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
+import {
+    Platform,
+    SafeAreaView,
+    StatusBar,
+    StyleSheet,
+    View,
+} from 'react-native';
 
 import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
 import { NotificationList } from '../components/general/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { Tutorial } from '../components/tutorial/Tutorial';
-import { shadow, useColorConfig } from '../lib/constants/Colors';
+import { useColorConfig } from '../lib/constants/Colors';
 import { useAppSelector } from '../lib/redux/Hooks';
 
 type LayoutProps = {
@@ -23,8 +29,7 @@ export const Layout = ({ children }: LayoutProps) => {
             flex: 1,
             margin: 10,
             overflow: 'hidden',
-            //...shadow,
-            paddingBottom: navigation.showNavBar ? 50 : 0, 
+            paddingBottom: navigation.showNavBar ? 50 : 0,
         },
         innerContainer: {
             backgroundColor: colors.background,
@@ -43,12 +48,12 @@ export const Layout = ({ children }: LayoutProps) => {
             overflow: 'hidden',
             flex: 1,
             paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-            paddingBottom: navigation.showNavBar ? 50 : Platform.OS === 'android' ? 50 : 0,
+            paddingBottom: Platform.OS === 'android' ? 50 : 0,
         },
     });
 
     const isFirstTimeUser = useAppSelector(
-        (state) => state.backgroundInformation.isFirstTimeUser
+        (state) => state.backgroundInformation.isFirstTimeUser,
     );
 
     return (

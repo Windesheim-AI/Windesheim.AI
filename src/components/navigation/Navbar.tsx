@@ -1,8 +1,15 @@
+/* eslint-disable indent */
+/* eslint-disable react-native/no-color-literals */
+/* eslint-disable complexity */
 import React from 'react';
 import { Pressable, StyleSheet, View, Image, StatusBar } from 'react-native';
 import Svg, { Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 
-import { uppershadow, useColorConfig, useCurrentHighContrastMode, useCurrentTheme } from '../../lib/constants/Colors';
+import {
+    useColorConfig,
+    useCurrentHighContrastMode,
+    useCurrentTheme,
+} from '../../lib/constants/Colors';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useAppSelector } from '../../lib/redux/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -15,16 +22,34 @@ export const NavBar = () => {
 
     const navigationState = useAppSelector((state) => state.navigation);
     const theme = useCurrentTheme();
-    const startColor = (theme === 'light' && isHighContrastEnabled) ? '#FFD700' : (theme === 'light' ? '#FFF377' : (theme === 'dark' && isHighContrastEnabled ? '#4695d3' : '#86d2d9'));
-    const endColor = (theme === 'light' && isHighContrastEnabled) ? '#FFD700' : (theme === 'light' ? '#FFF377' : (theme === 'dark' && isHighContrastEnabled ? '#4695d3' : '#86d2d9'));
+    const startColor =
+        theme === 'light' && isHighContrastEnabled
+            ? '#FFD700'
+            : theme === 'light'
+            ? '#FFF377'
+            : theme === 'dark' && isHighContrastEnabled
+            ? '#4695d3'
+            : '#86d2d9';
+    const endColor =
+        theme === 'light' && isHighContrastEnabled
+            ? '#FFD700'
+            : theme === 'light'
+            ? '#FFF377'
+            : theme === 'dark' && isHighContrastEnabled
+            ? '#4695d3'
+            : '#86d2d9';
     const statusBarColor = () => {
-        if (theme === 'light') {
-            return isHighContrastEnabled ? '#FFFFFF' : '#FFFFF0';
-        } else {
-            return isHighContrastEnabled ? '#000000' : '#2A2A2A';
-        }
+        return theme === 'light'
+            ? isHighContrastEnabled
+                ? '#FFFFFF'
+                : '#FFFFF0'
+            : isHighContrastEnabled
+            ? '#000000'
+            : '#2A2A2A';
     };
-
+    const darkThemeIconStyle = {
+        tintColor: '#FFFFFF',
+    };
     const styles = StyleSheet.create({
         container: {
             flexDirection: 'row',
@@ -41,10 +66,14 @@ export const NavBar = () => {
             overflow: 'hidden',
             paddingTop: 5,
             borderTopWidth: 2,
-            borderTopColor: (theme === 'light' && isHighContrastEnabled) ? '#000000' :
-                (theme === 'light' ? '#C0C0C0' :
-                    (theme === 'dark' && isHighContrastEnabled ? '#FFFFFF' :
-                        '#C0C0C0')),
+            borderTopColor:
+                theme === 'light' && isHighContrastEnabled
+                    ? '#000000'
+                    : theme === 'light'
+                    ? '#C0C0C0'
+                    : theme === 'dark' && isHighContrastEnabled
+                    ? '#FFFFFF'
+                    : '#C0C0C0',
         },
         itemContainer: {
             flex: 1,
@@ -79,13 +108,13 @@ export const NavBar = () => {
 
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor={statusBarColor()} translucent={true} />
-            {navigationBarLinks.map((link, index) => {
+            <StatusBar backgroundColor={statusBarColor()} translucent />
+            {navigationBarLinks.map((link) => {
                 const routeActive = isRouteActive(link.route);
 
                 return (
                     <Pressable
-                        key={index}
+                        key={link.route}
                         onPress={() => {
                             HapticFeedback(HapticForces.Light);
                             navigation.navigate(link.route);
@@ -93,36 +122,60 @@ export const NavBar = () => {
                         style={styles.itemContainer}
                         testID={link.route + '-navbar-button'}
                     >
-                        {routeActive && (
+                        {routeActive ? (
                             <View style={styles.selectedIcon}>
-                                <Svg style={styles.gradient} viewBox="0 0 50 50">
+                                <Svg
+                                    style={styles.gradient}
+                                    viewBox="0 0 50 50"
+                                >
                                     <Defs>
-                                        <LinearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
-                                            <Stop offset="25%" stopColor={startColor} />
-                                            <Stop offset="100%" stopColor={endColor} />
+                                        <LinearGradient
+                                            id="grad"
+                                            x1="0"
+                                            y1="0"
+                                            x2="1"
+                                            y2="1"
+                                        >
+                                            <Stop
+                                                offset="25%"
+                                                stopColor={startColor}
+                                            />
+                                            <Stop
+                                                offset="100%"
+                                                stopColor={endColor}
+                                            />
                                         </LinearGradient>
                                     </Defs>
-                                    <Rect x="0" y="0" width="50" height="50" fill="url(#grad)" rx={10} ry={10} />
+                                    <Rect
+                                        x="0"
+                                        y="0"
+                                        width="50"
+                                        height="50"
+                                        fill="url(#grad)"
+                                        rx={10}
+                                        ry={10}
+                                    />
                                 </Svg>
                             </View>
-                        )}
+                        ) : null}
                         <Image
                             source={
+                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                                 link.icon === 'home'
                                     ? require('../../assets/images/navbarIcons/Exterior.png')
                                     : link.icon === 'newspaper'
-                                        ? require('../../assets/images/navbarIcons/Morale.png')
-                                        : link.icon === 'graduation-cap'
-                                            ? require('../../assets/images/navbarIcons/Auction.png')
-                                            : link.icon === 'cog'
-                                                ? require('../../assets/images/navbarIcons/GroupTask.png')
-                                                : require('../../assets/images/navbarIcons/Intelligence.png')
+                                    ? require('../../assets/images/navbarIcons/Morale.png')
+                                    : link.icon === 'graduation-cap'
+                                    ? require('../../assets/images/navbarIcons/Auction.png')
+                                    : link.icon === 'cog'
+                                    ? require('../../assets/images/navbarIcons/GroupTask.png')
+                                    : require('../../assets/images/navbarIcons/Intelligence.png')
                             }
                             style={[
                                 styles.icon,
-                                !routeActive && theme === 'dark' && {
-                                    tintColor: '#FFFFFF' 
-                                },
+                                !routeActive &&
+                                    theme === 'dark' &&
+                                    darkThemeIconStyle,
                             ]}
                         />
                     </Pressable>
@@ -130,5 +183,4 @@ export const NavBar = () => {
             })}
         </View>
     );
-
-}
+};
