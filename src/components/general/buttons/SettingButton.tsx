@@ -1,27 +1,54 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import {
+    StyleSheet,
+    TouchableOpacity,
+    Image,
+    ImageSourcePropType,
+} from 'react-native';
 
 import SettingsIcon from '../../../assets/images/Icon/settings_icon.png';
+import { useCurrentTheme } from '../../../lib/constants/Colors';
 import { Routes } from '../../../routes/routes';
+const theme = {
+    darkIconTintColor: '#FFFFFF',
+};
 
-export const DisclaimerCard = () => {
+export const SettingsButton = () => {
     const navigation = useNavigation();
+    const currentTheme = useCurrentTheme();
+
     const handlePress = () => {
         navigation.navigate(Routes.Settings as never);
     };
+
+    const iconStyle =
+        currentTheme === 'dark' ? styles.darkIcon : styles.lightIcon;
+
     return (
-        <View style={styles.container}>
-            <TouchableOpacity onPress={handlePress}>
-                <Image source={SettingsIcon} />
-            </TouchableOpacity>
-        </View>
+        <TouchableOpacity style={styles.container} onPress={handlePress}>
+            <Image
+                source={SettingsIcon as ImageSourcePropType}
+                style={iconStyle}
+            />
+        </TouchableOpacity>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'flex-end',
-        color: 'white',
+        position: 'absolute',
+        top: 0,
+        right: 20,
+        zIndex: 1,
+    },
+    lightIcon: {
+        width: 37,
+        height: 37,
+    },
+    darkIcon: {
+        width: 37,
+        height: 37,
+        tintColor: theme.darkIconTintColor,
     },
 });

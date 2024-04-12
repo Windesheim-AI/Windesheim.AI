@@ -26,26 +26,26 @@ export const NavBar = () => {
         theme === 'light' && isHighContrastEnabled
             ? '#FFD700'
             : theme === 'light'
-            ? '#FFF377'
-            : theme === 'dark' && isHighContrastEnabled
-            ? '#4695d3'
-            : '#86d2d9';
+              ? '#FFF377'
+              : theme === 'dark' && isHighContrastEnabled
+                ? '#4695d3'
+                : '#86d2d9';
     const endColor =
         theme === 'light' && isHighContrastEnabled
             ? '#FFD700'
             : theme === 'light'
-            ? '#FFF377'
-            : theme === 'dark' && isHighContrastEnabled
-            ? '#4695d3'
-            : '#86d2d9';
+              ? '#FFF377'
+              : theme === 'dark' && isHighContrastEnabled
+                ? '#4695d3'
+                : '#86d2d9';
     const statusBarColor = () => {
         return theme === 'light'
             ? isHighContrastEnabled
                 ? '#FFFFFF'
                 : '#FFFFF0'
             : isHighContrastEnabled
-            ? '#000000'
-            : '#2A2A2A';
+              ? '#000000'
+              : '#2A2A2A';
     };
     const darkThemeIconStyle = {
         tintColor: '#FFFFFF',
@@ -70,10 +70,10 @@ export const NavBar = () => {
                 theme === 'light' && isHighContrastEnabled
                     ? '#000000'
                     : theme === 'light'
-                    ? '#C0C0C0'
-                    : theme === 'dark' && isHighContrastEnabled
-                    ? '#FFFFFF'
-                    : '#C0C0C0',
+                      ? '#C0C0C0'
+                      : theme === 'dark' && isHighContrastEnabled
+                        ? '#FFFFFF'
+                        : '#C0C0C0',
         },
         itemContainer: {
             flex: 1,
@@ -164,12 +164,12 @@ export const NavBar = () => {
                                 link.icon === 'home'
                                     ? require('../../assets/images/navbarIcons/Exterior.png')
                                     : link.icon === 'newspaper'
-                                    ? require('../../assets/images/navbarIcons/Morale.png')
-                                    : link.icon === 'graduation-cap'
-                                    ? require('../../assets/images/navbarIcons/Auction.png')
-                                    : link.icon === 'cog'
-                                    ? require('../../assets/images/navbarIcons/GroupTask.png')
-                                    : require('../../assets/images/navbarIcons/Intelligence.png')
+                                      ? require('../../assets/images/navbarIcons/Morale.png')
+                                      : link.icon === 'graduation-cap'
+                                        ? require('../../assets/images/navbarIcons/Auction.png')
+                                        : link.icon === 'cog'
+                                          ? require('../../assets/images/navbarIcons/GroupTask.png')
+                                          : require('../../assets/images/navbarIcons/Intelligence.png')
                             }
                             style={[
                                 styles.icon,
