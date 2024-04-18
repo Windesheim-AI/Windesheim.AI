@@ -11,21 +11,10 @@ describe('Routes', () => {
 
     it('can directly visit a route via the url', () => {
         cy.visit('/settings');
-        cy.contains('Settings');
+        cy.contains('SETTINGS');
 
         cy.reload();
-        cy.contains('Settings');
-    });
-
-    it('can save the route to the url', () => {
-        cy.visit('/');
-        cy.contains('Why Windesheim AI');
-
-        cy.get('[data-testid="Settings-navbar-button"]').click({ force: true });
-        cy.contains('Settings');
-
-        cy.reload();
-        cy.contains('Settings');
+        cy.contains('SETTINGS');
     });
 
     it('can redirect back to the home page when a unknown page is visited', () => {

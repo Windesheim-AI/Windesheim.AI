@@ -1,4 +1,4 @@
-import { IconDefinition, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
@@ -31,10 +31,13 @@ export const SettingsScreen = () => {
 
     return (
         <PageScrollView title="SETTINGS">
-            <TouchableOpacity onPress={goBack} style={buttonStyle}>
+            <TouchableOpacity
+                onPress={goBack}
+                style={buttonStyle}
+                testID="settings-button"
+            >
                 <FontAwesomeIcon
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    icon={faArrowLeft as IconDefinition}
+                    icon={faArrowLeft}
                     size={30}
                     color={currentTheme === 'dark' ? '#FFFFFF' : 'black'}
                 />
