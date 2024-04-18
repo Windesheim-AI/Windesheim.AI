@@ -25,26 +25,26 @@ export const NavBar = () => {
         theme === 'light' && isHighContrastEnabled
             ? '#FFD700'
             : theme === 'light'
-            ? '#FFF377'
-            : theme === 'dark' && isHighContrastEnabled
-            ? '#4695d3'
-            : '#86d2d9';
+              ? '#FFF377'
+              : theme === 'dark' && isHighContrastEnabled
+                ? '#4695d3'
+                : '#86d2d9';
     const endColor =
         theme === 'light' && isHighContrastEnabled
             ? '#FFD700'
             : theme === 'light'
-            ? '#FFF377'
-            : theme === 'dark' && isHighContrastEnabled
-            ? '#4695d3'
-            : '#86d2d9';
+              ? '#FFF377'
+              : theme === 'dark' && isHighContrastEnabled
+                ? '#4695d3'
+                : '#86d2d9';
     const borderTopColors =
         theme === 'light' && isHighContrastEnabled
             ? '#000000'
             : theme === 'light'
-            ? '#C0C0C0'
-            : theme === 'dark' && isHighContrastEnabled
-            ? '#FFFFFF'
-            : '#C0C0C0';
+              ? '#C0C0C0'
+              : theme === 'dark' && isHighContrastEnabled
+                ? '#FFFFFF'
+                : '#C0C0C0';
 
     const statusBarColor = () => {
         return theme === 'light'
@@ -52,8 +52,8 @@ export const NavBar = () => {
                 ? '#FFFFFF'
                 : '#FFFFF0'
             : isHighContrastEnabled
-            ? '#000000'
-            : '#2A2A2A';
+              ? '#000000'
+              : '#2A2A2A';
     };
     const darkThemeIconStyle = {
         tintColor: '#FFFFFF',
@@ -165,12 +165,12 @@ export const NavBar = () => {
                                 link.icon === 'home'
                                     ? require('../../assets/images/navbarIcons/Home.png')
                                     : link.icon === 'articles'
-                                    ? require('../../assets/images/navbarIcons/Articles.png')
-                                    : link.icon === 'quizzes'
-                                    ? require('../../assets/images/navbarIcons/Courses.png')
-                                    : link.icon === 'prompts'
-                                    ? require('../../assets/images/navbarIcons/Prompts.png')
-                                    : require('../../assets/images/navbarIcons/WindesheimTech.png')
+                                      ? require('../../assets/images/navbarIcons/Articles.png')
+                                      : link.icon === 'quizzes'
+                                        ? require('../../assets/images/navbarIcons/Courses.png')
+                                        : link.icon === 'prompts'
+                                          ? require('../../assets/images/navbarIcons/Prompts.png')
+                                          : require('../../assets/images/navbarIcons/WindesheimTech.png')
                             }
                             style={[
                                 styles.icon,
