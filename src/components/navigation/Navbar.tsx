@@ -1,5 +1,4 @@
 /* eslint-disable indent */
-/* eslint-disable react-native/no-color-literals */
 /* eslint-disable complexity */
 import React from 'react';
 import { Pressable, StyleSheet, View, Image, StatusBar } from 'react-native';
@@ -26,26 +25,35 @@ export const NavBar = () => {
         theme === 'light' && isHighContrastEnabled
             ? '#FFD700'
             : theme === 'light'
-              ? '#FFF377'
-              : theme === 'dark' && isHighContrastEnabled
-                ? '#4695d3'
-                : '#86d2d9';
+            ? '#FFF377'
+            : theme === 'dark' && isHighContrastEnabled
+            ? '#4695d3'
+            : '#86d2d9';
     const endColor =
         theme === 'light' && isHighContrastEnabled
             ? '#FFD700'
             : theme === 'light'
-              ? '#FFF377'
-              : theme === 'dark' && isHighContrastEnabled
-                ? '#4695d3'
-                : '#86d2d9';
+            ? '#FFF377'
+            : theme === 'dark' && isHighContrastEnabled
+            ? '#4695d3'
+            : '#86d2d9';
+    const borderTopColors =
+        theme === 'light' && isHighContrastEnabled
+            ? '#000000'
+            : theme === 'light'
+            ? '#C0C0C0'
+            : theme === 'dark' && isHighContrastEnabled
+            ? '#FFFFFF'
+            : '#C0C0C0';
+
     const statusBarColor = () => {
         return theme === 'light'
             ? isHighContrastEnabled
                 ? '#FFFFFF'
                 : '#FFFFF0'
             : isHighContrastEnabled
-              ? '#000000'
-              : '#2A2A2A';
+            ? '#000000'
+            : '#2A2A2A';
     };
     const darkThemeIconStyle = {
         tintColor: '#FFFFFF',
@@ -66,14 +74,7 @@ export const NavBar = () => {
             overflow: 'hidden',
             paddingTop: 5,
             borderTopWidth: 2,
-            borderTopColor:
-                theme === 'light' && isHighContrastEnabled
-                    ? '#000000'
-                    : theme === 'light'
-                      ? '#C0C0C0'
-                      : theme === 'dark' && isHighContrastEnabled
-                        ? '#FFFFFF'
-                        : '#C0C0C0',
+            borderTopColor: borderTopColors,
         },
         itemContainer: {
             flex: 1,
@@ -98,7 +99,7 @@ export const NavBar = () => {
         icon: {
             width: 25,
             height: 25,
-            tintColor: '#000',
+            tintColor: colors.black,
         },
     });
 
@@ -164,12 +165,12 @@ export const NavBar = () => {
                                 link.icon === 'home'
                                     ? require('../../assets/images/navbarIcons/Home.png')
                                     : link.icon === 'articles'
-                                      ? require('../../assets/images/navbarIcons/Articles.png')
-                                      : link.icon === 'quizzes'
-                                        ? require('../../assets/images/navbarIcons/Courses.png')
-                                        : link.icon === 'prompts'
-                                          ? require('../../assets/images/navbarIcons/Prompts.png')
-                                          : require('../../assets/images/navbarIcons/WindesheimTech.png')
+                                    ? require('../../assets/images/navbarIcons/Articles.png')
+                                    : link.icon === 'quizzes'
+                                    ? require('../../assets/images/navbarIcons/Courses.png')
+                                    : link.icon === 'prompts'
+                                    ? require('../../assets/images/navbarIcons/Prompts.png')
+                                    : require('../../assets/images/navbarIcons/WindesheimTech.png')
                             }
                             style={[
                                 styles.icon,
