@@ -1,9 +1,8 @@
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { TouchableOpacity, ViewStyle } from 'react-native';
+import { TouchableOpacity, ViewStyle, Image } from 'react-native';
 
+import arrowLeft from '../assets/images/Icon/go_back_arrow.png';
 import { EditBackgroundInformationButton } from '../components/BackgroundCollect/EditBackgroundInformationButton';
 import { SettingCard } from '../components/general/card/SettingCard';
 import { PageScrollView } from '../components/general/views/PageScrollView';
@@ -28,19 +27,16 @@ export const SettingsScreen = () => {
         top: 20,
         right: 20,
     };
-
+    const iconStyle = {
+        width: 30,
+        height: 30,
+        tintColor: currentTheme === 'dark' ? '#FFFFFF' : 'black',
+    };
+    /* eslint-disable @typescript-eslint/no-unsafe-assignment */
     return (
         <PageScrollView title="SETTINGS">
-            <TouchableOpacity
-                onPress={goBack}
-                style={buttonStyle}
-                testID="settings-button"
-            >
-                <FontAwesomeIcon
-                    icon={faArrowLeft}
-                    size={30}
-                    color={currentTheme === 'dark' ? '#FFFFFF' : 'black'}
-                />
+            <TouchableOpacity onPress={goBack} style={buttonStyle}>
+                <Image source={arrowLeft} style={iconStyle} />
             </TouchableOpacity>
             <SettingCard
                 icon="moon"
