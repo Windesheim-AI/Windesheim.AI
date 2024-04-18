@@ -1,5 +1,4 @@
 /* eslint-disable indent */
-/* eslint-disable react-native/no-color-literals */
 /* eslint-disable complexity */
 import React from 'react';
 import { Pressable, StyleSheet, View, Image, StatusBar } from 'react-native';
@@ -38,6 +37,15 @@ export const NavBar = () => {
               : theme === 'dark' && isHighContrastEnabled
                 ? '#4695d3'
                 : '#86d2d9';
+    const borderTopColors =
+        theme === 'light' && isHighContrastEnabled
+            ? '#000000'
+            : theme === 'light'
+              ? '#C0C0C0'
+              : theme === 'dark' && isHighContrastEnabled
+                ? '#FFFFFF'
+                : '#C0C0C0';
+
     const statusBarColor = () => {
         return theme === 'light'
             ? isHighContrastEnabled
@@ -66,14 +74,7 @@ export const NavBar = () => {
             overflow: 'hidden',
             paddingTop: 5,
             borderTopWidth: 2,
-            borderTopColor:
-                theme === 'light' && isHighContrastEnabled
-                    ? '#000000'
-                    : theme === 'light'
-                      ? '#C0C0C0'
-                      : theme === 'dark' && isHighContrastEnabled
-                        ? '#FFFFFF'
-                        : '#C0C0C0',
+            borderTopColor: borderTopColors,
         },
         itemContainer: {
             flex: 1,
@@ -98,7 +99,7 @@ export const NavBar = () => {
         icon: {
             width: 25,
             height: 25,
-            tintColor: '#000',
+            tintColor: colors.black,
         },
     });
 
