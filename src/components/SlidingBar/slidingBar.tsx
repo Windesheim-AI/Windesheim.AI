@@ -10,7 +10,8 @@ import {
     View,
 } from 'react-native';
 
-//import { Fonts } from '../../lib/constants/Fonts';
+import { useColorConfig } from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
 import { PageScrollView } from '../general/views/PageScrollView';
 interface Card {
     title: string;
@@ -21,8 +22,61 @@ interface Card {
 interface SlidingProps {
     cards: Card[];
 }
-
 export const Sliding = ({ cards }: SlidingProps) => {
+    const fonts = useFonts();
+    const colors = useColorConfig();
+    const CARD_BACKGROUND_COLOR = '#FFFFF0';
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        card: {
+            flexDirection: 'row',
+            width: 250,
+            height: 150,
+            borderRadius: 20,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginHorizontal: 7,
+            marginVertical: 20,
+            backgroundColor: CARD_BACKGROUND_COLOR,
+            ...Platform.select({
+                ios: {
+                    shadowColor: 'black',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.3,
+                    shadowRadius: 4,
+                },
+                android: {
+                    elevation: 4,
+                },
+            }),
+        },
+        cardText: {
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            textAlign: 'justify',
+            marginLeft: 15,
+        },
+        title: {
+            ...fonts.h2,
+            color: colors.yellow,
+        },
+        description: {
+            fontSize: 14,
+            fontFamily: 'Courier New',
+        },
+        image: {
+            width: 100,
+            height: 100,
+            borderRadius: 15,
+            marginLeft: 10,
+        },
+    });
     const renderItem = ({
         item: { title, description, image },
     }: {
@@ -52,54 +106,3 @@ export const Sliding = ({ cards }: SlidingProps) => {
         </SafeAreaView>
     );
 };
-
-const CARD_BACKGROUND_COLOR = '#f2f2f2';
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    card: {
-        flexDirection: 'row',
-        width: 250,
-        height: 150,
-        borderRadius: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginHorizontal: 10,
-        backgroundColor: CARD_BACKGROUND_COLOR,
-        ...Platform.select({
-            ios: {
-                shadowColor: 'black',
-                shadowOffset: { width: 0, height: 2 },
-                shadowOpacity: 0.3,
-                shadowRadius: 4,
-            },
-            android: {
-                elevation: 4,
-            },
-        }),
-    },
-    cardText: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        marginLeft: 10,
-    },
-    title: {
-        fontSize: 20,
-        fontFamily: 'Courier New',
-        fontWeight: 'bold',
-    },
-    description: {
-        fontSize: 14,
-        fontFamily: 'Courier New',
-    },
-    image: {
-        width: 100,
-        height: 100,
-        borderRadius: 15,
-    },
-});

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 
 import { Sliding } from '../components/SlidingBar/slidingBar';
 import { PageScrollView } from '../components/general/views/PageScrollView';
@@ -10,7 +10,9 @@ export const HomeScreen = () => {
     return (
         <SafeAreaView style={styles.container}>
             <PageScrollView>
-                <Sliding cards={articleCards} />
+                <View>
+                    <Sliding cards={articleCards} />
+                </View>
             </PageScrollView>
         </SafeAreaView>
     );

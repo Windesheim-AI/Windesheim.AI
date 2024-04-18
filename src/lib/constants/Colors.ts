@@ -34,6 +34,7 @@ export type ColorSchemeType = {
     bg1: string;
     bg2: string;
     bg3: string;
+    yellow: string;
     settingButtonBG: string;
     modalBackground: string;
     subtext: string;
@@ -84,6 +85,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg1: '#fff377',
         bg2: '#ffd949',
         bg3: '#ffcb05',
+        yellow: '#ffcb05',
         settingButtonBG: '#fffffff',
         modalBackground: 'rgba(0,0,0,0.5)',
         subtext: '#a8a7a7',
@@ -136,6 +138,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg1: '#86d2d9',
         bg2: '#22bdc6',
         bg3: '#4695d3',
+        yellow: '#000000',
         settingButtonBG: '#373737',
         subtext: '#a8a7a7',
         navBar: {
@@ -189,6 +192,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg1: '#fff377',
         bg2: '#ffd949',
         bg3: '#ffcb05',
+        yellow: '#ffcb05',
         settingButtonBG: '#FFFFFF',
         modalBackground: 'rgba(0, 0, 0, 0.4)',
         subtext: '#000000',
@@ -241,6 +245,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg1: '#86d2d9',
         bg2: '#22bdc6',
         bg3: '#4695d3',
+        yellow: '#ffcb05',
         settingButtonBG: '#000000',
         subtext: '#fff',
         navBar: {
