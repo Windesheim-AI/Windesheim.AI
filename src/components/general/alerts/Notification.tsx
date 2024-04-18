@@ -1,3 +1,4 @@
+import { FontAwesome5 } from '@expo/vector-icons';
 import React, { useEffect } from 'react';
 import {
     Animated,
@@ -6,7 +7,6 @@ import {
     View,
     useWindowDimensions,
 } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import {
     ColorGradientScheme,
