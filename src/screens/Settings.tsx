@@ -1,4 +1,8 @@
+import { IconDefinition, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { TouchableOpacity, ViewStyle } from 'react-native';
 
 import { EditBackgroundInformationButton } from '../components/BackgroundCollect/EditBackgroundInformationButton';
 import { SettingCard } from '../components/general/card/SettingCard';
@@ -9,10 +13,32 @@ import { HighContrastSwitcher } from '../components/settings/HighContrastSwitche
 import { LanguageSwitcher } from '../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../components/settings/ThemeSwitcher';
 import { TutorialRedoButton } from '../components/tutorial/TutorialRedoButton';
+import { useCurrentTheme } from '../lib/constants/Colors';
 
 export const SettingsScreen = () => {
+    const navigation = useNavigation();
+    const currentTheme = useCurrentTheme();
+
+    const goBack = () => {
+        navigation.goBack();
+    };
+
+    const buttonStyle: ViewStyle = {
+        position: 'absolute',
+        top: 20,
+        right: 20,
+    };
+
     return (
-        <PageScrollView title="Settings">
+        <PageScrollView title="SETTINGS">
+            <TouchableOpacity onPress={goBack} style={buttonStyle}>
+                <FontAwesomeIcon
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                    icon={faArrowLeft as IconDefinition}
+                    size={30}
+                    color={currentTheme === 'dark' ? '#FFFFFF' : 'black'}
+                />
+            </TouchableOpacity>
             <SettingCard
                 icon="moon"
                 title="Enable dark mode"

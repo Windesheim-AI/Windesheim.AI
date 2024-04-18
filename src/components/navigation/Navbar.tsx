@@ -162,14 +162,14 @@ export const NavBar = () => {
                             source={
                                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                                 link.icon === 'home'
-                                    ? require('../../assets/images/navbarIcons/Exterior.png')
-                                    : link.icon === 'newspaper'
-                                      ? require('../../assets/images/navbarIcons/Morale.png')
-                                      : link.icon === 'graduation-cap'
-                                        ? require('../../assets/images/navbarIcons/Auction.png')
-                                        : link.icon === 'cog'
-                                          ? require('../../assets/images/navbarIcons/GroupTask.png')
-                                          : require('../../assets/images/navbarIcons/Intelligence.png')
+                                    ? require('../../assets/images/navbarIcons/Home.png')
+                                    : link.icon === 'articles'
+                                      ? require('../../assets/images/navbarIcons/Articles.png')
+                                      : link.icon === 'quizzes'
+                                        ? require('../../assets/images/navbarIcons/Courses.png')
+                                        : link.icon === 'prompts'
+                                          ? require('../../assets/images/navbarIcons/Prompts.png')
+                                          : require('../../assets/images/navbarIcons/WindesheimTech.png')
                             }
                             style={[
                                 styles.icon,

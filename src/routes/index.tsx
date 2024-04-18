@@ -18,6 +18,8 @@ import { UsecaseScreen } from '../screens/Usecase/Usecase';
 import BackgroundCollectForm from '../screens/UserBackground/BackgroundCollectForm';
 import { BackgroundInfo } from '../screens/UserBackground/BackgroundInfo';
 import { WTRScreen } from '../screens/WTR';
+import { Articles } from '../screens/WTR/Articles';
+import { Quizzes } from '../screens/WTR/Quizzes';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
 
 const Stack = createNativeStackNavigator();
@@ -39,7 +41,8 @@ const screens = [
     { name: Routes.FirstTimeUser, component: BackgroundCollectForm },
     { name: Routes.PromptLibrary, component: PromptLibrary },
     { name: Routes.PromptView, component: PromptView },
-    { name: Routes.WTR, component: WTRScreen },
+    { name: Routes.Articles, component: Articles },
+    { name: Routes.Quizzes, component: Quizzes },
 ];
 
 export const Router = () => {
