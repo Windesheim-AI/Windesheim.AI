@@ -1,5 +1,7 @@
 // Please note: this is a mock return for demo purposes only
 // TODO: Implement the actual fetcher logic
+
+//To get article 2 description use: getArticleArray()[1].description
 export const getArticleArray = () => {
     return [
         {
