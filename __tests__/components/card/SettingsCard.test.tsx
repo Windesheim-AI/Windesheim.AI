@@ -5,6 +5,10 @@ import renderer from 'react-test-renderer';
 
 import { SettingCard } from '../../../src/components/general/card/SettingCard';
 
+jest.mock('@expo/vector-icons', () => ({
+    FontAwesome5: 'mocked-FontAwesome5',
+}));
+
 jest.useFakeTimers();
 
 it('renders title and description', () => {
