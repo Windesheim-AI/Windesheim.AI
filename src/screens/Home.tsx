@@ -1,7 +1,8 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 
-import { Sliding } from '../components/SlidingBar/slidingBar';
+import { SlidingArticle } from '../components/SlidingBar/slidingArticle';
+import { SlidingProviders } from '../components/SlidingBar/slidingProviders';
 import { PageScrollView } from '../components/general/views/PageScrollView';
 import { getArticleArray } from '../lib/fetcher/ArticleFetcher';
 export const HomeScreen = () => {
@@ -11,7 +12,8 @@ export const HomeScreen = () => {
         <SafeAreaView style={styles.container}>
             <PageScrollView>
                 <View>
-                    <Sliding cards={articleCards} />
+                    <SlidingArticle cards={articleCards} />
+                    <SlidingProviders cards={articleCards} />
                 </View>
             </PageScrollView>
         </SafeAreaView>

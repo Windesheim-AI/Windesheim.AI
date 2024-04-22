@@ -22,7 +22,7 @@ interface Card {
 interface SlidingProps {
     cards: Card[];
 }
-export const Sliding = ({ cards }: SlidingProps) => {
+export const SlidingArticle = ({ cards }: SlidingProps) => {
     const fonts = useFonts();
     const colors = useColorConfig();
     const CARD_BACKGROUND_COLOR = '#FFFFF0';
@@ -41,7 +41,7 @@ export const Sliding = ({ cards }: SlidingProps) => {
             justifyContent: 'center',
             alignItems: 'center',
             marginHorizontal: 7,
-            marginVertical: 20,
+            marginVertical: 15,
             backgroundColor: CARD_BACKGROUND_COLOR,
             ...Platform.select({
                 ios: {
