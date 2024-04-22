@@ -6,6 +6,6 @@
         "types": ["jest", "node"],
         "noEmit": true
     },
-    // only compile the production TS files
+    "include": ["src/**/*", "declarations.d.ts"],
     "exclude": ["__tests__/*", "cypress/*"]
 }

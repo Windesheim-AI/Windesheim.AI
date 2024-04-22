@@ -4,7 +4,7 @@
     "Tech Providers": "Technologieanbieter",
     "Themes": "Themen",
     "Artificial intelligence is the key to innovating the future and transforming our lives": "Künstliche Intelligenz ist der Schlüssel zur Innovation der Zukunft und zur Transformation unseres Lebens",
-    "Settings": "Einstellungen",
+    "SETTINGS": "EINSTELLUNGEN",
     "Language": "Sprache",
     "Font": "Schriftart",
     "Tutorial": "Tutorial",
@@ -102,5 +102,9 @@
     "Go back to courses": "Zurück zu den Kursen",
     "Stages": "Stufen",
     "Level": "Level",
-    "Knowing is like turning on a light on the way trying to go.": "Wissen ist wie das Einschalten eines Lichts auf dem Weg, den man zu gehen versucht."
+    "Knowing is like turning on a light on the way trying to go.": "Wissen ist wie das Einschalten eines Lichts auf dem Weg, den man zu gehen versucht.",
+    "The Windesheim AI App is an educational tool developed by students at Windesheim University of Applied Sciences. While efforts are made to ensure accuracy, users should verify information independently. The app is for educational purposes only and should not substitute professional advice. Windesheim University does not guarantee the app's content, functionality and third-party links.": "Die Windesheim AI App ist ein Bildungswerkzeug, das von Studierenden der Hochschule Windesheim entwickelt wurde. Obwohl Anstrengungen unternommen werden, um Genauigkeit sicherzustellen, sollten Benutzer Informationen unabhängig überprüfen. Die App dient nur zu Bildungszwecken und ersetzt keine professionelle Beratung. Die Hochschule Windesheim garantiert nicht für den Inhalt, die Funktionalität und Links von Drittanbietern der App.",
+    "Welcome to the Windesheim AI App! This innovative platform is your direct link to Windesheim.tech, offering comprehensive resources for both educators and students. Discover handy prompts, insights into tech themes, and leading providers. Designed for modern academia, it enhances learning with features like guidance on tech advancements, instructional materials, and interactive courses. Whether you're an educator or a student, the Windesheim AI App is your go-to for all things tech!": "Willkommen bei der Windesheim AI App! Diese innovative Plattform ist Ihr direkter Link zu Windesheim.tech und bietet umfassende Ressourcen für Lehrende und Lernende. Entdecken Sie nützliche Anregungen, Einblicke in technische Themen und führende Anbieter. Entwickelt für die moderne akademische Welt, verbessert sie das Lernen mit Funktionen wie Anleitungen zu technischen Fortschritten, Lehrmaterialien und interaktiven Kursen. Ob Sie Dozent oder Student sind, die Windesheim AI App ist Ihr zentraler Anlaufpunkt für alles rund um die Technologie!",
+    "Disclaimer": "Haftungsausschluss",
+    "Why Windesheim AI?": "Warum Windesheim AI?"
 }

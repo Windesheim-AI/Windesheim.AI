@@ -29,7 +29,7 @@ describe('Courses page tests', () => {
         cy.wait(['@getCourses']);
 
         // check if the courses are displayed
-        cy.contains('Courses');
+        cy.contains('COURSES');
         cy.contains(courses[0].title);
     });
 
@@ -48,7 +48,7 @@ describe('Courses page tests', () => {
         cy.wait(['@getCourses']);
 
         // check if the courses are displayed
-        cy.contains('Courses');
+        cy.contains('COURSES');
         cy.contains(courses[0].title);
 
         // click on the course
@@ -86,7 +86,7 @@ describe('Courses page tests', () => {
         cy.wait(['@getCourses']);
 
         // check if the courses are displayed
-        cy.contains('Courses');
+        cy.contains('COURSES');
         cy.contains(courses[0].title);
 
         // click on the course
@@ -121,7 +121,7 @@ describe('Courses page tests', () => {
 
         cy.contains('Course not found');
         cy.get('[data-testid="GoBackButton"]').click();
-        cy.contains('Courses');
+        cy.contains('COURSES');
     });
 
     it('does not crash when navigating to non-existing course stage', () => {
@@ -134,6 +134,6 @@ describe('Courses page tests', () => {
 
         cy.contains('Course not found');
         cy.get('[data-testid="GoBackButton"]').click();
-        cy.contains('Courses');
+        cy.contains('COURSES');
     });
 });
