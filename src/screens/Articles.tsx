@@ -1,28 +1,20 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View } from 'react-native';
+
+import { ArticleLimitedView } from '../components/articleLibrary/ArticleLimitedView';
+import { TitleSimple } from '../components/general/text/TitleSimple';
+import { PageScrollView } from '../components/general/views/PageScrollView';
 
 export function Articles() {
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Articles + Podcasts</Text>
-            <Text style={styles.placeholderText}>NO CONTENT FOR NOW!</Text>
-        </View>
+        <PageScrollView
+            title="Read and Listen"
+            description="Consume informative content, hand picked for you by our experts!"
+        >
+            <View>
+                <TitleSimple title="Articles: " />
+                <ArticleLimitedView limit={3} />
+            </View>
+        </PageScrollView>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
-    },
-    placeholderText: {
-        fontSize: 18,
-        textAlign: 'center',
-    },
-});
