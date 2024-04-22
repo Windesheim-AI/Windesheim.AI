@@ -25,7 +25,7 @@ describe('Study page tests', () => {
 
         cy.visit('/study');
 
-        cy.contains('Study');
+        cy.contains('STUDY');
         cy.contains(
             'Knowing is like turning on a light on the way trying to go.',
         );

@@ -15,6 +15,8 @@ export enum Routes {
     FirstTimeUser = 'FirstTimeUser',
     PromptLibrary = 'PromptLibrary',
     PromptView = 'PromptView',
+    Articles = 'Articles',
+    Quizzes = 'Quizzes',
 }
 
 export const DefaultRoute = Routes.Home;

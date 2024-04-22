@@ -25,19 +25,19 @@ describe('App settings test', () => {
     it('can change the language', () => {
         cy.visit('/settings');
         cy.contains('English');
-        cy.contains('Settings');
+        cy.contains('SETTINGS');
         cy.contains('Enable dark mode');
         cy.contains('Language');
 
         cy.get('[data-testid="language-switcher"]').click();
         cy.contains('Nederlands').click();
-        cy.contains('Instellingen');
+        cy.contains('INSTELLINGEN');
         cy.contains('Activeer donkere modus');
         cy.contains('Taal');
         cy.contains('Nederlands');
 
         cy.reload();
-        cy.contains('Instellingen');
+        cy.contains('INSTELLINGEN');
         cy.contains('Nederlands');
         cy.contains('Activeer donkere modus');
         cy.contains('Taal');

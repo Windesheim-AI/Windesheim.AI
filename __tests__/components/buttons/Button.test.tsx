@@ -3,6 +3,10 @@ import React from 'react';
 
 import { Button } from '../../../src/components/general/buttons/Button';
 
+jest.mock('@expo/vector-icons', () => ({
+    FontAwesome5: 'mocked-FontAwesome5',
+}));
+
 jest.useFakeTimers();
 
 describe('Button Component', () => {

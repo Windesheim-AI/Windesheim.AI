@@ -10,7 +10,7 @@ export function Courses() {
     const navigator = useNavigation();
 
     return (
-        <PageScrollView title="Courses">
+        <PageScrollView title="COURSES">
             <GoBackButton
                 onPress={() => navigator.navigate(Routes.Study)}
                 buttonText="Study"

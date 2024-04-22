@@ -10,7 +10,7 @@
         "splash": {
             "image": "./src/assets/images/Icon/splash.png",
             "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
+            "backgroundColor": "#fffff0"
         },
         "assetBundlePatterns": ["*/"],
         "ios": {
@@ -23,7 +23,7 @@
             "versionCode": 24,
             "adaptiveIcon": {
                 "foregroundImage": "./src/assets/images/Icon/adaptive-icon.png",
-                "backgroundColor": "#ffffff"
+                "backgroundColor": "#fffff0"
             }
         },
         "web": {
@@ -40,10 +40,6 @@
         "updates": {
             "url": "https://u.expo.dev/0f525e57-fad9-45bd-9085-714b0d610d6d"
         },
-        "owner": "windesheim.ai",
-        "androidStatusBar": {
-            "backgroundColor": "#fff377",
-            "translucent": true
-        }
+        "owner": "windesheim.ai"
     }
 }

@@ -1,5 +1,8 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
+import { TouchableOpacity, ViewStyle, Image } from 'react-native';
 
+import arrowLeft from '../assets/images/Icon/go_back_arrow.png';
 import { EditBackgroundInformationButton } from '../components/BackgroundCollect/EditBackgroundInformationButton';
 import { SettingCard } from '../components/general/card/SettingCard';
 import { PageScrollView } from '../components/general/views/PageScrollView';
@@ -9,10 +12,32 @@ import { HighContrastSwitcher } from '../components/settings/HighContrastSwitche
 import { LanguageSwitcher } from '../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../components/settings/ThemeSwitcher';
 import { TutorialRedoButton } from '../components/tutorial/TutorialRedoButton';
+import { useCurrentTheme } from '../lib/constants/Colors';
 
 export const SettingsScreen = () => {
+    const navigation = useNavigation();
+    const currentTheme = useCurrentTheme();
+
+    const goBack = () => {
+        navigation.goBack();
+    };
+
+    const buttonStyle: ViewStyle = {
+        position: 'absolute',
+        top: 20,
+        right: 20,
+    };
+    const iconStyle = {
+        width: 30,
+        height: 30,
+        tintColor: currentTheme === 'dark' ? '#FFFFFF' : 'black',
+    };
+    /* eslint-disable @typescript-eslint/no-unsafe-assignment */
     return (
-        <PageScrollView title="Settings">
+        <PageScrollView title="SETTINGS">
+            <TouchableOpacity onPress={goBack} style={buttonStyle}>
+                <Image source={arrowLeft} style={iconStyle} />
+            </TouchableOpacity>
             <SettingCard
                 icon="moon"
                 title="Enable dark mode"
