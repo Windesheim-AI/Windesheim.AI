@@ -1,20 +1,20 @@
 import React from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { Pressable, StyleSheet, View, Image } from 'react-native';
 
+import arrowLeft from '../../../assets/images/Icon/go_back_arrow.png';
+import arrowRight from '../../../assets/images/Icon/go_further_arrow.png';
 import {
     useColorConfig,
     useColorStateConfig,
+    useCurrentTheme,
 } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { TextTranslated } from '../text/TextTranslated';
-
 export type Props = {
     onPreviousPress: () => void;
     onSkipPress: () => void;
     onNextPress: () => void;
     buttonText?: string;
-    size?: number;
 };
 
 export const StepButton = ({
@@ -22,12 +22,12 @@ export const StepButton = ({
     onSkipPress,
     onNextPress,
     buttonText = 'Skip',
-    size = 30,
 }: Props) => {
     const colors = useColorConfig();
     const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
-
+    const currentTheme = useCurrentTheme();
+    const arrowTintColor = currentTheme === 'dark' ? '#FFFFFF' : 'black';
     const styles = StyleSheet.create({
         container: {
             flexDirection: 'row',
@@ -48,6 +48,12 @@ export const StepButton = ({
         buttonText: {
             color: colors.text,
             ...fonts.button,
+            fontSize: 18,
+        },
+        arrowImage: {
+            width: 35,
+            height: 35,
+            tintColor: arrowTintColor,
         },
     });
 
@@ -59,10 +65,10 @@ export const StepButton = ({
                 testID="tutorial-previous-button"
                 onPress={onPreviousPress}
             >
-                <FontAwesome5
-                    name="arrow-left"
-                    size={size}
-                    color={colors.previousButtonColor}
+                <Image
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                    source={arrowLeft}
+                    style={styles.arrowImage}
                 />
             </Pressable>
             {/* Skip Button */}
@@ -79,10 +85,10 @@ export const StepButton = ({
                 onPress={onNextPress}
                 style={styles.continueButton}
             >
-                <FontAwesome5
-                    name="arrow-right"
-                    size={size}
-                    color={colors.continueButtonColor}
+                <Image
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                    source={arrowRight}
+                    style={styles.arrowImage}
                 />
             </Pressable>
         </View>

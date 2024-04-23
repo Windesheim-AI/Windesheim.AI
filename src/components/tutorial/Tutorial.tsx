@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, StyleSheet, View } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import { tutorialSteps } from './TutorialSteps';
 import {
@@ -37,9 +36,7 @@ export const Tutorial = () => {
         (state) => state.tutorial.tutorialCompleted,
     );
 
-    // Check if the splash screen is still visible
     useEffect(() => {
-        // If the splash screen is not visible, show the modal
         setModalVisible(
             !layoutState.isSplashVisible &&
                 !tutorialCompleted &&
@@ -132,11 +129,6 @@ export const Tutorial = () => {
                             text={tutorialSteps[tutorialStep].Title}
                         />
                         <View style={styles.description}>
-                            <FontAwesome5
-                                name="check"
-                                color={colors.danger}
-                                size={24}
-                            />
                             <TextTranslated
                                 style={styles.subText}
                                 text={tutorialSteps[tutorialStep].Subtext}
