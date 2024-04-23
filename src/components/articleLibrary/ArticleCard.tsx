@@ -61,8 +61,8 @@ export function ArticleCard({ article }: Props) {
             flexDirection: 'row',
         },
         tagText: {
-            marginHorizontal: 5,
-            marginVertical: 2,
+            marginHorizontal: 4,
+            marginTop: 4,
             paddingHorizontal: 6,
             paddingVertical: 2,
             borderRadius: 10,
