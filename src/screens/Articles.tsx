@@ -13,7 +13,7 @@ export function Articles() {
         >
             <View>
                 <TitleSimple title="Articles: " />
-                <ArticleLimitedView limit={3} />
+                <ArticleLimitedView />
             </View>
         </PageScrollView>
     );

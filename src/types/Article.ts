@@ -4,5 +4,6 @@ export type Article = {
     description: string;
     link: string;
     category: string;
+    categoryArray: string[];
     imageLink?: string;
 };

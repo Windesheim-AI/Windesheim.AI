@@ -55,6 +55,22 @@ export function ArticleCard({ article }: Props) {
             fontSize: 10,
             flexShrink: 1,
         },
+        tagContainer: {
+            flex: 1,
+            alignItems: 'center',
+            flexDirection: 'row',
+        },
+        tagText: {
+            marginHorizontal: 5,
+            marginVertical: 2,
+            paddingHorizontal: 6,
+            paddingVertical: 2,
+            borderRadius: 10,
+            backgroundColor: colors.completedProgressBar,
+            ...fonts.description,
+            fontSize: 12,
+            fontWeight: 'bold',
+        },
     });
 
     // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
@@ -72,6 +88,8 @@ export function ArticleCard({ article }: Props) {
             uri: article.imageLink,
         };
     }
+
+    article.categoryArray = article.category.split(', ');
 
     return (
         <InteractiveView
@@ -91,6 +109,15 @@ export function ArticleCard({ article }: Props) {
                 text={article.description}
                 numberOfLines={3}
             />
+            <View style={styles.tagContainer}>
+                {article.categoryArray.map((tagText) => (
+                    <TextTranslated
+                        style={styles.tagText}
+                        key={tagText}
+                        text={tagText}
+                    />
+                ))}
+            </View>
         </InteractiveView>
     );
 }
