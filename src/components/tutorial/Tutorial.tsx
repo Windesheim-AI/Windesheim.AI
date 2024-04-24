@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, StyleSheet, View } from 'react-native';
+import { Modal, StyleSheet, View, Image } from 'react-native';
 
 import { tutorialSteps } from './TutorialSteps';
 import {
@@ -83,7 +83,7 @@ export const Tutorial = () => {
             padding: 20,
             alignItems: 'center',
             justifyContent: 'center',
-            maxWidth: '100%', // Set a maximum width for the modal content
+            maxWidth: '100%',
             height: 'auto',
             ...colorStateConfig.highContrastBorder,
             ...uppershadow,
@@ -109,6 +109,11 @@ export const Tutorial = () => {
             margin: 20,
             ...colorStateConfig.highContrastBorder,
         },
+        imageStyle: {
+            width: '100%',
+            position: 'relative',
+            height: 570,
+        },
     });
 
     return (
@@ -121,6 +126,13 @@ export const Tutorial = () => {
                     setModalVisible(false);
                 }}
             >
+                {tutorialStep === 0 ? (
+                    <Image
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        source={require('../../assets/images/bgImages/tutorial_bg.jpg')}
+                        style={styles.imageStyle} // Stil
+                    />
+                ) : null}
                 {/* Description Box*/}
                 <View style={styles.modalBackground}>
                     <View style={styles.modalContent}>
