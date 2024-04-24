@@ -38,7 +38,6 @@ export type ColorSchemeType = {
     bg1: string;
     bg2: string;
     bg3: string;
-    yellow: string;
     settingButtonBG: string;
     modalBackground: string;
     subtext: string;

@@ -25,7 +25,6 @@ interface SlidingProps {
 export const SlidingProviders = ({ cards }: SlidingProps) => {
     const fonts = useFonts();
     const colors = useColorConfig();
-    const CARD_BACKGROUND_COLOR = '#FFFFF0';
     const styles = StyleSheet.create({
         container: {
             flex: 1,
@@ -42,7 +41,7 @@ export const SlidingProviders = ({ cards }: SlidingProps) => {
             alignItems: 'center',
             marginHorizontal: 7,
             marginVertical: 15,
-            backgroundColor: CARD_BACKGROUND_COLOR,
+            backgroundColor: colors.backgroundModal,
             ...Platform.select({
                 ios: {
                     shadowColor: 'black',
@@ -64,7 +63,7 @@ export const SlidingProviders = ({ cards }: SlidingProps) => {
         },
         title: {
             ...fonts.h2,
-            color: colors.yellow,
+            color: colors.textLight,
         },
         description: {
             fontSize: 14,
