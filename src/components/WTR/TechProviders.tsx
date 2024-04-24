@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 
 import { TechProviderCard } from './Card/TechProviderCard';
 import { TechProvider, techProviderItems } from './TechProviderItems';
@@ -21,14 +21,7 @@ export const TechProviders = ({ limit }: Props) => {
             margin: 10,
             ...fonts.h1,
         },
-        container: {
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-        },
         providerCard: {
-            flexBasis: '30%',
             marginBottom: 10,
         },
     });
@@ -44,6 +37,17 @@ export const TechProviders = ({ limit }: Props) => {
         );
     }, [isLimited, limit]);
 
+    const renderProviderCards = ({ item }: { item: TechProvider }) => (
+        <View style={styles.providerCard}>
+            <TechProviderCard
+                name={item.name}
+                // @ts-ignore
+                techProviderImage={item.logo}
+                techProviderSlug={item.slug}
+            />
+        </View>
+    );
+
     return (
         <View>
             {isLimited ? (
@@ -55,18 +59,12 @@ export const TechProviders = ({ limit }: Props) => {
                 <TextTranslated style={styles.heading} text="Tech Providers" />
             )}
 
-            <View style={styles.container}>
-                {displayItems.map((provider) => (
-                    <View key={provider.slug} style={styles.providerCard}>
-                        <TechProviderCard
-                            name={provider.name}
-                            // @ts-ignore
-                            techProviderImage={provider.logo}
-                            techProviderSlug={provider.slug}
-                        />
-                    </View>
-                ))}
-            </View>
+            <FlatList
+                horizontal
+                data={displayItems}
+                renderItem={renderProviderCards}
+                keyExtractor={(item) => item.slug}
+            />
         </View>
     );
 };
