@@ -159,7 +159,9 @@ export const Tutorial = () => {
                             <ProgressBar
                                 width={0.9}
                                 height={10}
-                                progress={tutorialStep * 0.2}
+                                progress={
+                                    tutorialStep / (tutorialSteps.length - 1)
+                                }
                                 testId="myProgressBar"
                             />
                         </View>
