@@ -20,6 +20,8 @@ import MetaLogo from '../../assets/images/WTR/TechProviders/meta.png';
 //@ts-ignore
 import MicrosoftLogo from '../../assets/images/WTR/TechProviders/microsoft.png';
 //@ts-ignore
+import NvidiaLogo from '../../assets/images/WTR/TechProviders/nvidia.png';
+//@ts-ignore
 import OpenAILogo from '../../assets/images/WTR/TechProviders/openai.png';
 //@ts-ignore
 import OracleLogo from '../../assets/images/WTR/TechProviders/oracle.png';
@@ -44,6 +46,7 @@ export enum TechProviderSlug {
     Intel = 'intel',
     Meta = 'meta',
     Microsoft = 'microsoft',
+    Nvidia = 'nvidia',
     OpenAI = 'openai',
     Oracle = 'oracle',
     SalesForce = 'salesforce',
@@ -64,6 +67,7 @@ export const techProviderItems: TechProvider[] = [
         slug: TechProviderSlug.Microsoft,
         logo: MicrosoftLogo,
     },
+    { name: 'Nvidia', slug: TechProviderSlug.Nvidia, logo: NvidiaLogo },
     { name: 'OpenAI', slug: TechProviderSlug.OpenAI, logo: OpenAILogo },
     { name: 'Oracle', slug: TechProviderSlug.Oracle, logo: OracleLogo },
     {
