@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { TouchableOpacity, ViewStyle, Image } from 'react-native';
+import { TouchableOpacity, ViewStyle, Image, View } from 'react-native';
 
 import arrowLeft from '../assets/images/Icon/go_back_arrow.png';
 import { EditBackgroundInformationButton } from '../components/BackgroundCollect/EditBackgroundInformationButton';
@@ -24,17 +24,21 @@ export const SettingsScreen = () => {
 
     const buttonStyle: ViewStyle = {
         position: 'absolute',
-        top: 20,
-        right: 20,
+        top: 0,
+        right: 10,
     };
     const iconStyle = {
-        width: 30,
-        height: 30,
+        width: 35,
+        height: 35,
         tintColor: currentTheme === 'dark' ? '#FFFFFF' : 'black',
+    };
+    const titleSpacer = {
+        height: 10,
     };
     /* eslint-disable @typescript-eslint/no-unsafe-assignment */
     return (
         <PageScrollView title="SETTINGS">
+            <View style={titleSpacer} />
             <TouchableOpacity onPress={goBack} style={buttonStyle}>
                 <Image source={arrowLeft} style={iconStyle} />
             </TouchableOpacity>

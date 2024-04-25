@@ -37,7 +37,7 @@ export const TitleSimple = ({ titleText, explainationText }: Props) => {
 
     const styles = StyleSheet.create({
         container: {
-            marginTop: 10,
+            //marginTop: 10,
             marginBottom: 10,
         },
         title: {
