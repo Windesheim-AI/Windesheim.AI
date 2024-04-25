@@ -28,8 +28,8 @@ export const SettingsScreen = () => {
         right: 10,
     };
     const iconStyle = {
-        width: 35,
-        height: 35,
+        width: 37,
+        height: 37,
         tintColor: currentTheme === 'dark' ? '#FFFFFF' : 'black',
     };
     const titleSpacer = {
