@@ -1,7 +1,8 @@
 /* eslint-disable indent */
 /* eslint-disable complexity */
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Pressable, StyleSheet, View, Image, StatusBar } from 'react-native';
+import { Pressable, StyleSheet, View, Image } from 'react-native';
 import Svg, { Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 
 import {
@@ -47,13 +48,7 @@ export const NavBar = () => {
                 : '#C0C0C0';
 
     const statusBarColor = () => {
-        return theme === 'light'
-            ? isHighContrastEnabled
-                ? '#FFFFFF'
-                : '#FFFFF0'
-            : isHighContrastEnabled
-              ? '#000000'
-              : '#2A2A2A';
+        return theme === 'light' ? 'dark' : 'light';
     };
     const darkThemeIconStyle = {
         tintColor: '#FFFFFF',
@@ -109,7 +104,7 @@ export const NavBar = () => {
 
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor={statusBarColor()} translucent />
+            <StatusBar style={statusBarColor()} />
             {navigationBarLinks.map((link) => {
                 const routeActive = isRouteActive(link.route);
 
