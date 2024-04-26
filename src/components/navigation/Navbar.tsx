@@ -67,7 +67,7 @@ export const NavBar = () => {
             padding: 0,
             paddingHorizontal: 20,
             overflow: 'hidden',
-            paddingTop: 5,
+            paddingTop: 10,
             borderTopWidth: 2,
             borderTopColor: borderTopColors,
         },

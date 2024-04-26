@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-import { useColorConfig } from '../../../lib/constants/Colors';
+import { useColorConfig, shadow } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { openBrowserPopup } from '../../../lib/utility/browserPopup';
@@ -26,17 +26,7 @@ export const DisclaimerCard = () => {
             backgroundColor: colors.attentionYellow,
             borderRadius: 15,
             borderColor: colors.borderColor,
-            borderWidth: 3,
-            /* shadow properties for Android only */
-            shadowColor: colors.black,
-            shadowOffset: {
-                width: 0,
-                height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 4,
-            /* shadow properties for iOS only */
-            elevation: 8,
+            ...shadow,
         },
         title: {
             marginBottom: 3,

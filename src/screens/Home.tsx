@@ -24,6 +24,7 @@ export const HomeScreen = () => {
                 <View style={styles.flexGrow} />
                 <SettingsButton />
             </View>
+            <View style={styles.spacer} />
             <Introduction />
             <DisclaimerCard />
         </PageScrollView>
@@ -52,5 +53,8 @@ const styles = StyleSheet.create({
     },
     flexGrow: {
         flexGrow: 1,
+    },
+    spacer: {
+        height: 5, //ask to group for better option
     },
 });
