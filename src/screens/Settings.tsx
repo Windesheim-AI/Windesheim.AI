@@ -13,12 +13,14 @@ import { LanguageSwitcher } from '../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../components/settings/ThemeSwitcher';
 import { TutorialRedoButton } from '../components/tutorial/TutorialRedoButton';
 import { useCurrentTheme } from '../lib/constants/Colors';
+import { HapticFeedback, HapticForces } from '../lib/haptic/Hooks';
 
 export const SettingsScreen = () => {
     const navigation = useNavigation();
     const currentTheme = useCurrentTheme();
 
     const goBack = () => {
+        HapticFeedback(HapticForces.Light);
         navigation.goBack();
     };
 

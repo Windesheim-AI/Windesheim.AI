@@ -9,9 +9,9 @@ import {
 
 import { useColorConfig } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { openBrowserPopup } from '../../../lib/utility/browserPopup';
 import { TextTranslated } from '../text/TextTranslated';
-
 export const DisclaimerCard = () => {
     const colors = useColorConfig();
     const fonts = useFonts();
@@ -62,6 +62,7 @@ export const DisclaimerCard = () => {
     });
 
     function handlePress(): void {
+        HapticFeedback(HapticForces.Light);
         openBrowserPopup(
             'https://www.windesheim.nl/over-windesheim/disclaimer',
         );
