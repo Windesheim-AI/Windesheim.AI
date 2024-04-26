@@ -54,7 +54,7 @@ export function PromptsOverview() {
 
     return (
         <View testID="prompts-overview">
-            {filteredPrompts && filteredPrompts.length > 0 ? (
+            {filteredPrompts ? (
                 <>
                     <TextTranslated
                         style={fonts.description}
