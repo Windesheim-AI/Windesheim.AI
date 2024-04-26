@@ -1,6 +1,6 @@
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
-import { Text, StyleSheet, View, Linking } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 import { Chip } from 'react-native-paper';
 
 import { Card } from '../../components/general/base/Card';
@@ -17,6 +17,7 @@ import {
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import useSinglePrompt from '../../lib/repositories/promptLibrary/useSinglePrompt';
+import { openBrowserPopup } from '../../lib/utility/browserPopup';
 import { getEnvValue } from '../../lib/utility/env/env';
 import { EnvOptions } from '../../lib/utility/env/env.values';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -188,8 +189,7 @@ export function PromptView() {
             <Button
                 buttonText="Try it yourself"
                 onPress={() => {
-                    // eslint-disable-next-line no-void
-                    void Linking.openURL(
+                    openBrowserPopup(
                         `${wordPressContentUrl}/prompts?id=${prompt.id}`,
                     );
                 }}
