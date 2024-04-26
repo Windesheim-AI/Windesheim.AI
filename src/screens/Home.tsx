@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginLeft: 10,
         position: 'absolute',
-        left: '50%',
-        transform: [{ translateX: -105 }],
+        width: '100%',
+        textAlign: 'center',
     },
     flexGrow: {
         flexGrow: 1,
