@@ -107,6 +107,7 @@ export function SelectDropdown({
             ...fonts.default,
             borderRadius: 8,
             borderColor: colors.gray,
+            paddingLeft: 5,
         },
     });
 
