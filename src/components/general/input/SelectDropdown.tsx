@@ -87,7 +87,7 @@ export function SelectDropdown({
         textSelectedItem: {
             flex: 1,
             ...fonts.default,
-            color: colors.textHighlight,
+            color: colors.black,
         },
         placeholderStyle: {
             ...fonts.default,
@@ -98,13 +98,15 @@ export function SelectDropdown({
             overflow: 'hidden',
         },
         iconStyle: {
-            width: 20,
-            height: 20,
+            width: 30,
+            height: 30,
         },
         inputSearchStyle: {
-            width: '90%',
-            height: 40,
+            width: '96%',
+            height: 50,
             ...fonts.default,
+            borderRadius: 8,
+            borderColor: colors.gray,
         },
     });
 
@@ -147,6 +149,7 @@ export function SelectDropdown({
                 valueField="value"
                 placeholder={t(label)}
                 searchPlaceholder={t('Search...')}
+                searchPlaceholderTextColor={colors.black}
                 value={value}
                 onChange={(item: SelectableItem) => handleOnSelect(item)}
                 renderItem={renderItem}

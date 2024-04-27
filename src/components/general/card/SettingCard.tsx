@@ -63,6 +63,7 @@ export const SettingCard = ({
             flex: 1,
             marginLeft: 10,
             marginRight: 10,
+            marginTop: 15,
         },
         title: {
             ...fonts.h2,

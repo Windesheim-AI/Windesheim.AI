@@ -65,7 +65,7 @@ export type ColorSchemeType = {
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
         primary: '#4695D3',
-        secondary: '#fff377',
+        secondary: '#FFF377',
         success: '#FFF377',
         warning: '#ff7300',
         danger: '#EE3135',
@@ -77,7 +77,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         textLight: '#fff',
         textHighlight: '#fff',
         background: '#FFFFF0',
-        backgroundHighlight: '#4695D3',
+        backgroundHighlight: '#FFF377',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorLight,
         gray: '#919191',
@@ -121,7 +121,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     dark: {
         primary: '#4695D3',
         secondary: '#fff377',
-        success: '#86d2d9',
+        success: '#86D2D9',
         warning: '#ff7300',
         danger: '#EE3135',
         enabled: '#86d2d9',
@@ -132,7 +132,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         textHighlight: '#fff',
         buttonText: '#4695d3',
         background: '#2A2A2A', //Context Container
-        backgroundHighlight: '#4695D3',
+        backgroundHighlight: '#86D2D9',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorDark,
         gray: '#919191',
@@ -190,7 +190,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         textLight: '#FFFFFF',
         textHighlight: '#FFFFFF',
         background: '#FFFFFF',
-        backgroundHighlight: '#0000FF',
+        backgroundHighlight: '#FFD700',
         backgroundModal: 'rgba(0, 0, 0, 0.4)',
         tint: '#0000FF',
         gray: '#000000',
@@ -234,7 +234,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
     dark: {
         primary: '#0000FF',
         secondary: '#FFFF00',
-        success: '#4695d3',
+        success: '#4695D3',
         warning: '#FFA500',
         danger: '#FF0000',
         enabled: '#4695d3',
@@ -245,7 +245,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         textHighlight: '#FFFFFF',
         buttonText: '#FFFFFF',
         background: '#000000',
-        backgroundHighlight: '#0000FF',
+        backgroundHighlight: '#4695D3',
         backgroundModal: 'rgba(0,0,0,0.4)',
         tint: '#FFFFFF',
         gray: '#6e6e6e',

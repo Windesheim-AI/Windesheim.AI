@@ -80,16 +80,16 @@ export const SettingsScreen = () => {
                 <HighContrastSwitcher />
             </SettingCard>
 
-            <SettingCard icon="redo" title="Tutorial" testID="tutorial reset">
-                <TutorialRedoButton />
-            </SettingCard>
-
             <SettingCard
                 icon="user-edit"
                 title="Background"
                 testID="Background"
             >
                 <EditBackgroundInformationButton />
+            </SettingCard>
+
+            <SettingCard icon="redo" title="Tutorial" testID="tutorial reset">
+                <TutorialRedoButton />
             </SettingCard>
         </PageScrollView>
     );
