@@ -8,11 +8,13 @@ import { EditAiFamiliarityCard } from '../../components/BackgroundCollect/EditAi
 import { EditInterestedKeywordCard } from '../../components/BackgroundCollect/EditInterestedKeywordCard';
 import { EditPositionCard } from '../../components/BackgroundCollect/EditPositionCard';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
-
+import { useCurrentTheme } from '../../lib/constants/Colors';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 export const BackgroundInfo = () => {
     const navigation = useNavigation();
-
+    const currentTheme = useCurrentTheme();
     const goBack = () => {
+        HapticFeedback(HapticForces.Light);
         navigation.goBack();
     };
 
@@ -24,6 +26,7 @@ export const BackgroundInfo = () => {
     const iconStyle = {
         width: 37,
         height: 37,
+        tintColor: currentTheme === 'dark' ? '#FFFFFF' : 'black',
     };
     const spacerStyle: ViewStyle = {
         height: 10,
