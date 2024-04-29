@@ -130,7 +130,7 @@ export const Tutorial = () => {
                     <Image
                         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                         source={require('../../assets/images/bgImages/tutorial_bg.jpg')}
-                        style={styles.imageStyle} // Stil
+                        style={styles.imageStyle}
                     />
                 ) : null}
                 {/* Description Box*/}

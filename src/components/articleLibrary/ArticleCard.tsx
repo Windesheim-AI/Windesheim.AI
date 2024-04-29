@@ -23,10 +23,10 @@ type Props = {
 function getTagTextColor(theme: string, isHighContrast: boolean) {
     return theme === 'light'
         ? isHighContrast
-            ? '#FFFFFF'
+            ? '#000000'
             : '#000000'
         : isHighContrast
-          ? '#000000'
+          ? '#FFFFFF'
           : '#FFFFFF';
 }
 
@@ -89,6 +89,7 @@ export function ArticleCard({ article }: Props) {
             backgroundColor: colors.completedProgressBar,
             borderRadius: 5,
             overflow: 'hidden',
+            ...colorStateConfig.highContrastBorder,
         },
         tagText: {
             ...fonts.description,

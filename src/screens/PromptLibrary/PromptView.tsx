@@ -65,27 +65,27 @@ export function PromptView() {
         sectorTag: {
             marginRight: 5,
             marginBottom: 5,
-            backgroundColor: colorStateConfig.colors.success[1],
-            borderColor: colorStateConfig.colors.success[1],
-            color: colorStateConfig.text?.success ?? colors.white,
+            backgroundColor: colors.sectorTag,
+            borderColor: colors.sectorTag,
+            color: colors.tagText,
             ...shadow,
             ...colorStateConfig.highContrastBorder,
         },
         toolTag: {
             marginRight: 5,
             marginBottom: 5,
-            backgroundColor: colorStateConfig.colors.primary[1],
-            borderColor: colorStateConfig.colors.primary[1],
-            color: colorStateConfig.text?.primary ?? colors.white,
+            backgroundColor: colors.toolTag,
+            borderColor: colors.toolTag,
+            color: colors.tagText,
             ...shadow,
             ...colorStateConfig.highContrastBorder,
         },
         promptPatternTag: {
             marginRight: 5,
             marginBottom: 5,
-            backgroundColor: colorStateConfig.colors.danger[1],
-            borderColor: colorStateConfig.colors.danger[1],
-            color: colorStateConfig.text?.danger ?? colors.white,
+            backgroundColor: colors.patternTag,
+            borderColor: colors.patternTag,
+            color: colors.tagText,
             ...shadow,
             ...colorStateConfig.highContrastBorder,
         },
@@ -133,19 +133,16 @@ export function PromptView() {
 
     return (
         <PageScrollView title={removeSlashes(prompt.title)}>
-            <GoBackButton
-                onPress={() => navigation.navigate(Routes.PromptLibrary)}
-                buttonText="Prompt Library"
-            />
             <View style={styles.tagContainer}>
                 <Chip
                     style={styles.toolTag}
                     mode="outlined"
                     textStyle={{
                         ...styles.chipText,
-                        color: colorStateConfig.text?.primary,
+                        color: colors.tagText,
                     }}
                     icon="wrench"
+                    theme={{ colors: { primary: 'black' } }}
                 >
                     {prompt.tool}
                 </Chip>
@@ -154,9 +151,10 @@ export function PromptView() {
                     mode="outlined"
                     textStyle={{
                         ...styles.chipText,
-                        color: colorStateConfig.text?.success,
+                        color: colors.tagText,
                     }}
                     icon="briefcase"
+                    theme={{ colors: { primary: 'black' } }}
                 >
                     {prompt.sector}
                 </Chip>
@@ -165,9 +163,10 @@ export function PromptView() {
                     mode="outlined"
                     textStyle={{
                         ...styles.chipText,
-                        color: colorStateConfig.text?.danger,
+                        color: colors.tagText,
                     }}
                     icon="clipboard"
+                    theme={{ colors: { primary: 'black' } }}
                 >
                     {prompt.promptPattern}
                 </Chip>

@@ -13,9 +13,13 @@ export type ColorSchemeType = {
     warning: string;
     enabled: string;
     danger: string;
+    toolTag: string;
+    sectorTag: string;
+    patternTag: string;
     disabled: string;
     link: string;
     text: string;
+    tagText: string;
     textLight: string;
     textHighlight: string;
     background: string;
@@ -70,11 +74,15 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#FFF377',
         warning: '#ff7300',
         danger: '#EE3135',
+        toolTag: '#74AA9C',
+        sectorTag: '#FFFFFF',
+        patternTag: '#FFF377',
         enabled: '#FFF377',
         disabled: '#999',
         buttonText: '#FFD949',
         link: '#ffcb05',
         text: '#010101',
+        tagText: '#000000',
         textLight: '#fff',
         textHighlight: '#fff',
         background: '#FFFFF0',
@@ -126,10 +134,14 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#86d2d9',
         warning: '#ff7300',
         danger: '#EE3135',
+        toolTag: '#74AA9C',
+        sectorTag: '#FFFFFF',
+        patternTag: '#86d2d9',
         enabled: '#86d2d9',
         disabled: '#999',
         link: '#ffcb05',
         text: '#fff',
+        tagText: '#000000',
         textLight: '#fff',
         textHighlight: '#fff',
         buttonText: '#4695d3',
@@ -185,11 +197,15 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#FFD700',
         warning: '#FFA500',
         danger: '#FF0000',
+        toolTag: '#74AA9C',
+        sectorTag: '#FFFFFF',
+        patternTag: '#FFD949',
         enabled: '#FFD700',
         disabled: '#000000',
         buttonText: '#000000',
         link: '#FFFF00',
         text: '#000000',
+        tagText: '#000000',
         textLight: '#FFFFFF',
         textHighlight: '#FFFFFF',
         background: '#FFFFFF',
@@ -241,10 +257,14 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#4695d3',
         warning: '#FFA500',
         danger: '#FF0000',
+        toolTag: '#74AA9C',
+        sectorTag: '#FFFFFF',
+        patternTag: '#4695D3',
         enabled: '#4695d3',
         disabled: '#FFFFFF',
         link: '#FFFF00',
         text: '#FFFFFF',
+        tagText: '#000000',
         textLight: '#FFFFFF',
         textHighlight: '#FFFFFF',
         buttonText: '#FFFFFF',
