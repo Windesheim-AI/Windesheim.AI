@@ -41,6 +41,7 @@ export function PromptCard({ prompt }: Props) {
         },
         title: {
             ...fonts.h2,
+            fontSize: 20,
             color: colors.titleDefault,
         },
         imageContainer: {
@@ -57,7 +58,7 @@ export function PromptCard({ prompt }: Props) {
         description: {
             ...fonts.description,
             flexWrap: 'wrap',
-            fontSize: 10,
+            fontSize: 13,
             flexShrink: 1,
         },
         button: {

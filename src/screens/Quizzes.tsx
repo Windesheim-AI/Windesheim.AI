@@ -12,16 +12,16 @@ export function Quizzes() {
             <View>
                 <TitleSimple
                     titleText="Courses"
-                    explainationText="Here you will soon find the newest interactive courses to learn about Generative AI."
+                    explainationText="Soon you'll find the latest interactive courses here to learn more about Generative AI."
                 />
                 <CoursesOverview />
             </View>
             <View>
                 <TitleSimple
                     titleText="Quizzes"
-                    explainationText="Here you will soon find the newest quizzes to learn in a fun and interactive way about Generative AI."
+                    explainationText="Soon you'll find the latest quizzes here to learn more about Generative AI in a fun and interactive way."
                 />
-                <TextTranslated text="Loading..." />
+                <TextTranslated text="Loading.." />
             </View>
         </PageScrollView>
     );

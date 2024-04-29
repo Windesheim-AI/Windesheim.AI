@@ -100,7 +100,7 @@ export function useFonts() {
             color: colors.titleDefault,
         },
         h6: {
-            fontSize: 12,
+            fontSize: 11,
             color: colors.titleDefault,
         },
         icon: {
@@ -143,7 +143,7 @@ export function useFonts() {
             color: colors.subtext,
         },
         small: {
-            fontSize: 10,
+            fontSize: 11,
         },
         accent: {
             fontSize: 12,

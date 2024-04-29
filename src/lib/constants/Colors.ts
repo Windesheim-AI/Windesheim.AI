@@ -39,6 +39,7 @@ export type ColorSchemeType = {
     bg2: string;
     bg3: string;
     settingButtonBG: string;
+    windesheimAITitle: string;
     modalBackground: string;
     subtext: string;
     navBar: {
@@ -65,7 +66,7 @@ export type ColorSchemeType = {
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
         primary: '#4695D3',
-        secondary: '#FFF377',
+        secondary: '#fff377',
         success: '#FFF377',
         warning: '#ff7300',
         danger: '#EE3135',
@@ -77,7 +78,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         textLight: '#fff',
         textHighlight: '#fff',
         background: '#FFFFF0',
-        backgroundHighlight: '#FFF377',
+        backgroundHighlight: '#4695D3',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorLight,
         gray: '#919191',
@@ -89,6 +90,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg2: '#FFFFF0',
         bg3: '#FFFFF0',
         settingButtonBG: '#',
+        windesheimAITitle: '#FFD949',
         modalBackground: 'rgba(0,0,0,0.5)',
         subtext: '#a8a7a7',
         navBar: {
@@ -121,7 +123,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     dark: {
         primary: '#4695D3',
         secondary: '#fff377',
-        success: '#86D2D9',
+        success: '#86d2d9',
         warning: '#ff7300',
         danger: '#EE3135',
         enabled: '#86d2d9',
@@ -132,7 +134,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         textHighlight: '#fff',
         buttonText: '#4695d3',
         background: '#2A2A2A', //Context Container
-        backgroundHighlight: '#86D2D9',
+        backgroundHighlight: '#4695D3',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorDark,
         gray: '#919191',
@@ -145,6 +147,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg2: '#2A2A2A',
         bg3: '#2A2A2A',
         settingButtonBG: '#373737',
+        windesheimAITitle: '#4695D3',
         subtext: '#a8a7a7',
         navBar: {
             backgroundColor: '#2A2A2A',
@@ -166,7 +169,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         opacityLayer: 'rgba(0,0,0,0.6)',
         accentTitle: '#757575',
         progressbarBg: '#373737',
-        completedProgressBar: '#4695D3',
+        completedProgressBar: '#4695d3',
         seeAllText: '#FFFFFF',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#252525',
@@ -190,7 +193,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         textLight: '#FFFFFF',
         textHighlight: '#FFFFFF',
         background: '#FFFFFF',
-        backgroundHighlight: '#FFD700',
+        backgroundHighlight: '#0000FF',
         backgroundModal: 'rgba(0, 0, 0, 0.4)',
         tint: '#0000FF',
         gray: '#000000',
@@ -202,6 +205,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg2: '#FFFFFF',
         bg3: '#FFFFFF',
         settingButtonBG: '#FFFFFF',
+        windesheimAITitle: '#000000',
         modalBackground: 'rgba(0, 0, 0, 0.4)',
         subtext: '#000000',
         navBar: {
@@ -224,7 +228,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         opacityLayer: 'rgba(255,255,255,0.9)',
         seeAllText: '#000000',
         progressbarBg: '#000000',
-        completedProgressBar: '#000000',
+        completedProgressBar: '#FFFFFF',
         accentTitle: '#000000',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#f4f3fd', //CONTEXT CONTAINER
@@ -234,7 +238,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
     dark: {
         primary: '#0000FF',
         secondary: '#FFFF00',
-        success: '#4695D3',
+        success: '#4695d3',
         warning: '#FFA500',
         danger: '#FF0000',
         enabled: '#4695d3',
@@ -245,7 +249,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         textHighlight: '#FFFFFF',
         buttonText: '#FFFFFF',
         background: '#000000',
-        backgroundHighlight: '#4695D3',
+        backgroundHighlight: '#0000FF',
         backgroundModal: 'rgba(0,0,0,0.4)',
         tint: '#FFFFFF',
         gray: '#6e6e6e',
@@ -258,6 +262,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg2: '#000',
         bg3: '#000',
         settingButtonBG: '#000000',
+        windesheimAITitle: '#FFFFFF',
         subtext: '#fff',
         navBar: {
             backgroundColor: '#000000',
@@ -280,7 +285,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#FFFFFF',
         accentTitle: '#FFFFFF',
         progressbarBg: '#FFFFFF',
-        completedProgressBar: '#FFFFFF',
+        completedProgressBar: '#000000',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#1C1C1C',
         previousButtonColor: '#FFFFFF',

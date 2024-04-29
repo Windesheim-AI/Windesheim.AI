@@ -55,33 +55,23 @@ export function PromptsOverview() {
     return (
         <View testID="prompts-overview">
             {filteredPrompts ? (
-                <>
-                    <TextTranslated
-                        style={fonts.description}
-                        text="Filter by tool and sector, hold long on a tag to select only that one."
+                <View style={styles.filterContainer}>
+                    <ChipFilter
+                        activeList={selectedTools}
+                        filterList={usedTools}
+                        setActiveList={setSelectedTools}
+                        colorGradientScheme={colorStateConfig.colors.primary}
+                        textColorScheme={colorStateConfig.text?.primary}
                     />
-                    <View style={styles.filterContainer}>
-                        <ChipFilter
-                            activeList={selectedTools}
-                            filterList={usedTools}
-                            setActiveList={setSelectedTools}
-                            colorGradientScheme={
-                                colorStateConfig.colors.primary
-                            }
-                            textColorScheme={colorStateConfig.text?.primary}
-                        />
 
-                        <ChipFilter
-                            activeList={selectedSectors}
-                            filterList={usedSectors}
-                            setActiveList={setSelectedSectors}
-                            colorGradientScheme={
-                                colorStateConfig.colors.success
-                            }
-                            textColorScheme={colorStateConfig.text?.success}
-                        />
-                    </View>
-                </>
+                    <ChipFilter
+                        activeList={selectedSectors}
+                        filterList={usedSectors}
+                        setActiveList={setSelectedSectors}
+                        colorGradientScheme={colorStateConfig.colors.success}
+                        textColorScheme={colorStateConfig.text?.success}
+                    />
+                </View>
             ) : null}
             {filteredPrompts?.map((prompt) => (
                 <PromptCard key={prompt.id} prompt={prompt} />

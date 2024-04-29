@@ -68,7 +68,7 @@ export function ArticleCard({ article }: Props) {
         descriptionText: {
             ...fonts.description,
             flexWrap: 'wrap',
-            fontSize: 10,
+            fontSize: 12,
             flexShrink: 1,
             marginBottom: 4,
             marginTop: 4,
