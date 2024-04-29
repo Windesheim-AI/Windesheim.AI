@@ -12,7 +12,7 @@ export function Quizzes() {
             <View>
                 <TitleSimple
                     titleText="Courses"
-                    explainationText="Soon you'll find the latest interactive courses here to learn more about Generative AI."
+                    explainationText="Here you'll find an overview of all the courses that are available to you. You can find more information about the courses by clicking on them."
                 />
                 <CoursesOverview />
             </View>
