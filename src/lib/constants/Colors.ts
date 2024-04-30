@@ -368,20 +368,20 @@ export type StateColorGradientSchemes = {
 };
 
 export const stateColorSchemes: StateColorGradientSchemes = {
-    primary: ['#4695D3', '#22BDC6', '#86D2D9'],
+    primary: ['#FFF377', '#74AA9C', '#FFF377'],
     info: ['#4695D3', '#22BDC6', '#86D2D9'],
-    secondary: ['#FFCB05', '#FFD949', '#FFF377'],
-    success: ['#FFF377', '#FFF377', '#FFF377'],
-    warning: ['#ff7300', '#f59e56', '#ffcc66'],
+    secondary: ['#86d2d9', '#74AA9C', '#86d2d9'],
+    success: ['#FFF377', '#74AA9C', '#FFF377'],
+    warning: ['#86d2d9', '#74AA9C', '#86d2d9'],
     danger: ['#EE3135', '#F16682', '#F287B7'],
 };
 
 const highContrastStateColorSchemes: StateColorGradientSchemes = {
-    primary: ['#0000FF', '#0000FF', '#0000FF'],
+    primary: ['#FFFFFF', '#74AA9C', '#FFFFFF'],
     info: ['#0000FF', '#0000FF', '#0000FF'],
-    secondary: ['#FFFF00', '#FFFF00', '#FFFF00'],
-    success: ['#FFD700', '#FFD700', '#FFD700'],
-    warning: ['#FFA500', '#FFA500', '#FFA500'],
+    secondary: ['#000000', '#74AA9C', '#000000'],
+    success: ['#FFFFFF', '#74AA9C', '#FFFFFF'],
+    warning: ['#000000', '#74AA9C', '#000000'],
     danger: ['#FF0000', '#FF0000', '#FF0000'],
 };
 
@@ -445,6 +445,7 @@ function useCurrentStateColorScheme(): StateColorGradientSchemes {
 }
 
 type ColorStateConfig = {
+    theme: string;
     colors: ReturnType<typeof useCurrentStateColorScheme>;
     text: ReturnType<typeof useCurrentStateTextColorScheme>;
     highContrastBorder: ReturnType<typeof useHighContrastBorderIfNecessary>;
@@ -453,6 +454,7 @@ type ColorStateConfig = {
 
 export function useColorStateConfig(): ColorStateConfig {
     return {
+        theme: useCurrentTheme(),
         colors: useCurrentStateColorScheme(),
         text: useCurrentStateTextColorScheme(),
         highContrastBorder: useHighContrastBorderIfNecessary(),
