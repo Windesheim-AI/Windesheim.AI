@@ -73,7 +73,7 @@ export default function Stage() {
     });
 
     function navigateBackToCourses() {
-        navigator.navigate(Routes.Courses.toString());
+        navigator.navigate(Routes.Quizzes.toString());
     }
 
     if (isLoading) {
@@ -135,7 +135,7 @@ export default function Stage() {
             course.stageData[activeStageCount - 1] ?? undefined;
 
         if (!previousStage) {
-            navigator.navigate(Routes.Courses.toString());
+            navigator.navigate(Routes.Quizzes.toString());
             return;
         }
 

@@ -126,7 +126,7 @@ export default function CourseFinished() {
 
                 <Button
                     buttonText="Go back to courses"
-                    screenName={Routes.Courses}
+                    screenName={Routes.Quizzes}
                     colorGradientScheme={colorStateConfig.colors.success}
                     textColorScheme={colorStateConfig.text?.success}
                     testId="go-back-to-courses-button"

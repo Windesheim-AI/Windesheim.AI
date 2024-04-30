@@ -65,6 +65,7 @@ export type ColorSchemeType = {
     subCard: string;
     progressBar: string;
     courseCompleted: string;
+    arrowContainer: string;
     previousButtonColor: string;
     continueButtonColor: string;
 };
@@ -129,6 +130,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         subCard: '#FFFFFF',
         progressBar: '#C0C0C0',
         courseCompleted: '#FFD700',
+        arrowContainer: '#FFFFF0',
         previousButtonColor: '#000000',
         continueButtonColor: '#ffcb05',
     },
@@ -191,6 +193,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         subCard: '#373737',
         progressBar: '#C0C0C0',
         courseCompleted: '#4695d3',
+        arrowContainer: '#2A2A2A',
         previousButtonColor: '#FFFFFF',
         continueButtonColor: '#4695d3',
     },
@@ -256,6 +259,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         subCard: '#FFFFFF', //CONTEXT CONTAINER
         progressBar: '#000000',
         courseCompleted: '#FFD700',
+        arrowContainer: '#FFFFFF',
         previousButtonColor: '#000000',
         continueButtonColor: '#00FF00',
     },
@@ -318,6 +322,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         subCard: '#000000',
         progressBar: '#FFFFFF',
         courseCompleted: '#4695d3',
+        arrowContainer: '#000000',
         previousButtonColor: '#FFFFFF',
         continueButtonColor: '#0000FF',
     },
