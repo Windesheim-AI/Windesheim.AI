@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
 import { CourseCard } from './card/CourseCard';
 import { useFonts } from '../../lib/constants/Fonts';
@@ -18,11 +18,10 @@ function getAmountCompletedTask(course: CourseDataMapped) {
 }
 
 type Props = {
-    marginTop?: number;
     limit?: number;
 };
 
-export function CoursesOverview({ marginTop, limit }: Props) {
+export function CoursesOverview({ limit }: Props) {
     const fonts = useFonts();
     const { data, isLoading, error } = useAllCourses();
     const courses = useMapMultipleCoursesToData(data);
@@ -32,12 +31,6 @@ export function CoursesOverview({ marginTop, limit }: Props) {
     const selectedCourses = isLimited
         ? getRandomLimitedItemsFromArray(courses, limit)
         : courses;
-
-    const styles = StyleSheet.create({
-        cardContainer: {
-            marginTop: marginTop ?? 15,
-        },
-    });
 
     function onPress(courseId: string) {
         HapticFeedback(HapticForces.Light);
@@ -60,7 +53,7 @@ export function CoursesOverview({ marginTop, limit }: Props) {
     }
 
     return (
-        <View style={styles.cardContainer} testID="test-container">
+        <View testID="test-container">
             {selectedCourses?.map((course: CourseDataMapped) => (
                 <View
                     testID={`course-card-${course.courseId}`}
@@ -71,8 +64,6 @@ export function CoursesOverview({ marginTop, limit }: Props) {
                         title={course.title}
                         completedTasks={getAmountCompletedTask(course)}
                         totalTasks={course.stageData?.length ?? 0}
-                        level="0"
-                        likes={0}
                         onPress={() => onPress(course.courseId)}
                     />
                 </View>

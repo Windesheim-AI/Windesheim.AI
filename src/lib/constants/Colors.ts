@@ -63,6 +63,8 @@ export type ColorSchemeType = {
     seeAllText: string;
     techProviderGradient: string[];
     subCard: string;
+    progressBar: string;
+    courseCompleted: string;
     previousButtonColor: string;
     continueButtonColor: string;
 };
@@ -124,7 +126,9 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         completedProgressBar: '#FFD700',
         seeAllText: '#1C1C1C',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
-        subCard: '#FFFFF0',
+        subCard: '#FFFFFF',
+        progressBar: '#C0C0C0',
+        courseCompleted: '#FFD700',
         previousButtonColor: '#000000',
         continueButtonColor: '#ffcb05',
     },
@@ -184,7 +188,9 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         completedProgressBar: '#4695d3',
         seeAllText: '#FFFFFF',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
-        subCard: '#252525',
+        subCard: '#373737',
+        progressBar: '#C0C0C0',
+        courseCompleted: '#4695d3',
         previousButtonColor: '#FFFFFF',
         continueButtonColor: '#4695d3',
     },
@@ -247,7 +253,9 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         completedProgressBar: '#FFFFFF',
         accentTitle: '#000000',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
-        subCard: '#f4f3fd', //CONTEXT CONTAINER
+        subCard: '#FFFFFF', //CONTEXT CONTAINER
+        progressBar: '#000000',
+        courseCompleted: '#FFD700',
         previousButtonColor: '#000000',
         continueButtonColor: '#00FF00',
     },
@@ -307,7 +315,9 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         progressbarBg: '#FFFFFF',
         completedProgressBar: '#000000',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
-        subCard: '#1C1C1C',
+        subCard: '#000000',
+        progressBar: '#FFFFFF',
+        courseCompleted: '#4695d3',
         previousButtonColor: '#FFFFFF',
         continueButtonColor: '#0000FF',
     },
