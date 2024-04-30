@@ -68,8 +68,8 @@ export function CourseCard({
         },
         progressBar: {
             height: 7,
-            borderColor: colors.listItemBg,
-            backgroundColor: colors.progressBar,
+            backgroundColor: colors.progressbarBg,
+            marginBottom: 5,
             marginTop: 5,
             borderRadius: 10,
             ...shadow,
@@ -118,9 +118,8 @@ export function CourseCard({
                         <View style={styles.progressBarContainer}>
                             <Bar
                                 progress={completedTasks / totalTasks}
-                                color={colors.courseCompleted}
+                                color={colors.completedProgressBar}
                                 borderRadius={10}
-                                unfilledColor={colors.black}
                                 style={styles.progressBar}
                             />
                             <TextTranslated

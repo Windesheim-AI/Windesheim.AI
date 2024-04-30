@@ -78,7 +78,7 @@ export function SelectDropdown({
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            backgroundColor: colors.backgroundHighlight,
+            backgroundColor: colors.dropdown,
         },
         textItem: {
             flex: 1,

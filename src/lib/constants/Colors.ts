@@ -24,6 +24,7 @@ export type ColorSchemeType = {
     textHighlight: string;
     background: string;
     backgroundHighlight: string;
+    dropdown: string;
     backgroundModal: string;
     tint: string;
     gray: string;
@@ -90,6 +91,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         textHighlight: '#fff',
         background: '#FFFFF0',
         backgroundHighlight: '#4695D3',
+        dropdown: '#FFF377',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorLight,
         gray: '#919191',
@@ -153,6 +155,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         buttonText: '#4695d3',
         background: '#2A2A2A', //Context Container
         backgroundHighlight: '#4695D3',
+        dropdown: '#86d2d9',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorDark,
         gray: '#919191',
@@ -186,7 +189,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         lightGrey: '#D3D3D3',
         opacityLayer: 'rgba(0,0,0,0.6)',
         accentTitle: '#757575',
-        progressbarBg: '#373737',
+        progressbarBg: '#f3f3f5',
         completedProgressBar: '#4695d3',
         seeAllText: '#FFFFFF',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
@@ -219,6 +222,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         textHighlight: '#FFFFFF',
         background: '#FFFFFF',
         backgroundHighlight: '#0000FF',
+        dropdown: '#FFD700',
         backgroundModal: 'rgba(0, 0, 0, 0.4)',
         tint: '#0000FF',
         gray: '#000000',
@@ -282,6 +286,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         buttonText: '#FFFFFF',
         background: '#000000',
         backgroundHighlight: '#0000FF',
+        dropdown: '#4695d3',
         backgroundModal: 'rgba(0,0,0,0.4)',
         tint: '#FFFFFF',
         gray: '#6e6e6e',
