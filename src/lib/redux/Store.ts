@@ -12,9 +12,9 @@ import { layoutSlice } from './slices/LayoutSlice';
 import { loadingSlice } from './slices/LoadingSlice';
 import { navigationSlice } from './slices/NavigationSlice';
 import { notificationSlice } from './slices/NotificationSlice';
+import { promptsTutorialSlice } from './slices/PromptsTutorialSlice';
 import { themeSlice } from './slices/ThemeSlice';
 import { tutorialSlice } from './slices/TutorialSlice';
-
 type PersistConfigDataType = ReturnType<typeof rootReducer>;
 
 const persistConfig: PersistConfig<PersistConfigDataType> = {
@@ -27,6 +27,7 @@ const persistConfig: PersistConfig<PersistConfigDataType> = {
         fontSlice.name,
         courseDataSlice.name,
         tutorialSlice.name,
+        promptsTutorialSlice.name,
         animationSlice.name,
         backgroundInformationSlice.name,
     ],
@@ -42,6 +43,7 @@ export const rootReducer = combineReducers({
     fontSize: fontSlice.reducer,
     courseData: courseDataSlice.reducer,
     tutorial: tutorialSlice.reducer,
+    promptsTutorial: promptsTutorialSlice.reducer,
     animation: animationSlice.reducer,
     backgroundInformation: backgroundInformationSlice.reducer,
 });

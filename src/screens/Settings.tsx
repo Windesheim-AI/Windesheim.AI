@@ -6,6 +6,7 @@ import arrowLeft from '../assets/images/Icon/go_back_arrow.png';
 import { EditBackgroundInformationButton } from '../components/BackgroundCollect/EditBackgroundInformationButton';
 import { SettingCard } from '../components/general/card/SettingCard';
 import { PageScrollView } from '../components/general/views/PageScrollView';
+import { PromptsTutorialRedoButton } from '../components/promptsTutorial/PromptsTutorialRedoButton';
 import { AnimationToggle } from '../components/settings/AnimationToggle';
 import { FontSwitcher } from '../components/settings/FontSwitcher';
 import { HighContrastSwitcher } from '../components/settings/HighContrastSwitcher';
@@ -90,6 +91,13 @@ export const SettingsScreen = () => {
 
             <SettingCard icon="redo" title="Tutorial" testID="tutorial reset">
                 <TutorialRedoButton />
+            </SettingCard>
+            <SettingCard
+                icon="redo"
+                title="PromptTutorial"
+                testID="tutorial reset"
+            >
+                <PromptsTutorialRedoButton />
             </SettingCard>
         </PageScrollView>
     );
