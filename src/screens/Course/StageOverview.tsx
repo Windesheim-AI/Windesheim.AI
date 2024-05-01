@@ -227,7 +227,7 @@ export default function StageOverview() {
                             />
                             <TextTranslated
                                 style={[fonts.courseTitle, styles.courseTitle]}
-                                text={` ${calculateTotalTime()} min`}
+                                text={` ${calculateTotalTime().toFixed(2)} min`}
                             />
                         </View>
                     </View>
