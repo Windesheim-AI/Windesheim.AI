@@ -126,11 +126,6 @@ export default function CourseFinished() {
                 <Button
                     buttonText="Go back to courses"
                     screenName={Routes.Quizzes}
-                    colorGradientScheme={[
-                        colors.previousButton,
-                        colors.previousButton,
-                        colors.previousButton,
-                    ]}
                     textColorScheme={
                         colorStateConfig.theme === 'dark' ? 'white' : 'black'
                     }
