@@ -24,7 +24,6 @@ export function PromptsOverview() {
     const styles = StyleSheet.create({
         filterContainer: {
             marginBottom: 10,
-            marginTop: 10,
         },
     });
 

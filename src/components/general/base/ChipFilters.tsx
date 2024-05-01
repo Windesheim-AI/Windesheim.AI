@@ -96,7 +96,7 @@ export function ChipFilter<T extends ReactNode>({
                                     colorStateConfig.theme === 'dark' &&
                                     isHighContrastEnabled
                                         ? 'white'
-                                        : 'black', // İkon rengini siyah olarak ayarla
+                                        : 'black',
                             },
                         }}
                     >
