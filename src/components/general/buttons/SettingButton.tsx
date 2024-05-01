@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
         top: 0,
         right: 0,
         zIndex: 1,
+        paddingRight: 10,
     },
     lightIcon: {
         width: 37,

@@ -81,7 +81,7 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
             ) : (
                 <YoutubePlayer
                     webViewStyle={styles.ytContainer}
-                    height={windowDimensions.height / 4.55}
+                    height={windowDimensions.height / 4.3}
                     width={windowDimensions.width - 40}
                     videoId={getYTId(options.videoURL) || ''}
                 />

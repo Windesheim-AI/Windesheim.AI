@@ -5,13 +5,40 @@ import { SettingsButton } from '../components/general/buttons/SettingButton';
 import { DisclaimerCard } from '../components/general/card/DisclaimerCard';
 import { Introduction } from '../components/general/card/Introduction';
 import { PageScrollView } from '../components/general/views/PageScrollView';
-import { useCurrentTheme } from '../lib/constants/Colors';
+import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
 
 export const HomeScreen = () => {
     const currentTheme = useCurrentTheme();
     const logoTextColor = currentTheme === 'dark' ? '#FFFFFF' : 'black';
+    const colors = useColorConfig();
+    const styles = StyleSheet.create({
+        headerContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            paddingLeft: 10,
+            backgroundColor: colors.background,
+        },
+        logo: {
+            width: 37,
+            height: 37,
+            resizeMode: 'contain',
+        },
+        logoText: {
+            fontSize: 20,
+            fontWeight: 'bold',
+            marginLeft: 10,
+            position: 'absolute',
+            width: '100%',
+            textAlign: 'center',
+        },
+        flexGrow: {
+            flexGrow: 1,
+        },
+    });
     return (
-        <PageScrollView>
+        <>
             <View style={styles.headerContainer}>
                 <Image
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -24,37 +51,10 @@ export const HomeScreen = () => {
                 <View style={styles.flexGrow} />
                 <SettingsButton />
             </View>
-            <View style={styles.spacer} />
-            <Introduction />
-            <DisclaimerCard />
-        </PageScrollView>
+            <PageScrollView>
+                <Introduction />
+                <DisclaimerCard />
+            </PageScrollView>
+        </>
     );
 };
-
-const styles = StyleSheet.create({
-    headerContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-    },
-    logo: {
-        width: 37,
-        height: 37,
-        resizeMode: 'contain',
-    },
-    logoText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginLeft: 10,
-        position: 'absolute',
-        width: '100%',
-        textAlign: 'center',
-    },
-    flexGrow: {
-        flexGrow: 1,
-    },
-    spacer: {
-        height: 5, //ask to group for better option
-    },
-});
