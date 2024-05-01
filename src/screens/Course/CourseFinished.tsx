@@ -128,7 +128,7 @@ export default function CourseFinished() {
                     screenName={Routes.Quizzes}
                     colorGradientScheme={[
                         colors.previousButton,
-                        colors.previousButton, //DEGISTIR
+                        colors.previousButton,
                         colors.previousButton,
                     ]}
                     textColorScheme={

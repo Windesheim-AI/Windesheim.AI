@@ -97,7 +97,7 @@ describe('Prompt Library tests', () => {
         cy.contains(prompt.tool);
         cy.contains(prompt.promptPattern);
         cy.contains(prompt.sector);
-        cy.contains('Try it yourself');
+        cy.contains('Try it yourself !');
     });
 
     it('can view a non-existing prompt', () => {

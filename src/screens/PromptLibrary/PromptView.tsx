@@ -13,8 +13,8 @@ import { Chip } from 'react-native-paper';
 
 import arrowLeft from '../../assets/images/Icon/go_back_arrow.png';
 import { Card } from '../../components/general/base/Card';
-import { Button } from '../../components/general/buttons/Button';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
+import { TryButton } from '../../components/general/buttons/TryButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { PageView } from '../../components/general/views/PageView';
@@ -117,6 +117,11 @@ export function PromptView() {
         chipText: {
             ...fonts.chipText,
         },
+        container: {
+            marginTop: 'auto',
+            marginBottom: 'auto',
+            alignItems: 'center',
+        },
     });
 
     if (isLoading) {
@@ -217,18 +222,20 @@ export function PromptView() {
                     {removeSlashes(prompt.prompt)}
                 </Text>
             </Card>
-
-            {/* link to the tool open URL in app */}
-            <Button
-                buttonText="Try it yourself"
-                onPress={() => {
-                    openBrowserPopup(
-                        `${wordPressContentUrl}/prompts?id=${prompt.id}`,
-                    );
-                }}
-                colorGradientScheme={colorStateConfig.colors.primary}
-                textColorScheme={colorStateConfig.text?.primary}
-            />
+            <View style={styles.container}>
+                {/* link to the tool open URL in app */}
+                <TryButton
+                    buttonText="Try it yourself !"
+                    onPress={() => {
+                        openBrowserPopup(
+                            `${wordPressContentUrl}/prompts?id=${prompt.id}`,
+                        );
+                    }}
+                    textColorScheme={
+                        colorStateConfig.theme === 'dark' ? 'white' : 'black'
+                    }
+                />
+            </View>
         </PageScrollView>
     );
 }
