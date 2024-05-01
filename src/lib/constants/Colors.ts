@@ -64,6 +64,7 @@ export type ColorSchemeType = {
     seeAllText: string;
     techProviderGradient: string[];
     subCard: string;
+    previousButton: string;
     progressBar: string;
     courseCompleted: string;
     arrowContainer: string;
@@ -130,6 +131,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#1C1C1C',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#FFFFFF',
+        previousButton: '#FFD700',
         progressBar: '#C0C0C0',
         courseCompleted: '#FFD700',
         arrowContainer: '#FFFFF0',
@@ -194,6 +196,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         seeAllText: '#FFFFFF',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#373737',
+        previousButton: '#4695d3',
         progressBar: '#C0C0C0',
         courseCompleted: '#4695d3',
         arrowContainer: '#2A2A2A',
@@ -261,6 +264,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         accentTitle: '#000000',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#FFFFFF', //CONTEXT CONTAINER
+        previousButton: '#FFFFFF',
         progressBar: '#000000',
         courseCompleted: '#FFD700',
         arrowContainer: '#FFFFFF',
@@ -325,6 +329,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         completedProgressBar: '#000000',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
         subCard: '#000000',
+        previousButton: '#000000',
         progressBar: '#FFFFFF',
         courseCompleted: '#4695d3',
         arrowContainer: '#000000',

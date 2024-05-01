@@ -70,6 +70,9 @@ export default function Stage() {
         button: {
             marginRight: 10,
         },
+        spacing: {
+            height: 7,
+        },
     });
 
     function navigateBackToCourses() {
@@ -165,6 +168,7 @@ export default function Stage() {
                             courseId={course.courseId}
                             currentStageId={stageId}
                         />
+                        <View style={styles.spacing} />
                         <StageRenderer
                             key={stage.id}
                             courseId={course.courseId}
@@ -175,14 +179,11 @@ export default function Stage() {
                                 text="Previous"
                                 onPress={goPrevious}
                                 style={styles.button}
-                                backgroundColor={colors.background}
+                                backgroundColor={colors.previousButton}
                             />
                             <PlainButton
                                 text="Next"
-                                backgroundColor={
-                                    colorStateConfig.colors.secondary[1]
-                                }
-                                textColor={colorStateConfig.text?.secondary[1]}
+                                backgroundColor={colors.previousButton}
                                 onPress={onPress}
                                 style={styles.button}
                             />
