@@ -89,12 +89,16 @@ export const SettingsScreen = () => {
                 <EditBackgroundInformationButton />
             </SettingCard>
 
-            <SettingCard icon="redo" title="Tutorial" testID="tutorial reset">
+            <SettingCard
+                icon="redo"
+                title="App Tutorial"
+                testID="tutorial reset"
+            >
                 <TutorialRedoButton />
             </SettingCard>
             <SettingCard
                 icon="redo"
-                title="PromptTutorial"
+                title="Prompt Tutorial"
                 testID="tutorial reset"
             >
                 <PromptsTutorialRedoButton />

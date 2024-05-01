@@ -9,30 +9,30 @@ interface PromptsTutorialStep {
 
 export const promptsTutorialSteps: PromptsTutorialStep[] = [
     {
-        Title: 'Welcome!',
+        Title: 'Welcome to prompts tutorial !',
         Subtext:
-            "Welcome to the prompts tutorial. This tutorial will explain all of the features in the app and where you can find certain elements. You can also skip this tutorial if you don't find it necessary.",
+            "This tutorial will explain how to use the prompts and prompts library in the app. Let's get started !",
         NextPage: Routes.PromptLibrary,
         PreviousPage: '',
     },
     {
-        Title: 'Prompts Tutorial',
+        Title: 'Prompts Page',
         Subtext:
-            'On the home screen you can find general information, pinned activities and settings button on the right top of the screen.', //changed
+            'Here, you will find general information about prompts and a collection of prompts prepared for the Prompts Library. You can filter these prompts by categories.',
         NextPage: Routes.PromptLibrary,
         PreviousPage: Routes.PromptLibrary,
     },
     {
-        Title: 'Prompts Tutorial',
+        Title: 'Prompts',
         Subtext:
-            'On the home screen you can find general information, pinned activities and settings button on the right top of the screen.', //changed
+            'When you click on the chosen prompt, you will be leading a page that gives description. Also you can copy, paste and try them.',
         NextPage: Routes.PromptLibrary,
         PreviousPage: Routes.PromptLibrary,
     },
     {
-        Title: 'Prompts Tutorial',
+        Title: 'Finish !',
         Subtext:
-            'On the home screen you can find general information, pinned activities and settings button on the right top of the screen.', //changed
+            'That was the tutorial! \n You can always follow this tutorial again in the settings. \n Hope you enjoy using the prompts !',
         NextPage: Routes.PromptLibrary,
         PreviousPage: Routes.PromptLibrary,
     },
