@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-    View,
-    StyleSheet,
-    Image,
-    ImageSourcePropType,
-    TouchableOpacity,
-} from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 
 import {
     useColorConfig,
@@ -22,9 +16,11 @@ export const DisclaimerCard = () => {
     const colorStateConfig = useColorStateConfig();
     const disclaimerText =
         "The Windesheim AI App is an educational tool developed by students at Windesheim University of Applied Sciences. While efforts are made to ensure accuracy, users should verify information independently. The app is for educational purposes only and should not substitute professional advice. Windesheim University does not guarantee the app's content, functionality and third-party links.";
-
+    const sizeExlamationMark = (fonts.h1.fontSize ?? 1) * 4;
     const styles = StyleSheet.create({
         container: {
+            display: 'flex',
+            flexDirection: 'column',
             marginTop: 20,
             padding: 15,
             backgroundColor: colors.attentionYellow,
@@ -33,26 +29,27 @@ export const DisclaimerCard = () => {
             ...shadow,
             ...colorStateConfig.highContrastBorder,
         },
+        textRow: {
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+            marginRight: 45,
+        },
         title: {
             marginBottom: 3,
             ...fonts.h1,
             color: colors.disclaimerText,
         },
         text: {
+            flexGrow: 1,
             ...fonts.small,
             textAlign: 'justify',
             color: colors.disclaimerText,
         },
-        textRow: {
-            display: 'flex',
-            flexDirection: 'row',
-            width: '85%',
-        },
         exclamationMark: {
-            marginLeft: 23,
-            marginTop: 'auto',
-            marginBottom: 'auto',
-            width: 25,
+            fontSize: sizeExlamationMark,
+            fontWeight: 'bold',
+            marginLeft: 10,
         },
     });
 
@@ -66,24 +63,10 @@ export const DisclaimerCard = () => {
     return (
         <TouchableOpacity onPress={handlePress}>
             <View style={styles.container}>
+                <TextTranslated style={styles.title} text="Disclaimer" />
                 <View style={styles.textRow}>
-                    <View>
-                        <TextTranslated
-                            style={styles.title}
-                            text="Disclaimer"
-                        />
-                        <TextTranslated
-                            style={styles.text}
-                            text={disclaimerText}
-                        />
-                    </View>
-                    <Image
-                        style={styles.exclamationMark}
-                        source={
-                            // eslint-disable-next-line @typescript-eslint/no-var-requires
-                            require('../../../assets/images/Icon/exclamation-mark.png') as ImageSourcePropType
-                        }
-                    />
+                    <TextTranslated style={styles.text} text={disclaimerText} />
+                    <TextTranslated style={styles.exclamationMark} text="!" />
                 </View>
             </View>
         </TouchableOpacity>
