@@ -50,7 +50,6 @@ export function PromptView() {
     const { data, isLoading, error } = useSinglePrompt(promptId);
     const prompt = data;
     const wordPressContentUrl = getEnvValue(EnvOptions.WordPressContentURL);
-
     const goBack = () => {
         HapticFeedback(HapticForces.Light);
         navigation.goBack();
@@ -122,6 +121,12 @@ export function PromptView() {
             marginBottom: 'auto',
             alignItems: 'center',
         },
+        titlePrompt: {
+            fontSize: 20,
+            fontWeight: 'bold',
+            paddingRight: 30,
+            color: colors.text,
+        },
     });
 
     if (isLoading) {
@@ -162,13 +167,12 @@ export function PromptView() {
     }
 
     return (
-        <PageScrollView
-            title={
-                prompt.title.length > 24
-                    ? prompt.title
-                    : removeSlashes(prompt.title)
-            }
-        >
+        <PageScrollView>
+            <View>
+                <Text style={styles.titlePrompt}>
+                    {removeSlashes(prompt.title)}
+                </Text>
+            </View>
             <TouchableOpacity onPress={goBack} style={buttonContainerStyle}>
                 <Image source={arrowLeft} style={iconStyle} />
             </TouchableOpacity>
