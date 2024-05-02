@@ -6,7 +6,6 @@ import {
     useColorConfig,
     useColorStateConfig,
 } from '../../../lib/constants/Colors';
-import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { useNavigation } from '../../../lib/utility/navigation/useNavigation';
 import { TextTranslated } from '../text/TextTranslated';
@@ -20,7 +19,6 @@ export type ButtonProps = {
     testId?: string;
 };
 
-// eslint-disable-next-line complexity
 export const ListButton = ({
     onPress,
     buttonText,
@@ -31,7 +29,6 @@ export const ListButton = ({
 }: ButtonProps) => {
     const colors = useColorConfig();
     const colorStateConfig = useColorStateConfig();
-    const fonts = useFonts();
     const navigation = useNavigation();
 
     if (!onPress) {
@@ -51,39 +48,12 @@ export const ListButton = ({
     const checkedWidth: number = baseWidth > minWidth ? baseWidth : minWidth;
     const buttonWidth =
         checkedWidth > minWidth ? checkedWidth * 3 : minWidth * 3;
-    const barHeight = 3 * checkedWidth;
     const height = 60;
-    const bgWidth = buttonWidth / 15;
 
     const styles = StyleSheet.create({
-        bg1: {
-            backgroundColor: colorStateConfig.colors.secondary[2],
-            height: barHeight,
-            top: -30,
-            transform: 'rotate(20deg)',
-            width: bgWidth,
-        },
-        bg2: {
-            backgroundColor: colorStateConfig.colors.secondary[1],
-            height: barHeight,
-
-            top: -30,
-            transform: 'rotate(20deg)',
-            width: bgWidth,
-        },
-        bg3: {
-            backgroundColor: colorStateConfig.colors.secondary[0],
-            height: barHeight,
-
-            top: -30,
-            transform: 'rotate(20deg)',
-            width: bgWidth,
-        },
         button: {
             alignItems: 'center',
-            backgroundColor: colorStateConfig.isHighContrastEnabled
-                ? colorStateConfig.colors.secondary[0]
-                : colors.listItemBg,
+            backgroundColor: colors.previousButton,
             borderRadius: 40,
             flexDirection: 'row',
             height,
@@ -91,28 +61,22 @@ export const ListButton = ({
             maxHeight: 90,
             width: buttonWidth,
             // center
-            overflow: 'hidden',
             ...colorStateConfig.highContrastBorder,
         },
         icon: {
             fontSize: 15,
-            fontWeight: 'bold',
             position: 'absolute',
-            color: colorStateConfig.isHighContrastEnabled
-                ? colorStateConfig.text?.secondary
-                : colors.text,
+            color: colors.text,
         },
         text: {
-            ...fonts.buttonLarger,
             position: 'absolute',
-            color: colorStateConfig.isHighContrastEnabled
-                ? colorStateConfig.text?.secondary
-                : fonts.buttonLarger.color,
+            color: colors.text,
+            textAlign: 'center',
+            marginLeft: 20,
         },
         textStyle: {
             flexDirection: 'row',
             alignItems: 'center',
-            right: 15,
         },
         iconStyle: {
             flexDirection: 'row',
@@ -123,9 +87,6 @@ export const ListButton = ({
 
     return (
         <Pressable style={styles.button} onPress={onPress} testID={testId}>
-            <View style={styles.bg1} />
-            <View style={styles.bg2} />
-            <View style={styles.bg3} />
             <View style={styles.textStyle}>
                 <TextTranslated style={styles.text} text={buttonText ?? ''} />
             </View>
