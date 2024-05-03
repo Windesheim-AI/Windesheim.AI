@@ -10,7 +10,7 @@ import { useAppSelector } from '../redux/Hooks';
 export const MaxSize = 40;
 export const MinSize = 12;
 export const StepSize = 1;
-export const DefaultSize = 24;
+export const DefaultSize = 20;
 
 // Fonts work as follows;
 // The setting is the font ratio; MaxSize is max, MinSize is min, StepSize is the step size, and DefaultSize is the default size.
@@ -30,6 +30,7 @@ type TextStyling = {
     description: TextStyle;
     link: TextStyle;
     small: TextStyle;
+    homeCard: TextStyle;
     quote: TextStyle;
     accent: TextStyle;
     alert: TextStyle;
@@ -145,6 +146,9 @@ export function useFonts() {
         small: {
             fontSize: 11,
         },
+        homeCard: {
+            fontSize: 13.5,
+        },
         accent: {
             fontSize: 12,
             color: colors.descriptionDefault,
@@ -172,7 +176,7 @@ export function useFonts() {
             fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',
         },
         courseTitle: {
-            fontSize: 20,
+            fontSize: 16,
             fontWeight: 'bold',
             color: colors.text,
             fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',

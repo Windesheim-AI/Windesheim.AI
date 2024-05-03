@@ -116,11 +116,6 @@ export function PromptView() {
         chipText: {
             ...fonts.chipText,
         },
-        container: {
-            marginTop: 'auto',
-            marginBottom: 'auto',
-            alignItems: 'center',
-        },
         titlePrompt: {
             fontSize: 20,
             fontWeight: 'bold',
@@ -226,7 +221,7 @@ export function PromptView() {
                     {removeSlashes(prompt.prompt)}
                 </Text>
             </Card>
-            <View style={styles.container}>
+            <View>
                 {/* link to the tool open URL in app */}
                 <TryButton
                     buttonText="Try it yourself !"

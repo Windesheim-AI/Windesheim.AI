@@ -49,7 +49,7 @@ export function CourseCard({
             backgroundColor: colors.subCard,
             height: 'auto',
             borderTopRightRadius: 10,
-            borderBottomRightRadius: 1,
+            borderBottomRightRadius: 10,
         },
         image: {
             width: '100%',
@@ -59,7 +59,6 @@ export function CourseCard({
         },
         title: {
             ...fonts.courseTitle,
-            // warp title
             flexWrap: 'wrap',
         },
         titleContainer: {
@@ -77,7 +76,6 @@ export function CourseCard({
         progressBarContainer: {
             flexDirection: 'row',
             marginRight: 30,
-            ...stateColors.highContrastBorder,
         },
         courseNIndiciator: {
             ...fonts.description,
@@ -86,21 +84,18 @@ export function CourseCard({
         infoMarginContainer: {
             marginTop: 'auto',
             alignItems: 'flex-start',
-            marginBottom: 10,
-            marginRight: 10,
+            marginBottom: 0,
+            marginRight: 11,
+            paddingLeft: -10,
+            paddingRight: -10,
         },
         button: {
             backgroundColor: colors.bg3,
             borderRadius: 10,
-            paddingTop: 7,
-            paddingBottom: 7,
-            paddingLeft: 14,
-            paddingRight: 14,
-
-            marginLeft: 5,
+            paddingLeft: 10,
+            paddingRight: 10,
             ...shadow,
             ...fonts.stageTime,
-            ...stateColors.highContrastBorder,
         },
     });
 

@@ -75,7 +75,7 @@ export function CoursesOverview({ limit }: Props) {
 
 const styles = StyleSheet.create({
     courseCardContainer: {
-        width: 350,
+        width: 280,
         marginRight: 20,
     },
 });
