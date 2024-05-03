@@ -5,8 +5,11 @@ import { ArticleLimitedView } from '../components/articleLibrary/ArticleLimitedV
 import { TextTranslated } from '../components/general/text/TextTranslated';
 import { TitleSimple } from '../components/general/text/TitleSimple';
 import { PageScrollView } from '../components/general/views/PageScrollView';
+import { useFonts } from '../lib/constants/Fonts';
 
 export function Articles() {
+    const fonts = useFonts();
+
     return (
         <PageScrollView>
             <View>
@@ -14,7 +17,7 @@ export function Articles() {
                     titleText="Podcasts"
                     explainationText="Soon you'll find the latest episodes of the official Windesheim.AI podcast here."
                 />
-                <TextTranslated text="Loading..." />
+                <TextTranslated style={fonts.default} text="Loading..." />
             </View>
             <View>
                 <TitleSimple
