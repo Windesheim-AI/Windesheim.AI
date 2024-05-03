@@ -21,6 +21,7 @@ export const DisclaimerCard = () => {
         container: {
             display: 'flex',
             flexDirection: 'column',
+            marginBottom: 60,
             marginTop: 20,
             padding: 15,
             backgroundColor: colors.attentionYellow,
@@ -37,20 +38,14 @@ export const DisclaimerCard = () => {
         },
         title: {
             marginBottom: 3,
-            ...fonts.h1,
-            color: colors.disclaimerText,
-        },
-        text: {
-            flexGrow: 1,
-            ...fonts.homeCard,
-            textAlign: 'justify',
+            ...fonts.newTitle,
             color: colors.disclaimerText,
         },
         exclamationMark: {
             fontSize: sizeExlamationMark,
             fontWeight: 'bold',
             marginLeft: 15,
-            marginTop: -12,
+            marginTop: 25,
             marginBottom: 5,
         },
     });
@@ -67,7 +62,7 @@ export const DisclaimerCard = () => {
             <View style={styles.container}>
                 <TextTranslated style={styles.title} text="Disclaimer" />
                 <View style={styles.textRow}>
-                    <TextTranslated style={styles.text} text={disclaimerText} />
+                    <TextTranslated text={disclaimerText} />
                     <TextTranslated style={styles.exclamationMark} text="!" />
                 </View>
             </View>

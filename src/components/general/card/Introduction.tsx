@@ -26,7 +26,7 @@ export const Introduction = () => {
         },
         title: {
             marginBottom: 3,
-            ...fonts.h1,
+            ...fonts.newTitle,
             color: colors.titleDefault,
         },
         text: {

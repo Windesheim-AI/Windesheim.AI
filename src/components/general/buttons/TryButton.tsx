@@ -55,7 +55,7 @@ export const TryButton = ({
             marginBottom: 20,
         },
         text: {
-            fontSize: 16,
+            fontSize: 15,
             color: textColorScheme ? textColorScheme : fonts.button.color,
             fontWeight: 'bold',
         },

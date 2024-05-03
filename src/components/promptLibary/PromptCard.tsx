@@ -41,14 +41,13 @@ export function PromptCard({ prompt }: Props) {
         },
         title: {
             ...fonts.h2,
-            fontSize: 20,
             color: colors.titleDefault,
         },
         imageContainer: {
             alignItems: 'center',
         },
         toolText: {
-            ...fonts.h3,
+            ...fonts.h5,
             marginTop: 5,
         },
         contentContainer: {
@@ -83,6 +82,9 @@ export function PromptCard({ prompt }: Props) {
             color: colors.text,
             ...fonts.description,
             marginRight: 8,
+        },
+        buttonSpacer: {
+            marginTop: 10,
         },
     });
 
@@ -132,7 +134,7 @@ export function PromptCard({ prompt }: Props) {
                             ) + '...'
                         }
                     />
-
+                    <View style={styles.buttonSpacer} />
                     <View style={styles.buttonContainer}>
                         <ReadMoreButton
                             buttonStyle={styles.button}

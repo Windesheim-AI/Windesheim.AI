@@ -35,6 +35,7 @@ type TextStyling = {
     accent: TextStyle;
     alert: TextStyle;
     button: TextStyle;
+    newTitle: TextStyle;
     buttonLarger: TextStyle;
     seeAll: TextStyle;
     courseTitle: TextStyle;
@@ -76,13 +77,13 @@ export function useFonts() {
 
     const fontMap: TextStyling = {
         h1: {
-            fontSize: 24,
+            fontSize: 21,
             fontWeight: 'bold',
             color: colors.titleDefault,
             fontFamily: areFontsLoaded ? 'Inter_600SemiBold' : 'System',
         },
         h2: {
-            fontSize: 18,
+            fontSize: 15,
             fontWeight: 'bold',
             fontFamily: areFontsLoaded ? 'OpenSans_700Bold' : 'System',
             color: colors.titleDefault,
@@ -117,8 +118,14 @@ export function useFonts() {
         },
         description: {
             color: colors.text,
-            fontSize: 14,
+            fontSize: 12,
             fontFamily: areFontsLoaded ? 'Inter_500Medium' : 'System',
+        },
+        newTitle: {
+            fontSize: 17,
+            fontWeight: 'bold',
+            color: colors.titleDefault,
+            fontFamily: areFontsLoaded ? 'Inter_600SemiBold' : 'System',
         },
         quote: {
             color: colors.text,
@@ -147,7 +154,7 @@ export function useFonts() {
             fontSize: 11,
         },
         homeCard: {
-            fontSize: 13.5,
+            fontSize: 12,
         },
         accent: {
             fontSize: 12,
@@ -160,7 +167,7 @@ export function useFonts() {
             fontWeight: 'bold',
         },
         button: {
-            fontSize: 16,
+            fontSize: 14,
             fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',
             color: colors.buttonText,
         },
@@ -170,13 +177,13 @@ export function useFonts() {
             color: colors.buttonText,
         },
         seeAll: {
-            fontSize: 14,
+            fontSize: 15,
             fontWeight: 'bold',
             color: colors.seeAllText,
             fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',
         },
         courseTitle: {
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: 'bold',
             color: colors.text,
             fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',
@@ -188,7 +195,7 @@ export function useFonts() {
             fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
         chipText: {
-            fontSize: 14,
+            fontSize: 12,
             fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
         smallLink: {
