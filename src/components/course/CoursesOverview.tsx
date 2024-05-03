@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 
 import { CourseCard } from './card/CourseCard';
 import { useFonts } from '../../lib/constants/Fonts';
@@ -53,21 +53,29 @@ export function CoursesOverview({ limit }: Props) {
     }
 
     return (
-        <View testID="test-container">
-            {selectedCourses?.map((course: CourseDataMapped) => (
-                <View
-                    testID={`course-card-${course.courseId}`}
-                    key={course.courseId}
-                >
+        <FlatList
+            testID="test-container"
+            data={selectedCourses}
+            horizontal
+            renderItem={({ item }) => (
+                <View style={styles.courseCardContainer}>
                     <CourseCard
-                        key={course.courseId}
-                        title={course.title}
-                        completedTasks={getAmountCompletedTask(course)}
-                        totalTasks={course.stageData?.length ?? 0}
-                        onPress={() => onPress(course.courseId)}
+                        key={item.courseId}
+                        title={item.title}
+                        completedTasks={getAmountCompletedTask(item)}
+                        totalTasks={item.stageData?.length ?? 0}
+                        onPress={() => onPress(item.courseId)}
                     />
                 </View>
-            ))}
-        </View>
+            )}
+            keyExtractor={(item) => item.courseId}
+        />
     );
 }
+
+const styles = StyleSheet.create({
+    courseCardContainer: {
+        width: 350,
+        marginRight: 20,
+    },
+});
