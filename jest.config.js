@@ -4,7 +4,7 @@ module.exports = {
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
     setupFilesAfterEnv: ['./jest-setup.ts'],
     transformIgnorePatterns: [
-        'node_modules/(?!(jest-)?react-native|@react-native|@react-native-community|@react-navigation|expo-font|expo-modules-core|expo-asset|expo-constants|expo-file-system)',
+        'node_modules/(?!(jest-)?react-native|@react-native|@react-native-community|@react-navigation|expo-font|expo-modules-core|expo-asset|expo-constants|expo-file-system|expo-status-bar)',
     ],
     moduleNameMapper: {
         '\\.(ttf)$': '<rootDir>/fonts.js',
