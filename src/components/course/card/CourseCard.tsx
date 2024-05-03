@@ -76,7 +76,6 @@ export function CourseCard({
         progressBarContainer: {
             flexDirection: 'row',
             marginRight: 30,
-            ...stateColors.highContrastBorder,
         },
         courseNIndiciator: {
             ...fonts.description,
@@ -97,7 +96,6 @@ export function CourseCard({
             paddingRight: 10,
             ...shadow,
             ...fonts.stageTime,
-            ...stateColors.highContrastBorder,
         },
     });
 
