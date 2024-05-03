@@ -41,6 +41,11 @@ export const DisclaimerCard = () => {
             ...fonts.newTitle,
             color: colors.disclaimerText,
         },
+        text: {
+            ...fonts.homeCard,
+            textAlign: 'justify',
+            color: colors.text,
+        },
         exclamationMark: {
             fontSize: sizeExlamationMark,
             fontWeight: 'bold',
@@ -62,7 +67,7 @@ export const DisclaimerCard = () => {
             <View style={styles.container}>
                 <TextTranslated style={styles.title} text="Disclaimer" />
                 <View style={styles.textRow}>
-                    <TextTranslated text={disclaimerText} />
+                    <TextTranslated style={styles.text} text={disclaimerText} />
                     <TextTranslated style={styles.exclamationMark} text="!" />
                 </View>
             </View>

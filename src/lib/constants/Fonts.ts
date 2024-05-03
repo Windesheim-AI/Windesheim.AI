@@ -125,7 +125,6 @@ export function useFonts() {
             fontSize: 17,
             fontWeight: 'bold',
             color: colors.titleDefault,
-            fontFamily: areFontsLoaded ? 'Inter_600SemiBold' : 'System',
         },
         quote: {
             color: colors.text,
