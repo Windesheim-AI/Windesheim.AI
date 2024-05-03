@@ -87,6 +87,8 @@ export function CourseCard({
             alignItems: 'flex-start',
             marginBottom: 0,
             marginRight: 11,
+            paddingLeft: -10,
+            paddingRight: -10,
         },
         button: {
             backgroundColor: colors.bg3,
