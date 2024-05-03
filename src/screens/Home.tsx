@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet, Text } from 'react-native';
 
+import { ToolsCard } from './PromptLibrary/ToolsCard';
 import { SettingsButton } from '../components/general/buttons/SettingButton';
 import { DisclaimerCard } from '../components/general/card/DisclaimerCard';
 import { Introduction } from '../components/general/card/Introduction';
