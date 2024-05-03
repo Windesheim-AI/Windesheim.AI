@@ -172,7 +172,7 @@ export function useFonts() {
             fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',
         },
         courseTitle: {
-            fontSize: 20,
+            fontSize: 16,
             fontWeight: 'bold',
             color: colors.text,
             fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',
