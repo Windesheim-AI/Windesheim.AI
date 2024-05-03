@@ -49,7 +49,9 @@ export const DisclaimerCard = () => {
         exclamationMark: {
             fontSize: sizeExlamationMark,
             fontWeight: 'bold',
-            marginLeft: 10,
+            marginLeft: 15,
+            marginTop: -12,
+            marginBottom: 5,
         },
     });
 
