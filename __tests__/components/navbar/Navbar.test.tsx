@@ -6,6 +6,10 @@ import configureStore from 'redux-mock-store';
 
 import { NavBar } from '../../../src/components/navigation/Navbar';
 
+jest.mock('expo-status-bar', () => ({
+    StatusBar: jest.fn().mockReturnValue(null),
+}));
+
 jest.useFakeTimers();
 
 const mockStore = configureStore([]);
