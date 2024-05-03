@@ -30,7 +30,7 @@ export const Introduction = () => {
             color: colors.titleDefault,
         },
         text: {
-            ...fonts.small,
+            ...fonts.homeCard,
             textAlign: 'justify',
             color: colors.text,
         },
