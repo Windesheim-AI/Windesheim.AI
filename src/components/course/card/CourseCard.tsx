@@ -52,7 +52,7 @@ export function CourseCard({
             borderBottomRightRadius: 10,
         },
         image: {
-            width: '90%',
+            width: '100%',
             height: 180,
             borderTopLeftRadius: 10,
             borderTopRightRadius: 10,
