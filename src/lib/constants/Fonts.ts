@@ -153,7 +153,7 @@ export function useFonts() {
             fontSize: 11,
         },
         homeCard: {
-            fontSize: 12,
+            fontSize: 11,
         },
         accent: {
             fontSize: 12,

@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { Modal, StyleSheet, View } from 'react-native';
 
@@ -24,7 +25,7 @@ export const PromptsTutorial = () => {
     const colors = useColorConfig();
     const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
-
+    const navigation = useNavigation();
     const [modalVisible, setModalVisible] = useState(false);
     const tutorialStep = useAppSelector(
         (state) => state.promptsTutorial.currentStep,
@@ -42,6 +43,7 @@ export const PromptsTutorial = () => {
         const nextStepRoute = promptsTutorialSteps[tutorialStep]?.NextPage;
         HapticFeedback(HapticForces.Light);
         if (nextStepRoute) {
+            navigation.navigate(nextStepRoute as never);
         }
     };
 
