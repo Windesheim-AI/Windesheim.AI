@@ -21,7 +21,7 @@ export function Articles() {
                     titleText="Articles"
                     explainationText="Here you will find a collection of engaging articles highlighting the latest developments, trends and insights in the field of AI. Our experts have carefully selected these articles to give you a deeper insight into the world of AI. With each article on our webpage, we also tag the relevant ELSA categories."
                 />
-                <ArticleLimitedView />
+                <ArticleLimitedView limit={20} />
             </View>
         </PageScrollView>
     );

@@ -1,10 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
+import { FlatList } from 'react-native';
 
 import { EpisodeCard } from './EpisodeCard';
 import { useFonts } from '../../lib/constants/Fonts';
 import usePodcastEpisodes from '../../lib/repositories/podcast/usePodcastEpisodes';
 import { getRandomLimitedItemsFromArray } from '../../lib/utility/data';
+import { PodcastEpisode } from '../../types/PodcastEpisode';
 import { TextTranslated } from '../general/text/TextTranslated';
 
 type Props = {
@@ -34,13 +35,15 @@ export function PodcastEpisodeLimitedView({ limit }: Props) {
         );
     }
 
-    //TODO: put in slidingbar
+    const renderEpisodeCards = ({ item }: { item: PodcastEpisode }) => (
+        <EpisodeCard key={item.id} episode={item} />
+    );
 
     return (
-        <View>
-            {selectedEpisodes?.map((episode) => (
-                <EpisodeCard key={episode.id} episode={episode} />
-            ))}
-        </View>
+        <FlatList
+            horizontal
+            data={selectedEpisodes}
+            renderItem={renderEpisodeCards}
+        />
     );
 }

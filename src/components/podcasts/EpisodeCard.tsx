@@ -1,5 +1,12 @@
+/* eslint-disable complexity */
 import React from 'react';
-import { StyleSheet, View, Image, ImageSourcePropType } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Image,
+    ImageSourcePropType,
+    Text,
+} from 'react-native';
 
 import {
     shadow,
@@ -30,6 +37,8 @@ export function EpisodeCard({ episode }: Props) {
             borderRadius: 10,
             padding: 16,
             marginBottom: 16,
+            marginRight: 15,
+            width: 300,
             ...shadow,
             ...colorStateConfig.highContrastBorder,
         },
@@ -60,7 +69,33 @@ export function EpisodeCard({ episode }: Props) {
     });
 
     // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
-    const episodeImageSource: ImageSourcePropType = require('../../assets/images/bgImages/robot.png');
+    let episodeImageSource: ImageSourcePropType = require('../../assets/images/bgImages/robot.png');
+    if (
+        episode.imageLink !== undefined &&
+        episode.imageLink !== null &&
+        episode.imageLink.length > 0 &&
+        episode.imageLink !== '' &&
+        episode.imageLink !== ' ' &&
+        episode.imageLink !== 'null' &&
+        episode.imageLink !== '0'
+    ) {
+        episodeImageSource = {
+            uri: episode.imageLink,
+        };
+    }
+
+    let episodeDurationtext = '';
+    if (
+        episode.duration !== undefined &&
+        episode.duration !== null &&
+        episode.duration.length > 0 &&
+        episode.duration !== '' &&
+        episode.duration !== ' ' &&
+        episode.duration !== 'null' &&
+        episode.duration !== '0'
+    ) {
+        episodeDurationtext = episode.duration;
+    }
 
     return (
         <InteractiveView
@@ -77,9 +112,10 @@ export function EpisodeCard({ episode }: Props) {
                 <Image source={episodeImageSource} style={styles.image} />
                 <TextTranslated style={styles.titleText} text={episode.title} />
             </View>
+            <Text>{episodeDurationtext}</Text>
             <TextTranslated
                 style={styles.descriptionText}
-                text={episode.date}
+                text={episode.description}
                 numberOfLines={1}
             />
         </InteractiveView>

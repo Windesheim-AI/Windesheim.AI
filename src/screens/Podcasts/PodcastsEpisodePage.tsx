@@ -1,11 +1,11 @@
+/* eslint-disable complexity */
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
-import { Text, Image, StyleSheet } from 'react-native';
+import { Text, Image, StyleSheet, ImageSourcePropType } from 'react-native';
 
 import AudioPlayer from '../../components/audioPlayer/audioPlayer';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
-import { TitleSimple } from '../../components/general/text/TitleSimple';
 import { PageView } from '../../components/general/views/PageView';
 import LoadingScreen from '../../components/loadingscreen/LoadingScreen';
 import { useFonts } from '../../lib/constants/Fonts';
@@ -39,7 +39,7 @@ export function PodcastsEpisodePage() {
         },
         image: {
             alignSelf: 'center',
-            borderRadius: 60,
+            borderRadius: 30,
             height: 300,
             width: 300,
             marginTop: 20,
@@ -80,13 +80,43 @@ export function PodcastsEpisodePage() {
         );
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
+    let episodeImageSource: ImageSourcePropType = require('../../assets/images/bgImages/robot.png');
+    if (
+        episode.imageLink !== undefined &&
+        episode.imageLink !== null &&
+        episode.imageLink.length > 0 &&
+        episode.imageLink !== '' &&
+        episode.imageLink !== ' ' &&
+        episode.imageLink !== 'null' &&
+        episode.imageLink !== '0'
+    ) {
+        episodeImageSource = {
+            uri: episode.imageLink,
+        };
+    }
+
+    let episodeAudioSource = '';
+    if (
+        episode.audioLink !== undefined &&
+        episode.audioLink !== null &&
+        episode.audioLink.length > 0 &&
+        episode.audioLink !== '' &&
+        episode.audioLink !== ' ' &&
+        episode.audioLink !== 'null' &&
+        episode.audioLink !== '0'
+    ) {
+        episodeAudioSource = episode.audioLink;
+    }
+
     return (
         <PageView>
-            <TitleSimple titleText="Podcasts" />
+            {/* TODO: add back button */}
             <Text style={styles.title}>{episode.title}</Text>
             <Text style={styles.date}>{episode.date}</Text>
-            {/* <Image style={styles.image} source={{ uri: podcast.imageUrl }} /> */}
-            {/* <AudioPlayer audioUrl={podcast.audioUrl} /> */}
+            <Image style={styles.image} source={episodeImageSource} />
+            <AudioPlayer audioUrl={episodeAudioSource} />
+            {/* TODO: add episode description text */}
         </PageView>
     );
 }

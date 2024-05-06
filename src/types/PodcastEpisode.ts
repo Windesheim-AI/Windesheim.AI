@@ -4,4 +4,7 @@ export type PodcastEpisode = {
     date: string;
     slug: string;
     description: string;
+    imageLink: string;
+    duration?: string;
+    audioLink?: string;
 };
