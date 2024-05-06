@@ -25,11 +25,11 @@ describe('Courses page tests', () => {
         // get the fixture and put it in a const
         const courses = require('../fixtures/courses/data.json');
 
-        cy.visit('/study/courses');
+        cy.visit('/quizzes');
         cy.wait(['@getCourses']);
 
         // check if the courses are displayed
-        cy.contains('COURSES');
+        cy.contains('Courses');
         cy.contains(courses[0].title);
     });
 
@@ -44,11 +44,11 @@ describe('Courses page tests', () => {
             fixture: 'courses/1-course.json',
         }).as('getCourse');
 
-        cy.visit('/study/courses');
+        cy.visit('/quizzes');
         cy.wait(['@getCourses']);
 
         // check if the courses are displayed
-        cy.contains('COURSES');
+        cy.contains('Courses');
         cy.contains(courses[0].title);
 
         // click on the course
@@ -82,11 +82,11 @@ describe('Courses page tests', () => {
             fixture: 'courses/1-course.json',
         }).as('getCourse');
 
-        cy.visit('/study/courses');
+        cy.visit('/quizzes');
         cy.wait(['@getCourses']);
 
         // check if the courses are displayed
-        cy.contains('COURSES');
+        cy.contains('Courses');
         cy.contains(courses[0].title);
 
         // click on the course
@@ -121,7 +121,7 @@ describe('Courses page tests', () => {
 
         cy.contains('Course not found');
         cy.get('[data-testid="GoBackButton"]').click();
-        cy.contains('COURSES');
+        cy.contains('Courses');
     });
 
     it('does not crash when navigating to non-existing course stage', () => {
@@ -134,6 +134,6 @@ describe('Courses page tests', () => {
 
         cy.contains('Course not found');
         cy.get('[data-testid="GoBackButton"]').click();
-        cy.contains('COURSES');
+        cy.contains('Courses');
     });
 });
