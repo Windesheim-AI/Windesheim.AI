@@ -2,9 +2,9 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { ArticleLimitedView } from '../components/articleLibrary/ArticleLimitedView';
-import { TextTranslated } from '../components/general/text/TextTranslated';
 import { TitleSimple } from '../components/general/text/TitleSimple';
 import { PageScrollView } from '../components/general/views/PageScrollView';
+import { PodcastEpisodeLimitedView } from '../components/podcasts/PodcastEpisodeLimitedView';
 
 export function Articles() {
     return (
@@ -12,9 +12,9 @@ export function Articles() {
             <View>
                 <TitleSimple
                     titleText="Podcasts"
-                    explainationText="Here you will soon find the newest episodes of the official Windesheim.AI podcast."
+                    explainationText="Here you can find the newest episodes of the official Windesheim.AI podcast."
                 />
-                <TextTranslated text="loading..." />
+                <PodcastEpisodeLimitedView />
             </View>
             <View>
                 <TitleSimple
