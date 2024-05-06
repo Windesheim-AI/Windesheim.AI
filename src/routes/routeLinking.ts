@@ -44,6 +44,7 @@ export const RouteLinking = {
                 'settings/edit-background-information',
             [Routes.PromptLibrary]: 'study/prompt-library',
             [Routes.PromptView]: 'study/prompt-library/prompt',
+            [Routes.PodcastsEpisodePage]: 'podcasts/episode',
         },
     },
 };

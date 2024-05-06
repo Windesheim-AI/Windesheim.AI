@@ -8,6 +8,8 @@ import {
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
+import { Routes } from '../../routes/routes';
 import { PodcastEpisode } from '../../types/PodcastEpisode';
 import { TextTranslated } from '../general/text/TextTranslated';
 import { InteractiveView } from '../general/views/InteractiveView';
@@ -18,6 +20,7 @@ type Props = {
 
 export function EpisodeCard({ episode }: Props) {
     const colors = useColorConfig();
+    const navigation = useNavigation();
     const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
 
@@ -65,7 +68,9 @@ export function EpisodeCard({ episode }: Props) {
             testID="episode-card"
             onPress={() => {
                 HapticFeedback(HapticForces.Light);
-                //TODO: put navigation code in here
+                navigation.navigate(Routes.PodcastsEpisodePage, {
+                    episodeId: episode.id,
+                });
             }}
         >
             <View style={styles.headContainer}>

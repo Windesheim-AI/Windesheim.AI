@@ -10,6 +10,7 @@ import { Courses } from '../screens/Course/Courses';
 import Stage from '../screens/Course/Stage';
 import StageOverview from '../screens/Course/StageOverview';
 import { HomeScreen } from '../screens/Home';
+import { PodcastsEpisodePage } from '../screens/Podcasts/PodcastsEpisodePage';
 import { PromptLibrary } from '../screens/PromptLibrary/PromptLibrary';
 import { PromptView } from '../screens/PromptLibrary/PromptView';
 import { Quizzes } from '../screens/Quizzes';
@@ -21,7 +22,6 @@ import BackgroundCollectForm from '../screens/UserBackground/BackgroundCollectFo
 import { BackgroundInfo } from '../screens/UserBackground/BackgroundInfo';
 import { WTRScreen } from '../screens/WTR';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
-
 const Stack = createNativeStackNavigator();
 
 const screens = [
@@ -43,6 +43,7 @@ const screens = [
     { name: Routes.PromptView, component: PromptView },
     { name: Routes.Articles, component: Articles },
     { name: Routes.Quizzes, component: Quizzes },
+    { name: Routes.PodcastsEpisodePage, component: PodcastsEpisodePage },
 ];
 
 export const Router = () => {
