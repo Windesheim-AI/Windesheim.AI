@@ -20,7 +20,7 @@ describe('Prompt Library tests', () => {
         cy.visit('/study/prompt-library');
         cy.wait(['@getData']);
 
-        cy.contains('PROMPT LIBRARY');
+        cy.contains('Prompt library');
         cy.contains(
             'Filter by tool and sector, hold long on a tag to select only that one.',
         );
@@ -42,7 +42,7 @@ describe('Prompt Library tests', () => {
         cy.visit('/study/prompt-library');
         cy.wait(['@getData']);
 
-        cy.contains('PROMPT LIBRARY');
+        cy.contains('Prompt library');
         cy.contains('No prompts found!');
     });
 
@@ -57,7 +57,7 @@ describe('Prompt Library tests', () => {
         cy.visit('/study/prompt-library');
         cy.wait(['@getData']);
 
-        cy.contains('PROMPT LIBRARY');
+        cy.contains('Prompt library');
 
         // Filter on tool
         cy.get('[data-testid="chip-Creative Writing Tool-container"]').click();
@@ -90,7 +90,7 @@ describe('Prompt Library tests', () => {
         cy.visit('/study/prompt-library/prompt?promptId=1');
         cy.wait(['@getData']);
 
-        cy.contains('Prompt Library');
+        cy.contains('Prompt library');
         cy.contains(prompt.title);
         cy.contains(prompt.prompt);
         cy.contains(prompt.description);

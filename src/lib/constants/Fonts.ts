@@ -112,7 +112,7 @@ export function useFonts() {
             fontSize: 15,
         },
         default: {
-            fontSize: 16,
+            fontSize: 13,
             color: colors.text,
             fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
