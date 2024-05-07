@@ -145,6 +145,13 @@ export function PodcastsEpisodePage() {
         episodeAudioSource = episode.audioLink;
     }
 
+    const episodeDate = new Date(episode.date);
+    const episodeDateSting = episodeDate.toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+
     return (
         <PageView>
             <TouchableOpacity onPress={goBack} style={buttonStyle}>
@@ -154,7 +161,7 @@ export function PodcastsEpisodePage() {
                 <Image style={styles.image} source={episodeImageSource} />
             </View>
             <Text style={styles.title}>{episode.title}</Text>
-            <Text style={styles.date}>{episode.date}</Text>
+            <Text style={styles.date}>{episodeDateSting}</Text>
             <Text style={styles.description}>{episode.description}</Text>
             <AudioPlayer audioUrl={episodeAudioSource} />
         </PageView>
