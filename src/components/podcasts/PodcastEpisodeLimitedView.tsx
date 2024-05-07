@@ -35,6 +35,12 @@ export function PodcastEpisodeLimitedView({ limit }: Props) {
         );
     }
 
+    if (selectedEpisodes?.length === 0) {
+        return (
+            <TextTranslated style={fonts.h1} text="No podcasts where found!" />
+        );
+    }
+
     const renderEpisodeCards = ({ item }: { item: PodcastEpisode }) => (
         <EpisodeCard key={item.id} episode={item} />
     );
