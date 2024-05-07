@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
 
 import { WhScrollView } from './WhScrollView';
 import {
@@ -46,7 +46,12 @@ export const PageScrollView = ({
             backgroundColor: colors.background,
             flex: 1,
             minHeight: '100%',
-            padding: 20,
+            paddingHorizontal: 10,
+            paddingTop: 5,
+            paddingBottom: Platform.select({
+                ios: 30,
+                android: 15,
+            }),
         },
         header: {
             ...fonts.h1,

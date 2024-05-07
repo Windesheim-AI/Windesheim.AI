@@ -20,16 +20,13 @@ type LayoutProps = {
 };
 
 export const Layout = ({ children }: LayoutProps) => {
-    const navigation = useAppSelector((state) => state.navigation);
     const colors = useColorConfig();
-
     const styles = StyleSheet.create({
         contentContainer: {
             borderRadius: 15,
             flex: 1,
             margin: 10,
             overflow: 'hidden',
-            paddingBottom: navigation.showNavBar ? 50 : 0,
         },
         innerContainer: {
             backgroundColor: colors.background,

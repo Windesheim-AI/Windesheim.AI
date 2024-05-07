@@ -13,13 +13,18 @@ export type ColorSchemeType = {
     warning: string;
     enabled: string;
     danger: string;
+    toolTag: string;
+    sectorTag: string;
+    patternTag: string;
     disabled: string;
     link: string;
     text: string;
+    tagText: string;
     textLight: string;
     textHighlight: string;
     background: string;
     backgroundHighlight: string;
+    dropdown: string;
     backgroundModal: string;
     tint: string;
     gray: string;
@@ -39,6 +44,7 @@ export type ColorSchemeType = {
     bg2: string;
     bg3: string;
     settingButtonBG: string;
+    windesheimAITitle: string;
     modalBackground: string;
     subtext: string;
     navBar: {
@@ -58,6 +64,10 @@ export type ColorSchemeType = {
     seeAllText: string;
     techProviderGradient: string[];
     subCard: string;
+    previousButton: string;
+    progressBar: string;
+    courseCompleted: string;
+    arrowContainer: string;
     previousButtonColor: string;
     continueButtonColor: string;
 };
@@ -69,15 +79,20 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#FFF377',
         warning: '#ff7300',
         danger: '#EE3135',
+        toolTag: '#74AA9C',
+        sectorTag: '#FFFFFF',
+        patternTag: '#E0B0FF',
         enabled: '#FFF377',
         disabled: '#999',
         buttonText: '#FFD949',
         link: '#ffcb05',
-        text: '#010101',
+        text: '#000000',
+        tagText: '#000000',
         textLight: '#fff',
         textHighlight: '#fff',
         background: '#FFFFF0',
         backgroundHighlight: '#4695D3',
+        dropdown: '#FFF377',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorLight,
         gray: '#919191',
@@ -89,6 +104,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg2: '#FFFFF0',
         bg3: '#FFFFF0',
         settingButtonBG: '#',
+        windesheimAITitle: '#FFD949',
         modalBackground: 'rgba(0,0,0,0.5)',
         subtext: '#a8a7a7',
         navBar: {
@@ -114,7 +130,11 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         completedProgressBar: '#FFD700',
         seeAllText: '#1C1C1C',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
-        subCard: '#FFFFF0',
+        subCard: '#FFFFFF',
+        previousButton: '#FFD700',
+        progressBar: '#C0C0C0',
+        courseCompleted: '#FFD700',
+        arrowContainer: '#FFFFF0',
         previousButtonColor: '#000000',
         continueButtonColor: '#ffcb05',
     },
@@ -124,15 +144,20 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#86d2d9',
         warning: '#ff7300',
         danger: '#EE3135',
+        toolTag: '#74AA9C',
+        sectorTag: '#FFFFFF',
+        patternTag: '#E0B0FF',
         enabled: '#86d2d9',
         disabled: '#999',
         link: '#ffcb05',
-        text: '#fff',
+        text: '#FFFFFF',
+        tagText: '#000000',
         textLight: '#fff',
         textHighlight: '#fff',
         buttonText: '#4695d3',
         background: '#2A2A2A', //Context Container
         backgroundHighlight: '#4695D3',
+        dropdown: '#86d2d9',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorDark,
         gray: '#919191',
@@ -145,6 +170,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg2: '#2A2A2A',
         bg3: '#2A2A2A',
         settingButtonBG: '#373737',
+        windesheimAITitle: '#4695D3',
         subtext: '#a8a7a7',
         navBar: {
             backgroundColor: '#2A2A2A',
@@ -165,11 +191,15 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         lightGrey: '#D3D3D3',
         opacityLayer: 'rgba(0,0,0,0.6)',
         accentTitle: '#757575',
-        progressbarBg: '#373737',
+        progressbarBg: '#f3f3f5',
         completedProgressBar: '#4695d3',
         seeAllText: '#FFFFFF',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
-        subCard: '#252525',
+        subCard: '#373737',
+        previousButton: '#4695d3',
+        progressBar: '#C0C0C0',
+        courseCompleted: '#4695d3',
+        arrowContainer: '#2A2A2A',
         previousButtonColor: '#FFFFFF',
         continueButtonColor: '#4695d3',
     },
@@ -182,15 +212,20 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#FFD700',
         warning: '#FFA500',
         danger: '#FF0000',
+        toolTag: '#74AA9C',
+        sectorTag: '#FFFFFF',
+        patternTag: '#E0B0FF',
         enabled: '#FFD700',
         disabled: '#000000',
         buttonText: '#000000',
         link: '#FFFF00',
         text: '#000000',
+        tagText: '#000000',
         textLight: '#FFFFFF',
         textHighlight: '#FFFFFF',
         background: '#FFFFFF',
         backgroundHighlight: '#0000FF',
+        dropdown: '#FFD700',
         backgroundModal: 'rgba(0, 0, 0, 0.4)',
         tint: '#0000FF',
         gray: '#000000',
@@ -202,6 +237,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg2: '#FFFFFF',
         bg3: '#FFFFFF',
         settingButtonBG: '#FFFFFF',
+        windesheimAITitle: '#000000',
         modalBackground: 'rgba(0, 0, 0, 0.4)',
         subtext: '#000000',
         navBar: {
@@ -227,7 +263,11 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         completedProgressBar: '#FFFFFF',
         accentTitle: '#000000',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
-        subCard: '#f4f3fd', //CONTEXT CONTAINER
+        subCard: '#FFFFFF', //CONTEXT CONTAINER
+        previousButton: '#FFFFFF',
+        progressBar: '#000000',
+        courseCompleted: '#FFD700',
+        arrowContainer: '#FFFFFF',
         previousButtonColor: '#000000',
         continueButtonColor: '#00FF00',
     },
@@ -237,15 +277,20 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         success: '#4695d3',
         warning: '#FFA500',
         danger: '#FF0000',
+        toolTag: '#74AA9C',
+        sectorTag: '#FFFFFF',
+        patternTag: '#E0B0FF',
         enabled: '#4695d3',
         disabled: '#FFFFFF',
         link: '#FFFF00',
         text: '#FFFFFF',
+        tagText: '#000000',
         textLight: '#FFFFFF',
         textHighlight: '#FFFFFF',
         buttonText: '#FFFFFF',
         background: '#000000',
         backgroundHighlight: '#0000FF',
+        dropdown: '#4695d3',
         backgroundModal: 'rgba(0,0,0,0.4)',
         tint: '#FFFFFF',
         gray: '#6e6e6e',
@@ -258,6 +303,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         bg2: '#000',
         bg3: '#000',
         settingButtonBG: '#000000',
+        windesheimAITitle: '#FFFFFF',
         subtext: '#fff',
         navBar: {
             backgroundColor: '#000000',
@@ -282,7 +328,11 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         progressbarBg: '#FFFFFF',
         completedProgressBar: '#000000',
         techProviderGradient: ['#1c4e7a', '#0080bf', '#5c8ebf'],
-        subCard: '#1C1C1C',
+        subCard: '#000000',
+        previousButton: '#000000',
+        progressBar: '#FFFFFF',
+        courseCompleted: '#4695d3',
+        arrowContainer: '#000000',
         previousButtonColor: '#FFFFFF',
         continueButtonColor: '#0000FF',
     },
@@ -343,20 +393,20 @@ export type StateColorGradientSchemes = {
 };
 
 export const stateColorSchemes: StateColorGradientSchemes = {
-    primary: ['#4695D3', '#22BDC6', '#86D2D9'],
+    primary: ['#FFF377', '#74AA9C', '#FFF377'],
     info: ['#4695D3', '#22BDC6', '#86D2D9'],
-    secondary: ['#FFCB05', '#FFD949', '#FFF377'],
-    success: ['#FFF377', '#FFF377', '#FFF377'],
-    warning: ['#ff7300', '#f59e56', '#ffcc66'],
+    secondary: ['#86d2d9', '#74AA9C', '#86d2d9'],
+    success: ['#FFF377', '#74AA9C', '#FFF377'],
+    warning: ['#86d2d9', '#74AA9C', '#86d2d9'],
     danger: ['#EE3135', '#F16682', '#F287B7'],
 };
 
 const highContrastStateColorSchemes: StateColorGradientSchemes = {
-    primary: ['#0000FF', '#0000FF', '#0000FF'],
+    primary: ['#FFFFFF', '#74AA9C', '#FFFFFF'],
     info: ['#0000FF', '#0000FF', '#0000FF'],
-    secondary: ['#FFFF00', '#FFFF00', '#FFFF00'],
-    success: ['#FFD700', '#FFD700', '#FFD700'],
-    warning: ['#FFA500', '#FFA500', '#FFA500'],
+    secondary: ['#000000', '#74AA9C', '#000000'],
+    success: ['#FFFFFF', '#74AA9C', '#FFFFFF'],
+    warning: ['#000000', '#74AA9C', '#000000'],
     danger: ['#FF0000', '#FF0000', '#FF0000'],
 };
 
@@ -420,6 +470,7 @@ function useCurrentStateColorScheme(): StateColorGradientSchemes {
 }
 
 type ColorStateConfig = {
+    theme: string;
     colors: ReturnType<typeof useCurrentStateColorScheme>;
     text: ReturnType<typeof useCurrentStateTextColorScheme>;
     highContrastBorder: ReturnType<typeof useHighContrastBorderIfNecessary>;
@@ -428,6 +479,7 @@ type ColorStateConfig = {
 
 export function useColorStateConfig(): ColorStateConfig {
     return {
+        theme: useCurrentTheme(),
         colors: useCurrentStateColorScheme(),
         text: useCurrentStateTextColorScheme(),
         highContrastBorder: useHighContrastBorderIfNecessary(),

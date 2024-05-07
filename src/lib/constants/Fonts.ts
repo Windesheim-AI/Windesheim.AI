@@ -10,7 +10,7 @@ import { useAppSelector } from '../redux/Hooks';
 export const MaxSize = 40;
 export const MinSize = 12;
 export const StepSize = 1;
-export const DefaultSize = 24;
+export const DefaultSize = 20;
 
 // Fonts work as follows;
 // The setting is the font ratio; MaxSize is max, MinSize is min, StepSize is the step size, and DefaultSize is the default size.
@@ -30,10 +30,12 @@ type TextStyling = {
     description: TextStyle;
     link: TextStyle;
     small: TextStyle;
+    homeCard: TextStyle;
     quote: TextStyle;
     accent: TextStyle;
     alert: TextStyle;
     button: TextStyle;
+    newTitle: TextStyle;
     buttonLarger: TextStyle;
     seeAll: TextStyle;
     courseTitle: TextStyle;
@@ -75,13 +77,13 @@ export function useFonts() {
 
     const fontMap: TextStyling = {
         h1: {
-            fontSize: 24,
+            fontSize: 21,
             fontWeight: 'bold',
             color: colors.titleDefault,
             fontFamily: areFontsLoaded ? 'Inter_600SemiBold' : 'System',
         },
         h2: {
-            fontSize: 18,
+            fontSize: 15,
             fontWeight: 'bold',
             fontFamily: areFontsLoaded ? 'OpenSans_700Bold' : 'System',
             color: colors.titleDefault,
@@ -100,7 +102,7 @@ export function useFonts() {
             color: colors.titleDefault,
         },
         h6: {
-            fontSize: 12,
+            fontSize: 11,
             color: colors.titleDefault,
         },
         icon: {
@@ -110,14 +112,19 @@ export function useFonts() {
             fontSize: 15,
         },
         default: {
-            fontSize: 16,
+            fontSize: 13,
             color: colors.text,
             fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
         description: {
             color: colors.text,
-            fontSize: 14,
+            fontSize: 12,
             fontFamily: areFontsLoaded ? 'Inter_500Medium' : 'System',
+        },
+        newTitle: {
+            fontSize: 17,
+            fontWeight: 'bold',
+            color: colors.titleDefault,
         },
         quote: {
             color: colors.text,
@@ -143,7 +150,10 @@ export function useFonts() {
             color: colors.subtext,
         },
         small: {
-            fontSize: 10,
+            fontSize: 11,
+        },
+        homeCard: {
+            fontSize: 11,
         },
         accent: {
             fontSize: 12,
@@ -156,7 +166,7 @@ export function useFonts() {
             fontWeight: 'bold',
         },
         button: {
-            fontSize: 16,
+            fontSize: 14,
             fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',
             color: colors.buttonText,
         },
@@ -166,13 +176,13 @@ export function useFonts() {
             color: colors.buttonText,
         },
         seeAll: {
-            fontSize: 14,
+            fontSize: 15,
             fontWeight: 'bold',
             color: colors.seeAllText,
             fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',
         },
         courseTitle: {
-            fontSize: 20,
+            fontSize: 14,
             fontWeight: 'bold',
             color: colors.text,
             fontFamily: areFontsLoaded ? 'Nunito_Bold' : 'System',
@@ -184,7 +194,7 @@ export function useFonts() {
             fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
         chipText: {
-            fontSize: 14,
+            fontSize: 12,
             fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
         smallLink: {

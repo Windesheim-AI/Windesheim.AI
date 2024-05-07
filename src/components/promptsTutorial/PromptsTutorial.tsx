@@ -1,7 +1,8 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { Modal, StyleSheet, View, Image } from 'react-native';
+import { Modal, StyleSheet, View } from 'react-native';
 
-import { tutorialSteps } from './TutorialSteps';
+import { promptsTutorialSteps } from './PromptsTutorialSteps';
 import {
     uppershadow,
     useColorConfig,
@@ -14,43 +15,32 @@ import {
     nextStep,
     setCompleted,
     previousStep,
-} from '../../lib/redux/slices/TutorialSlice';
-import { useNavigation } from '../../lib/utility/navigation/useNavigation';
+} from '../../lib/redux/slices/PromptsTutorialSlice';
 import ProgressBar from '../general/base/ProgressBar';
 import { StepButton } from '../general/buttons/StepButton';
 import { TextTranslated } from '../general/text/TextTranslated';
 
-export const Tutorial = () => {
+export const PromptsTutorial = () => {
     const storeDispatcher = useAppDispatch();
     const colors = useColorConfig();
     const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
-
     const [modalVisible, setModalVisible] = useState(false);
-    const layoutState = useAppSelector((state) => state.layout);
-    const animationState = useAppSelector((state) => state.animation);
-    const loadingState = useAppSelector((state) => state.loading);
-    const tutorialStep = useAppSelector((state) => state.tutorial.currentStep);
+    const tutorialStep = useAppSelector(
+        (state) => state.promptsTutorial.currentStep,
+    );
     const tutorialCompleted = useAppSelector(
-        (state) => state.tutorial.tutorialCompleted,
+        (state) => state.promptsTutorial.tutorialCompleted,
     );
 
     useEffect(() => {
-        setModalVisible(
-            !layoutState.isSplashVisible &&
-                !tutorialCompleted &&
-                !loadingState.isLoading,
-        );
-    }, [
-        layoutState.isSplashVisible,
-        tutorialCompleted,
-        loadingState.isLoading,
-    ]);
+        setModalVisible(!tutorialCompleted);
+    }, [tutorialCompleted]);
 
     const handleNext = () => {
         storeDispatcher(nextStep());
-        const nextStepRoute = tutorialSteps[tutorialStep]?.NextPage;
+        const nextStepRoute = promptsTutorialSteps[tutorialStep]?.NextPage;
         HapticFeedback(HapticForces.Light);
         if (nextStepRoute) {
             navigation.navigate(nextStepRoute as never);
@@ -59,11 +49,6 @@ export const Tutorial = () => {
 
     const handlePrevious = () => {
         storeDispatcher(previousStep());
-        const previousStepRoute = tutorialSteps[tutorialStep]?.PreviousPage;
-        HapticFeedback(HapticForces.Light);
-        if (previousStepRoute) {
-            navigation.navigate(previousStepRoute as never);
-        }
     };
 
     const styles = StyleSheet.create({
@@ -109,41 +94,30 @@ export const Tutorial = () => {
             margin: 20,
             ...colorStateConfig.highContrastBorder,
         },
-        imageStyle: {
-            width: '100%',
-            position: 'relative',
-            height: 570,
-        },
     });
 
     return (
         <View style={styles.container}>
             <Modal
-                animationType={animationState.isEnabled ? 'slide' : 'none'}
+                animationType="slide"
                 transparent
                 visible={modalVisible}
                 onRequestClose={() => {
                     setModalVisible(false);
                 }}
             >
-                {tutorialStep === 0 ? (
-                    <Image
-                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                        source={require('../../assets/images/bgImages/tutorial_bg.jpg')}
-                        style={styles.imageStyle}
-                    />
-                ) : null}
-                {/* Description Box*/}
                 <View style={styles.modalBackground}>
                     <View style={styles.modalContent}>
                         <TextTranslated
                             style={styles.modalText}
-                            text={tutorialSteps[tutorialStep].Title}
+                            text={promptsTutorialSteps[tutorialStep].Title}
                         />
                         <View style={styles.description}>
                             <TextTranslated
                                 style={styles.subText}
-                                text={tutorialSteps[tutorialStep].Subtext}
+                                text={
+                                    promptsTutorialSteps[tutorialStep].Subtext
+                                }
                             />
                         </View>
 
@@ -158,21 +132,27 @@ export const Tutorial = () => {
                                 storeDispatcher(setCompleted(true));
                             }}
                             onNextPress={() => {
-                                if (tutorialStep < tutorialSteps.length - 1) {
+                                if (
+                                    tutorialStep <
+                                    promptsTutorialSteps.length - 1
+                                ) {
                                     handleNext();
-                                    return;
                                 }
-                                // Handle logic for finishing the tutorial
-                                storeDispatcher(setCompleted(true));
+                                if (
+                                    tutorialStep ===
+                                    promptsTutorialSteps.length - 1
+                                ) {
+                                    storeDispatcher(setCompleted(true));
+                                }
                             }}
                         />
-                        {/* progressBar */}
                         <View style={styles.progressBar}>
                             <ProgressBar
                                 width={0.9}
                                 height={10}
                                 progress={
-                                    tutorialStep / (tutorialSteps.length - 1)
+                                    tutorialStep /
+                                    (promptsTutorialSteps.length - 1)
                                 }
                                 testId="myProgressBar"
                             />

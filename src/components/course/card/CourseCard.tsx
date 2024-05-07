@@ -6,9 +6,9 @@ import {
     shadow,
     useColorConfig,
     useColorStateConfig,
+    useCurrentTheme,
 } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
-import { usePreparedTranslator } from '../../../lib/translations/hooks';
 import { Card } from '../../general/base/Card';
 import { IconLine } from '../../general/base/IconLine';
 import { CheckMarkFlag } from '../../general/base/checkFlagMark';
@@ -19,8 +19,6 @@ type Props = {
     title: string | undefined;
     completedTasks: number;
     totalTasks: number;
-    level: string;
-    likes: number;
     onPress: () => void;
 };
 
@@ -28,15 +26,14 @@ export function CourseCard({
     title,
     completedTasks,
     totalTasks,
-    level,
-    likes,
     onPress,
 }: Props) {
     const colors = useColorConfig();
     const fonts = useFonts();
     const stateColors = useColorStateConfig();
+    const theme = useCurrentTheme();
     const isCompleted = completedTasks === totalTasks;
-
+    const iconColor = theme === 'dark' ? '#FFFFFF' : '#000000';
     const styles = StyleSheet.create({
         card: {
             padding: 0,
@@ -56,12 +53,12 @@ export function CourseCard({
         },
         image: {
             width: '100%',
-            height: 100,
+            height: 180,
             borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
         },
         title: {
             ...fonts.courseTitle,
-            // warp title
             flexWrap: 'wrap',
         },
         titleContainer: {
@@ -70,8 +67,8 @@ export function CourseCard({
         },
         progressBar: {
             height: 7,
-            borderColor: colors.listItemBg,
-            backgroundColor: colors.subCard,
+            backgroundColor: colors.progressbarBg,
+            marginBottom: 5,
             marginTop: 5,
             borderRadius: 10,
             ...shadow,
@@ -79,7 +76,6 @@ export function CourseCard({
         progressBarContainer: {
             flexDirection: 'row',
             marginRight: 30,
-            ...stateColors.highContrastBorder,
         },
         courseNIndiciator: {
             ...fonts.description,
@@ -88,28 +84,20 @@ export function CourseCard({
         infoMarginContainer: {
             marginTop: 'auto',
             alignItems: 'flex-start',
-            marginBottom: 10,
-            marginRight: 10,
-        },
-        iconLines: {
-            marginBottom: 10,
-            display: 'none',
+            marginBottom: 0,
+            marginRight: 11,
+            paddingLeft: -10,
+            paddingRight: -10,
         },
         button: {
             backgroundColor: colors.bg3,
             borderRadius: 10,
-            paddingTop: 7,
-            paddingBottom: 7,
-            paddingLeft: 14,
-            paddingRight: 14,
-            marginTop: 10,
+            paddingLeft: 10,
+            paddingRight: 10,
             ...shadow,
             ...fonts.stageTime,
-            ...stateColors.highContrastBorder,
         },
     });
-
-    const t = usePreparedTranslator();
 
     return (
         <InteractiveView onPress={onPress} testID="course-card">
@@ -126,6 +114,7 @@ export function CourseCard({
                             <Bar
                                 progress={completedTasks / totalTasks}
                                 color={colors.completedProgressBar}
+                                borderRadius={10}
                                 style={styles.progressBar}
                             />
                             <TextTranslated
@@ -138,30 +127,12 @@ export function CourseCard({
                 <View style={styles.infoSide}>
                     {/* star icon */}
                     <View style={styles.infoMarginContainer}>
-                        <IconLine
-                            text={`${t('Level')} ${level}`}
-                            iconName="star"
-                            iconColor={stateColors.colors.secondary[1]}
-                            textStyle={{ color: colors.text }}
-                            iconPosition="left"
-                            size={20}
-                            style={styles.iconLines}
-                        />
-                        <IconLine
-                            text={likes.toString()}
-                            iconName="heart"
-                            iconColor={stateColors.colors.danger[0]}
-                            textStyle={{ color: colors.text }}
-                            iconPosition="left"
-                            size={20}
-                            style={styles.iconLines}
-                        />
                         <View style={styles.button}>
                             <IconLine
                                 text="Start"
                                 iconName="play"
-                                iconColor={colors.white}
-                                textStyle={{ color: colors.white }}
+                                iconColor={iconColor}
+                                textStyle={{ color: colors.text }}
                                 iconPosition="left"
                                 size={20}
                             />

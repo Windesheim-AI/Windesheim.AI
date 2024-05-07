@@ -1,11 +1,20 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
-import { Text, StyleSheet, View, Linking } from 'react-native';
+import {
+    Text,
+    StyleSheet,
+    View,
+    TouchableOpacity,
+    ViewStyle,
+    Image,
+} from 'react-native';
 import { Chip } from 'react-native-paper';
 
+import arrowLeft from '../../assets/images/Icon/go_back_arrow.png';
 import { Card } from '../../components/general/base/Card';
-import { Button } from '../../components/general/buttons/Button';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
+import { TryButton } from '../../components/general/buttons/TryButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { PageView } from '../../components/general/views/PageView';
@@ -14,15 +23,17 @@ import {
     shadow,
     useColorConfig,
     useColorStateConfig,
+    useCurrentTheme,
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import useSinglePrompt from '../../lib/repositories/promptLibrary/useSinglePrompt';
+import { openBrowserPopup } from '../../lib/utility/browserPopup';
 import { getEnvValue } from '../../lib/utility/env/env';
 import { EnvOptions } from '../../lib/utility/env/env.values';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { removeSlashes } from '../../lib/utility/stringutils';
 import { Routes } from '../../routes/routes';
-
 export type PromptPageProps = {
     promptId: string;
 };
@@ -35,11 +46,25 @@ export function PromptView() {
     const route = useRoute();
     const params = route.params as PromptPageProps;
     const promptId = params.promptId;
-
+    const currentTheme = useCurrentTheme();
     const { data, isLoading, error } = useSinglePrompt(promptId);
     const prompt = data;
     const wordPressContentUrl = getEnvValue(EnvOptions.WordPressContentURL);
-
+    const goBack = () => {
+        HapticFeedback(HapticForces.Light);
+        navigation.goBack();
+    };
+    const buttonContainerStyle: ViewStyle = {
+        position: 'absolute',
+        top: 0,
+        right: 10,
+        marginLeft: 20,
+    };
+    const iconStyle = {
+        width: 37,
+        height: 37,
+        tintColor: currentTheme === 'dark' ? '#FFFFFF' : 'black',
+    };
     const styles = StyleSheet.create({
         title: {
             ...fonts.h1,
@@ -64,32 +89,38 @@ export function PromptView() {
         sectorTag: {
             marginRight: 5,
             marginBottom: 5,
-            backgroundColor: colorStateConfig.colors.success[1],
-            borderColor: colorStateConfig.colors.success[1],
-            color: colorStateConfig.text?.success ?? colors.white,
+            backgroundColor: colors.sectorTag,
+            borderColor: colors.sectorTag,
+            color: colors.tagText,
             ...shadow,
             ...colorStateConfig.highContrastBorder,
         },
         toolTag: {
             marginRight: 5,
             marginBottom: 5,
-            backgroundColor: colorStateConfig.colors.primary[1],
-            borderColor: colorStateConfig.colors.primary[1],
-            color: colorStateConfig.text?.primary ?? colors.white,
+            backgroundColor: colors.toolTag,
+            borderColor: colors.toolTag,
+            color: colors.tagText,
             ...shadow,
             ...colorStateConfig.highContrastBorder,
         },
         promptPatternTag: {
             marginRight: 5,
             marginBottom: 5,
-            backgroundColor: colorStateConfig.colors.danger[1],
-            borderColor: colorStateConfig.colors.danger[1],
-            color: colorStateConfig.text?.danger ?? colors.white,
+            backgroundColor: colors.patternTag,
+            borderColor: colors.patternTag,
+            color: colors.tagText,
             ...shadow,
             ...colorStateConfig.highContrastBorder,
         },
         chipText: {
             ...fonts.chipText,
+        },
+        titlePrompt: {
+            fontSize: 20,
+            fontWeight: 'bold',
+            paddingRight: 30,
+            color: colors.text,
         },
     });
 
@@ -131,20 +162,25 @@ export function PromptView() {
     }
 
     return (
-        <PageScrollView title={removeSlashes(prompt.title)}>
-            <GoBackButton
-                onPress={() => navigation.navigate(Routes.PromptLibrary)}
-                buttonText="Prompt Library"
-            />
+        <PageScrollView>
+            <View>
+                <Text style={styles.titlePrompt}>
+                    {removeSlashes(prompt.title)}
+                </Text>
+            </View>
+            <TouchableOpacity onPress={goBack} style={buttonContainerStyle}>
+                <Image source={arrowLeft} style={iconStyle} />
+            </TouchableOpacity>
             <View style={styles.tagContainer}>
                 <Chip
                     style={styles.toolTag}
                     mode="outlined"
                     textStyle={{
                         ...styles.chipText,
-                        color: colorStateConfig.text?.primary,
+                        color: colors.tagText,
                     }}
                     icon="wrench"
+                    theme={{ colors: { primary: 'black' } }}
                 >
                     {prompt.tool}
                 </Chip>
@@ -153,9 +189,10 @@ export function PromptView() {
                     mode="outlined"
                     textStyle={{
                         ...styles.chipText,
-                        color: colorStateConfig.text?.success,
+                        color: colors.tagText,
                     }}
                     icon="briefcase"
+                    theme={{ colors: { primary: 'black' } }}
                 >
                     {prompt.sector}
                 </Chip>
@@ -164,9 +201,10 @@ export function PromptView() {
                     mode="outlined"
                     textStyle={{
                         ...styles.chipText,
-                        color: colorStateConfig.text?.danger,
+                        color: colors.tagText,
                     }}
                     icon="clipboard"
+                    theme={{ colors: { primary: 'black' } }}
                 >
                     {prompt.promptPattern}
                 </Chip>
@@ -183,19 +221,20 @@ export function PromptView() {
                     {removeSlashes(prompt.prompt)}
                 </Text>
             </Card>
-
-            {/* link to the tool open URL in app */}
-            <Button
-                buttonText="Try it yourself"
-                onPress={() => {
-                    // eslint-disable-next-line no-void
-                    void Linking.openURL(
-                        `${wordPressContentUrl}/prompts?id=${prompt.id}`,
-                    );
-                }}
-                colorGradientScheme={colorStateConfig.colors.primary}
-                textColorScheme={colorStateConfig.text?.primary}
-            />
+            <View>
+                {/* link to the tool open URL in app */}
+                <TryButton
+                    buttonText="Try it yourself !"
+                    onPress={() => {
+                        openBrowserPopup(
+                            `${wordPressContentUrl}/prompts?id=${prompt.id}`,
+                        );
+                    }}
+                    textColorScheme={
+                        colorStateConfig.theme === 'dark' ? 'white' : 'black'
+                    }
+                />
+            </View>
         </PageScrollView>
     );
 }

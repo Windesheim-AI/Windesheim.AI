@@ -98,7 +98,11 @@ export function TechProviderCard({
                 </LinearGradient>
 
                 <View style={styles.contentContainer}>
-                    <TextTranslated style={styles.title} text={name} />
+                    <TextTranslated
+                        style={styles.title}
+                        text={name}
+                        numberOfLines={1}
+                    />
                 </View>
             </View>
         </InteractiveView>

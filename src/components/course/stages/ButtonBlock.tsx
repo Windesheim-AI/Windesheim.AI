@@ -12,11 +12,9 @@ export default function ButtonBlock({ options }: { options: ButtonOptions }) {
     const colorStateConfig = useColorStateConfig();
     const navigator = useNavigation();
 
-    let colorGradientScheme = colorStateConfig.colors.primary;
     let textColorScheme = colorStateConfig.text?.primary;
     // check if colorOptions exists on options and if so, use that instead of the default colorGradientScheme.
     if (colorStateConfig.colors[options.colorOptions]) {
-        colorGradientScheme = colorStateConfig.colors[options.colorOptions];
         textColorScheme = colorStateConfig.text
             ? colorStateConfig.text[options.colorOptions]
             : undefined;
@@ -40,7 +38,6 @@ export default function ButtonBlock({ options }: { options: ButtonOptions }) {
         <BlockWrapper style={styles.block}>
             <Button
                 buttonText={options.text}
-                colorGradientScheme={colorGradientScheme}
                 textColorScheme={textColorScheme}
                 onPress={onPress}
             />
