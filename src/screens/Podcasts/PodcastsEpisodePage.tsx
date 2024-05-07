@@ -18,7 +18,11 @@ import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
 import LoadingScreen from '../../components/loadingscreen/LoadingScreen';
-import { shadow, useCurrentTheme } from '../../lib/constants/Colors';
+import {
+    shadow,
+    useColorConfig,
+    useCurrentTheme,
+} from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import useSinglePodcastEpisode from '../../lib/repositories/podcast/useSinglePodcastEpisode';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -35,6 +39,7 @@ export function PodcastsEpisodePage() {
     const route = useRoute();
     const params = route.params as EpisodePageProps;
     const episodeId = params.episodeId;
+    const colors = useColorConfig();
     const goBack = () => {
         navigation.goBack();
     };
@@ -65,6 +70,7 @@ export function PodcastsEpisodePage() {
             marginBottom: 16,
             fontStyle: 'italic',
             fontSize: 14,
+            color: colors.text,
         },
         imageContainer: {
             alignSelf: 'center',

@@ -10,7 +10,7 @@ import PauseButton from '../../assets/images/Icon/pause-button.png';
 import PlayButton from '../../assets/images/Icon/play-button.png';
 import RewindButton from '../../assets/images/Icon/rewind-button.png';
 import StopButton from '../../assets/images/Icon/stop-button.png';
-import { useColorConfig } from '../../lib/constants/Colors';
+import { useColorConfig, useCurrentTheme } from '../../lib/constants/Colors';
 
 interface AudioPlayerProps {
     audioUrl: string;
@@ -21,6 +21,7 @@ export default function AudioPlayer({ audioUrl }: AudioPlayerProps) {
     const [playbackPosition, setPlaybackPosition] = useState<number>(0);
     const [duration, setDuration] = useState<number>(0);
     const colors = useColorConfig();
+    const currentTheme = useCurrentTheme();
     useEffect(() => {
         if (sound) {
             sound.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
@@ -103,6 +104,9 @@ export default function AudioPlayer({ audioUrl }: AudioPlayerProps) {
         const seconds = ((time % 60000) / 1000).toFixed(0);
         return `${minutes}:${parseInt(seconds, 10) < 10 ? '0' : ''}${seconds}`;
     }
+    const iconStyle = {
+        tintColor: currentTheme === 'dark' ? '#FFFFFF' : 'black',
+    };
     const styles = StyleSheet.create({
         wrapper: {
             marginTop: 10,
@@ -129,17 +133,19 @@ export default function AudioPlayer({ audioUrl }: AudioPlayerProps) {
             width: 40,
             height: 40,
             marginHorizontal: 15,
+            tintColor: iconStyle.tintColor,
         },
         MainButton: {
             width: 60,
             height: 60,
             marginHorizontal: 10,
+            tintColor: iconStyle.tintColor,
         },
     });
     return (
         <View style={styles.wrapper}>
             <View style={styles.container}>
-                <Text style={styles.timecode}>
+                <Text style={[styles.timecode, { color: iconStyle.tintColor }]}>
                     {formatTime(playbackPosition)}/{formatTime(duration)}
                 </Text>
                 <View style={styles.buttonContainer}>
