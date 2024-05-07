@@ -38,13 +38,13 @@ export function EpisodeCard({ episode }: Props) {
             padding: 16,
             marginBottom: 16,
             marginRight: 15,
-            width: 300,
+            width: 260,
             ...shadow,
             ...colorStateConfig.highContrastBorder,
         },
         headContainer: {
             flex: 1,
-            alignItems: 'center',
+            alignItems: 'flex-start',
             flexDirection: 'row',
         },
         image: {
@@ -57,14 +57,22 @@ export function EpisodeCard({ episode }: Props) {
         },
         titleText: {
             width: '80%',
-            ...fonts.h2,
+            ...fonts.alert,
             color: colors.titleDefault,
+            marginBottom: 10,
         },
         descriptionText: {
             ...fonts.description,
             flexWrap: 'wrap',
             fontSize: 10,
             flexShrink: 1,
+        },
+        imageContainer: {
+            marginRight: 5,
+            marginBottom: 4,
+        },
+        contentContainer: {
+            flex: 1,
         },
     });
 
@@ -109,15 +117,22 @@ export function EpisodeCard({ episode }: Props) {
             }}
         >
             <View style={styles.headContainer}>
-                <Image source={episodeImageSource} style={styles.image} />
-                <TextTranslated style={styles.titleText} text={episode.title} />
+                <View style={styles.imageContainer}>
+                    <Image source={episodeImageSource} style={styles.image} />
+                </View>
+                <View style={styles.contentContainer}>
+                    <TextTranslated
+                        style={styles.titleText}
+                        text={episode.title}
+                    />
+                    <TextTranslated
+                        style={styles.descriptionText}
+                        text={episode.description}
+                        numberOfLines={3}
+                    />
+                </View>
             </View>
             <Text>{episodeDurationtext}</Text>
-            <TextTranslated
-                style={styles.descriptionText}
-                text={episode.description}
-                numberOfLines={1}
-            />
         </InteractiveView>
     );
 }

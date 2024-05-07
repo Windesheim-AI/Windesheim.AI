@@ -53,7 +53,7 @@ export function PodcastsEpisodePage() {
         },
         imageContainer: {
             alignSelf: 'center',
-            marginTop: 20,
+            marginTop: 0,
             marginBottom: 20,
             ...shadow,
         },
