@@ -1,13 +1,20 @@
 /* eslint-disable complexity */
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
-import { Text, Image, StyleSheet, ImageSourcePropType } from 'react-native';
+import {
+    Text,
+    Image,
+    StyleSheet,
+    ImageSourcePropType,
+    View,
+} from 'react-native';
 
 import AudioPlayer from '../../components/audioPlayer/audioPlayer';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
 import LoadingScreen from '../../components/loadingscreen/LoadingScreen';
+import { shadow } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import useSinglePodcastEpisode from '../../lib/repositories/podcast/useSinglePodcastEpisode';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -31,19 +38,29 @@ export function PodcastsEpisodePage() {
     const styles = StyleSheet.create({
         title: {
             ...fonts.h1,
-            textAlign: 'center',
+            textAlign: 'left',
+            marginLeft: 10,
+        },
+        description: {
+            ...fonts.description,
+            textAlign: 'left',
+            marginLeft: 10,
         },
         date: {
             ...fonts.description,
-            textAlign: 'center',
+            textAlign: 'left',
+            marginLeft: 10,
+        },
+        imageContainer: {
+            alignSelf: 'center',
+            marginTop: 20,
+            marginBottom: 20,
+            ...shadow,
         },
         image: {
-            alignSelf: 'center',
             borderRadius: 30,
-            height: 300,
-            width: 300,
-            marginTop: 20,
-            marginBottom: 10,
+            height: 320,
+            width: 320,
         },
     });
 
@@ -85,7 +102,6 @@ export function PodcastsEpisodePage() {
     if (
         episode.imageLink !== undefined &&
         episode.imageLink !== null &&
-        episode.imageLink.length > 0 &&
         episode.imageLink !== '' &&
         episode.imageLink !== ' ' &&
         episode.imageLink !== 'null' &&
@@ -100,7 +116,6 @@ export function PodcastsEpisodePage() {
     if (
         episode.audioLink !== undefined &&
         episode.audioLink !== null &&
-        episode.audioLink.length > 0 &&
         episode.audioLink !== '' &&
         episode.audioLink !== ' ' &&
         episode.audioLink !== 'null' &&
@@ -111,12 +126,17 @@ export function PodcastsEpisodePage() {
 
     return (
         <PageView>
-            {/* TODO: add back button */}
+            <GoBackButton
+                buttonText="Back"
+                onPress={() => navigation.goBack()}
+            />
+            <View style={styles.imageContainer}>
+                <Image style={styles.image} source={episodeImageSource} />
+            </View>
             <Text style={styles.title}>{episode.title}</Text>
             <Text style={styles.date}>{episode.date}</Text>
-            <Image style={styles.image} source={episodeImageSource} />
             <AudioPlayer audioUrl={episodeAudioSource} />
-            {/* TODO: add episode description text */}
+            <Text style={styles.description}>{episode.description}</Text>
         </PageView>
     );
 }
