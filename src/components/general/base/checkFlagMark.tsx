@@ -19,12 +19,12 @@ export function CheckMarkFlag() {
             borderTopEndRadius: 2,
             paddingTop: 10,
             backgroundColor: colors.success,
-            color: colors.white,
+            color: colors.text,
             fontSize: 20,
             ...shadow,
         },
         checkmark: {
-            color: colors.white,
+            color: colors.text,
             fontSize: 20,
         },
     });

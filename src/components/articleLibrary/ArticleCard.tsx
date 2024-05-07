@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React from 'react';
 import { StyleSheet, View, Image, ImageSourcePropType } from 'react-native';
 
@@ -5,6 +6,8 @@ import {
     shadow,
     useColorConfig,
     useColorStateConfig,
+    useCurrentHighContrastMode,
+    useCurrentTheme,
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
@@ -17,19 +20,32 @@ type Props = {
     article: Article;
 };
 
+function getTagTextColor(theme: string, isHighContrast: boolean) {
+    return theme === 'light'
+        ? isHighContrast
+            ? '#000000'
+            : '#000000'
+        : isHighContrast
+          ? '#FFFFFF'
+          : '#FFFFFF';
+}
+
 export function ArticleCard({ article }: Props) {
     const colors = useColorConfig();
     const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
-
+    const theme = useCurrentTheme();
+    const isHighContrast = useCurrentHighContrastMode();
+    const tagTextColor = getTagTextColor(theme, isHighContrast);
     const styles = StyleSheet.create({
         card: {
             backgroundColor: colors.listItemBg,
-            borderRadius: 10,
-            padding: 16,
+            borderRadius: 12,
+            padding: 10,
             marginBottom: 16,
             ...shadow,
             ...colorStateConfig.highContrastBorder,
+            paddingRight: 20,
         },
         headContainer: {
             flex: 1,
@@ -52,24 +68,34 @@ export function ArticleCard({ article }: Props) {
         descriptionText: {
             ...fonts.description,
             flexWrap: 'wrap',
-            fontSize: 10,
+            fontSize: 13,
             flexShrink: 1,
+            marginBottom: 4,
+            marginTop: 4,
+            marginRight: 5,
         },
         tagContainer: {
             flex: 1,
             alignItems: 'center',
             flexDirection: 'row',
+            marginLeft: -3,
+            marginBottom: 4,
         },
-        tagText: {
+        tag: {
             marginHorizontal: 4,
             marginTop: 4,
             paddingHorizontal: 6,
             paddingVertical: 2,
-            borderRadius: 10,
             backgroundColor: colors.completedProgressBar,
+            borderRadius: 5,
+            overflow: 'hidden',
+            ...colorStateConfig.highContrastBorder,
+        },
+        tagText: {
             ...fonts.description,
             fontSize: 12,
             fontWeight: 'bold',
+            color: tagTextColor,
         },
     });
 
@@ -111,11 +137,9 @@ export function ArticleCard({ article }: Props) {
             />
             <View style={styles.tagContainer}>
                 {article.categoryArray.map((tagText) => (
-                    <TextTranslated
-                        style={styles.tagText}
-                        key={tagText}
-                        text={tagText}
-                    />
+                    <View style={styles.tag} key={tagText}>
+                        <TextTranslated style={styles.tagText} text={tagText} />
+                    </View>
                 ))}
             </View>
         </InteractiveView>

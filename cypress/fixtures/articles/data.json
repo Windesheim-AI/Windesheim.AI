@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "title": "AI heeft geen stekker meer",
+        "description": "Het gebruik van AI roept meerdere ethische vraagstukken op, over onder andere privacy, aansprakelijkheid en gelijkwaardigheid.",
+        "link": "https://detoekomstvanai.nl/artikelen/ai-heeft-geen-stekker-meer/",
+        "category": "Ethical",
+        "imageLink": "https://www.windesheim.ai/wp-content/uploads/2024/05/ai7.jpeg"
+    },
+    {
+        "id": "2",
+        "title": "Data ethiek: de 5 heilige principes voor verantwoorde toepassing van AI",
+        "description": "This is a test description to test the discription text.",
+        "link": "example.com",
+        "category": "Ethical, Social",
+        "imageLink": "example.com/test.png"
+    },
+    {
+        "id": "3",
+        "title": "The criminal use of ChatGPT - a cautionary tale about large language models",
+        "description": "This is a test description to test the discription text.",
+        "link": "example.com",
+        "category": "Ethical, Social",
+        "imageLink": "example.com/test.png"
+    }
+]

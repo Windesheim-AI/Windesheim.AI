@@ -21,6 +21,7 @@ import { UsecaseScreen } from '../screens/Usecase/Usecase';
 import BackgroundCollectForm from '../screens/UserBackground/BackgroundCollectForm';
 import { BackgroundInfo } from '../screens/UserBackground/BackgroundInfo';
 import { WTRScreen } from '../screens/WTR';
+import { MockTutorial } from '../screens/WTR/MockTutorial';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,7 @@ const screens = [
     { name: Routes.PromptView, component: PromptView },
     { name: Routes.Articles, component: Articles },
     { name: Routes.Quizzes, component: Quizzes },
+    { name: Routes.MockTutorial, component: MockTutorial },
     { name: Routes.PodcastsEpisodePage, component: PodcastsEpisodePage },
 ];
 

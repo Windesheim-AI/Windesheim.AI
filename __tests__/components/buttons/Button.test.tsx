@@ -18,7 +18,6 @@ describe('Button Component', () => {
         const { getByText } = render(
             <Button
                 buttonText={buttonText}
-                colorGradientScheme={['#FFF', '#CCC', '#333']}
                 textColorScheme="#FFF"
                 onPress={onPressHandler}
             />,
@@ -34,7 +33,6 @@ describe('Button Component', () => {
             <Button
                 buttonText="Click Me"
                 onPress={mockOnPress}
-                colorGradientScheme={['#FFF', '#CCC', '#333']}
                 textColorScheme="#FFF"
             />,
         );

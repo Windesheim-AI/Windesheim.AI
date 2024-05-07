@@ -18,7 +18,7 @@ export const TechProviders = ({ limit }: Props) => {
 
     const styles = StyleSheet.create({
         heading: {
-            margin: 10,
+            marginBottom: 10,
             ...fonts.h1,
         },
         providerCard: {

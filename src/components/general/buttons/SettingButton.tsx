@@ -9,6 +9,7 @@ import {
 
 import SettingsIcon from '../../../assets/images/Icon/settings_icon.png';
 import { useCurrentTheme } from '../../../lib/constants/Colors';
+import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { Routes } from '../../../routes/routes';
 const theme = {
     darkIconTintColor: '#FFFFFF',
@@ -19,6 +20,7 @@ export const SettingsButton = () => {
     const currentTheme = useCurrentTheme();
 
     const handlePress = () => {
+        HapticFeedback(HapticForces.Light);
         navigation.navigate(Routes.Settings as never);
     };
 
@@ -41,6 +43,7 @@ const styles = StyleSheet.create({
         top: 0,
         right: 0,
         zIndex: 1,
+        paddingRight: 10,
     },
     lightIcon: {
         width: 37,

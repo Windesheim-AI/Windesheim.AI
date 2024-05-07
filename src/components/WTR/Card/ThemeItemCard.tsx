@@ -60,7 +60,7 @@ export function ThemeItemCard({
         description: {
             ...fonts.description,
             flexWrap: 'wrap',
-            fontSize: 10,
+            fontSize: 13,
             flexShrink: 1,
         },
         image: {

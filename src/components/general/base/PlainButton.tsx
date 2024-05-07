@@ -14,7 +14,6 @@ type PlainButtonProps = {
     icon?: string;
     style?: ViewStyle;
     backgroundColor: string;
-    textColor?: string;
 };
 
 export function PlainButton({
@@ -23,26 +22,28 @@ export function PlainButton({
     icon,
     style,
     backgroundColor,
-    textColor,
 }: PlainButtonProps) {
     const fonts = useFonts();
     const colorStateConfig = useColorStateConfig();
 
+    const buttonSize = 120;
+    const textColor = colorStateConfig.theme === 'dark' ? 'white' : 'black';
+
     const styles = StyleSheet.create({
         button: {
+            width: buttonSize / 1.3,
+            height: buttonSize / 2.5,
             backgroundColor,
             borderRadius: 10,
-            paddingBottom: 10,
-            paddingTop: 10,
-            paddingLeft: 16,
-            paddingRight: 16,
+            justifyContent: 'center',
+            alignItems: 'center',
             marginBottom: 16,
             ...shadow,
             ...colorStateConfig.highContrastBorder,
         },
-        nextButton: {
+        buttonText: {
             ...fonts.button,
-            color: textColor ?? fonts.button.color,
+            color: textColor,
         },
     });
 
@@ -56,7 +57,7 @@ export function PlainButton({
             {icon ? (
                 <IconLine iconName={icon} text={text} size={15} />
             ) : (
-                <TextTranslated text={text} style={styles.nextButton} />
+                <TextTranslated text={text} style={styles.buttonText} />
             )}
         </InteractiveView>
     );

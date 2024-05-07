@@ -1,11 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { TouchableOpacity, ViewStyle, Image } from 'react-native';
+import { TouchableOpacity, ViewStyle, Image, View } from 'react-native';
 
 import arrowLeft from '../assets/images/Icon/go_back_arrow.png';
 import { EditBackgroundInformationButton } from '../components/BackgroundCollect/EditBackgroundInformationButton';
 import { SettingCard } from '../components/general/card/SettingCard';
 import { PageScrollView } from '../components/general/views/PageScrollView';
+import { PromptsTutorialRedoButton } from '../components/promptsTutorial/PromptsTutorialRedoButton';
 import { AnimationToggle } from '../components/settings/AnimationToggle';
 import { FontSwitcher } from '../components/settings/FontSwitcher';
 import { HighContrastSwitcher } from '../components/settings/HighContrastSwitcher';
@@ -13,28 +14,34 @@ import { LanguageSwitcher } from '../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../components/settings/ThemeSwitcher';
 import { TutorialRedoButton } from '../components/tutorial/TutorialRedoButton';
 import { useCurrentTheme } from '../lib/constants/Colors';
+import { HapticFeedback, HapticForces } from '../lib/haptic/Hooks';
 
 export const SettingsScreen = () => {
     const navigation = useNavigation();
     const currentTheme = useCurrentTheme();
 
     const goBack = () => {
+        HapticFeedback(HapticForces.Light);
         navigation.goBack();
     };
 
     const buttonStyle: ViewStyle = {
         position: 'absolute',
-        top: 20,
-        right: 20,
+        top: 0,
+        right: 10,
     };
     const iconStyle = {
-        width: 30,
-        height: 30,
+        width: 37,
+        height: 37,
         tintColor: currentTheme === 'dark' ? '#FFFFFF' : 'black',
+    };
+    const titleSpacer = {
+        height: 10,
     };
     /* eslint-disable @typescript-eslint/no-unsafe-assignment */
     return (
         <PageScrollView title="SETTINGS">
+            <View style={titleSpacer} />
             <TouchableOpacity onPress={goBack} style={buttonStyle}>
                 <Image source={arrowLeft} style={iconStyle} />
             </TouchableOpacity>
@@ -74,16 +81,27 @@ export const SettingsScreen = () => {
                 <HighContrastSwitcher />
             </SettingCard>
 
-            <SettingCard icon="redo" title="Tutorial" testID="tutorial reset">
-                <TutorialRedoButton />
-            </SettingCard>
-
             <SettingCard
                 icon="user-edit"
                 title="Background"
                 testID="Background"
             >
                 <EditBackgroundInformationButton />
+            </SettingCard>
+
+            <SettingCard
+                icon="redo"
+                title="App Tutorial"
+                testID="tutorial reset"
+            >
+                <TutorialRedoButton />
+            </SettingCard>
+            <SettingCard
+                icon="redo"
+                title="Prompt Tutorial"
+                testID="tutorial reset"
+            >
+                <PromptsTutorialRedoButton />
             </SettingCard>
         </PageScrollView>
     );

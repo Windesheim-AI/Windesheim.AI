@@ -20,9 +20,9 @@ describe('Prompt Library tests', () => {
         cy.visit('/study/prompt-library');
         cy.wait(['@getData']);
 
-        cy.contains('PROMPT LIBRARY');
+        cy.contains('Prompt library');
         cy.contains(
-            'Filter by tool and sector, hold long on a tag to select only that one.',
+            "Here you'll find a collection of prompts that you can use to easily navigate AI tools. You can filter by tools and sector to find the right prompt you need.",
         );
         cy.contains(prompts[0].title);
         cy.contains(prompts[0].tool);
@@ -42,7 +42,7 @@ describe('Prompt Library tests', () => {
         cy.visit('/study/prompt-library');
         cy.wait(['@getData']);
 
-        cy.contains('PROMPT LIBRARY');
+        cy.contains('Prompt library');
         cy.contains('No prompts found!');
     });
 
@@ -57,7 +57,7 @@ describe('Prompt Library tests', () => {
         cy.visit('/study/prompt-library');
         cy.wait(['@getData']);
 
-        cy.contains('PROMPT LIBRARY');
+        cy.contains('Prompt library');
 
         // Filter on tool
         cy.get('[data-testid="chip-Creative Writing Tool-container"]').click();
@@ -90,14 +90,14 @@ describe('Prompt Library tests', () => {
         cy.visit('/study/prompt-library/prompt?promptId=1');
         cy.wait(['@getData']);
 
-        cy.contains('Prompt Library');
+        cy.contains('Prompt');
         cy.contains(prompt.title);
         cy.contains(prompt.prompt);
         cy.contains(prompt.description);
         cy.contains(prompt.tool);
         cy.contains(prompt.promptPattern);
         cy.contains(prompt.sector);
-        cy.contains('Try it yourself');
+        cy.contains('Try it yourself !');
     });
 
     it('can view a non-existing prompt', () => {
