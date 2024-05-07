@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable complexity */
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
@@ -7,14 +8,17 @@ import {
     StyleSheet,
     ImageSourcePropType,
     View,
+    TouchableOpacity,
+    ViewStyle,
 } from 'react-native';
 
+import arrowLeft from '../../assets/images/Icon/go_back_arrow.png';
 import AudioPlayer from '../../components/audioPlayer/audioPlayer';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
 import LoadingScreen from '../../components/loadingscreen/LoadingScreen';
-import { shadow } from '../../lib/constants/Colors';
+import { shadow, useCurrentTheme } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import useSinglePodcastEpisode from '../../lib/repositories/podcast/useSinglePodcastEpisode';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -27,40 +31,51 @@ export type EpisodePageProps = {
 export function PodcastsEpisodePage() {
     const fonts = useFonts();
     const navigation = useNavigation();
-
+    const currentTheme = useCurrentTheme();
     const route = useRoute();
     const params = route.params as EpisodePageProps;
     const episodeId = params.episodeId;
-
+    const goBack = () => {
+        navigation.goBack();
+    };
     const { data, isLoading, error } = useSinglePodcastEpisode(episodeId);
     const episode = data;
-
+    const buttonStyle: ViewStyle = {
+        position: 'absolute',
+        top: 20,
+        right: 20,
+    };
+    const iconStyle = {
+        width: 30,
+        height: 30,
+        tintColor: currentTheme === 'dark' ? '#FFFFFF' : 'black',
+    };
     const styles = StyleSheet.create({
         title: {
             ...fonts.h1,
             textAlign: 'left',
-            marginLeft: 10,
         },
         description: {
             ...fonts.description,
             textAlign: 'left',
-            marginLeft: 10,
+            marginBottom: 10,
         },
         date: {
-            ...fonts.description,
             textAlign: 'left',
-            marginLeft: 10,
+            marginBottom: 16,
+            fontStyle: 'italic',
+            fontSize: 14,
         },
         imageContainer: {
             alignSelf: 'center',
-            marginTop: 0,
+            marginTop: 20,
             marginBottom: 20,
             ...shadow,
         },
         image: {
             borderRadius: 30,
-            height: 320,
-            width: 320,
+            height: 200,
+            width: 200,
         },
     });
 
@@ -97,7 +112,7 @@ export function PodcastsEpisodePage() {
         );
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     let episodeImageSource: ImageSourcePropType = require('../../assets/images/bgImages/robot.png');
     if (
         episode.imageLink !== undefined &&
@@ -126,17 +141,16 @@ export function PodcastsEpisodePage() {
 
     return (
         <PageView>
-            <GoBackButton
-                buttonText="Back"
-                onPress={() => navigation.goBack()}
-            />
+            <TouchableOpacity onPress={goBack} style={buttonStyle}>
+                <Image source={arrowLeft} style={iconStyle} />
+            </TouchableOpacity>
             <View style={styles.imageContainer}>
                 <Image style={styles.image} source={episodeImageSource} />
             </View>
             <Text style={styles.title}>{episode.title}</Text>
             <Text style={styles.date}>{episode.date}</Text>
-            <AudioPlayer audioUrl={episodeAudioSource} />
             <Text style={styles.description}>{episode.description}</Text>
+            <AudioPlayer audioUrl={episodeAudioSource} />
         </PageView>
     );
 }

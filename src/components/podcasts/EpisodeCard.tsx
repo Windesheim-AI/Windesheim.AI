@@ -40,9 +40,10 @@ export function EpisodeCard({ episode }: Props) {
             marginTop: 10,
             marginLeft: 5,
             marginRight: 10,
-            width: 260,
+            width: 300,
             ...shadow,
             ...colorStateConfig.highContrastBorder,
+            position: 'relative',
         },
         headContainer: {
             flex: 1,
@@ -61,7 +62,7 @@ export function EpisodeCard({ episode }: Props) {
             width: '80%',
             ...fonts.alert,
             color: colors.titleDefault,
-            marginBottom: 10,
+            marginBottom: 7,
         },
         descriptionText: {
             ...fonts.description,
@@ -75,6 +76,20 @@ export function EpisodeCard({ episode }: Props) {
         },
         contentContainer: {
             flex: 1,
+        },
+        episodeDurationContainer: {
+            position: 'absolute',
+            top: 10,
+            right: 10,
+            backgroundColor: colors.completedProgressBar,
+            paddingVertical: 2,
+            paddingHorizontal: 2,
+            borderRadius: 5,
+            ...colorStateConfig.highContrastBorder,
+        },
+        episodeDurationText: {
+            fontSize: 11,
+            color: colors.text,
         },
     });
 
@@ -118,6 +133,11 @@ export function EpisodeCard({ episode }: Props) {
                 });
             }}
         >
+            <View style={styles.episodeDurationContainer}>
+                <Text style={styles.episodeDurationText}>
+                    {episodeDurationtext}
+                </Text>
+            </View>
             <View style={styles.headContainer}>
                 <View style={styles.imageContainer}>
                     <Image source={episodeImageSource} style={styles.image} />
@@ -126,6 +146,7 @@ export function EpisodeCard({ episode }: Props) {
                     <TextTranslated
                         style={styles.titleText}
                         text={episode.title}
+                        numberOfLines={1}
                     />
                     <TextTranslated
                         style={styles.descriptionText}
@@ -134,7 +155,6 @@ export function EpisodeCard({ episode }: Props) {
                     />
                 </View>
             </View>
-            <Text>{episodeDurationtext}</Text>
         </InteractiveView>
     );
 }

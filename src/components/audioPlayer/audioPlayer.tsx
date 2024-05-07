@@ -10,17 +10,17 @@ import PauseButton from '../../assets/images/Icon/pause-button.png';
 import PlayButton from '../../assets/images/Icon/play-button.png';
 import RewindButton from '../../assets/images/Icon/rewind-button.png';
 import StopButton from '../../assets/images/Icon/stop-button.png';
+import { useColorConfig } from '../../lib/constants/Colors';
 
 interface AudioPlayerProps {
     audioUrl: string;
 }
-
 export default function AudioPlayer({ audioUrl }: AudioPlayerProps) {
     const [sound, setSound] = useState<Audio.Sound | null>(null);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [playbackPosition, setPlaybackPosition] = useState<number>(0);
     const [duration, setDuration] = useState<number>(0);
-
+    const colors = useColorConfig();
     useEffect(() => {
         if (sound) {
             sound.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
@@ -103,57 +103,71 @@ export default function AudioPlayer({ audioUrl }: AudioPlayerProps) {
         const seconds = ((time % 60000) / 1000).toFixed(0);
         return `${minutes}:${parseInt(seconds, 10) < 10 ? '0' : ''}${seconds}`;
     }
-
+    const styles = StyleSheet.create({
+        wrapper: {
+            marginTop: 10,
+            borderWidth: 3,
+            borderColor: colors.text,
+            borderRadius: 10,
+        },
+        container: {
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 5,
+        },
+        timecode: {
+            fontSize: 22,
+            fontWeight: 'bold',
+        },
+        buttonContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 10,
+        },
+        Smallbutton: {
+            width: 40,
+            height: 40,
+            marginHorizontal: 15,
+        },
+        MainButton: {
+            width: 60,
+            height: 60,
+            marginHorizontal: 10,
+        },
+    });
     return (
-        <View style={styles.container}>
-            <Text style={styles.timecode}>
-                {formatTime(playbackPosition)}/{formatTime(duration)}
-            </Text>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={rewindSound}>
-                    <Image source={RewindButton} style={styles.Smallbutton} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={isPlaying ? pauseSound : playSound}>
-                    <Image
-                        source={isPlaying ? PauseButton : PlayButton}
-                        style={[styles.MainButton, styles.MainButton]}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={stopSound}>
-                    <Image source={StopButton} style={styles.MainButton} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={forwardSound}>
-                    <Image source={ForwardButton} style={styles.Smallbutton} />
-                </TouchableOpacity>
+        <View style={styles.wrapper}>
+            <View style={styles.container}>
+                <Text style={styles.timecode}>
+                    {formatTime(playbackPosition)}/{formatTime(duration)}
+                </Text>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity onPress={rewindSound}>
+                        <Image
+                            source={RewindButton}
+                            style={styles.Smallbutton}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={isPlaying ? pauseSound : playSound}
+                    >
+                        <Image
+                            source={isPlaying ? PauseButton : PlayButton}
+                            style={[styles.MainButton, styles.MainButton]}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={stopSound}>
+                        <Image source={StopButton} style={styles.MainButton} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={forwardSound}>
+                        <Image
+                            source={ForwardButton}
+                            style={styles.Smallbutton}
+                        />
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 10,
-    },
-    timecode: {
-        fontSize: 30,
-        fontWeight: 'bold',
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 10,
-    },
-    Smallbutton: {
-        width: 50,
-        height: 50,
-        marginHorizontal: 15,
-    },
-    MainButton: {
-        width: 70,
-        height: 70,
-        marginHorizontal: 10,
-    },
-});
