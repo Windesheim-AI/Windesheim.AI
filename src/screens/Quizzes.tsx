@@ -5,8 +5,15 @@ import { CoursesOverview } from '../components/course/CoursesOverview';
 import { TextTranslated } from '../components/general/text/TextTranslated';
 import { TitleSimple } from '../components/general/text/TitleSimple';
 import { PageScrollView } from '../components/general/views/PageScrollView';
+import { useColorConfig } from '../lib/constants/Colors';
 
 export function Quizzes() {
+    const colors = useColorConfig();
+    const styles = {
+        text: {
+            color: colors.text,
+        },
+    };
     return (
         <PageScrollView>
             <View>
@@ -21,7 +28,7 @@ export function Quizzes() {
                     titleText="Quizzes"
                     explainationText="Soon you'll find the latest quizzes here to learn more about Generative AI in a fun and interactive way."
                 />
-                <TextTranslated text="Loading.." />
+                <TextTranslated style={styles.text} text="Loading.." />
             </View>
         </PageScrollView>
     );

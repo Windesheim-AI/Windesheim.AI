@@ -6,6 +6,7 @@ import { PromptsOverview } from '../../components/promptLibary/PromptsOverview';
 import { PromptsTutorial } from '../../components/promptsTutorial/PromptsTutorial';
 import { useAppSelector } from '../../lib/redux/Hooks';
 import BackgroundCollectForm from '../UserBackground/BackgroundCollectForm';
+
 export function PromptLibrary() {
     const isFirstTimeUser = useAppSelector(
         (state) => state.backgroundInformation.isFirstTimeUser,

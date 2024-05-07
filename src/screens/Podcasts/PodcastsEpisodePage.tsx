@@ -18,11 +18,7 @@ import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
 import LoadingScreen from '../../components/loadingscreen/LoadingScreen';
-import {
-    shadow,
-    useColorConfig,
-    useCurrentTheme,
-} from '../../lib/constants/Colors';
+import { useColorConfig, useCurrentTheme } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import useSinglePodcastEpisode from '../../lib/repositories/podcast/useSinglePodcastEpisode';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -76,7 +72,6 @@ export function PodcastsEpisodePage() {
             alignSelf: 'center',
             marginTop: 20,
             marginBottom: 20,
-            ...shadow,
         },
         image: {
             borderRadius: 30,
