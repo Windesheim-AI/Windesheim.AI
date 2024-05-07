@@ -58,7 +58,10 @@ export function CoursesOverview({ limit }: Props) {
             data={selectedCourses}
             horizontal
             renderItem={({ item }) => (
-                <View style={styles.courseCardContainer}>
+                <View
+                    style={styles.courseCardContainer}
+                    testID={`course-card-${item.courseId}`}
+                >
                     <CourseCard
                         key={item.courseId}
                         title={item.title}
