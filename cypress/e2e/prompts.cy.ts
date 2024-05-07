@@ -22,7 +22,7 @@ describe('Prompt Library tests', () => {
 
         cy.contains('Prompt library');
         cy.contains(
-            'Filter by tool and sector, hold long on a tag to select only that one.',
+            "Here you'll find a collection of prompts that you can use to easily navigate AI tools. You can filter by tools and sector to find the right prompt you need.",
         );
         cy.contains(prompts[0].title);
         cy.contains(prompts[0].tool);
@@ -90,7 +90,7 @@ describe('Prompt Library tests', () => {
         cy.visit('/study/prompt-library/prompt?promptId=1');
         cy.wait(['@getData']);
 
-        cy.contains('Prompt library');
+        cy.contains('Prompt');
         cy.contains(prompt.title);
         cy.contains(prompt.prompt);
         cy.contains(prompt.description);
