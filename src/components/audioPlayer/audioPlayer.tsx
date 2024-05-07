@@ -4,7 +4,6 @@
 import { Audio, AVPlaybackStatus } from 'expo-av';
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity, Text } from 'react-native';
-import { Slider } from 'react-native-elements';
 
 import ForwardButton from '../../assets/images/Icon/forward-button.png';
 import PauseButton from '../../assets/images/Icon/pause-button.png';
@@ -110,14 +109,6 @@ export default function AudioPlayer({ audioUrl }: AudioPlayerProps) {
             <Text style={styles.timecode}>
                 {formatTime(playbackPosition)}/{formatTime(duration)}
             </Text>
-            <Slider
-                style={styles.slider}
-                minimumValue={0}
-                maximumValue={duration}
-                value={playbackPosition}
-                disabled
-                thumbTintColor="transparent"
-            />
             <View style={styles.buttonContainer}>
                 <TouchableOpacity onPress={rewindSound}>
                     <Image source={RewindButton} style={styles.Smallbutton} />
@@ -148,9 +139,6 @@ const styles = StyleSheet.create({
     timecode: {
         fontSize: 30,
         fontWeight: 'bold',
-    },
-    slider: {
-        width: '80%',
     },
     buttonContainer: {
         flexDirection: 'row',
