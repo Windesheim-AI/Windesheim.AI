@@ -7,8 +7,6 @@ import { PageScrollView } from '../components/general/views/PageScrollView';
 import { PodcastEpisodeLimitedView } from '../components/podcasts/PodcastEpisodeLimitedView';
 
 export function Articles() {
-    const fonts = useFonts();
-
     return (
         <PageScrollView>
             <View>
