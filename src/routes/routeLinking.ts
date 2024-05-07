@@ -46,6 +46,7 @@ export const RouteLinking = {
             [Routes.PromptView]: 'study/prompt-library/prompt',
             [Routes.Quizzes]: 'quizzes',
             [Routes.Articles]: 'articles',
+            [Routes.PodcastsEpisodePage]: 'podcasts/episode',
         },
     },
 };

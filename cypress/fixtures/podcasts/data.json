@@ -1,0 +1,32 @@
+[
+    {
+        "id": "1",
+        "title": "AI Ethics",
+        "date": "Mon 6 may",
+        "slug": "ai_ethics",
+        "description": "Het gebruik van AI roept meerdere ethische vraagstukken op, over onder andere privacy, aansprakelijkheid en gelijkwaardigheid.",
+        "imageLink": "https://www.windesheim.ai/wp-content/uploads/2024/05/ai7.jpeg",
+        "duration": "00:30",
+        "audioLink": "example.com/test.mp3"
+    },
+    {
+        "id": "2",
+        "title": "AI Legality",
+        "date": "Mon 6 may",
+        "slug": "ai_legality",
+        "description": "Test description.",
+        "imageLink": "https://www.windesheim.ai/wp-content/uploads/2024/05/ai7.jpeg",
+        "duration": "05:10",
+        "audioLink": "example.com/test.mp3"
+    },
+    {
+        "id": "3",
+        "title": "AI Legality",
+        "date": "Mon 6 may",
+        "slug": "ai_legality",
+        "description": "Test description.",
+        "imageLink": "https://www.windesheim.ai/wp-content/uploads/2024/05/ai7.jpeg",
+        "duration": "05:10",
+        "audioLink": "example.com/test.mp3"
+    }
+]
