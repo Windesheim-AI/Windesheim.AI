@@ -44,7 +44,7 @@ export const DisclaimerCard = () => {
         text: {
             ...fonts.homeCard,
             textAlign: 'justify',
-            color: colors.text,
+            color: colors.disclaimerText,
         },
         exclamationMark: {
             fontSize: sizeExlamationMark,
