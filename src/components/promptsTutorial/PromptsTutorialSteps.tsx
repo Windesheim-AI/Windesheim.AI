@@ -9,9 +9,9 @@ interface PromptsTutorialStep {
 
 export const promptsTutorialSteps: PromptsTutorialStep[] = [
     {
-        Title: 'Welcome to prompts tutorial !',
+        Title: 'Welcome to prompts tutorial!',
         Subtext:
-            "This tutorial will explain how to use the prompts and prompts library in the app. Let's get started !",
+            "This tutorial will explain how to use the prompts and prompts library in the app. Let's get started!",
         NextPage: Routes.PromptLibrary,
         PreviousPage: '',
     },
@@ -26,13 +26,13 @@ export const promptsTutorialSteps: PromptsTutorialStep[] = [
         Title: 'Prompts',
         Subtext:
             'When you click on the chosen prompt, you will be leading a page that gives description. Also you can copy, paste and try them.',
-        NextPage: Routes.MockTutorial,
+        NextPage: Routes.PromptLibrary,
         PreviousPage: Routes.PromptLibrary,
     },
     {
-        Title: 'Finish !',
+        Title: 'Finish!',
         Subtext:
-            'That was the tutorial! \n You can always follow this tutorial again in the settings. \n Hope you enjoy using the prompts !',
+            'That was the tutorial! \n You can always follow this tutorial again in the settings. \n Hope you enjoy using the prompts!',
         NextPage: '',
         PreviousPage: Routes.MockTutorial,
     },

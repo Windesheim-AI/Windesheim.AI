@@ -9,9 +9,9 @@ interface TutorialStep {
 
 export const tutorialSteps: TutorialStep[] = [
     {
-        Title: 'Welcome !',
+        Title: 'Welcome!',
         Subtext:
-            "Welcome to the Windesheim.AI app ! This tutorial will explain all of the features in the app and where you can find certain elements. You can also skip this tutorial if you don't find it necessary.",
+            "Welcome to the Windesheim.AI app! This tutorial will explain all of the features in the app and where you can find certain elements. You can also skip this tutorial if you don't find it necessary.",
         NextPage: '',
         PreviousPage: '',
     },
@@ -51,9 +51,9 @@ export const tutorialSteps: TutorialStep[] = [
         PreviousPage: Routes.PromptLibrary,
     },
     {
-        Title: 'Finish !',
+        Title: 'Finish!',
         Subtext:
-            'That was the tutorial ! \n You can always find this tutorial again in the settings. \n Hope you enjoy using the app !',
+            'That was the tutorial! \n You can always find this tutorial again in the settings. \n Hope you enjoy using the app!',
         NextPage: '',
         PreviousPage: Routes.WindesheimTechRadar,
     },

@@ -49,6 +49,12 @@ export const PromptsTutorial = () => {
 
     const handlePrevious = () => {
         storeDispatcher(previousStep());
+        const previousStepRoute =
+            promptsTutorialSteps[tutorialStep]?.PreviousPage;
+        HapticFeedback(HapticForces.Light);
+        if (previousStepRoute) {
+            navigation.navigate(previousStepRoute as never);
+        }
     };
 
     const styles = StyleSheet.create({
