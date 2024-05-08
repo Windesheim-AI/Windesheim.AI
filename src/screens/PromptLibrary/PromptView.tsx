@@ -229,6 +229,7 @@ export function PromptView() {
                         openBrowserPopup(
                             `${wordPressContentUrl}/prompts?id=${prompt.id}`,
                         );
+                        HapticFeedback(HapticForces.Light);
                     }}
                     textColorScheme={
                         colorStateConfig.theme === 'dark' ? 'white' : 'black'

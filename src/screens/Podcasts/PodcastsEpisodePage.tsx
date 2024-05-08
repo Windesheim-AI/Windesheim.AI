@@ -20,10 +20,10 @@ import { PageView } from '../../components/general/views/PageView';
 import LoadingScreen from '../../components/loadingscreen/LoadingScreen';
 import { useColorConfig, useCurrentTheme } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import useSinglePodcastEpisode from '../../lib/repositories/podcast/useSinglePodcastEpisode';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
-
 export type EpisodePageProps = {
     episodeId: string;
 };
@@ -37,6 +37,7 @@ export function PodcastsEpisodePage() {
     const episodeId = params.episodeId;
     const colors = useColorConfig();
     const goBack = () => {
+        HapticFeedback(HapticForces.Light);
         navigation.goBack();
     };
     const { data, isLoading, error } = useSinglePodcastEpisode(episodeId);
