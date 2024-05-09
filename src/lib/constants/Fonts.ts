@@ -154,7 +154,7 @@ export function useFonts() {
             fontSize: 11,
         },
         homeCard: {
-            fontSize: 15,
+            fontSize: 13,
         },
         disclaimerCard: {
             fontSize: 11,
