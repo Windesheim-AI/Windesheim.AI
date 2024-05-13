@@ -3,7 +3,7 @@
         "name": "Windesheim.AI",
         "slug": "winsight",
         "scheme": "windesheim.ai",
-        "version": "1.5.0",
+        "version": "1.5.1",
         "orientation": "portrait",
         "icon": "./src/assets/images/Icon/icon.png",
         "userInterfaceStyle": "light",
@@ -16,11 +16,11 @@
         "ios": {
             "supportsTablet": true,
             "bundleIdentifier": "com.windesheim.ai",
-            "buildNumber": "25"
+            "buildNumber": "26"
         },
         "android": {
             "package": "com.windesheim.ai",
-            "versionCode": 25,
+            "versionCode": 26,
             "adaptiveIcon": {
                 "foregroundImage": "./src/assets/images/Icon/adaptive-icon.png",
                 "backgroundColor": "#fffff0"
