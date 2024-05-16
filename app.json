@@ -22,7 +22,7 @@
             }
         },
         "android": {
-            "package": "com.newwindesheim.ai",
+            "package": "com.windesheim.ai",
             "versionCode": 28,
             "adaptiveIcon": {
                 "foregroundImage": "./src/assets/images/Icon/adaptive-icon.png",
