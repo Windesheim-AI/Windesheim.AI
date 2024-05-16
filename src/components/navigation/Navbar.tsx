@@ -1,128 +1,182 @@
-import React, { useEffect, useState } from 'react';
-import {
-    Animated,
-    Pressable,
-    StyleSheet,
-    useWindowDimensions,
-} from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+/* eslint-disable indent */
+/* eslint-disable complexity */
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { Pressable, StyleSheet, View, Image } from 'react-native';
+import Svg, { Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
 
-import { shadow, useColorConfig } from '../../lib/constants/Colors';
+import {
+    useColorConfig,
+    useCurrentHighContrastMode,
+    useCurrentTheme,
+} from '../../lib/constants/Colors';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useAppSelector } from '../../lib/redux/Hooks';
-import { useAnimatedValueNav } from '../../lib/utility/animate';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { navigationBarLinks } from '../../routes/navigation';
 
 export const NavBar = () => {
     const navigation = useNavigation();
     const colors = useColorConfig();
-    const windowDimensions = useWindowDimensions();
+    const isHighContrastEnabled = useCurrentHighContrastMode();
 
     const navigationState = useAppSelector((state) => state.navigation);
-    const [showNavBar, setShowNavBar] = useState(true);
+    const theme = useCurrentTheme();
+    const startColor =
+        theme === 'light' && isHighContrastEnabled
+            ? '#FFD700'
+            : theme === 'light'
+              ? '#FFF377'
+              : theme === 'dark' && isHighContrastEnabled
+                ? '#4695d3'
+                : '#86d2d9';
+    const endColor =
+        theme === 'light' && isHighContrastEnabled
+            ? '#FFD700'
+            : theme === 'light'
+              ? '#FFF377'
+              : theme === 'dark' && isHighContrastEnabled
+                ? '#4695d3'
+                : '#86d2d9';
+    const borderTopColors =
+        theme === 'light' && isHighContrastEnabled
+            ? '#000000'
+            : theme === 'light'
+              ? '#C0C0C0'
+              : theme === 'dark' && isHighContrastEnabled
+                ? '#FFFFFF'
+                : '#C0C0C0';
 
+    const statusBarColor = () => {
+        return theme === 'light' ? 'dark' : 'light';
+    };
+    const darkThemeIconStyle = {
+        tintColor: '#FFFFFF',
+    };
     const styles = StyleSheet.create({
         container: {
             flexDirection: 'row',
-            alignItems: 'center',
-            alignSelf: 'center',
+            alignItems: 'flex-start',
             justifyContent: 'space-around',
             backgroundColor: colors.navBar.backgroundColor,
-            borderRadius: 50,
-            bottom: 0,
-            height: 50,
-            marginBottom: 10,
-            position: 'absolute',
-            width: windowDimensions.width - 40,
+            height: 80,
             zIndex: 1,
+            left: 0,
+            right: 0,
+            top: 0,
             padding: 0,
+            paddingHorizontal: 20,
+            overflow: 'hidden',
+            paddingTop: 10,
+            borderTopWidth: 2,
+            borderTopColor: borderTopColors,
         },
         itemContainer: {
-            width: 55,
-            height: '100%',
             flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
-            margin: 0,
-            padding: 0,
-            borderRadius: 50,
+            borderRadius: 20,
+            paddingVertical: 10,
+            position: 'relative',
+            overflow: 'hidden',
         },
-        itemSelectedContainer: {
-            margin: 0,
-            padding: 0,
-            width: 55,
+        selectedIcon: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+        },
+        gradient: {
+            width: '100%',
             height: '100%',
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderRadius: 50,
-            backgroundColor: colors.navBar.activeItemBackgroundColor,
-            ...shadow,
-            elevation: 0,
+        },
+        icon: {
+            width: 25,
+            height: 25,
+            tintColor: colors.black,
         },
     });
-
-    useEffect(() => {
-        setShowNavBar(navigationState.showNavBar);
-    }, [navigationState]);
-
-    const [opacity, animateOpacity] = useAnimatedValueNav(1);
-    const [bottom, animateBottom] = useAnimatedValueNav(
-        windowDimensions.width - 40,
-    );
-    const [width, animateWidth] = useAnimatedValueNav(
-        windowDimensions.width - 40,
-    );
-
-    useEffect(() => {
-        animateOpacity(showNavBar ? 1 : 0, 200);
-        animateBottom(showNavBar ? 0 : -100, 200);
-        animateWidth(showNavBar ? windowDimensions.width - 40 : 0, 200);
-    }, [
-        showNavBar,
-        animateOpacity,
-        animateBottom,
-        animateWidth,
-        windowDimensions.width,
-    ]);
 
     function isRouteActive(route: string) {
         return navigationState.selectedNavBarRoute === route;
     }
 
     return (
-        <Animated.View style={{ ...styles.container, opacity, bottom, width }}>
-            {navigationBarLinks.map((link, index) => {
+        <View style={styles.container}>
+            <StatusBar style={statusBarColor()} />
+            {navigationBarLinks.map((link) => {
                 const routeActive = isRouteActive(link.route);
 
                 return (
                     <Pressable
-                        // eslint-disable-next-line react/no-array-index-key
-                        key={index}
+                        key={link.route}
                         onPress={() => {
                             HapticFeedback(HapticForces.Light);
                             navigation.navigate(link.route);
                         }}
-                        style={
-                            routeActive
-                                ? styles.itemSelectedContainer
-                                : styles.itemContainer
-                        }
+                        style={styles.itemContainer}
                         testID={link.route + '-navbar-button'}
                     >
-                        <FontAwesome5
-                            color={
-                                routeActive
-                                    ? colors.navBar.activeColor
-                                    : colors.navBar.color
+                        {routeActive ? (
+                            <View style={styles.selectedIcon}>
+                                <Svg
+                                    style={styles.gradient}
+                                    viewBox="0 0 50 50"
+                                >
+                                    <Defs>
+                                        <LinearGradient
+                                            id="grad"
+                                            x1="0"
+                                            y1="0"
+                                            x2="1"
+                                            y2="1"
+                                        >
+                                            <Stop
+                                                offset="25%"
+                                                stopColor={startColor}
+                                            />
+                                            <Stop
+                                                offset="100%"
+                                                stopColor={endColor}
+                                            />
+                                        </LinearGradient>
+                                    </Defs>
+                                    <Rect
+                                        x="0"
+                                        y="0"
+                                        width="50"
+                                        height="50"
+                                        fill="url(#grad)"
+                                        rx={10}
+                                        ry={10}
+                                    />
+                                </Svg>
+                            </View>
+                        ) : null}
+                        <Image
+                            source={
+                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                                link.icon === 'home'
+                                    ? require('../../assets/images/navbarIcons/Home.png')
+                                    : link.icon === 'articles'
+                                      ? require('../../assets/images/navbarIcons/Articles.png')
+                                      : link.icon === 'quizzes'
+                                        ? require('../../assets/images/navbarIcons/Courses.png')
+                                        : link.icon === 'prompts'
+                                          ? require('../../assets/images/navbarIcons/Prompts.png')
+                                          : require('../../assets/images/navbarIcons/WindesheimTech.png')
                             }
-                            name={link.icon}
-                            size={20}
+                            style={[
+                                styles.icon,
+                                !routeActive &&
+                                    theme === 'dark' &&
+                                    darkThemeIconStyle,
+                            ]}
                         />
                     </Pressable>
                 );
             })}
-        </Animated.View>
+        </View>
     );
 };

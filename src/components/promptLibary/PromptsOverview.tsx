@@ -2,25 +2,28 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { PromptCard } from './PromptCard';
-import { useColorStateConfig } from '../../lib/constants/Colors';
+import {
+    useColorStateConfig,
+    useCurrentHighContrastMode,
+} from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import usePromptLibrary from '../../lib/repositories/promptLibrary/usePromptLibrary';
 import { Sector } from '../../types/Prompt';
 import { ChipFilter } from '../general/base/ChipFilters';
 import { TextTranslated } from '../general/text/TextTranslated';
 
+// eslint-disable-next-line complexity
 export function PromptsOverview() {
     const { data, isLoading, error } = usePromptLibrary();
     const fonts = useFonts();
     const colorStateConfig = useColorStateConfig();
-
     const [selectedTools, setSelectedTools] = useState<string[]>([]);
     const [selectedSectors, setSelectedSectors] = useState<Sector[]>([]);
+    const isHighContrastEnabled = useCurrentHighContrastMode();
 
     const styles = StyleSheet.create({
         filterContainer: {
             marginBottom: 10,
-            marginTop: 10,
         },
     });
 
@@ -54,34 +57,42 @@ export function PromptsOverview() {
 
     return (
         <View testID="prompts-overview">
-            {filteredPrompts && filteredPrompts.length > 0 ? (
-                <>
-                    <TextTranslated
-                        style={fonts.description}
-                        text="Filter by tool and sector, hold long on a tag to select only that one."
+            {filteredPrompts ? (
+                <View style={styles.filterContainer}>
+                    <ChipFilter
+                        activeList={selectedTools}
+                        filterList={usedTools}
+                        setActiveList={setSelectedTools}
+                        colorGradientScheme={
+                            colorStateConfig.theme === 'dark'
+                                ? colorStateConfig.colors.secondary
+                                : colorStateConfig.colors.primary
+                        }
+                        textColorScheme={
+                            colorStateConfig.theme === 'dark' &&
+                            isHighContrastEnabled
+                                ? 'white'
+                                : 'black'
+                        }
                     />
-                    <View style={styles.filterContainer}>
-                        <ChipFilter
-                            activeList={selectedTools}
-                            filterList={usedTools}
-                            setActiveList={setSelectedTools}
-                            colorGradientScheme={
-                                colorStateConfig.colors.primary
-                            }
-                            textColorScheme={colorStateConfig.text?.primary}
-                        />
 
-                        <ChipFilter
-                            activeList={selectedSectors}
-                            filterList={usedSectors}
-                            setActiveList={setSelectedSectors}
-                            colorGradientScheme={
-                                colorStateConfig.colors.success
-                            }
-                            textColorScheme={colorStateConfig.text?.success}
-                        />
-                    </View>
-                </>
+                    <ChipFilter
+                        activeList={selectedSectors}
+                        filterList={usedSectors}
+                        setActiveList={setSelectedSectors}
+                        colorGradientScheme={
+                            colorStateConfig.theme === 'dark'
+                                ? colorStateConfig.colors.warning
+                                : colorStateConfig.colors.success
+                        }
+                        textColorScheme={
+                            colorStateConfig.theme === 'dark' &&
+                            isHighContrastEnabled
+                                ? 'white'
+                                : 'black'
+                        }
+                    />
+                </View>
             ) : null}
             {filteredPrompts?.map((prompt) => (
                 <PromptCard key={prompt.id} prompt={prompt} />

@@ -10,7 +10,7 @@ import { Routes } from '../routes/routes';
 export const StudyScreen = () => {
     return (
         <PageScrollView
-            title="Study"
+            title="STUDY"
             description="Knowing is like turning on a light on the way trying to go."
         >
             <View>
@@ -18,7 +18,7 @@ export const StudyScreen = () => {
                     title="Courses"
                     navigateToRoute={Routes.Courses}
                 />
-                <CoursesOverview marginTop={0} limit={3} />
+                <CoursesOverview limit={3} />
             </View>
 
             <View>

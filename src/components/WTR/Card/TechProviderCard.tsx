@@ -43,9 +43,10 @@ export function TechProviderCard({
             flexDirection: 'column',
             borderRadius: 12,
             padding: 4,
-            marginBottom: 7,
-            marginHorizontal: 0,
+            marginBottom: 2,
+            marginHorizontal: 5,
             height: 'auto',
+            width: 100,
             ...shadow,
             ...colorStateConfig.highContrastBorder,
         },
@@ -97,7 +98,11 @@ export function TechProviderCard({
                 </LinearGradient>
 
                 <View style={styles.contentContainer}>
-                    <TextTranslated style={styles.title} text={name} />
+                    <TextTranslated
+                        style={styles.title}
+                        text={name}
+                        numberOfLines={1}
+                    />
                 </View>
             </View>
         </InteractiveView>

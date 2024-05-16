@@ -1,9 +1,8 @@
+import { FontAwesome5 } from '@expo/vector-icons';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { StyleSheet, Text } from 'react-native';
 
 import {
-    ColorGradientScheme,
     useColorConfig,
     useColorStateConfig,
 } from '../../../lib/constants/Colors';
@@ -17,7 +16,6 @@ export type ButtonProps = {
     onPress?: () => void;
     screenName?: string;
     buttonText?: string;
-    colorGradientScheme: ColorGradientScheme;
     textColorScheme: string | undefined;
     width?: number;
     height?: number;
@@ -29,7 +27,6 @@ export type ButtonProps = {
 export const Button = ({
     onPress,
     buttonText,
-    colorGradientScheme,
     textColorScheme,
     screenName,
     width,
@@ -62,46 +59,27 @@ export const Button = ({
     const checkedWidth: number = baseWidth > minWidth ? baseWidth : minWidth;
     const buttonWidth =
         checkedWidth > minWidth ? checkedWidth * 3 : minWidth * 3;
-    const barHeight = 3 * checkedWidth;
 
     const styles = StyleSheet.create({
-        bg1: {
-            backgroundColor: colorGradientScheme[0],
-            height: barHeight,
-            top: -30,
-            transform: 'rotate(20deg)',
-            width: checkedWidth,
-        },
-        bg2: {
-            backgroundColor: colorGradientScheme[1],
-            height: barHeight,
-            left: -30,
-            top: -30,
-            transform: 'rotate(20deg)',
-            width: checkedWidth,
-        },
         button: {
             alignItems: 'center',
-            backgroundColor: colorGradientScheme[2],
+            backgroundColor: colors.previousButton,
             borderRadius: 18,
             flexDirection: 'row',
             height,
             margin: 10,
-            // from left to rigth items
-            // shadow
             maxHeight: 90,
             width: width ? buttonWidth : 'auto',
             minWidth: buttonWidth,
-            // center
-            overflow: 'hidden',
             ...colorStateConfig.highContrastBorder,
         },
         textContainer: {
-            left: 50,
             position: 'absolute',
             ...fonts.button,
-            width: buttonWidth - 30,
+            width: buttonWidth,
+            alignItems: 'center',
             color: textColorScheme ? textColorScheme : fonts.button.color,
+            textAlign: 'center',
         },
         text: {
             ...fonts.button,
@@ -120,8 +98,6 @@ export const Button = ({
             onPress={onPress}
             testID={testId}
         >
-            <View style={styles.bg1} />
-            <View style={styles.bg2} />
             <Text style={styles.textContainer}>
                 {icon ? <FontAwesome5 name={icon} style={styles.icon} /> : null}
                 {icon ? ' ' : ''}

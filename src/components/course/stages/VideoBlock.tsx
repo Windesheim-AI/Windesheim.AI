@@ -14,7 +14,6 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
 
     const styles = StyleSheet.create({
         container: {
-            flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 10,
@@ -82,8 +81,8 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
             ) : (
                 <YoutubePlayer
                     webViewStyle={styles.ytContainer}
-                    height={windowDimensions.height / 4.55}
-                    width={windowDimensions.width - 60}
+                    height={windowDimensions.height / 4.3}
+                    width={windowDimensions.width - 40}
                     videoId={getYTId(options.videoURL) || ''}
                 />
             )}

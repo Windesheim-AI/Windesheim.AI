@@ -1,7 +1,10 @@
 import React from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 
-import { useColorStateConfig } from '../../lib/constants/Colors';
+import {
+    useColorStateConfig,
+    useColorConfig,
+} from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -12,10 +15,10 @@ export const EditBackgroundInformationButton = () => {
     const navigator = useNavigation();
     const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
-
+    const colors = useColorConfig();
     const styles = StyleSheet.create({
         button: {
-            backgroundColor: colorStateConfig.colors.success[0],
+            backgroundColor: colors.success,
             padding: 10,
             borderRadius: 5,
         },

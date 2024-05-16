@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, StyleSheet, View } from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { Modal, StyleSheet, View, Image } from 'react-native';
 
 import { tutorialSteps } from './TutorialSteps';
 import {
@@ -37,9 +36,7 @@ export const Tutorial = () => {
         (state) => state.tutorial.tutorialCompleted,
     );
 
-    // Check if the splash screen is still visible
     useEffect(() => {
-        // If the splash screen is not visible, show the modal
         setModalVisible(
             !layoutState.isSplashVisible &&
                 !tutorialCompleted &&
@@ -86,7 +83,7 @@ export const Tutorial = () => {
             padding: 20,
             alignItems: 'center',
             justifyContent: 'center',
-            maxWidth: '100%', // Set a maximum width for the modal content
+            maxWidth: '100%',
             height: 'auto',
             ...colorStateConfig.highContrastBorder,
             ...uppershadow,
@@ -112,6 +109,11 @@ export const Tutorial = () => {
             margin: 20,
             ...colorStateConfig.highContrastBorder,
         },
+        imageStyle: {
+            width: '100%',
+            position: 'relative',
+            height: 570,
+        },
     });
 
     return (
@@ -124,6 +126,13 @@ export const Tutorial = () => {
                     setModalVisible(false);
                 }}
             >
+                {tutorialStep === 0 ? (
+                    <Image
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        source={require('../../assets/images/bgImages/tutorial_bg.jpg')}
+                        style={styles.imageStyle}
+                    />
+                ) : null}
                 {/* Description Box*/}
                 <View style={styles.modalBackground}>
                     <View style={styles.modalContent}>
@@ -132,11 +141,6 @@ export const Tutorial = () => {
                             text={tutorialSteps[tutorialStep].Title}
                         />
                         <View style={styles.description}>
-                            <FontAwesome5
-                                name="check"
-                                color={colors.danger}
-                                size={24}
-                            />
                             <TextTranslated
                                 style={styles.subText}
                                 text={tutorialSteps[tutorialStep].Subtext}
@@ -167,7 +171,9 @@ export const Tutorial = () => {
                             <ProgressBar
                                 width={0.9}
                                 height={10}
-                                progress={tutorialStep * 0.2}
+                                progress={
+                                    tutorialStep / (tutorialSteps.length - 1)
+                                }
                                 testId="myProgressBar"
                             />
                         </View>

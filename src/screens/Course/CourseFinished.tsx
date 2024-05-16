@@ -30,7 +30,6 @@ export default function CourseFinished() {
     const route = useRoute();
     const navigator = useNavigation();
     const fonts = useFonts();
-
     const params = route.params as CourseFinishedRouteParams;
     const { data, error, isLoading } = useSingleCourse(params.courseId); //later replaced dby a fetch.
     const course = data;
@@ -126,9 +125,10 @@ export default function CourseFinished() {
 
                 <Button
                     buttonText="Go back to courses"
-                    screenName={Routes.Courses}
-                    colorGradientScheme={colorStateConfig.colors.success}
-                    textColorScheme={colorStateConfig.text?.success}
+                    screenName={Routes.Quizzes}
+                    textColorScheme={
+                        colorStateConfig.theme === 'dark' ? 'white' : 'black'
+                    }
                     testId="go-back-to-courses-button"
                 />
             </View>

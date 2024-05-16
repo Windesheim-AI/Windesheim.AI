@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
-    Animated,
     Platform,
     SafeAreaView,
     StatusBar,
@@ -13,35 +12,31 @@ import { NotificationList } from '../components/general/alerts/NotificationList'
 import { Background } from '../components/general/background/Background';
 import { NavBar } from '../components/navigation/Navbar';
 import { Tutorial } from '../components/tutorial/Tutorial';
-import { shadow, useColorConfig } from '../lib/constants/Colors';
+import { useColorConfig } from '../lib/constants/Colors';
 import { useAppSelector } from '../lib/redux/Hooks';
-import { useAnimatedValue } from '../lib/utility/animate';
-
-//@ts-ignore
 
 type LayoutProps = {
     children: React.ReactNode;
 };
 
 export const Layout = ({ children }: LayoutProps) => {
-    const navigation = useAppSelector((state) => state.navigation);
     const colors = useColorConfig();
-
     const styles = StyleSheet.create({
         contentContainer: {
             borderRadius: 15,
             flex: 1,
             margin: 10,
             overflow: 'hidden',
-            ...shadow,
         },
         innerContainer: {
             backgroundColor: colors.background,
             height: '100%',
         },
-        pos_r: {
-            position: 'relative',
-            marginTop: navigation.showNavBar ? 50 : 0,
+        navBarContainer: {
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 0,
         },
         wrapper: {
             width: '100%',
@@ -50,31 +45,20 @@ export const Layout = ({ children }: LayoutProps) => {
             overflow: 'hidden',
             flex: 1,
             paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+            paddingBottom: Platform.OS === 'android' ? 50 : 0,
         },
     });
 
     const isFirstTimeUser = useAppSelector(
-        (state) => state.backgroundInformation,
-    ).isFirstTimeUser;
-
-    const [marginBottomAnimation, animateMarginBottomAnimation] =
-        useAnimatedValue(20);
-
-    useEffect(() => {
-        animateMarginBottomAnimation(navigation.showNavBar ? 70 : 10, 200);
-    }, [animateMarginBottomAnimation, navigation]);
+        (state) => state.backgroundInformation.isFirstTimeUser,
+    );
 
     return (
         <>
             <Background />
             <SafeAreaView style={styles.wrapper}>
                 <NotificationList />
-                <Animated.View // Use Animated.View here
-                    style={{
-                        ...styles.contentContainer,
-                        marginBottom: marginBottomAnimation,
-                    }}
-                >
+                <View style={styles.contentContainer}>
                     {isFirstTimeUser ? <BackgroundCollectForm /> : null}
                     {!isFirstTimeUser ? (
                         <>
@@ -84,8 +68,8 @@ export const Layout = ({ children }: LayoutProps) => {
                             <Tutorial />
                         </>
                     ) : null}
-                </Animated.View>
-                <View style={styles.pos_r}>
+                </View>
+                <View style={styles.navBarContainer}>
                     <NavBar />
                 </View>
             </SafeAreaView>

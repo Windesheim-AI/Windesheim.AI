@@ -4,13 +4,16 @@ import React from 'react';
 import { DefaultRoute, Routes } from './routes';
 import { LoadingScreen } from '../components/loadingscreen/LoadingScreen';
 import { useAppSelector } from '../lib/redux/Hooks';
+import { Articles } from '../screens/Articles';
 import CourseFinished from '../screens/Course/CourseFinished';
 import { Courses } from '../screens/Course/Courses';
 import Stage from '../screens/Course/Stage';
 import StageOverview from '../screens/Course/StageOverview';
 import { HomeScreen } from '../screens/Home';
+import { PodcastsEpisodePage } from '../screens/Podcasts/PodcastsEpisodePage';
 import { PromptLibrary } from '../screens/PromptLibrary/PromptLibrary';
 import { PromptView } from '../screens/PromptLibrary/PromptView';
+import { Quizzes } from '../screens/Quizzes';
 import { SettingsScreen } from '../screens/Settings';
 import { StudyScreen } from '../screens/Study';
 import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
@@ -18,8 +21,8 @@ import { UsecaseScreen } from '../screens/Usecase/Usecase';
 import BackgroundCollectForm from '../screens/UserBackground/BackgroundCollectForm';
 import { BackgroundInfo } from '../screens/UserBackground/BackgroundInfo';
 import { WTRScreen } from '../screens/WTR';
+import { MockTutorial } from '../screens/WTR/MockTutorial';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
-
 const Stack = createNativeStackNavigator();
 
 const screens = [
@@ -39,6 +42,10 @@ const screens = [
     { name: Routes.FirstTimeUser, component: BackgroundCollectForm },
     { name: Routes.PromptLibrary, component: PromptLibrary },
     { name: Routes.PromptView, component: PromptView },
+    { name: Routes.Articles, component: Articles },
+    { name: Routes.Quizzes, component: Quizzes },
+    { name: Routes.MockTutorial, component: MockTutorial },
+    { name: Routes.PodcastsEpisodePage, component: PodcastsEpisodePage },
 ];
 
 export const Router = () => {

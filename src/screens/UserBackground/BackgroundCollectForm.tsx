@@ -173,11 +173,6 @@ const BackgroundCollectForm = () => {
                             width={buttonWidth}
                             buttonText="Okay"
                             onPress={handleBackgroundInput}
-                            colorGradientScheme={[
-                                colors.bg1,
-                                colors.bg2,
-                                colors.bg3,
-                            ]}
                             textColorScheme={colors.text}
                             icon="check-circle"
                         />
@@ -186,11 +181,6 @@ const BackgroundCollectForm = () => {
                             testId="FirstCollect-skip-button"
                             buttonText="Skip"
                             onPress={handleToggleFirstTimeUser}
-                            colorGradientScheme={[
-                                colors.bg1,
-                                colors.bg2,
-                                colors.bg3,
-                            ]}
                             textColorScheme={colors.text}
                             icon="forward"
                         />
@@ -277,11 +267,6 @@ const BackgroundCollectForm = () => {
                     <Button
                         buttonText="Start"
                         onPress={handleToggleFirstTimeUser}
-                        colorGradientScheme={[
-                            colors.bg1,
-                            colors.bg2,
-                            colors.bg3,
-                        ]}
                         textColorScheme={colors.text}
                         icon="check-circle"
                     />

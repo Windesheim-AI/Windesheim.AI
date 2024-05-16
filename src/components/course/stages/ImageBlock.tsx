@@ -2,8 +2,8 @@ import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 
 import BlockWrapper from './block';
+import { shadow } from '../../../lib/constants/Colors';
 import { ImageOptions } from '../../../types/CourseStageBlock';
-
 export function ImageBlock({ options }: { options: ImageOptions }) {
     const styles = StyleSheet.create({
         container: {
@@ -11,6 +11,10 @@ export function ImageBlock({ options }: { options: ImageOptions }) {
         },
         image: {
             height: 200,
+            borderRadius: 10,
+            marginTop: 10,
+            marginBottom: 10,
+            ...shadow,
         },
     });
 

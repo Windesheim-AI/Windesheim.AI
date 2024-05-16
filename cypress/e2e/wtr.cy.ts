@@ -17,9 +17,7 @@ describe('WTR page tests', () => {
 
     it('can display the WTR page', () => {
         cy.visit('/wtr-content');
-
         cy.contains('Windesheim Tech Radar');
-
         cy.contains('Tech Providers');
         cy.contains('Apple');
         cy.contains('Amazon');

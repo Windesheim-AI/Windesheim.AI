@@ -3,6 +3,10 @@ import React from 'react';
 
 import { Button } from '../../../src/components/general/buttons/Button';
 
+jest.mock('@expo/vector-icons', () => ({
+    FontAwesome5: 'mocked-FontAwesome5',
+}));
+
 jest.useFakeTimers();
 
 describe('Button Component', () => {
@@ -14,7 +18,6 @@ describe('Button Component', () => {
         const { getByText } = render(
             <Button
                 buttonText={buttonText}
-                colorGradientScheme={['#FFF', '#CCC', '#333']}
                 textColorScheme="#FFF"
                 onPress={onPressHandler}
             />,
@@ -30,7 +33,6 @@ describe('Button Component', () => {
             <Button
                 buttonText="Click Me"
                 onPress={mockOnPress}
-                colorGradientScheme={['#FFF', '#CCC', '#333']}
                 textColorScheme="#FFF"
             />,
         );

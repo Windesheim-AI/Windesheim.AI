@@ -10,7 +10,6 @@ export function useNavigation() {
             //@ts-ignore
             navigation.navigate(screen, params);
         },
-        // eslint-disable-next-line @typescript-eslint/unbound-method
         addEventListener: navigation.addListener,
         goBack: navigation.goBack,
     };

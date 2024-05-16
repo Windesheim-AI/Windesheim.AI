@@ -25,7 +25,7 @@ describe('Courses page tests', () => {
         // get the fixture and put it in a const
         const courses = require('../fixtures/courses/data.json');
 
-        cy.visit('/study/courses');
+        cy.visit('/quizzes');
         cy.wait(['@getCourses']);
 
         // check if the courses are displayed
@@ -44,7 +44,7 @@ describe('Courses page tests', () => {
             fixture: 'courses/1-course.json',
         }).as('getCourse');
 
-        cy.visit('/study/courses');
+        cy.visit('/quizzes');
         cy.wait(['@getCourses']);
 
         // check if the courses are displayed
@@ -82,7 +82,7 @@ describe('Courses page tests', () => {
             fixture: 'courses/1-course.json',
         }).as('getCourse');
 
-        cy.visit('/study/courses');
+        cy.visit('/quizzes');
         cy.wait(['@getCourses']);
 
         // check if the courses are displayed

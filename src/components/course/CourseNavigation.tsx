@@ -70,7 +70,7 @@ export function CourseNavigation({
         courseDropdown: {
             backgroundColor: colors.listItemBg,
             ...shadow,
-            padding: 20,
+            padding: 10,
             paddingTop: 10,
             borderBottomEndRadius: 15,
             borderBottomStartRadius: 15,
@@ -165,7 +165,7 @@ export function CourseNavigation({
                             style={[
                                 styles.dropdownText,
                                 stage.id === currentStageId && {
-                                    backgroundColor: colors.primary,
+                                    backgroundColor: colors.dropdown,
                                 },
                             ]}
                             onPress={() => {
@@ -176,7 +176,7 @@ export function CourseNavigation({
                                 style={[
                                     styles.dropdownText,
                                     stage.id === currentStageId && {
-                                        color: colors.textLight,
+                                        color: colors.black, //dropdown menu selected item text color
                                     },
                                 ]}
                                 text={stage.title}

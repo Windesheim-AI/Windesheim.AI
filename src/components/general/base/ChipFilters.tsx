@@ -5,6 +5,7 @@ import { Chip, shadow } from 'react-native-paper';
 import {
     ColorGradientScheme,
     useColorStateConfig,
+    useCurrentHighContrastMode,
 } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
@@ -32,6 +33,7 @@ export function ChipFilter<T extends ReactNode>({
             marginBottom: 5,
         },
     });
+    const isHighContrastEnabled = useCurrentHighContrastMode();
 
     function getStyleForChip(isToolSelected: boolean) {
         return {
@@ -88,6 +90,15 @@ export function ChipFilter<T extends ReactNode>({
                             handleChipLongPress(filter);
                         }}
                         testID={`chip-${filter?.toString()}`}
+                        theme={{
+                            colors: {
+                                primary:
+                                    colorStateConfig.theme === 'dark' &&
+                                    isHighContrastEnabled
+                                        ? 'white'
+                                        : 'black',
+                            },
+                        }}
                     >
                         {filter}
                     </Chip>

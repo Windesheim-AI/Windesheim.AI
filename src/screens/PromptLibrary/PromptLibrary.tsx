@@ -1,22 +1,25 @@
 import React from 'react';
 
-import { GoBackButton } from '../../components/general/buttons/GoBackButton';
+import { TitleSimple } from '../../components/general/text/TitleSimple';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { PromptsOverview } from '../../components/promptLibary/PromptsOverview';
-import { useNavigation } from '../../lib/utility/navigation/useNavigation';
-import { Routes } from '../../routes/routes';
+import { PromptsTutorial } from '../../components/promptsTutorial/PromptsTutorial';
+import { useAppSelector } from '../../lib/redux/Hooks';
+import BackgroundCollectForm from '../UserBackground/BackgroundCollectForm';
 
 export function PromptLibrary() {
-    const navigation = useNavigation();
-
+    const isFirstTimeUser = useAppSelector(
+        (state) => state.backgroundInformation.isFirstTimeUser,
+    );
     return (
-        <PageScrollView title="Prompt Library">
-            <GoBackButton
-                onPress={() => navigation.navigate(Routes.Study)}
-                buttonText="Study"
+        <PageScrollView>
+            <TitleSimple
+                titleText="Prompt library"
+                explainationText="Here you'll find a collection of prompts that you can use to easily navigate AI tools. You can filter by tools and sector to find the right prompt you need."
             />
-
             <PromptsOverview />
+            {isFirstTimeUser ? <BackgroundCollectForm /> : null}
+            {!isFirstTimeUser ? <PromptsTutorial /> : null}
         </PageScrollView>
     );
 }
