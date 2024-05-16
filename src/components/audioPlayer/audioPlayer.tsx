@@ -23,6 +23,20 @@ export default function AudioPlayer({ audioUrl }: AudioPlayerProps) {
     const colors = useColorConfig();
     const currentTheme = useCurrentTheme();
     useEffect(() => {
+        async function loadAudioMetadata() {
+            // eslint-disable-next-line @typescript-eslint/no-shadow
+            const { sound } = await Audio.Sound.createAsync({ uri: audioUrl });
+            const status = await sound.getStatusAsync();
+            if (status.isLoaded) {
+                setDuration(status.durationMillis ?? 0);
+            }
+            await sound.unloadAsync();
+        }
+
+        loadAudioMetadata();
+    }, [audioUrl]);
+
+    useEffect(() => {
         if (sound) {
             sound.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
             return () => {

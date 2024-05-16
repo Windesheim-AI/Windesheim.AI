@@ -31,6 +31,7 @@ type TextStyling = {
     link: TextStyle;
     small: TextStyle;
     homeCard: TextStyle;
+    disclaimerCard: TextStyle;
     quote: TextStyle;
     accent: TextStyle;
     alert: TextStyle;
@@ -153,6 +154,9 @@ export function useFonts() {
             fontSize: 11,
         },
         homeCard: {
+            fontSize: 13,
+        },
+        disclaimerCard: {
             fontSize: 11,
         },
         accent: {

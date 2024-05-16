@@ -42,7 +42,7 @@ export const DisclaimerCard = () => {
             color: colors.disclaimerText,
         },
         text: {
-            ...fonts.homeCard,
+            ...fonts.disclaimerCard,
             textAlign: 'justify',
             color: colors.disclaimerText,
         },

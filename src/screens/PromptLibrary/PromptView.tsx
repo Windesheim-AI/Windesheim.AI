@@ -224,11 +224,12 @@ export function PromptView() {
             <View>
                 {/* link to the tool open URL in app */}
                 <TryButton
-                    buttonText="Try it yourself !"
+                    buttonText="Try it yourself!"
                     onPress={() => {
                         openBrowserPopup(
                             `${wordPressContentUrl}/prompts?id=${prompt.id}`,
                         );
+                        HapticFeedback(HapticForces.Light);
                     }}
                     textColorScheme={
                         colorStateConfig.theme === 'dark' ? 'white' : 'black'
