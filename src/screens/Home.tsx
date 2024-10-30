@@ -1,13 +1,25 @@
-import React from 'react';
-import { View, Image, StyleSheet, Text } from 'react-native';
-
+import React, { useEffect, useState } from 'react';
+import { View, Image, Text, Modal, StyleSheet } from 'react-native';
+import { useAppSelector } from '../lib/redux/Hooks';
 import { SettingsButton } from '../components/general/buttons/SettingButton';
-import { DisclaimerCard } from '../components/general/card/DisclaimerCard';
-import { Introduction } from '../components/general/card/Introduction';
 import { PageScrollView } from '../components/general/views/PageScrollView';
+import { Introduction } from '../components/general/card/Introduction';
+import { DisclaimerCard } from '../components/general/card/DisclaimerCard';
 import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
+import { RootState } from '../lib/redux/Hooks';
 
 export const HomeScreen = () => {
+    const [isDisclaimerVisible, setIsDisclaimerVisible] = useState(false);
+    const tutorialCompleted = useAppSelector(
+        (state: RootState) => state.tutorial.tutorialCompleted,
+    );
+
+    useEffect(() => {
+        if (tutorialCompleted) {
+            setIsDisclaimerVisible(true);
+        }
+    }, [tutorialCompleted]);
+
     const currentTheme = useCurrentTheme();
     const logoTextColor = currentTheme === 'dark' ? '#FFFFFF' : 'black';
     const colors = useColorConfig();
@@ -36,7 +48,19 @@ export const HomeScreen = () => {
         flexGrow: {
             flexGrow: 1,
         },
+        modalOverlay: {
+            flex: 1,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        alertContainer: {
+            backgroundColor: '#fff',
+            padding: 20,
+            borderRadius: 10,
+        },
     });
+
     return (
         <>
             <View style={styles.headerContainer}>
@@ -53,8 +77,23 @@ export const HomeScreen = () => {
             </View>
             <PageScrollView>
                 <Introduction />
-                <DisclaimerCard />
             </PageScrollView>
+
+            {/* Disclaimer Alert Modal */}
+            <Modal
+                transparent
+                visible={isDisclaimerVisible}
+                animationType="fade"
+                onRequestClose={() => setIsDisclaimerVisible(false)}
+            >
+                <View style={styles.modalOverlay}>
+                    <View style={styles.alertContainer}>
+                        <DisclaimerCard
+                            onClose={() => setIsDisclaimerVisible(false)}
+                        />
+                    </View>
+                </View>
+            </Modal>
         </>
     );
 };
