@@ -53,9 +53,9 @@ export const HomeScreen = () => {
             backgroundColor: 'rgba(0, 0, 0, 0.5)',
             justifyContent: 'center',
             alignItems: 'center',
+            backdropFilter: 'blur(10px)', // This line adds the blur effect
         },
         alertContainer: {
-            backgroundColor: '#fff',
             padding: 20,
             borderRadius: 10,
         },

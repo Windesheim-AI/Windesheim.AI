@@ -47,7 +47,6 @@ export const DisclaimerCard: React.FC<DisclaimerCardProps> = ({ onClose }) => {
             marginRight: 10,
         },
         disclaimerText: {
-            ...fonts.h2,
             color: colors.text,
         },
         closeButton: {
