@@ -16,7 +16,12 @@ export const HomeScreen = () => {
 
     useEffect(() => {
         if (tutorialCompleted) {
-            setIsDisclaimerVisible(true);
+            if (!localStorage.getItem('disclaimerShown')) {
+                setIsDisclaimerVisible(true);
+                localStorage.setItem('disclaimerShown', 'true');
+            }
+        } else {
+            setIsDisclaimerVisible(false);
         }
     }, [tutorialCompleted]);
 
