@@ -33,6 +33,7 @@ import {
     setIsFirstTimeUser,
 } from '../../lib/redux/slices/BackgroundInformationSlice';
 import { navigationActions } from '../../lib/redux/slices/NavigationSlice';
+import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
 
 const BackgroundCollectForm = () => {
     const storeDispatch = useAppDispatch();
@@ -130,6 +131,11 @@ const BackgroundCollectForm = () => {
             ...shadow,
             marginTop: windowDimensions.height * 0.05,
         },
+        languageSelector: {
+            marginBottom: 20,
+            width: '100%',
+            alignItems: 'center',
+        },
     });
 
     let selectableOptions: BackgroundDataItem[] = [];
@@ -184,6 +190,9 @@ const BackgroundCollectForm = () => {
                             textColorScheme={colors.text}
                             icon="forward"
                         />
+                        <View style={styles.languageSelector}>
+                            <LanguageSwitcher />
+                        </View>
                     </View>
                 </View>
             </PageView>
