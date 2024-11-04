@@ -24,6 +24,7 @@ export type ColorSchemeType = {
     textHighlight: string;
     background: string;
     backgroundHighlight: string;
+    backgroundHeader: string;
     dropdown: string;
     backgroundModal: string;
     tint: string;
@@ -90,8 +91,9 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         tagText: '#000000',
         textLight: '#fff',
         textHighlight: '#fff',
-        background: '#FFFFF0',
+        background: '#FFF',
         backgroundHighlight: '#4695D3',
+        backgroundHeader: '#fff',
         dropdown: '#FFF377',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorLight,
@@ -157,6 +159,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
         buttonText: '#4695d3',
         background: '#2A2A2A', //Context Container
         backgroundHighlight: '#4695D3',
+        backgroundHeader: '#2A2A2A',
         dropdown: '#86d2d9',
         backgroundModal: 'rgba(0, 0, 0, 0.8)',
         tint: tintColorDark,
@@ -225,6 +228,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         textHighlight: '#FFFFFF',
         background: '#FFFFFF',
         backgroundHighlight: '#0000FF',
+        backgroundHeader: '#fff',
         dropdown: '#FFD700',
         backgroundModal: 'rgba(0, 0, 0, 0.4)',
         tint: '#0000FF',
@@ -290,6 +294,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
         buttonText: '#FFFFFF',
         background: '#000000',
         backgroundHighlight: '#0000FF',
+        backgroundHeader: '#fff',
         dropdown: '#4695d3',
         backgroundModal: 'rgba(0,0,0,0.4)',
         tint: '#FFFFFF',

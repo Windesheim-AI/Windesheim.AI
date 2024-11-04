@@ -5,15 +5,16 @@ import {
     StatusBar,
     StyleSheet,
     View,
+    Image,
+    Text,
 } from 'react-native';
-
 import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
 import { NotificationList } from '../components/general/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
-import { NavBar } from '../components/navigation/Navbar';
 import { Tutorial } from '../components/tutorial/Tutorial';
-import { useColorConfig } from '../lib/constants/Colors';
+import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
 import { useAppSelector } from '../lib/redux/Hooks';
+import { MenuButton } from '../components/general/buttons/MenuButton';
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -21,6 +22,13 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => {
     const colors = useColorConfig();
+    const currentTheme = useCurrentTheme();
+    const logoTextColor = currentTheme === 'dark' ? '#FFFFFF' : 'black';
+
+    const isFirstTimeUser = useAppSelector(
+        (state) => state.backgroundInformation.isFirstTimeUser,
+    );
+
     const styles = StyleSheet.create({
         contentContainer: {
             borderRadius: 15,
@@ -32,12 +40,6 @@ export const Layout = ({ children }: LayoutProps) => {
             backgroundColor: colors.background,
             height: '100%',
         },
-        navBarContainer: {
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            bottom: 0,
-        },
         wrapper: {
             width: '100%',
             height: '100%',
@@ -47,17 +49,52 @@ export const Layout = ({ children }: LayoutProps) => {
             paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
             paddingBottom: Platform.OS === 'android' ? 50 : 0,
         },
+        headerContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between', 
+            width: '100%',
+            paddingHorizontal: 10,
+            paddingBottom: 10,
+            backgroundColor: colors.backgroundHeader,
+            borderBottomWidth: 1,
+            borderBottomColor: 'black',
+            height: 70,
+            zIndex: 2,
+        },
+        logo: {
+            width: 37,
+            height: 37,
+            resizeMode: 'contain',
+        },
+        logoText: {
+            fontSize: 20,
+            fontWeight: 'bold',
+            marginLeft: 10,
+            color: logoTextColor,
+        },
     });
-
-    const isFirstTimeUser = useAppSelector(
-        (state) => state.backgroundInformation.isFirstTimeUser,
-    );
 
     return (
         <>
             <Background />
             <SafeAreaView style={styles.wrapper}>
                 <NotificationList />
+
+                <View style={styles.headerContainer}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <Image
+                            source={require('../assets/images/Icon/favicon.png')}
+                            style={styles.logo}
+                        />
+                        <Text style={styles.logoText}>
+                            WINDESHEIM.AI
+                        </Text>
+                    </View>
+
+                    <MenuButton />
+                </View>
+
                 <View style={styles.contentContainer}>
                     {isFirstTimeUser ? <BackgroundCollectForm /> : null}
                     {!isFirstTimeUser ? (
@@ -68,9 +105,6 @@ export const Layout = ({ children }: LayoutProps) => {
                             <Tutorial />
                         </>
                     ) : null}
-                </View>
-                <View style={styles.navBarContainer}>
-                    <NavBar />
                 </View>
             </SafeAreaView>
         </>

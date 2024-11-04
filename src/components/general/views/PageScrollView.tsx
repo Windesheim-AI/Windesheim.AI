@@ -47,7 +47,7 @@ export const PageScrollView = ({
             flex: 1,
             minHeight: '100%',
             paddingHorizontal: 10,
-            paddingTop: 5,
+            paddingTop: 25,
             paddingBottom: Platform.select({
                 ios: 30,
                 android: 15,

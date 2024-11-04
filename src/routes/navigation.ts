@@ -1,8 +1,10 @@
+// In your navigation file
 import { Routes } from './routes';
 
+// Define NavigationBarLink type with the route type as Routes
 export type NavigationBarLink = {
     icon: string;
-    route: string;
+    route: Routes; // Make sure this is of type Routes
 };
 
 export const navigationBarLinks: NavigationBarLink[] = [

@@ -2,7 +2,6 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { TouchableOpacity, ViewStyle, Image, View } from 'react-native';
 
-import arrowLeft from '../assets/images/Icon/go_back_arrow.png';
 import { EditBackgroundInformationButton } from '../components/BackgroundCollect/EditBackgroundInformationButton';
 import { SettingCard } from '../components/general/card/SettingCard';
 import { PageScrollView } from '../components/general/views/PageScrollView';
@@ -19,22 +18,6 @@ import { HapticFeedback, HapticForces } from '../lib/haptic/Hooks';
 export const SettingsScreen = () => {
     const navigation = useNavigation();
     const currentTheme = useCurrentTheme();
-
-    const goBack = () => {
-        HapticFeedback(HapticForces.Light);
-        navigation.goBack();
-    };
-
-    const buttonStyle: ViewStyle = {
-        position: 'absolute',
-        top: 0,
-        right: 10,
-    };
-    const iconStyle = {
-        width: 37,
-        height: 37,
-        tintColor: currentTheme === 'dark' ? '#FFFFFF' : 'black',
-    };
     const titleSpacer = {
         height: 10,
     };
@@ -42,9 +25,6 @@ export const SettingsScreen = () => {
     return (
         <PageScrollView title="SETTINGS">
             <View style={titleSpacer} />
-            <TouchableOpacity onPress={goBack} style={buttonStyle}>
-                <Image source={arrowLeft} style={iconStyle} />
-            </TouchableOpacity>
             <SettingCard
                 icon="moon"
                 title="Enable dark mode"
