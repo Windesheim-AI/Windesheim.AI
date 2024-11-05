@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CoursesOverview } from '../../components/course/CoursesOverview';
+import { ScansOverview } from '../../components/Scans/ScansOverview';
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
@@ -11,7 +11,8 @@ export function Scans() {
 
     return (
         <PageScrollView title="Scans">
-            <GoBackButton />
+
+            <ScansOverview />
         </PageScrollView>
     );
 }
