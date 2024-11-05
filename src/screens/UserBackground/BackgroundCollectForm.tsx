@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import {
-    View,
     FlatList,
-    StyleSheet,
     Image,
-    useWindowDimensions,
     ScrollView,
+    StyleSheet,
+    useWindowDimensions,
+    View,
 } from 'react-native';
 import { Bar } from 'react-native-progress';
 
 import {
-    positions,
-    keywords,
     aiFamiliarity,
     BackgroundDataItem,
+    keywords,
+    positions,
 } from '../../components/BackgroundCollect/DataList';
 import { Button } from '../../components/general/buttons/Button';
 import { ListButton } from '../../components/general/buttons/ListButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
+import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
 import {
     shadow,
     useColorConfig,
@@ -27,13 +28,12 @@ import {
 import { useFonts } from '../../lib/constants/Fonts';
 import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
 import {
-    setPosition,
-    setInterestedKeyword,
     setAiFamiliarity,
+    setInterestedKeyword,
     setIsFirstTimeUser,
+    setPosition,
 } from '../../lib/redux/slices/BackgroundInformationSlice';
 import { navigationActions } from '../../lib/redux/slices/NavigationSlice';
-import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
 
 const BackgroundCollectForm = () => {
     const storeDispatch = useAppDispatch();
@@ -132,9 +132,15 @@ const BackgroundCollectForm = () => {
             marginTop: windowDimensions.height * 0.05,
         },
         languageSelector: {
-            marginBottom: 20,
-            width: '100%',
             alignItems: 'center',
+            backgroundColor: colors.previousButton,
+            borderRadius: 18,
+            flexDirection: 'row',
+            height: 60,
+            margin: 10,
+            maxHeight: 90,
+            width: 'auto',
+            minWidth: 50,
         },
     });
 
