@@ -2,6 +2,7 @@ export enum Routes {
     Home = 'Home',
     Study = 'Study',
     WindesheimTechRadar = 'Windesheim Tech Radar',
+    Scans = 'Scans',
     WindesheimTechRadarContent = 'Windesheim Tech Radar Content',
     Settings = 'Settings',
     LoadingScreen = 'Loading screen',

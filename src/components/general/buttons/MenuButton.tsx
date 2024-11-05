@@ -71,7 +71,6 @@ export const MenuButton = () => {
                             </TouchableOpacity>
                         ))}
 
-                        {/* Pass toggleMenu to SettingsButton */}
                         <SettingsButton toggleMenu={toggleMenu} />
                     </Animated.View>
                 </>
@@ -91,6 +90,8 @@ const getIcon = (iconName: string) => {
         case 'prompts':
             return require('../../../assets/images/navbarIcons/Prompts.png');
         case 'WTR':
+            return require('../../../assets/images/navbarIcons/WindesheimTech.png');
+        case 'scans':
             return require('../../../assets/images/navbarIcons/WindesheimTech.png');
         default:
             return null;
