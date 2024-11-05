@@ -131,8 +131,9 @@ const BackgroundCollectForm = () => {
             ...shadow,
             marginTop: windowDimensions.height * 0.05,
         },
-        languageSelector: {
+        languageselectorCointainer: {
             alignItems: 'center',
+            justifyContent: 'center',
             backgroundColor: colors.previousButton,
             borderRadius: 18,
             flexDirection: 'row',
@@ -196,7 +197,7 @@ const BackgroundCollectForm = () => {
                             textColorScheme={colors.text}
                             icon="forward"
                         />
-                        <View style={styles.languageSelector}>
+                        <View style={styles.languageselectorCointainer}>
                             <LanguageSwitcher />
                         </View>
                     </View>

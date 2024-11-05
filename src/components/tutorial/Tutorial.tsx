@@ -19,7 +19,6 @@ import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import ProgressBar from '../general/base/ProgressBar';
 import { StepButton } from '../general/buttons/StepButton';
 import { TextTranslated } from '../general/text/TextTranslated';
-import { LanguageSwitcher } from '../settings/LanguageSwitcher';
 
 export const Tutorial = () => {
     const storeDispatcher = useAppDispatch();
@@ -115,11 +114,6 @@ export const Tutorial = () => {
             position: 'relative',
             height: 570,
         },
-        languageSelector: {
-            marginBottom: 20,
-            width: '100%',
-            alignItems: 'center',
-        },
     });
 
     return (
@@ -152,12 +146,6 @@ export const Tutorial = () => {
                                 text={tutorialSteps[tutorialStep].Subtext}
                             />
                         </View>
-
-                        {tutorialStep === 0 && (
-                            <View style={styles.languageSelector}>
-                                <LanguageSwitcher />
-                            </View>
-                        )}
 
                         <StepButton
                             onPreviousPress={() => {
