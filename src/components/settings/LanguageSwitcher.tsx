@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { ViewStyle } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
 import { languageActions } from '../../lib/redux/slices/LanguageSlice';
 import { languageOptions } from '../../lib/translations/languageOptions';
@@ -8,7 +8,11 @@ import {
     SelectDropdown,
 } from '../general/input/SelectDropdown';
 
-export const LanguageSwitcher = () => {
+type LanguageSwitcherProps = {
+    style?: ViewStyle;
+};
+
+export const LanguageSwitcher = ({ style }: LanguageSwitcherProps) => {
     const storeDispatcher = useAppDispatch();
     const languageState = useAppSelector((state) => state.language);
 
@@ -32,6 +36,7 @@ export const LanguageSwitcher = () => {
                 );
             }}
             testID="language-switcher"
+            style={style}
         />
     );
 };

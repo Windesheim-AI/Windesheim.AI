@@ -131,17 +131,21 @@ const BackgroundCollectForm = () => {
             ...shadow,
             marginTop: windowDimensions.height * 0.05,
         },
-        languageselectorCointainer: {
+        languageselectorContainer: {
             alignItems: 'center',
             justifyContent: 'center',
+            flexDirection: 'row',
             backgroundColor: colors.previousButton,
             borderRadius: 18,
-            flexDirection: 'row',
             height: 60,
             margin: 10,
             maxHeight: 90,
             width: 'auto',
             minWidth: 50,
+        },
+        dropdownStyle: {
+            backgroundColor: colors.blue,
+            color: colors.buttonText,
         },
     });
 
@@ -197,8 +201,8 @@ const BackgroundCollectForm = () => {
                             textColorScheme={colors.text}
                             icon="forward"
                         />
-                        <View style={styles.languageselectorCointainer}>
-                            <LanguageSwitcher />
+                        <View style={styles.languageselectorContainer}>
+                            <LanguageSwitcher style={styles.dropdownStyle} />
                         </View>
                     </View>
                 </View>
