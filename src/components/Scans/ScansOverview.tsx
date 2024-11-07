@@ -1,21 +1,16 @@
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 
-import { CourseCard } from '../course/card/CourseCard';
+import { ScanCard } from '../Scans/card/ScanCard';
 import { useFonts } from '../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
-import { useMapMultipleCoursesToData } from '../../lib/repositories/courses/mapMultipleCourseToData';
-import useAllCourses from '../../lib/repositories/courses/useAllCourses';
+import { useMapMultipleScansToData } from '../../lib/repositories/scans/mapMultipleScansToData';
+import useAllScans from '../../lib/repositories/scans/useAllScans';
 import { getRandomLimitedItemsFromArray } from '../../lib/utility/data';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
-import { CourseDataMapped } from '../../types/Course';
+import { ScanDataMapped } from '../../types/Scan';
 import { TextTranslated } from '../general/text/TextTranslated';
-
-function getAmountCompletedTask(course: CourseDataMapped) {
-    if (!course.stageData) return 0;
-    return course.stageData.filter((stage) => stage.isCompletedByUser).length;
-}
 
 type Props = {
     limit?: number;
@@ -23,14 +18,14 @@ type Props = {
 
 export function ScansOverview({ limit }: Props) {
     const fonts = useFonts();
-    const { data, isLoading, error } = useAllCourses();
-    const courses = useMapMultipleCoursesToData(data);
+    const { data, isLoading, error } = useAllScans();
+    const scans = useMapMultipleScansToData(data);
     const navigator = useNavigation();
     const isLimited = limit !== undefined && limit > 0;
 
-    const selectedCourses = isLimited
-        ? getRandomLimitedItemsFromArray(courses, limit)
-        : courses;
+    const selectedScans = isLimited
+        ? getRandomLimitedItemsFromArray(scans, limit)
+        : scans;
 
     function onPress(courseId: string) {
         HapticFeedback(HapticForces.Light);
@@ -55,30 +50,28 @@ export function ScansOverview({ limit }: Props) {
     return (
         <FlatList
             testID="test-container"
-            data={selectedCourses}
-            horizontal
+            data={selectedScans}
             renderItem={({ item }) => (
                 <View
                     style={styles.courseCardContainer}
-                    testID={`course-card-${item.courseId}`}
+                    testID={`course-card-${item.scanId}`}
                 >
-                    <CourseCard
-                        key={item.courseId}
-                        title={item.title}
-                        completedTasks={getAmountCompletedTask(item)}
-                        totalTasks={item.stageData?.length ?? 0}
-                        onPress={() => onPress(item.courseId)}
+                    <ScanCard
+                        key={item.scanId}
+                        name={item.name}
+                        description={item.description}
+                        onPress={() => onPress(item.scanId)}
                     />
                 </View>
             )}
-            keyExtractor={(item) => item.courseId}
+            keyExtractor={(item) => item.scanId}
         />
     );
 }
 
 const styles = StyleSheet.create({
     courseCardContainer: {
-        width: 280,
-        marginRight: 20,
+        marginBottom: 20, // Space between each ScanCard
+        paddingHorizontal: 16, // Optional: Padding on the sides for consistent alignment
     },
 });
