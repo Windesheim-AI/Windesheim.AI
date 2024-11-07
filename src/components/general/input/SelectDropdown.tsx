@@ -29,6 +29,8 @@ export function SelectDropdown({
     defaultValue,
     width,
     testID,
+    style,
+    dropdownContainerStyle,
 }: Props) {
     const windowDimensions = useWindowDimensions();
     const screenWidth = windowDimensions.width;
@@ -47,25 +49,27 @@ export function SelectDropdown({
             width: width ?? '50%',
         },
         dropdownContainer: {
-            borderRadius: 8,
+            borderRadius: 18,
             borderColor: colors.text,
             borderWidth: 1,
             left: dropdownLeft,
             right: dropdownRight,
             width: dropdownWidth,
-            backgroundColor: colors.background,
+            backgroundColor: colors.previousButton,
             shadowColor: colors.black,
             shadowOpacity: 1,
             shadowRadius: 100,
             elevation: 100,
+            ...dropdownContainerStyle,
         },
         dropdown: {
             height: 50,
-            backgroundColor: colors.background,
+            backgroundColor: colors.previousButton,
             padding: 12,
-            borderRadius: 8,
+            borderRadius: 18,
             borderColor: colors.text,
             borderWidth: 1,
+            ...style,
         },
         item: {
             padding: 17,
@@ -78,16 +82,17 @@ export function SelectDropdown({
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            backgroundColor: colors.dropdown,
+            backgroundColor: colors.previousButton,
         },
         textItem: {
             flex: 1,
             ...fonts.default,
+            color: colors.text,
         },
         textSelectedItem: {
             flex: 1,
             ...fonts.default,
-            color: colors.black,
+            color: colors.text,
         },
         placeholderStyle: {
             ...fonts.default,

@@ -144,8 +144,15 @@ const BackgroundCollectForm = () => {
             minWidth: 50,
         },
         dropdownStyle: {
-            backgroundColor: colors.blue,
-            color: colors.buttonText,
+            backgroundColor: colors.previousButton,
+            color: colors.text,
+            borderColor: colors.text,
+            borderRadius: 18,
+        },
+        dropdownContainerStyle: {
+            backgroundColor: colors.previousButton,
+            borderRadius: 18,
+            borderColor: colors.text,
         },
     });
 
@@ -201,8 +208,14 @@ const BackgroundCollectForm = () => {
                             textColorScheme={colors.text}
                             icon="forward"
                         />
+
                         <View style={styles.languageselectorContainer}>
-                            <LanguageSwitcher style={styles.dropdownStyle} />
+                            <LanguageSwitcher
+                                style={styles.dropdownStyle}
+                                dropdownContainerStyle={
+                                    styles.dropdownContainerStyle
+                                }
+                            />
                         </View>
                     </View>
                 </View>

@@ -10,9 +10,13 @@ import {
 
 type LanguageSwitcherProps = {
     style?: ViewStyle;
+    dropdownContainerStyle?: ViewStyle;
 };
 
-export const LanguageSwitcher = ({ style }: LanguageSwitcherProps) => {
+export const LanguageSwitcher = ({
+    style,
+    dropdownContainerStyle,
+}: LanguageSwitcherProps) => {
     const storeDispatcher = useAppDispatch();
     const languageState = useAppSelector((state) => state.language);
 
@@ -37,6 +41,7 @@ export const LanguageSwitcher = ({ style }: LanguageSwitcherProps) => {
             }}
             testID="language-switcher"
             style={style}
+            dropdownContainerStyle={dropdownContainerStyle}
         />
     );
 };
