@@ -1,6 +1,7 @@
 import React from 'react';
-import { useColorConfig } from '../../lib/constants/Colors';
+
 import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
+import { useColorConfig } from '../../lib/constants/Colors';
 
 export const StyledLanguageSwitcher = () => {
     const colors = useColorConfig();
