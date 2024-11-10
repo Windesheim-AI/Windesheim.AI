@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Bar } from 'react-native-progress';
 
+import { StyledLanguageSwitcher } from './StyledLanguageSwitcher';
 import {
     aiFamiliarity,
     BackgroundDataItem,
@@ -19,7 +20,6 @@ import { Button } from '../../components/general/buttons/Button';
 import { ListButton } from '../../components/general/buttons/ListButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
-import { StyledLanguageSwitcher } from './StyledLanguageSwitcher';
 import {
     shadow,
     useColorConfig,
@@ -142,17 +142,6 @@ const BackgroundCollectForm = () => {
             maxHeight: 90,
             width: 'auto',
             minWidth: 50,
-        },
-        dropdownStyle: {
-            backgroundColor: colors.previousButton,
-            color: colors.text,
-            borderColor: colors.text,
-            borderRadius: 18,
-        },
-        dropdownContainerStyle: {
-            backgroundColor: colors.previousButton,
-            borderRadius: 18,
-            borderColor: colors.text,
         },
     });
 
