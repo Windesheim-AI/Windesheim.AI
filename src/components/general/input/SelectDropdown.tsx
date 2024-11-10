@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, useWindowDimensions } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    useWindowDimensions,
+    ViewStyle,
+} from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 
 import { useColorConfig } from '../../../lib/constants/Colors';
@@ -20,6 +26,8 @@ export type Props = {
     defaultValue?: string;
     width?: number | string;
     testID?: string;
+    style?: ViewStyle;
+    dropdownContainerStyle?: ViewStyle;
 };
 
 export function SelectDropdown({
@@ -49,13 +57,13 @@ export function SelectDropdown({
             width: width ?? '50%',
         },
         dropdownContainer: {
-            borderRadius: 18,
+            borderRadius: 8,
             borderColor: colors.text,
             borderWidth: 1,
             left: dropdownLeft,
             right: dropdownRight,
             width: dropdownWidth,
-            backgroundColor: colors.previousButton,
+            backgroundColor: colors.background,
             shadowColor: colors.black,
             shadowOpacity: 1,
             shadowRadius: 100,
@@ -64,9 +72,9 @@ export function SelectDropdown({
         },
         dropdown: {
             height: 50,
-            backgroundColor: colors.previousButton,
+            backgroundColor: colors.background,
             padding: 12,
-            borderRadius: 18,
+            borderRadius: 8,
             borderColor: colors.text,
             borderWidth: 1,
             ...style,

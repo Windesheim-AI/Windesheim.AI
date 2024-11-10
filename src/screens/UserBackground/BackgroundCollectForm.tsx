@@ -19,7 +19,7 @@ import { Button } from '../../components/general/buttons/Button';
 import { ListButton } from '../../components/general/buttons/ListButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
-import { LanguageSwitcher } from '../../components/settings/LanguageSwitcher';
+import { StyledLanguageSwitcher } from './StyledLanguageSwitcher';
 import {
     shadow,
     useColorConfig,
@@ -210,12 +210,7 @@ const BackgroundCollectForm = () => {
                         />
 
                         <View style={styles.languageselectorContainer}>
-                            <LanguageSwitcher
-                                style={styles.dropdownStyle}
-                                dropdownContainerStyle={
-                                    styles.dropdownContainerStyle
-                                }
-                            />
+                            <StyledLanguageSwitcher />
                         </View>
                     </View>
                 </View>
