@@ -77,7 +77,9 @@ export function ScanCard({
                 <View style={styles.contentContainer}>
                     <View style={styles.buttonContainer}>
                         <IconLine
-                            text="Take Scan"
+                            text="Lees meer.
+                            ..
+                            "
                             iconName=""
                             textStyle={{ color: colors.text }}
                             iconPosition="left"

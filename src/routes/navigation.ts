@@ -14,5 +14,4 @@ export const navigationBarLinks: NavigationBarLink[] = [
     { icon: 'prompts', route: Routes.PromptLibrary },
     { icon: 'WTR', route: Routes.WindesheimTechRadar },
     { icon: 'scans', route: Routes.Scans },
-
 ];
