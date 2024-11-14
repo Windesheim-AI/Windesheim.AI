@@ -10,12 +10,16 @@ import { InteractiveView } from '../../general/views/InteractiveView';
 type Props = {
     name: string | undefined;
     description?: string;
+    difficulty: string | undefined;
+    imageUrl?: string;
     onPress: () => void;
 };
 
 export function ScanCard({
     name,
     description = '',
+    difficulty = '',
+    imageUrl = '',
     onPress,
 }: Props) {
     const colors = useColorConfig();
@@ -60,13 +64,25 @@ export function ScanCard({
     });
 
     return (
-        <InteractiveView onPress={onPress} testID="course-card">
+        <InteractiveView onPress={onPress} testID="scan-card">
             <Card style={styles.card}>
+                <View>
+                    <img 
+                        src={imageUrl ? imageUrl : "https://placehold.co/200X100/EEE/31343C"} 
+                        alt="Scan Image" 
+                        style={{ width: '100%', height: 'auto' }} 
+                    />
+                </View>
+               
                 <View style={styles.contentContainer}>
                     <TextTranslated style={styles.title} text={name} />
 
                     {description ? (
                         <TextTranslated style={styles.description} text={description} />
+                    ) : null}
+
+                    {difficulty ? (
+                        <TextTranslated style={styles.description} text={"Complexiteit: " + difficulty + "/5"} />
                     ) : null}
                 </View>
 
@@ -77,7 +93,7 @@ export function ScanCard({
                 <View style={styles.contentContainer}>
                     <View style={styles.buttonContainer}>
                         <IconLine
-                            text="Take Scan"
+                            text="Read more"
                             iconName=""
                             textStyle={{ color: colors.text }}
                             iconPosition="left"

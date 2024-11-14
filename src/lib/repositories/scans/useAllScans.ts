@@ -7,8 +7,10 @@ export default function useAllScans() {
     return useDataFetcher<Scan[]>(fetchJsonData, {
         url:
             getEnvValue(EnvOptions.WordPressDataURL) +
-            '/wp-json/wins/v1/scans/',
+            '/wp-json/wins/v1/app/scans/',
         username: getEnvValue(EnvOptions.WordPressUsername),
         password: getEnvValue(EnvOptions.WordPressPassword),
     });
+
+
 }

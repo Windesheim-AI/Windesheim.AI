@@ -24,6 +24,7 @@ import { WTRScreen } from '../screens/WTR';
 import { MockTutorial } from '../screens/WTR/MockTutorial';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
 import { Scans } from '../screens/Scans/Scans';
+import ScansOverview from '../screens/Scans/ScansOverview';
 const Stack = createNativeStackNavigator();
 
 const screens = [
@@ -45,6 +46,7 @@ const screens = [
     { name: Routes.PromptView, component: PromptView },
     { name: Routes.Articles, component: Articles },
     { name: Routes.Scans, component: Scans },
+    { name: Routes.ScansOverview, component: ScansOverview },
     { name: Routes.Quizzes, component: Quizzes },
     { name: Routes.MockTutorial, component: MockTutorial },
     { name: Routes.PodcastsEpisodePage, component: PodcastsEpisodePage },

@@ -19,18 +19,18 @@ type Props = {
 export function ScansOverview({ limit }: Props) {
     const fonts = useFonts();
     const { data, isLoading, error } = useAllScans();
+    console.log(data);
     const scans = useMapMultipleScansToData(data);
     const navigator = useNavigation();
     const isLimited = limit !== undefined && limit > 0;
-
     const selectedScans = isLimited
         ? getRandomLimitedItemsFromArray(scans, limit)
         : scans;
 
-    function onPress(courseId: string) {
+    function onPress(scanId: string) {
         HapticFeedback(HapticForces.Light);
-        navigator.navigate(Routes.StageOverview.toString(), {
-            courseId,
+        navigator.navigate(Routes.ScansOverview.toString(), {
+            scanId,
         });
     }
 
@@ -52,6 +52,7 @@ export function ScansOverview({ limit }: Props) {
             testID="test-container"
             data={selectedScans}
             renderItem={({ item }) => (
+                
                 <View
                     style={styles.courseCardContainer}
                     testID={`course-card-${item.scanId}`}
@@ -60,6 +61,9 @@ export function ScansOverview({ limit }: Props) {
                         key={item.scanId}
                         name={item.name}
                         description={item.description}
+                        content={item.content}
+                        difficulty={item.difficulty}
+                        imageUrl={item.imageUrl}
                         onPress={() => onPress(item.scanId)}
                     />
                 </View>
