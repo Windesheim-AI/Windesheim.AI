@@ -11,7 +11,6 @@ export function Scans() {
 
     return (
         <PageScrollView title="Scans">
-
             <ScansOverview />
         </PageScrollView>
     );
