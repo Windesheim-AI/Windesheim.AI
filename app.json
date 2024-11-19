@@ -38,15 +38,16 @@
         },
         "extra": {
             "eas": {
-                "projectId": "0f525e57-fad9-45bd-9085-714b0d610d6d"
+                "projectId": "027fbe3b-d508-4eb7-8c16-d259e6d78041"
             }
         },
         "runtimeVersion": {
             "policy": "appVersion"
         },
         "updates": {
-            "url": "https://u.expo.dev/0f525e57-fad9-45bd-9085-714b0d610d6d"
+            "url": "https://u.expo.dev/027fbe3b-d508-4eb7-8c16-d259e6d78041"
         },
-        "owner": "windesheim.ai"
+        "owner": "luximus",
+        "plugins": ["expo-font"]
     }
 }

@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-native';
+import { renderHook } from '@testing-library/react-native';
 
 import { useAppDispatch, useAppSelector } from '../../../src/lib/redux/Hooks'; // Import your module
 import { setLoading } from '../../../src/lib/redux/slices/LoadingSlice';
@@ -37,9 +37,7 @@ describe('useStaticLoading', () => {
         });
 
         // Advance the timer by a certain amount (e.g., 500ms)
-        void act(() => {
-            jest.advanceTimersByTime(500);
-        });
+        jest.advanceTimersByTime(500);
 
         // Verify that the isLoading state is set to false
         const state = useAppSelector(
@@ -91,9 +89,8 @@ describe('useDynamicLoading', () => {
             payload: true,
         });
         // Advance the timer to simulate the asynchronous operation completion
-        void act(() => {
-            jest.advanceTimersByTime(500);
-        });
+        jest.advanceTimersByTime(500);
+
         // Verify that the isLoading state is set to false after the asynchronous callback
         const state = useAppSelector(
             (reduxState) => reduxState.loading.isLoading,

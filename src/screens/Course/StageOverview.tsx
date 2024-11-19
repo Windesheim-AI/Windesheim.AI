@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { useRoute } from '@react-navigation/native';
+import { useRoute, RouteProp } from '@react-navigation/native';
 import React from 'react';
 import {
     ImageBackground,
@@ -38,6 +38,10 @@ type StageOverviewPageProps = {
     stageId: string;
 };
 
+type RouteParams = {
+    params: StageOverviewPageProps;
+};
+
 export type StageItemProps = {
     stage: Stage;
 };
@@ -48,9 +52,9 @@ export default function StageOverview() {
     const t = usePreparedTranslator();
     const stateColors = useColorStateConfig();
     const colors = useColorConfig();
-    const route = useRoute();
+    const route = useRoute<RouteProp<RouteParams>>();
     const navigator = useNavigation();
-    const params = route.params as StageOverviewPageProps;
+    const params = route.params;
     const courseId = params.courseId;
     const navigation = useNavigation();
 
@@ -122,7 +126,7 @@ export default function StageOverview() {
             marginLeft: 10,
         },
         courseBackgroundContainer: {
-            borderTopRadius: 15,
+            borderRadius: 15,
             overflow: 'hidden',
         },
         courseTitle: {
