@@ -1,16 +1,13 @@
-import { Store, AnyAction } from '@reduxjs/toolkit';
+import { Store, AnyAction, configureStore } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react-native';
 import React from 'react';
 import { Text } from 'react-native';
 import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
 
 import { WhScrollView } from '../../../src/components/general/views/WhScrollView';
 import { useAppDispatch } from '../../../src/lib/redux/Hooks';
 
 jest.useFakeTimers();
-
-const mockStore = configureStore([]);
 
 (useAppDispatch as jest.Mock).mockReturnValue(jest.fn());
 
@@ -19,9 +16,9 @@ describe('WhScrollView component', () => {
     let store: Store<unknown, AnyAction>;
 
     beforeEach(() => {
-        store = mockStore({
-            navigation: {
-                showNavBar: true,
+        store = configureStore({
+            reducer: {
+                navigation: (state = { showNavBar: true }) => state,
             },
         });
     });

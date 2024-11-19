@@ -1,7 +1,6 @@
 import { render } from '@testing-library/react-native';
 import * as React from 'react';
 import { Text } from 'react-native';
-import renderer from 'react-test-renderer';
 
 import { SettingCard } from '../../../src/components/general/card/SettingCard';
 
@@ -40,13 +39,11 @@ it('renders only title if no description is provided', () => {
     expect(queryByText('Test Description')).toBeNull();
 });
 
-test('renders correctly', () => {
-    const tree = renderer
-        .create(
-            <SettingCard title="test" icon="test2" description="test">
-                test
-            </SettingCard>,
-        )
-        .toJSON();
-    expect(tree).toMatchSnapshot();
+it('renders correctly', () => {
+    const { toJSON } = render(
+        <SettingCard title="test" icon="test2" description="test">
+            test
+        </SettingCard>,
+    );
+    expect(toJSON()).toMatchSnapshot();
 });

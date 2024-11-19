@@ -1,11 +1,11 @@
+import { render } from '@testing-library/react-native';
 import * as React from 'react';
-import renderer from 'react-test-renderer';
 
 import { Background } from '../../../src/components/general/background/Background';
 
 jest.useFakeTimers();
 
-test('renders correctly', () => {
-    const tree = renderer.create(<Background />).toJSON();
-    expect(tree).toMatchSnapshot();
+it('renders correctly', () => {
+    const { toJSON } = render(<Background />);
+    expect(toJSON()).toMatchSnapshot();
 });

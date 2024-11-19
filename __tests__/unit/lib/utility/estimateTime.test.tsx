@@ -9,13 +9,13 @@ import {
 } from '../../../../src/types/CourseStageBlock';
 
 describe('estimateTime', () => {
-    test('it should return 0 for empty blocks', () => {
+    it('it should return 0 for empty blocks', () => {
         const blocks: CourseStageBlock[] = [];
         const result = estimateTime(blocks);
         expect(result).toBe(0);
     });
 
-    test('it should calculate the estimated time correctly for text blocks', () => {
+    it('it should calculate the estimated time correctly for text blocks', () => {
         const blocks: CourseStageBlock[] = [
             {
                 id: 'block-id-1',
@@ -46,7 +46,7 @@ describe('estimateTime', () => {
 });
 
 describe('estimateTimeToRead', () => {
-    test('it should return the estimated time with "min" suffix', () => {
+    it('it should return the estimated time with "min" suffix', () => {
         const blocks: CourseStageBlock[] = [
             {
                 id: 'block-id-1',
