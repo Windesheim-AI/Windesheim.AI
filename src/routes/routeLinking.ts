@@ -31,6 +31,8 @@ export const RouteLinking = {
                 },
             },
             [Routes.Scans]: 'scans',
+            [Routes.InformationPage]: 'informationpage',
+
             [Routes.ScansOverview]: {
                 path: 'scans/:scanId/overview',
                 parse: {
