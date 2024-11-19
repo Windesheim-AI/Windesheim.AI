@@ -76,7 +76,7 @@ export type ColorSchemeType = {
 export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
         primary: '#4695D3',
-        secondary: '#fff377',
+        secondary: '#FFD700',
         success: '#FFF377',
         warning: '#ff7300',
         danger: '#EE3135',
@@ -142,7 +142,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
     },
     dark: {
         primary: '#4695D3',
-        secondary: '#fff377',
+        secondary: '#FFD700',
         success: '#86d2d9',
         warning: '#ff7300',
         danger: '#EE3135',
@@ -211,7 +211,7 @@ export const colorMap: Record<'dark' | 'light', ColorSchemeType> = {
 const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
     light: {
         primary: '#0000FF',
-        secondary: '#FFFF00',
+        secondary: '#FFD700',
         success: '#FFD700',
         warning: '#FFA500',
         danger: '#FF0000',
@@ -277,7 +277,7 @@ const highContrastColorMap: Record<'dark' | 'light', ColorSchemeType> = {
     },
     dark: {
         primary: '#0000FF',
-        secondary: '#FFFF00',
+        secondary: '#FFD700',
         success: '#4695d3',
         warning: '#FFA500',
         danger: '#FF0000',

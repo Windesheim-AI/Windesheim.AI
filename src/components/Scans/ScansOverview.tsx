@@ -61,7 +61,6 @@ export function ScansOverview({ limit }: Props) {
                         key={item.scanId}
                         name={item.name}
                         description={item.description}
-                        content={item.content}
                         difficulty={item.difficulty}
                         imageUrl={item.imageUrl}
                         onPress={() => onPress(item.scanId)}

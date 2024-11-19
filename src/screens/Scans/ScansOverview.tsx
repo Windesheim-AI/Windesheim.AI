@@ -10,6 +10,7 @@ import {
     View,
     ViewStyle,
     Image,
+    Button
 } from 'react-native';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -19,6 +20,8 @@ import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { PageView } from '../../components/general/views/PageView';
 import LoadingScreen from '../../components/loadingscreen/LoadingScreen';
+import { IconLine } from '../../../src/components/general/base/IconLine';
+
 import {
     useColorConfig,
     useColorStateConfig,
@@ -87,12 +90,12 @@ export default function ScanOverview() {
         title: {
             ...fonts.h1,
             fontSize: 34,
-            marginBottom: 10,
+            margin: 10,
         },
 
-        diffculty: {
-            fontSize: 14,
-            marginBottom: 10,
+        diffcultytext: {
+            margin: 10,
+            fontWeight: 'bold',
         },
         courseBackgroundImage: {
             height: 140,
@@ -130,6 +133,14 @@ export default function ScanOverview() {
             ...fonts.courseTitle,
             marginRight: 10,
         },
+        buttonContainer: {
+            alignItems: 'center',
+            backgroundColor: '#FFD700',
+            borderRadius: 10,
+            paddingVertical: 8,
+            paddingHorizontal: 15,
+            ...fonts.stageTime,
+        },
     });
 
     function navigateBackToCourses() {
@@ -159,26 +170,40 @@ export default function ScanOverview() {
         <PageView>
             <View style={styles.container}>
                 <View style={styles.courseBackgroundContainer}>
-                    <ImageBackground
-                        source={require('../../assets/images/bgImages/generative-intelligence-01-1.png')}
-                        style={styles.courseBackgroundImage}
+                    <img 
+                        src={scan?.imageUrl ? scan?.imageUrl : "https://placehold.co/200X100/EEE/31343C"} 
+                        alt="Scan Image" 
+                        style={{ width: '100%', height: 'auto' }} 
                     />
                 </View>
-                <TouchableOpacity onPress={goBack} style={buttonStyle}>
-                    <Image source={arrowLeft} style={iconStyle} />
-                </TouchableOpacity>
+       
                 <View style={styles.content}>
                     <TextTranslated style={styles.title} text={scan.name} />
                     <TextTranslated
-                        style={fonts.content}
+                        style={styles.content}
                         text={scan?.content}
                     />
                     <TextTranslated
-                        style={fonts.description}
+                        style={styles.diffcultytext}
                         text={"Difficulty: " + scan?.difficulty + "/5"}
                     />
+                    
                 </View>
-            </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 20 }}>
+                        <TouchableOpacity
+                            onPress={goBack}
+                            style={[styles.buttonContainer, { backgroundColor: colors.secondary, width: '48%' }]}
+                        >
+                            <TextTranslated text="Go Back" />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => navigator.navigate(Routes.Home.toString())}
+                            style={[styles.buttonContainer, { backgroundColor: colors.secondary, width: '48%' }]}
+                        >
+                            <TextTranslated text="Take scan" />
+                        </TouchableOpacity>
+                    </View>
+                </View>
         </PageView>
     );
 }
