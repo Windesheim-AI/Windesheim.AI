@@ -29,7 +29,7 @@ export default function AIGeneratedOutput({ text, prompt }: Props) {
         title: {
             ...fonts.h4,
             flexDirection: 'row',
-            fontWeight: 400,
+            fontWeight: '400', // changed to string
             textAlignVertical: 'center',
             alignItems: 'center', // added property
             marginBottom: 7,
