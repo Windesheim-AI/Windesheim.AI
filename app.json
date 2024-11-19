@@ -48,8 +48,6 @@
             "url": "https://u.expo.dev/027fbe3b-d508-4eb7-8c16-d259e6d78041"
         },
         "owner": "luximus",
-        "plugins": [
-            "expo-font"
-            ]
+        "plugins": ["expo-font"]
     }
 }
