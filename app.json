@@ -1,5 +1,6 @@
 {
     "expo": {
+        "newArchEnabled": true,
         "name": "Windesheim.AI",
         "slug": "winsight",
         "scheme": "windesheim.ai",
