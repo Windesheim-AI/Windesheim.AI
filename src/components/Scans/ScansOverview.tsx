@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { ScanCard } from '../Scans/card/ScanCard';
 import { useFonts } from '../../lib/constants/Fonts';
@@ -62,6 +62,13 @@ export function ScansOverview({ limit }: Props) {
                         description={item.description}
                         onPress={() => onPress(item.scanId)}
                     />
+                    <TouchableOpacity
+                        onPress={() =>
+                            navigator.navigate(Routes.Results.toString())
+                        }
+                    >
+                        <TextTranslated text="Results" style={fonts.default} />
+                    </TouchableOpacity>
                 </View>
             )}
             keyExtractor={(item) => item.scanId}
