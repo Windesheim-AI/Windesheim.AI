@@ -7,12 +7,12 @@ import {
     Pressable,
     Dimensions,
 } from 'react-native';
+import Svg, { Polygon, Line, Text as SvgText } from 'react-native-svg';
 import { useColorConfig } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import { useNavigation } from '@react-navigation/native';
-import { Routes } from '../../routes/routes';
-
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
+import { Routes } from '../../routes/routes';
 
 const Results = () => {
     const colors = useColorConfig();
@@ -32,15 +32,46 @@ const Results = () => {
 
     const chartData = {
         labels: [
-            'Strategy',
-            'Culture',
-            'Organisation',
-            'Processes',
-            'Technology',
-            'Customers & partners',
+            'Strategy, Leadership, and Planning',
+            'Technology and Processes',
+            'Data Management and Ethics',
+            'Skills, Workforce, and AI Knowledge',
+            'Innovation and Change Management',
+            'Risk & Compliance',
         ],
         data: [3, 4, 2, 1, 3, 4],
     };
+
+    const maxValue = 5; // Maximum value for the chart
+    const chartSize = 200; // Size of the chart
+    const padding = 20; // Padding around the chart
+    const center = (chartSize + padding * 2) / 2;
+    const radius = chartSize / 2;
+
+    // Calculate the points for the polygon
+    const points = chartData.data
+        .map((value, index) => {
+            const angle = (Math.PI * 2 * index) / chartData.data.length;
+            const x = center + radius * (value / maxValue) * Math.sin(angle);
+            const y = center - radius * (value / maxValue) * Math.cos(angle);
+            return `${x},${y}`;
+        })
+        .join(' ');
+
+    // Calculate the points for the grid
+    const gridPoints = Array.from({ length: maxValue }, (_, i) => {
+        const value = i + 1;
+        return chartData.data
+            .map((_, index) => {
+                const angle = (Math.PI * 2 * index) / chartData.data.length;
+                const x =
+                    center + radius * (value / maxValue) * Math.sin(angle);
+                const y =
+                    center - radius * (value / maxValue) * Math.cos(angle);
+                return `${x},${y}`;
+            })
+            .join(' ');
+    });
 
     const styles = StyleSheet.create({
         container: {
@@ -53,12 +84,6 @@ const Results = () => {
             justifyContent: 'space-between',
             alignItems: 'center',
             marginBottom: windowHeight * 0.03,
-        },
-        logo: {
-            width: windowWidth * 0.12,
-            height: windowWidth * 0.12,
-            maxWidth: 50,
-            maxHeight: 50,
         },
         menuIcon: {
             padding: 10,
@@ -90,9 +115,8 @@ const Results = () => {
             color: colors.buttonText,
         },
         footer: {
-            ...fonts.subtext,
+            ...fonts.default,
             textAlign: 'center',
-            color: colors.subtext,
         },
     });
 
@@ -100,13 +124,57 @@ const Results = () => {
         <View style={styles.container}>
             <View style={styles.header}>
                 <Pressable style={styles.menuIcon}>
-                    <Text style={{ color: colors.text }}>Menu</Text>
+                    <Text>Menu</Text>
                 </Pressable>
             </View>
             <Text style={styles.title}>Results</Text>
-            <Text style={styles.description}>
-                Here are your results, bibabububabadada
-            </Text>
+            <Text style={styles.description}>Here are your results</Text>
+            <View style={styles.chartContainer}>
+                <Svg
+                    width={chartSize + padding * 2}
+                    height={chartSize + padding * 2}
+                >
+                    {gridPoints.map((points, index) => (
+                        <Polygon
+                            key={index}
+                            points={points}
+                            stroke={colors.primary}
+                            strokeWidth="0.5"
+                            fill="none"
+                        />
+                    ))}
+                    <Polygon
+                        points={points}
+                        fill="rgba(0, 128, 255, 0.5)"
+                        stroke={colors.primary}
+                        strokeWidth="1"
+                    />
+                    {chartData.labels.map((label, index) => {
+                        const angle =
+                            (Math.PI * 2 * index) / chartData.data.length;
+                        const x =
+                            center + (radius + padding / 2) * Math.sin(angle);
+                        const y =
+                            center - (radius + padding / 2) * Math.cos(angle);
+                        return (
+                            <SvgText
+                                key={index}
+                                x={x}
+                                y={y}
+                                fontSize="10"
+                                fill={colors.text}
+                                textAnchor="middle"
+                            >
+                                {label}
+                            </SvgText>
+                        );
+                    })}
+                </Svg>
+            </View>
+            <Pressable style={styles.button} onPress={handleViewDetails}>
+                <Text style={styles.buttonText}>View Details</Text>
+            </Pressable>
+            <Text style={styles.footer}>Footer text</Text>
         </View>
     );
 };
