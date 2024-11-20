@@ -44,7 +44,8 @@ const Results = () => {
 
     const maxValue = 5; // Maximum value for the chart
     const chartSize = 200; // Size of the chart
-    const padding = 20; // Padding around the chart
+    const padding = 80; // Increased padding for better label visibility
+    const labelOffset = 20; // Additional offset for labels
     const center = (chartSize + padding * 2) / 2;
     const radius = chartSize / 2;
 
@@ -100,8 +101,6 @@ const Results = () => {
         },
         chartContainer: {
             alignItems: 'center',
-            marginBottom: windowHeight * 0.03,
-            height: Math.min(windowHeight * 0.4, 400),
         },
         button: {
             backgroundColor: colors.primary,
@@ -152,22 +151,50 @@ const Results = () => {
                     {chartData.labels.map((label, index) => {
                         const angle =
                             (Math.PI * 2 * index) / chartData.data.length;
-                        const x =
-                            center + (radius + padding / 2) * Math.sin(angle);
-                        const y =
-                            center - (radius + padding / 2) * Math.cos(angle);
-                        return (
+                        const labelRadius = radius + labelOffset;
+
+                        // Calculate base position
+                        const x = center + labelRadius * Math.sin(angle);
+                        const y = center - labelRadius * Math.cos(angle);
+
+                        // Split label into multiple lines if too long
+                        const words = label.split(' ');
+                        const lines = [];
+                        let currentLine = '';
+
+                        words.forEach((word) => {
+                            if (currentLine.length + word.length > 15) {
+                                lines.push(currentLine);
+                                currentLine = word;
+                            } else {
+                                currentLine += (currentLine ? ' ' : '') + word;
+                            }
+                        });
+                        lines.push(currentLine);
+
+                        // Calculate vertical offset based on number of lines
+                        const totalHeight = lines.length * 12;
+                        const startY = y - totalHeight / 2 + 6; // Center the text block
+
+                        return lines.map((line, lineIndex) => (
                             <SvgText
-                                key={index}
+                                key={`${index}-${lineIndex}`}
                                 x={x}
-                                y={y}
+                                y={startY + lineIndex * 12}
                                 fontSize="10"
                                 fill={colors.text}
-                                textAnchor="middle"
+                                textAnchor={
+                                    Math.abs(Math.sin(angle)) < 0.1
+                                        ? 'middle'
+                                        : Math.sin(angle) > 0
+                                          ? 'start'
+                                          : 'end'
+                                }
+                                alignmentBaseline="middle"
                             >
-                                {label}
+                                {line}
                             </SvgText>
-                        );
+                        ));
                     })}
                 </Svg>
             </View>
