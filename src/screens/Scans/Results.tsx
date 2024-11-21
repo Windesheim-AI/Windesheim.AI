@@ -6,6 +6,7 @@ import {
     Image,
     Pressable,
     Dimensions,
+    TouchableOpacity,
 } from 'react-native';
 import Svg, { Polygon, Line, Text as SvgText } from 'react-native-svg';
 import { useColorConfig } from '../../lib/constants/Colors';
@@ -13,6 +14,22 @@ import { useFonts } from '../../lib/constants/Fonts';
 import { useNavigation } from '@react-navigation/native';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { Routes } from '../../routes/routes';
+import { useDataFetcher, fetchJsonData } from '../../lib/fetcher/DataFetcher';
+import { LoadingScreen } from '../../components/loadingscreen/LoadingScreen';
+import { getEnvValue } from '../../lib/utility/env/env';
+import { EnvOptions } from '../../lib/utility/env/env.values';
+
+interface ScanResult {
+    result_id: number;
+    scan_id: string;
+    scan_name: string;
+    scan_type: string;
+    scores: {
+        id: string;
+        categoryName: string;
+        score: string;
+    }[];
+}
 
 const Results = () => {
     const colors = useColorConfig();
@@ -20,6 +37,33 @@ const Results = () => {
     const navigation = useNavigation();
     const windowWidth = Dimensions.get('window').width;
     const windowHeight = Dimensions.get('window').height;
+
+    const {
+        data: scanResult,
+        error,
+        isLoading,
+    } = useDataFetcher<ScanResult>(fetchJsonData, {
+        url: `${getEnvValue(EnvOptions.WordPressDataURL)}/wp-json/wins/v1/result/1`,
+        username: getEnvValue(EnvOptions.WordPressUsername),
+        password: getEnvValue(EnvOptions.WordPressPassword),
+        payload: {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        },
+    });
+
+    const chartData = React.useMemo(
+        () => ({
+            labels:
+                scanResult?.scores?.map((score) => score.categoryName) ?? [],
+            data:
+                scanResult?.scores?.map((score) => parseInt(score.score)) ?? [],
+        }),
+        [scanResult],
+    );
 
     const handleViewDetails = () => {
         HapticFeedback(HapticForces.Light);
@@ -30,17 +74,21 @@ const Results = () => {
         }
     };
 
-    const chartData = {
-        labels: [
-            'Strategy, Leadership, and Planning',
-            'Technology and Processes',
-            'Data Management and Ethics',
-            'Skills, Workforce, and AI Knowledge',
-            'Innovation and Change Management',
-            'Risk & Compliance',
-        ],
-        data: [3, 4, 2, 1, 3, 4],
-    };
+    if (isLoading) {
+        return <LoadingScreen />;
+    }
+
+    if (error) {
+        return (
+            <Text style={fonts.default}>
+                Error loading data: {error.message}
+            </Text>
+        );
+    }
+
+    if (!scanResult) {
+        return <Text style={fonts.default}>No data available</Text>;
+    }
 
     const maxValue = 5; // Maximum value for the chart
     const chartSize = 200; // Size of the chart
@@ -198,10 +246,9 @@ const Results = () => {
                     })}
                 </Svg>
             </View>
-            <Pressable style={styles.button} onPress={handleViewDetails}>
+            <TouchableOpacity style={styles.button} onPress={handleViewDetails}>
                 <Text style={styles.buttonText}>View Details</Text>
-            </Pressable>
-            <Text style={styles.footer}>Footer text</Text>
+            </TouchableOpacity>
         </View>
     );
 };
