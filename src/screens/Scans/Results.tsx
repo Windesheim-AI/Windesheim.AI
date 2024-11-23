@@ -181,6 +181,22 @@ const Results = () => {
                     width={chartSize + padding * 2}
                     height={chartSize + padding * 2}
                 >
+                    {Array.from({ length: maxValue }, (_, i) => {
+                        const value = i + 1;
+                        return (
+                            <SvgText
+                                key={`level-${value}`}
+                                x={center}
+                                y={center - (radius * value) / maxValue}
+                                fontSize="10"
+                                fill={colors.text}
+                                textAnchor="end"
+                                alignmentBaseline="middle"
+                            >
+                                {value}
+                            </SvgText>
+                        );
+                    })}
                     {gridPoints.map((points, index) => (
                         <Polygon
                             key={index}
