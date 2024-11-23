@@ -9,7 +9,10 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import Svg, { Polygon, Line, Text as SvgText } from 'react-native-svg';
-import { useColorConfig } from '../../lib/constants/Colors';
+import {
+    useColorConfig,
+    useColorStateConfig,
+} from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import { useNavigation } from '@react-navigation/native';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
@@ -18,6 +21,8 @@ import { useDataFetcher, fetchJsonData } from '../../lib/fetcher/DataFetcher';
 import { LoadingScreen } from '../../components/loadingscreen/LoadingScreen';
 import { getEnvValue } from '../../lib/utility/env/env';
 import { EnvOptions } from '../../lib/utility/env/env.values';
+import { InteractiveView } from '../../components/general/views/InteractiveView';
+import { TextTranslated } from '../../components/general/text/TextTranslated';
 
 interface ScanResult {
     result_id: number;
@@ -31,8 +36,9 @@ interface ScanResult {
     }[];
 }
 
-const Results = () => {
+const Results = ({ data }) => {
     const colors = useColorConfig();
+    const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const navigation = useNavigation();
     const windowWidth = Dimensions.get('window').width;
@@ -64,15 +70,6 @@ const Results = () => {
         }),
         [scanResult],
     );
-
-    const handleViewDetails = () => {
-        HapticFeedback(HapticForces.Light);
-        try {
-            navigation.navigate(Routes.Scans as never);
-        } catch (error) {
-            console.error('Navigation error:', error);
-        }
-    };
 
     if (isLoading) {
         return <LoadingScreen />;
@@ -148,32 +145,24 @@ const Results = () => {
             marginBottom: windowHeight * 0.03,
         },
         chartContainer: {
+            paddingTop: windowHeight * 0.03,
             alignItems: 'center',
         },
         button: {
-            backgroundColor: colors.primary,
-            paddingVertical: windowHeight * 0.015,
-            borderRadius: 5,
+            backgroundColor: colors.previousButton,
+            borderRadius: 8,
+            padding: 12,
+            flexDirection: 'row',
             alignItems: 'center',
-            marginVertical: windowHeight * 0.03,
+            ...colorStateConfig.highContrastBorder,
         },
         buttonText: {
-            ...fonts.button,
-            color: colors.buttonText,
-        },
-        footer: {
             ...fonts.default,
-            textAlign: 'center',
         },
     });
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Pressable style={styles.menuIcon}>
-                    <Text>Menu</Text>
-                </Pressable>
-            </View>
             <Text style={styles.title}>Results</Text>
             <Text style={styles.description}>Here are your results</Text>
             <View style={styles.chartContainer}>
@@ -262,9 +251,15 @@ const Results = () => {
                     })}
                 </Svg>
             </View>
-            <TouchableOpacity style={styles.button} onPress={handleViewDetails}>
-                <Text style={styles.buttonText}>View Details</Text>
-            </TouchableOpacity>
+            <InteractiveView
+                style={styles.button}
+                onPress={() => navigation.navigate(Routes.Home.toString())}
+            >
+                <TextTranslated
+                    style={styles.buttonText}
+                    text="Back to Homepage"
+                />
+            </InteractiveView>
         </View>
     );
 };
