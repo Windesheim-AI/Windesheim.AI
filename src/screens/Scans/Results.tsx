@@ -23,6 +23,7 @@ import { getEnvValue } from '../../lib/utility/env/env';
 import { EnvOptions } from '../../lib/utility/env/env.values';
 import { InteractiveView } from '../../components/general/views/InteractiveView';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
+import { Translation } from 'react-i18next';
 
 interface ScanResult {
     result_id: number;
@@ -152,20 +153,20 @@ const Results = ({ data }) => {
             backgroundColor: colors.previousButton,
             borderRadius: 8,
             padding: 12,
-            flexDirection: 'row',
             alignItems: 'center',
             ...colorStateConfig.highContrastBorder,
-        },
-        buttonText: {
-            ...fonts.default,
         },
     });
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Results</Text>
-            <Text style={styles.description}>Here are your results</Text>
+            <TextTranslated style={styles.title} text="Results" />
+            <Text style={styles.description}>
+                Here are your
+                resultsbibabubuabusdhaiushdiauwhdiuahsidhuawiuhdiaushdiuahwiduhasiudhaiwuhdaisuhdiauwhiduahsidhawidhasihdiahw
+            </Text>
             <View style={styles.chartContainer}>
+                <TextTranslated style={fonts.default} text="Overall Score:" />
                 <Svg
                     width={chartSize + padding * 2}
                     height={chartSize + padding * 2}
@@ -255,10 +256,7 @@ const Results = ({ data }) => {
                 style={styles.button}
                 onPress={() => navigation.navigate(Routes.Home.toString())}
             >
-                <TextTranslated
-                    style={styles.buttonText}
-                    text="Back to Homepage"
-                />
+                <TextTranslated style={fonts.default} text="Back to Homepage" />
             </InteractiveView>
         </View>
     );
