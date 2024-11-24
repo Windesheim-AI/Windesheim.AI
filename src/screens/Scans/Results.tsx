@@ -1,4 +1,5 @@
 import React from 'react';
+import { Translation } from 'react-i18next';
 import {
     StyleSheet,
     View,
@@ -9,21 +10,20 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import Svg, { Polygon, Line, Text as SvgText } from 'react-native-svg';
+import { TextTranslated } from '../../components/general/text/TextTranslated';
+import { InteractiveView } from '../../components/general/views/InteractiveView';
+import { LoadingScreen } from '../../components/loadingscreen/LoadingScreen';
 import {
     useColorConfig,
     useColorStateConfig,
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import { useNavigation } from '@react-navigation/native';
-import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
-import { Routes } from '../../routes/routes';
 import { useDataFetcher, fetchJsonData } from '../../lib/fetcher/DataFetcher';
-import { LoadingScreen } from '../../components/loadingscreen/LoadingScreen';
+import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { getEnvValue } from '../../lib/utility/env/env';
 import { EnvOptions } from '../../lib/utility/env/env.values';
-import { InteractiveView } from '../../components/general/views/InteractiveView';
-import { TextTranslated } from '../../components/general/text/TextTranslated';
-import { Translation } from 'react-i18next';
+import { Routes } from '../../routes/routes';
 
 interface ScanResult {
     result_id: number;
@@ -196,6 +196,23 @@ const Results = ({ data }) => {
                             fill="none"
                         />
                     ))}
+                    {chartData.labels.map((label, index) => {
+                        const angle =
+                            (Math.PI * 2 * index) / chartData.data.length;
+                        const x = center + radius * Math.sin(angle);
+                        const y = center - radius * Math.cos(angle);
+                        return (
+                            <Line
+                                key={`axis-line-${index}`}
+                                x1={center}
+                                y1={center}
+                                x2={x}
+                                y2={y}
+                                stroke={colors.primary}
+                                strokeWidth="0.5"
+                            />
+                        );
+                    })}
                     <Polygon
                         points={points}
                         fill="rgba(0, 128, 255, 0.5)"
@@ -254,7 +271,7 @@ const Results = ({ data }) => {
             </View>
             <InteractiveView
                 style={styles.button}
-                onPress={() => navigation.navigate(Routes.Home.toString())}
+                onPress={() => navigation.navigate(Routes.Home)}
             >
                 <TextTranslated style={fonts.default} text="Back to Homepage" />
             </InteractiveView>
