@@ -46,7 +46,7 @@ export function VideoBlock({ options }: { options: VideoOptions }) {
 
     return (
         <BlockWrapper style={styles.container}>
-            {!options.videoURL.includes('youtube' || 'yt') ? (
+            {!/youtube|yt/.test(options.videoURL) ? (
                 <>
                     <Video
                         style={styles.video}

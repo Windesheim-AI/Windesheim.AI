@@ -1,15 +1,14 @@
-import { Store, AnyAction } from '@reduxjs/toolkit';
-import { act, render } from '@testing-library/react-native';
+import { Store, AnyAction, configureStore } from '@reduxjs/toolkit';
+import { render } from '@testing-library/react-native';
 import React from 'react';
 import { Text } from 'react-native';
 import { Provider } from 'react-redux';
-import renderer from 'react-test-renderer';
-import configureStore from 'redux-mock-store';
 
 import { PageScrollView } from '../../../src/components/general/views/PageScrollView';
 import { useAppDispatch } from '../../../src/lib/redux/Hooks';
 
-const mockStore = configureStore([]);
+const mockStore = (initialState: any) =>
+    configureStore({ reducer: () => initialState });
 
 jest.useFakeTimers();
 
@@ -28,18 +27,13 @@ describe('PageScrollView component', () => {
     });
 
     it('renders correctly', () => {
-        let component;
-        void act(() => {
-            component = renderer.create(
-                <Provider store={store}>
-                    <PageScrollView title="Test Title">test</PageScrollView>
-                </Provider>,
-            );
-        });
+        const { toJSON } = render(
+            <Provider store={store}>
+                <PageScrollView title="Test Title">test</PageScrollView>
+            </Provider>,
+        );
 
-        // @ts-ignore
-        const tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
+        expect(toJSON()).toMatchSnapshot();
     });
 
     it('renders children correctly', () => {

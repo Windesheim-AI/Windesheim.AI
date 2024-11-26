@@ -4,13 +4,13 @@ import React from 'react';
 import WTRHtmlDisplay from '../../../src/components/WTR/html/WTRHtmlDisplay';
 import { colorMap } from '../../../src/lib/constants/Colors';
 
-test('renders WTRHtmlDisplay component without crashing', () => {
+it('renders WTRHtmlDisplay component without crashing', () => {
     const html = '<div>Hello, World!</div>';
     const colors = colorMap.light;
     render(<WTRHtmlDisplay html={html} colors={colors} />);
 });
 
-test('displays HTML content correctly', () => {
+it('displays HTML content correctly', () => {
     const html = '<div>Hello, World!</div>';
     const colors = colorMap.light;
     const { getByText } = render(
@@ -19,7 +19,7 @@ test('displays HTML content correctly', () => {
     expect(getByText('Hello, World!')).toBeTruthy();
 });
 
-test('applies custom renderers correctly', async () => {
+it('applies custom renderers correctly', async () => {
     const html = '<div><img src="some-image.jpg" /></div>';
     const colors = colorMap.light;
 

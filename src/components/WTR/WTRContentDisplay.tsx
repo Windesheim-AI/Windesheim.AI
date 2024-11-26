@@ -47,9 +47,7 @@ export const WTRContentDisplay = ({ page }: WTRSContentDisplayProps) => {
             <PageView title="Page not found">
                 <TextTranslated
                     style={styles.text}
-                    text={
-                        "We're sorry, but we couldn't find the page you were looking for."
-                    }
+                    text="We're sorry, but we couldn't find the page you were looking for."
                 />
             </PageView>
         );
