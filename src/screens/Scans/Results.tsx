@@ -126,15 +126,7 @@ const Results = ({ data }) => {
             padding: windowWidth * 0.05,
             backgroundColor: colors.background,
         },
-        header: {
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: windowHeight * 0.03,
-        },
-        menuIcon: {
-            padding: 10,
-        },
+
         title: {
             ...fonts.h1,
             color: colors.titleDefault,
