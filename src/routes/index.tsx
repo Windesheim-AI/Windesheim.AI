@@ -14,6 +14,7 @@ import { PodcastsEpisodePage } from '../screens/Podcasts/PodcastsEpisodePage';
 import { PromptLibrary } from '../screens/PromptLibrary/PromptLibrary';
 import { PromptView } from '../screens/PromptLibrary/PromptView';
 import { Quizzes } from '../screens/Quizzes';
+import { QuestionPage } from '../screens/Scans/QuestionPage';
 import { SettingsScreen } from '../screens/Settings';
 import { StudyScreen } from '../screens/Study';
 import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
@@ -23,6 +24,7 @@ import { BackgroundInfo } from '../screens/UserBackground/BackgroundInfo';
 import { WTRScreen } from '../screens/WTR';
 import { MockTutorial } from '../screens/WTR/MockTutorial';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
+
 const Stack = createNativeStackNavigator();
 
 const screens = [
@@ -46,6 +48,7 @@ const screens = [
     { name: Routes.Quizzes, component: Quizzes },
     { name: Routes.MockTutorial, component: MockTutorial },
     { name: Routes.PodcastsEpisodePage, component: PodcastsEpisodePage },
+    { name: Routes.QuestionPage, component: QuestionPage },
 ];
 
 export const Router = () => {
