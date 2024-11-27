@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { View, Text } from 'react-native';
+import React, { useEffect, useState, JSX } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button, ProgressBar } from 'react-native-paper';
 
 import fetchScanQuestionRange from '../../lib/repositories/scans/fetchScanQuestionRange';
@@ -11,7 +11,7 @@ import { ScanQuestion } from '../../types/Scan';
  * The QuestionPage component displays a series of questions with navigation buttons.
  * @returns {JSX.Element} - The rendered component.
  */
-export function QuestionPage() {
+export function QuestionPage(): JSX.Element {
     const [currentQuestionIndex, setCurrentQuestionIndex] =
         React.useState<number>(0);
     const [currentQuestion, setCurrentQuestion] = React.useState<
@@ -23,6 +23,12 @@ export function QuestionPage() {
         [],
     );
 
+    const [descriptionVisible, setDescriptionVisible] = useState(false);
+
+    const toggleDescription = () => {
+        setDescriptionVisible(!descriptionVisible);
+    };
+
     const scanId = '1';
 
     const {
@@ -31,8 +37,11 @@ export function QuestionPage() {
         // error: scanError,
     } = useSingleScan(scanId);
 
+    // Parse the questions from the scan data.
+    // This doesnt include the question data fetched from the API.
+    // This has Id, categoryId and index.
+    // The rest if the data is fetched from the API when needed.
     const parsedQuestions: ScanQuestion[] = [];
-
     if (scanData && parsedQuestions.length === 0) {
         // Sort the categories by index.
         scanData.categories
@@ -100,6 +109,7 @@ export function QuestionPage() {
             });
     };
 
+    // Fetch the first question when the component mounts.
     const firstId = parsedQuestions[0]?.id;
     const {
         data: firstQuestionData,
@@ -180,24 +190,93 @@ export function QuestionPage() {
         }
     }, [currentQuestion, questionCache, currentQuestionIndex]);
 
-    return currentQuestion ? (
-        <View>
-            <ProgressBar progress={getProgress()} />
-            <Text>ID: {currentQuestion?.id}</Text>
-            <Text>CategoryID: {currentQuestion?.categoryId}</Text>
-            <Text>Index: {currentQuestion?.idx}</Text>
-            <Text>Question: {currentQuestion?.text}</Text>
-            <Text>Description: {currentQuestion?.description}</Text>
-            <Button onPress={showPreviousQuestion}>
-                <Text>Previous</Text>
-            </Button>
-            <Button onPress={showNextQuestion}>
-                <Text>Next</Text>
-            </Button>
-        </View>
-    ) : (
-        <View>
-            <Text>Loading the next question for you...</Text>
+    return (
+        <View style={styles.container}>
+            <ProgressBar progress={getProgress()} style={styles.progressBar} />
+            <Text style={styles.progressText}>
+                Question {currentQuestionIndex} of {parsedQuestions.length}
+            </Text>
+            <View style={styles.questionContainer}>
+                {currentQuestion ? (
+                    <>
+                        <Text style={styles.questionText}>
+                            {currentQuestion?.text}
+                        </Text>
+                        <TouchableOpacity onPress={toggleDescription}>
+                            <Text style={styles.toggleDescription}>
+                                {descriptionVisible
+                                    ? 'Hide Description'
+                                    : 'Show Description'}
+                            </Text>
+                        </TouchableOpacity>
+                        {descriptionVisible ? (
+                            <Text style={styles.descriptionText}>
+                                {currentQuestion?.description}
+                            </Text>
+                        ) : null}
+                    </>
+                ) : (
+                    <Text>Loading the next question for you...</Text>
+                )}
+            </View>
+            <View style={styles.buttonContainer}>
+                <Button
+                    onPress={showPreviousQuestion}
+                    style={styles.button}
+                    disabled={!currentQuestion}
+                >
+                    <Text>Previous</Text>
+                </Button>
+                <Button
+                    onPress={showNextQuestion}
+                    style={styles.button}
+                    disabled={!currentQuestion}
+                >
+                    <Text>Next</Text>
+                </Button>
+            </View>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'space-between',
+        padding: 16,
+    },
+    progressBar: {
+        marginBottom: 16,
+    },
+    progressText: {
+        textAlign: 'center',
+    },
+    questionContainer: {
+        flex: 1,
+        justifyContent: 'center',
+    },
+    questionText: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 8,
+    },
+    toggleDescription: {
+        marginBottom: 8,
+    },
+    descriptionText: {
+        fontSize: 20,
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    button: {
+        flex: 1,
+        marginHorizontal: 8,
+    },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+});
