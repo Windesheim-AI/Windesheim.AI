@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { styled } from 'styled-components';
 import {
     FaChevronUp,
     FaChevronDown,
@@ -8,6 +7,7 @@ import {
     FaArrowRight,
 } from 'react-icons/fa';
 import { ScrollView } from 'react-native';
+import { styled } from 'styled-components';
 
 interface CategoryProps {
     isSelected: boolean;
