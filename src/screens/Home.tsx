@@ -5,8 +5,7 @@ import { SettingsButton } from '../components/general/buttons/SettingButton';
 import { PageScrollView } from '../components/general/views/PageScrollView';
 import { Introduction } from '../components/general/card/Introduction';
 import { DisclaimerCard } from '../components/general/card/DisclaimerCard';
-import { Introduction } from '../components/general/card/Introduction';
-import { DisclaimerCard } from '../components/general/card/DisclaimerCard';
+import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
 import { RootState } from '../lib/redux/Hooks';
 
 export const HomeScreen = () => {
@@ -38,11 +37,7 @@ export const HomeScreen = () => {
             paddingLeft: 10,
             backgroundColor: colors.background,
         },
-        logo: {
-            width: 37,
-            height: 37,
-            resizeMode: 'contain',
-        },
+
         logoText: {
             fontSize: 20,
             fontWeight: 'bold',
@@ -70,16 +65,10 @@ export const HomeScreen = () => {
     return (
         <>
             <View style={styles.headerContainer}>
-                <Image
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    source={require('../assets/images/Icon/favicon.png')}
-                    style={styles.logo}
-                />
                 <Text style={[styles.logoText, { color: logoTextColor }]}>
                     WINDESHEIM.AI
                 </Text>
                 <View style={styles.flexGrow} />
-                <SettingsButton />
             </View>
             <PageScrollView>
                 <Introduction />
