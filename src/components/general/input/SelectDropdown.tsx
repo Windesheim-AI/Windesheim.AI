@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, useWindowDimensions } from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    useWindowDimensions,
+    ViewStyle,
+} from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 
 import { useColorConfig } from '../../../lib/constants/Colors';
@@ -20,6 +26,8 @@ export type Props = {
     defaultValue?: string;
     width?: number | string;
     testID?: string;
+    style?: ViewStyle;
+    dropdownContainerStyle?: ViewStyle;
 };
 
 export function SelectDropdown({
@@ -29,6 +37,8 @@ export function SelectDropdown({
     defaultValue,
     width,
     testID,
+    style,
+    dropdownContainerStyle,
 }: Props) {
     const windowDimensions = useWindowDimensions();
     const screenWidth = windowDimensions.width;
@@ -58,6 +68,7 @@ export function SelectDropdown({
             shadowOpacity: 1,
             shadowRadius: 100,
             elevation: 100,
+            ...dropdownContainerStyle,
         },
         dropdown: {
             height: 50,
@@ -66,6 +77,7 @@ export function SelectDropdown({
             borderRadius: 8,
             borderColor: colors.text,
             borderWidth: 1,
+            ...style,
         },
         item: {
             padding: 17,
@@ -78,16 +90,17 @@ export function SelectDropdown({
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            backgroundColor: colors.dropdown,
+            backgroundColor: colors.previousButton,
         },
         textItem: {
             flex: 1,
             ...fonts.default,
+            color: colors.text,
         },
         textSelectedItem: {
             flex: 1,
             ...fonts.default,
-            color: colors.black,
+            color: colors.text,
         },
         placeholderStyle: {
             ...fonts.default,
