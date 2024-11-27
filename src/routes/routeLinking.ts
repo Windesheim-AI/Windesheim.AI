@@ -48,6 +48,7 @@ export const RouteLinking = {
             [Routes.Articles]: 'articles',
             [Routes.PodcastsEpisodePage]: 'podcasts/episode',
             [Routes.Results]: 'Scans/Results',
+            [Routes.ChooseCategories]: 'quizzes/choose-categories',
         },
     },
 };

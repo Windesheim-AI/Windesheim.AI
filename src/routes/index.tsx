@@ -25,6 +25,7 @@ import { MockTutorial } from '../screens/WTR/MockTutorial';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
 import { Scans } from '../screens/Scans/Scans';
 import { Results } from '../screens/Scans/Results';
+import { ChooseCategories } from '../screens/Choose_Categories';
 const Stack = createNativeStackNavigator();
 
 const screens = [
@@ -50,6 +51,7 @@ const screens = [
     { name: Routes.MockTutorial, component: MockTutorial },
     { name: Routes.PodcastsEpisodePage, component: PodcastsEpisodePage },
     { name: Routes.Results, component: Results },
+    { name: Routes.ChooseCategories, component: ChooseCategories },
 ];
 
 export const Router = () => {

@@ -1,22 +1,31 @@
 import React from 'react';
 import { View } from 'react-native';
-
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { Button } from '../components/general/buttons/Button';
 import { CoursesOverview } from '../components/course/CoursesOverview';
 import { TextTranslated } from '../components/general/text/TextTranslated';
 import { TitleSimple } from '../components/general/text/TitleSimple';
 import { PageScrollView } from '../components/general/views/PageScrollView';
-import { useColorConfig } from '../lib/constants/Colors';
+import { useColorConfig, useColorStateConfig } from '../lib/constants/Colors';
 import { useFonts } from '../lib/constants/Fonts';
 
 export function Quizzes() {
     const colors = useColorConfig();
     const fonts = useFonts();
+    const navigation = useNavigation<NavigationProp<any>>();
+    const colorStateConfig = useColorStateConfig();
+
     const styles = {
         text: {
             ...fonts.h1,
             color: colors.text,
         },
+        buttonContainer: {
+            marginTop: 20,
+            alignItems: 'center' as const,
+        }
     };
+
     return (
         <PageScrollView>
             <View>
@@ -32,6 +41,14 @@ export function Quizzes() {
                     explainationText="Soon you'll find the latest quizzes here to learn more about Generative AI in a fun and interactive way."
                 />
                 <TextTranslated style={styles.text} text="Coming Soon!" />
+                <View style={styles.buttonContainer}>
+                    <Button
+                        buttonText="Zu den Kategorien"
+                        textColorScheme={colorStateConfig.text?.primary}
+                        onPress={() => navigation.navigate('ChooseCategories')}
+                        width={120}
+                    />
+                </View>
             </View>
         </PageScrollView>
     );
