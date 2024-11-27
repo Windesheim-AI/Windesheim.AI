@@ -30,6 +30,15 @@ export const RouteLinking = {
                     courseId: (courseId: string) => courseId,
                 },
             },
+            [Routes.Scans]: 'scans',
+            [Routes.InformationPage]: 'informationpage',
+
+            [Routes.ScansOverview]: {
+                path: 'scans/:scanId/overview',
+                parse: {
+                    scanId: (scanId: string) => scanId,
+                },
+            },
             [Routes.CourseStage]: {
                 path: 'study/courses/:courseId/:stageId',
                 parse: {

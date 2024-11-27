@@ -8,6 +8,9 @@ export function mapScanToData(
         scanId: scan.id,
         name: scan.name,
         description: scan.description,
-        
+        content: scan.content,
+        difficulty: scan.difficulty,
+        scanType: scan.scanType,
+        imageUrl: scan.imageUrl,
     };
 }
