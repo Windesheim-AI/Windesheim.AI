@@ -197,7 +197,7 @@ export default function ScanOverview() {
                             <TextTranslated text="Go Back" />
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() => navigator.navigate(Routes.Home.toString())}
+                            onPress={() => navigator.navigate(Routes.ChooseCategories.toString(), { scanId: scanId })}
                             style={[styles.buttonContainer, { backgroundColor: colors.secondary, width: '48%' }]}
                         >
                             <TextTranslated text="Take scan" />

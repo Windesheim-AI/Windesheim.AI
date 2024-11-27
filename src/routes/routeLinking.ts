@@ -31,7 +31,7 @@ export const RouteLinking = {
                 },
             },
             [Routes.Scans]: 'scans',
-            [Routes.InformationPage]: 'informationpage',
+            [Routes.InformationPage]: 'scans/informationpage',
 
             [Routes.ScansOverview]: {
                 path: 'scans/:scanId/overview',
@@ -56,8 +56,8 @@ export const RouteLinking = {
             [Routes.Quizzes]: 'quizzes',
             [Routes.Articles]: 'articles',
             [Routes.PodcastsEpisodePage]: 'podcasts/episode',
-            [Routes.Results]: 'Scans/Results',
-            [Routes.ChooseCategories]: 'quizzes/choose-categories',
+            [Routes.Results]: 'scans/results',
+            [Routes.ChooseCategories]: 'scans/choose-categories',
         },
     },
 };

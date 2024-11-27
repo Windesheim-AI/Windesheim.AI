@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Button, Switch } from 'react-native';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
+import { Routes } from '../../routes/routes';
+
 export default function InformationPage() {
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -11,9 +14,13 @@ export default function InformationPage() {
     const [companySize, setCompanySize] = useState('');
     const [location, setLocation] = useState('');
 
+    const navigator = useNavigation();
+
     const handleSubmit = () => {
         // Handle form submission logic here
         console.log('Form submitted:', { name, phoneNumber, email, company, companySize, location });
+        navigator.navigate(Routes.Results.toString());
+
     };
 
     return (

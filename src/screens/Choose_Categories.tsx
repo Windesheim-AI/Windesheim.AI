@@ -9,6 +9,9 @@ import {
 import { ScrollView } from 'react-native';
 import { styled } from 'styled-components';
 
+import { useNavigation } from '../lib/utility/navigation/useNavigation';
+import { Routes } from '../routes/routes';
+
 interface CategoryProps {
     isSelected: boolean;
 }
@@ -137,6 +140,8 @@ const ChooseCategories: React.FC = () => {
     const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
     const [expandedCategories, setExpandedCategories] = useState<number[]>([]);
 
+    const navigator = useNavigation();
+
     const toggleCategory = (categoryId: number) => {
         if (selectedCategories.includes(categoryId)) {
             setSelectedCategories(
@@ -242,7 +247,7 @@ const ChooseCategories: React.FC = () => {
                         </CategoryItem>
                     ))}
                 </CategoryList>
-                <Button>
+                <Button onClick={() => navigator.navigate(Routes.InformationPage.toString())}>
                     Take Scan <FaArrowRight />
                 </Button>
             </Container>
