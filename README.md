@@ -1,7 +1,7 @@
 # Windesheim.AI
 
-[![Build Status](https://github.com/Windesheim-AI-App/Windesheim.AI/actions/workflows/app.build.yml/badge.svg)](https://github.com/Windesheim-AI-App/Windesheim.AI/actions/workflows/app.build.yml)
-![check-code-coverage](https://img.shields.io/badge/code--coverage-77.47%25-yellow)
+[![Build Status](https://github.com/Windesheim-AI-App/Windesheim.AI/actions/workflows/app.check.yml/badge.svg)](https://github.com/Windesheim-AI-App/Windesheim.AI/actions/workflows/app.check.yml)
+![check-code-coverage](https://img.shields.io/badge/code--coverage-30.61%25-red)
 
 This is the codebase for the Windesheim.AI app.
 
@@ -9,9 +9,9 @@ This is the codebase for the Windesheim.AI app.
 
 Before proceeding with the installation, make sure you have the following prerequisites installed on your system:
 
--   Node.js (>=16)
--   NPM (Node Package Manager)
--   Android Studio or Xcode for running the app on an emulator (optional)
+- Node.js (>=16)
+- NPM (Node Package Manager)
+- Android Studio or Xcode for running the app on an emulator (optional)
 
 ## Installation
 
@@ -53,33 +53,33 @@ This will install all the necessary dependencies listed in the `package.json` fi
 
 The `package.json` file contains several scripts for development, testing, and deployment:
 
--   `npm run start`: Starts the expo server.
--   `npm run start:no-cache`: Starts the expo server and clears the cache.
--   `npm run android`: Starts the expo server and opens the app in an Android emulator.
--   `npm run ios`: Starts the expo server and opens the app in an iOS simulator.
--   `npm run web`: Starts the expo server and opens the app in a web browser.
--   `npm run web:no-cache`: Starts the expo server and clears the cache.
--   `npm run eject`: Ejects the app from the Expo build service.
--   `npm run cypress:open`: Opens the Cypress Test Runner.
--   `npm run expo:fix`: Fixes common issues with the Expo installation.
--   `npm run expo:doctor`: Diagnoses issues with the project.
--   `npm run expo:customize`: Customizes the Expo configuration.
--   `npm run depcheck:run`: Checks for unused dependencies.
--   `npm run lint:run`: Runs the ESLint check.
--   `npm run lint:fix`: Fixes ESLint errors.
--   `npm run prettier:run`: Runs the Prettier check.
--   `npm run prettier:fix`: Fixes Prettier errors.
--   `npm run tsc:run`: Runs the TypeScript check.
--   `npm run e2e:run`: Runs end-to-end tests using Cypress.
--   `npm run jest:run`: Runs unit and component tests using Jest.
--   `npm run jest-summary:run`: Runs unit and component tests using Jest and provides a summary.
--   `npm run jest-less-strict:run`: Runs unit and component tests using Jest with less strict settings.
--   `npm run jest-strict:run`: Runs unit and component tests using Jest with strict settings.
--   `npm run tests`: Runs all tests.
--   `npm run coverage:jest`: Generates a coverage report for Jest tests.
--   `npm run coverage:e2e`: Generates a coverage report for end-to-end tests.
--   `npm run coverage:tests`: Generates coverage reports for all tests.
--   `npm run coverage:update-badge`: Updates the code coverage badge.
+- `npm run start`: Starts the expo server.
+- `npm run start:no-cache`: Starts the expo server and clears the cache.
+- `npm run android`: Starts the expo server and opens the app in an Android emulator.
+- `npm run ios`: Starts the expo server and opens the app in an iOS simulator.
+- `npm run web`: Starts the expo server and opens the app in a web browser.
+- `npm run web:no-cache`: Starts the expo server and clears the cache.
+- `npm run eject`: Ejects the app from the Expo build service.
+- `npm run cypress:open`: Opens the Cypress Test Runner.
+- `npm run expo:fix`: Fixes common issues with the Expo installation.
+- `npm run expo:doctor`: Diagnoses issues with the project.
+- `npm run expo:customize`: Customizes the Expo configuration.
+- `npm run depcheck:run`: Checks for unused dependencies.
+- `npm run lint:run`: Runs the ESLint check.
+- `npm run lint:fix`: Fixes ESLint errors.
+- `npm run prettier:run`: Runs the Prettier check.
+- `npm run prettier:fix`: Fixes Prettier errors.
+- `npm run tsc:run`: Runs the TypeScript check.
+- `npm run e2e:run`: Runs end-to-end tests using Cypress.
+- `npm run jest:run`: Runs unit and component tests using Jest.
+- `npm run jest-summary:run`: Runs unit and component tests using Jest and provides a summary.
+- `npm run jest-less-strict:run`: Runs unit and component tests using Jest with less strict settings.
+- `npm run jest-strict:run`: Runs unit and component tests using Jest with strict settings.
+- `npm run tests`: Runs all tests.
+- `npm run coverage:jest`: Generates a coverage report for Jest tests.
+- `npm run coverage:e2e`: Generates a coverage report for end-to-end tests.
+- `npm run coverage:tests`: Generates coverage reports for all tests.
+- `npm run coverage:update-badge`: Updates the code coverage badge.
 
 These scripts help automate and streamline the development, testing, and deployment processes.
 
@@ -95,10 +95,10 @@ To set up the project locally for development, follow the steps in the "Prerequi
 
 You can run the app locally using one of the scripts provided in the `package.json` file:
 
--   `npm run start`: Starts the expo server.
--   `npm run android`: Starts the expo server and opens the app in an Android emulator.
--   `npm run ios`: Starts the expo server and opens the app in an iOS simulator.
--   `npm run web`: Starts the expo server and opens the app in a web browser.
+- `npm run start`: Starts the expo server.
+- `npm run android`: Starts the expo server and opens the app in an Android emulator.
+- `npm run ios`: Starts the expo server and opens the app in an iOS simulator.
+- `npm run web`: Starts the expo server and opens the app in a web browser.
 
 ### Project Overview
 
@@ -110,11 +110,11 @@ The Windesheim.AI app employs SWR for efficient data caching, optimizing the ret
 
 In our project, we've different TypeScript configurations for different purposes: default, linting, and Cypress. Each of these configurations is defined in a separate `tsconfig.json` file. Here's a brief explanation:
 
--   **Default (`tsconfig.json`)**: This is the main TypeScript configuration file for your project. It extends the base TypeScript configuration provided by Expo and sets some compiler options. It's used for general development and building of your project.
+- **Default (`tsconfig.json`)**: This is the main TypeScript configuration file for your project. It extends the base TypeScript configuration provided by Expo and sets some compiler options. It's used for general development and building of your project.
 
--   **Linting (`tsconfig.lint.json`)**: This configuration is specifically for linting your project with ESLint. It extends the default configuration and includes additional files that need to be linted, such as configuration files and scripts. It also excludes certain directories like `cypress` to avoid conflicts with global variables and types defined for Cypress.
+- **Linting (`tsconfig.lint.json`)**: This configuration is specifically for linting your project with ESLint. It extends the default configuration and includes additional files that need to be linted, such as configuration files and scripts. It also excludes certain directories like `cypress` to avoid conflicts with global variables and types defined for Cypress.
 
--   **Cypress (`cypress/tsconfig.json`)**: This configuration is specifically for your Cypress end-to-end tests. It extends the default configuration but only includes types for Cypress to avoid conflicts with Jest types. This is necessary because Jest and Cypress both define global variables like `describe` and `it`, but they have slightly different types and usage.
+- **Cypress (`cypress/tsconfig.json`)**: This configuration is specifically for your Cypress end-to-end tests. It extends the default configuration but only includes types for Cypress to avoid conflicts with Jest types. This is necessary because Jest and Cypress both define global variables like `describe` and `it`, but they have slightly different types and usage.
 
 The reason for separating these configurations is to avoid conflicts between different environments (like Jest and Cypress) and to tailor the TypeScript settings to the specific needs of each environment. This helps to keep your configurations clean and focused, making it easier to manage and understand.
 
@@ -175,15 +175,15 @@ Depcheck is a tool for analyzing the dependencies in a project to see: how each 
 
 We use GitHub Actions to automate our testing and deployment workflows. Here's a brief overview of the actions we use:
 
--   **Build Action**: This action is triggered on every push and pull request to the `main` and `development` branches. It sets up the environment, installs dependencies, runs linters, type checks, and unit tests. The configuration for this action is in the `.github/workflows/app.build.yml` file.
+- **Build Action**: This action is triggered on every push and pull request to the `main` and `development` branches. It sets up the environment, installs dependencies, runs linters, type checks, and unit tests. The configuration for this action is in the `.github/workflows/app.build.yml` file.
 
--   **End-to-End Tests Action**: This action is also triggered on every push and pull request to the `main` and `development` branches. It runs the end-to-end tests and uploads any screenshots of failed tests as artifacts. The configuration for this action is in the `.github/workflows/app.e2e_tests.yml` file.
+- **End-to-End Tests Action**: This action is also triggered on every push and pull request to the `main` and `development` branches. It runs the end-to-end tests and uploads any screenshots of failed tests as artifacts. The configuration for this action is in the `.github/workflows/app.e2e_tests.yml` file.
 
--   **Prepare Action**: This action is used within other workflows to set up the environment. It creates and configures the `.env` file and sets up Node.js. The configuration for this action is in the `.github/prepare-action/action.yml` file.
+- **Prepare Action**: This action is used within other workflows to set up the environment. It creates and configures the `.env` file and sets up Node.js. The configuration for this action is in the `.github/prepare-action/action.yml` file.
 
--   **Cleanup Action**: This action is used within other workflows to clean up after the tests have run. It removes the `.env` file. The configuration for this action is in the `.github/cleanup-action/action.yml` file.
+- **Cleanup Action**: This action is used within other workflows to clean up after the tests have run. It removes the `.env` file. The configuration for this action is in the `.github/cleanup-action/action.yml` file.
 
--   **Dependabot**: We use Dependabot to keep our dependencies up to date. It opens pull requests to update the version of a dependency in the `package.json` file whenever a new version is released. The configuration for Dependabot is in the `.github/dependabot.yml` file.
+- **Dependabot**: We use Dependabot to keep our dependencies up to date. It opens pull requests to update the version of a dependency in the `package.json` file whenever a new version is released. The configuration for Dependabot is in the `.github/dependabot.yml` file.
 
 By using a comprehensive test strategy and automating our workflows with GitHub Actions, we can ensure that our codebase remains reliable and maintainable.
 

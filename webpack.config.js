@@ -25,5 +25,14 @@ module.exports = async function (env, argv) {
         },
     });
 
+    // Add fallback for crypto module
+    config.resolve = {
+        ...config.resolve,
+        fallback: {
+            ...config.resolve?.fallback,
+            crypto: require.resolve('expo-crypto'),
+        },
+    };
+
     return config;
 };
