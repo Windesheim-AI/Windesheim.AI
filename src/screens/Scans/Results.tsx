@@ -41,7 +41,7 @@ const Results = ({ data }) => {
     const colors = useColorConfig();
     const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
-    const navigation = useNavigation();
+    const navigator = useNavigation();
     const windowWidth = Dimensions.get('window').width;
     const windowHeight = Dimensions.get('window').height;
 
@@ -126,7 +126,10 @@ const Results = ({ data }) => {
             padding: windowWidth * 0.05,
             backgroundColor: colors.background,
         },
-
+        overallScoreContainer: {
+            flex: 1,
+            backgroundColor: colors.background,
+        },
         title: {
             ...fonts.h1,
             color: colors.titleDefault,
@@ -138,7 +141,7 @@ const Results = ({ data }) => {
             marginBottom: windowHeight * 0.03,
         },
         chartContainer: {
-            paddingTop: windowHeight * 0.03,
+            paddingTop: windowHeight * 0.00,
             alignItems: 'center',
         },
         button: {
@@ -148,17 +151,76 @@ const Results = ({ data }) => {
             alignItems: 'center',
             ...colorStateConfig.highContrastBorder,
         },
+        header: {
+            backgroundColor: '#f8fafc',
+            padding: 20,
+            textAlign: 'center',
+            width: '100%',
+            borderRadius: 8,
+        },
+        headerText: {
+            color: 'black',
+            fontSize: 24,
+            fontWeight: '600',
+        },
+        content: {
+            paddingTop: 10,
+        },
+        scoreContainer: {
+            backgroundColor: '#f8fafc',
+            borderRadius: 8,
+            marginBottom: 24,
+            padding: 32,
+            textAlign: 'center',
+            alignItems: 'center',
+        },
+        scoreCircle: {
+            backgroundColor: '#ffffff',
+            display: 'flex',
+            padding: 20,
+            borderRadius: 50,
+            width: 100,
+            height: 100,
+            marginBottom: 16,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        scoreText: {
+            margin: 0,
+            fontSize: 15,
+            fontWeight: 'bold',
+            color: '#2563eb',
+            lineHeight: 100,
+        },
+        scoreLabel: {
+            margin: 0,
+            color: '#1e293b',
+            fontSize: 18,
+            fontWeight: 'bold',
+        },
+        
     });
 
     return (
         <View style={styles.container}>
-            <TextTranslated style={styles.title} text="Results" />
-            <Text style={styles.description}>
-                Here are your
-                resultsbibabubuabusdhaiushdiauwhdiuahsidhuawiuhdiaushdiuahwiduhasiudhaiwuhdaisuhdiauwhiduahsidhawidhasihdiahw
-            </Text>
+            <View style={styles.overallScoreContainer}>
+                <View style={styles.header}>
+                    <TextTranslated style={styles.headerText} text='Results for Maturity Scan'></TextTranslated>
+                </View>
+                <View style={styles.content}>
+                    <View style={styles.scoreContainer}>
+                        <Text style={fonts.default}>Overall Score</Text>
+                        <View style={styles.scoreCircle}>
+                            <Text style={styles.scoreText}>{Math.round(4.3 * 10) / 10}/5</Text>
+                        </View>
+                        <Text style={styles.scoreLabel}>Very Good</Text>
+                    </View>
+                </View>
+            </View>
+
+
+
             <View style={styles.chartContainer}>
-                <TextTranslated style={fonts.default} text="Overall Score:" />
                 <Svg
                     width={chartSize + padding * 2}
                     height={chartSize + padding * 2}
@@ -263,7 +325,7 @@ const Results = ({ data }) => {
             </View>
             <InteractiveView
                 style={styles.button}
-                onPress={() => navigation.navigate(Routes.Home)}
+                onPress={() => navigator.navigate(Routes.Home.toString())}
             >
                 <TextTranslated style={fonts.default} text="Back to Homepage" />
             </InteractiveView>
