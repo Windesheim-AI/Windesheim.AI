@@ -168,42 +168,42 @@ export default function ScanOverview() {
     return (
         <ScrollView>
             <PageView>
-            <View style={styles.container}>
-                <View style={styles.courseBackgroundContainer}>
-                    <img 
-                        src={scan?.imageUrl ? scan?.imageUrl : "https://placehold.co/200X100/EEE/31343C"} 
-                        alt="Scan Image" 
-                        style={{ width: '100%', height: 'auto' }} 
-                    />
-                </View>
-       
-                <View style={styles.content}>
-                    <TextTranslated style={styles.title} text={scan.name} />
-                    <TextTranslated
-                        style={styles.content}
-                        text={scan?.content}
-                    />
-                    <TextTranslated
-                        style={styles.diffcultytext}
-                        text={"Difficulty: " + scan?.difficulty + "/5"}
-                    />
-                    
-                </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 20 }}>
-                        <TouchableOpacity
-                            onPress={goBack}
-                            style={[styles.buttonContainer, { backgroundColor: colors.secondary, width: '48%' }]}
-                        >
-                            <TextTranslated text="Go Back" />
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => navigator.navigate(Routes.ChooseCategories.toString(), { scanId: scanId })}
-                            style={[styles.buttonContainer, { backgroundColor: colors.secondary, width: '48%' }]}
-                        >
-                            <TextTranslated text="Take scan" />
-                        </TouchableOpacity>
+                <View style={styles.container}>
+                    <View style={styles.courseBackgroundContainer}>
+                        <img 
+                            src={scan?.imageUrl ? scan?.imageUrl : "https://placehold.co/200X100/EEE/31343C"} 
+                            alt="Scan Image" 
+                            style={{ width: '100%', height: 'auto' }} 
+                        />
                     </View>
-                </View>
+        
+                    <View style={styles.content}>
+                        <TextTranslated style={styles.title} text={scan.name} />
+                        <TextTranslated
+                            style={styles.content}
+                            text={scan?.content}
+                        />
+                        <TextTranslated
+                            style={styles.diffcultytext}
+                            text={"Difficulty: " + scan?.difficulty + "/5"}
+                        />
+                        
+                    </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 20 }}>
+                            <TouchableOpacity
+                                onPress={goBack}
+                                style={[styles.buttonContainer, { backgroundColor: colors.secondary, width: '48%' }]}
+                            >
+                                <TextTranslated text="Go Back" />
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => navigator.navigate(Routes.ChooseCategories.toString(), { scanId: scanId })}
+                                style={[styles.buttonContainer, { backgroundColor: colors.secondary, width: '48%' }]}
+                            >
+                                <TextTranslated text="Take scan" />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
                 </PageView>
         </ScrollView>
     );
