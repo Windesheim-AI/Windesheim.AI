@@ -51,11 +51,10 @@ export default function ScanOverview() {
     const navigator = useNavigation();
     const params = route.params as ScandOverviewPageProps;
     const scanId = params.scanId;
-    const navigation = useNavigation();
 
     const goBack = () => {
         HapticFeedback(HapticForces.Light);
-        navigation.goBack();
+        navigator.goBack();
     };
     const { data, isLoading, error } = useSingleScan(scanId);
     const scan = useMapSingleScanToData(data);
@@ -167,7 +166,8 @@ export default function ScanOverview() {
 
     console.log
     return (
-        <PageView>
+        <ScrollView>
+            <PageView>
             <View style={styles.container}>
                 <View style={styles.courseBackgroundContainer}>
                     <img 
@@ -204,6 +204,7 @@ export default function ScanOverview() {
                         </TouchableOpacity>
                     </View>
                 </View>
-        </PageView>
+                </PageView>
+        </ScrollView>
     );
 }
