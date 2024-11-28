@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import Svg, { Polygon, Line, Text as SvgText } from 'react-native-svg';
@@ -15,6 +14,7 @@ import { useDataFetcher, fetchJsonData } from '../../lib/fetcher/DataFetcher';
 import { getEnvValue } from '../../lib/utility/env/env';
 import { EnvOptions } from '../../lib/utility/env/env.values';
 import { Routes } from '../../routes/routes';
+import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 
 interface ScanResult {
     result_id: number;
