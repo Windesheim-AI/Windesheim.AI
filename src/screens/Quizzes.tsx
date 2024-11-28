@@ -1,10 +1,11 @@
 import React from 'react';
 import { View } from 'react-native';
+
 import { CoursesOverview } from '../components/course/CoursesOverview';
 import { TextTranslated } from '../components/general/text/TextTranslated';
 import { TitleSimple } from '../components/general/text/TitleSimple';
 import { PageScrollView } from '../components/general/views/PageScrollView';
-import { useColorConfig, useColorStateConfig } from '../lib/constants/Colors';
+import { useColorConfig } from '../lib/constants/Colors';
 import { useFonts } from '../lib/constants/Fonts';
 
 export function Quizzes() {
