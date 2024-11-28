@@ -165,12 +165,12 @@ const ChooseCategories: React.FC = () => {
     ];
 
     const categoryDescriptions = [
-        'Strategische Ausrichtung und Führungskompetenzen im Kontext der digitalen Transformation.',
-        'Technologische Infrastruktur und Prozessoptimierung für digitale Lösungen.',
-        'Verantwortungsvoller Umgang mit Daten und ethische Richtlinien.',
-        'Entwicklung von Kompetenzen und Wissen im Bereich KI und digitale Technologien.',
-        'Management von Innovationsprozessen und Veränderungen in der Organisation.',
-        'Verwaltung von Risiken und Einhaltung regulatorischer Anforderungen.',
+        'Strategic alignment and leadership skills in the context of digital transformation.',
+        'Technological infrastructure and process optimization for digital solutions.',
+        'Responsible data management and ethical guidelines.',
+        'Development of skills and knowledge in AI and digital technologies.',
+        'Management of innovation processes and organizational change.',
+        'Risk management and compliance with regulatory requirements.',
     ];
 
     return (
@@ -178,10 +178,10 @@ const ChooseCategories: React.FC = () => {
             <Container>
                 <Header>Maturity Scan Light</Header>
                 <Description>
-                    Der Maturity Scan Light hilft Ihnen, den Reifegrad Ihrer
-                    Organisation einzuschätzen.{'\n'}
-                    Wählen Sie die für Sie wichtigsten Kategorien aus.{'\n'}
-                    Diese werden in der Auswertung stärker gewichtet.
+                    The Maturity Scan Light helps you assess the maturity level
+                    of your organization.{'\n'}
+                    Select the most important categories for you.{'\n'}
+                    These will be weighted more heavily in the evaluation.
                 </Description>
 
                 <CategoryList>
