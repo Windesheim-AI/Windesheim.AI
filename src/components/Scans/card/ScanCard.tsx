@@ -1,9 +1,11 @@
+/* eslint-disable react-native/no-color-literals */
+
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+
 import {
     useColorConfig,
     useColorStateConfig,
-    useCurrentTheme,
 } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { Card } from '../../general/base/Card';
@@ -29,7 +31,6 @@ export function ScanCard({
     const colors = useColorConfig();
     const fonts = useFonts();
     const stateColors = useColorStateConfig();
-    const theme = useCurrentTheme();
 
     const styles = StyleSheet.create({
         card: {
@@ -65,6 +66,7 @@ export function ScanCard({
             paddingHorizontal: 15,
             ...fonts.stageTime,
         },
+        cardImage: { width: '100%', height: 'auto' },
     });
 
     return (
@@ -78,7 +80,7 @@ export function ScanCard({
                                 : 'https://placehold.co/200X100/EEE/31343C'
                         }
                         alt="Scan Image"
-                        style={{ width: '100%', height: 'auto' }}
+                        style={styles.cardImage}
                     />
                 </View>
 

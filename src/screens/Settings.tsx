@@ -1,6 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { TouchableOpacity, ViewStyle, Image, View } from 'react-native';
+import { View } from 'react-native';
 
 import { EditBackgroundInformationButton } from '../components/BackgroundCollect/EditBackgroundInformationButton';
 import { SettingCard } from '../components/general/card/SettingCard';
@@ -12,16 +11,12 @@ import { HighContrastSwitcher } from '../components/settings/HighContrastSwitche
 import { LanguageSwitcher } from '../components/settings/LanguageSwitcher';
 import { ThemeSwitcher } from '../components/settings/ThemeSwitcher';
 import { TutorialRedoButton } from '../components/tutorial/TutorialRedoButton';
-import { useCurrentTheme } from '../lib/constants/Colors';
-import { HapticFeedback, HapticForces } from '../lib/haptic/Hooks';
 
 export const SettingsScreen = () => {
-    const navigation = useNavigation();
-    const currentTheme = useCurrentTheme();
     const titleSpacer = {
         height: 10,
     };
-    /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
     return (
         <PageScrollView title="SETTINGS">
             <View style={titleSpacer} />

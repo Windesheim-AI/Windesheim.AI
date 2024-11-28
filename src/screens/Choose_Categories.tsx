@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import React, { useState } from 'react';
 import {
     FaChevronUp,
@@ -6,7 +8,7 @@ import {
     FaRegCheckSquare,
     FaArrowRight,
 } from 'react-icons/fa';
-import { ScrollView } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import { styled } from 'styled-components';
 
 import { useNavigation } from '../lib/utility/navigation/useNavigation';
@@ -24,13 +26,6 @@ const Container = styled.div`
     font-family: 'Poppins', sans-serif;
     max-width: 800px;
     margin: 0 auto;
-`;
-
-const Title = styled.h1`
-    color: #333;
-    font-size: 1.8rem;
-    text-align: center;
-    margin-bottom: 2rem;
 `;
 
 const CategoryList = styled.div`
@@ -138,10 +133,12 @@ const ChooseCategories: React.FC = () => {
             setSelectedCategories(
                 selectedCategories.filter((id) => id !== categoryId),
             );
-        } else {
-            if (selectedCategories.length < 3) {
-                setSelectedCategories([...selectedCategories, categoryId]);
-            }
+
+            return;
+        }
+
+        if (selectedCategories.length < 3) {
+            setSelectedCategories([...selectedCategories, categoryId]);
         }
     };
 
@@ -150,9 +147,11 @@ const ChooseCategories: React.FC = () => {
             setExpandedCategories(
                 expandedCategories.filter((id) => id !== categoryId),
             );
-        } else {
-            setExpandedCategories([...expandedCategories, categoryId]);
+
+            return;
         }
+
+        setExpandedCategories([...expandedCategories, categoryId]);
     };
 
     const categories = [
@@ -176,12 +175,16 @@ const ChooseCategories: React.FC = () => {
     return (
         <ScrollView>
             <Container>
-                <Header>Maturity Scan Light</Header>
+                <Header>
+                    <Text>Maturity Scan Light</Text>
+                </Header>
                 <Description>
-                    The Maturity Scan Light helps you assess the maturity level
-                    of your organization.{'\n'}
-                    Select the most important categories for you.{'\n'}
-                    These will be weighted more heavily in the evaluation.
+                    <Text>
+                        The Maturity Scan Light helps you assess the maturity
+                        level of your organization.{'\n'}
+                        Select the most important categories for you.{'\n'}
+                        These will be weighted more heavily in the evaluation.
+                    </Text>
                 </Description>
 
                 <CategoryList>
@@ -243,7 +246,9 @@ const ChooseCategories: React.FC = () => {
                         navigator.navigate(Routes.InformationPage.toString())
                     }
                 >
-                    Take Scan <FaArrowRight />
+                    <Text>
+                        Take Scan <FaArrowRight />
+                    </Text>
                 </Button>
             </Container>
         </ScrollView>

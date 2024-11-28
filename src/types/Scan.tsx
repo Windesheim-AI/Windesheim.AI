@@ -1,5 +1,3 @@
-import { Stage, StageDataMapped } from './Stage';
-
 //saved in WordPress
 export type Scan = {
     id: string;
