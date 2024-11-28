@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 
-import { ScanCard } from '../Scans/card/ScanCard';
 import { useFonts } from '../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useMapMultipleScansToData } from '../../lib/repositories/scans/mapMultipleScansToData';
@@ -9,7 +8,7 @@ import useAllScans from '../../lib/repositories/scans/useAllScans';
 import { getRandomLimitedItemsFromArray } from '../../lib/utility/data';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
-import { ScanDataMapped } from '../../types/Scan';
+import { ScanCard } from '../Scans/card/ScanCard';
 import { TextTranslated } from '../general/text/TextTranslated';
 
 type Props = {

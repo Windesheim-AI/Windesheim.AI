@@ -127,15 +127,6 @@ const Button = styled.button`
     }
 `;
 
-const categoryDescriptions = [
-    'Strategische Ausrichtung und Führungskompetenzen im Kontext der digitalen Transformation.',
-    'Technologische Infrastruktur und Prozessoptimierung für digitale Lösungen.',
-    'Verantwortungsvoller Umgang mit Daten und ethische Richtlinien.',
-    'Entwicklung von Kompetenzen und Wissen im Bereich KI und digitale Technologien.',
-    'Management von Innovationsprozessen und Veränderungen in der Organisation.',
-    'Verwaltung von Risiken und Einhaltung regulatorischer Anforderungen.',
-];
-
 const ChooseCategories: React.FC = () => {
     const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
     const [expandedCategories, setExpandedCategories] = useState<number[]>([]);
@@ -247,7 +238,11 @@ const ChooseCategories: React.FC = () => {
                         </CategoryItem>
                     ))}
                 </CategoryList>
-                <Button onClick={() => navigator.navigate(Routes.InformationPage.toString())}>
+                <Button
+                    onClick={() =>
+                        navigator.navigate(Routes.InformationPage.toString())
+                    }
+                >
                     Take Scan <FaArrowRight />
                 </Button>
             </Container>
