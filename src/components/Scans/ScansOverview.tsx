@@ -52,7 +52,6 @@ export function ScansOverview({ limit }: Props) {
             testID="test-container"
             data={selectedScans}
             renderItem={({ item }) => (
-                
                 <View
                     style={styles.courseCardContainer}
                     testID={`course-card-${item.scanId}`}
@@ -65,13 +64,6 @@ export function ScansOverview({ limit }: Props) {
                         imageUrl={item.imageUrl}
                         onPress={() => onPress(item.scanId)}
                     />
-                    <TouchableOpacity
-                        onPress={() =>
-                            navigator.navigate(Routes.Results.toString())
-                        }
-                    >
-                        <TextTranslated text="Results" style={fonts.default} />
-                    </TouchableOpacity>
                 </View>
             )}
             keyExtractor={(item) => item.scanId}
