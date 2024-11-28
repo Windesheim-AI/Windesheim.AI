@@ -1,14 +1,14 @@
+import { configureStore } from '@reduxjs/toolkit';
+import { render } from '@testing-library/react-native';
 import React from 'react';
-import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
-import renderer from 'react-test-renderer';
-import configureStore from 'redux-mock-store';
 
 import { NavBar } from '../../../src/components/navigation/Navbar';
 
 jest.useFakeTimers();
 
-const mockStore = configureStore([]);
+const mockStore = (initialState: any) =>
+    configureStore({ reducer: () => initialState });
 
 describe('NavBar Component', () => {
     let store = mockStore({});
@@ -25,18 +25,12 @@ describe('NavBar Component', () => {
     });
 
     it('renders with showNavBar=true', () => {
-        let component;
-
-        act(() => {
-            component = renderer.create(
-                <Provider store={store}>
-                    <NavBar />
-                </Provider>,
-            );
-        });
-        // @ts-ignore
-        const tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
+        const { toJSON } = render(
+            <Provider store={store}>
+                <NavBar />
+            </Provider>,
+        );
+        expect(toJSON()).toMatchSnapshot();
     });
 
     it('renders with showNavBar=false', () => {
@@ -49,17 +43,11 @@ describe('NavBar Component', () => {
             },
         });
 
-        let component;
-
-        act(() => {
-            component = renderer.create(
-                <Provider store={store}>
-                    <NavBar />
-                </Provider>,
-            );
-        });
-        // @ts-ignore
-        const tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
+        const { toJSON } = render(
+            <Provider store={store}>
+                <NavBar />
+            </Provider>,
+        );
+        expect(toJSON()).toMatchSnapshot();
     });
 });

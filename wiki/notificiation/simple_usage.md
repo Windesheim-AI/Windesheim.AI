@@ -23,12 +23,12 @@ interface NotificationSlice {
 }
 ```
 
--   `id`: A unique identifier for each notification.
--   `message`: The content of the notification message.
--   `colorGradientScheme`: Specifies the color scheme for the notification.
--   `width` (optional): Width of the notification.
--   `height` (optional): Height of the notification.
--   `icon` (optional): Icon associated with the notification.
+- `id`: A unique identifier for each notification.
+- `message`: The content of the notification message.
+- `colorGradientScheme`: Specifies the color scheme for the notification.
+- `width` (optional): Width of the notification.
+- `height` (optional): Height of the notification.
+- `icon` (optional): Icon associated with the notification.
 
 ## Actions
 
@@ -125,9 +125,9 @@ A custom hook `useNotificationOnce` is provided for convenient usage in function
 useNotificationOnce(id: number, message: string, colorType?: ColorTypes);
 ```
 
--   `id`: Unique identifier for the notification.
--   `message`: Content of the notification message.
--   `colorType` (optional): Type of color scheme for the notification. If not provided, the primary color scheme is used.
+- `id`: Unique identifier for the notification.
+- `message`: Content of the notification message.
+- `colorType` (optional): Type of color scheme for the notification. If not provided, the primary color scheme is used.
 
 This hook uses the `useEffect` hook to automatically dispatch the action when the component mounts.
 
