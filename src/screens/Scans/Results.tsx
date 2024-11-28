@@ -16,19 +16,37 @@ import { EnvOptions } from '../../lib/utility/env/env.values';
 import { Routes } from '../../routes/routes';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 
+interface Score {
+    id: string;
+    resultId: string;
+    categoryId: string;
+    score: string;
+    weight: string;
+    categoryName: string;
+}
+
+interface Advice {
+    id: string;
+    categoryId: string;
+    score: string;
+    text: string;
+    categoryName: string;
+}
+
 interface ScanResult {
-    result_id: number;
+    result_id: string;
     scan_id: string;
     scan_name: string;
     scan_type: string;
-    scores: {
-        id: string;
-        categoryName: string;
-        score: string;
-    }[];
+    companySize: string;
+    companyLocation: string;
+    created_at: string;
+    overall_score: number;
+    scores: Score[];
+    advices: Advice[];
 }
 
-const Results = ({ data }) => {
+const Results = () => {
     const colors = useColorConfig();
     const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
