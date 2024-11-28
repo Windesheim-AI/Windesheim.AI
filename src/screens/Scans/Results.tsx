@@ -1,15 +1,8 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Translation } from 'react-i18next';
-import {
-    StyleSheet,
-    View,
-    Text,
-    Image,
-    Pressable,
-    Dimensions,
-    TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import Svg, { Polygon, Line, Text as SvgText } from 'react-native-svg';
+
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { InteractiveView } from '../../components/general/views/InteractiveView';
 import { LoadingScreen } from '../../components/loadingscreen/LoadingScreen';
@@ -18,9 +11,7 @@ import {
     useColorStateConfig,
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
-import { useNavigation } from '@react-navigation/native';
 import { useDataFetcher, fetchJsonData } from '../../lib/fetcher/DataFetcher';
-import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { getEnvValue } from '../../lib/utility/env/env';
 import { EnvOptions } from '../../lib/utility/env/env.values';
 import { Routes } from '../../routes/routes';
