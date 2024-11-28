@@ -189,7 +189,7 @@ export default function ScanOverview() {
                         />
                         
                     </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 20 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 20, padding: 16 }}>
                             <TouchableOpacity
                                 onPress={goBack}
                                 style={[styles.buttonContainer, { backgroundColor: colors.secondary, width: '48%' }]}
