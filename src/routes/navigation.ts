@@ -11,5 +11,4 @@ export const navigationBarLinks: NavigationBarLink[] = [
     { icon: 'quizzes', route: Routes.Quizzes },
     { icon: 'prompts', route: Routes.PromptLibrary },
     { icon: 'questions', route: Routes.QuestionPage },
-    // { icon: 'WTR', route: Routes.WindesheimTechRadar },
 ];
