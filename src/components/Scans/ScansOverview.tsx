@@ -18,7 +18,6 @@ type Props = {
 export function ScansOverview({ limit }: Props) {
     const fonts = useFonts();
     const { data, isLoading, error } = useAllScans();
-    console.log(data);
     const scans = useMapMultipleScansToData(data);
     const navigator = useNavigation();
     const isLimited = limit !== undefined && limit > 0;

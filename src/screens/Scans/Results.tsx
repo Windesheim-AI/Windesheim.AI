@@ -1,6 +1,15 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable react-native/no-color-literals */
+
 import React from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
-import Svg, { Polygon, Line, Text as SvgText } from 'react-native-svg';
+import { StyleSheet, View, Text, useWindowDimensions } from 'react-native';
+import Svg, {
+    Polygon,
+    Line,
+    Text as SvgText,
+    TextAnchor,
+} from 'react-native-svg';
 
 import { TextTranslated } from '../../components/general/text/TextTranslated';
 import { InteractiveView } from '../../components/general/views/InteractiveView';
@@ -13,8 +22,8 @@ import { useFonts } from '../../lib/constants/Fonts';
 import { useDataFetcher, fetchJsonData } from '../../lib/fetcher/DataFetcher';
 import { getEnvValue } from '../../lib/utility/env/env';
 import { EnvOptions } from '../../lib/utility/env/env.values';
-import { Routes } from '../../routes/routes';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
+import { Routes } from '../../routes/routes';
 
 interface Score {
     id: string;
@@ -51,8 +60,8 @@ const Results = () => {
     const colorStateConfig = useColorStateConfig();
     const fonts = useFonts();
     const navigator = useNavigation();
-    const windowWidth = Dimensions.get('window').width;
-    const windowHeight = Dimensions.get('window').height;
+    const windowWidth = useWindowDimensions().width;
+    const windowHeight = useWindowDimensions().height;
 
     const {
         data: scanResult,
@@ -76,26 +85,23 @@ const Results = () => {
             labels:
                 scanResult?.scores?.map((score) => score.categoryName) ?? [],
             data:
-                scanResult?.scores?.map((score) => parseInt(score.score)) ?? [],
+                scanResult?.scores?.map((score) => parseInt(score.score, 10)) ??
+                [],
         }),
         [scanResult],
     );
 
-    if (isLoading) {
-        return <LoadingScreen />;
-    }
+    if (isLoading) return <LoadingScreen />;
 
-    if (error) {
+    if (error)
         return (
             <Text style={fonts.default}>
                 Error loading data: {error.message}
             </Text>
         );
-    }
 
-    if (!scanResult) {
+    if (!scanResult)
         return <Text style={fonts.default}>No data available</Text>;
-    }
 
     const maxValue = 5; // Maximum value for the chart
     const chartSize = 200; // Size of the chart
@@ -139,18 +145,8 @@ const Results = () => {
             flex: 1,
             backgroundColor: colors.background,
         },
-        title: {
-            ...fonts.h1,
-            color: colors.titleDefault,
-            marginBottom: windowHeight * 0.02,
-        },
-        description: {
-            ...fonts.default,
-            color: colors.descriptionDefault,
-            marginBottom: windowHeight * 0.03,
-        },
         chartContainer: {
-            paddingTop: windowHeight * 0.00,
+            paddingTop: windowHeight * 0.0,
             alignItems: 'center',
         },
         button: {
@@ -168,7 +164,7 @@ const Results = () => {
             borderRadius: 8,
         },
         headerText: {
-            color: 'black',
+            color: colors.black,
             fontSize: 24,
             fontWeight: '600',
         },
@@ -184,7 +180,7 @@ const Results = () => {
             alignItems: 'center',
         },
         scoreCircle: {
-            backgroundColor: '#ffffff',
+            backgroundColor: colors.white,
             display: 'flex',
             padding: 20,
             borderRadius: 50,
@@ -207,27 +203,29 @@ const Results = () => {
             fontSize: 18,
             fontWeight: 'bold',
         },
-        
     });
 
     return (
         <View style={styles.container}>
             <View style={styles.overallScoreContainer}>
                 <View style={styles.header}>
-                    <TextTranslated style={styles.headerText} text='Results for Maturity Scan'></TextTranslated>
+                    <TextTranslated
+                        style={styles.headerText}
+                        text="Results for Maturity Scan"
+                    />
                 </View>
                 <View style={styles.content}>
                     <View style={styles.scoreContainer}>
                         <Text style={fonts.default}>Overall Score</Text>
                         <View style={styles.scoreCircle}>
-                            <Text style={styles.scoreText}>{Math.round(4.3 * 10) / 10}/5</Text>
+                            <Text style={styles.scoreText}>
+                                {Math.round(4.3 * 10) / 10}/5
+                            </Text>
                         </View>
                         <Text style={styles.scoreLabel}>Very Good</Text>
                     </View>
                 </View>
             </View>
-
-
 
             <View style={styles.chartContainer}>
                 <Svg
@@ -300,15 +298,21 @@ const Results = () => {
                             if (currentLine.length + word.length > 15) {
                                 lines.push(currentLine);
                                 currentLine = word;
-                            } else {
-                                currentLine += (currentLine ? ' ' : '') + word;
+                                return;
                             }
+
+                            currentLine += (currentLine ? ' ' : '') + word;
                         });
                         lines.push(currentLine);
 
                         // Calculate vertical offset based on number of lines
                         const totalHeight = lines.length * 12;
                         const startY = y - totalHeight / 2 + 6; // Center the text block
+
+                        let textAnchor: TextAnchor = 'middle';
+                        if (Math.abs(Math.sin(angle)) >= 0.1) {
+                            textAnchor = Math.sin(angle) > 0 ? 'start' : 'end';
+                        }
 
                         return lines.map((line, lineIndex) => (
                             <SvgText
@@ -317,13 +321,7 @@ const Results = () => {
                                 y={startY + lineIndex * 12}
                                 fontSize="10"
                                 fill={colors.text}
-                                textAnchor={
-                                    Math.abs(Math.sin(angle)) < 0.1
-                                        ? 'middle'
-                                        : Math.sin(angle) > 0
-                                          ? 'start'
-                                          : 'end'
-                                }
+                                textAnchor={textAnchor}
                                 alignmentBaseline="middle"
                             >
                                 {line}

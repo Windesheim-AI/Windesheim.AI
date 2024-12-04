@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Button, Switch } from 'react-native';
-import { PageScrollView } from '../../components/general/views/PageScrollView';
+/* eslint-disable react-native/no-color-literals */
 
+import React, { useState } from 'react';
+import {
+    View,
+    Text,
+    TextInput,
+    StyleSheet,
+    Button,
+    Switch,
+} from 'react-native';
+
+import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 
@@ -18,15 +27,16 @@ export default function InformationPage() {
 
     const handleSubmit = () => {
         // Handle form submission logic here
-        console.log('Form submitted:', { name, phoneNumber, email, company, companySize, location });
         navigator.navigate(Routes.Results.toString());
-
     };
 
     return (
         <PageScrollView>
             <View style={styles.container}>
-                <Text style={styles.text}>In order to save your data and show you the results, we'll need a little information.</Text>
+                <Text style={styles.text}>
+                    In order to save your data and show you the results,
+                    we&apos;ll need a little information.
+                </Text>
 
                 <Text style={styles.label}>Name</Text>
                 <TextInput
@@ -62,7 +72,7 @@ export default function InformationPage() {
                     />
                 </View>
 
-                {showAdditionalFields && (
+                {showAdditionalFields ? (
                     <>
                         <Text style={styles.label}>Company</Text>
                         <TextInput
@@ -88,7 +98,7 @@ export default function InformationPage() {
                             placeholder="Enter your location"
                         />
                     </>
-                )}
+                ) : null}
 
                 <Button title="Submit" onPress={handleSubmit} />
             </View>

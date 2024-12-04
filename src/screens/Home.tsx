@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Image, Text, Modal, StyleSheet } from 'react-native';
-import { useAppSelector } from '../lib/redux/Hooks';
-import { SettingsButton } from '../components/general/buttons/SettingButton';
-import { PageScrollView } from '../components/general/views/PageScrollView';
-import { Introduction } from '../components/general/card/Introduction';
+import { View, Text, Modal, StyleSheet } from 'react-native';
+
 import { DisclaimerCard } from '../components/general/card/DisclaimerCard';
+import { Introduction } from '../components/general/card/Introduction';
+import { PageScrollView } from '../components/general/views/PageScrollView';
 import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
-import { RootState } from '../lib/redux/Hooks';
+import { useAppSelector, RootState } from '../lib/redux/Hooks';
 
 export const HomeScreen = () => {
     const [isDisclaimerVisible, setIsDisclaimerVisible] = useState(false);
@@ -20,9 +19,11 @@ export const HomeScreen = () => {
                 setIsDisclaimerVisible(true);
                 localStorage.setItem('disclaimerShown', 'true');
             }
-        } else {
-            setIsDisclaimerVisible(false);
+
+            return;
         }
+
+        setIsDisclaimerVisible(false);
     }, [tutorialCompleted]);
 
     const currentTheme = useCurrentTheme();
@@ -51,10 +52,10 @@ export const HomeScreen = () => {
         },
         modalOverlay: {
             flex: 1,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            backgroundColor: colors.black,
+            opacity: 0.5,
             justifyContent: 'center',
             alignItems: 'center',
-            backdropFilter: 'blur(10px)', // This line adds the blur effect
         },
         alertContainer: {
             padding: 20,

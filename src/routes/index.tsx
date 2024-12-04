@@ -5,6 +5,7 @@ import { DefaultRoute, Routes } from './routes';
 import { LoadingScreen } from '../components/loadingscreen/LoadingScreen';
 import { useAppSelector } from '../lib/redux/Hooks';
 import { Articles } from '../screens/Articles';
+import { ChooseCategories } from '../screens/Choose_Categories';
 import CourseFinished from '../screens/Course/CourseFinished';
 import { Courses } from '../screens/Course/Courses';
 import Stage from '../screens/Course/Stage';
@@ -14,6 +15,10 @@ import { PodcastsEpisodePage } from '../screens/Podcasts/PodcastsEpisodePage';
 import { PromptLibrary } from '../screens/PromptLibrary/PromptLibrary';
 import { PromptView } from '../screens/PromptLibrary/PromptView';
 import { Quizzes } from '../screens/Quizzes';
+import InformationPage from '../screens/Scans/InformationPage';
+import { Results } from '../screens/Scans/Results';
+import { Scans } from '../screens/Scans/Scans';
+import ScansOverview from '../screens/Scans/ScansOverview';
 import { SettingsScreen } from '../screens/Settings';
 import { StudyScreen } from '../screens/Study';
 import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
@@ -23,11 +28,7 @@ import { BackgroundInfo } from '../screens/UserBackground/BackgroundInfo';
 import { WTRScreen } from '../screens/WTR';
 import { MockTutorial } from '../screens/WTR/MockTutorial';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
-import { Scans } from '../screens/Scans/Scans';
-import { Results } from '../screens/Scans/Results';
-import { ChooseCategories } from '../screens/Choose_Categories';
-import ScansOverview from '../screens/Scans/ScansOverview';
-import InformationPage from '../screens/Scans/InformationPage';
+
 const Stack = createNativeStackNavigator();
 
 const screens = [

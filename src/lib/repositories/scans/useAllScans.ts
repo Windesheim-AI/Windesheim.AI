@@ -11,6 +11,4 @@ export default function useAllScans() {
         username: getEnvValue(EnvOptions.WordPressUsername),
         password: getEnvValue(EnvOptions.WordPressPassword),
     });
-
-
 }

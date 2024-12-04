@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
+
 import {
     useColorConfig,
     shadow,
@@ -7,7 +8,6 @@ import {
 } from '../../../lib/constants/Colors';
 import { useFonts } from '../../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
-import { openBrowserPopup } from '../../../lib/utility/browserPopup';
 import { TextTranslated } from '../text/TextTranslated';
 
 interface DisclaimerCardProps {

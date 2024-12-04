@@ -7,14 +7,17 @@ import {
     View,
     Image,
     Text,
+    ImageSourcePropType,
 } from 'react-native';
+
 import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
+import Favicon from '../assets/images/Icon/favicon.png';
 import { NotificationList } from '../components/general/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
+import { MenuButton } from '../components/general/buttons/MenuButton';
 import { Tutorial } from '../components/tutorial/Tutorial';
 import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
 import { useAppSelector } from '../lib/redux/Hooks';
-import { MenuButton } from '../components/general/buttons/MenuButton';
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -52,13 +55,13 @@ export const Layout = ({ children }: LayoutProps) => {
         headerContainer: {
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'space-between', 
+            justifyContent: 'space-between',
             width: '100%',
             paddingHorizontal: 10,
             paddingBottom: 10,
             backgroundColor: colors.backgroundHeader,
             borderBottomWidth: 1,
-            borderBottomColor: 'black',
+            borderBottomColor: colors.black,
             height: 70,
             zIndex: 2,
         },
@@ -73,6 +76,7 @@ export const Layout = ({ children }: LayoutProps) => {
             marginLeft: 10,
             color: logoTextColor,
         },
+        logoContainer: { flexDirection: 'row', alignItems: 'center' },
     });
 
     return (
@@ -82,14 +86,12 @@ export const Layout = ({ children }: LayoutProps) => {
                 <NotificationList />
 
                 <View style={styles.headerContainer}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <View style={styles.logoContainer}>
                         <Image
-                            source={require('../assets/images/Icon/favicon.png')}
+                            source={Favicon as ImageSourcePropType}
                             style={styles.logo}
                         />
-                        <Text style={styles.logoText}>
-                            WINDESHEIM.AI
-                        </Text>
+                        <Text style={styles.logoText}>WINDESHEIM.AI</Text>
                     </View>
 
                     <MenuButton />
