@@ -2,7 +2,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 
 import { useNavigation } from '@react-navigation/native';
-import { useColorConfig } from 'lib/constants/Colors';
 import React, { useState, useEffect } from 'react';
 import {
     StyleSheet,
@@ -15,6 +14,7 @@ import {
     ImageSourcePropType,
 } from 'react-native';
 
+import { useColorConfig } from '../../../lib/constants/Colors';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { navigationBarLinks } from '../../../routes/navigation';
 import { SettingsButton } from '../buttons/SettingButton';
