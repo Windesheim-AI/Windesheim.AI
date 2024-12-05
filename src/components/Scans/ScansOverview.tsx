@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
-import { ScanDataMapped } from 'types/Scan';
 
 import { useFonts } from '../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
@@ -9,6 +8,7 @@ import useAllScans from '../../lib/repositories/scans/useAllScans';
 import { getRandomLimitedItemsFromArray } from '../../lib/utility/data';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
+import { ScanDataMapped } from '../../types/Scan';
 import { ScanCard } from '../Scans/card/ScanCard';
 import { TextTranslated } from '../general/text/TextTranslated';
 
@@ -50,7 +50,7 @@ export function ScansOverview({ limit }: Props) {
         <FlatList
             testID="test-container"
             data={selectedScans}
-            renderItem={({ item }: { item: ScanDataMapped }) => (
+            renderItem={({ item }) => (
                 <View
                     style={styles.courseCardContainer}
                     testID={`course-card-${item.scanId}`}
