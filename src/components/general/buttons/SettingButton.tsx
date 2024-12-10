@@ -49,7 +49,7 @@ export const SettingsButton = ({ toggleMenu }: SettingsButtonProps) => {
         },
         menuText: {
             fontSize: 15,
-            color: colors.black,
+            color: colors.text,
             marginLeft: 10,
         },
     });

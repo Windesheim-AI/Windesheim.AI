@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
 import { View, Text, Modal, StyleSheet } from 'react-native';
 
@@ -14,16 +15,17 @@ export const HomeScreen = () => {
     );
 
     useEffect(() => {
-        if (tutorialCompleted) {
-            if (!localStorage.getItem('disclaimerShown')) {
-                setIsDisclaimerVisible(true);
-                localStorage.setItem('disclaimerShown', 'true');
+        const checkDisclaimerShown = async () => {
+            if (tutorialCompleted) {
+                const disclaimerShown =
+                    await AsyncStorage.getItem('disclaimerShown');
+                if (!disclaimerShown) {
+                    setIsDisclaimerVisible(true);
+                    await AsyncStorage.setItem('disclaimerShown', 'true');
+                }
             }
-
-            return;
-        }
-
-        setIsDisclaimerVisible(false);
+        };
+        void checkDisclaimerShown();
     }, [tutorialCompleted]);
 
     const currentTheme = useCurrentTheme();
@@ -51,11 +53,17 @@ export const HomeScreen = () => {
             flexGrow: 1,
         },
         modalOverlay: {
-            flex: 1,
-            backgroundColor: colors.black,
-            opacity: 0.5,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
             justifyContent: 'center',
             alignItems: 'center',
+        },
+        overlayBackground: {
+            ...StyleSheet.absoluteFillObject,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
         },
         alertContainer: {
             padding: 20,
@@ -83,6 +91,7 @@ export const HomeScreen = () => {
                 onRequestClose={() => setIsDisclaimerVisible(false)}
             >
                 <View style={styles.modalOverlay}>
+                    <View style={styles.overlayBackground} />
                     <View style={styles.alertContainer}>
                         <DisclaimerCard
                             onClose={() => setIsDisclaimerVisible(false)}

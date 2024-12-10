@@ -151,11 +151,7 @@ export const MenuButton = () => {
                                 }}
                             >
                                 <Image
-                                    source={
-                                        getIcon(
-                                            link.icon,
-                                        ) as ImageSourcePropType
-                                    }
+                                    source={getIcon(link.icon)}
                                     style={iconStyle}
                                 />
                                 <Text style={styles.menuText}>{link.icon}</Text>
