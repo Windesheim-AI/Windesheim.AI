@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
 import { View, Text, Modal, StyleSheet } from 'react-native';
 
@@ -14,16 +15,17 @@ export const HomeScreen = () => {
     );
 
     useEffect(() => {
-        if (tutorialCompleted) {
-            if (!localStorage.getItem('disclaimerShown')) {
-                setIsDisclaimerVisible(true);
-                localStorage.setItem('disclaimerShown', 'true');
+        const checkDisclaimerShown = async () => {
+            if (tutorialCompleted) {
+                const disclaimerShown =
+                    await AsyncStorage.getItem('disclaimerShown');
+                if (!disclaimerShown) {
+                    setIsDisclaimerVisible(true);
+                    await AsyncStorage.setItem('disclaimerShown', 'true');
+                }
             }
-
-            return;
-        }
-
-        setIsDisclaimerVisible(false);
+        };
+        void checkDisclaimerShown();
     }, [tutorialCompleted]);
 
     const currentTheme = useCurrentTheme();
