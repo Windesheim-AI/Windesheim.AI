@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-color-literals */
 
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 
 import {
     useColorConfig,
@@ -73,7 +73,7 @@ export function ScanCard({
         <InteractiveView onPress={onPress} testID="scan-card">
             <Card style={styles.card}>
                 <View>
-                    <img
+                    <Image
                         src={
                             imageUrl
                                 ? imageUrl

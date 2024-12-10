@@ -190,7 +190,7 @@ export const ChooseCategories = () => {
                             </Text>
 
                             <Text style={styles.chevronIcon}>
-                                {expandedCategories.includes(index) ? '▼' : '▲'}
+                                {expandedCategories.includes(index) ? '▲' : '▼'}
                             </Text>
                         </TouchableOpacity>
 
