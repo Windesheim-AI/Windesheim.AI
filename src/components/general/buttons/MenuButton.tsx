@@ -14,7 +14,7 @@ import {
     ImageSourcePropType,
 } from 'react-native';
 
-import { useColorConfig } from '../../../lib/constants/Colors';
+import { useColorConfig, useCurrentTheme } from '../../../lib/constants/Colors';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { navigationBarLinks } from '../../../routes/navigation';
 import { SettingsButton } from '../buttons/SettingButton';
@@ -62,7 +62,7 @@ export const MenuButton = () => {
             left: 0,
             width: 300,
             height: screenHeight,
-            backgroundColor: colors.white,
+            backgroundColor: colors.background,
             paddingTop: 0,
             zIndex: 3,
             elevation: 3,
@@ -77,7 +77,7 @@ export const MenuButton = () => {
             fontWeight: 'bold',
             borderBottomWidth: 1,
             borderBottomColor: colors.black,
-            color: '#4695D3',
+            color: colors.text,
         },
         menuItem: {
             flexDirection: 'row',
@@ -91,7 +91,7 @@ export const MenuButton = () => {
         },
         menuText: {
             fontSize: 15,
-            color: colors.black,
+            color: colors.text,
             marginLeft: 10,
         },
     });
@@ -107,6 +107,12 @@ export const MenuButton = () => {
     const toggleMenu = () => {
         HapticFeedback(HapticForces.Light);
         setMenuVisible((prev) => !prev);
+    };
+
+    const currentTheme = useCurrentTheme();
+    const iconStyle = {
+        ...styles.menuIcon,
+        tintColor: currentTheme === 'dark' ? '#FFFFFF' : '#000000',
     };
 
     return (
@@ -150,7 +156,7 @@ export const MenuButton = () => {
                                             link.icon,
                                         ) as ImageSourcePropType
                                     }
-                                    style={styles.menuIcon}
+                                    style={iconStyle}
                                 />
                                 <Text style={styles.menuText}>{link.icon}</Text>
                             </TouchableOpacity>
@@ -164,7 +170,7 @@ export const MenuButton = () => {
     );
 };
 
-const getIcon = (iconName: string): number | null => {
+const getIcon = (iconName: string): ImageSourcePropType => {
     switch (iconName) {
         case 'home':
             return require('../../../assets/images/navbarIcons/Home.png');
@@ -175,10 +181,9 @@ const getIcon = (iconName: string): number | null => {
         case 'prompts':
             return require('../../../assets/images/navbarIcons/Prompts.png');
         case 'WTR':
-            return require('../../../assets/images/navbarIcons/WindesheimTech.png');
         case 'scans':
             return require('../../../assets/images/navbarIcons/WindesheimTech.png');
         default:
-            return null;
+            return require('../../../assets/images/navbarIcons/Home.png');
     }
 };

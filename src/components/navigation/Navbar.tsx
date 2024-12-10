@@ -50,9 +50,7 @@ export const NavBar = () => {
     const statusBarColor = () => {
         return theme === 'light' ? 'dark' : 'light';
     };
-    const darkThemeIconStyle = {
-        tintColor: '#FFFFFF',
-    };
+
     const styles = StyleSheet.create({
         container: {
             flexDirection: 'row',
@@ -94,7 +92,7 @@ export const NavBar = () => {
         icon: {
             width: 25,
             height: 25,
-            tintColor: colors.black,
+            tintColor: theme === 'dark' ? '#FFFFFF' : '#000000',
         },
     });
 
@@ -167,12 +165,7 @@ export const NavBar = () => {
                                           ? require('../../assets/images/navbarIcons/Prompts.png')
                                           : require('../../assets/images/navbarIcons/WindesheimTech.png')
                             }
-                            style={[
-                                styles.icon,
-                                !routeActive &&
-                                    theme === 'dark' &&
-                                    darkThemeIconStyle,
-                            ]}
+                            style={styles.icon}
                         />
                     </Pressable>
                 );
