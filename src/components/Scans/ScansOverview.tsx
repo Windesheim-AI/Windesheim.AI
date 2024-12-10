@@ -47,26 +47,23 @@ export function ScansOverview({ limit }: Props) {
     }
 
     return (
-        <FlatList
-            testID="test-container"
-            data={selectedScans}
-            renderItem={({ item }) => (
-                <View
-                    style={styles.courseCardContainer}
-                    testID={`course-card-${item.scanId}`}
-                >
-                    <ScanCard
-                        key={item.scanId}
-                        name={item.name ?? ''}
-                        description={item.description ?? ''}
-                        difficulty={item.difficulty ?? ''}
-                        imageUrl={item.imageUrl ?? ''}
-                        onPress={() => onPress(item.scanId)}
-                    />
-                </View>
-            )}
-            keyExtractor={(item: ScanDataMapped) => item.scanId}
-        />
+        <>
+        {selectedScans!.map((item) => (
+            <View
+                key={item.scanId}
+                style={styles.courseCardContainer}
+                testID={`course-card-${item.scanId}`}
+            >
+                <ScanCard
+                    name={item.name ?? ''}
+                    description={item.description ?? ''}
+                    difficulty={item.difficulty ?? ''}
+                    imageUrl={item.imageUrl ?? ''}
+                    onPress={() => onPress(item.scanId)}
+                />
+            </View>
+        ))}
+        </>
     );
 }
 
