@@ -93,7 +93,7 @@ export const MenuButton = () => {
             marginRight: 10,
         },
         menuText: {
-            fontSize: 15,
+            fontSize: 20,
             color: colors.text,
             marginLeft: 10,
         },
@@ -171,16 +171,16 @@ export const MenuButton = () => {
 
 const getIcon = (iconName: string): ImageSourcePropType => {
     switch (iconName) {
-        case 'home':
+        case 'Home':
             return require('../../../assets/images/navbarIcons/Home.png');
-        case 'articles':
+        case 'Articles':
             return require('../../../assets/images/navbarIcons/Articles.png');
-        case 'quizzes':
+        case 'Quizzes':
             return require('../../../assets/images/navbarIcons/Courses.png');
-        case 'prompts':
+        case 'Prompts':
             return require('../../../assets/images/navbarIcons/Prompts.png');
         case 'WTR':
-        case 'scans':
+        case 'Scans':
             return require('../../../assets/images/navbarIcons/WindesheimTech.png');
         default:
             return require('../../../assets/images/navbarIcons/Home.png');

@@ -8,10 +8,10 @@ export type NavigationBarLink = {
 };
 
 export const navigationBarLinks: NavigationBarLink[] = [
-    { icon: 'home', route: Routes.Home },
-    { icon: 'articles', route: Routes.Articles },
-    { icon: 'quizzes', route: Routes.Quizzes },
-    { icon: 'prompts', route: Routes.PromptLibrary },
+    { icon: 'Home', route: Routes.Home },
+    { icon: 'Articles', route: Routes.Articles },
+    { icon: 'Quizzes', route: Routes.Quizzes },
+    { icon: 'Prompts', route: Routes.PromptLibrary },
     { icon: 'WTR', route: Routes.WindesheimTechRadar },
-    { icon: 'scans', route: Routes.Scans },
+    { icon: 'Scans', route: Routes.Scans },
 ];
