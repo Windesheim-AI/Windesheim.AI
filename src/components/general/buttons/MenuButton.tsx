@@ -31,8 +31,11 @@ export const MenuButton = () => {
         container: {
             position: 'absolute',
             top: 20,
-            right: 20,
-            zIndex: 3,
+            left: 15,
+            zIndex: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
         },
         hamburger: {
             justifyContent: 'space-between',
@@ -42,7 +45,7 @@ export const MenuButton = () => {
             height: 3,
             width: 30,
             borderRadius: 2,
-            backgroundColor: colors.black,
+            backgroundColor: colors.text,
             marginVertical: 2,
         },
         overlay: {

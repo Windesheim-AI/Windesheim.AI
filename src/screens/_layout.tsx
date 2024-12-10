@@ -76,7 +76,11 @@ export const Layout = ({ children }: LayoutProps) => {
             marginLeft: 10,
             color: logoTextColor,
         },
-        logoContainer: { flexDirection: 'row', alignItems: 'center' },
+        logoContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginLeft: 'auto',
+        },
     });
 
     return (
@@ -86,6 +90,7 @@ export const Layout = ({ children }: LayoutProps) => {
                 <NotificationList />
 
                 <View style={styles.headerContainer}>
+                    <MenuButton />
                     <View style={styles.logoContainer}>
                         <Image
                             source={Favicon as ImageSourcePropType}
@@ -93,8 +98,6 @@ export const Layout = ({ children }: LayoutProps) => {
                         />
                         <Text style={styles.logoText}>WINDESHEIM.AI</Text>
                     </View>
-
-                    <MenuButton />
                 </View>
 
                 <View style={styles.contentContainer}>
