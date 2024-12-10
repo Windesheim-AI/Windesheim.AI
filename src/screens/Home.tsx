@@ -7,6 +7,7 @@ import { Introduction } from '../components/general/card/Introduction';
 import { PageScrollView } from '../components/general/views/PageScrollView';
 import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
 import { useAppSelector, RootState } from '../lib/redux/Hooks';
+import { Button } from 'react-native-paper';
 
 export const HomeScreen = () => {
     const [isDisclaimerVisible, setIsDisclaimerVisible] = useState(false);
@@ -53,11 +54,17 @@ export const HomeScreen = () => {
             flexGrow: 1,
         },
         modalOverlay: {
-            flex: 1,
-            backgroundColor: colors.black,
-            opacity: 0.5,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
             justifyContent: 'center',
             alignItems: 'center',
+        },
+        overlayBackground: {
+            ...StyleSheet.absoluteFillObject,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
         },
         alertContainer: {
             padding: 20,
@@ -65,6 +72,31 @@ export const HomeScreen = () => {
         },
     });
 
+    const clearStorage = async () => {
+        try {
+            await AsyncStorage.clear();
+            setIsDisclaimerVisible(true);
+            console.log('Storage cleared');
+        } catch (error) {
+            console.error('Error clearing storage:', error);
+        }
+    };
+
+    const DeveloperButton = () => (
+        <Button
+            onPress={clearStorage}
+            style={{
+                position: 'absolute',
+                right: 10,
+                top: 10,
+                padding: 10,
+                color: logoTextColor,
+                zIndex: 1,
+            }}
+        >
+            Clear Storage
+        </Button>
+    );
     return (
         <>
             <View style={styles.headerContainer}>
@@ -75,6 +107,7 @@ export const HomeScreen = () => {
             </View>
             <PageScrollView>
                 <Introduction />
+                <DeveloperButton />
             </PageScrollView>
 
             {/* Disclaimer Alert Modal */}
@@ -85,6 +118,7 @@ export const HomeScreen = () => {
                 onRequestClose={() => setIsDisclaimerVisible(false)}
             >
                 <View style={styles.modalOverlay}>
+                    <View style={styles.overlayBackground} />
                     <View style={styles.alertContainer}>
                         <DisclaimerCard
                             onClose={() => setIsDisclaimerVisible(false)}
