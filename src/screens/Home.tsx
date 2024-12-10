@@ -72,31 +72,6 @@ export const HomeScreen = () => {
         },
     });
 
-    const clearStorage = async () => {
-        try {
-            await AsyncStorage.clear();
-            setIsDisclaimerVisible(true);
-            console.log('Storage cleared');
-        } catch (error) {
-            console.error('Error clearing storage:', error);
-        }
-    };
-
-    const DeveloperButton = () => (
-        <Button
-            onPress={clearStorage}
-            style={{
-                position: 'absolute',
-                right: 10,
-                top: 10,
-                padding: 10,
-                color: logoTextColor,
-                zIndex: 1,
-            }}
-        >
-            Clear Storage
-        </Button>
-    );
     return (
         <>
             <View style={styles.headerContainer}>
@@ -107,7 +82,6 @@ export const HomeScreen = () => {
             </View>
             <PageScrollView>
                 <Introduction />
-                <DeveloperButton />
             </PageScrollView>
 
             {/* Disclaimer Alert Modal */}
