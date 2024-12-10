@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import {
-    View,
     FlatList,
-    StyleSheet,
     Image,
-    useWindowDimensions,
     ScrollView,
+    StyleSheet,
+    useWindowDimensions,
+    View,
 } from 'react-native';
 import { Bar } from 'react-native-progress';
 
+import { StyledLanguageSwitcher } from './StyledLanguageSwitcher';
 import {
-    positions,
-    keywords,
     aiFamiliarity,
     BackgroundDataItem,
+    keywords,
+    positions,
 } from '../../components/BackgroundCollect/DataList';
 import { Button } from '../../components/general/buttons/Button';
 import { ListButton } from '../../components/general/buttons/ListButton';
@@ -27,10 +28,10 @@ import {
 import { useFonts } from '../../lib/constants/Fonts';
 import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
 import {
-    setPosition,
-    setInterestedKeyword,
     setAiFamiliarity,
+    setInterestedKeyword,
     setIsFirstTimeUser,
+    setPosition,
 } from '../../lib/redux/slices/BackgroundInformationSlice';
 import { navigationActions } from '../../lib/redux/slices/NavigationSlice';
 
@@ -130,6 +131,18 @@ const BackgroundCollectForm = () => {
             ...shadow,
             marginTop: windowDimensions.height * 0.05,
         },
+        languageselectorContainer: {
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
+            backgroundColor: colors.previousButton,
+            borderRadius: 18,
+            height: 60,
+            margin: 10,
+            maxHeight: 90,
+            width: 'auto',
+            minWidth: 50,
+        },
     });
 
     let selectableOptions: BackgroundDataItem[] = [];
@@ -184,6 +197,10 @@ const BackgroundCollectForm = () => {
                             textColorScheme={colors.text}
                             icon="forward"
                         />
+
+                        <View style={styles.languageselectorContainer}>
+                            <StyledLanguageSwitcher />
+                        </View>
                     </View>
                 </View>
             </PageView>

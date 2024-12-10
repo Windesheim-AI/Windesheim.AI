@@ -2,6 +2,8 @@ export enum Routes {
     Home = 'Home',
     Study = 'Study',
     WindesheimTechRadar = 'Windesheim Tech Radar',
+    ScansOverview = 'Scansoverview',
+    InformationPage = 'InformationPage',
     WindesheimTechRadarContent = 'Windesheim Tech Radar Content',
     Settings = 'Settings',
     LoadingScreen = 'Loading screen',
@@ -21,6 +23,9 @@ export enum Routes {
     MockTutorial = 'MockTutorial',
     PodcastsEpisodePage = 'PodcastsEpisodePage',
     QuestionPage = 'QuestionPage',
+    Results = 'Results',
+    ChooseCategories = 'ChooseCategories',
+    Scans = 'Scans',
 }
 
 export const DefaultRoute = Routes.Home;

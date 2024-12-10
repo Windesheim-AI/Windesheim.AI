@@ -4,7 +4,11 @@
         "strict": true,
         "jsx": "react",
         "types": ["jest", "node"],
-        "noEmit": true
+        "noEmit": true,
+        "baseUrl": "src",
+        "paths": {
+            "assets/*": ["assets/*"]
+        }
     },
     "include": ["src/**/*", "declarations.d.ts"],
     "exclude": ["__tests__/*", "cypress/*"]

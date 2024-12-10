@@ -1,13 +1,31 @@
-import React from 'react';
-import { View, Image, StyleSheet, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, Modal, StyleSheet } from 'react-native';
 
-import { SettingsButton } from '../components/general/buttons/SettingButton';
 import { DisclaimerCard } from '../components/general/card/DisclaimerCard';
 import { Introduction } from '../components/general/card/Introduction';
 import { PageScrollView } from '../components/general/views/PageScrollView';
 import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
+import { useAppSelector, RootState } from '../lib/redux/Hooks';
 
 export const HomeScreen = () => {
+    const [isDisclaimerVisible, setIsDisclaimerVisible] = useState(false);
+    const tutorialCompleted = useAppSelector(
+        (state: RootState) => state.tutorial.tutorialCompleted,
+    );
+
+    useEffect(() => {
+        if (tutorialCompleted) {
+            if (!localStorage.getItem('disclaimerShown')) {
+                setIsDisclaimerVisible(true);
+                localStorage.setItem('disclaimerShown', 'true');
+            }
+
+            return;
+        }
+
+        setIsDisclaimerVisible(false);
+    }, [tutorialCompleted]);
+
     const currentTheme = useCurrentTheme();
     const logoTextColor = currentTheme === 'dark' ? '#FFFFFF' : 'black';
     const colors = useColorConfig();
@@ -20,11 +38,7 @@ export const HomeScreen = () => {
             paddingLeft: 10,
             backgroundColor: colors.background,
         },
-        logo: {
-            width: 37,
-            height: 37,
-            resizeMode: 'contain',
-        },
+
         logoText: {
             fontSize: 20,
             fontWeight: 'bold',
@@ -36,25 +50,46 @@ export const HomeScreen = () => {
         flexGrow: {
             flexGrow: 1,
         },
+        modalOverlay: {
+            flex: 1,
+            backgroundColor: colors.black,
+            opacity: 0.5,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        alertContainer: {
+            padding: 20,
+            borderRadius: 10,
+        },
     });
+
     return (
         <>
             <View style={styles.headerContainer}>
-                <Image
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                    source={require('../assets/images/Icon/favicon.png')}
-                    style={styles.logo}
-                />
                 <Text style={[styles.logoText, { color: logoTextColor }]}>
                     WINDESHEIM.AI
                 </Text>
                 <View style={styles.flexGrow} />
-                <SettingsButton />
             </View>
             <PageScrollView>
                 <Introduction />
-                <DisclaimerCard />
             </PageScrollView>
+
+            {/* Disclaimer Alert Modal */}
+            <Modal
+                transparent
+                visible={isDisclaimerVisible}
+                animationType="fade"
+                onRequestClose={() => setIsDisclaimerVisible(false)}
+            >
+                <View style={styles.modalOverlay}>
+                    <View style={styles.alertContainer}>
+                        <DisclaimerCard
+                            onClose={() => setIsDisclaimerVisible(false)}
+                        />
+                    </View>
+                </View>
+            </Modal>
         </>
     );
 };

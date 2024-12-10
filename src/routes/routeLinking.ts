@@ -30,6 +30,15 @@ export const RouteLinking = {
                     courseId: (courseId: string) => courseId,
                 },
             },
+            [Routes.Scans]: 'scans',
+            [Routes.InformationPage]: 'scans/informationpage',
+
+            [Routes.ScansOverview]: {
+                path: 'scans/:scanId/overview',
+                parse: {
+                    scanId: (scanId: string) => scanId,
+                },
+            },
             [Routes.CourseStage]: {
                 path: 'study/courses/:courseId/:stageId',
                 parse: {
@@ -53,6 +62,8 @@ export const RouteLinking = {
                     scanId: (scanId: string) => scanId,
                 },
             },
+            [Routes.Results]: 'scans/results',
+            [Routes.ChooseCategories]: 'scans/choose-categories',
         },
     },
 };
