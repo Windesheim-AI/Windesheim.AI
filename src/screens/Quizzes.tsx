@@ -11,12 +11,18 @@ import { useFonts } from '../lib/constants/Fonts';
 export function Quizzes() {
     const colors = useColorConfig();
     const fonts = useFonts();
+
     const styles = {
         text: {
             ...fonts.h1,
             color: colors.text,
         },
+        buttonContainer: {
+            marginTop: 20,
+            alignItems: 'center' as const,
+        },
     };
+
     return (
         <PageScrollView>
             <View>

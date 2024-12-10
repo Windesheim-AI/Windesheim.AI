@@ -5,24 +5,54 @@ import {
     TouchableOpacity,
     Image,
     ImageSourcePropType,
+    Text,
 } from 'react-native';
 
 import SettingsIcon from '../../../assets/images/Icon/settings_icon.png';
-import { useCurrentTheme } from '../../../lib/constants/Colors';
+import { useColorConfig, useCurrentTheme } from '../../../lib/constants/Colors';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { Routes } from '../../../routes/routes';
+
 const theme = {
     darkIconTintColor: '#FFFFFF',
 };
 
-export const SettingsButton = () => {
+interface SettingsButtonProps {
+    toggleMenu: () => void;
+}
+
+export const SettingsButton = ({ toggleMenu }: SettingsButtonProps) => {
+    const colors = useColorConfig();
     const navigation = useNavigation();
     const currentTheme = useCurrentTheme();
 
     const handlePress = () => {
         HapticFeedback(HapticForces.Light);
         navigation.navigate(Routes.Settings as never);
+        toggleMenu(); // Close the menu after navigation
     };
+
+    const styles = StyleSheet.create({
+        container: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: 10,
+        },
+        lightIcon: {
+            width: 37,
+            height: 37,
+        },
+        darkIcon: {
+            width: 37,
+            height: 37,
+            tintColor: theme.darkIconTintColor,
+        },
+        menuText: {
+            fontSize: 15,
+            color: colors.black,
+            marginLeft: 10,
+        },
+    });
 
     const iconStyle =
         currentTheme === 'dark' ? styles.darkIcon : styles.lightIcon;
@@ -33,25 +63,7 @@ export const SettingsButton = () => {
                 source={SettingsIcon as ImageSourcePropType}
                 style={iconStyle}
             />
+            <Text style={styles.menuText}>Instellingen</Text>
         </TouchableOpacity>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        zIndex: 1,
-        paddingRight: 10,
-    },
-    lightIcon: {
-        width: 37,
-        height: 37,
-    },
-    darkIcon: {
-        width: 37,
-        height: 37,
-        tintColor: theme.darkIconTintColor,
-    },
-});

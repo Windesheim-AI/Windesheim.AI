@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Modal, StyleSheet, View, Image } from 'react-native';
+import { Image, Modal, StyleSheet, View } from 'react-native';
 
 import { tutorialSteps } from './TutorialSteps';
 import {
@@ -9,11 +9,11 @@ import {
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
-import { useAppSelector, useAppDispatch } from '../../lib/redux/Hooks';
+import { useAppDispatch, useAppSelector } from '../../lib/redux/Hooks';
 import {
     nextStep,
-    setCompleted,
     previousStep,
+    setCompleted,
 } from '../../lib/redux/slices/TutorialSlice';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import ProgressBar from '../general/base/ProgressBar';

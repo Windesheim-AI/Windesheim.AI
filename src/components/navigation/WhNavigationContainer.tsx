@@ -19,6 +19,7 @@ export default function WhNavigationContainer({ children }: Props) {
         if (!currentRoute) return;
 
         const isNavBarRoute =
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
             navigationBarLinks.filter((link) => link.route === currentRoute)
                 .length > 0;
         if (!isNavBarRoute) return;

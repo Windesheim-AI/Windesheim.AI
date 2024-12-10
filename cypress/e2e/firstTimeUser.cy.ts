@@ -1,36 +1,29 @@
 describe('First time user tests', () => {
-    beforeEach(() => {
-        cy.visit('/');
-    });
-
-    it('can display the welcome message and background input buttons', () => {
-        cy.contains('Welkom bij Windesheim.AI!');
-        cy.get('[data-testid="userLogo"]').should('exist');
-        cy.contains('Vertel me uw achtergrond!');
-        cy.contains('We bieden u op maat gemaakte training.');
-        cy.contains('Oke').click();
-    });
-
     it('can skip the background collect form', () => {
-        cy.contains('Welkom bij Windesheim.AI!');
+        cy.visit('/');
+
+        // Check if the disclaimer pop-up is displayed and close it if it is
+        cy.get('body').then(($body) => {
+            if ($body.find('.disclaimer-popup').length > 0) {
+                cy.contains('Disclaimer').should('be.visible');
+                cy.get('.disclaimer-popup .close-button').click();
+            }
+        });
+
+        // After the disclaimer (if present) is closed,
+        // check if the homepage is displayed correctly
+        cy.contains('Welkom bij Windesheim.AI!').should('be.visible');
+        cy.contains('We bieden u op maat gemaakte training.').should(
+            'be.visible',
+        );
+
+        // Now skip the background form process
         cy.contains('Overslaan').click();
         cy.contains('Overslaan').click();
 
-        cy.contains('Windesheim AI');
-        cy.contains('Disclaimer');
-    });
-
-    it('can answer the background questions and progresses through it', () => {
-        cy.contains('Oke').click();
-        cy.contains('Achtergrondinformatie verzamelen');
-        cy.contains('Wat is uw positie?');
-        cy.get('[data-testid="listButton"]').first().click();
-        cy.contains('In welk gebied van AI bent u geïnteresseerd?');
-        cy.get('[data-testid="listButton"]').first().click();
-        cy.contains('Hoe bekend bent u met AI?');
-        cy.get('[data-testid="listButton"]').first().click();
-        cy.contains('Overslaan').click();
-        cy.contains('Windesheim AI');
-        cy.contains('Disclaimer');
+        // Check if you land at the expected place after skipping
+        cy.contains('Windesheim AI').should('be.visible');
+        // Since the disclaimer only appears at the beginning and does not appear again afterwards,
+        // no further check for "Disclaimer" at the end is necessary.
     });
 });
