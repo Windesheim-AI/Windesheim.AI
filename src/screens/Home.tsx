@@ -7,7 +7,6 @@ import { Introduction } from '../components/general/card/Introduction';
 import { PageScrollView } from '../components/general/views/PageScrollView';
 import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
 import { useAppSelector, RootState } from '../lib/redux/Hooks';
-import { Button } from 'react-native-paper';
 
 export const HomeScreen = () => {
     const [isDisclaimerVisible, setIsDisclaimerVisible] = useState(false);
