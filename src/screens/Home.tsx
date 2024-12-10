@@ -53,11 +53,17 @@ export const HomeScreen = () => {
             flexGrow: 1,
         },
         modalOverlay: {
-            flex: 1,
-            backgroundColor: colors.black,
-            opacity: 0.5,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
             justifyContent: 'center',
             alignItems: 'center',
+        },
+        overlayBackground: {
+            ...StyleSheet.absoluteFillObject,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
         },
         alertContainer: {
             padding: 20,
@@ -85,6 +91,7 @@ export const HomeScreen = () => {
                 onRequestClose={() => setIsDisclaimerVisible(false)}
             >
                 <View style={styles.modalOverlay}>
+                    <View style={styles.overlayBackground} />
                     <View style={styles.alertContainer}>
                         <DisclaimerCard
                             onClose={() => setIsDisclaimerVisible(false)}
