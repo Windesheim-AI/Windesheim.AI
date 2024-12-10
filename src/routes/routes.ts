@@ -22,6 +22,7 @@ export enum Routes {
     Prompts = 'Prompts',
     MockTutorial = 'MockTutorial',
     PodcastsEpisodePage = 'PodcastsEpisodePage',
+    QuestionPage = 'QuestionPage',
     Results = 'Results',
     ChooseCategories = 'ChooseCategories',
     Scans = 'Scans',
