@@ -6,7 +6,7 @@ export type Scan = {
     content: string;
     scanType: string;
     difficulty: string;
-    imageUrl: any;
+    imageUrl: string;
     categories: Category[];
 };
 
