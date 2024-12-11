@@ -1,23 +1,26 @@
+// LayoutStyles.ts
+import { SettingsButton } from 'components/general/buttons/SettingButton';
 import React from 'react';
 import {
+    Image,
+    ImageSourcePropType,
     Platform,
     SafeAreaView,
     StatusBar,
     StyleSheet,
-    View,
-    Image,
     Text,
-    ImageSourcePropType,
+    View,
 } from 'react-native';
-
-import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
 import Favicon from '../assets/images/Icon/favicon.png';
 import { NotificationList } from '../components/general/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
 import { MenuButton } from '../components/general/buttons/MenuButton';
 import { Tutorial } from '../components/tutorial/Tutorial';
-import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
+import { useColorConfig } from '../lib/constants/Colors';
 import { useAppSelector } from '../lib/redux/Hooks';
+import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
+
+// Layout.tsx
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -25,24 +28,8 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => {
     const colors = useColorConfig();
-    const currentTheme = useCurrentTheme();
-    const logoTextColor = currentTheme === 'dark' ? '#FFFFFF' : 'black';
-
-    const isFirstTimeUser = useAppSelector(
-        (state) => state.backgroundInformation.isFirstTimeUser,
-    );
 
     const styles = StyleSheet.create({
-        contentContainer: {
-            borderRadius: 15,
-            flex: 1,
-            margin: 10,
-            overflow: 'hidden',
-        },
-        innerContainer: {
-            backgroundColor: colors.background,
-            height: '100%',
-        },
         wrapper: {
             width: '100%',
             height: '100%',
@@ -55,7 +42,7 @@ export const Layout = ({ children }: LayoutProps) => {
         headerContainer: {
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'space-between',
+            justifyContent: 'center',
             width: '100%',
             paddingHorizontal: 10,
             paddingBottom: 10,
@@ -64,32 +51,57 @@ export const Layout = ({ children }: LayoutProps) => {
             borderBottomColor: colors.black,
             height: 70,
             zIndex: 2,
+            position: 'relative',
+        },
+        menuButtonContainer: {
+            position: 'absolute',
+            left: 10,
+        },
+        settingsContainer: {
+            position: 'absolute',
+            right: 10,
+        },
+        logoContainer: {
+            marginTop: 13,
+            flexDirection: 'row',
+            alignItems: 'center',
         },
         logo: {
             width: 37,
             height: 37,
             resizeMode: 'contain',
         },
+        logoInnerContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+        },
         logoText: {
             fontSize: 20,
             fontWeight: 'bold',
             marginLeft: 10,
-            color: logoTextColor,
+            color: colors.text,
         },
-        logoContainer: {
-            marginTop: 13,
-            flexDirection: 'row',
-            alignItems: 'center',
-            marginLeft: 'auto',
+        contentContainer: {
+            borderRadius: 15,
+            flex: 1,
+            margin: 10,
+            overflow: 'hidden',
+        },
+        innerContainer: {
+            backgroundColor: colors.background,
+            height: '100%',
         },
     });
+
+    const isFirstTimeUser = useAppSelector(
+        (state) => state.backgroundInformation.isFirstTimeUser,
+    );
 
     return (
         <>
             <Background />
             <SafeAreaView style={styles.wrapper}>
                 <NotificationList />
-
                 <View style={styles.headerContainer}>
                     <MenuButton />
                     <View style={styles.logoContainer}>
@@ -97,7 +109,12 @@ export const Layout = ({ children }: LayoutProps) => {
                             source={Favicon as ImageSourcePropType}
                             style={styles.logo}
                         />
-                        <Text style={styles.logoText}>WINDESHEIM.AI</Text>
+                        <View style={styles.logoInnerContainer}>
+                            <Text style={styles.logoText}>WINDESHEIM.AI</Text>
+                        </View>
+                    </View>
+                    <View style={styles.settingsContainer}>
+                        <SettingsButton />
                     </View>
                 </View>
 

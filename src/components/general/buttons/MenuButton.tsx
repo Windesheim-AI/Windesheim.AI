@@ -116,7 +116,7 @@ export const MenuButton = () => {
     const currentTheme = useCurrentTheme();
     const iconStyle = {
         ...styles.menuIcon,
-        tintColor: currentTheme === 'dark' ? '#FFFFFF' : '#000000',
+        tintColor: currentTheme === 'dark' ? colors.white : colors.black,
     };
 
     return (
@@ -161,8 +161,34 @@ export const MenuButton = () => {
                                 <Text style={styles.menuText}>{link.icon}</Text>
                             </TouchableOpacity>
                         ))}
-
-                        <SettingsButton toggleMenu={toggleMenu} />
+                        <View
+                            style={{
+                                marginTop: 'auto',
+                                marginBottom: 20,
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                padding: 25,
+                            }}
+                        >
+                            <Image
+                                source={require('../../../assets/images/Icon/icon.png')}
+                                style={{
+                                    width: 30,
+                                    height: 30,
+                                    marginRight: 10,
+                                }}
+                            />
+                            <Text
+                                style={{
+                                    fontSize: 20,
+                                    fontWeight: 'bold',
+                                    marginLeft: 10,
+                                    color: colors.logoTextColor,
+                                }}
+                            >
+                                WINDESHEIM.AI
+                            </Text>
+                        </View>
                     </Animated.View>
                 </>
             ) : null}

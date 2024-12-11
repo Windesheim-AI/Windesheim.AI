@@ -1,17 +1,16 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
-    StyleSheet,
-    TouchableOpacity,
     Image,
     ImageSourcePropType,
+    StyleSheet,
+    TouchableOpacity,
 } from 'react-native';
 
 import SettingsIcon from '../../../assets/images/Icon/settings_icon.png';
 import { useColorConfig, useCurrentTheme } from '../../../lib/constants/Colors';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { Routes } from '../../../routes/routes';
-import { TextTranslated } from '../text/TextTranslated';
 
 const theme = {
     darkIconTintColor: '#FFFFFF',
@@ -21,7 +20,7 @@ interface SettingsButtonProps {
     toggleMenu: () => void;
 }
 
-export const SettingsButton = ({ toggleMenu }: SettingsButtonProps) => {
+export const SettingsButton = () => {
     const colors = useColorConfig();
     const navigation = useNavigation();
     const currentTheme = useCurrentTheme();
@@ -29,7 +28,6 @@ export const SettingsButton = ({ toggleMenu }: SettingsButtonProps) => {
     const handlePress = () => {
         HapticFeedback(HapticForces.Light);
         navigation.navigate(Routes.Settings as never);
-        toggleMenu(); // Close the menu after navigation
     };
 
     const styles = StyleSheet.create({
@@ -39,12 +37,12 @@ export const SettingsButton = ({ toggleMenu }: SettingsButtonProps) => {
             padding: 10,
         },
         lightIcon: {
-            width: 37,
-            height: 37,
+            width: 40,
+            height: 40,
         },
         darkIcon: {
-            width: 37,
-            height: 37,
+            width: 40,
+            height: 40,
             tintColor: theme.darkIconTintColor,
         },
         menuText: {
@@ -63,7 +61,6 @@ export const SettingsButton = ({ toggleMenu }: SettingsButtonProps) => {
                 source={SettingsIcon as ImageSourcePropType}
                 style={iconStyle}
             />
-            <TextTranslated style={styles.menuText} text="Settings" />
         </TouchableOpacity>
     );
 };
