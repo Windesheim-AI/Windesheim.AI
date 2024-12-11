@@ -17,6 +17,7 @@ import {
 import { useColorConfig, useCurrentTheme } from '../../../lib/constants/Colors';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { navigationBarLinks } from '../../../routes/navigation';
+import { TextTranslated } from '../text/TextTranslated';
 
 export const MenuButton = () => {
     const colors = useColorConfig();
@@ -177,7 +178,10 @@ export const MenuButton = () => {
                                     source={getIcon(link.icon)}
                                     style={iconStyle}
                                 />
-                                <Text style={styles.menuText}>{link.icon}</Text>
+                                <TextTranslated
+                                    style={styles.menuText}
+                                    text={link.icon}
+                                />
                             </TouchableOpacity>
                         ))}
                         <View style={styles.logoContainer}>
