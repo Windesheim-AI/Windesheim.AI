@@ -2,22 +2,21 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 
 import { useNavigation } from '@react-navigation/native';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-    StyleSheet,
-    TouchableOpacity,
-    View,
     Animated,
-    Text,
     Image,
-    useWindowDimensions,
     ImageSourcePropType,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    useWindowDimensions,
+    View,
 } from 'react-native';
 
 import { useColorConfig, useCurrentTheme } from '../../../lib/constants/Colors';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { navigationBarLinks } from '../../../routes/navigation';
-import { SettingsButton } from '../buttons/SettingButton';
 
 export const MenuButton = () => {
     const colors = useColorConfig();
@@ -98,6 +97,26 @@ export const MenuButton = () => {
             color: colors.text,
             marginLeft: 10,
         },
+        logoStyle: {
+            width: 30,
+            height: 30,
+            marginRight: 10,
+            borderRadius: 5,
+            resizeMode: 'contain',
+        },
+        logoText: {
+            fontSize: 20,
+            fontWeight: 'bold',
+            marginLeft: 10,
+            color: colors.text,
+        },
+        logoContainer: {
+            marginTop: 'auto',
+            marginBottom: 20,
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: 25,
+        },
     });
 
     useEffect(() => {
@@ -161,33 +180,12 @@ export const MenuButton = () => {
                                 <Text style={styles.menuText}>{link.icon}</Text>
                             </TouchableOpacity>
                         ))}
-                        <View
-                            style={{
-                                marginTop: 'auto',
-                                marginBottom: 20,
-                                flexDirection: 'row',
-                                alignItems: 'center',
-                                padding: 25,
-                            }}
-                        >
+                        <View style={styles.logoContainer}>
                             <Image
                                 source={require('../../../assets/images/Icon/icon.png')}
-                                style={{
-                                    width: 30,
-                                    height: 30,
-                                    marginRight: 10,
-                                }}
+                                style={styles.logoStyle}
                             />
-                            <Text
-                                style={{
-                                    fontSize: 20,
-                                    fontWeight: 'bold',
-                                    marginLeft: 10,
-                                    color: colors.logoTextColor,
-                                }}
-                            >
-                                WINDESHEIM.AI
-                            </Text>
+                            <Text style={styles.logoText}>WINDESHEIM.AI</Text>
                         </View>
                     </Animated.View>
                 </>
