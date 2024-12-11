@@ -1,6 +1,6 @@
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
-import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, TouchableOpacity, View, Image } from 'react-native';
 
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
@@ -93,7 +93,7 @@ export default function ScanOverview() {
             <PageView>
                 <View style={styles.container}>
                     <View style={styles.courseBackgroundContainer}>
-                        <img
+                        <Image
                             src={
                                 scan?.imageUrl
                                     ? scan?.imageUrl
