@@ -1,4 +1,4 @@
-import { Store, AnyAction, configureStore } from '@reduxjs/toolkit';
+import { Store, configureStore, UnknownAction } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react-native';
 import React from 'react';
 import { Text } from 'react-native';
@@ -13,7 +13,7 @@ jest.useFakeTimers();
 
 describe('WhScrollView component', () => {
     // @ts-ignore
-    let store: Store<unknown, AnyAction>;
+    let store: Store<unknown, UnknownAction>;
 
     beforeEach(() => {
         store = configureStore({

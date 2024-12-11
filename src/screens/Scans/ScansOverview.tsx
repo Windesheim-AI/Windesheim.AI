@@ -1,6 +1,12 @@
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
-import { ScrollView, StyleSheet, TouchableOpacity, View, Image } from 'react-native';
+import {
+    ScrollView,
+    StyleSheet,
+    TouchableOpacity,
+    View,
+    Image,
+} from 'react-native';
 
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
 import { TextTranslated } from '../../components/general/text/TextTranslated';
