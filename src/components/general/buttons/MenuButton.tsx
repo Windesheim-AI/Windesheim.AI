@@ -205,8 +205,10 @@ const getIcon = (iconName: string): ImageSourcePropType => {
         case 'Prompts':
             return require('../../../assets/images/navbarIcons/Prompts.png');
         case 'WTR':
-        case 'Scans':
             return require('../../../assets/images/navbarIcons/WindesheimTech.png');
+
+        case 'Scans':
+            return require('../../../assets/images/navbarIcons/Scanlogo.png');
         default:
             return require('../../../assets/images/navbarIcons/Home.png');
     }
