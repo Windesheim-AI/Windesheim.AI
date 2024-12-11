@@ -5,6 +5,7 @@ const { setLoading } = loadingSlice.actions;
 describe('loadingSlice', () => {
     it('should have the correct initial state', () => {
         const initialState = loadingSlice.reducer(undefined, {
+            // @ts-ignore
             type: undefined,
         });
         expect(initialState).toEqual({ isLoading: false });

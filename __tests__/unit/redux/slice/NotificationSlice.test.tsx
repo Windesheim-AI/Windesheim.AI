@@ -7,6 +7,7 @@ import {
 describe('NotificationSlice', () => {
     it('should have the correct initial state', () => {
         const initialState = notificationSlice.reducer(undefined, {
+            // @ts-ignore
             type: undefined,
         });
         expect(initialState).toEqual({ notifications: [] });

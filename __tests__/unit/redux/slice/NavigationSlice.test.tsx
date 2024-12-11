@@ -10,6 +10,7 @@ const { showNavBar, updateSelectedNavBarRoute } = navigationActions;
 describe('navigationSlice', () => {
     it('should have the correct initial state', () => {
         const initialState = navigationSlice.reducer(undefined, {
+            // @ts-ignore
             type: undefined,
         });
         expect(initialState).toEqual({
