@@ -77,6 +77,7 @@ export const Layout = ({ children }: LayoutProps) => {
             color: logoTextColor,
         },
         logoContainer: {
+            marginTop: 13,
             flexDirection: 'row',
             alignItems: 'center',
             marginLeft: 'auto',

@@ -30,7 +30,7 @@ export const MenuButton = () => {
     const styles = StyleSheet.create({
         container: {
             position: 'absolute',
-            top: 20,
+
             left: 15,
             zIndex: 1,
             display: 'flex',
@@ -85,7 +85,8 @@ export const MenuButton = () => {
         menuItem: {
             flexDirection: 'row',
             alignItems: 'center',
-            padding: 15,
+            padding: 25,
+            borderBottomWidth: 0.5,
         },
         menuIcon: {
             width: 25,

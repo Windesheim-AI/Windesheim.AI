@@ -48,7 +48,7 @@ export const SettingsButton = ({ toggleMenu }: SettingsButtonProps) => {
             tintColor: theme.darkIconTintColor,
         },
         menuText: {
-            fontSize: 15,
+            fontSize: 20,
             color: colors.text,
             marginLeft: 10,
         },
