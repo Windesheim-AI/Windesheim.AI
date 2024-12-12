@@ -14,7 +14,7 @@ import {
     ImageSourcePropType,
 } from 'react-native';
 
-import { useColorConfig } from '../../../lib/constants/Colors';
+import { useColorConfig, useCurrentTheme } from '../../../lib/constants/Colors';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { navigationBarLinks } from '../../../routes/navigation';
 import { SettingsButton } from '../buttons/SettingButton';
@@ -31,8 +31,11 @@ export const MenuButton = () => {
         container: {
             position: 'absolute',
             top: 20,
-            right: 20,
-            zIndex: 3,
+            left: 15,
+            zIndex: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
         },
         hamburger: {
             justifyContent: 'space-between',
@@ -42,7 +45,7 @@ export const MenuButton = () => {
             height: 3,
             width: 30,
             borderRadius: 2,
-            backgroundColor: colors.black,
+            backgroundColor: colors.text,
             marginVertical: 2,
         },
         overlay: {
@@ -62,7 +65,7 @@ export const MenuButton = () => {
             left: 0,
             width: 300,
             height: screenHeight,
-            backgroundColor: colors.white,
+            backgroundColor: colors.background,
             paddingTop: 0,
             zIndex: 3,
             elevation: 3,
@@ -77,7 +80,7 @@ export const MenuButton = () => {
             fontWeight: 'bold',
             borderBottomWidth: 1,
             borderBottomColor: colors.black,
-            color: '#4695D3',
+            color: colors.text,
         },
         menuItem: {
             flexDirection: 'row',
@@ -90,8 +93,8 @@ export const MenuButton = () => {
             marginRight: 10,
         },
         menuText: {
-            fontSize: 15,
-            color: colors.black,
+            fontSize: 20,
+            color: colors.text,
             marginLeft: 10,
         },
     });
@@ -107,6 +110,12 @@ export const MenuButton = () => {
     const toggleMenu = () => {
         HapticFeedback(HapticForces.Light);
         setMenuVisible((prev) => !prev);
+    };
+
+    const currentTheme = useCurrentTheme();
+    const iconStyle = {
+        ...styles.menuIcon,
+        tintColor: currentTheme === 'dark' ? '#FFFFFF' : '#000000',
     };
 
     return (
@@ -145,12 +154,8 @@ export const MenuButton = () => {
                                 }}
                             >
                                 <Image
-                                    source={
-                                        getIcon(
-                                            link.icon,
-                                        ) as ImageSourcePropType
-                                    }
-                                    style={styles.menuIcon}
+                                    source={getIcon(link.icon)}
+                                    style={iconStyle}
                                 />
                                 <Text style={styles.menuText}>{link.icon}</Text>
                             </TouchableOpacity>
@@ -164,21 +169,20 @@ export const MenuButton = () => {
     );
 };
 
-const getIcon = (iconName: string): number | null => {
+const getIcon = (iconName: string): ImageSourcePropType => {
     switch (iconName) {
-        case 'home':
+        case 'Home':
             return require('../../../assets/images/navbarIcons/Home.png');
-        case 'articles':
+        case 'Articles':
             return require('../../../assets/images/navbarIcons/Articles.png');
-        case 'quizzes':
+        case 'Quizzes':
             return require('../../../assets/images/navbarIcons/Courses.png');
-        case 'prompts':
+        case 'Prompts':
             return require('../../../assets/images/navbarIcons/Prompts.png');
         case 'WTR':
-            return require('../../../assets/images/navbarIcons/WindesheimTech.png');
-        case 'scans':
+        case 'Scans':
             return require('../../../assets/images/navbarIcons/WindesheimTech.png');
         default:
-            return null;
+            return require('../../../assets/images/navbarIcons/Home.png');
     }
 };

@@ -56,6 +56,12 @@ export const RouteLinking = {
             [Routes.Quizzes]: 'quizzes',
             [Routes.Articles]: 'articles',
             [Routes.PodcastsEpisodePage]: 'podcasts/episode',
+            [Routes.QuestionPage]: {
+                path: 'scans/:scanId/questions',
+                parse: {
+                    scanId: (scanId: string) => scanId,
+                },
+            },
             [Routes.Results]: 'scans/results',
             [Routes.ChooseCategories]: 'scans/choose-categories',
         },

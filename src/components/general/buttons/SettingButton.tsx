@@ -5,13 +5,13 @@ import {
     TouchableOpacity,
     Image,
     ImageSourcePropType,
-    Text,
 } from 'react-native';
 
 import SettingsIcon from '../../../assets/images/Icon/settings_icon.png';
 import { useColorConfig, useCurrentTheme } from '../../../lib/constants/Colors';
 import { HapticFeedback, HapticForces } from '../../../lib/haptic/Hooks';
 import { Routes } from '../../../routes/routes';
+import { TextTranslated } from '../text/TextTranslated';
 
 const theme = {
     darkIconTintColor: '#FFFFFF',
@@ -49,7 +49,7 @@ export const SettingsButton = ({ toggleMenu }: SettingsButtonProps) => {
         },
         menuText: {
             fontSize: 15,
-            color: colors.black,
+            color: colors.text,
             marginLeft: 10,
         },
     });
@@ -63,7 +63,7 @@ export const SettingsButton = ({ toggleMenu }: SettingsButtonProps) => {
                 source={SettingsIcon as ImageSourcePropType}
                 style={iconStyle}
             />
-            <Text style={styles.menuText}>Instellingen</Text>
+            <TextTranslated style={styles.menuText} text="Settings" />
         </TouchableOpacity>
     );
 };

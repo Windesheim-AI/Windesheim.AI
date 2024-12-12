@@ -16,6 +16,7 @@ import { PromptLibrary } from '../screens/PromptLibrary/PromptLibrary';
 import { PromptView } from '../screens/PromptLibrary/PromptView';
 import { Quizzes } from '../screens/Quizzes';
 import InformationPage from '../screens/Scans/InformationPage';
+import { QuestionPage } from '../screens/Scans/QuestionPage';
 import { Results } from '../screens/Scans/Results';
 import { Scans } from '../screens/Scans/Scans';
 import ScansOverview from '../screens/Scans/ScansOverview';
@@ -55,6 +56,7 @@ const screens = [
     { name: Routes.Quizzes, component: Quizzes },
     { name: Routes.MockTutorial, component: MockTutorial },
     { name: Routes.PodcastsEpisodePage, component: PodcastsEpisodePage },
+    { name: Routes.QuestionPage, component: QuestionPage },
     { name: Routes.Results, component: Results },
     { name: Routes.ChooseCategories, component: ChooseCategories },
 ];
