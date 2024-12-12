@@ -1,3 +1,4 @@
+import Slider from '@react-native-community/slider';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState, JSX } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
@@ -68,6 +69,14 @@ export function QuestionPage(): JSX.Element {
         }
         return q;
     }, [scanData]);
+
+    const [answers, setAnswers] = useState<Record<string, number>>(() => {
+        const initialAnswers: Record<string, number> = {};
+        parsedQuestions.forEach((q) => {
+            initialAnswers[q.id] = 1;
+        });
+        return initialAnswers;
+    });
 
     /**
      * Fetches questions based on the current question ID.
@@ -202,6 +211,14 @@ export function QuestionPage(): JSX.Element {
         }
     }, [currentQuestion, questionCache, currentQuestionIndex]);
 
+    const processGivenAnswer = (id: string, value: number) => {
+        setAnswers({ ...answers, [id]: value });
+    };
+
+    const getAnswer = (id: string): number => {
+        return answers[id] || 1;
+    };
+
     // const getProgress = (): number => {
     //     const currentIndex = parseInt(currentQuestionIndex.toString(), 10);
     //     const maxIndex = parsedQuestions.length - 1;
@@ -242,6 +259,17 @@ export function QuestionPage(): JSX.Element {
                                 {currentQuestion?.description}
                             </Text>
                         ) : null}
+                        <Slider
+                            style={styles.slider}
+                            minimumValue={1}
+                            maximumValue={5}
+                            step={1}
+                            renderStepNumber
+                            onSlidingComplete={(value) =>
+                                processGivenAnswer(currentQuestion.id, value)
+                            }
+                            value={getAnswer(currentQuestion.id)}
+                        />
                     </>
                 ) : (
                     <Text>Loading the next question for you...</Text>
@@ -294,6 +322,9 @@ const styles = StyleSheet.create({
     },
     descriptionText: {
         fontSize: 20,
+    },
+    slider: {
+        marginTop: 32,
     },
     buttonContainer: {
         flexDirection: 'row',
