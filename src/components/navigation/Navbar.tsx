@@ -1,5 +1,6 @@
 /* eslint-disable indent */
 /* eslint-disable complexity */
+/* eslint-disable react-native/no-color-literals */
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Pressable, StyleSheet, View, Image } from 'react-native';
