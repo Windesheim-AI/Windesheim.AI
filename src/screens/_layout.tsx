@@ -1,4 +1,3 @@
-// LayoutStyles.ts
 import { SettingsButton } from 'components/general/buttons/SettingButton';
 import React from 'react';
 import {
@@ -11,6 +10,8 @@ import {
     Text,
     View,
 } from 'react-native';
+
+import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
 import Favicon from '../assets/images/Icon/favicon.png';
 import { NotificationList } from '../components/general/alerts/NotificationList';
 import { Background } from '../components/general/background/Background';
@@ -18,9 +19,6 @@ import { MenuButton } from '../components/general/buttons/MenuButton';
 import { Tutorial } from '../components/tutorial/Tutorial';
 import { useColorConfig } from '../lib/constants/Colors';
 import { useAppSelector } from '../lib/redux/Hooks';
-import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
-
-// Layout.tsx
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -52,10 +50,6 @@ export const Layout = ({ children }: LayoutProps) => {
             height: 70,
             zIndex: 2,
             position: 'relative',
-        },
-        menuButtonContainer: {
-            position: 'absolute',
-            left: 10,
         },
         settingsContainer: {
             position: 'absolute',

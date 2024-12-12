@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-color-literals */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 
 import { useNavigation } from '@react-navigation/native';
@@ -186,6 +185,7 @@ export const MenuButton = () => {
                         ))}
                         <View style={styles.logoContainer}>
                             <Image
+                                /* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment*/
                                 source={require('../../../assets/images/Icon/icon.png')}
                                 style={styles.logoStyle}
                             />

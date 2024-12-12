@@ -91,6 +91,7 @@ export function TechProviderCard({
                 testID={`tech-provider-${techProviderSlug}-button`}
             >
                 <LinearGradient
+                    // @ts-ignore
                     colors={colors.techProviderGradient}
                     style={styles.circle}
                 >

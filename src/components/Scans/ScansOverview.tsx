@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { useFonts } from '../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
@@ -8,7 +8,6 @@ import useAllScans from '../../lib/repositories/scans/useAllScans';
 import { getRandomLimitedItemsFromArray } from '../../lib/utility/data';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
-import { ScanDataMapped } from '../../types/Scan';
 import { ScanCard } from '../Scans/card/ScanCard';
 import { TextTranslated } from '../general/text/TextTranslated';
 
@@ -48,21 +47,21 @@ export function ScansOverview({ limit }: Props) {
 
     return (
         <>
-        {selectedScans!.map((item) => (
-            <View
-                key={item.scanId}
-                style={styles.courseCardContainer}
-                testID={`course-card-${item.scanId}`}
-            >
-                <ScanCard
-                    name={item.name ?? ''}
-                    description={item.description ?? ''}
-                    difficulty={item.difficulty ?? ''}
-                    imageUrl={item.imageUrl ?? ''}
-                    onPress={() => onPress(item.scanId)}
-                />
-            </View>
-        ))}
+            {selectedScans!.map((item) => (
+                <View
+                    key={item.scanId}
+                    style={styles.courseCardContainer}
+                    testID={`course-card-${item.scanId}`}
+                >
+                    <ScanCard
+                        name={item.name ?? ''}
+                        description={item.description ?? ''}
+                        difficulty={item.difficulty ?? ''}
+                        imageUrl={item.imageUrl ?? ''}
+                        onPress={() => onPress(item.scanId)}
+                    />
+                </View>
+            ))}
         </>
     );
 }

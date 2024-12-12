@@ -9,6 +9,7 @@ const { changeTheme, setHighContrastEnabled } = themeActions;
 describe('themeSlice', () => {
     it('should have the correct initial state', () => {
         const initialState: ThemeState = themeSlice.reducer(undefined, {
+            // @ts-ignore
             type: undefined,
         });
         expect(initialState).toEqual({

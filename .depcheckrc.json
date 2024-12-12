@@ -16,6 +16,9 @@
         "react-error-boundary",
         "react-native-dotenv",
         "react-native-fs",
+        "@expo/webpack-config",
+        "@types/react-dom",
+        "react-dom",
         "react-navigation",
         "react-numeric-input",
         "react-native-web"

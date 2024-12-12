@@ -16,11 +16,13 @@ const theme = {
     darkIconTintColor: '#FFFFFF',
 };
 
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars*/
 interface SettingsButtonProps {
     toggleMenu: () => void;
 }
 
 export const SettingsButton = () => {
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars*/
     const colors = useColorConfig();
     const navigation = useNavigation();
     const currentTheme = useCurrentTheme();
@@ -44,11 +46,6 @@ export const SettingsButton = () => {
             width: 40,
             height: 40,
             tintColor: theme.darkIconTintColor,
-        },
-        menuText: {
-            fontSize: 20,
-            color: colors.text,
-            marginLeft: 10,
         },
     });
 

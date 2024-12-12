@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-color-literals*/
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
 import { View, Text, Modal, StyleSheet } from 'react-native';
@@ -25,6 +27,7 @@ export const HomeScreen = () => {
                 }
             }
         };
+        /* eslint-disable-next-line no-void*/
         void checkDisclaimerShown();
     }, [tutorialCompleted]);
 
