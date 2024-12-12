@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-color-literals */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 
 import { useNavigation } from '@react-navigation/native';
