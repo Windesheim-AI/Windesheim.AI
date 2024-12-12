@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 /* eslint-disable react/no-array-index-key */
 
+import { useRoute } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {
     ScrollView,
@@ -14,9 +15,17 @@ import { useColorConfig } from '../lib/constants/Colors';
 import { useNavigation } from '../lib/utility/navigation/useNavigation';
 import { Routes } from '../routes/routes';
 
+type ScanChooseCategoriesPageProps = {
+    scanId: string;
+};
+
 export const ChooseCategories = () => {
     const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
     const [expandedCategories, setExpandedCategories] = useState<number[]>([]);
+
+    const route = useRoute();
+    const params = route.params as ScanChooseCategoriesPageProps;
+    const scanId = params.scanId;
 
     const navigator = useNavigation();
     const colors = useColorConfig();
@@ -209,7 +218,9 @@ export const ChooseCategories = () => {
             <TouchableOpacity
                 style={styles.button}
                 onPress={() =>
-                    navigator.navigate(Routes.InformationPage.toString())
+                    navigator.navigate(Routes.QuestionPage.toString(), {
+                        scanId,
+                    })
                 }
             >
                 <Text style={styles.buttonText}>Take Scan</Text>

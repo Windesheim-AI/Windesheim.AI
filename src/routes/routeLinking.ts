@@ -63,7 +63,12 @@ export const RouteLinking = {
                 },
             },
             [Routes.Results]: 'scans/results',
-            [Routes.ChooseCategories]: 'scans/choose-categories',
+            [Routes.ChooseCategories]: {
+                path: 'scans/:scanId/choose-categories',
+                parse: {
+                    scanId: (scanId: string) => scanId,
+                },
+            },
         },
     },
 };

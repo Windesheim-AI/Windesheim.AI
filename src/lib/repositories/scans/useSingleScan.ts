@@ -7,7 +7,7 @@ export default function useSingleScan(id: string | undefined) {
     return useDataFetcher<Scan>(fetchJsonData, {
         url:
             getEnvValue(EnvOptions.WordPressDataURL) +
-            'wp-json/wins/v1/app/scans/' +
+            '/wp-json/wins/v1/app/scans/' +
             id,
         username: getEnvValue(EnvOptions.WordPressUsername),
         password: getEnvValue(EnvOptions.WordPressPassword),

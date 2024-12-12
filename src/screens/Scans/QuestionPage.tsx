@@ -1,6 +1,10 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState, JSX } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Button, ProgressBar } from 'react-native-paper';
+import { Button } from 'react-native-paper';
+// eslint-disable-next-line etc/no-commented-out-code
+// import { ProgressBar } from 'react-native-paper';
+import { Routes } from 'routes/routes';
 
 import fetchScanQuestionRange from '../../lib/repositories/scans/fetchScanQuestionRange';
 import useScanQuestionRange from '../../lib/repositories/scans/useScanQuestionRange';
@@ -12,6 +16,8 @@ import { ScanQuestion } from '../../types/Scan';
  * @returns {JSX.Element} - The rendered component.
  */
 export function QuestionPage(): JSX.Element {
+    const navigator = useNavigation();
+
     const [currentQuestionIndex, setCurrentQuestionIndex] =
         React.useState<number>(0);
     const [currentQuestion, setCurrentQuestion] = React.useState<
@@ -41,51 +47,42 @@ export function QuestionPage(): JSX.Element {
     // This doesnt include the question data fetched from the API.
     // This has Id, categoryId and index.
     // The rest if the data is fetched from the API when needed.
-    const parsedQuestions: ScanQuestion[] = [];
-    if (scanData && parsedQuestions.length === 0) {
-        // Sort the categories by index.
-        scanData.categories
-            .slice()
-            .sort((a, b) => parseInt(a.idx, 10) - parseInt(b.idx, 10))
-            .forEach((category) => {
-                // Sort the questions by index.
-                category.questions
-                    .slice()
-                    .sort((a, b) => parseInt(a.idx, 10) - parseInt(b.idx, 10))
-                    .forEach((question) => {
-                        parsedQuestions.push(question);
-                    });
-            });
-    }
+    const parsedQuestions: ScanQuestion[] = React.useMemo(() => {
+        const q: ScanQuestion[] = [];
+        if (scanData) {
+            // Sort the categories by index.
+            scanData.categories
+                .slice()
+                .sort((a, b) => parseInt(a.idx, 10) - parseInt(b.idx, 10))
+                .forEach((category) => {
+                    // Sort the questions by index.
+                    category.questions
+                        .slice()
+                        .sort(
+                            (a, b) => parseInt(a.idx, 10) - parseInt(b.idx, 10),
+                        )
+                        .forEach((question) => {
+                            q.push(question);
+                        });
+                });
+        }
+        return q;
+    }, [scanData]);
 
     /**
      * Fetches questions based on the current question ID.
      * @param {string} currentId - The ID of the current question.
      */
-    const fetchQuestions = (currentId: string): void => {
-        const currentIndex = parsedQuestions.findIndex(
-            (q) => q.id === currentId,
-        );
+    const fetchQuestions = React.useCallback(
+        (ids: string[]): void => {
+            // If there are no IDs to fetch, return.
+            if (ids.length === 0) return;
 
-        // Creates an array with the indexes of the questions to fetch.
-        // The starting index is the current index minus 1.
-        const indexes = Array.from(
-            { length: 6 },
-            (_, i) => currentIndex - 1 + i,
-        ).filter((index) => index >= 0 && index < parsedQuestions.length);
+            // FetchScanQuestionRange is a function that fetches questions from the API.
+            fetchScanQuestionRange(ids)
+                .then((data: ScanQuestion[]) => {
+                    if (!data) return;
 
-        // Creates an array with the IDs of the questions to fetch, based on the indexes.
-        const ids = indexes
-            .map((index) => parsedQuestions[index]?.id)
-            .filter((id) => id && !questionCache.some((q) => q.id === id));
-
-        // If there are no IDs to fetch, return.
-        if (ids.length === 0) return;
-
-        // FetchScanQuestionRange is a function that fetches questions from the API.
-        fetchScanQuestionRange(ids)
-            .then((data: ScanQuestion[]) => {
-                if (data) {
                     // Adds the fetched questions to the question cache.
                     setQuestionCache((prevCache) => [
                         ...prevCache,
@@ -102,12 +99,35 @@ export function QuestionPage(): JSX.Element {
                                 )?.categoryId,
                             })),
                     ]);
-                }
-            })
-            .catch((error) => {
-                throw error;
-            });
-    };
+                })
+                .catch((error) => {
+                    throw error;
+                });
+        },
+        [parsedQuestions],
+    );
+
+    const fetchInitialQuestions = React.useCallback((): void => {
+        const firstFiveIds = parsedQuestions.slice(0, 3).map((q) => q.id);
+        fetchQuestions(firstFiveIds);
+    }, [fetchQuestions, parsedQuestions]);
+
+    const fetchAllQuestions = React.useCallback((): void => {
+        const allIds = parsedQuestions.map((q) => q.id);
+        fetchQuestions(allIds);
+    }, [fetchQuestions, parsedQuestions]);
+
+    useEffect(() => {
+        if (parsedQuestions.length > 0) {
+            fetchInitialQuestions();
+        }
+    }, [fetchInitialQuestions, parsedQuestions]);
+
+    useEffect(() => {
+        if (questionCache.length > 0 && questionCache.length <= 5) {
+            fetchAllQuestions();
+        }
+    }, [fetchAllQuestions, questionCache]);
 
     // Fetch the first question when the component mounts.
     const firstId = parsedQuestions[0]?.id;
@@ -120,7 +140,6 @@ export function QuestionPage(): JSX.Element {
     if (firstQuestionData && questionCache.length === 0) {
         setQuestionCache(firstQuestionData);
         setCurrentQuestion(firstQuestionData[0]);
-        fetchQuestions(firstId);
     }
 
     if (parsedQuestions.length > 0 && questions.length === 0) {
@@ -149,6 +168,16 @@ export function QuestionPage(): JSX.Element {
      * @param {number} index - The index of the question to display.
      */
     const showQuestion = (index: number): void => {
+        if (index < 1) {
+            //@ts-ignore
+            navigator.navigate(Routes.ChooseCategories.toString(), { scanId });
+        }
+
+        if (index > parsedQuestions.length) {
+            //@ts-ignore
+            navigator.navigate(Routes.InformationPage.toString());
+        }
+
         // Clamp the index to the range of the questions.
         const maxIndex = parsedQuestions.length;
         index = Math.max(1, Math.min(index, maxIndex));
@@ -158,23 +187,6 @@ export function QuestionPage(): JSX.Element {
         setCurrentQuestion(
             questionCache.find((q) => q.id === index.toString()),
         );
-
-        // Check if the question is in the question list.
-        if (!parsedQuestions[index]) return;
-
-        // Fetch the questions based on the current question.
-        fetchQuestions(parsedQuestions[index].id);
-    };
-
-    /**
-     * Calculates the progress of the current question.
-     * @returns {number} fraction - The progress as a fraction ranging from 0 to 1.
-     */
-    const getProgress = (): number => {
-        const maxIndex = parsedQuestions.length;
-        const currentIndex = currentQuestionIndex;
-
-        return currentIndex / maxIndex;
     };
 
     // Fetch the next question when the current question changes to undefined.
@@ -190,9 +202,25 @@ export function QuestionPage(): JSX.Element {
         }
     }, [currentQuestion, questionCache, currentQuestionIndex]);
 
+    // const getProgress = (): number => {
+    //     const currentIndex = parseInt(currentQuestionIndex.toString(), 10);
+    //     const maxIndex = parsedQuestions.length - 1;
+    //
+    //     if (maxIndex === 0 || currentIndex === 0) {
+    //         return 0;
+    //     }
+    //
+    //     const progress = parseFloat((currentIndex / maxIndex).toFixed(2));
+    //
+    //     return progress;
+    // };
+
     return (
         <View style={styles.container}>
-            <ProgressBar progress={getProgress()} style={styles.progressBar} />
+            {/* TODO: This progressbar component has errors wile parsing the number, mainly rounding errors. */}
+            {/* The error that appears: Error: Exception in HostFunction: Loss of precision during arithmetic conversion */}
+            {/* eslint-disable-next-line etc/no-commented-out-code */}
+            {/* <ProgressBar progress={getProgress()} style={styles.progressBar} /> */}
             <Text style={styles.progressText}>
                 Question {currentQuestionIndex} of {parsedQuestions.length}
             </Text>
@@ -245,9 +273,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         padding: 16,
     },
-    progressBar: {
-        marginBottom: 16,
-    },
+    // eslint-disable-next-line etc/no-commented-out-code
+    // progressBar: {
+    //     marginBottom: 16,
+    // },
     progressText: {
         textAlign: 'center',
     },

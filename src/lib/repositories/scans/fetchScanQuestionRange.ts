@@ -10,7 +10,7 @@ export default function fetchScanQuestionRange(ids: string[]) {
     return fetchJsonData({
         input:
             getEnvValue(EnvOptions.WordPressDataURL) +
-            'wp-json/wins/v1/app/questions/' +
+            '/wp-json/wins/v1/app/questions/' +
             ids.join(','),
         init: {
             headers: {
