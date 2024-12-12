@@ -1,4 +1,4 @@
-import { SettingsButton } from 'components/general/buttons/SettingButton';
+import { SettingsButton } from '../components/general/buttons/SettingButton';
 import React from 'react';
 import {
     Image,
