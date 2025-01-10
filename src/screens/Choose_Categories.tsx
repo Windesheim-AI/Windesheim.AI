@@ -209,7 +209,7 @@ export const ChooseCategories = () => {
             <TouchableOpacity
                 style={styles.button}
                 onPress={() =>
-                    navigator.navigate(Routes.InformationPage.toString())
+                    navigator.navigate(Routes.QuestionPage.toString())
                 }
             >
                 <Text style={styles.buttonText}>Take Scan</Text>

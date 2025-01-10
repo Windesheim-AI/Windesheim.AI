@@ -2,8 +2,17 @@ describe('Article Library tests', () => {
     beforeEach(() => {
         cy.visit('/');
         cy.get('[data-testid="FirstCollect-skip-button"]').click();
-        cy.visit('/settings');
         cy.get('[data-testid="tutorial-skip-button"]').click();
+
+        // Check if the disclaimer pop-up is displayed and close it if it is
+        cy.get('body').then(($body) => {
+            if ($body.find('.disclaimer-popup').length > 0) {
+                cy.contains('Disclaimer').should('be.visible');
+                cy.get('.disclaimer-popup .close-button').click();
+            }
+        });
+        
+        cy.visit('/settings');
         cy.get('[data-testid="language-switcher"]').click();
         cy.contains('English').click();
         cy.visit('/');
