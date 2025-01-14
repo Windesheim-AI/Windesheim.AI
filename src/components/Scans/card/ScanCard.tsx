@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-color-literals */
 
 import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 
 import {
     useColorConfig,
@@ -60,7 +60,7 @@ export function ScanCard({
         },
         buttonContainer: {
             alignItems: 'center',
-            backgroundColor: '#FFD700',
+            backgroundColor: colors.continueButtonColor,
             borderRadius: 10,
             paddingVertical: 8,
             paddingHorizontal: 15,

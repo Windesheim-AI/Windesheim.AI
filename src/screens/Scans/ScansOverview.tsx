@@ -1,11 +1,11 @@
 import { useRoute } from '@react-navigation/native';
 import React from 'react';
 import {
+    Image,
     ScrollView,
     StyleSheet,
     TouchableOpacity,
     View,
-    Image,
 } from 'react-native';
 
 import { GoBackButton } from '../../components/general/buttons/GoBackButton';
@@ -44,6 +44,7 @@ export default function ScanOverview() {
         },
         content: {
             margin: 10,
+            color: colors.text,
         },
         title: {
             ...fonts.h1,
@@ -54,6 +55,7 @@ export default function ScanOverview() {
         diffcultytext: {
             margin: 10,
             fontWeight: 'bold',
+            color: colors.text,
         },
         courseBackgroundContainer: {
             borderTopLeftRadius: 15,
@@ -65,7 +67,7 @@ export default function ScanOverview() {
             borderRadius: 10,
             paddingVertical: 8,
             paddingHorizontal: 15,
-            backgroundColor: colors.secondary,
+            backgroundColor: colors.continueButtonColor,
             width: '48%',
             ...fonts.stageTime,
         },
@@ -76,6 +78,11 @@ export default function ScanOverview() {
             alignItems: 'center',
             marginTop: 20,
             padding: 16,
+        },
+        buttonText: {
+            color: colors.text,
+            fontSize: 16,
+            fontWeight: 'bold',
         },
     });
 
@@ -127,7 +134,10 @@ export default function ScanOverview() {
                             onPress={goBack}
                             style={styles.buttonContainer}
                         >
-                            <TextTranslated text="Go Back" />
+                            <TextTranslated
+                                style={styles.buttonText}
+                                text="Go Back"
+                            />
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() =>
@@ -138,7 +148,10 @@ export default function ScanOverview() {
                             }
                             style={styles.buttonContainer}
                         >
-                            <TextTranslated text="Take scan" />
+                            <TextTranslated
+                                style={styles.buttonText}
+                                text="Take scan"
+                            />
                         </TouchableOpacity>
                     </View>
                 </View>

@@ -4,12 +4,13 @@
 import React, { useState } from 'react';
 import {
     ScrollView,
-    Text,
     StyleSheet,
-    View,
+    Text,
     TouchableOpacity,
+    View,
 } from 'react-native';
 
+import { TextTranslated } from 'components/general/text/TextTranslated';
 import { useColorConfig } from '../lib/constants/Colors';
 import { useNavigation } from '../lib/utility/navigation/useNavigation';
 import { Routes } from '../routes/routes';
@@ -108,7 +109,8 @@ export const ChooseCategories = () => {
             marginRight: 10,
         },
         checkBoxText: {
-            fontSize: 18,
+            fontSize: 45,
+            color: colors.text,
         },
         categoryText: {
             fontSize: 18,
@@ -139,15 +141,15 @@ export const ChooseCategories = () => {
         buttonText: {
             color: colors.text,
             fontSize: 16,
-            fontWeight: '600',
+            fontWeight: 'bold',
         },
     });
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <Text style={styles.header}>Maturity Scan Light</Text>
+            <Text style={styles.header}>Maturity Scan</Text>
             <Text style={styles.description}>
-                The Maturity Scan Light helps you assess the maturity level of
-                your organization.{'\n'}
+                The Maturity Scan helps you assess the maturity level of your
+                organization.{'\n'}
                 Select the most important categories for you.{'\n'}
                 These will be weighted more heavily in the evaluation.
             </Text>
@@ -212,7 +214,7 @@ export const ChooseCategories = () => {
                     navigator.navigate(Routes.QuestionPage.toString())
                 }
             >
-                <Text style={styles.buttonText}>Take Scan</Text>
+                <TextTranslated style={styles.buttonText} text="Take scan" />
             </TouchableOpacity>
         </ScrollView>
     );
