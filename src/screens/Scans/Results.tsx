@@ -19,10 +19,9 @@ import {
     useColorStateConfig,
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
-import { useDataFetcher, fetchJsonData } from '../../lib/fetcher/DataFetcher';
-import { getEnvValue } from '../../lib/utility/env/env';
-import { EnvOptions } from '../../lib/utility/env/env.values';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
+import { persistentStorageRead } from '../../lib/utility/persistentStorage';
+import { postScan } from '../../lib/utility/postScan';
 import { Routes } from '../../routes/routes';
 
 interface Score {
@@ -55,6 +54,21 @@ interface ScanResult {
     advices: Advice[];
 }
 
+type CategoryAnswers = {
+    categoryId: number;
+    answers: number[];
+};
+
+interface FormData {
+    name: string;
+    phoneNumber: string;
+    email: string;
+    showAdditionalFields: boolean;
+    company: string;
+    companySize: string;
+    location: string;
+}
+
 const Results = () => {
     const colors = useColorConfig();
     const colorStateConfig = useColorStateConfig();
@@ -63,22 +77,78 @@ const Results = () => {
     const windowWidth = useWindowDimensions().width;
     const windowHeight = useWindowDimensions().height;
 
-    const {
-        data: scanResult,
-        error,
-        isLoading,
-    } = useDataFetcher<ScanResult>(fetchJsonData, {
-        url: `${getEnvValue(EnvOptions.WordPressDataURL)}/wp-json/wins/v1/result/1`,
-        username: getEnvValue(EnvOptions.WordPressUsername),
-        password: getEnvValue(EnvOptions.WordPressPassword),
-        payload: {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-        },
-    });
+    const [scanResult, setScanResult] = React.useState<ScanResult | null>(null);
+    const [error, setError] = React.useState<Error | null>(null);
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const formData = await new Promise<FormData>(
+                    (resolve, reject) => {
+                        // eslint-disable-next-line no-void
+                        void persistentStorageRead('formData', (value) => {
+                            // eslint-disable-next-line no-else/no-else
+                            if (value) resolve(JSON.parse(value) as FormData);
+                            else reject(new Error('No form data found'));
+                        });
+                    },
+                );
+
+                const answersData = await new Promise<CategoryAnswers[]>(
+                    (resolve, reject) => {
+                        // eslint-disable-next-line no-void
+                        void persistentStorageRead('answers', (value) => {
+                            // eslint-disable-next-line no-else/no-else, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+                            if (value) resolve(JSON.parse(value).categories);
+                            else reject(new Error('No answers data found'));
+                        });
+                    },
+                );
+
+                const selectedCategories = await new Promise<number[]>(
+                    (resolve, reject) => {
+                        // eslint-disable-next-line no-void
+                        void persistentStorageRead(
+                            'selectedCategories',
+                            (value) => {
+                                // eslint-disable-next-line no-else/no-else
+                                if (value)
+                                    resolve(JSON.parse(value) as number[]);
+                                else
+                                    reject(
+                                        new Error(
+                                            'No selected categories found',
+                                        ),
+                                    );
+                            },
+                        );
+                    },
+                );
+
+                const data = {
+                    scanId: 2,
+                    mailTo: formData.email,
+                    companyDetails: {
+                        size: parseInt(formData.companySize, 10),
+                        location: formData.location,
+                    },
+                    weightedCategoryIds: selectedCategories,
+                    categories: answersData,
+                };
+
+                const result = await postScan(data);
+                setScanResult(result as ScanResult);
+            } catch (err) {
+                setError(err as Error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        // eslint-disable-next-line no-void
+        void fetchData();
+    }, []);
 
     const chartData = React.useMemo(
         () => ({
@@ -93,12 +163,15 @@ const Results = () => {
 
     if (isLoading) return <LoadingScreen />;
 
-    if (error)
+    if (error) {
+        console.error(error);
+
         return (
             <Text style={fonts.default}>
                 Error loading data: {error.message}
             </Text>
         );
+    }
 
     if (!scanResult)
         return <Text style={fonts.default}>No data available</Text>;

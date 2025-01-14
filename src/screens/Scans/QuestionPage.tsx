@@ -3,13 +3,15 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState, JSX } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-paper';
-// eslint-disable-next-line etc/no-commented-out-code
-// import { ProgressBar } from 'react-native-paper';
 import { Routes } from 'routes/routes';
 
 import fetchScanQuestionRange from '../../lib/repositories/scans/fetchScanQuestionRange';
 import useScanQuestionRange from '../../lib/repositories/scans/useScanQuestionRange';
 import useSingleScan from '../../lib/repositories/scans/useSingleScan';
+import {
+    persistentStorageWrite,
+    persistentStorageRead,
+} from '../../lib/utility/persistentStorage';
 import { ScanQuestion } from '../../types/Scan';
 
 /**
@@ -77,6 +79,16 @@ export function QuestionPage(): JSX.Element {
         });
         return initialAnswers;
     });
+
+    // Load answers from persistent storage
+    useEffect(() => {
+        // eslint-disable-next-line no-void
+        void persistentStorageRead('answers', (value) => {
+            if (value) {
+                setAnswers(JSON.parse(value) as Record<string, number>);
+            }
+        });
+    }, []);
 
     /**
      * Fetches questions based on the current question ID.
@@ -211,33 +223,60 @@ export function QuestionPage(): JSX.Element {
         }
     }, [currentQuestion, questionCache, currentQuestionIndex]);
 
+    interface Answer {
+        questionId: string;
+        answer: number;
+    }
+
+    interface CategoryAnswers {
+        categoryId: string;
+        answers: Answer[];
+    }
+
     const processGivenAnswer = (id: string, value: number) => {
-        setAnswers({ ...answers, [id]: value });
+        const updatedAnswers = { ...answers, [id]: value };
+        setAnswers(updatedAnswers);
+
+        const formattedAnswers: CategoryAnswers[] = parsedQuestions.reduce(
+            (acc: CategoryAnswers[], question) => {
+                const category = acc.find(
+                    (c) => c.categoryId === question.categoryId,
+                );
+                // eslint-disable-next-line no-else/no-else
+                if (category) {
+                    category.answers.push({
+                        questionId: question.id,
+                        answer: updatedAnswers[question.id],
+                    });
+                } else {
+                    acc.push({
+                        categoryId: question.categoryId ?? '',
+                        answers: [
+                            {
+                                questionId: question.id,
+                                answer: updatedAnswers[question.id],
+                            },
+                        ],
+                    });
+                }
+                return acc;
+            },
+            [],
+        );
+
+        // eslint-disable-next-line no-void
+        void persistentStorageWrite(
+            'answers',
+            JSON.stringify({ categories: formattedAnswers }),
+        );
     };
 
     const getAnswer = (id: string): number => {
         return answers[id] || 1;
     };
 
-    // const getProgress = (): number => {
-    //     const currentIndex = parseInt(currentQuestionIndex.toString(), 10);
-    //     const maxIndex = parsedQuestions.length - 1;
-    //
-    //     if (maxIndex === 0 || currentIndex === 0) {
-    //         return 0;
-    //     }
-    //
-    //     const progress = parseFloat((currentIndex / maxIndex).toFixed(2));
-    //
-    //     return progress;
-    // };
-
     return (
         <View style={styles.container}>
-            {/* TODO: This progressbar component has errors wile parsing the number, mainly rounding errors. */}
-            {/* The error that appears: Error: Exception in HostFunction: Loss of precision during arithmetic conversion */}
-            {/* eslint-disable-next-line etc/no-commented-out-code */}
-            {/* <ProgressBar progress={getProgress()} style={styles.progressBar} /> */}
             <Text style={styles.progressText}>
                 Question {currentQuestionIndex} of {parsedQuestions.length}
             </Text>
@@ -301,10 +340,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         padding: 16,
     },
-    // eslint-disable-next-line etc/no-commented-out-code
-    // progressBar: {
-    //     marginBottom: 16,
-    // },
     progressText: {
         textAlign: 'center',
     },

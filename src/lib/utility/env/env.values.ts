@@ -30,8 +30,8 @@ export const mockEnvValues: Env = {
     [EnvOptions.OpenAIApiKey]: 'mockOpenAIApiKey',
     [EnvOptions.AppDebug]: 'false',
     [EnvOptions.AiEnabled]: 'true',
-    [EnvOptions.WordPressContentURL]: 'https://www.windesheim.tech',
-    [EnvOptions.WordPressDataURL]: 'https://www.windesheim.ai',
+    [EnvOptions.WordPressContentURL]: 'https://www.windesheim.tech/',
+    [EnvOptions.WordPressDataURL]: 'https://www.windesheim.ai/',
     [EnvOptions.WordPressUsername]: 'mockUsername',
     [EnvOptions.WordPressPassword]: 'mockPassword',
 };

@@ -13,6 +13,8 @@ interface FetcherOptions {
 export const fetchData = async (options: FetcherOptions) => {
     const response = await fetch(options.input, options.init);
 
+    console.log(response.url);
+
     if (response.status === HttpStatusCode.NotFound.valueOf()) {
         return undefined;
     }

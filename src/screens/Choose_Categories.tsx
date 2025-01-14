@@ -1,6 +1,8 @@
+/* eslint-disable no-else/no-else */
 /* eslint-disable indent */
 /* eslint-disable react/no-array-index-key */
 
+import { TextTranslated } from 'components/general/text/TextTranslated';
 import React, { useState } from 'react';
 import {
     ScrollView,
@@ -10,30 +12,50 @@ import {
     View,
 } from 'react-native';
 
-import { TextTranslated } from 'components/general/text/TextTranslated';
 import { useColorConfig } from '../lib/constants/Colors';
 import { useNavigation } from '../lib/utility/navigation/useNavigation';
+import {
+    persistentStorageWrite,
+    persistentStorageRead,
+} from '../lib/utility/persistentStorage';
 import { Routes } from '../routes/routes';
 
 export const ChooseCategories = () => {
     const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
     const [expandedCategories, setExpandedCategories] = useState<number[]>([]);
 
+    // Load selected categories from persistent storage
+    React.useEffect(() => {
+        // eslint-disable-next-line no-void
+        void persistentStorageRead('selectedCategories', (value) => {
+            if (value) {
+                setSelectedCategories(JSON.parse(value) as number[]);
+            }
+        });
+    }, []);
+
     const navigator = useNavigation();
     const colors = useColorConfig();
 
     const toggleCategory = (categoryId: number) => {
+        let updatedCategories;
         if (selectedCategories.includes(categoryId)) {
-            setSelectedCategories(
-                selectedCategories.filter((id) => id !== categoryId),
+            updatedCategories = selectedCategories.filter(
+                (id) => id !== categoryId,
             );
-
+        } else if (selectedCategories.length < 3) {
+            updatedCategories = [...selectedCategories, categoryId];
+        } else {
             return;
         }
 
-        if (selectedCategories.length < 3) {
-            setSelectedCategories([...selectedCategories, categoryId]);
-        }
+        setSelectedCategories(updatedCategories);
+
+        // eslint-disable-next-line no-void
+        void persistentStorageWrite(
+            'selectedCategories',
+            JSON.stringify(updatedCategories),
+        );
     };
 
     const toggleExpand = (categoryId: number) => {
@@ -65,6 +87,7 @@ export const ChooseCategories = () => {
         'Management of innovation processes and organizational change.',
         'Risk management and compliance with regulatory requirements.',
     ];
+
     const styles = StyleSheet.create({
         container: {
             flexGrow: 1,

@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-color-literals */
 
+import { useColorConfig } from 'lib/constants/Colors';
 import React, { useState } from 'react';
 import {
     StyleSheet,
@@ -10,10 +11,23 @@ import {
     View,
 } from 'react-native';
 
-import { useColorConfig } from 'lib/constants/Colors';
 import { PageScrollView } from '../../components/general/views/PageScrollView';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
+import {
+    persistentStorageWrite,
+    persistentStorageRead,
+} from '../../lib/utility/persistentStorage';
 import { Routes } from '../../routes/routes';
+
+interface FormData {
+    name: string;
+    phoneNumber: string;
+    email: string;
+    showAdditionalFields: boolean;
+    company: string;
+    companySize: string;
+    location: string;
+}
 
 export default function InformationPage() {
     const [name, setName] = useState('');
@@ -26,10 +40,38 @@ export default function InformationPage() {
     const colors = useColorConfig();
     const navigator = useNavigation();
 
+    // Load form data from persistent storage
+    React.useEffect(() => {
+        // eslint-disable-next-line no-void
+        void persistentStorageRead('formData', (value) => {
+            if (value) {
+                const formData = JSON.parse(value) as FormData;
+                setName(formData.name || '');
+                setPhoneNumber(formData.phoneNumber || '');
+                setEmail(formData.email || '');
+                setShowAdditionalFields(formData.showAdditionalFields || false);
+                setCompany(formData.company || '');
+                setCompanySize(formData.companySize || '');
+                setLocation(formData.location || '');
+            }
+        });
+    }, []);
+
     const handleSubmit = () => {
-        // Handle form submission logic here
+        const formData = {
+            name,
+            phoneNumber,
+            email,
+            showAdditionalFields,
+            company,
+            companySize,
+            location,
+        };
+        // eslint-disable-next-line no-void
+        void persistentStorageWrite('formData', JSON.stringify(formData));
         navigator.navigate(Routes.Results.toString());
     };
+
     const styles = StyleSheet.create({
         container: {
             padding: 16,
