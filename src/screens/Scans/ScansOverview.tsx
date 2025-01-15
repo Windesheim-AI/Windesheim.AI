@@ -1,4 +1,5 @@
 import { useRoute } from '@react-navigation/native';
+import { persistentStorageWrite } from 'lib/utility/persistentStorage';
 import React from 'react';
 import {
     Image,
@@ -20,7 +21,7 @@ import useSingleScan from '../../lib/repositories/scans/useSingleScan';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { Routes } from '../../routes/routes';
 
-type ScandOverviewPageProps = {
+type ScanOverviewPageProps = {
     scanId: string;
 };
 
@@ -29,7 +30,7 @@ export default function ScanOverview() {
     const colors = useColorConfig();
     const route = useRoute();
     const navigator = useNavigation();
-    const params = route.params as ScandOverviewPageProps;
+    const params = route.params as ScanOverviewPageProps;
     const scanId = params.scanId;
 
     const goBack = () => {
@@ -140,12 +141,15 @@ export default function ScanOverview() {
                             />
                         </TouchableOpacity>
                         <TouchableOpacity
-                            onPress={() =>
+                            onPress={() => {
+                                // eslint-disable-next-line no-void
+                                void persistentStorageWrite('scanId', scanId);
+
                                 navigator.navigate(
                                     Routes.ChooseCategories.toString(),
                                     { scanId },
-                                )
-                            }
+                                );
+                            }}
                             style={styles.buttonContainer}
                         >
                             <TextTranslated

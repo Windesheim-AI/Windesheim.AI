@@ -1,5 +1,6 @@
+/* eslint-disable no-else/no-else */
 import Slider from '@react-native-community/slider';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useEffect, useState, JSX } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-paper';
@@ -14,11 +15,19 @@ import {
 } from '../../lib/utility/persistentStorage';
 import { ScanQuestion } from '../../types/Scan';
 
+type QuestionPageProps = {
+    scanId: string;
+};
+
 /**
  * The QuestionPage component displays a series of questions with navigation buttons.
  * @returns {JSX.Element} - The rendered component.
  */
 export function QuestionPage(): JSX.Element {
+    const route = useRoute();
+    const params = route.params as QuestionPageProps;
+    const scanId = params?.scanId;
+
     const navigator = useNavigation();
 
     const [currentQuestionIndex, setCurrentQuestionIndex] =
@@ -38,13 +47,11 @@ export function QuestionPage(): JSX.Element {
         setDescriptionVisible(!descriptionVisible);
     };
 
-    const scanId = '1';
-
     const {
         data: scanData,
         // isLoading: scanIsLoading,
         // error: scanError,
-    } = useSingleScan(scanId);
+    } = useSingleScan(scanId ?? '');
 
     // Parse the questions from the scan data.
     // This doesnt include the question data fetched from the API.
@@ -242,7 +249,6 @@ export function QuestionPage(): JSX.Element {
                 const category = acc.find(
                     (c) => c.categoryId === question.categoryId,
                 );
-                // eslint-disable-next-line no-else/no-else
                 if (category) {
                     category.answers.push({
                         questionId: question.id,

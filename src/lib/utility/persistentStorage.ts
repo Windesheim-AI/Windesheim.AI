@@ -8,8 +8,6 @@ export const persistentStorageWrite = async (
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     onError: (e: unknown) => void = () => {},
 ) => {
-    console.log('persistentStorageWrite', key, value);
-
     try {
         await AsyncStorage.setItem(key, value);
     } catch (e) {
@@ -28,8 +26,6 @@ export const persistentStorageRead = async (
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     onError: (e: unknown) => void = () => {},
 ) => {
-    console.log('persistentStorageRead', key);
-
     let value: string | null;
 
     try {
@@ -41,4 +37,24 @@ export const persistentStorageRead = async (
     }
 
     onSuccess(value);
+
+    return value;
+};
+
+export const persistentStorageRemove = async (
+    key: string,
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    onSuccess: () => void = () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    onError: (e: unknown) => void = () => {},
+) => {
+    try {
+        await AsyncStorage.removeItem(key);
+    } catch (e) {
+        onError(e);
+
+        return;
+    }
+
+    onSuccess();
 };

@@ -1,3 +1,4 @@
+/* eslint-disable no-void */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable react-native/no-color-literals */
@@ -20,39 +21,12 @@ import {
 } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
-import { persistentStorageRead } from '../../lib/utility/persistentStorage';
-import { postScan } from '../../lib/utility/postScan';
+import {
+    persistentStorageRead,
+    persistentStorageRemove,
+} from '../../lib/utility/persistentStorage';
+import { postScan, ScanResult } from '../../lib/utility/postScan';
 import { Routes } from '../../routes/routes';
-
-interface Score {
-    id: string;
-    resultId: string;
-    categoryId: string;
-    score: string;
-    weight: string;
-    categoryName: string;
-}
-
-interface Advice {
-    id: string;
-    categoryId: string;
-    score: string;
-    text: string;
-    categoryName: string;
-}
-
-interface ScanResult {
-    result_id: string;
-    scan_id: string;
-    scan_name: string;
-    scan_type: string;
-    companySize: string;
-    companyLocation: string;
-    created_at: string;
-    overall_score: number;
-    scores: Score[];
-    advices: Advice[];
-}
 
 type CategoryAnswers = {
     categoryId: number;
@@ -78,7 +52,6 @@ const Results = () => {
     const windowHeight = useWindowDimensions().height;
 
     const [scanResult, setScanResult] = React.useState<ScanResult | null>(null);
-    const [error, setError] = React.useState<Error | null>(null);
     const [isLoading, setIsLoading] = React.useState(true);
 
     React.useEffect(() => {
@@ -86,7 +59,6 @@ const Results = () => {
             try {
                 const formData = await new Promise<FormData>(
                     (resolve, reject) => {
-                        // eslint-disable-next-line no-void
                         void persistentStorageRead('formData', (value) => {
                             // eslint-disable-next-line no-else/no-else
                             if (value) resolve(JSON.parse(value) as FormData);
@@ -97,7 +69,6 @@ const Results = () => {
 
                 const answersData = await new Promise<CategoryAnswers[]>(
                     (resolve, reject) => {
-                        // eslint-disable-next-line no-void
                         void persistentStorageRead('answers', (value) => {
                             // eslint-disable-next-line no-else/no-else, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
                             if (value) resolve(JSON.parse(value).categories);
@@ -108,7 +79,6 @@ const Results = () => {
 
                 const selectedCategories = await new Promise<number[]>(
                     (resolve, reject) => {
-                        // eslint-disable-next-line no-void
                         void persistentStorageRead(
                             'selectedCategories',
                             (value) => {
@@ -126,8 +96,16 @@ const Results = () => {
                     },
                 );
 
+                const scanId = await new Promise<number>((resolve, reject) => {
+                    void persistentStorageRead('scanId', (value) => {
+                        // eslint-disable-next-line no-else/no-else
+                        if (value) resolve(JSON.parse(value) as number);
+                        else reject(new Error('No scan ID found'));
+                    });
+                });
+
                 const data = {
-                    scanId: 2,
+                    scanId,
                     mailTo: formData.email,
                     companyDetails: {
                         size: parseInt(formData.companySize, 10),
@@ -138,17 +116,30 @@ const Results = () => {
                 };
 
                 const result = await postScan(data);
-                setScanResult(result as ScanResult);
+                setScanResult(result);
+
+                // Clear relevant persistent storages
+                void persistentStorageRemove('formData');
+                void persistentStorageRemove('answers');
+                void persistentStorageRemove('selectedCategories');
+                void persistentStorageRemove('scanId');
             } catch (err) {
-                setError(err as Error);
+                // Coming here means that stuff is missing.
+                // This means that the user has not completed the scan.
+                // Clear any traces of the scan and redirect to the scan page.
+                void persistentStorageRemove('formData');
+                void persistentStorageRemove('answers');
+                void persistentStorageRemove('selectedCategories');
+                void persistentStorageRemove('scanId');
+
+                navigator.navigate(Routes.Scans.toString());
             } finally {
                 setIsLoading(false);
             }
         };
 
-        // eslint-disable-next-line no-void
         void fetchData();
-    }, []);
+    }, [navigator]);
 
     const chartData = React.useMemo(
         () => ({
@@ -163,18 +154,14 @@ const Results = () => {
 
     if (isLoading) return <LoadingScreen />;
 
-    if (error) {
-        console.error(error);
-
-        return (
-            <Text style={fonts.default}>
-                Error loading data: {error.message}
-            </Text>
-        );
-    }
-
     if (!scanResult)
         return <Text style={fonts.default}>No data available</Text>;
+
+    const result =
+        scanResult.scores.reduce(
+            (acc, score) => acc + parseInt(score.score, 10),
+            0,
+        ) / scanResult.scores.length;
 
     const maxValue = 5; // Maximum value for the chart
     const chartSize = 200; // Size of the chart
@@ -265,16 +252,10 @@ const Results = () => {
         },
         scoreText: {
             margin: 0,
-            fontSize: 15,
+            fontSize: 24,
             fontWeight: 'bold',
             color: '#2563eb',
-            lineHeight: 100,
-        },
-        scoreLabel: {
-            margin: 0,
-            color: '#1e293b',
-            fontSize: 18,
-            fontWeight: 'bold',
+            lineHeight: 60,
         },
     });
 
@@ -292,10 +273,10 @@ const Results = () => {
                         <Text style={fonts.default}>Overall Score</Text>
                         <View style={styles.scoreCircle}>
                             <Text style={styles.scoreText}>
-                                {Math.round(4.3 * 10) / 10}/5
+                                {/* Round the result to 1 decimal */}
+                                {Math.round(result * 10) / 10}/5
                             </Text>
                         </View>
-                        <Text style={styles.scoreLabel}>Very Good</Text>
                     </View>
                 </View>
             </View>

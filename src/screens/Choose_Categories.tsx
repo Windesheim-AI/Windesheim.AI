@@ -2,6 +2,7 @@
 /* eslint-disable indent */
 /* eslint-disable react/no-array-index-key */
 
+import { useRoute } from '@react-navigation/native';
 import { TextTranslated } from 'components/general/text/TextTranslated';
 import React, { useState } from 'react';
 import {
@@ -20,7 +21,17 @@ import {
 } from '../lib/utility/persistentStorage';
 import { Routes } from '../routes/routes';
 
+type ChooseCategoriesPageProps = {
+    scanId: string;
+};
+
 export const ChooseCategories = () => {
+    const route = useRoute();
+    const params = route.params as ChooseCategoriesPageProps;
+    const scanId = params.scanId;
+
+    console.log('categories', params, scanId);
+
     const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
     const [expandedCategories, setExpandedCategories] = useState<number[]>([]);
 
@@ -234,7 +245,9 @@ export const ChooseCategories = () => {
             <TouchableOpacity
                 style={styles.button}
                 onPress={() =>
-                    navigator.navigate(Routes.QuestionPage.toString())
+                    navigator.navigate(Routes.QuestionPage.toString(), {
+                        scanId: scanId,
+                    })
                 }
             >
                 <TextTranslated style={styles.buttonText} text="Take scan" />
