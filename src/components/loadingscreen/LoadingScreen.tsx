@@ -50,8 +50,8 @@ export const LoadingScreen = () => {
         <View style={styles.fullScreenContainer}>
             <Background />
             <View style={styles.container}>
-                <ActivityIndicator size="large" color="#0000ff" />
-                {Platform.OS !== 'web' ? (
+            <ActivityIndicator size={50} color="#0000ff" />
+            {Platform.OS !== 'web' ? (
                     <LogoBlack style={styles.centerImage} />
                 ) : (
                     <Image

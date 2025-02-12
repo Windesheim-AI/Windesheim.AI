@@ -6,6 +6,7 @@ import { Introduction } from '../components/general/card/Introduction';
 import { PageScrollView } from '../components/general/views/PageScrollView';
 import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
 import { useAppSelector, RootState } from '../lib/redux/Hooks';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const HomeScreen = () => {
     const [isDisclaimerVisible, setIsDisclaimerVisible] = useState(false);
@@ -14,16 +15,19 @@ export const HomeScreen = () => {
     );
 
     useEffect(() => {
-        if (tutorialCompleted) {
-            if (!localStorage.getItem('disclaimerShown')) {
-                setIsDisclaimerVisible(true);
-                localStorage.setItem('disclaimerShown', 'true');
+        const checkDisclaimer = async () => {
+            if (tutorialCompleted) {
+                const disclaimerShown = await AsyncStorage.getItem('disclaimerShown');
+                if (!disclaimerShown) {
+                    setIsDisclaimerVisible(true);
+                    await AsyncStorage.setItem('disclaimerShown', 'true');
+                }
+            } else {
+                setIsDisclaimerVisible(false);
             }
+        };
 
-            return;
-        }
-
-        setIsDisclaimerVisible(false);
+        checkDisclaimer();
     }, [tutorialCompleted]);
 
     const currentTheme = useCurrentTheme();
@@ -66,7 +70,7 @@ export const HomeScreen = () => {
     return (
         <>
             <View style={styles.headerContainer}>
-                <Text style={[styles.logoText, { color: logoTextColor }]}>
+                <Text style={[styles.logoText, { color: logoTextColor }]} >
                     WINDESHEIM.AI
                 </Text>
                 <View style={styles.flexGrow} />
