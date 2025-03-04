@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     Platform,
+    SafeAreaView,
     StatusBar,
     StyleSheet,
     View,
@@ -8,7 +9,6 @@ import {
     Text,
     ImageSourcePropType,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import BackgroundCollectForm from './UserBackground/BackgroundCollectForm';
 import Favicon from '../assets/images/Icon/favicon.png';
@@ -49,6 +49,8 @@ export const Layout = ({ children }: LayoutProps) => {
             position: 'relative',
             overflow: 'hidden',
             flex: 1,
+            paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+            paddingBottom: Platform.OS === 'android' ? 50 : 0,
         },
         headerContainer: {
             flexDirection: 'row',
@@ -62,7 +64,6 @@ export const Layout = ({ children }: LayoutProps) => {
             borderBottomColor: colors.black,
             height: 70,
             zIndex: 2,
-            paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0, // Account for status bar height on Android
         },
         logo: {
             width: 37,
@@ -76,16 +77,12 @@ export const Layout = ({ children }: LayoutProps) => {
             color: logoTextColor,
         },
         logoContainer: { flexDirection: 'row', alignItems: 'center' },
-        safeAreaWrapper: {
-            flex: 1,
-            backgroundColor: colors.background,
-        },
     });
 
     return (
         <>
             <Background />
-            <SafeAreaView style={styles.safeAreaWrapper}>
+            <SafeAreaView style={styles.wrapper}>
                 <NotificationList />
 
                 <View style={styles.headerContainer}>

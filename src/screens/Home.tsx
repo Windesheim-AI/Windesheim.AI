@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Modal, StyleSheet } from 'react-native';
+import { View, Text, Modal, StyleSheet, Image } from 'react-native';
 
 import { DisclaimerCard } from '../components/general/card/DisclaimerCard';
 import { Introduction } from '../components/general/card/Introduction';
@@ -77,6 +77,13 @@ export const HomeScreen = () => {
             </View>
             <PageScrollView>
                 <Introduction />
+                <View style={styles.gifContainer}>
+                    <Image
+                        source={{ uri: 'https://i.imgur.com/NLjD0Jp.gif' }}
+                        style={styles.gifStyle}
+                        resizeMode="cover"
+                    />
+                </View>
             </PageScrollView>
 
             {/* Disclaimer Alert Modal */}
