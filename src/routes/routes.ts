@@ -26,6 +26,7 @@ export enum Routes {
     Results = 'Results',
     ChooseCategories = 'ChooseCategories',
     Scans = 'Scans',
+    ChatbotScreen = 'ChatbotScreen',
 }
 
 export const DefaultRoute = Routes.Home;

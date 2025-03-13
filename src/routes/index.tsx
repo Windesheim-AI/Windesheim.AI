@@ -29,6 +29,7 @@ import { BackgroundInfo } from '../screens/UserBackground/BackgroundInfo';
 import { WTRScreen } from '../screens/WTR';
 import { MockTutorial } from '../screens/WTR/MockTutorial';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
+import ChatbotScreen from '../screens/Chatbot';
 
 const Stack = createNativeStackNavigator();
 
@@ -59,6 +60,7 @@ const screens = [
     { name: Routes.QuestionPage, component: QuestionPage },
     { name: Routes.Results, component: Results },
     { name: Routes.ChooseCategories, component: ChooseCategories },
+    { name: Routes.ChatbotScreen, component: ChatbotScreen },
 ];
 
 export const Router = () => {

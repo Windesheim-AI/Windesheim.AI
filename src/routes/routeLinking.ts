@@ -64,6 +64,7 @@ export const RouteLinking = {
             },
             [Routes.Results]: 'scans/results',
             [Routes.ChooseCategories]: 'scans/choose-categories',
+            [Routes.ChatbotScreen]: 'chatbot',
         },
     },
 };

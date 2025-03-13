@@ -17,7 +17,8 @@ export const HomeScreen = () => {
     useEffect(() => {
         const checkDisclaimer = async () => {
             if (tutorialCompleted) {
-                const disclaimerShown = await AsyncStorage.getItem('disclaimerShown');
+                const disclaimerShown =
+                    await AsyncStorage.getItem('disclaimerShown');
                 if (!disclaimerShown) {
                     setIsDisclaimerVisible(true);
                     await AsyncStorage.setItem('disclaimerShown', 'true');
@@ -65,12 +66,21 @@ export const HomeScreen = () => {
             padding: 20,
             borderRadius: 10,
         },
+        gifContainer: {
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginVertical: 20,
+        },
+        gifStyle: {
+            width: 300,
+            height: 300,
+        },
     });
 
     return (
         <>
             <View style={styles.headerContainer}>
-                <Text style={[styles.logoText, { color: logoTextColor }]} >
+                <Text style={[styles.logoText, { color: logoTextColor }]}>
                     WINDESHEIM.AI
                 </Text>
                 <View style={styles.flexGrow} />
