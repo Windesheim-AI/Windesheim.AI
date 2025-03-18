@@ -42,7 +42,7 @@
     "@nandorojo/swr-react-native": "^1.2.0",
     "@native-html/transient-render-engine": "^11.2.3",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
-    "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-async-storage/async-storage": "2.1.2",
     "@react-native-community/eslint-config": "^3.2.0",
     "@react-native-community/netinfo": "11.4.1",
     "@react-navigation/bottom-tabs": "^7.2.1",
