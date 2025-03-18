@@ -23,6 +23,7 @@ import { BackgroundInfo } from '../screens/UserBackground/BackgroundInfo';
 import { WTRScreen } from '../screens/WTR';
 import { MockTutorial } from '../screens/WTR/MockTutorial';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
+import ChatbotScreen from '../screens/Chatbot';
 const Stack = createNativeStackNavigator();
 
 const screens = [
@@ -46,6 +47,7 @@ const screens = [
     { name: Routes.Quizzes, component: Quizzes },
     { name: Routes.MockTutorial, component: MockTutorial },
     { name: Routes.PodcastsEpisodePage, component: PodcastsEpisodePage },
+    { name: Routes.ChatbotScreen, component: ChatbotScreen },
 ];
 
 export const Router = () => {

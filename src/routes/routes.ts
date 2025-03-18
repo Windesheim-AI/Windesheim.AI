@@ -20,6 +20,7 @@ export enum Routes {
     Prompts = 'Prompts',
     MockTutorial = 'MockTutorial',
     PodcastsEpisodePage = 'PodcastsEpisodePage',
+    ChatbotScreen = 'ChatbotScreen',
 }
 
 export const DefaultRoute = Routes.Home;
