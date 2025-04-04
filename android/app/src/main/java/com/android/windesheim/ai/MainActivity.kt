@@ -1,4 +1,4 @@
-package com.windesheim.ai
+package com.android.windesheim.ai
 
 import android.os.Build
 import android.os.Bundle

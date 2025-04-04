@@ -86,13 +86,13 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.windesheim.ai'
+    namespace 'com.android.windesheim.ai'
     defaultConfig {
-        applicationId 'com.windesheim.ai'
+        applicationId 'com.android.windesheim.ai'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 28
-        versionName "1.5.1"
+        versionName "1.6.0"
     }
     signingConfigs {
         debug {
