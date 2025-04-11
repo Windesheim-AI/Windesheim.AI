@@ -145,5 +145,30 @@
     "redux-mock-store": "^1.5.4",
     "typescript": "~5.3.3"
   },
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "exclude": [
+          "i18next",
+          "react-native-confetti-cannon",
+          "react-native-element-dropdown",
+          "react-native-fs",
+          "redux-persist",
+          "@jsamr/counter-style",
+          "@nandorojo/swr-react-native",
+          "@native-html/transient-render-engine",
+          "@pmmmwh/react-refresh-webpack-plugin",
+          "@react-native-community/eslint-config",
+          "openai",
+          "react-error-boundary",
+          "react-native-web-webview",
+          "react-navigation",
+          "react-numeric-input",
+          "swr"
+        ]
+      }
+    }
+  },
   "private": true
+  
 }
