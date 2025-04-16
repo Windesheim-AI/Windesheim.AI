@@ -30,7 +30,7 @@ jobs:
               with:
                   start: npm run web
                   wait-on: http://localhost:19006
-                  wait-on-timeout: 60000 # 60 seconds                 
+                  wait-on-timeout: 60000 # 60 seconds
                   browser: ${{ matrix.test-platform }}
 
             - name: Upload screenshots of failed tests
@@ -41,6 +41,5 @@ jobs:
                   path: cypress/screenshots
                   retention-days: 1
 
-                  
             - uses: ./.github/cleanup-action
               if: always()
