@@ -1,9 +1,8 @@
 /* eslint-disable indent */
 /* eslint-disable complexity */
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { Pressable, StyleSheet, View, Image } from 'react-native';
-import Svg, { Defs, LinearGradient, Stop, Rect } from 'react-native-svg';
+import React, { useState } from 'react';
+import { Animated, Pressable, StyleSheet, View, Image } from 'react-native';
 
 import {
     useColorConfig,
@@ -22,78 +21,68 @@ export const NavBar = () => {
 
     const navigationState = useAppSelector((state) => state.navigation);
     const theme = useCurrentTheme();
-    const startColor =
-        theme === 'light' && isHighContrastEnabled
-            ? '#FFD700'
-            : theme === 'light'
-              ? '#FFF377'
-              : theme === 'dark' && isHighContrastEnabled
-                ? '#4695d3'
-                : '#86d2d9';
-    const endColor =
-        theme === 'light' && isHighContrastEnabled
-            ? '#FFD700'
-            : theme === 'light'
-              ? '#FFF377'
-              : theme === 'dark' && isHighContrastEnabled
-                ? '#4695d3'
-                : '#86d2d9';
-    const borderTopColors =
-        theme === 'light' && isHighContrastEnabled
-            ? '#000000'
-            : theme === 'light'
-              ? '#C0C0C0'
-              : theme === 'dark' && isHighContrastEnabled
-                ? '#FFFFFF'
-                : '#C0C0C0';
 
     const statusBarColor = () => {
         return theme === 'light' ? 'dark' : 'light';
     };
+
     const darkThemeIconStyle = {
         tintColor: '#FFFFFF',
     };
+
+    // For the tap animation
+    const [scaleValue] = useState(new Animated.Value(1));
+
+    const handlePressIn = () => {
+        Animated.spring(scaleValue, {
+            toValue: 0.9,  // Scale the icon slightly down when pressed
+            useNativeDriver: true,
+        }).start();
+    };
+
+    const handlePressOut = () => {
+        Animated.spring(scaleValue, {
+            toValue: 1,  // Reset the scale back to normal
+            useNativeDriver: true,
+        }).start();
+    };
+
     const styles = StyleSheet.create({
         container: {
             flexDirection: 'row',
-            alignItems: 'flex-start',
-            justifyContent: 'space-around',
+            alignItems: 'center',
+            justifyContent: 'space-evenly',
             backgroundColor: colors.navBar.backgroundColor,
-            height: 80,
+            height: 80,  // Navbar height stays the same
             zIndex: 1,
             left: 0,
             right: 0,
             top: 0,
-            padding: 0,
             paddingHorizontal: 20,
             overflow: 'hidden',
-            paddingTop: 10,
-            borderTopWidth: 2,
-            borderTopColor: borderTopColors,
+            paddingTop: 0,  // Increased the padding to raise the navbar
+            paddingBottom: 10,
+            borderTopWidth: 0,  // Removed the grey line
+            borderBottomWidth: 0,  // No border at the bottom
+            borderRadius: 20,  // Rounded corners to match Instagram's navbar
+            shadowColor: '#000',  // Subtle shadow for the navbar
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.2,
+            shadowRadius: 5,
+            elevation: 5,  // Elevation for Android shadow
         },
         itemContainer: {
-            flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 20,
             paddingVertical: 10,
             position: 'relative',
             overflow: 'hidden',
-        },
-        selectedIcon: {
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-        },
-        gradient: {
-            width: '100%',
-            height: '100%',
+            width: 60,  // Fixed width for consistency
         },
         icon: {
-            width: 25,
-            height: 25,
+            width: 28,  // Icon size adjusted to prevent stretching
+            height: 28,  // Icon size adjusted to prevent stretching
             tintColor: colors.black,
         },
     });
@@ -111,6 +100,8 @@ export const NavBar = () => {
                 return (
                     <Pressable
                         key={link.route}
+                        onPressIn={handlePressIn}  // Trigger animation on press in
+                        onPressOut={handlePressOut}  // Reset animation on press out
                         onPress={() => {
                             HapticFeedback(HapticForces.Light);
                             navigation.navigate(link.route);
@@ -118,62 +109,29 @@ export const NavBar = () => {
                         style={styles.itemContainer}
                         testID={link.route + '-navbar-button'}
                     >
-                        {routeActive ? (
-                            <View style={styles.selectedIcon}>
-                                <Svg
-                                    style={styles.gradient}
-                                    viewBox="0 0 50 50"
-                                >
-                                    <Defs>
-                                        <LinearGradient
-                                            id="grad"
-                                            x1="0"
-                                            y1="0"
-                                            x2="1"
-                                            y2="1"
-                                        >
-                                            <Stop
-                                                offset="25%"
-                                                stopColor={startColor}
-                                            />
-                                            <Stop
-                                                offset="100%"
-                                                stopColor={endColor}
-                                            />
-                                        </LinearGradient>
-                                    </Defs>
-                                    <Rect
-                                        x="0"
-                                        y="0"
-                                        width="50"
-                                        height="50"
-                                        fill="url(#grad)"
-                                        rx={10}
-                                        ry={10}
-                                    />
-                                </Svg>
-                            </View>
-                        ) : null}
-                        <Image
-                            source={
-                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                                link.icon === 'home'
-                                    ? require('../../assets/images/navbarIcons/Home.png')
-                                    : link.icon === 'articles'
-                                      ? require('../../assets/images/navbarIcons/Articles.png')
-                                      : link.icon === 'quizzes'
-                                        ? require('../../assets/images/navbarIcons/Courses.png')
-                                        : link.icon === 'prompts'
-                                          ? require('../../assets/images/navbarIcons/Prompts.png')
-                                          : require('../../assets/images/navbarIcons/WindesheimTech.png')
-                            }
-                            style={[
-                                styles.icon,
-                                !routeActive &&
-                                    theme === 'dark' &&
-                                    darkThemeIconStyle,
-                            ]}
-                        />
+                        <Animated.View
+                            style={{
+                                transform: [{ scale: scaleValue }],  // Apply animation effect here
+                            }}
+                        >
+                            <Image
+                                source={
+                                    link.icon === 'home'
+                                        ? require('../../assets/images/navbarIcons/Home.png')
+                                        : link.icon === 'articles'
+                                            ? require('../../assets/images/navbarIcons/Articles.png')
+                                            : link.icon === 'quizzes'
+                                                ? require('../../assets/images/navbarIcons/Courses.png')
+                                                : link.icon === 'prompts'
+                                                    ? require('../../assets/images/navbarIcons/Prompts.png')
+                                                    : require('../../assets/images/navbarIcons/WindesheimTech.png')
+                                }
+                                style={[
+                                    styles.icon,
+                                    !routeActive && theme === 'dark' && darkThemeIconStyle,
+                                ]}
+                            />
+                        </Animated.View>
                     </Pressable>
                 );
             })}
