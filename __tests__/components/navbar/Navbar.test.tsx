@@ -1,5 +1,4 @@
 import React from 'react';
-import { act } from 'react-dom/test-utils';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
@@ -25,16 +24,11 @@ describe('NavBar Component', () => {
     });
 
     it('renders with showNavBar=true', () => {
-        let component;
-
-        act(() => {
-            component = renderer.create(
-                <Provider store={store}>
-                    <NavBar />
-                </Provider>,
-            );
-        });
-        // @ts-ignore
+        const component = renderer.create(
+            <Provider store={store}>
+                <NavBar />
+            </Provider>,
+        );
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
@@ -48,17 +42,11 @@ describe('NavBar Component', () => {
                 theme: 'light',
             },
         });
-
-        let component;
-
-        act(() => {
-            component = renderer.create(
-                <Provider store={store}>
-                    <NavBar />
-                </Provider>,
-            );
-        });
-        // @ts-ignore
+        const component = renderer.create(
+            <Provider store={store}>
+                <NavBar />
+            </Provider>,
+        );
         const tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
