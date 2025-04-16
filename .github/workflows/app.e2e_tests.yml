@@ -29,6 +29,8 @@ jobs:
               uses: cypress-io/github-action@v6
               with:
                   start: npm run web
+                  wait-on: http://localhost:19006
+                  wait-on-timeout: 60000 # 60 seconds                 
                   browser: ${{ matrix.test-platform }}
 
             - name: Upload screenshots of failed tests

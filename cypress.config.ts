@@ -4,9 +4,7 @@ export default defineConfig({
     fixturesFolder: 'cypress/fixtures',
 
     e2e: {
-        // baseUrl: 'http://localhost:19006',
-        baseUrl: 'http://localhost:8081',
-
+        baseUrl: 'http://localhost:19006',
         projectId: 'cypress',
 
         setupNodeEvents(on, config) {
