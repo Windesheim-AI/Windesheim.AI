@@ -91,7 +91,14 @@ export function TechProviderCard({
                 testID={`tech-provider-${techProviderSlug}-button`}
             >
                 <LinearGradient
-                    colors={colors.techProviderGradient}
+                    colors={
+                        colors.techProviderGradient as [
+                            string,
+                            string,
+                            ...string[],
+                        ]
+                    }
+                    // colors={colors.techProviderGradient}
                     style={styles.circle}
                 >
                     <Image source={techProviderImage} style={styles.image} />

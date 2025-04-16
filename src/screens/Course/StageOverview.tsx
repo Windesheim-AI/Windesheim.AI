@@ -122,7 +122,7 @@ export default function StageOverview() {
             marginLeft: 10,
         },
         courseBackgroundContainer: {
-            borderTopRadius: 15,
+            borderRadius: 15,
             overflow: 'hidden',
         },
         courseTitle: {
