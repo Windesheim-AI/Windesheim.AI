@@ -120,7 +120,7 @@
         "babel-plugin-istanbul": "^6.1.1",
         "check-code-coverage": "^1.10.5",
         "concurrently": "^8.2.2",
-        "cypress": "^13.6.0",
+        "cypress": "^14.3.0",
         "cypress-cucumber-preprocessor": "^4.3.1",
         "depcheck": "^1.4.7",
         "eslint": "^8.52.0",
