@@ -32,7 +32,7 @@ jobs:
                   browser: ${{ matrix.test-platform }}
 
             - name: Upload screenshots of failed tests
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v3.1.0
               if: failure()
               with:
                   name: cypress-screenshots
