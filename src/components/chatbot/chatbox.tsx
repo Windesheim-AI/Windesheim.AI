@@ -12,6 +12,7 @@ import {
 import { fetchChatResponse } from '../../api/chatbot';
 import { useTypingEffect } from './useTypingEffect';
 import { useColorConfig } from '../../lib/constants/Colors';
+import Markdown from 'react-native-markdown-display';
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
@@ -26,21 +27,21 @@ export default function Chatbot() {
 
     const scrollViewRef = useRef<ScrollView>(null);
 
-    const typedResponse = useTypingEffect(
-        responseToType || '',
-        5,
-        () => {
-            if (responseToType) {
-                setMessages((prev) => [
-                    ...prev,
-                    { role: 'assistant', content: responseToType },
-                ]);
-            }
-            setIsTyping(false);
-            setResponseToType(null);
-        },
-        scrollViewRef
-    );
+    const typedResponse = useTypingEffect(responseToType || '', 10, () => {
+        if (responseToType) {
+            setMessages((prev) => [
+                ...prev,
+                { role: 'assistant', content: responseToType },
+            ]);
+        }
+        setIsTyping(false);
+        setResponseToType(null);
+
+        // Ensure scroll happens after layout updates
+        setTimeout(() => {
+            scrollViewRef.current?.scrollToEnd({ animated: true });
+        }, 50); // 50ms delay helps wait for render pass
+    });
 
     const handleSend = async () => {
         if (!input.trim()) return;
@@ -70,6 +71,14 @@ export default function Chatbot() {
         scrollViewRef.current?.scrollToEnd({ animated: true });
     }, [messages]);
 
+    useEffect(() => {
+        if (typedResponse) {
+            setTimeout(() => {
+                scrollViewRef.current?.scrollToEnd({ animated: true });
+            }, 100);
+        }
+    }, [typedResponse]);
+
     return (
         <KeyboardAvoidingView
             style={{ flex: 1 }}
@@ -82,6 +91,7 @@ export default function Chatbot() {
                     style={{ flex: 1, paddingRight: 10 }}
                     contentContainerStyle={styles.scrollContainer}
                     showsVerticalScrollIndicator={false}
+                    keyboardShouldPersistTaps="handled"
                 >
                     {messages.map((msg, index) => (
                         <View
@@ -93,29 +103,38 @@ export default function Chatbot() {
                                     : styles.assistantMessage,
                             ]}
                         >
-                            <Text
-                                style={[
-                                    styles.messageText,
-                                    msg.role === 'user'
-                                        ? styles.userText
-                                        : styles.assistantText,
-                                ]}
+                            <Markdown
+                                style={{
+                                    body: {
+                                        ...styles.messageText,
+                                        ...(msg.role === 'user'
+                                            ? styles.userText
+                                            : styles.assistantText),
+                                    },
+                                }}
                             >
                                 {msg.content}
-                            </Text>
+                            </Markdown>
                         </View>
                     ))}
 
                     {isTyping && typedResponse && typedResponse !== '' && (
-                        <View style={styles.assistantMessage}>
-                            <Text
-                                style={[
-                                    styles.messageText,
-                                    styles.assistantText,
-                                ]}
+                        <View
+                            style={[
+                                styles.assistantMessage,
+                                styles.messageContainer,
+                            ]}
+                        >
+                            <Markdown
+                                style={{
+                                    body: {
+                                        ...styles.messageText,
+                                        ...styles.assistantText,
+                                    },
+                                }}
                             >
                                 {typedResponse}
-                            </Text>
+                            </Markdown>
                         </View>
                     )}
                 </ScrollView>
@@ -125,6 +144,7 @@ export default function Chatbot() {
                         value={input}
                         onChangeText={setInput}
                         placeholder="Typ uw bericht"
+                        placeholderTextColor={colors.text}
                         style={styles.textInput}
                         multiline
                     />
@@ -149,34 +169,40 @@ const createStyles = (colors: ReturnType<typeof useColorConfig>) =>
             paddingBottom: 40,
         },
         scrollContainer: {
-            paddingBottom: 20,
+            paddingBottom: 40,
         },
         messageContainer: {
-            maxWidth: '90%',
             marginTop: 10,
-            marginVertical: 5,
             padding: 10,
             borderRadius: 15,
             marginBottom: 5,
+            maxWidth: '90%',
+            minWidth: '20%',
+            minHeight: 20,
+            overflow: 'hidden',
+            flexShrink: 1,
+            alignSelf: 'stretch',
         },
         userMessage: {
             backgroundColor: '#F5A61A',
             alignSelf: 'flex-end',
-            marginBottom: 40,
         },
         assistantMessage: {
             backgroundColor: 'transparent',
             alignSelf: 'flex-start',
+            marginBottom: 30,
+            paddingBottom: 0,
+            paddingRight: 0,
         },
         messageText: {
             fontSize: 16,
             lineHeight: 20,
         },
         userText: {
-            color: '#fff',
+            color: colors.text,
         },
         assistantText: {
-            color: '#000000',
+            color: colors.text,
         },
         inputRow: {
             flexDirection: 'row',
@@ -187,8 +213,9 @@ const createStyles = (colors: ReturnType<typeof useColorConfig>) =>
         },
         textInput: {
             flex: 1,
+            color: colors.text,
             borderWidth: 1,
-            borderColor: '#ccc',
+            borderColor: colors.borderColor,
             borderRadius: 20,
             paddingHorizontal: 15,
             paddingVertical: 10,
@@ -203,7 +230,7 @@ const createStyles = (colors: ReturnType<typeof useColorConfig>) =>
             borderRadius: 20,
         },
         sendButtonText: {
-            color: '#fff',
+            color: colors.text,
             fontWeight: 'bold',
         },
     });
