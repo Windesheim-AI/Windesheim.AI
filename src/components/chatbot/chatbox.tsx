@@ -8,29 +8,34 @@ import {
     Platform,
     TouchableOpacity,
     StyleSheet,
+    NativeSyntheticEvent,
+    NativeScrollEvent,
 } from 'react-native';
 import { fetchChatResponse } from '../../api/chatbot';
 import { useTypingEffect } from './useTypingEffect';
-import { useColorConfig } from '../../lib/constants/Colors';
+import { useColorConfig, shadow } from '../../lib/constants/Colors';
 import Markdown from 'react-native-markdown-display';
-import selectableMarkdownRules from './selectableMarkdownRules'; // Rules to make markdown text selectable
-import { TypingAnimation } from './typingAnimation'; // Import the typing animation component
+import selectableMarkdownRules from './selectableMarkdownRules';
+import { TypingAnimation } from './typingAnimation';
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
 export default function Chatbot() {
-    const colors = useColorConfig(); // ✅ Hook inside component
-    const styles = createStyles(colors); // ✅ Style creator
+    const colors = useColorConfig();
+    const styles = createStyles(colors);
 
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState('');
     const [responseToType, setResponseToType] = useState<string | null>(null);
     const [isTyping, setIsTyping] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [showScrollButton, setShowScrollButton] = useState(false);
 
     const scrollViewRef = useRef<ScrollView>(null);
+    const isAtBottomRef = useRef(true);
+    const lastScrollPosition = useRef({ y: 0, height: 0 });
 
-    const typedResponse = useTypingEffect(responseToType || '', 20, () => {
+    const typedResponse = useTypingEffect(responseToType || '', 1, () => {
         if (responseToType) {
             setMessages((prev) => [
                 ...prev,
@@ -39,11 +44,6 @@ export default function Chatbot() {
         }
         setIsTyping(false);
         setResponseToType(null);
-
-        // Ensure scroll happens after layout updates
-        setTimeout(() => {
-            scrollViewRef.current?.scrollToEnd({ animated: true });
-        }, 50); // 50ms delay helps wait for render pass
     });
 
     const handleSend = async () => {
@@ -57,10 +57,6 @@ export default function Chatbot() {
         setInput('');
         setIsTyping(true);
 
-        setTimeout(() => {
-            scrollViewRef.current?.scrollToEnd({ animated: true });
-        }, 100);
-
         try {
             setIsLoading(true);
             const fullResponse = await fetchChatResponse(updatedMessages);
@@ -72,23 +68,50 @@ export default function Chatbot() {
         }
     };
 
-    useEffect(() => {
-        scrollViewRef.current?.scrollToEnd({ animated: true });
-    }, [messages]);
+    // Detect if the user is at the bottom of the ScrollView
+    const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+        const { layoutMeasurement, contentOffset, contentSize } =
+            event.nativeEvent;
 
+        const isAtBottom =
+            layoutMeasurement.height + contentOffset.y >=
+            contentSize.height - 50;
+
+        isAtBottomRef.current = isAtBottom;
+        setShowScrollButton(!isAtBottom);
+
+        // Store for use in onContentSizeChange
+        lastScrollPosition.current = {
+            y: contentOffset.y,
+            height: layoutMeasurement.height,
+        };
+    };
+
+    // After content size changes, check if the user is at the bottom
     useEffect(() => {
-        if (typedResponse) {
-            setTimeout(() => {
-                scrollViewRef.current?.scrollToEnd({ animated: true });
-            }, 100);
+        if (isAtBottomRef.current) {
+            setShowScrollButton(false); // Hide button if at the bottom
+        } else {
+            setShowScrollButton(true); // Show button if not at the bottom
         }
-    }, [typedResponse]);
+    }, [messages]); // Trigger effect when new messages are added
+
+    const handleContentSizeChange = (
+        contentWidth: number,
+        contentHeight: number,
+    ) => {
+        const { y, height } = lastScrollPosition.current;
+
+        const isAtBottom = y + height >= contentHeight - 50;
+
+        setShowScrollButton(!isAtBottom);
+    };
 
     return (
         <KeyboardAvoidingView
             style={{ flex: 1 }}
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            keyboardVerticalOffset={Platform.OS === 'ios' ? 20 : 20}
+            keyboardVerticalOffset={20}
         >
             <View style={styles.chatboxContainer}>
                 <ScrollView
@@ -96,6 +119,9 @@ export default function Chatbot() {
                     style={{ flex: 1, paddingRight: 10, flexGrow: 1 }}
                     contentContainerStyle={styles.scrollContainer}
                     keyboardShouldPersistTaps="handled"
+                    onScroll={handleScroll}
+                    onContentSizeChange={handleContentSizeChange}
+                    scrollEventThrottle={16}
                 >
                     {messages.map((msg, index) => (
                         <View
@@ -162,6 +188,19 @@ export default function Chatbot() {
                         </View>
                     )}
                 </ScrollView>
+
+                {showScrollButton && (
+                    <TouchableOpacity
+                        onPress={() => {
+                            scrollViewRef.current?.scrollToEnd({
+                                animated: true,
+                            });
+                        }}
+                        style={[styles.scrollToBottomButton, shadow]}
+                    >
+                        <Text style={styles.scrollToBottomText}>↓</Text>
+                    </TouchableOpacity>
+                )}
 
                 <View style={styles.inputRow}>
                     <TextInput
@@ -251,6 +290,23 @@ const createStyles = (colors: ReturnType<typeof useColorConfig>) =>
         },
         sendButtonText: {
             color: colors.black,
+            fontWeight: 'bold',
+        },
+        scrollToBottomButton: {
+            position: 'absolute',
+            bottom: 100,
+            left: '50%',
+            transform: [{ translateX: -25 }],
+            width: 35,
+            height: 35,
+            borderRadius: 25,
+            backgroundColor: colors.gray,
+            justifyContent: 'center',
+            alignItems: 'center',
+        },
+        scrollToBottomText: {
+            fontSize: 20,
+            color: '#000',
             fontWeight: 'bold',
         },
     });
