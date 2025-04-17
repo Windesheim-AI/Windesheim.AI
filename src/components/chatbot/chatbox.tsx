@@ -13,6 +13,8 @@ import { fetchChatResponse } from '../../api/chatbot';
 import { useTypingEffect } from './useTypingEffect';
 import { useColorConfig } from '../../lib/constants/Colors';
 import Markdown from 'react-native-markdown-display';
+import selectableMarkdownRules from './selectableMarkdownRules'; // Rules to make markdown text selectable
+import { TypingAnimation } from './typingAnimation'; // Import the typing animation component
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
@@ -24,10 +26,11 @@ export default function Chatbot() {
     const [input, setInput] = useState('');
     const [responseToType, setResponseToType] = useState<string | null>(null);
     const [isTyping, setIsTyping] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const scrollViewRef = useRef<ScrollView>(null);
 
-    const typedResponse = useTypingEffect(responseToType || '', 10, () => {
+    const typedResponse = useTypingEffect(responseToType || '', 20, () => {
         if (responseToType) {
             setMessages((prev) => [
                 ...prev,
@@ -59,8 +62,10 @@ export default function Chatbot() {
         }, 100);
 
         try {
+            setIsLoading(true);
             const fullResponse = await fetchChatResponse(updatedMessages);
             setResponseToType(fullResponse);
+            setIsLoading(false);
         } catch (err) {
             console.error('Error fetching response:', err);
             setIsTyping(false);
@@ -104,7 +109,14 @@ export default function Chatbot() {
                             ]}
                         >
                             <Markdown
+                                rules={selectableMarkdownRules}
                                 style={{
+                                    text: {
+                                        ...styles.messageText,
+                                        ...(msg.role === 'user'
+                                            ? styles.userText
+                                            : styles.assistantText),
+                                    },
                                     body: {
                                         ...styles.messageText,
                                         ...(msg.role === 'user'
@@ -118,7 +130,13 @@ export default function Chatbot() {
                         </View>
                     ))}
 
-                    {isTyping && typedResponse && typedResponse !== '' && (
+                    {isLoading && (
+                        <View style={{ padding: 10 }}>
+                            <TypingAnimation color={colors.text} />
+                        </View>
+                    )}
+
+                    {isTyping && responseToType && (
                         <View
                             style={[
                                 styles.assistantMessage,
@@ -126,7 +144,12 @@ export default function Chatbot() {
                             ]}
                         >
                             <Markdown
+                                rules={selectableMarkdownRules}
                                 style={{
+                                    text: {
+                                        ...styles.messageText,
+                                        ...styles.assistantText,
+                                    },
                                     body: {
                                         ...styles.messageText,
                                         ...styles.assistantText,

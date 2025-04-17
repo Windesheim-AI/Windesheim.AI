@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
+import { useEffect, useState, useRef } from 'react';
 
 export function useTypingEffect(
     text: string,
@@ -7,27 +6,39 @@ export function useTypingEffect(
     onDone?: () => void,
 ) {
     const [displayedText, setDisplayedText] = useState('');
+    const indexRef = useRef(0);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    const previousTextRef = useRef('');
 
     useEffect(() => {
-        let index = 0;
-        setDisplayedText(''); // Reset displayed text when text changes
+        // Skip if the text hasn't changed
+        if (!text || text === previousTextRef.current) return;
 
-        // Set the first character immediately to avoid missing it
-        setDisplayedText(text[0]);
+        previousTextRef.current = text;
+        setDisplayedText('');
+        indexRef.current = 0;
 
-        const interval = setInterval(() => {
-            index++;
+        intervalRef.current = setInterval(() => {
+            setDisplayedText((prev) => {
+                if (indexRef.current >= text.length) {
+                    clearInterval(intervalRef.current!);
+                    intervalRef.current = null;
+                    onDone?.();
+                    return text;
+                }
 
-            // Start typing from the second character
-            setDisplayedText((prev) => prev + text[index]);
-
-            if (index >= text.length - 1) {
-                clearInterval(interval);
-                if (onDone) onDone();
-            }
+                const nextChar = text.charAt(indexRef.current);
+                indexRef.current += 1;
+                return prev + nextChar;
+            });
         }, speed);
 
-        return () => clearInterval(interval);
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+                intervalRef.current = null;
+            }
+        };
     }, [text, speed]);
 
     return displayedText;

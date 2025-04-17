@@ -1,8 +1,8 @@
 import { getEnvValue } from '../lib/utility/env/env';
 import { EnvOptions } from '../lib/utility/env/env.values';
 
-const OPENAI_API_KEY = getEnvValue(EnvOptions.OpenAIApiKey);
-const ASSISTANT_ID = getEnvValue(EnvOptions.OpenAIAssistantId); // Replace with your actual Assistant ID
+const OPENAI_API_KEY = getEnvValue(EnvOptions.OpenAIApiKey); // Make sure to set this in your environment variables
+const ASSISTANT_ID = getEnvValue(EnvOptions.OpenAIAssistantId);
 
 export async function fetchChatResponse(
     messages: { role: 'user'; content: string }[],
@@ -109,7 +109,7 @@ export async function fetchChatResponse(
             (c: any) => c.type === 'text',
         )?.text?.value;
         const cleanText = textContent
-            ?.replace('【4:0†ELSALON.docx】', '') // Remove 【4:0†ELSALON.docx】at the end of the response
+            ?.replace('【4:0†ELSALON.docx】', '') // Remove【4:0†ELSALON.docx】at the end of the response
             ?.trim();
 
         return cleanText || 'Sorry, no response found.';
