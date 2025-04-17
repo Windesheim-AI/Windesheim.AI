@@ -93,7 +93,7 @@ export default function Chatbot() {
             <View style={styles.chatboxContainer}>
                 <ScrollView
                     ref={scrollViewRef}
-                    style={{ flex: 1, paddingRight: 10 }}
+                    style={{ flex: 1, paddingRight: 10, flexGrow: 1 }}
                     contentContainerStyle={styles.scrollContainer}
                     showsVerticalScrollIndicator={false}
                     keyboardShouldPersistTaps="handled"
@@ -143,21 +143,23 @@ export default function Chatbot() {
                                 styles.messageContainer,
                             ]}
                         >
-                            <Markdown
-                                rules={selectableMarkdownRules}
-                                style={{
-                                    text: {
-                                        ...styles.messageText,
-                                        ...styles.assistantText,
-                                    },
-                                    body: {
-                                        ...styles.messageText,
-                                        ...styles.assistantText,
-                                    },
-                                }}
-                            >
-                                {typedResponse}
-                            </Markdown>
+                            <View style={{ flexShrink: 1, flexGrow: 1 }}>
+                                <Markdown
+                                    rules={selectableMarkdownRules}
+                                    style={{
+                                        text: {
+                                            ...styles.messageText,
+                                            ...styles.assistantText,
+                                        },
+                                        body: {
+                                            ...styles.messageText,
+                                            ...styles.assistantText,
+                                        },
+                                    }}
+                                >
+                                    {typedResponse}
+                                </Markdown>
+                            </View>
                         </View>
                     )}
                 </ScrollView>
@@ -201,18 +203,16 @@ const createStyles = (colors: ReturnType<typeof useColorConfig>) =>
             marginBottom: 5,
             maxWidth: '90%',
             minWidth: '20%',
-            minHeight: 20,
-            overflow: 'hidden',
-            flexShrink: 1,
-            alignSelf: 'stretch',
+            alignSelf: 'flex-start',
+            backgroundColor: 'transparent',
+            flexDirection: 'column',
         },
         userMessage: {
-            backgroundColor: '#F5A61A',
+            backgroundColor: colors.success,
             alignSelf: 'flex-end',
         },
         assistantMessage: {
             backgroundColor: 'transparent',
-            alignSelf: 'flex-start',
             marginBottom: 30,
             paddingBottom: 0,
             paddingRight: 0,
@@ -222,7 +222,7 @@ const createStyles = (colors: ReturnType<typeof useColorConfig>) =>
             lineHeight: 20,
         },
         userText: {
-            color: colors.text,
+            color: colors.black,
         },
         assistantText: {
             color: colors.text,
@@ -247,13 +247,13 @@ const createStyles = (colors: ReturnType<typeof useColorConfig>) =>
             maxHeight: 100,
         },
         sendButton: {
-            backgroundColor: '#F5A61A',
+            backgroundColor: colors.success,
             paddingVertical: 10,
             paddingHorizontal: 15,
             borderRadius: 20,
         },
         sendButtonText: {
-            color: colors.text,
+            color: colors.black,
             fontWeight: 'bold',
         },
     });
