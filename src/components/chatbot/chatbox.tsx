@@ -95,7 +95,6 @@ export default function Chatbot() {
                     ref={scrollViewRef}
                     style={{ flex: 1, paddingRight: 10, flexGrow: 1 }}
                     contentContainerStyle={styles.scrollContainer}
-                    showsVerticalScrollIndicator={false}
                     keyboardShouldPersistTaps="handled"
                 >
                     {messages.map((msg, index) => (
@@ -213,9 +212,7 @@ const createStyles = (colors: ReturnType<typeof useColorConfig>) =>
         },
         assistantMessage: {
             backgroundColor: 'transparent',
-            marginBottom: 30,
-            paddingBottom: 0,
-            paddingRight: 0,
+            alignSelf: 'flex-start',
         },
         messageText: {
             fontSize: 16,

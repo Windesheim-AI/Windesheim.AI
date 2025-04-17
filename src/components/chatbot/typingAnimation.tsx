@@ -12,5 +12,9 @@ export const TypingAnimation = ({ color }: { color: string }) => {
         return () => clearInterval(interval);
     }, []);
 
-    return <Text style={{ fontSize: 24, color }}>{dots.current[index]}</Text>;
+    return (
+        <Text style={{ fontSize: 35, color, fontWeight: 'bold' }}>
+            {dots.current[index]}
+        </Text>
+    );
 };
