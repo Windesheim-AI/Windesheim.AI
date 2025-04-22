@@ -165,7 +165,9 @@ export const NavBar = () => {
                                         ? require('../../assets/images/navbarIcons/Courses.png')
                                         : link.icon === 'prompts'
                                           ? require('../../assets/images/navbarIcons/Prompts.png')
-                                          : require('../../assets/images/navbarIcons/WindesheimTech.png')
+                                          : link.icon === 'chatbot'
+                                            ? require('../../assets/images/navbarIcons/Chatbot.png')
+                                            : require('../../assets/images/navbarIcons/WindesheimTech.png')
                             }
                             style={[
                                 styles.icon,
