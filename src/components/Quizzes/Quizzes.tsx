@@ -32,7 +32,7 @@ const Quizzes: React.FC = () => {
   useEffect(() => {
     // Fetch the quiz data using quizId from API here
     const fetchQuizData = async () => {
-      const response = await fetch(`https://yourwebsite.com/wp-json/getnewquiz/v1/quizzes/${quizId}`);
+      const response = await fetch(`https://yourwebsite.com/wp-json/getnewquiz/v1/quizzes/2`);
       const data: QuizData = await response.json();
       setQuizData(data);
     };

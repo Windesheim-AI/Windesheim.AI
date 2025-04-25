@@ -10,21 +10,19 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import * as Animatable from 'react-native-animatable';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { NavBar } from '../components/navigation/Navbar'; // ✅ navbar import
 import { SettingsButton } from '../components/general/buttons/SettingButton';
-import { DisclaimerCard } from '../components/general/card/DisclaimerCard';
-import { Introduction } from '../components/general/card/Introduction';
 import { PageScrollView } from '../components/general/views/PageScrollView';
 import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
 
-// 👇 Add Quizzes screen to navigation type
 type RootStackParamList = {
     TestScreen: undefined;
     ArticleScreen: { id: number };
-    Quizzes: undefined;  // Add this line for Quizzes
+    Quizzes: { quizId: number };
 };
 
-// Screen width
 const screenWidth = Dimensions.get('window').width;
 
 export const HomeScreen = () => {
@@ -32,17 +30,25 @@ export const HomeScreen = () => {
     const logoTextColor = currentTheme === 'dark' ? '#FFFFFF' : 'black';
     const colors = useColorConfig();
 
-    // 👇 Correctly typed navigation
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
     const styles = StyleSheet.create({
         headerContainer: {
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'center',
             width: '100%',
-            paddingLeft: 10,
+            paddingHorizontal: 20,
+            paddingVertical: 10,
             backgroundColor: colors.background,
+            borderBottomWidth: 1,
+            borderBottomColor: '#e5e5e5',
+            position: 'relative',
+        },
+        logoContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            flex: 1,
+            justifyContent: 'center',
         },
         logo: {
             width: 37,
@@ -53,12 +59,7 @@ export const HomeScreen = () => {
             fontSize: 20,
             fontWeight: 'bold',
             marginLeft: 10,
-            position: 'absolute',
-            width: '100%',
-            textAlign: 'center',
-        },
-        flexGrow: {
-            flexGrow: 1,
+            color: logoTextColor,
         },
         scrollContent: {
             paddingBottom: 100,
@@ -131,23 +132,34 @@ export const HomeScreen = () => {
             fontWeight: '500',
             color: '#333',
         },
+        navBarContainer: {
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            zIndex: 10,
+        },
     });
 
     return (
-        <>
+        <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
             <View style={styles.headerContainer}>
-                <Image
-                    source={require('../assets/images/Icon/favicon.png')}
-                    style={styles.logo}
-                />
-                <Text style={[styles.logoText, { color: logoTextColor }]}>
-                    WINDESHEIM.AI
-                </Text>
-                <View style={styles.flexGrow} />
+                <View style={styles.logoContainer}>
+                    <Image
+                        source={require('../assets/images/Icon/favicon.png')}
+                        style={styles.logo}
+                    />
+                    <Text style={styles.logoText}>
+                        WINDESHEIM.AI
+                    </Text>
+                </View>
                 <SettingsButton />
             </View>
 
-            <PageScrollView showsVerticalScrollIndicator={false}>
+            <PageScrollView
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={styles.scrollContent}
+            >
                 <Animatable.View
                     animation="fadeInUp"
                     duration={600}
@@ -157,7 +169,7 @@ export const HomeScreen = () => {
                     <View style={styles.bigCardText}>
                         <Text style={styles.bigCardTitle}>Doe de AI literacy test.</Text>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('Quizzes')}  // Updated to navigate to Quizzes
+                            onPress={() => navigation.navigate('Quizzes', { quizId: 1 })}
                             style={styles.testButton}
                         >
                             <Text style={styles.testButtonText}>Ga naar de test</Text>
@@ -189,6 +201,10 @@ export const HomeScreen = () => {
                     ))}
                 </View>
             </PageScrollView>
-        </>
+
+            <View style={styles.navBarContainer}>
+                <NavBar />
+            </View>
+        </SafeAreaView>
     );
 };
