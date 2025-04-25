@@ -13,7 +13,7 @@ import { HomeScreen } from '../screens/Home';
 import { PodcastsEpisodePage } from '../screens/Podcasts/PodcastsEpisodePage';
 import { PromptLibrary } from '../screens/PromptLibrary/PromptLibrary';
 import { PromptView } from '../screens/PromptLibrary/PromptView';
-import { Quizzes } from '../screens/Quizzes';
+import Quizzes from '../screens/Quizzes';
 import { SettingsScreen } from '../screens/Settings';
 import { StudyScreen } from '../screens/Study';
 import { CaseStudyInfo } from '../screens/Usecase/CaseStudyInfo';
