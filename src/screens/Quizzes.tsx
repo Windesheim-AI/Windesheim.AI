@@ -63,23 +63,23 @@ const Quizzes: React.FC = () => {
     setLoadError(false);
 
     try {
-      const quizId = route?.params?.quizId;
-      if (!quizId) throw new Error('Quiz ID not provided');
-
+      const fallbackQuizId = 2;
+      const quizId = route?.params?.quizId ?? fallbackQuizId;
+    
       const response = await fetch(`https://windesheim.ai/wp-json/getnewquiz/v1/quizzes/2`);
       const data: QuizData = await response.json();
-
+    
       if (!data || !Array.isArray(data.questions) || data.questions.length === 0) {
         throw new Error('No valid questions returned');
       }
-
+    
       const shuffleArray = <T,>(array: T[]): T[] => [...array].sort(() => Math.random() - 0.5);
       const shuffledQuestions = shuffleArray(data.questions).map((q) => ({
         ...q,
         question: (q.question ?? '').replace(/undefined/g, '').trim(),
         answers: shuffleArray(q.answers),
       }));
-
+    
       setQuizData({ ...data, questions: shuffledQuestions });
       setCurrentQuestion(0);
     } catch (error) {
@@ -89,6 +89,7 @@ const Quizzes: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
+    
   };
 
   useEffect(() => {

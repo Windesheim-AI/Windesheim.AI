@@ -1,22 +1,51 @@
-import { EnvOptions, EnvValues, mockEnvValues } from './env.values';
+/* eslint @typescript-eslint/no-unsafe-assignment: 0 */
 
-export function getEnvValue(key: EnvOptions, mock = false): string {
-    const value = mock ? mockEnvValues[key] : EnvValues[key];
-    if (value === undefined) {
-        let str = '';
-        for (const envKey in EnvValues) {
-            //@ts-ignore
-            str += `\n${envKey}: ${EnvValues[envKey]}`;
-        }
-        throw new Error(
-            `Couldn't find or invalid environment variable: ${key} current env values ${str}`,
-        );
-    }
-    return value;
+import {
+    OPENAI_API_KEY,
+    APP_DEBUG,
+    AI_ENABLED,
+    WP_CONTENT_URL,
+    WP_DATA_URL,
+    WP_USERNAME,
+    WP_PASSWORD,
+    OPENAI_ASSISTANT_ID,
+    // @ts-ignore
+} from '@env';
+
+// eslint-disable-next-line no-console
+console.log('Debugging enabled =', APP_DEBUG);
+
+export enum EnvOptions {
+    OpenAIApiKey = 'OpenAIApiKey',
+    AppDebug = 'AppDebug',
+    AiEnabled = 'AiEnabled',
+    WordPressContentURL = 'WordPressContentURL',
+    WordPressDataURL = 'WordPressPluginURL',
+    WordPressUsername = 'WordPressUsername',
+    WordPressPassword = 'WordPressPassword',
+    OpenAIAssistantId = 'OpenAIAssistantId',
 }
 
-export function isEnvSettingEnabled(key: EnvOptions, mock = false): boolean {
-    const value = mock ? mockEnvValues[key] : EnvValues[key];
+export type Env = Record<EnvOptions, string | undefined>;
 
-    return value === 'true';
-}
+export const mockEnvValues: Env = {
+    [EnvOptions.OpenAIApiKey]: 'mockOpenAIApiKey',
+    [EnvOptions.AppDebug]: 'false',
+    [EnvOptions.AiEnabled]: 'true',
+    [EnvOptions.WordPressContentURL]: 'https://www.windesheim.tech',
+    [EnvOptions.WordPressDataURL]: 'https://www.windesheim.ai',
+    [EnvOptions.WordPressUsername]: 'mockUsername',
+    [EnvOptions.WordPressPassword]: 'mockPassword',
+    [EnvOptions.OpenAIAssistantId]: 'mockOpenAIAssitantId',
+};
+
+export const EnvValues: Env = {
+    [EnvOptions.OpenAIApiKey]: OPENAI_API_KEY,
+    [EnvOptions.AppDebug]: APP_DEBUG,
+    [EnvOptions.AiEnabled]: AI_ENABLED,
+    [EnvOptions.WordPressContentURL]: WP_CONTENT_URL,
+    [EnvOptions.WordPressDataURL]: WP_DATA_URL,
+    [EnvOptions.WordPressUsername]: WP_USERNAME,
+    [EnvOptions.WordPressPassword]: WP_PASSWORD,
+    [EnvOptions.OpenAIAssistantId]: OPENAI_ASSISTANT_ID,
+};

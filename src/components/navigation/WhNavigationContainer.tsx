@@ -1,14 +1,17 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAppDispatch } from '../../lib/redux/Hooks';
 import { NavigationState } from '@react-navigation/routers';
 
 import { navigationActions } from '../../lib/redux/slices/NavigationSlice';
 import { navigationBarLinks } from '../../routes/navigation';
+
 import { HomeScreen } from '../../screens/Home';
 import Quizzes from '../../screens/Quizzes';
 import Results from '../../screens/Results';
-import { Articles } from '../../screens/Articles'; // ✅ added this import
+import { Articles } from '../../screens/Articles';
+import { SettingsScreen } from '../../screens/Settings';
+import { PromptLibrary } from '../../screens/PromptLibrary/PromptLibrary';
 
 type Answer = {
   id: number;
@@ -32,10 +35,12 @@ export type RootStackParamList = {
     questions: Question[];
     answers: Record<number, number>;
   };
-  Articles: undefined; // ✅ added
+  Articles: undefined;
+  Settings: undefined;
+  PromptLibrary: undefined;
 };
 
-const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 type Props = {
   children: React.ReactNode;
@@ -63,7 +68,11 @@ export default function WhNavigationContainer({ children }: Props) {
     <>
       <Stack.Navigator
         initialRouteName="Home"
-        screenOptions={{ headerShown: false }}
+        screenOptions={{
+          headerShown: false,
+          animation: 'fade', // 👈 smooth fade animation
+          gestureEnabled: true,
+        }}
       >
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen
@@ -73,10 +82,11 @@ export default function WhNavigationContainer({ children }: Props) {
         />
         <Stack.Screen name="Results" component={Results} />
         <Stack.Screen name="Articles" component={Articles} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="PromptLibrary" component={PromptLibrary} />
       </Stack.Navigator>
-  
+
       {children}
     </>
   );
-  
 }
