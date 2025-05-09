@@ -78,7 +78,7 @@ export default function WhNavigationContainer({ children }: Props) {
         <Stack.Screen
           name="Quizzes"
           component={Quizzes}
-          options={{ headerShown: true, title: 'Quiz' }}
+          options={{ headerShown: false, title: 'Quiz' }}
         />
         <Stack.Screen name="Results" component={Results} />
         <Stack.Screen name="Articles" component={Articles} />

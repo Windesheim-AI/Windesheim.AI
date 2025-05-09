@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import React from 'react';
 import {
     StyleSheet,
@@ -9,7 +8,6 @@ import {
 } from 'react-native';
 
 import {
-    shadow,
     useColorConfig,
     useColorStateConfig,
 } from '../../lib/constants/Colors';
@@ -34,93 +32,55 @@ export function EpisodeCard({ episode }: Props) {
     const styles = StyleSheet.create({
         card: {
             backgroundColor: colors.listItemBg,
-            borderRadius: 10,
-            padding: 16,
-            marginBottom: 16,
-            marginTop: 10,
-            marginLeft: 5,
-            marginRight: 10,
-            width: 300,
-            ...shadow,
+            borderRadius: 12,
+            padding: 10,
+            marginBottom: 14,
+            marginHorizontal: 4,
+            width: 320,
             ...colorStateConfig.highContrastBorder,
-            position: 'relative',
         },
         headContainer: {
-            flex: 1,
-            alignItems: 'flex-start',
             flexDirection: 'row',
+            alignItems: 'center',
         },
         image: {
-            borderRadius: 15,
-            height: 75,
-            width: 75,
+            borderRadius: 10,
+            height: 60,
+            width: 60,
             resizeMode: 'cover',
-            marginRight: 5,
-            marginBottom: 4,
+            marginRight: 10,
         },
         titleText: {
-            width: '80%',
-            ...fonts.alert,
-            color: colors.titleDefault,
-            marginBottom: 7,
-        },
-        descriptionText: {
-            ...fonts.description,
-            flexWrap: 'wrap',
-            fontSize: 10,
-            flexShrink: 1,
-        },
-        imageContainer: {
-            marginRight: 5,
-            marginBottom: 4,
-        },
-        contentContainer: {
             flex: 1,
+            ...fonts.h3,
+            fontSize: 15,
+            color: colors.titleDefault,
         },
-        episodeDurationContainer: {
-            position: 'absolute',
-            top: 10,
-            right: 10,
+        durationContainer: {
+            marginTop: 6,
             backgroundColor: colors.completedProgressBar,
+            alignSelf: 'flex-start',
+            paddingHorizontal: 6,
             paddingVertical: 2,
-            paddingHorizontal: 2,
             borderRadius: 5,
             ...colorStateConfig.highContrastBorder,
         },
-        episodeDurationText: {
+        durationText: {
             fontSize: 11,
             color: colors.text,
         },
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-unsafe-assignment
+    // Image fallback
     let episodeImageSource: ImageSourcePropType = require('../../assets/images/bgImages/robot.png');
-    if (
-        episode.imageLink !== undefined &&
-        episode.imageLink !== null &&
-        episode.imageLink.length > 0 &&
-        episode.imageLink !== '' &&
-        episode.imageLink !== ' ' &&
-        episode.imageLink !== 'null' &&
-        episode.imageLink !== '0'
-    ) {
-        episodeImageSource = {
-            uri: episode.imageLink,
-        };
+    if (episode.imageLink?.trim() && episode.imageLink !== 'null' && episode.imageLink !== '0') {
+        episodeImageSource = { uri: episode.imageLink };
     }
 
-    let episodeDurationtext = '';
-    if (
-        episode.duration !== undefined &&
-        episode.duration !== null &&
-        episode.duration.length > 0 &&
-        episode.duration !== '' &&
-        episode.duration !== ' ' &&
-        episode.duration !== 'null' &&
-        episode.duration !== '0'
-    ) {
-        episodeDurationtext = episode.duration;
-    }
+    const episodeDurationtext =
+        episode.duration?.trim() && episode.duration !== 'null' && episode.duration !== '0'
+            ? episode.duration
+            : '';
 
     return (
         <InteractiveView
@@ -133,26 +93,19 @@ export function EpisodeCard({ episode }: Props) {
                 });
             }}
         >
-            <View style={styles.episodeDurationContainer}>
-                <Text style={styles.episodeDurationText}>
-                    {episodeDurationtext}
-                </Text>
-            </View>
             <View style={styles.headContainer}>
-                <View style={styles.imageContainer}>
-                    <Image source={episodeImageSource} style={styles.image} />
-                </View>
-                <View style={styles.contentContainer}>
+                <Image source={episodeImageSource} style={styles.image} />
+                <View style={{ flex: 1 }}>
                     <TextTranslated
                         style={styles.titleText}
                         text={episode.title}
-                        numberOfLines={1}
+                        numberOfLines={2}
                     />
-                    <TextTranslated
-                        style={styles.descriptionText}
-                        text={episode.description}
-                        numberOfLines={3}
-                    />
+                    {episodeDurationtext.length > 0 && (
+                        <View style={styles.durationContainer}>
+                            <Text style={styles.durationText}>{episodeDurationtext}</Text>
+                        </View>
+                    )}
                 </View>
             </View>
         </InteractiveView>

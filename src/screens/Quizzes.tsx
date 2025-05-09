@@ -7,10 +7,13 @@ import {
   ScrollView,
   Animated,
   Image,
+  SafeAreaView,
 } from 'react-native';
 import { RouteProp, useRoute, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import loadingGif from "../assets/images/Icon/loading.gif";
+import { SettingsButton } from '../components/general/buttons/SettingButton';
+import { GoBackButton } from '../components/general/buttons/GoBackButton';
+import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
 
 interface Answer {
   id: number;
@@ -53,10 +56,16 @@ const Quizzes: React.FC = () => {
   const [showAnswers, setShowAnswers] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(1800); // time for the quiz
+  const [timeExpired, setTimeExpired] = useState(false);
 
   const route = useRoute<QuizRouteProp>();
   const navigation = useNavigation<QuizNavigationProp>();
   const answersOpacity = useRef(new Animated.Value(0)).current;
+
+  const currentTheme = useCurrentTheme();
+  const colors = useColorConfig();
+  const logoTextColor = currentTheme === 'dark' ? '#FFFFFF' : 'black';
 
   const fetchQuizData = async () => {
     setIsLoading(true);
@@ -65,21 +74,25 @@ const Quizzes: React.FC = () => {
     try {
       const fallbackQuizId = 2;
       const quizId = route?.params?.quizId ?? fallbackQuizId;
-    
+
       const response = await fetch(`https://windesheim.ai/wp-json/getnewquiz/v1/quizzes/2`);
       const data: QuizData = await response.json();
-    
+
       if (!data || !Array.isArray(data.questions) || data.questions.length === 0) {
         throw new Error('No valid questions returned');
       }
-    
+
       const shuffleArray = <T,>(array: T[]): T[] => [...array].sort(() => Math.random() - 0.5);
       const shuffledQuestions = shuffleArray(data.questions).map((q) => ({
         ...q,
-        question: (q.question ?? '').replace(/undefined/g, '').trim(),
-        answers: shuffleArray(q.answers),
+        question: (q.question ?? '').replace(/undefined/g, '').replace(/\\/g, '').trim(),
+        question_title: (q.question_title ?? '').replace(/\\/g, '').trim(),
+        answers: shuffleArray(q.answers.map((a) => ({
+          ...a,
+          answer: (a.answer ?? '').replace(/\\/g, '').trim(),
+        }))),
       }));
-    
+
       setQuizData({ ...data, questions: shuffledQuestions });
       setCurrentQuestion(0);
     } catch (error) {
@@ -89,12 +102,46 @@ const Quizzes: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-    
   };
 
   useEffect(() => {
     fetchQuizData();
   }, [route.params?.quizId]);
+
+  useEffect(() => {
+    if (!quizData) return;
+
+    const interval = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          setTimeExpired(true);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [quizData]);
+
+  useEffect(() => {
+    if (timeExpired && quizData) {
+      const timeout = setTimeout(() => {
+        const score = quizData.questions.reduce((count, q) => {
+          return answers[q.id] === q.correct_answer_id ? count + 1 : count;
+        }, 0);
+
+        navigation.navigate('Results', {
+          score,
+          total: quizData.questions.length,
+          questions: quizData.questions,
+          answers,
+        });
+      }, 100);
+      return () => clearTimeout(timeout);
+    }
+  }, [timeExpired]);
 
   const currentQ = quizData?.questions?.[currentQuestion];
 
@@ -105,7 +152,7 @@ const Quizzes: React.FC = () => {
     }
 
     const raw = currentQ.question || '';
-    const cleaned = raw.replace(/undefined/g, '').trim();
+    const cleaned = raw.replace(/undefined/g, '').replace(/\\/g, '').trim();
 
     if (!cleaned) {
       setTypedText('');
@@ -170,11 +217,17 @@ const Quizzes: React.FC = () => {
     });
   };
 
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
+    const secs = (seconds % 60).toString().padStart(2, '0');
+    return `${mins}:${secs}`;
+  };
+
   if (isLoading) {
     return (
       <View style={styles.centered}>
         <Image
-          key={`loader-${Date.now()}`} // 👈 forces re-render with a unique key
+          key={`loader-${Date.now()}`}
           source={require('../assets/images/Icon/loading.gif')}
           style={styles.loadingGif}
         />
@@ -182,7 +235,6 @@ const Quizzes: React.FC = () => {
       </View>
     );
   }
-  
 
   if (loadError || !quizData) {
     return (
@@ -199,11 +251,29 @@ const Quizzes: React.FC = () => {
   const allAnswered = quizData.questions.every((q) => answers[q.id] !== undefined);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style={styles.headerContainer}>
+        <View style={styles.headerSide}>
+          <GoBackButton />
+        </View>
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('../assets/images/Icon/favicon.png')}
+            style={styles.logo}
+          />
+          <Text style={[styles.logoText, { color: logoTextColor }]}>WINDESHEIM.AI</Text>
+        </View>
+        <View style={styles.headerSide}>
+          <SettingsButton />
+        </View>
+      </View>
+
+      <View style={{ height: 10 }} />
+
       <View style={styles.quizHeader}>
         <Text style={styles.quizTitle}>{quizData?.title || 'Quiz'}</Text>
         <Text style={styles.questionCounter}>
-          Question {currentQuestion + 1} of {totalQuestions}
+          Question {currentQuestion + 1} of {totalQuestions} | Time Left: {formatTime(timeLeft)}
         </Text>
       </View>
 
@@ -219,22 +289,23 @@ const Quizzes: React.FC = () => {
       )}
 
       <ScrollView contentContainerStyle={styles.answerContainer}>
-        {showAnswers && currentQ?.answers?.map((answer) => (
-          <Animated.View
-            key={answer.id}
-            style={[styles.answerBubbleWrapper, { opacity: answersOpacity }]}
-          >
-            <TouchableOpacity
-              style={[
-                styles.answerBubble,
-                answers[currentQ.id] === answer.id && styles.selectedAnswer,
-              ]}
-              onPress={() => handleAnswerSelect(currentQ.id, answer.id)}
+        {showAnswers &&
+          currentQ?.answers?.map((answer) => (
+            <Animated.View
+              key={answer.id}
+              style={[styles.answerBubbleWrapper, { opacity: answersOpacity }]}
             >
-              <Text style={styles.answerText}>{answer.answer}</Text>
-            </TouchableOpacity>
-          </Animated.View>
-        ))}
+              <TouchableOpacity
+                style={[
+                  styles.answerBubble,
+                  answers[currentQ.id] === answer.id && styles.selectedAnswer,
+                ]}
+                onPress={() => handleAnswerSelect(currentQ.id, answer.id)}
+              >
+                <Text style={styles.answerText}>{answer.answer}</Text>
+              </TouchableOpacity>
+            </Animated.View>
+          ))}
       </ScrollView>
 
       <View style={styles.footer}>
@@ -253,7 +324,7 @@ const Quizzes: React.FC = () => {
             disabled={currentQuestion === 0}
             style={styles.navButton}
           >
-            <Text style={styles.navButtonText}>Previous</Text>
+            <Text style={styles.navButtonText}>Vorige</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -263,7 +334,7 @@ const Quizzes: React.FC = () => {
             disabled={currentQuestion === totalQuestions - 1}
             style={styles.navButton}
           >
-            <Text style={styles.navButtonText}>Next</Text>
+            <Text style={styles.navButtonText}>Volgende</Text>
           </TouchableOpacity>
         </View>
 
@@ -272,25 +343,25 @@ const Quizzes: React.FC = () => {
           style={[styles.submitButton, !allAnswered && styles.disabledSubmit]}
           disabled={!allAnswered}
         >
-          <Text style={styles.submitButtonText}>Submit</Text>
+          <Text style={styles.submitButtonText}>Verstuur</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20, backgroundColor: '#fff' },
+  container: { flex: 1 },
   centered: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  quizHeader: { marginBottom: 10 },
+  quizHeader: { marginBottom: 10, paddingHorizontal: 20 },
   quizTitle: { fontSize: 24, fontWeight: 'bold', textAlign: 'center' },
   questionCounter: { fontSize: 16, textAlign: 'center', color: '#666' },
   questionTitle: { fontSize: 20, marginBottom: 10 },
   questionText: { fontSize: 18 },
-
   questionBubbleWrapper: {
     alignItems: 'flex-start',
     marginBottom: 15,
+    paddingHorizontal: 20,
   },
   questionBubble: {
     backgroundColor: '#e0e0e0',
@@ -301,10 +372,10 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 20,
     borderBottomLeftRadius: 0,
   },
-
   answerContainer: {
     alignItems: 'flex-end',
     paddingVertical: 10,
+    paddingHorizontal: 20,
   },
   answerBubbleWrapper: {
     width: '100%',
@@ -320,11 +391,9 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 0,
   },
-  selectedAnswer: {
-    backgroundColor: '#FFFBDC',
-  },
+  selectedAnswer: { backgroundColor: '#FFFBDC' },
   answerText: { fontSize: 16 },
-  footer: { marginTop: 20, alignItems: 'center' },
+  footer: { marginTop: 20, alignItems: 'center', paddingHorizontal: 20 },
   progressBarContainer: {
     height: 10,
     backgroundColor: '#d1d1d1',
@@ -357,9 +426,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   submitButtonText: { fontSize: 18, color: '#000', textAlign: 'center' },
-  disabledSubmit: {
-    backgroundColor: '#cccccc',
-  },
+  disabledSubmit: { backgroundColor: '#cccccc' },
   retryButton: {
     backgroundColor: '#F5A61A',
     paddingVertical: 10,
@@ -372,6 +439,29 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginBottom: 10,
   },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e5e5',
+    backgroundColor: '#FFFFF0',
+  },
+  headerSide: {
+    width: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logoContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logo: { width: 37, height: 37, resizeMode: 'contain' },
+  logoText: { fontSize: 20, fontWeight: 'bold', marginLeft: 10 },
 });
 
 export default Quizzes;

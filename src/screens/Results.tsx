@@ -1,8 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Linking,
+  SafeAreaView,
+} from 'react-native';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
+import { GoBackButton } from '../components/general/buttons/GoBackButton';
 
 interface Answer {
   id: number;
@@ -14,7 +23,7 @@ interface Question {
   question: string;
   correct_answer_id: number;
   answers: Answer[];
-  category: string; // <-- Needed for category breakdown
+  category: string;
 }
 
 type RootStackParamList = {
@@ -42,7 +51,6 @@ const Results: React.FC = () => {
     Linking.openURL('https://www.windesheim.ai/quiz-result-test/');
   };
 
-  // Build category performance
   const categoryStats: Record<string, { correct: number; total: number }> = {};
 
   questions.forEach((q) => {
@@ -67,91 +75,112 @@ const Results: React.FC = () => {
       total,
       percentage: (correct / total) * 100,
     }))
-    .sort((a, b) => a.percentage - b.percentage); // lowest performance first
+    .sort((a, b) => a.percentage - b.percentage);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Quiz Results</Text>
-      <Text style={styles.score}>
-        Score: {score} / {total} ({percentage.toFixed(2)}%)
-      </Text>
-
-      <View style={styles.statusRow}>
-        <Text style={styles.statusText}>
-          {passed ? 'Gehaald' : 'Niet gehaald'}
-        </Text>
-        <Ionicons
-          name={passed ? 'checkmark-circle' : 'close-circle'}
-          size={24}
-          color={passed ? '#4CAF50' : '#F44336'}
-          style={{ marginLeft: 8 }}
-        />
+    <SafeAreaView style={styles.safeContainer}>
+      {/* Header */}
+      <View style={styles.header}>
+        <GoBackButton onPress={() => navigation.goBack()} />
+        <Text style={styles.headerTitle}>Resultaten</Text>
       </View>
 
-      {passed ? (
-        <TouchableOpacity style={styles.certButton} onPress={handleCertificate}>
-          <Text style={styles.certButtonText}>🎓 Krijg certificaat</Text>
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          style={styles.retryButton}
-          onPress={() => navigation.navigate('Quizzes', { quizId: Math.floor(Math.random() * 100000) })}
-        >
-          <Text style={styles.retryButtonText}>🔁 Herstart test</Text>
-        </TouchableOpacity>
-      )}
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.title}>AI Startbekwaam test</Text>
+        <Text style={styles.score}>
+          Score: {score} / {total} ({percentage.toFixed(2)}%)
+        </Text>
 
-      {questions.map((q, index) => {
-        const userAnswerId = answers[q.id];
-        const userAnswer = q.answers.find((a) => a.id === userAnswerId);
-        const correctAnswer = q.answers.find((a) => a.id === q.correct_answer_id);
-        const isCorrect = userAnswerId === q.correct_answer_id;
+        <View style={styles.statusRow}>
+          <Text style={styles.statusText}>
+            {passed ? 'Gehaald' : 'Niet gehaald'}
+          </Text>
+          <Ionicons
+            name={passed ? 'checkmark-circle' : 'close-circle'}
+            size={24}
+            color={passed ? '#4CAF50' : '#F44336'}
+            style={{ marginLeft: 8 }}
+          />
+        </View>
 
-        return (
-          <View
-            key={q.id}
-            style={[
-              styles.questionContainer,
-              isCorrect ? styles.correctBox : styles.incorrectBox,
-            ]}
+        {passed ? (
+          <TouchableOpacity style={styles.certButton} onPress={handleCertificate}>
+            <Text style={styles.certButtonText}>🎓 Krijg certificaat</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={styles.retryButton}
+            onPress={() =>
+              navigation.navigate('Quizzes', { quizId: Math.floor(Math.random() * 100000) })
+            }
           >
-            <Text style={styles.questionTitle}>Vraag {index + 1}</Text>
-            <Text style={styles.questionText}>{q.question}</Text>
-            <Text style={styles.categoryText}>Categorie: {q.category || 'Onbekend'}</Text>
-            <Text
+            <Text style={styles.retryButtonText}>🔁 Herstart test</Text>
+          </TouchableOpacity>
+        )}
+
+        {questions.map((q, index) => {
+          const userAnswerId = answers[q.id];
+          const userAnswer = q.answers.find((a) => a.id === userAnswerId);
+          const correctAnswer = q.answers.find((a) => a.id === q.correct_answer_id);
+          const isCorrect = userAnswerId === q.correct_answer_id;
+
+          return (
+            <View
+              key={q.id}
               style={[
-                styles.answerText,
-                isCorrect ? styles.correct : styles.incorrect,
+                styles.questionContainer,
+                isCorrect ? styles.correctBox : styles.incorrectBox,
               ]}
             >
-              Jouw antwoord: {userAnswer?.answer || 'Geen antwoord'}
-            </Text>
-            {!isCorrect && correctAnswer && (
-              <Text style={styles.correctAnswer}>
-                Juiste antwoord: {correctAnswer.answer}
+              <Text style={styles.questionTitle}>Vraag {index + 1}</Text>
+              <Text style={styles.questionText}>{q.question}</Text>
+              <Text style={styles.categoryText}>Categorie: {q.category || 'Onbekend'}</Text>
+              <Text style={[styles.answerText, isCorrect ? styles.correct : styles.incorrect]}>
+                Jouw antwoord: {userAnswer?.answer || 'Geen antwoord'}
               </Text>
-            )}
-          </View>
-        );
-      })}
+              {!isCorrect && correctAnswer && (
+                <Text style={styles.correctAnswer}>Juiste antwoord: {correctAnswer.answer}</Text>
+              )}
+            </View>
+          );
+        })}
 
-      <View style={styles.improvementContainer}>
-        <Text style={styles.improvementTitle}>📊 Verbeterpunten per categorie</Text>
-        {sortedCategories.map(({ category, correct, total, percentage }) => (
-          <Text key={category} style={styles.improvementText}>
-            {category}: {correct}/{total} goed ({percentage.toFixed(0)}%)
-          </Text>
-        ))}
-      </View>
-    </ScrollView>
+        <View style={styles.improvementContainer}>
+          <Text style={styles.improvementTitle}>📊 Verbeterpunten per categorie</Text>
+          {sortedCategories.map(({ category, correct, total, percentage }) => (
+            <Text key={category} style={styles.improvementText}>
+              {category}: {correct}/{total} goed ({percentage.toFixed(0)}%)
+            </Text>
+          ))}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safeContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderColor: '#ddd',
+    backgroundColor: '#fff',
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginLeft: 10,
+    textAlign: 'center',
+  },
   container: {
     flexGrow: 1,
     padding: 16,
-    backgroundColor: '#fff',
     alignItems: 'center',
   },
   title: {
