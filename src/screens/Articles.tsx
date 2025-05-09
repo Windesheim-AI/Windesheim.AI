@@ -5,11 +5,12 @@ import {
     Dimensions,
     Text,
     Image,
+    FlatList,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import * as Animatable from 'react-native-animatable'; // ✅ Add Animatable
 
 import { SettingsButton } from '../components/general/buttons/SettingButton';
-import { PageScrollView } from '../components/general/views/PageScrollView';
 import { NavBar } from '../components/navigation/Navbar';
 
 import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
@@ -85,6 +86,60 @@ export function Articles() {
         },
     });
 
+    const ListHeader = () => (
+        <View style={styles.scrollContent}>
+            <Animatable.Text
+                animation="fadeInUp"
+                duration={600}
+                delay={100}
+                style={styles.sectionTitle}
+            >
+                Podcasts
+            </Animatable.Text>
+
+            <Animatable.Text
+                animation="fadeInUp"
+                duration={600}
+                delay={200}
+                style={styles.sectionSubtitle}
+            >
+                Here you can find the newest episodes of the official Windesheim.AI podcast.
+            </Animatable.Text>
+
+            <Animatable.View animation="fadeInUp" duration={600} delay={300}>
+                <PodcastEpisodeLimitedView />
+            </Animatable.View>
+
+            <Animatable.Text
+                animation="fadeInUp"
+                duration={600}
+                delay={400}
+                style={styles.sectionTitle}
+            >
+                Articles
+            </Animatable.Text>
+
+            <Animatable.Text
+                animation="fadeInUp"
+                duration={600}
+                delay={500}
+                style={styles.sectionSubtitle}
+            >
+                A collection of articles highlighting the latest AI trends. Each is tagged with ELSA categories.
+            </Animatable.Text>
+
+            <Animatable.View
+                animation="fadeInUp"
+                duration={600}
+                delay={600}
+                style={styles.articlesWrapper}
+            >
+                <ArticleLimitedView limit={6} />
+                <View style={{ height: 0, backgroundColor: colors.background }} />
+            </Animatable.View>
+        </View>
+    );
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
             <View style={styles.headerContainer}>
@@ -98,25 +153,13 @@ export function Articles() {
                 <SettingsButton />
             </View>
 
-            <PageScrollView
+            <FlatList
+                data={[]}
+                renderItem={null}
+                keyExtractor={() => 'unused'}
+                ListHeaderComponent={ListHeader}
                 showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.scrollContent}
-            >
-                <Text style={styles.sectionTitle}>Podcasts</Text>
-                <Text style={styles.sectionSubtitle}>
-                    Here you can find the newest episodes of the official Windesheim.AI podcast.
-                </Text>
-                <PodcastEpisodeLimitedView />
-
-                <Text style={styles.sectionTitle}>Articles</Text>
-                <Text style={styles.sectionSubtitle}>
-                    A collection of articles highlighting the latest AI trends. Each is tagged with ELSA categories.
-                </Text>
-
-                <View style={styles.articlesWrapper}>
-                    <ArticleLimitedView limit={6} />
-                </View>
-            </PageScrollView>
+            />
 
             <View style={styles.navBarContainer}>
                 <NavBar />

@@ -56,7 +56,7 @@ const Quizzes: React.FC = () => {
   const [showAnswers, setShowAnswers] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(1800); // time for the quiz
+  const [timeLeft, setTimeLeft] = useState(780); // time for the quiz
   const [timeExpired, setTimeExpired] = useState(false);
 
   const route = useRoute<QuizRouteProp>();

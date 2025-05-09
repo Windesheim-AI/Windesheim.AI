@@ -1,4 +1,3 @@
-// src/screens/PromptLibrary.tsx
 import React from 'react';
 import {
     View,
@@ -8,6 +7,7 @@ import {
     Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import * as Animatable from 'react-native-animatable'; // ✅ Import animation lib
 
 import { useAppSelector } from '../../lib/redux/Hooks';
 import { TitleSimple } from '../../components/general/text/TitleSimple';
@@ -72,7 +72,7 @@ export function PromptLibrary() {
         titleText: {
             fontSize: 22,
             fontWeight: 'bold',
-            color: 'black', // Changed to black
+            color: 'black',
         },
         explanationText: {
             fontSize: 16,
@@ -104,21 +104,27 @@ export function PromptLibrary() {
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.scrollContent}
             >
-                <View style={styles.titleSection}>
+                <Animatable.View animation="fadeInUp" delay={100} duration={600} style={styles.titleSection}>
                     <Text style={styles.titleText}>PROMPT LIBRARY</Text>
                     <Text style={styles.explanationText}>
                         Here you'll find a collection of prompts that you can use to easily navigate AI tools. You can filter by tools and sector to find the right prompt you need.
                     </Text>
-                </View>
+                </Animatable.View>
 
-                <PromptsOverview />
+                <Animatable.View animation="fadeInUp" delay={200} duration={600}>
+                    <PromptsOverview />
+                </Animatable.View>
 
                 {isFirstTimeUser ? (
-                    <BackgroundCollectForm />
+                    <Animatable.View animation="fadeInUp" delay={300} duration={600}>
+                        <BackgroundCollectForm />
+                    </Animatable.View>
                 ) : null}
 
                 {!isFirstTimeUser ? (
-                    <PromptsTutorial />
+                    <Animatable.View animation="fadeInUp" delay={300} duration={600}>
+                        <PromptsTutorial />
+                    </Animatable.View>
                 ) : null}
             </PageScrollView>
 

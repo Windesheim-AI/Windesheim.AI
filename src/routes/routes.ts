@@ -17,6 +17,7 @@ export enum Routes {
     PromptView = 'PromptView',
     Articles = 'Articles',
     Quizzes = 'Quizzes',
+    Quizhome = 'Quizhome',
     Prompts = 'Prompts',
     MockTutorial = 'MockTutorial',
     PodcastsEpisodePage = 'PodcastsEpisodePage',

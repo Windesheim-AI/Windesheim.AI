@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View, StyleSheet } from 'react-native';
 
 import { EpisodeCard } from './EpisodeCard';
 import { useFonts } from '../../lib/constants/Fonts';
@@ -47,9 +47,19 @@ export function PodcastEpisodeLimitedView({ limit }: Props) {
 
     return (
         <FlatList
-            horizontal
             data={selectedEpisodes}
             renderItem={renderEpisodeCards}
+            keyExtractor={(item) => item.id.toString()}
+            contentContainerStyle={styles.listContainer}
+            showsVerticalScrollIndicator={false} // Optional: to hide the scroll indicator
         />
     );
 }
+
+const styles = StyleSheet.create({
+    listContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: 20, // Optional: adds some padding at the top and bottom of the list
+    },
+});

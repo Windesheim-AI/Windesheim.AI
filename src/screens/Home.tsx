@@ -15,12 +15,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavBar } from '../components/navigation/Navbar'; // ✅ navbar import
 import { SettingsButton } from '../components/general/buttons/SettingButton';
 import { PageScrollView } from '../components/general/views/PageScrollView';
+import { ArticleLimitedView } from '../components/articleLibrary/ArticleLimitedView';
 import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
 
 type RootStackParamList = {
     TestScreen: undefined;
     ArticleScreen: { id: number };
-    Quizzes: { quizId: number };
+    Quizhome: { quizId: number };
 };
 
 const screenWidth = Dimensions.get('window').width;
@@ -62,7 +63,7 @@ export const HomeScreen = () => {
             color: logoTextColor,
         },
         scrollContent: {
-            paddingBottom: 100,
+            paddingBottom: 120, // ensures scroll content is not covered by NavBar
         },
         bigCard: {
             flexDirection: 'row',
@@ -106,31 +107,14 @@ export const HomeScreen = () => {
             backgroundColor: '#D0D0D0',
             borderRadius: 20,
         },
-        articleGrid: {
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            paddingHorizontal: 16,
-            marginTop: 30,
-        },
-        articleCard: {
-            backgroundColor: '#F4F4F6',
-            borderRadius: 20,
-            marginBottom: 20,
-            padding: 12,
-            alignItems: 'center',
-        },
-        articleImage: {
+        spacer: {
+            height: 80,
             width: '100%',
-            height: 90,
-            backgroundColor: '#CCC',
-            borderRadius: 14,
-            marginBottom: 10,
         },
-        articleTitle: {
-            fontSize: 15,
-            fontWeight: '500',
-            color: '#333',
+        articlesWrapper: {
+            width: '100%',
+            maxWidth: 500,
+            paddingHorizontal: 12,
         },
         navBarContainer: {
             position: 'absolute',
@@ -138,6 +122,16 @@ export const HomeScreen = () => {
             left: 0,
             right: 0,
             zIndex: 10,
+        },
+        sectionTitle: {
+            fontSize: 20,
+            fontWeight: '700',
+            marginTop: 30,
+            marginHorizontal: 16,
+        },
+        articleBox: {
+            backgroundColor: colors.background,
+            height: 10,
         },
     });
 
@@ -160,16 +154,26 @@ export const HomeScreen = () => {
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.scrollContent}
             >
-                <Animatable.View
+                {/* Title for the first big card */}
+                <Animatable.Text
                     animation="fadeInUp"
                     duration={600}
                     delay={100}
+                    style={styles.sectionTitle}
+                >
+                    AI bekwaam test
+                </Animatable.Text>
+
+                <Animatable.View
+                    animation="fadeInUp"
+                    duration={600}
+                    delay={200}
                     style={styles.bigCard}
                 >
                     <View style={styles.bigCardText}>
                         <Text style={styles.bigCardTitle}>Doe de AI literacy test.</Text>
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('Quizzes', { quizId: 1 })}
+                            onPress={() => navigation.navigate('Quizhome', { quizId: 1 })}
                             style={styles.testButton}
                         >
                             <Text style={styles.testButtonText}>Ga naar de test</Text>
@@ -178,28 +182,30 @@ export const HomeScreen = () => {
                     <View style={styles.bigCardImage} />
                 </Animatable.View>
 
-                <View style={styles.articleGrid}>
-                    {[...Array(6)].map((_, i) => (
-                        <Animatable.View
-                            key={i}
-                            animation="fadeInUp"
-                            duration={500}
-                            delay={200 + i * 100}
-                            style={[
-                                styles.articleCard,
-                                { width: (screenWidth - 40 * 2 - 12) / 2 },
-                            ]}
-                        >
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate('ArticleScreen', { id: i })}
-                                style={{ width: '100%' }}
-                            >
-                                <View style={styles.articleImage} />
-                                <Text style={styles.articleTitle}>Artikel {i + 1}</Text>
-                            </TouchableOpacity>
-                        </Animatable.View>
-                    ))}
-                </View>
+                {/* Title for the articles section */}
+                <Animatable.Text
+                    animation="fadeInUp"
+                    duration={600}
+                    delay={300}
+                    style={styles.sectionTitle}
+                >
+                    Nieuwe artikelen
+                </Animatable.Text>
+
+                {/* Articles List Component */}
+                <Animatable.View
+                    animation="fadeInUp"
+                    duration={600}
+                    delay={400}
+                >
+                    
+                    <ArticleLimitedView />
+                </Animatable.View>
+
+                {/* Spacer box to ensure articles are not hidden by navbar */}
+                <View style={styles.articlesWrapper}>
+                                    <View style={{ height: 130, backgroundColor: colors.background }} />
+                                </View>
             </PageScrollView>
 
             <View style={styles.navBarContainer}>

@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import React from 'react';
-import { StyleSheet, View, Image, ImageSourcePropType } from 'react-native';
+import { StyleSheet, View, Image, ImageSourcePropType, Text } from 'react-native';
 
 import {
     shadow,
@@ -40,24 +40,33 @@ export function ArticleCard({ article }: Props) {
 
     const styles = StyleSheet.create({
         card: {
-            backgroundColor: colors.listItemBg,
-            borderRadius: 20,
-            overflow: 'hidden',
-            marginBottom: 24,
-            ...shadow,
-            ...colorStateConfig.highContrastBorder,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginHorizontal: 16,
+            marginTop: 20,
+            padding: 20,
+            backgroundColor: '#FFFF',
+            borderRadius: 24,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 5 },
+            shadowOpacity: 0.06,
+            shadowRadius: 12,
+            elevation: 3,
         },
         image: {
-            width: '100%',
-            height: 180,
-            resizeMode: 'cover',
+            width: 100,
+            height: 100,
+            backgroundColor: '#D0D0D0',
+            borderRadius: 20,
         },
         content: {
-            padding: 16,
+            flex: 1,
+            marginRight: 16,
+            justifyContent: 'center',
         },
         titleText: {
             ...fonts.h2,
-            fontSize: 18,
+            fontSize: 15,
             fontWeight: '600',
             color: colors.titleDefault,
             marginBottom: 12,
@@ -84,7 +93,6 @@ export function ArticleCard({ article }: Props) {
         },
     });
 
-    // Determine image source
     let articleImageSource: ImageSourcePropType = require('../../assets/images/bgImages/robot.png');
     if (
         article.imageLink &&
@@ -95,7 +103,6 @@ export function ArticleCard({ article }: Props) {
         articleImageSource = { uri: article.imageLink };
     }
 
-    // Split categories
     article.categoryArray = article.category.split(', ');
 
     return (
@@ -107,7 +114,6 @@ export function ArticleCard({ article }: Props) {
                 openBrowserPopup(article.link);
             }}
         >
-            <Image source={articleImageSource} style={styles.image} />
             <View style={styles.content}>
                 <TextTranslated style={styles.titleText} text={article.title} />
                 <View style={styles.tagContainer}>
@@ -118,6 +124,7 @@ export function ArticleCard({ article }: Props) {
                     ))}
                 </View>
             </View>
+            <Image source={articleImageSource} style={styles.image} />
         </InteractiveView>
     );
 }

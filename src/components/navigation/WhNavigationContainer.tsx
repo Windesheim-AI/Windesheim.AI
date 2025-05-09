@@ -9,9 +9,13 @@ import { navigationBarLinks } from '../../routes/navigation';
 import { HomeScreen } from '../../screens/Home';
 import Quizzes from '../../screens/Quizzes';
 import Results from '../../screens/Results';
+import Quizhome from '../../screens/Quizhome';
 import { Articles } from '../../screens/Articles';
 import { SettingsScreen } from '../../screens/Settings';
 import { PromptLibrary } from '../../screens/PromptLibrary/PromptLibrary';
+import { PodcastsEpisodePage } from '../../screens/Podcasts/PodcastsEpisodePage';
+import { PromptView } from '../../screens/PromptLibrary/PromptView';
+
 
 type Answer = {
   id: number;
@@ -29,6 +33,7 @@ type Question = {
 export type RootStackParamList = {
   Home: undefined;
   Quizzes: { quizId: number };
+  Quizhome: { quizId: number }; // ✅ added Quizhome
   Results: {
     score: number;
     total: number;
@@ -38,6 +43,7 @@ export type RootStackParamList = {
   Articles: undefined;
   Settings: undefined;
   PromptLibrary: undefined;
+  PodcastsEpisodePage: { episodeId: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -70,7 +76,7 @@ export default function WhNavigationContainer({ children }: Props) {
         initialRouteName="Home"
         screenOptions={{
           headerShown: false,
-          animation: 'fade', // 👈 smooth fade animation
+          animation: 'fade',
           gestureEnabled: true,
         }}
       >
@@ -80,12 +86,20 @@ export default function WhNavigationContainer({ children }: Props) {
           component={Quizzes}
           options={{ headerShown: false, title: 'Quiz' }}
         />
+        <Stack.Screen name="Quizhome" component={Quizhome} />
         <Stack.Screen name="Results" component={Results} />
         <Stack.Screen name="Articles" component={Articles} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="PromptLibrary" component={PromptLibrary} />
+        <Stack.Screen
+          name="PodcastsEpisodePage"
+          component={PodcastsEpisodePage}
+          initialParams={{ episodeId: '' }}
+        />
+        <Stack.Screen name="PromptView" component={PromptView} />
       </Stack.Navigator>
 
+      {/* ✅ Render children outside of the navigator to avoid React Navigation errors */}
       {children}
     </>
   );
