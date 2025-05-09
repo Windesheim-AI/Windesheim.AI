@@ -3,7 +3,7 @@
     "compilerOptions": {
         "strict": true,
         "jsx": "react",
-        "types": ["jest", "node"],
+        "types": ["jest", "node", "@testing-library/jest-native"],
         "noEmit": true
     },
     "include": ["src/**/*", "declarations.d.ts"],
