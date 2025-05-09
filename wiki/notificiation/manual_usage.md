@@ -4,12 +4,12 @@ The `Notification` component is a React Native component designed to display not
 
 ## Props
 
--   **id**: `number` - Unique identifier for the notification.
--   **message**: `string` - The message content of the notification.
--   **colorGradientScheme**: `ColorGradientScheme` - An array of three colors representing the gradient background scheme for the notification.
--   **width**: `number` (optional) - The width of the notification. If not provided, it defaults to 97% of the device's window width.
--   **height**: `number` (optional) - The height of the notification. If not provided, it defaults to 60.
--   **icon**: `string` (optional) - The name of the FontAwesome5 icon to be displayed on the left side of the notification.
+- **id**: `number` - Unique identifier for the notification.
+- **message**: `string` - The message content of the notification.
+- **colorGradientScheme**: `ColorGradientScheme` - An array of three colors representing the gradient background scheme for the notification.
+- **width**: `number` (optional) - The width of the notification. If not provided, it defaults to 97% of the device's window width.
+- **height**: `number` (optional) - The height of the notification. If not provided, it defaults to 60.
+- **icon**: `string` (optional) - The name of the FontAwesome5 icon to be displayed on the left side of the notification.
 
 ## Usage
 
@@ -41,15 +41,15 @@ The text and icon colors are determined by the color configuration obtained from
 
 ## Dependencies
 
--   `@expo-google-fonts/inter`: Used for loading the 'Inter_500Medium' font.
--   `react-native-vector-icons/FontAwesome5`: Used for displaying icons in the notification.
+- `@expo-google-fonts/inter`: Used for loading the 'Inter_500Medium' font.
+- `react-native-vector-icons/FontAwesome5`: Used for displaying icons in the notification.
 
 ## Notes
 
--   Ensure that the `Inter_500Medium` font is loaded successfully before rendering the component. If the font loading fails, the component will not be rendered.
+- Ensure that the `Inter_500Medium` font is loaded successfully before rendering the component. If the font loading fails, the component will not be rendered.
 
--   The notification is removed automatically after 3 seconds. The removal process involves fading out and scaling down the notification.
+- The notification is removed automatically after 3 seconds. The removal process involves fading out and scaling down the notification.
 
--   The notification uses a combination of absolute and relative positioning for proper rendering and animation. The structure involves nested `View` components to achieve the desired visual effects.
+- The notification uses a combination of absolute and relative positioning for proper rendering and animation. The structure involves nested `View` components to achieve the desired visual effects.
 
 Feel free to customize the component's styles and animations based on your specific application requirements.

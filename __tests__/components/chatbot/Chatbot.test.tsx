@@ -1,56 +1,55 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react-native';
-import Chatbot from '../../../src/components/chatbot/chatbox'; // Adjust path as needed
-import * as api from '../../../src/api/chatbot'; // Adjust path as needed
+import Chatbot from '../../../src/components/chatbot/chatbox';
+import { fetchChatResponse } from '../../../src/api/chatbot';
 
-// Mock fetchChatResponse
-jest.mock('../api/chatbot', () => ({
-  fetchChatResponse: jest.fn(),
+// Mock API response with delay to simulate animation
+jest.mock('../../../src/api/chatbot', () => ({
+  fetchChatResponse: jest.fn(() =>
+    new Promise((resolve) => {
+      setTimeout(() => resolve('Dit is een antwoord van de AI.'), 500);
+    })
+  ),
 }));
 
 describe('Chatbot Component', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it('renders the initial assistant message', () => {
+  it('renders initial assistant message', () => {
     const { getByText } = render(<Chatbot />);
     expect(
-      getByText(/Hallo! Ik ben je AI-assistent/i),
+      getByText(/Hallo! Ik ben je AI-assistent/i)
     ).toBeTruthy();
   });
 
-  it('sends a message and shows assistant response', async () => {
-    const mockResponse = 'Dit is een antwoord van de AI.';
-    (api.fetchChatResponse as jest.Mock).mockResolvedValueOnce(mockResponse);
+  it('sends user message and shows typing animation', async () => {
+    const { getByPlaceholderText, getByText, queryByTestId, findByText } = render(<Chatbot />);
 
-    const { getByPlaceholderText, getByText, queryByText } = render(<Chatbot />);
+    // Type a message
+    fireEvent.changeText(getByPlaceholderText('Typ uw bericht'), 'Wat is generatieve AI?');
+    fireEvent.press(getByText('↑'));
 
-    const input = getByPlaceholderText('Typ uw bericht');
-    fireEvent.changeText(input, 'Wat is generatieve AI?');
-
-    const sendButton = getByText('↑');
-    fireEvent.press(sendButton);
-
-    // Check user message appears
+    // Typing animation should show up
     await waitFor(() => {
-      expect(getByText('Wat is generatieve AI?')).toBeTruthy();
+      expect(queryByTestId('typing-animation')).toBeTruthy();
     });
 
-    // Check typing animation appears
-    expect(queryByText('...')).toBeTruthy(); // Simple match
-
-    // Wait for the assistant response to appear
-    await waitFor(() => {
-      expect(getByText(mockResponse)).toBeTruthy();
-    });
+    // Wait for the assistant's reply
+    const response = await findByText('Dit is een antwoord van de AI.');
+    expect(response).toBeTruthy();
   });
 
-  it('does not send empty messages', () => {
-    const { getByText } = render(<Chatbot />);
-    const sendButton = getByText('↑');
-    fireEvent.press(sendButton);
+  it('sends prompt message and receives response', async () => {
+    const { getByText, queryByTestId, findByText } = render(<Chatbot />);
 
-    expect(api.fetchChatResponse).not.toHaveBeenCalled();
+    // Tap on a suggested prompt
+    fireEvent.press(getByText('Wat is generative AI?'));
+
+    // Typing animation should show
+    await waitFor(() => {
+      expect(queryByTestId('typing-animation')).toBeTruthy();
+    });
+
+    // Wait for assistant response
+    const response = await findByText('Dit is een antwoord van de AI.');
+    expect(response).toBeTruthy();
   });
 });

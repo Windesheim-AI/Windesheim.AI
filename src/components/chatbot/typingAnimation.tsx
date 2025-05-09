@@ -13,7 +13,7 @@ export const TypingAnimation = ({ color }: { color: string }) => {
     }, []);
 
     return (
-        <Text style={{ fontSize: 35, color, fontWeight: 'bold' }}>
+        <Text testID="typing-animation" style={{ fontSize: 35, color, fontWeight: 'bold' }}>
             {dots.current[index]}
         </Text>
     );

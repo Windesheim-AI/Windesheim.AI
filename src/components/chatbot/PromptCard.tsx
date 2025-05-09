@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+
 import { useColorConfig } from '../../lib/constants/Colors';
 
 type PromptCardProps = {

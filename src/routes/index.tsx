@@ -5,6 +5,7 @@ import { DefaultRoute, Routes } from './routes';
 import { LoadingScreen } from '../components/loadingscreen/LoadingScreen';
 import { useAppSelector } from '../lib/redux/Hooks';
 import { Articles } from '../screens/Articles';
+import ChatbotScreen from '../screens/Chatbot';
 import CourseFinished from '../screens/Course/CourseFinished';
 import { Courses } from '../screens/Course/Courses';
 import Stage from '../screens/Course/Stage';
@@ -23,7 +24,6 @@ import { BackgroundInfo } from '../screens/UserBackground/BackgroundInfo';
 import { WTRScreen } from '../screens/WTR';
 import { MockTutorial } from '../screens/WTR/MockTutorial';
 import { WTRContentScreen } from '../screens/WTR/WTRContent';
-import ChatbotScreen from '../screens/Chatbot';
 const Stack = createNativeStackNavigator();
 
 const screens = [

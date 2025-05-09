@@ -11,13 +11,14 @@ import {
     NativeSyntheticEvent,
     NativeScrollEvent,
 } from 'react-native';
-import { fetchChatResponse } from '../../api/chatbot';
-import { useTypingEffect } from './useTypingEffect';
-import { useColorConfig, shadow } from '../../lib/constants/Colors';
 import Markdown from 'react-native-markdown-display';
+
+import { PromptCard } from './PromptCard';
 import selectableMarkdownRules from './selectableMarkdownRules';
 import { TypingAnimation } from './typingAnimation';
-import { PromptCard } from './PromptCard';
+import { useTypingEffect } from './useTypingEffect';
+import { fetchChatResponse } from '../../api/chatbot';
+import { useColorConfig, shadow } from '../../lib/constants/Colors';
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
@@ -196,13 +197,13 @@ export default function Chatbot() {
                         </View>
                     ))}
 
-                    {isLoading && (
+                    {isLoading ? (
                         <View style={{ padding: 10 }}>
                             <TypingAnimation color={colors.text} />
                         </View>
-                    )}
+                    ) : null}
 
-                    {isTyping && responseToType && (
+                    {isTyping && responseToType ? (
                         <View
                             style={[
                                 styles.assistantMessage,
@@ -227,10 +228,10 @@ export default function Chatbot() {
                                 </Markdown>
                             </View>
                         </View>
-                    )}
+                    ) : null}
                 </ScrollView>
 
-                {showScrollButton && (
+                {showScrollButton ? (
                     <TouchableOpacity
                         onPress={() => {
                             scrollViewRef.current?.scrollToEnd({
@@ -241,9 +242,9 @@ export default function Chatbot() {
                     >
                         <Text style={styles.scrollToBottomText}>↓</Text>
                     </TouchableOpacity>
-                )}
+                ) : null}
 
-                {showPrompts && (
+                {showPrompts ? (
                     <View style={styles.promptContainer}>
                         <ScrollView
                             horizontal
@@ -259,7 +260,7 @@ export default function Chatbot() {
                             ))}
                         </ScrollView>
                     </View>
-                )}
+                ) : null}
 
                 <View style={styles.inputRow}>
                     <TextInput
@@ -269,7 +270,7 @@ export default function Chatbot() {
                         placeholderTextColor={hexToRGBA(colors.text, 0.5)}
                         style={styles.textInput}
                         multiline
-                        editable={!isLoading && !isTyping}
+                        editable={!isLoading ? !isTyping : null}
                     />
                     <TouchableOpacity
                         onPress={() => handleSend()}
