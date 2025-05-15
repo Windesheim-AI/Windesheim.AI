@@ -47,6 +47,7 @@ type TextStyling = {
     cardStageTitle: TextStyle;
     level: TextStyle;
     levelText: TextStyle;
+    chatText: TextStyle;
 };
 
 // eslint-disable-next-line complexity
@@ -215,6 +216,10 @@ export function useFonts() {
         },
         levelText: {
             fontSize: 12,
+            fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
+        },
+        chatText: {
+            fontSize: 14,
             fontFamily: areFontsLoaded ? 'Inter_400Regular' : 'System',
         },
     };

@@ -19,12 +19,14 @@ import { TypingAnimation } from './typingAnimation';
 import { useTypingEffect } from './useTypingEffect';
 import { fetchChatResponse } from '../../api/chatbot';
 import { useColorConfig, shadow } from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
 export default function Chatbot() {
     const colors = useColorConfig();
-    const styles = createStyles(colors);
+    const fonts = useFonts();
+    const styles = createStyles(colors, fonts);
 
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState('');
@@ -289,7 +291,7 @@ export default function Chatbot() {
 }
 
 // 🧼 Styles wrapped in a factory to accept hook values
-const createStyles = (colors: ReturnType<typeof useColorConfig>) =>
+const createStyles = (colors: ReturnType<typeof useColorConfig>, fonts: ReturnType<typeof useFonts>) =>
     StyleSheet.create({
         chatboxContainer: {
             flex: 1,
@@ -319,13 +321,15 @@ const createStyles = (colors: ReturnType<typeof useColorConfig>) =>
             alignSelf: 'flex-start',
         },
         messageText: {
-            fontSize: 16,
+            ...fonts.chatText,
             lineHeight: 20,
         },
         userText: {
+            ...fonts.chatText,
             color: colors.black,
         },
         assistantText: {
+            ...fonts.chatText,
             color: colors.text,
         },
         inputRow: {
@@ -342,11 +346,11 @@ const createStyles = (colors: ReturnType<typeof useColorConfig>) =>
         },
         textInput: {
             flex: 1,
+            ...fonts.chatText,
             color: colors.text,
             paddingHorizontal: 5,
             paddingVertical: 5,
             marginRight: 10,
-            fontSize: 16,
             maxHeight: '100%',
         },
         sendButton: {

@@ -2,6 +2,7 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 import { useColorConfig } from '../../lib/constants/Colors';
+import { useFonts } from '../../lib/constants/Fonts';
 
 type PromptCardProps = {
     text: string;
@@ -10,6 +11,7 @@ type PromptCardProps = {
 
 export const PromptCard: React.FC<PromptCardProps> = ({ text, onPress }) => {
     const colors = useColorConfig();
+    const fonts = useFonts();
 
     const styles = StyleSheet.create({
         card: {
@@ -20,7 +22,7 @@ export const PromptCard: React.FC<PromptCardProps> = ({ text, onPress }) => {
             marginRight: 10,
         },
         text: {
-            fontSize: 14,
+            ...fonts.chatText,
             color: colors.black,
         },
     });
