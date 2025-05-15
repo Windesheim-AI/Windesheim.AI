@@ -20,6 +20,7 @@ import { useTypingEffect } from './useTypingEffect';
 import { fetchChatResponse } from '../../api/chatbot';
 import { useColorConfig, shadow } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
+import { HapticFeedback, HapticForces } from '../../../src/lib/haptic/Hooks';
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
@@ -67,6 +68,7 @@ export default function Chatbot() {
     });
 
     const handleSend = async (customInput?: string) => {
+        HapticFeedback(HapticForces.Light);
         const message = customInput ?? input;
         if (!message.trim()) return;
 
@@ -236,6 +238,7 @@ export default function Chatbot() {
                 {showScrollButton ? (
                     <TouchableOpacity
                         onPress={() => {
+                            HapticFeedback(HapticForces.Light);
                             scrollViewRef.current?.scrollToEnd({
                                 animated: true,
                             });
