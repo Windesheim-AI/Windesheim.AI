@@ -105,7 +105,7 @@ export function Articles() {
                 delay={200}
                 style={styles.sectionSubtitle}
             >
-                Here you can find the newest episodes of the official Windesheim.AI podcast.
+                Hier vind je de nieuwste afleveringen van de officiële Windesheim.AI podcast.
             </Animatable.Text>
 
             <Animatable.View animation="fadeInUp" duration={600} delay={300}>
@@ -127,7 +127,7 @@ export function Articles() {
                 delay={500}
                 style={styles.sectionSubtitle}
             >
-                A collection of articles highlighting the latest AI trends. Each is tagged with ELSA categories.
+                Een verzameling van artikelen op het gebied van de laatste AI trends. Elke is gelabeld met ELSA categorieën.
             </Animatable.Text>
 
             <Animatable.View
