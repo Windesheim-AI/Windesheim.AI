@@ -7,7 +7,7 @@ import {
     Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import * as Animatable from 'react-native-animatable'; // ✅ Import animation lib
+import * as Animatable from 'react-native-animatable';
 
 import { useAppSelector } from '../../lib/redux/Hooks';
 import { TitleSimple } from '../../components/general/text/TitleSimple';
@@ -25,6 +25,7 @@ export function PromptLibrary() {
     const isFirstTimeUser = useAppSelector(
         (state) => state.backgroundInformation.isFirstTimeUser,
     );
+    const fontSize = useAppSelector((state) => state.fontSize.fontSize);
     const colors = useColorConfig();
     const currentTheme = useCurrentTheme();
     const logoTextColor = currentTheme === 'dark' ? '#FFFFFF' : '#000000';
@@ -61,7 +62,7 @@ export function PromptLibrary() {
             resizeMode: 'contain',
         },
         logoText: {
-            fontSize: 20,
+            fontSize: fontSize + 2,
             fontWeight: 'bold',
             marginLeft: 10,
             color: logoTextColor,
@@ -70,13 +71,13 @@ export function PromptLibrary() {
             marginBottom: 20,
         },
         titleText: {
-            fontSize: 22,
+            fontSize: fontSize + 4,
             fontWeight: 'bold',
-            color: 'black',
+            color: colors.text,
         },
         explanationText: {
-            fontSize: 16,
-            color: currentTheme === 'dark' ? '#FFFFFF' : '#333333',
+            fontSize: fontSize,
+            color: colors.text,
         },
         navBarContainer: {
             position: 'absolute',
@@ -107,7 +108,7 @@ export function PromptLibrary() {
                 <Animatable.View animation="fadeInUp" delay={100} duration={600} style={styles.titleSection}>
                     <Text style={styles.titleText}>PROMPT LIBRARY</Text>
                     <Text style={styles.explanationText}>
-                        Here you'll find a collection of prompts that you can use to easily navigate AI tools. You can filter by tools and sector to find the right prompt you need.
+                        Hier vind je een verzameling prompts die je kan gebruiken om makkelijk met AI tools overweg te gaan.
                     </Text>
                 </Animatable.View>
 

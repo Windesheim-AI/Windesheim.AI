@@ -12,11 +12,12 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import * as Animatable from 'react-native-animatable';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { NavBar } from '../components/navigation/Navbar'; // ✅ navbar import
+import { NavBar } from '../components/navigation/Navbar';
 import { SettingsButton } from '../components/general/buttons/SettingButton';
 import { PageScrollView } from '../components/general/views/PageScrollView';
 import { ArticleLimitedView } from '../components/articleLibrary/ArticleLimitedView';
 import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
+import { useAppSelector } from '../lib/redux/Hooks';
 
 type RootStackParamList = {
     TestScreen: undefined;
@@ -28,9 +29,10 @@ const screenWidth = Dimensions.get('window').width;
 
 export const HomeScreen = () => {
     const currentTheme = useCurrentTheme();
-    const logoTextColor = currentTheme === 'dark' ? '#FFFFFF' : 'black';
     const colors = useColorConfig();
+    const fontSize = useAppSelector((state) => state.fontSize.fontSize);
 
+    const logoTextColor = colors.text;
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
     const styles = StyleSheet.create({
@@ -57,13 +59,13 @@ export const HomeScreen = () => {
             resizeMode: 'contain',
         },
         logoText: {
-            fontSize: 20,
+            fontSize,
             fontWeight: 'bold',
             marginLeft: 10,
             color: logoTextColor,
         },
         scrollContent: {
-            paddingBottom: 120, // ensures scroll content is not covered by NavBar
+            paddingBottom: 120,
         },
         bigCard: {
             flexDirection: 'row',
@@ -71,7 +73,7 @@ export const HomeScreen = () => {
             marginHorizontal: 16,
             marginTop: 20,
             padding: 20,
-            backgroundColor: '#F1F1F5',
+            backgroundColor: colors.cardBackground || '#FFFF',
             borderRadius: 24,
             shadowColor: '#000',
             shadowOffset: { width: 0, height: 5 },
@@ -85,9 +87,10 @@ export const HomeScreen = () => {
             justifyContent: 'center',
         },
         bigCardTitle: {
-            fontSize: 24,
+            fontSize: fontSize + 4,
             fontWeight: '600',
             marginBottom: 12,
+            color: colors.text,
         },
         testButton: {
             backgroundColor: '#ffcb05',
@@ -99,12 +102,11 @@ export const HomeScreen = () => {
         testButtonText: {
             color: '#fff',
             fontWeight: '600',
-            fontSize: 16,
+            fontSize,
         },
         bigCardImage: {
             width: 100,
             height: 100,
-            backgroundColor: '#D0D0D0',
             borderRadius: 20,
         },
         spacer: {
@@ -124,14 +126,11 @@ export const HomeScreen = () => {
             zIndex: 10,
         },
         sectionTitle: {
-            fontSize: 20,
+            fontSize: fontSize + 2,
             fontWeight: '700',
             marginTop: 30,
             marginHorizontal: 16,
-        },
-        articleBox: {
-            backgroundColor: colors.background,
-            height: 10,
+            color: colors.text,
         },
     });
 
@@ -143,9 +142,7 @@ export const HomeScreen = () => {
                         source={require('../assets/images/Icon/favicon.png')}
                         style={styles.logo}
                     />
-                    <Text style={styles.logoText}>
-                        WINDESHEIM.AI
-                    </Text>
+                    <Text style={styles.logoText}>WINDESHEIM.AI</Text>
                 </View>
                 <SettingsButton />
             </View>
@@ -154,7 +151,6 @@ export const HomeScreen = () => {
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.scrollContent}
             >
-                {/* Title for the first big card */}
                 <Animatable.Text
                     animation="fadeInUp"
                     duration={600}
@@ -171,7 +167,9 @@ export const HomeScreen = () => {
                     style={styles.bigCard}
                 >
                     <View style={styles.bigCardText}>
-                        <Text style={styles.bigCardTitle}>Doe de AI literacy test.</Text>
+                        <Text style={styles.bigCardTitle}>
+                            Doe de AI literacy test.
+                        </Text>
                         <TouchableOpacity
                             onPress={() => navigation.navigate('Quizhome', { quizId: 1 })}
                             style={styles.testButton}
@@ -179,10 +177,12 @@ export const HomeScreen = () => {
                             <Text style={styles.testButtonText}>Ga naar de test</Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.bigCardImage} />
+                    <Image
+                        source={require('../assets/images/bgImages/robot.png')}
+                        style={styles.bigCardImage}
+                    />
                 </Animatable.View>
 
-                {/* Title for the articles section */}
                 <Animatable.Text
                     animation="fadeInUp"
                     duration={600}
@@ -192,20 +192,17 @@ export const HomeScreen = () => {
                     Nieuwe artikelen
                 </Animatable.Text>
 
-                {/* Articles List Component */}
                 <Animatable.View
                     animation="fadeInUp"
                     duration={600}
                     delay={400}
                 >
-                    
                     <ArticleLimitedView />
                 </Animatable.View>
 
-                {/* Spacer box to ensure articles are not hidden by navbar */}
                 <View style={styles.articlesWrapper}>
-                                    <View style={{ height: 130, backgroundColor: colors.background }} />
-                                </View>
+                    <View style={{ height: 130, backgroundColor: colors.background }} />
+                </View>
             </PageScrollView>
 
             <View style={styles.navBarContainer}>

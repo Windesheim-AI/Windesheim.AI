@@ -8,12 +8,13 @@ import {
     FlatList,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import * as Animatable from 'react-native-animatable'; // ✅ Add Animatable
+import * as Animatable from 'react-native-animatable';
 
 import { SettingsButton } from '../components/general/buttons/SettingButton';
 import { NavBar } from '../components/navigation/Navbar';
 
 import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
+import { useAppSelector } from '../lib/redux/Hooks';
 import { PodcastEpisodeLimitedView } from '../components/podcasts/PodcastEpisodeLimitedView';
 import { ArticleLimitedView } from '../components/articleLibrary/ArticleLimitedView';
 
@@ -22,6 +23,7 @@ const screenWidth = Dimensions.get('window').width;
 export function Articles() {
     const currentTheme = useCurrentTheme();
     const colors = useColorConfig();
+    const fontSize = useAppSelector((state) => state.fontSize.fontSize);
     const logoTextColor = currentTheme === 'dark' ? '#FFFFFF' : 'black';
 
     const styles = StyleSheet.create({
@@ -47,7 +49,7 @@ export function Articles() {
             resizeMode: 'contain',
         },
         logoText: {
-            fontSize: 20,
+            fontSize: fontSize + 2,
             fontWeight: 'bold',
             marginLeft: 10,
             color: logoTextColor,
@@ -57,7 +59,7 @@ export function Articles() {
             alignItems: 'center',
         },
         sectionTitle: {
-            fontSize: 24,
+            fontSize: fontSize + 6,
             fontWeight: '600',
             marginTop: 20,
             marginBottom: 10,
@@ -66,8 +68,8 @@ export function Articles() {
             textAlign: 'center',
         },
         sectionSubtitle: {
-            fontSize: 15,
-            color: '#555',
+            fontSize: fontSize,
+            color: colors.text,
             marginHorizontal: 20,
             marginBottom: 10,
             textAlign: 'center',

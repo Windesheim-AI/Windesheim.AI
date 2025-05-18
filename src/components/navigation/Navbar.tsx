@@ -13,6 +13,8 @@ import { HapticFeedback, HapticForces } from '../../lib/haptic/Hooks';
 import { useAppSelector } from '../../lib/redux/Hooks';
 import { useNavigation } from '../../lib/utility/navigation/useNavigation';
 import { navigationBarLinks } from '../../routes/navigation';
+import { Alert } from 'react-native';
+
 
 export const NavBar = () => {
     const navigation = useNavigation();

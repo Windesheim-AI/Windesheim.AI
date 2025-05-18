@@ -84,38 +84,49 @@ export const SettingsScreen = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 80 }}
       >
-        <SettingCard icon="moon" title="Enable dark mode" testID="Theme switcher">
+        {/* <SettingCard icon="moon" title="Enable dark mode" testID="Theme switcher">
           <ThemeSwitcher />
-        </SettingCard>
+        </SettingCard> */}
 
-        <SettingCard icon="language" title="Language" testID="Language switcher">
+        {/* <SettingCard icon="language" title="Language" testID="Language switcher">
           <LanguageSwitcher />
-        </SettingCard>
+        </SettingCard> */}
 
         <SettingCard icon="font" title="Font" testID="font switcher">
           <FontSwitcher />
         </SettingCard>
 
-        <SettingCard icon="hand-sparkles" title="Animations" testID="Animation Toggle">
+        {/* <SettingCard icon="hand-sparkles" title="Animations" testID="Animation Toggle">
           <AnimationToggle />
-        </SettingCard>
+        </SettingCard> */}
 
         <SettingCard icon="eye" title="Enable high contrast" testID="High contrast mode switcher">
           <HighContrastSwitcher />
         </SettingCard>
 
-        <SettingCard icon="user-edit" title="Background" testID="Background">
+        {/* <SettingCard icon="user-edit" title="Background" testID="Background">
           <EditBackgroundInformationButton />
-        </SettingCard>
-
+        </SettingCard> */}
+{/* 
         <SettingCard icon="redo" title="App Tutorial" testID="tutorial reset">
           <TutorialRedoButton />
-        </SettingCard>
+        </SettingCard> */}
 
-        <SettingCard icon="redo" title="Prompt Tutorial" testID="tutorial reset">
+        {/* <SettingCard icon="redo" title="Prompt Tutorial" testID="tutorial reset">
           <PromptsTutorialRedoButton />
-        </SettingCard>
+        </SettingCard> */}
+         <Text
+      style={{
+        textAlign: 'center',
+        padding: 16,
+        color: currentTheme === 'dark' ? '#fff' : '#000',
+        fontSize: 14,
+      }}
+    >
+      Binnenkort worden meer toegankelijkheidsinstellingen toegevoegd aan de Windesheim AI app!
+    </Text>
       </ScrollView>
+      
     </View>
   );
 };
