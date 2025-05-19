@@ -157,7 +157,7 @@ export const HomeScreen = () => {
                     delay={100}
                     style={styles.sectionTitle}
                 >
-                    AI bekwaam test
+                    AI startbekwaam test
                 </Animatable.Text>
 
                 <Animatable.View
@@ -168,7 +168,7 @@ export const HomeScreen = () => {
                 >
                     <View style={styles.bigCardText}>
                         <Text style={styles.bigCardTitle}>
-                            Doe de AI literacy test.
+                            Doe de AI startbekwaam test.
                         </Text>
                         <TouchableOpacity
                             onPress={() => navigation.navigate('Quizhome', { quizId: 1 })}
