@@ -11,7 +11,7 @@ const initialState: BackgroundState = {
     position: '',
     interestedKeyword: '',
     familiarity: '',
-    isFirstTimeUser: true,
+    isFirstTimeUser: false,
 };
 
 export const backgroundInformationSlice = createSlice({

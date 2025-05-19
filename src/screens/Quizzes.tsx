@@ -14,6 +14,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { SettingsButton } from '../components/general/buttons/SettingButton';
 import { GoBackButton } from '../components/general/buttons/GoBackButton';
 import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
+import { useAppSelector } from '../lib/redux/Hooks';
 
 interface Answer {
   id: number;
@@ -36,6 +37,7 @@ interface QuizData {
 
 type RootStackParamList = {
   Quizhome: undefined;
+  Home: undefined;
   Quizzes: { quizId: number };
   Results: {
     score: number;
@@ -58,14 +60,17 @@ const Quizzes: React.FC = () => {
   const [loadError, setLoadError] = useState(false);
   const [timeLeft, setTimeLeft] = useState(780); // time for the quiz
   const [timeExpired, setTimeExpired] = useState(false);
+  
 
   const route = useRoute<QuizRouteProp>();
   const navigation = useNavigation<QuizNavigationProp>();
   const answersOpacity = useRef(new Animated.Value(0)).current;
+  const fontSize = useAppSelector((state) => state.fontSize.fontSize);
 
   const currentTheme = useCurrentTheme();
   const colors = useColorConfig();
   const logoTextColor = currentTheme === 'dark' ? '#FFFFFF' : 'black';
+const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const fetchQuizData = async () => {
     setIsLoading(true);
@@ -79,7 +84,7 @@ const Quizzes: React.FC = () => {
       const data: QuizData = await response.json();
 
       if (!data || !Array.isArray(data.questions) || data.questions.length === 0) {
-        throw new Error('No valid questions returned');
+        throw new Error('No valid questions returned. Please check your connection.');
       }
 
       const shuffleArray = <T,>(array: T[]): T[] => [...array].sort(() => Math.random() - 0.5);
@@ -109,21 +114,24 @@ const Quizzes: React.FC = () => {
   }, [route.params?.quizId]);
 
   useEffect(() => {
-    if (!quizData) return;
+  if (!quizData) return;
 
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          setTimeExpired(true);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+  timerRef.current = setInterval(() => {
+    setTimeLeft((prev) => {
+      if (prev <= 1) {
+        clearInterval(timerRef.current!);
+        setTimeExpired(true);
+        return 0;
+      }
+      return prev - 1;
+    });
+  }, 1000);
 
-    return () => clearInterval(interval);
-  }, [quizData]);
+  return () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+  };
+}, [quizData]);
+
 
   useEffect(() => {
     if (timeExpired && quizData) {
@@ -254,7 +262,10 @@ const Quizzes: React.FC = () => {
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={styles.headerContainer}>
         <View style={styles.headerSide}>
-          <GoBackButton />
+<GoBackButton onPress={() => {
+  if (timerRef.current) clearInterval(timerRef.current);
+  navigation.navigate('Home');
+}} />
         </View>
         <View style={styles.logoContainer}>
           <Image
@@ -271,8 +282,8 @@ const Quizzes: React.FC = () => {
       <View style={{ height: 10 }} />
 
       <View style={styles.quizHeader}>
-        <Text style={styles.quizTitle}>{quizData?.title || 'Quiz'}</Text>
-        <Text style={styles.questionCounter}>
+        <Text style={[styles.quizTitle, { fontSize }]}>{quizData?.title || 'Quiz'}</Text>
+<Text style={[styles.questionCounter, { fontSize: fontSize * 0.9 }]}>
           Question {currentQuestion + 1} of {totalQuestions} | Time Left: {formatTime(timeLeft)}
         </Text>
       </View>
@@ -281,9 +292,11 @@ const Quizzes: React.FC = () => {
         <View style={styles.questionBubbleWrapper}>
           <View style={styles.questionBubble}>
             {!!currentQ.question_title?.trim() && (
-              <Text style={styles.questionTitle}>{currentQ.question_title.trim()}</Text>
+              <Text style={[styles.questionTitle, { fontSize: fontSize * 1.1 }]}>
+{currentQ.question_title.trim()}</Text>
             )}
-            <Text style={styles.questionText}>{typedText}</Text>
+            <Text style={[styles.questionText, { fontSize }]}>
+{typedText}</Text>
           </View>
         </View>
       )}
@@ -302,7 +315,8 @@ const Quizzes: React.FC = () => {
                 ]}
                 onPress={() => handleAnswerSelect(currentQ.id, answer.id)}
               >
-                <Text style={styles.answerText}>{answer.answer}</Text>
+                <Text style={[styles.answerText, { fontSize }]}>
+{answer.answer}</Text>
               </TouchableOpacity>
             </Animated.View>
           ))}
@@ -354,7 +368,7 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   centered: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   quizHeader: { marginBottom: 10, paddingHorizontal: 20 },
-  quizTitle: { fontSize: 24, fontWeight: 'bold', textAlign: 'center' },
+  quizTitle: { fontSize:  24, fontWeight: 'bold', textAlign: 'center' },
   questionCounter: { fontSize: 16, textAlign: 'center', color: '#666' },
   questionTitle: { fontSize: 20, marginBottom: 10 },
   questionText: { fontSize: 18 },

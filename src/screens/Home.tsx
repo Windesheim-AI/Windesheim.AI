@@ -197,7 +197,17 @@ export const HomeScreen = () => {
                     duration={600}
                     delay={400}
                 >
-                    <ArticleLimitedView />
+                    <ArticleLimitedView limit={3}/>
+                     <Text
+                          style={{
+                            textAlign: 'center',
+                            padding: 16,
+                            color: currentTheme === 'dark' ? '#fff' : '#000',
+                            fontSize: 14,
+                          }}
+                        >
+                          Je vind meer artikelen op de Artikelen pagina.
+                        </Text>
                 </Animatable.View>
 
                 <View style={styles.articlesWrapper}>

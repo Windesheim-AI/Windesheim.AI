@@ -39,7 +39,7 @@ export function PromptLibrary() {
             paddingBottom: 100,
             paddingTop: 10,
         },
-        headerContainer: {
+         headerContainer: {
             flexDirection: 'row',
             alignItems: 'center',
             width: '100%',
@@ -48,7 +48,6 @@ export function PromptLibrary() {
             backgroundColor: colors.background,
             borderBottomWidth: 1,
             borderBottomColor: '#e5e5e5',
-            position: 'relative',
         },
         logoContainer: {
             flexDirection: 'row',
@@ -62,7 +61,7 @@ export function PromptLibrary() {
             resizeMode: 'contain',
         },
         logoText: {
-            fontSize: fontSize + 2,
+            fontSize: fontSize,
             fontWeight: 'bold',
             marginLeft: 10,
             color: logoTextColor,
@@ -124,7 +123,8 @@ export function PromptLibrary() {
 
                 {!isFirstTimeUser ? (
                     <Animatable.View animation="fadeInUp" delay={300} duration={600}>
-                        <PromptsTutorial />
+                        {/* <PromptsTutorial /> */}
+                                                <BackgroundCollectForm />
                     </Animatable.View>
                 ) : null}
             </PageScrollView>

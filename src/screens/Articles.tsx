@@ -49,7 +49,7 @@ export function Articles() {
             resizeMode: 'contain',
         },
         logoText: {
-            fontSize: fontSize + 2,
+            fontSize: fontSize,
             fontWeight: 'bold',
             marginLeft: 10,
             color: logoTextColor,
@@ -136,7 +136,7 @@ export function Articles() {
                 delay={600}
                 style={styles.articlesWrapper}
             >
-                <ArticleLimitedView limit={6} />
+                <ArticleLimitedView limit={15} />
                 <View style={{ height: 0, backgroundColor: colors.background }} />
             </Animatable.View>
         </View>

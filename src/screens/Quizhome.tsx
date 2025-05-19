@@ -123,7 +123,7 @@ const Quizhome: React.FC = () => {
           delay={100}
           style={styles.title}
         >
-          AI bekwaam test
+          AI startbekwaam test
         </Animatable.Text>
 
         <Animatable.Text
