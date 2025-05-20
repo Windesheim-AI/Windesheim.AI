@@ -3,9 +3,9 @@
         "name": "Windesheim.AI",
         "slug": "winsight",
         "scheme": "windesheim.ai",
-        "version": "1.5.1",
+        "version": "1.7.1",
         "orientation": "portrait",
-        "icon": "./src/assets/images/Icon/icon.png",
+        "icon": "./src/assets/images/Icon/loading.gif",
         "userInterfaceStyle": "light",
         "splash": {
             "image": "./src/assets/images/Icon/splash.png",
@@ -22,7 +22,7 @@
             }
         },
         "android": {
-            "package": "com.windesheim.ai",
+            "package": "com.windesheim.ai.android",
             "versionCode": 28,
             "adaptiveIcon": {
                 "foregroundImage": "./src/assets/images/Icon/adaptive-icon.png",
@@ -41,9 +41,7 @@
                 "projectId": "0f525e57-fad9-45bd-9085-714b0d610d6d"
             }
         },
-        "runtimeVersion": {
-            "policy": "appVersion"
-        },
+        "runtimeVersion": "1.7.1",
         "updates": {
             "url": "https://u.expo.dev/0f525e57-fad9-45bd-9085-714b0d610d6d"
         },

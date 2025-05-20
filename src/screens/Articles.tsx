@@ -1,28 +1,171 @@
 import React from 'react';
-import { View } from 'react-native';
+import {
+    View,
+    StyleSheet,
+    Dimensions,
+    Text,
+    Image,
+    FlatList,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import * as Animatable from 'react-native-animatable';
 
-import { ArticleLimitedView } from '../components/articleLibrary/ArticleLimitedView';
-import { TitleSimple } from '../components/general/text/TitleSimple';
-import { PageScrollView } from '../components/general/views/PageScrollView';
+import { SettingsButton } from '../components/general/buttons/SettingButton';
+import { NavBar } from '../components/navigation/Navbar';
+
+import { useColorConfig, useCurrentTheme } from '../lib/constants/Colors';
+import { useAppSelector } from '../lib/redux/Hooks';
 import { PodcastEpisodeLimitedView } from '../components/podcasts/PodcastEpisodeLimitedView';
+import { ArticleLimitedView } from '../components/articleLibrary/ArticleLimitedView';
+
+const screenWidth = Dimensions.get('window').width;
 
 export function Articles() {
-    return (
-        <PageScrollView>
-            <View>
-                <TitleSimple
-                    titleText="Podcasts"
-                    explainationText="Here you can find the newest episodes of the official Windesheim.AI podcast."
-                />
+    const currentTheme = useCurrentTheme();
+    const colors = useColorConfig();
+    const fontSize = useAppSelector((state) => state.fontSize.fontSize);
+    const logoTextColor = currentTheme === 'dark' ? '#FFFFFF' : 'black';
+
+    const styles = StyleSheet.create({
+        headerContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            width: '100%',
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            backgroundColor: colors.background,
+            borderBottomWidth: 1,
+            borderBottomColor: '#e5e5e5',
+        },
+        logoContainer: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            flex: 1,
+            justifyContent: 'center',
+        },
+        logo: {
+            width: 37,
+            height: 37,
+            resizeMode: 'contain',
+        },
+        logoText: {
+            fontSize: fontSize,
+            fontWeight: 'bold',
+            marginLeft: 10,
+            color: logoTextColor,
+        },
+        scrollContent: {
+            paddingBottom: 100,
+            alignItems: 'center',
+        },
+        sectionTitle: {
+            fontSize: fontSize + 6,
+            fontWeight: '600',
+            marginTop: 20,
+            marginBottom: 10,
+            marginHorizontal: 20,
+            color: colors.text,
+            textAlign: 'center',
+        },
+        sectionSubtitle: {
+            fontSize: fontSize,
+            color: colors.text,
+            marginHorizontal: 20,
+            marginBottom: 10,
+            textAlign: 'center',
+        },
+        articlesWrapper: {
+            width: '100%',
+            maxWidth: 500,
+            paddingHorizontal: 12,
+        },
+        navBarContainer: {
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            zIndex: 10,
+        },
+    });
+
+    const ListHeader = () => (
+        <View style={styles.scrollContent}>
+            <Animatable.Text
+                animation="fadeInUp"
+                duration={600}
+                delay={100}
+                style={styles.sectionTitle}
+            >
+                Podcasts
+            </Animatable.Text>
+
+            <Animatable.Text
+                animation="fadeInUp"
+                duration={600}
+                delay={200}
+                style={styles.sectionSubtitle}
+            >
+                Hier vind je de nieuwste afleveringen van de officiële Windesheim.AI podcast.
+            </Animatable.Text>
+
+            <Animatable.View animation="fadeInUp" duration={600} delay={300}>
                 <PodcastEpisodeLimitedView />
+            </Animatable.View>
+
+            <Animatable.Text
+                animation="fadeInUp"
+                duration={600}
+                delay={400}
+                style={styles.sectionTitle}
+            >
+                Articles
+            </Animatable.Text>
+
+            <Animatable.Text
+                animation="fadeInUp"
+                duration={600}
+                delay={500}
+                style={styles.sectionSubtitle}
+            >
+                Een verzameling van artikelen op het gebied van de laatste AI trends. Elke is gelabeld met ELSA categorieën.
+            </Animatable.Text>
+
+            <Animatable.View
+                animation="fadeInUp"
+                duration={600}
+                delay={600}
+                style={styles.articlesWrapper}
+            >
+                <ArticleLimitedView limit={15} />
+                <View style={{ height: 0, backgroundColor: colors.background }} />
+            </Animatable.View>
+        </View>
+    );
+
+    return (
+        <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
+            <View style={styles.headerContainer}>
+                <View style={styles.logoContainer}>
+                    <Image
+                        source={require('../assets/images/Icon/favicon.png')}
+                        style={styles.logo}
+                    />
+                    <Text style={styles.logoText}>WINDESHEIM.AI</Text>
+                </View>
+                <SettingsButton />
             </View>
-            <View>
-                <TitleSimple
-                    titleText="Articles"
-                    explainationText="Here you'll find a collection of articles that highlight the latest developments, trends, and insights in the field of AI. Each article on the page is also tagged with relevant ELSA categories."
-                />
-                <ArticleLimitedView limit={20} />
+
+            <FlatList
+                data={[]}
+                renderItem={null}
+                keyExtractor={() => 'unused'}
+                ListHeaderComponent={ListHeader}
+                showsVerticalScrollIndicator={false}
+            />
+
+            <View style={styles.navBarContainer}>
+                <NavBar />
             </View>
-        </PageScrollView>
+        </SafeAreaView>
     );
 }
