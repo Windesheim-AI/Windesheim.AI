@@ -21,6 +21,10 @@ import { fetchChatResponse } from '../../api/chatbot';
 import { useColorConfig, shadow } from '../../lib/constants/Colors';
 import { useFonts } from '../../lib/constants/Fonts';
 import { HapticFeedback, HapticForces } from '../../../src/lib/haptic/Hooks';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../lib/redux/Store'; // adjust path as needed
+import { addMessage, clearMessages } from '../../lib/redux/slices/chatSlice';
+
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
@@ -29,7 +33,9 @@ export default function Chatbot() {
     const fonts = useFonts();
     const styles = createStyles(colors, fonts);
 
-    const [messages, setMessages] = useState<Message[]>([]);
+    const dispatch = useDispatch();
+    const messages = useSelector((state: RootState) => state.chat.messages);
+
     const [input, setInput] = useState('');
     const [responseToType, setResponseToType] = useState<string | null>(null);
     const [isTyping, setIsTyping] = useState(false);
@@ -58,10 +64,7 @@ export default function Chatbot() {
 
     const typedResponse = useTypingEffect(responseToType || '', 1, () => {
         if (responseToType) {
-            setMessages((prev) => [
-                ...prev,
-                { role: 'assistant', content: responseToType },
-            ]);
+            dispatch(addMessage({ role: 'assistant', content: responseToType }));
         }
         setIsTyping(false);
         setResponseToType(null);
@@ -82,7 +85,7 @@ export default function Chatbot() {
             (msg) => msg.content !== initialAssistantMessage.content,
         );
 
-        setMessages(filteredMessages);
+        dispatch(addMessage({ role: 'user', content: message }));
         setInput('');
         setIsTyping(true);
         setShowPrompts(false);
@@ -140,9 +143,10 @@ export default function Chatbot() {
 
     useEffect(() => {
         if (messages.length === 0 && !hasUserSentMessage) {
-            setMessages([initialAssistantMessage]);
+            dispatch(addMessage(initialAssistantMessage));
         }
     }, [hasUserSentMessage]);
+    
 
     const hexToRGBA = (hex: string, opacity: number) => {
         const bigint = parseInt(hex.replace('#', ''), 16);

@@ -15,6 +15,8 @@ import { notificationSlice } from './slices/NotificationSlice';
 import { promptsTutorialSlice } from './slices/PromptsTutorialSlice';
 import { themeSlice } from './slices/ThemeSlice';
 import { tutorialSlice } from './slices/TutorialSlice';
+import chatReducer from './slices/chatSlice';
+
 type PersistConfigDataType = ReturnType<typeof rootReducer>;
 
 const persistConfig: PersistConfig<PersistConfigDataType> = {
@@ -30,6 +32,7 @@ const persistConfig: PersistConfig<PersistConfigDataType> = {
         promptsTutorialSlice.name,
         animationSlice.name,
         backgroundInformationSlice.name,
+        'chat',
     ],
 };
 
@@ -46,6 +49,7 @@ export const rootReducer = combineReducers({
     promptsTutorial: promptsTutorialSlice.reducer,
     animation: animationSlice.reducer,
     backgroundInformation: backgroundInformationSlice.reducer,
+    chat: chatReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -61,3 +65,5 @@ const store = configureStore({
 const persistedStore = persistStore(store);
 
 export { store, persistedStore };
+
+export type RootState = ReturnType<typeof store.getState>;
