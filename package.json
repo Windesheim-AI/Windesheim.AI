@@ -165,7 +165,8 @@
           "react-navigation",
           "react-numeric-input",
           "swr"
-        ]
+        ],
+        "listUnknownPackages": false
       }
     }
   },
