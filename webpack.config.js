@@ -1,4 +1,4 @@
-const createExpoWebpackConfigAsync = require('@expo/webpack-config');
+// const createExpoWebpackConfigAsync = require('@expo/webpack-config');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = async function (env, argv) {
